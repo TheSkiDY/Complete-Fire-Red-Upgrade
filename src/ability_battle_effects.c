@@ -43,7 +43,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_ADAPTABILITY] = 8,
 	[ABILITY_AFTERMATH] = 5,
 	[ABILITY_AERILATE] = 8,
-	[ABILITY_AIRLOCK] = 5,
+//	[ABILITY_AIRLOCK] = 5,
 	[ABILITY_ANALYTIC] = 5,
 	[ABILITY_ANGERPOINT] = 4,
 	[ABILITY_ANTICIPATION] = 2,
@@ -74,7 +74,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_DAMP] = 2,
 	[ABILITY_DANCER] = 5,
 	[ABILITY_DARKAURA] = 6,
-	[ABILITY_DAZZLING] = 5,
+	[ABILITY_MAJESTIC] = 5,
 	[ABILITY_DEFEATIST] = -1,
 	[ABILITY_DEFIANT] = 5,
 	[ABILITY_DELTASTREAM] = 10,
@@ -105,7 +105,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_GALEWINGS] = 6,
 	[ABILITY_GALVANIZE] = 8,
 	[ABILITY_GLUTTONY] = 3,
-	[ABILITY_GOOEY] = 5,
+	[ABILITY_STUN_TOUCH] = 5,
 	[ABILITY_GRASSPELT] = 2,
 	[ABILITY_GRASSYSURGE] = 8,
 	[ABILITY_GUTS] = 6,
@@ -128,7 +128,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_INNERFOCUS] = 2,
 	[ABILITY_INSOMNIA] = 4,
 	[ABILITY_INTIMIDATE] = 7,
-	[ABILITY_IRONBARBS] = 6,
+//	[ABILITY_IRONBARBS] = 6,
 	[ABILITY_IRONFIST] = 6,
 	[ABILITY_JUSTIFIED] = 4,
 	[ABILITY_KEENEYE] = 1,
@@ -176,15 +176,15 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_POISONTOUCH] = 4,
 	[ABILITY_PORTALPOWER] = 8,
 	[ABILITY_POWERCONSTRUCT] = 10,
-	[ABILITY_POWEROFALCHEMY] = 0,
+//	[ABILITY_POWEROFALCHEMY] = 0,
 	[ABILITY_PRANKSTER] = 8,
 	[ABILITY_PRESSURE] = 5,
 	[ABILITY_PRIMORDIALSEA] = 10,
-	[ABILITY_PRISMARMOR] = 6,
+//	[ABILITY_PRISMARMOR] = 6,
 	[ABILITY_PROTEAN] = 8,
 	[ABILITY_PSYCHICSURGE] = 8,
 //	[ABILITY_PUREPOWER] = 10,
-	[ABILITY_QUEENLYMAJESTY] = 6,
+//	[ABILITY_QUEENLYMAJESTY] = 6,
 	[ABILITY_QUICKFEET] = 5,
 	[ABILITY_RAINDISH] = 3,
 	[ABILITY_RATTLED] = 3,
@@ -209,7 +209,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SHADOWTAG] = 10,
 	[ABILITY_SHEDSKIN] = 7,
 	[ABILITY_SHEERFORCE] = 8,
-	[ABILITY_SHELLARMOR] = 2,
+//	[ABILITY_SHELLARMOR] = 2,
 	[ABILITY_SHIELDDUST] = 5,
 	[ABILITY_SHIELDSDOWN] = 6,
 	[ABILITY_SIMPLE] = 8,
@@ -220,7 +220,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SNOWCLOAK] = 3,
 	[ABILITY_SNOWWARNING] = 8,
 	[ABILITY_SOLARPOWER] = 3,
-	[ABILITY_SOLIDROCK] = 6,
+//	[ABILITY_SOLIDROCK] = 6,
 	[ABILITY_SOULHEART] = 7,
 	[ABILITY_SOUNDPROOF] = 4,
 	[ABILITY_SPEEDBOOST] = 9,
@@ -245,10 +245,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SYMBIOSIS] = 0,
 	[ABILITY_SYNCHRONIZE] = 4,
 	[ABILITY_TANGLEDFEET] = 2,
-	[ABILITY_TANGLINGHAIR] = 5,
+//	[ABILITY_TANGLINGHAIR] = 5,
 	[ABILITY_TECHNICIAN] = 8,
 	[ABILITY_TELEPATHY] = 0,
-	[ABILITY_TERAVOLT] = 7,
+//	[ABILITY_TERAVOLT] = 7,
 	[ABILITY_THICKFAT] = 7,
 	[ABILITY_TINTEDLENS] = 7,
 	[ABILITY_TORRENT] = 5,
@@ -257,7 +257,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_TRACE] = 6,
 	[ABILITY_TRIAGE] = 7,
 	[ABILITY_TRUANT] = -2,
-	[ABILITY_TURBOBLAZE] = 7,
+//	[ABILITY_TURBOBLAZE] = 7,
 	[ABILITY_UNAWARE] = 6,
 	[ABILITY_UNBURDEN] = 7,
 	[ABILITY_UNNERVE] = 3,
@@ -297,6 +297,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_PERISH_BODY] = -1,
 	[ABILITY_WANDERING_SPIRIT] = 2,
 	[ABILITY_GORILLATACTICS] = 4,
+	[ABILITY_EMPTY_1] = 0,
+	[ABILITY_EMPTY_2] = 0,
+	[ABILITY_EMPTY_3] = 0,
 };
 
 const bool8 gMoldBreakerIgnoredAbilities[] =
@@ -324,11 +327,11 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_OBLIVIOUS] =		TRUE,
 	[ABILITY_OWNTEMPO] =		TRUE,
 	[ABILITY_SANDVEIL] =		TRUE,
-	[ABILITY_SHELLARMOR] =		TRUE,
+//	[ABILITY_SHELLARMOR] =		TRUE,
 	[ABILITY_SHIELDDUST] =		TRUE,
 	[ABILITY_SIMPLE] =			TRUE,
 	[ABILITY_SNOWCLOAK] =		TRUE,
-	[ABILITY_SOLIDROCK] =		TRUE,
+//	[ABILITY_SOLIDROCK] =		TRUE,
 	[ABILITY_SOUNDPROOF] =		TRUE,
 	[ABILITY_STICKYHOLD] =		TRUE,
 	[ABILITY_STORMDRAIN] =		TRUE,
@@ -359,10 +362,10 @@ const bool8 gMoldBreakerIgnoredAbilities[] =
 	[ABILITY_FURCOAT] =			TRUE,
 	[ABILITY_OVERCOAT] =		TRUE,
 	[ABILITY_SWEETVEIL] =		TRUE,
-	[ABILITY_DAZZLING] =		TRUE,
+	[ABILITY_MAJESTIC] =		TRUE,
 	[ABILITY_DISGUISE] =		TRUE,
 	[ABILITY_FLUFFY] =			TRUE,
-	[ABILITY_QUEENLYMAJESTY] =	TRUE,
+//	[ABILITY_QUEENLYMAJESTY] =	TRUE,
 	[ABILITY_WATERBUBBLE] =		TRUE,
 	[ABILITY_PORTALPOWER] =		TRUE,
 	[ABILITY_MIRRORARMOR] =		TRUE,
@@ -723,7 +726,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_CLOUDNINE:
-		case ABILITY_AIRLOCK:
+//		case ABILITY_AIRLOCK:
 			gBattleStringLoader = gText_AirLockActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_AirLock);
 			effect++;
@@ -741,7 +744,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
-		case ABILITY_TERAVOLT:
+/*		case ABILITY_TERAVOLT:
 			gBattleStringLoader = gText_TeravoltActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
@@ -752,7 +755,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
-
+*/
 		case ABILITY_SLOWSTART:
 			gNewBS->SlowStartTimers[bank] = 5;
 			gBattleStringLoader = gText_SlowStartActivate;
@@ -1491,8 +1494,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 							effect = 1;
 						break;
 
-					case ABILITY_DAZZLING: //Cannot use
-					case ABILITY_QUEENLYMAJESTY: //Cannot use
+					case ABILITY_MAJESTIC: //Cannot use
+//					case ABILITY_QUEENLYMAJESTY: //Cannot use
 						if (PriorityCalc(gBankAttacker, ACTION_USE_MOVE, move) > 0)
 							effect = 2;
 						break;
@@ -1522,8 +1525,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			if (gBankAttacker != PARTNER(bank)) //Can't block against partner
 			{
 				switch (gLastUsedAbility) {
-					case ABILITY_DAZZLING:
-					case ABILITY_QUEENLYMAJESTY:
+					case ABILITY_MAJESTIC:
+//					case ABILITY_QUEENLYMAJESTY:
 						if (PriorityCalc(gBankAttacker, ACTION_USE_MOVE, move) > 0)
 							effect = 1;
 						break;
@@ -1660,7 +1663,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_IRONBARBS:
+//			case ABILITY_IRONBARBS:
 			case ABILITY_ROUGHSKIN:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
@@ -1941,8 +1944,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_TANGLINGHAIR:
-			case ABILITY_GOOEY:
+//			case ABILITY_TANGLINGHAIR:
+			case ABILITY_STUN_TOUCH:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& CheckContact(move, gBankAttacker)

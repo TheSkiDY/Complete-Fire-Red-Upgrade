@@ -67,7 +67,6 @@ Prefers the rain to heat.
 #org @DESC_TINTEDLENS
 Boosts "not very effective\" moves.
 
-#org @DESC_SOLIDROCK
 #org @DESC_FILTER
 Weakens super-effective moves.
 
@@ -132,15 +131,11 @@ Fainting damages the foe.
 #org @DESC_CURSEDBODY
 May disable a foe's move.
 
-#org @DESC_GOOEY
-#org @DESC_TANGLINGHAIR
+#org @DESC_STUN_TOUCH
 Lowers the foe's SPEED if hit.
 
 #org @DESC_MUMMY
 Spreads with contact.
-
-#org @DESC_IRONBARBS
-Hurts to touch.
 
 #org @DESC_SANDRUSH
 Raises SPEED in a sandstorm.
@@ -228,8 +223,6 @@ Changes type to match move.
 Parent and child attack together.
 
 #org @DESC_MOLDBREAKER
-#org @DESC_TURBOBLAZE
-#org @DESC_TERAVOLT
 Moves ignore ABILITIES.
 
 #org @DESC_ZENMODE
@@ -260,9 +253,6 @@ No special ability.
 
 #org @DESC_POWERCONSTRUCT
 Transforms below half HP.
-
-#org @DESC_PRISMARMOR
-Weakens super-effective moves.
 
 #org @DESC_RKS_SYSTEM
 Changes type to match MEMORY.
@@ -414,13 +404,10 @@ Never makes contact.
 #org @DESC_LIQUIDVOICE
 Sound moves become WATER-type.
 
-#org @DESC_QUEENLYMAJESTY
-Blocks priority moves.
-
 #org @DESC_INNARDSOUT
 Fainting damages the foe.
 
-#org @DESC_DAZZLING
+#org @DESC_MAJESTIC
 Blocks priority moves.
 
 #org @DESC_GLUTTONY
@@ -460,9 +447,6 @@ Copies dance moves.
 Powers up allies.
 
 #org @DESC_RECEIVER
-Takes over a KOed ally's ability.
-
-#org @DESC_POWEROFALCHEMY
 Takes over a KOed ally's ability.
 
 #org @DESC_NEUROFORCE
@@ -542,3 +526,33 @@ Protects team from poison.
 
 #org @DESC_HUNGERSWITCH
 Changes form each turn.
+
+#org @DESC_EMPTY_1
+Empty ability.
+
+#org @DESC_EMPTY_2
+Empty ability.
+
+#org @DESC_EMPTY_3
+Empty ability.
+
+#org @DESC_EMPTY_4
+Empty ability.
+
+#org @DESC_EMPTY_5
+Empty ability.
+
+#org @DESC_EMPTY_6
+Empty ability.
+
+#org @DESC_EMPTY_7
+Empty ability.
+
+#org @DESC_EMPTY_8
+Empty ability.
+
+#org @DESC_EMPTY_9
+Empty ability.
+
+#org @DESC_EMPTY_10
+Empty ability.

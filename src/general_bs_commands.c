@@ -1330,7 +1330,7 @@ void atk1B_cleareffectsonfaint(void) {
 				u8 partnerAbility = ABILITY(partner);
 
 				if (IS_DOUBLE_BATTLE
-				&& (partnerAbility == ABILITY_RECEIVER || partnerAbility == ABILITY_POWEROFALCHEMY)
+				&& (partnerAbility == ABILITY_RECEIVER/* || partnerAbility == ABILITY_POWEROFALCHEMY*/)
 				&& !CheckTableForAbility(CopyAbility(gActiveBattler), gReceiverBannedAbilities))
 				{
 					gLastUsedAbility = partnerAbility;

@@ -1722,8 +1722,8 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 			{
 				u8 atkAbility = GetAIAbility(bankAtk, bankDef, move);
 				if (atkAbility == ABILITY_MOLDBREAKER
-				||  atkAbility == ABILITY_TERAVOLT
-				||  atkAbility == ABILITY_TURBOBLAZE)
+				/*||  atkAbility == ABILITY_TERAVOLT
+				||  atkAbility == ABILITY_TURBOBLAZE*/)
 					return FALSE;
 
 				moveFlags = AI_SpecialTypeCalc(move, bankAtk, bankDef);
