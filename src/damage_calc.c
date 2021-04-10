@@ -3257,6 +3257,18 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 15) / 10;
 			break;
 
+		case ABILITY_TRANSISTOR:
+		//1.5x boost
+			if (data->moveType == TYPE_ELECTRIC)
+				power = (power * 15) / 10;
+			break;
+
+		case ABILITY_DRAGONSMAW:
+		//1.5x boost
+			if (data->moveType == TYPE_DRAGON)
+				power = (power * 15) / 10;
+			break;
+
 		case ABILITY_WATERBUBBLE:
 		//2x Boost
 			if (data->moveType == TYPE_WATER)

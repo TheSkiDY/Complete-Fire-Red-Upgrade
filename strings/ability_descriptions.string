@@ -527,6 +527,12 @@ Protects team from poison.
 #org @DESC_HUNGERSWITCH
 Changes form each turn.
 
+#org @DESC_TRANSISTOR
+Powers up ELECTRIC-type moves.
+
+#org @DESC_DRAGONSMAW
+Powers up DRAGON-type moves.
+
 #org @DESC_EMPTY_1
 Empty ability.
 
