@@ -1477,6 +1477,7 @@ MOVESCR_CHECK_0:
 			{
 				if (WillFaintFromSecondaryDamage(bankAtk)
 				&&  data->defAbility != ABILITY_MOXIE
+				&&  data->defAbility != ABILITY_GRIMNEIGH
 				&&  data->defAbility != ABILITY_BEASTBOOST)
 				{
 					DECREASE_VIABILITY(10); //Don't protect if you're going to faint after protecting
