@@ -753,7 +753,7 @@ MOVESCR_CHECK_0:
 					&&  !(IS_DOUBLE_BATTLE && IsOfType(bankAtkPartner, TYPE_GRASS)))
 						DECREASE_VIABILITY(10);
 					break;
-
+/*
 				case MOVE_MAGNETICFLUX:
 					if (data->atkAbility == ABILITY_PLUS || data->atkAbility == ABILITY_MINUS)
 						goto AI_COSMIC_POWER;
@@ -768,7 +768,7 @@ MOVESCR_CHECK_0:
 						}
 					}
 					break;
-
+*/
 				case MOVE_AROMATICMIST:
 					if (!IS_DOUBLE_BATTLE
 					|| gBattleMons[bankAtkPartner].hp == 0
@@ -828,7 +828,7 @@ MOVESCR_CHECK_0:
 						DECREASE_VIABILITY(10);
 					}
 					break;
-
+/*
 				case MOVE_GEARUP:
 					if (data->atkAbility == ABILITY_PLUS || data->atkAbility == ABILITY_MINUS)
 						goto AI_WORK_UP_CHECK;
@@ -843,7 +843,7 @@ MOVESCR_CHECK_0:
 						}
 					}
 					break;
-
+*/
 				default:
 					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))
 						DECREASE_VIABILITY(10);

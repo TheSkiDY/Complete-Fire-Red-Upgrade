@@ -2024,13 +2024,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				attack = (attack * 15) / 10;
 			break;
 
-		case ABILITY_PLUS:
+/*		case ABILITY_PLUS:
 		case ABILITY_MINUS:
 		//1.5x Boost
 			if (data->atkPartnerAbility == ABILITY_PLUS || data->atkPartnerAbility == ABILITY_MINUS) //Double battle check prior
 				spAttack = (spAttack * 15) / 10;
 			break;
-
+*/
 		case ABILITY_HUSTLE:
 		//1.5x Boost
 			attack = (attack * 15) / 10;
@@ -2040,6 +2040,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_ANY)
 				attack = (attack * 15) / 10;
+			break;
+
+		case ABILITY_VALOUR:
+		//1.5x Boost
+			if (data->atkStatus1 & STATUS_ANY)
+				spAttack = (spAttack * 15) / 10;
 			break;
 
 		case ABILITY_SOLARPOWER:
@@ -3176,19 +3182,19 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (CheckTableForMove(move, gPunchingMoves))
 				power = (power * 12) / 10;
 			break;
-
+/*
 		case ABILITY_TOXICBOOST:
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_PSN_ANY && data->moveSplit == SPLIT_PHYSICAL)
 				power = (power * 15) / 10;
 			break;
-
-		case ABILITY_FLAREBOOST:
+*/
+/*		case ABILITY_FLAREBOOST:
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_BURN && data->moveSplit == SPLIT_SPECIAL)
 				power = (power * 15) / 10;
 			break;
-
+*/
 		case ABILITY_SANDFORCE:
 		//1.3x Boost
 			if (gBattleWeather & WEATHER_SANDSTORM_ANY

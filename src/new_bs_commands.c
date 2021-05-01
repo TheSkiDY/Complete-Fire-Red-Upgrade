@@ -860,7 +860,7 @@ void atkFF1F_flowershieldlooper(void)
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
 			}
 			else if ((!plusMinus && IsOfType(bank, TYPE_GRASS))
-			|| (plusMinus && (ABILITY(bank) == ABILITY_PLUS || ABILITY(bank) == ABILITY_MINUS)))
+			/*|| (plusMinus && (ABILITY(bank) == ABILITY_PLUS || ABILITY(bank) == ABILITY_MINUS))*/)
 			{
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
 				gMoveResultFlags = 0;

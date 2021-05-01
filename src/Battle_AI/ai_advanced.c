@@ -534,7 +534,7 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 						}
 						else if (move == MOVE_GEARUP)
 						{
-							if (ability != ABILITY_PLUS && ability != ABILITY_MINUS)
+							/*if (ability != ABILITY_PLUS && ability != ABILITY_MINUS)*/
 								break; //Don't boost self
 						}
 
@@ -882,7 +882,7 @@ static bool8 BankHoldingUsefulItemToProtectFor(u8 bank)
 	if (itemEffect == ITEM_EFFECT_TOXIC_ORB
 	&& CanBePoisoned(bank, bank, FALSE)
 	&& (ability == ABILITY_POISONHEAL
-	 || ability == ABILITY_TOXICBOOST
+/*	 || ability == ABILITY_TOXICBOOST*/
 	 || ability == ABILITY_QUICKFEET
 	 || ability == ABILITY_MAGICGUARD
 	 || MoveInMoveset(MOVE_FACADE, bank)))
@@ -891,7 +891,7 @@ static bool8 BankHoldingUsefulItemToProtectFor(u8 bank)
 	if (itemEffect == ITEM_EFFECT_FLAME_ORB
 	&& CanBeBurned(bank, FALSE)
 	&& (ability == ABILITY_GUTS
-	 || ability == ABILITY_FLAREBOOST
+	 || ability == ABILITY_VALOUR
 	 || ability == ABILITY_MAGICGUARD
 	 || MoveInMoveset(MOVE_FACADE, bank)))
 		return TRUE;

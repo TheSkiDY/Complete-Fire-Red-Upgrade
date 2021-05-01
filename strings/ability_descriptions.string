@@ -203,11 +203,8 @@ Gives up at half HP.
 #org @DESC_SLOWSTART
 Takes a while to get going.
 
-#org @DESC_TOXICBOOST
-ATTACK rises when poisoned.
-
-#org @DESC_FLAREBOOST
-SP. ATK rises when burned.
+#org @DESC_VALOUR
+Ups SP. ATTACK if suffering.
 
 #org @DESC_FURCOAT
 Raises DEFENSE.
