@@ -2157,7 +2157,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//2x Boost
 			data->defense *= 2;
 			break;
-
+/*
 		case ABILITY_PORTALPOWER:
 		//0.75x Decrement
 		#ifdef PORTAL_POWER
@@ -2167,7 +2167,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				attack = (attack * 75) / 100;
 				spAttack = (spAttack * 75) / 100;
 			}
-		#endif
+		#endif*/
 			break;
 	}
 
