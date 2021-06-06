@@ -797,6 +797,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
+		case ABILITY_VICTORYSTAR:
+			gBattleStruct->moneyMultiplier *= 2;
+			effect++;
+			break;
+
 		case ABILITY_ANTICIPATION:
 			for (i = 0; i < MAX_MON_MOVES; ++i)
 			{

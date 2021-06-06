@@ -440,11 +440,11 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 			break;
 
 		case ABILITY_VICTORYSTAR:
-			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			calc = udivsi((calc * 120), 100); // 1.2 Victory Star boost
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
-		calc = udivsi((calc * 110), 100); // 1.1 Victory Star partner boost
+		calc = udivsi((calc * 120), 100); // 1.2 Victory Star partner boost
 
 	if (WEATHER_HAS_EFFECT)
 	{
@@ -542,11 +542,11 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 			break;
 
 		case ABILITY_VICTORYSTAR:
-			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			calc = udivsi((calc * 120), 100); // 1.2 Victory Star boost
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
-		calc = udivsi((calc * 110), 100); // 1.1 Victory Star partner boost
+		calc = udivsi((calc * 120), 100); // 1.2 Victory Star partner boost
 
 	if (WEATHER_HAS_EFFECT &&  gBattleWeather & WEATHER_FOG_ANY)
 	{
