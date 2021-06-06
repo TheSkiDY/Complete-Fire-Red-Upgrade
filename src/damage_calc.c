@@ -1163,6 +1163,9 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
 			return; //Miracle Eye causes normal damage hits
+
+		if (moveType == TYPE_POISON && defType == TYPE_STEEL && atkAbility == ABILITY_CORROSION)
+			return; 
 	}
 	else if (checkMonDef)
 	{
