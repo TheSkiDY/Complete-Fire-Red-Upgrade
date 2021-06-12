@@ -1817,6 +1817,10 @@ u32 SpeedCalc(u8 bank)
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;
 			break;
+		case ABILITY_TANGLEDFEET:
+			if (IsConfused(bank))
+				speed *= 2;
+			break;
 	}
 
 	speed = BoostSpeedByItemEffect(itemEffect, itemQuality, SPECIES(bank), speed, IsDynamaxed(bank));
