@@ -2090,8 +2090,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//0.5x Boost
 			if (useMonAtk)
 				attack /= 2; //Pokemon in the party would start with half atk
-			else if (gNewBS->SlowStartTimers[bankAtk])
+			else if (gNewBS->SlowStartTimers[bankAtk] > 2)
 				attack /= 2;
+			else if (gNewBS->SlowStartTimers[bankAtk])
+				attack = (attack * 75) / 100;
 			break;
 
 		case ABILITY_DEFEATIST:

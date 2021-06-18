@@ -1660,6 +1660,11 @@ s8 PriorityCalc(u8 bank, u8 action, u16 move)
 				}
 				break;
 
+			case ABILITY_STALL:
+				if(IsTrickRoomActive())
+					++priority;
+				break;
+
 			case ABILITY_TRIAGE:
 				if (gBattleMoves[move].flags & FLAG_TRIAGE_AFFECTED)
 					priority += 3;
@@ -1692,6 +1697,11 @@ s8 PriorityCalcMon(struct Pokemon* mon, u16 move)
 				#endif
 						++priority;
 			}
+			break;
+
+		case ABILITY_STALL:
+			if(IsTrickRoomActive())
+				++priority;
 			break;
 
 		case ABILITY_TRIAGE:
@@ -1733,7 +1743,7 @@ s32 BracketCalc(u8 bank)
 				return -2;
 		}
 
-		if (ability == ABILITY_STALL)
+		if (ability == ABILITY_STALL && !IsTrickRoomActive())
 			return -1;
 	}
 
@@ -1810,8 +1820,10 @@ u32 SpeedCalc(u8 bank)
 				speed *= 2;
 			break;
 		case ABILITY_SLOWSTART:
-			if (gNewBS->SlowStartTimers[bank])
+			if (gNewBS->SlowStartTimers[bank] > 2)
 				speed /= 2;
+			else if(gNewBS->SlowStartTimers[bank])
+				speed = (speed * 75) / 100;
 			break;
 		case ABILITY_SURGESURFER:
 			if (gTerrainType == ELECTRIC_TERRAIN)
