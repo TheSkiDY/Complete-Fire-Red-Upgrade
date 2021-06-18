@@ -50,16 +50,6 @@ Address = 0x24F1A0
 Format = '''^[name""7]18'''
 
 [[NamedAnchors]]
-Name = '''data.abilities.descriptions'''
-Address = 0x1408790
-Format = '''[description<"">]data.abilities.names'''
-
-[[NamedAnchors]]
-Name = '''data.pokemon.moves.descriptions'''
-Address = 0x1435FBC
-Format = '''[description<"">]data.pokemon.moves.names-1'''
-
-[[NamedAnchors]]
 Name = '''scripts.text.multichoice'''
 Address = 0x3E04B0
 Format = '''[options<[text<""> unused::]/count> count::]32'''
@@ -230,11 +220,6 @@ Address = 0x3AD510
 Format = '''[ptr<`lzp4`> index: unused:]graphics.moves.particles.sprites'''
 
 [[NamedAnchors]]
-Name = '''graphics.moves.surf.palette'''
-Address = 0x14D61C0
-Format = '''`lzp4`'''
-
-[[NamedAnchors]]
 Name = '''graphics.moves.surf.tileset'''
 Address = 0xE809CC
 Format = '''`lzt4|graphics.moves.surf.palette`'''
@@ -268,11 +253,6 @@ Format = '''[pal<`ucp4`> tileset<`lzt4`> tilemap<`lzm4x32x20|graphics.items.mail
 Name = '''data.pokemon.stats'''
 Address = 0x19A6E08
 Format = '''[hp. attack. def. speed. spatk. spdef. type1.data.pokemon.type.names type2.data.pokemon.type.names catchRate. baseExp. evs|b[]evbits item1:data.items.stats item2:data.items.stats genderratio. steps2hatch. basehappiness. growthrate. egg1. egg2. ability1.data.abilities.names ability2.data.abilities.names runrate. unknown. padding:]data.pokemon.names'''
-
-[[NamedAnchors]]
-Name = '''scripts.moves.effects'''
-Address = 0x14373A0
-Format = '''[effect<`bse`>]moveeffects'''
 
 [[NamedAnchors]]
 Name = '''data.items.stats'''
@@ -1658,14 +1638,12 @@ Name = '''scripts.daycare.exp.multiplier'''
 Address = 0x0462E8
 Length = 1
 Offset = 0
-Note = '''Picking an even number will prevent new eggs from being created.'''
 
 [[MatchedWords]]
 Name = '''scripts.daycare.exp.multiplier'''
 Address = 0x0463D4
 Length = 1
 Offset = 0
-Note = '''Picking an even number will prevent new eggs from being created.'''
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''

@@ -68,20 +68,33 @@ BattleScript_MoveUsedFlinched:
 	goto BS_MOVE_END
 
 SteadfastBoost:
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_ATK STAT_MAX SteadfastAtk
 	jumpifstat BANK_ATTACKER EQUALS STAT_SPD STAT_MAX BS_MOVE_END
+
+SteadfastAtk:
 	copyarray BATTLE_SCRIPTING_BANK USER_BANK 0x1
 	call BattleScript_AbilityPopUp
 	setbyte 0x2023FDF 0x0
-	playstatchangeanimation BANK_ATTACKER STAT_ANIM_SPD STAT_ANIM_UP
-	setbyte STAT_CHANGE_BYTE STAT_SPD | INCREASE_1
-	statbuffchange STAT_ATTACKER | STAT_BS_PTR BS_MOVE_END
-	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
-	copyarray 0x2023FDB USER_BANK 0x1 @;gBattlescripting->bank
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_ATK | STAT_ANIM_SPD, STAT_ANIM_UP
+	setstatchanger STAT_ATK | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN SteadfastSpd
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 SteadfastSpd
+	copyarray 0x2023FDB USER_BANK 0x1
 	printfromtable 0x83FE57C
 	waitmessage DELAY_1SECOND
+
+SteadfastSpd:
+	setstatchanger STAT_SPD | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN SteadfastEnd
+	copyarray 0x2023FDB USER_BANK 0x1
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+	goto SteadfastEnd
+
+SteadfastEnd:
 	call BattleScript_AbilityPopUpRevert
 	goto BS_MOVE_END
-	
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_MoveUsedDevolvedForgot:

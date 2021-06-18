@@ -350,7 +350,7 @@ BattleScript_AirBallooonPop:
 	setword BATTLE_STRING_LOADER AirBalloonPopString
 	printstring 0x184
 	waitmessage DELAY_1SECOND
-	setcounter BANK_TARGET INCINERATE_COUNTERS 0x1 @;Air Balloons can't be recycled
+	setcounter BANK_TARGET INCINERATE_COUNTERS 0x1 @;Air Balloons cant be recycled
 	removeitem BANK_TARGET
 	return
 

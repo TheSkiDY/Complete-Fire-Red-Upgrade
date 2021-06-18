@@ -781,6 +781,7 @@ gSoundMoves:
 .hword MOVE_ROAR
 .hword MOVE_SING
 .hword MOVE_SUPERSONIC
+.hword MOVE_SONICBOOM
 .hword MOVE_SCREECH
 .hword MOVE_SNORE
 .hword MOVE_PERISHSONG

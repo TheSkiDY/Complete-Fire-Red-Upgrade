@@ -336,7 +336,7 @@ Doubles weight.
 Halves weight.
 
 #org @DESC_STEADFAST
-Flinching raises SPEED.
+Flinching raises ATTACK and SPEED.
 
 #org @DESC_IMPOSTER
 Transforms upon entering battle.

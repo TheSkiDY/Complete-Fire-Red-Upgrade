@@ -1166,6 +1166,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (moveType == TYPE_POISON && defType == TYPE_STEEL && atkAbility == ABILITY_CORROSION)
 			return; 
+
+		// if (moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		// 	return;
+
+		// if (moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		// 	return;
 	}
 	else if (checkMonDef)
 	{
@@ -1187,6 +1193,17 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_GROUND
 		&& (CheckGroundingFromPartyData(monDef) || move == MOVE_THOUSANDARROWS))
 			multiplier = TYPE_MUL_NORMAL;
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		{			
+			if(gTerrainType == ELECTRIC_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		{			
+			multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
 	}
 	else
 	{
@@ -1195,6 +1212,17 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_GROUND
 		&& (CheckGrounding(bankDef) || move == MOVE_THOUSANDARROWS))
 			multiplier = TYPE_MUL_NORMAL;
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		{			
+			if(gTerrainType == ELECTRIC_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		{			
+			multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
 	}
 
 	switch (multiplier) {
