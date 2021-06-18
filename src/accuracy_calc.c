@@ -450,22 +450,22 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	{
 		switch (defAbility) {
 			case ABILITY_SANDVEIL:
-				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+				if (gBattleWeather & WEATHER_SANDSTORM_ANY && atkAbility != ABILITY_INFILTRATOR)
 					calc = udivsi((calc * 80), 100); // 0.8 Sand Veil loss
 				break;
 
 			case ABILITY_MAGMAARMOR:
-				if (gBattleWeather & WEATHER_SUN_ANY) //0.8 Magma Armor loss
+				if (gBattleWeather & WEATHER_SUN_ANY && atkAbility != ABILITY_INFILTRATOR) //0.8 Magma Armor loss
 					calc = udivsi((calc * 80), 100);
 				break;
 
 			case ABILITY_WATERVEIL:
-				if (gBattleWeather & WEATHER_RAIN_ANY) //0.8 Water Veil loss
+				if (gBattleWeather & WEATHER_RAIN_ANY && atkAbility != ABILITY_INFILTRATOR) //0.8 Water Veil loss
 					calc = udivsi((calc * 80), 100);
 				break;
 
 			case ABILITY_SNOWCLOAK:
-				if (gBattleWeather & WEATHER_HAIL_ANY)
+				if (gBattleWeather & WEATHER_HAIL_ANY && atkAbility != ABILITY_INFILTRATOR)
 					calc = udivsi((calc * 80), 100); // 0.8 Snow Cloak loss
 		}
 
@@ -494,7 +494,7 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	if (IsGravityActive())
 		calc = udivsi((calc * 5), 3); // 5/3 Gravity boost
 
-	if (defEffect == ITEM_EFFECT_EVASION_UP)
+	if (defEffect == ITEM_EFFECT_EVASION_UP && atkAbility != ABILITY_INFILTRATOR)
 		calc = udivsi((calc * (100 - defQuality)), 100); // 0.9 Bright Powder/Lax Incense loss
 
 	if (gNewBS->MicleBerryBits & gBitTable[bankAtk])

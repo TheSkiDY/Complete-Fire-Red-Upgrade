@@ -63,6 +63,7 @@ ability_battle_scripts.s
 .global BattleScript_MummyActivates
 .global BattleScript_WanderingSpiritActivates
 .global BattleScript_GooeyActivates
+.global BattleScript_IlluminateActivates
 .global BattleScript_IllusionBroken
 .global BattleScript_IllusionBrokenFaint
 .global BattleScript_AngerPointActivates
@@ -777,6 +778,25 @@ BattleScript_GooeyActivates:
 GooeyReturn:
 	swapattackerwithtarget
 	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+BattleScript_IlluminateActivates:
+	call BattleScript_AbilityPopUp
+	swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_TARGET STAT_ANIM_ACC STAT_ANIM_DOWN
+	setstatchanger STAT_ACC | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_BS_PTR IlluminateReturn
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 IlluminateReturn
+	printfromtable 0x83FE588
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+
+IlluminateReturn:
+	swapattackerwithtarget
+	return
+
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

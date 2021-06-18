@@ -60,6 +60,7 @@ extern const u8 BattleScript_MummyActivates[];
 extern const u8 BattleScript_WanderingSpiritActivates[];
 extern const u8 BattleScript_AngerPointActivates[];
 extern const u8 BattleScript_GooeyActivates[];
+extern const u8 BattleScript_IlluminateActivates[];
 extern const u8 BattleScript_IllusionBroken[];
 extern const u8 BattleScript_SynchronizeActivates[];
 extern const u8 BattleScript_ObliviousPrevents[];

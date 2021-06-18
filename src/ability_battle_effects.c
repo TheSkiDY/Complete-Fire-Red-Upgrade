@@ -1968,6 +1968,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_ILLUMINATE:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& CheckContact(move, gBankAttacker)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& (STAT_CAN_FALL(gBankAttacker, STAT_ACC) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR)
+				&& umodsi(Random(), 3) == 0)
+				{
+					gBattleScripting.statChanger = STAT_ACC | DECREASE_1;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_IlluminateActivates;
+					effect++;
+				}
+				break;
+
+
 			case ABILITY_INNARDSOUT:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
