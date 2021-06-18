@@ -101,7 +101,7 @@ void atk04_critcalc(void)
 		{
 			confirmedCrit = FALSE;
 		}
-		else if ((atkAbility == ABILITY_MERCILESS && (gBattleMons[bankDef].status1 & STATUS_PSN_ANY))
+		else if ((atkAbility == ABILITY_MERCILESS && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| IsLaserFocused(gBankAttacker)
 		|| CheckTableForMove(gCurrentMove, gAlwaysCriticalMoves))
 		{

@@ -1836,6 +1836,7 @@ BS_086_Disable:
 	attackstringnoprotean
 	ppreduce
 	jumpifabilitypresenttargetfield ABILITY_AROMAVEIL BattleScript_ProtectedByAromaVeil
+	jumpifability BANK_TARGET ABILITY_OBLIVIOUS BattleScript_ObliviousPrevents
 	disablelastusedattack BANK_TARGET FAILED
 	tryactivateprotean
 	attackanimation
@@ -2594,7 +2595,7 @@ BS_127_BatonPass:
 BatonPassSwitchOutBS:
 	copyarray CURRENT_MOVE BACKUP_HWORD 2
 	callasm ClearAttackerDidDamageOnce
-	callasm ClearTargetStatFellThisTurn @;So Eject Pack doesn't activate
+	callasm ClearTargetStatFellThisTurn @;So Eject Pack doesnt activate
 	openpartyscreen BANK_SWITCHING FAILED
 	switchoutabilities BANK_SWITCHING
 	waitstateatk
@@ -2726,7 +2727,7 @@ PartingShot_LowerSpAtk:
 	waitmessage DELAY_1SECOND
 	
 CheckPartingShotFail:
-	jumpifbyte EQUALS ANIM_TARGETS_HIT 0x0 BS_MOVE_END @;Anim didn't play means no stats were lowered
+	jumpifbyte EQUALS ANIM_TARGETS_HIT 0x0 BS_MOVE_END @;Anim didnt play means no stats were lowered
 	goto UTurnCheckSwitchBS
 
 PartingShotEndBS:
@@ -2770,7 +2771,7 @@ DefogBS:
 DefogLoweredStat:
 	attackanimation
 	waitanimation
-	setbyte ANIM_TARGETS_HIT 0x1 @;So animation doesn't play again
+	setbyte ANIM_TARGETS_HIT 0x1 @;So animation doesnt play again
 	setgraphicalstatchangevalues
 	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
 	printfromtable 0x83FE588
@@ -3349,6 +3350,7 @@ BS_165_Torment:
 	accuracycheck FAILED_PRE 0x0
 	attackstringnoprotean
 	ppreduce
+	jumpifability BANK_TARGET ABILITY_OBLIVIOUS BattleScript_ObliviousPrevents
 	jumpifabilitypresenttargetfield ABILITY_AROMAVEIL BattleScript_ProtectedByAromaVeil
 	settorment FAILED
 	tryactivateprotean

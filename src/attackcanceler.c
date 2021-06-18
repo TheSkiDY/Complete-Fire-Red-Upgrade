@@ -963,8 +963,11 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			if (CheckTableForMove(gCurrentMove, gTwoToFiveStrikesMoves))
 			{
 				u8 ability = ABILITY(gBankAttacker);
-
-				if (gCurrentMove == MOVE_SURGINGSTRIKES)
+				if (ABILITY(gBankTarget) == ABILITY_PRESSURE)
+				{
+					gMultiHitCounter = 2;
+				}
+				else if (gCurrentMove == MOVE_SURGINGSTRIKES)
 				{
 					gMultiHitCounter = 3;
 				}

@@ -1600,7 +1600,9 @@ bool8 CanBeConfused(u8 bank, u8 checkSafeguard)
 
 bool8 CanBeTormented(u8 bank)
 {
-	return !(gBattleMons[bank].status2 & STATUS2_TORMENT) && !IsDynamaxed(bank);
+	return !(gBattleMons[bank].status2 & STATUS2_TORMENT) 
+		&& !IsDynamaxed(bank)
+		&& ABILITY(bank) != ABILITY_OBLIVIOUS;
 }
 
 bool8 CanBeInfatuated(u8 bankDef, u8 bankAtk)
