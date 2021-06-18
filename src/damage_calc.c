@@ -2054,7 +2054,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//1.5x Boost
 			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
 			&& data->atkItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
+			{
 				attack = (attack * 15) / 10;
+				spAttack = (spAttack * 15) / 10;
+			}
 			break;
 
 /*		case ABILITY_PLUS:
@@ -2079,6 +2082,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//1.5x Boost
 			if (data->atkStatus1 & STATUS_ANY)
 				spAttack = (spAttack * 15) / 10;
+			break;
+
+		case ABILITY_GRASSPELT:
+		//2x Boost
+			if (gTerrainType == GRASSY_TERRAIN)
+				attack *= 2;
 			break;
 
 		case ABILITY_SOLARPOWER:
@@ -2173,6 +2182,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		case ABILITY_GRASSPELT:
 		//1.5x Boost
 			if (gTerrainType == GRASSY_TERRAIN)
+				data->defense = (data->defense * 15) / 10;
+			break;
+
+		case ABILITY_LEAFGUARD:
+		//1.5x Boost
+			if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && data->atkItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)
 				data->defense = (data->defense * 15) / 10;
 			break;
 
@@ -2581,6 +2596,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	//Second Target Partner Ability Checks
 	if (data->defPartnerAbility == ABILITY_FRIENDGUARD)
 		damage = (damage * 75) / 100;
+
+	if(IS_DOUBLE_BATTLE)
+	{
+		if(ABILITY(PARTNER(bankDef)) == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS))
+			damage /= 2;
+	}
 
 	//Second Target Item Checks
 	switch (data->defItemEffect) {

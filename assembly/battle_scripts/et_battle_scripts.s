@@ -340,7 +340,17 @@ PrintTimerString:
 
 BattleScript_ToxicOrb:
 	statusanimation BANK_EFFECT
+	jumpifability BANK_EFFECT ABILITY_GUTS ToxicOrbGuts
+	jumpifability BANK_EFFECT ABILITY_VALOUR ToxicOrbGuts
 	setword BATTLE_STRING_LOADER ToxicOrbString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	end2
+
+ToxicOrbGuts:
+	setword BATTLE_STRING_LOADER ToxicOrbGutsString
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_EFFECT
