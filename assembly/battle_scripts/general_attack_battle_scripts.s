@@ -1302,6 +1302,12 @@ BS_049_SetConfusion:
 .global BS_050_RaiseUserAtk2
 BS_050_RaiseUserAtk2:
 	setstatchanger STAT_ATK | INCREASE_2
+	jumpifability BANK_ATTACKER ABILITY_HYPERCUTTER HyperCutterBS
+	goto BS_BUFF_ATK_STATS
+
+HyperCutterBS:
+	jumpifnotmove MOVE_SWORDSDANCE BS_BUFF_ATK_STATS
+	setstatchanger STAT_ATK | INCREASE_3
 	goto BS_BUFF_ATK_STATS
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1324,10 +1330,10 @@ StuffCheeksBS:
 	ppreduce
 	attackanimation
 	waitanimation
-	callasm SetTempIgnoreAnimations @;So the berry animation doesn't play
+	callasm SetTempIgnoreAnimations @;So the berry animation doesnt play
 	setmoveeffect MOVE_EFFECT_EAT_BERRY
 	seteffectprimary
-	callasm SetTempIgnoreAnimations @;So the attack animation doesn't play again
+	callasm SetTempIgnoreAnimations @;So the attack animation doesnt play again
 	setstatchanger STAT_DEF | INCREASE_2
 	goto BS_BUFF_ATK_STATS + 3
 

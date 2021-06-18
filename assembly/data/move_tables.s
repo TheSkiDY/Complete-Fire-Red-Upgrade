@@ -32,6 +32,7 @@ move_tables.s
 .global gDanceMoves
 .global gPowderMoves
 .global gSoundMoves
+.global gCuttingMoves
 .global gSubstituteBypassMoves
 .global gTypeChangeExceptionMoves
 .global gIgnoreStatChangesMoves
@@ -455,7 +456,7 @@ gRaidBattleBannedRaidMonMoves:
 .hword MOVE_STEELBEAM
 .hword MOVE_PAINSPLIT
 .hword MOVE_ENDEAVOR
-.hword MOVE_FOCUSPUNCH @Must be executed as Max Moves b/c intros don't play
+.hword MOVE_FOCUSPUNCH @Must be executed as Max Moves b/c intros dont play
 .hword MOVE_SHELLTRAP
 .hword MOVE_BEAKBLAST
 .hword MOVE_PROTECT
@@ -808,6 +809,30 @@ gSoundMoves:
 .hword MOVE_CLANGOROUSSOUL
 .hword MOVE_OVERDRIVE
 .hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gCuttingMoves:
+.hword MOVE_CUT
+.hword MOVE_PSYCHOCUT
+.hword MOVE_FURYCUTTER
+.hword MOVE_AIRCUTTER
+.hword MOVE_SACREDSWORD
+.hword MOVE_SECRETSWORD
+.hword MOVE_SLASH
+.hword MOVE_AIRSLASH
+.hword MOVE_NIGHTSLASH
+.hword MOVE_LEAFBLADE
+.hword MOVE_SOLARBLADE
+.hword MOVE_BEHEMOTHBLADE
+.hword MOVE_PRECIPICEBLADES
+.hword MOVE_XSCISSOR
+.hword MOVE_SHADOWCLAW
+.hword MOVE_DRAGONCLAW
+.hword MOVE_CRUSHCLAW
+.hword MOVE_METALCLAW
+.hword MOVE_TABLES_TERMIN
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

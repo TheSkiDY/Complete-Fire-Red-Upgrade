@@ -2534,6 +2534,14 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			break;
 
 		case ABILITY_HEATPROOF:
+			if( data->moveType == TYPE_FIRE)
+				damage /= 2;
+			else if (data->move == MOVE_SCALD 
+				  || data->move == MOVE_STEAMERUPTION 
+				  || data->move == MOVE_SCORCHINGSANDS)
+				damage = (damage * 75) / 100;
+			break;
+
 		case ABILITY_WATERBUBBLE:
 		//0.5x Decrement
 			if (data->moveType == TYPE_FIRE)
@@ -3209,6 +3217,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ABILITY_RECKLESS:
 		//1.2x Boost
 			if (CheckTableForMove(move, gRecklessBoostedMoves))
+				power = (power * 12) / 10;
+			break;
+
+		case ABILITY_HYPERCUTTER:
+		//1.2x Boost
+			if (CheckTableForMove(move, gCuttingMoves))
 				power = (power * 12) / 10;
 			break;
 

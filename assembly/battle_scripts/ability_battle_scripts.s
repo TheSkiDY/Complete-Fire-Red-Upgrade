@@ -369,7 +369,7 @@ EmergencyExitSwitchBS:
 	switchinanim BANK_SWITCHING 0x1
 	waitstateatk
 	switchineffects BANK_SWITCHING
-	callasm SetNoMoreMovingThisTurnSwitchingBank @;New Pokemon can't attack after being switched in
+	callasm SetNoMoreMovingThisTurnSwitchingBank @;New Pokemon cant attack after being switched in
 
 EmergencyExitReturn:
 	return
