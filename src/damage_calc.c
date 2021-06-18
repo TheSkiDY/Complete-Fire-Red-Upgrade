@@ -96,6 +96,7 @@ void atk04_critcalc(void)
 		if (defAbility == ABILITY_BATTLEARMOR
 		/*||  defAbility == ABILITY_SHELLARMOR*/
 		||  CantScoreACrit(gBankAttacker, NULL)
+		||  (WEATHER_HAS_EFFECT && defAbility == ABILITY_MAGMAARMOR && (gBattleWeather & WEATHER_SUN_ANY && atkEffect != ITEM_EFFECT_UTILITY_UMBRELLA))
 		||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL | BATTLE_TYPE_POKE_DUDE)
 		||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
 		{
@@ -185,6 +186,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 	if (defAbility == ABILITY_BATTLEARMOR
 	/*||  defAbility == ABILITY_SHELLARMOR*/
 	||  CantScoreACrit(bankAtk, monAtk)
+	||  (WEATHER_HAS_EFFECT && defAbility == ABILITY_MAGMAARMOR && (gBattleWeather & WEATHER_SUN_ANY && atkEffect != ITEM_EFFECT_UTILITY_UMBRELLA))
 	||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL)
 	||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
 		return FALSE;

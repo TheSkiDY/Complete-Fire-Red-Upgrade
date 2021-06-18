@@ -454,6 +454,16 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 					calc = udivsi((calc * 80), 100); // 0.8 Sand Veil loss
 				break;
 
+			case ABILITY_MAGMAARMOR:
+				if (gBattleWeather & WEATHER_SUN_ANY) //0.8 Magma Armor loss
+					calc = udivsi((calc * 80), 100);
+				break;
+
+			case ABILITY_WATERVEIL:
+				if (gBattleWeather & WEATHER_RAIN_ANY) //0.8 Water Veil loss
+					calc = udivsi((calc * 80), 100);
+				break;
+
 			case ABILITY_SNOWCLOAK:
 				if (gBattleWeather & WEATHER_HAIL_ANY)
 					calc = udivsi((calc * 80), 100); // 0.8 Snow Cloak loss

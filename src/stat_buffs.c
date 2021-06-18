@@ -154,9 +154,11 @@ void atk48_playstatchangeanimation(void)
 						&& ability != ABILITY_CLEARBODY
 						&& ability != ABILITY_WHITESMOKE
 						//&& ability != ABILITY_FULLMETALBODY
+						&& !(WEATHER_HAS_EFFECT && (ability == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY && ITEM_EFFECT(gActiveBattler) != ITEM_EFFECT_UTILITY_UMBRELLA))
 						&& !(ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
 						&& !(ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
 						&& !(ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF)
+						&& !(ability == ABILITY_LIMBER && currStat == STAT_STAGE_SPEED)
 						&& !(ability == ABILITY_INNERFOCUS && gNewBS->intimidateActive)
 						&& !(ability == ABILITY_OWNTEMPO && gNewBS->intimidateActive)
 						&& !(ability == ABILITY_OBLIVIOUS && gNewBS->intimidateActive)
@@ -321,6 +323,7 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 
 		else if ((ability == ABILITY_CLEARBODY
 			  ||  ability == ABILITY_WHITESMOKE
+			  ||  (WEATHER_HAS_EFFECT && (ability == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY && ITEM_EFFECT(gActiveBattler) != ITEM_EFFECT_UTILITY_UMBRELLA))
 			  //||  ability == ABILITY_FULLMETALBODY
 			  || (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		&& !certain && gCurrentMove != MOVE_CURSE)
@@ -371,6 +374,7 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 		else if (((ability == ABILITY_KEENEYE && statId == STAT_STAGE_ACC)
 			  ||  (ability == ABILITY_HYPERCUTTER && statId == STAT_STAGE_ATK)
 			  ||  (ability == ABILITY_BIGPECKS && statId == STAT_STAGE_DEF)
+			  ||  (ability == ABILITY_LIMBER && statId == STAT_STAGE_SPEED)
 			  ||  (ability == ABILITY_INNERFOCUS && gNewBS->intimidateActive)
 			  ||  (ability == ABILITY_OWNTEMPO && gNewBS->intimidateActive)
 			  ||  (ability == ABILITY_OBLIVIOUS && gNewBS->intimidateActive)

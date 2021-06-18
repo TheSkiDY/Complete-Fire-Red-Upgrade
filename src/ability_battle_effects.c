@@ -1811,7 +1811,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& moveType == TYPE_DARK
 				&& gBattleMons[bank].statStages[STAT_ATK - 1] < 12)
 				{
-					gBattleScripting.statChanger = STAT_ATK | INCREASE_1;
+					gBattleScripting.statChanger = STAT_ATK | INCREASE_2;
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
 					effect++;

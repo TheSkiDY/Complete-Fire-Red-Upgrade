@@ -390,6 +390,15 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
+			case ABILITY_LIMBER:
+				if (moveEffect == EFFECT_SPEED_DOWN
+				|| moveEffect == EFFECT_DEFENSE_DOWN_2)
+				{
+					DECREASE_VIABILITY(10);
+					return viability;
+				}
+				break;
+
 			case ABILITY_DEFIANT:
 			case ABILITY_COMPETITIVE:
 				if (CheckTableForMoveEffect(move, gStatLoweringMoveEffects))
@@ -427,7 +436,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
 				&& data->defItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA
-				&& CheckTableForMoveEffect(move, gSetStatusMoveEffects))
+				&& (CheckTableForMoveEffect(move, gSetStatusMoveEffects) || CheckTableForMoveEffect(move, gStatLoweringMoveEffects)))
 				{
 					DECREASE_VIABILITY(10);
 					return viability;

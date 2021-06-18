@@ -595,6 +595,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				{
 					if (defAbility != ABILITY_CONTRARY
 					&& defAbility != ABILITY_CLEARBODY
+					&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 					&& defAbility != ABILITY_WHITESMOKE
 					//&& defAbility != ABILITY_FULLMETALBODY
 					&& STAT_STAGE(bankDef, STAT_STAGE_SPEED) > 0)

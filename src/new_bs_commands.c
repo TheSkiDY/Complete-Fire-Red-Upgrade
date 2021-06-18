@@ -695,6 +695,7 @@ void atkFF15_jumpifstatcanbemodified(void)
 
 		else if (ability == ABILITY_CLEARBODY
 		|| ability == ABILITY_WHITESMOKE
+		|| (WEATHER_HAS_EFFECT && (ability == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY &&  ITEM_EFFECT(gBankAttacker) != ITEM_EFFECT_UTILITY_UMBRELLA))
 		//|| ability == ABILITY_FULLMETALBODY
 		|| (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		{
@@ -709,7 +710,8 @@ void atkFF15_jumpifstatcanbemodified(void)
 		}
 		else if ((ability == ABILITY_KEENEYE && currStat == STAT_STAGE_ACC)
 		|| (ability == ABILITY_HYPERCUTTER && currStat == STAT_STAGE_ATK)
-		|| (ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF))
+		|| (ability == ABILITY_BIGPECKS && currStat == STAT_STAGE_DEF)
+		|| (ability == ABILITY_LIMBER && currStat == STAT_STAGE_SPEED))
 			gFormCounter = 4;
 
 		PREPARE_STAT_BUFFER(gBattleTextBuff1, currStat)

@@ -1689,6 +1689,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
 		&& defAbility != ABILITY_WHITESMOKE
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_HYPERCUTTER;
 }
@@ -1705,6 +1706,7 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
 		&& defAbility != ABILITY_WHITESMOKE
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_BIGPECKS;
 }
@@ -1719,6 +1721,7 @@ bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
 	return STAT_STAGE(bankDef, STAT_STAGE_SPATK) > 4 && SpecialMoveInMoveset(bankDef)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_WHITESMOKE;
 }
@@ -1733,6 +1736,7 @@ bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
 	return STAT_STAGE(bankDef, STAT_STAGE_SPDEF) > 4 && SpecialMoveInMoveset(bankAtk)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_WHITESMOKE;
 }
@@ -1747,6 +1751,8 @@ bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move)
 	return SpeedCalc(bankAtk) <= SpeedCalc(bankDef)
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
+		&& defAbility != ABILITY_LIMBER
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_WHITESMOKE;
 }
@@ -1761,6 +1767,7 @@ bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
 	return defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
 		&& defAbility != ABILITY_WHITESMOKE
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_KEENEYE;
 }
@@ -1772,6 +1779,7 @@ bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
 	return (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6 || MoveInMovesetWithAccuracyLessThan(bankAtk, bankDef, 90, TRUE))
 		&& defAbility != ABILITY_CONTRARY
 		&& defAbility != ABILITY_CLEARBODY
+		&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 		//&& defAbility != ABILITY_FULLMETALBODY
 		&& defAbility != ABILITY_WHITESMOKE;
 }
