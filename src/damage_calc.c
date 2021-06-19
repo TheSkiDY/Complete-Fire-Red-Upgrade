@@ -3253,6 +3253,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
+		case ABILITY_BIGPECKS:
+		//1.6x Boost
+			if (CheckTableForMove(move, gPeckingMoves))
+				power = (power * 16) / 10;
+			break;
+
 		case ABILITY_IRONFIST:
 		//1.2x Boost
 			if (CheckTableForMove(move, gPunchingMoves))

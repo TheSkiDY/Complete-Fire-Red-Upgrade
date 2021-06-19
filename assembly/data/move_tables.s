@@ -33,6 +33,7 @@ move_tables.s
 .global gPowderMoves
 .global gSoundMoves
 .global gCuttingMoves
+.global gPeckingMoves
 .global gSubstituteBypassMoves
 .global gTypeChangeExceptionMoves
 .global gIgnoreStatChangesMoves
@@ -834,6 +835,15 @@ gCuttingMoves:
 .hword MOVE_METALCLAW
 .hword MOVE_TABLES_TERMIN
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gPeckingMoves:
+.hword MOVE_PECK
+.hword MOVE_DRILLPECK
+.hword MOVE_PLUCK
+.hword MOVE_BEAKBLAST
+.hword MOVE_BOLTBEAK
+.hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

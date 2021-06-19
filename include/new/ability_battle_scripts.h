@@ -101,6 +101,8 @@ extern const u8 BattleScript_TryRemoveIllusion[];
 
 extern const u8 BattleScript_PrimalWeatherEnd[];
 
+extern const u8 BattleScript_Blaze[];
+
 extern const u8 BattleScript_AbilityPopUp[];
 extern const u8 BattleScript_AbilityPopUpRevert[];
 
