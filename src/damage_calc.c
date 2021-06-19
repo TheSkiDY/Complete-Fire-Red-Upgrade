@@ -2109,7 +2109,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		case ABILITY_DEFEATIST:
 		//0.5x Boost
-			if (data->atkHP <= (data->atkMaxHP / 2))
+			if (data->atkHP <= (data->atkMaxHP / 2) && data->atkHP > (data->atkMaxHP / 4))
+			{
+				attack = (attack * 75) / 100;
+				spAttack = (spAttack * 75) / 100;
+			}
+			else if (data->atkHP <= (data->atkMaxHP / 4))
 			{
 				attack /= 2;
 				spAttack /= 2;
@@ -2557,6 +2562,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 75) / 100;
 			break;
 
+		case ABILITY_DAMP:
 		case ABILITY_WATERBUBBLE:
 		//0.5x Decrement
 			if (data->moveType == TYPE_FIRE)

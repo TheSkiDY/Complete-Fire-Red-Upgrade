@@ -265,6 +265,7 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 {
 	u8 enemyMonIndex = 0;
 	bool8 checkCuteCharm = TRUE;
+	bool8 checkRivalry = TRUE;
 
 	if (purgeParty)
 		ZeroEnemyPartyMons();
@@ -276,13 +277,13 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 		case MON_FEMALE:
 		case MON_GENDERLESS:
 			checkCuteCharm = FALSE;
+			checkRivalry = FALSE;
 			break;
 	}
 
 	if (checkCuteCharm
 	&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)
-	&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM
-	&&  umodsi(Random(), 3))
+	&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM)
 	{
 		u16 leadingMonSpecies = gPlayerParty[0].species;
 		u32 leadingMonPersonality = gPlayerParty[0].species;
@@ -296,6 +297,21 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 			goto REGULAR_NATURE_CREATION;
 
 		CreateMonWithGenderNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, gender, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));
+	}
+	else if(checkRivalry
+	&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)
+	&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_RIVALRY)
+	{
+		u16 leadingMonSpecies = gPlayerParty[0].species;
+		u32 leadingMonPersonality = gPlayerParty[0].species;
+		u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
+
+		if(gender == MON_FEMALE)
+			gender = MON_FEMALE;
+		else if (gender == MON_MALE)
+			gender = MON_MALE;
+		else
+			goto REGULAR_NATURE_CREATION;
 	}
 	else
 	{

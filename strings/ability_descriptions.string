@@ -71,11 +71,7 @@ Boosts "not very effective\" moves.
 Weakens super-effective moves.
 
 #org @DESC_INFILTRATOR
-#ifdef UNBOUND
-Passes through barriers and Fog.
-#else
-Passes through barriers.
-#endif
+Ignores barriers and evasion boosts.
 
 #org @DESC_DOWNLOAD
 Adjusts power from foe's stats.
@@ -99,7 +95,7 @@ May heal ally's status problems.
 Ups evasion in hail.
 
 #org @DESC_TANGLEDFEET
-Ups evasion if confused.
+Ups evasion and SPEED if confused.
 
 #org @DESC_SNOWWARNING
 Summons a hailstorm in battle.
@@ -156,7 +152,7 @@ Boosts moves that make contact.
 Boosts biting moves.
 
 #org @DESC_VICTORYSTAR
-Raises accuracy.
+Raises accuracy and money in battle.
 
 #org @DESC_STORMDRAIN
 Draws in WATER-type moves.
@@ -198,7 +194,7 @@ ATTACK rises when stats fall.
 SP. ATK rises when stats fall.
 
 #org @DESC_DEFEATIST
-Gives up at half HP.
+Begins giving up at half HP.
 
 #org @DESC_SLOWSTART
 Takes a while to get going.
@@ -285,7 +281,7 @@ Ups WATER attacks. Prevents burn.
 WATER-type hits raise DEFENSE.
 
 #org @DESC_STALL
-Moves after even slower foes.
+Always moves last in normal dimensions.
 
 #org @DESC_MULTITYPE
 Changes type to match held PLATE.
@@ -342,22 +338,22 @@ Flinching raises ATTACK and SPEED.
 Transforms upon entering battle.
 
 #org @DESC_JUSTIFIED
-Dark-type hits raise ATTACK.
+Dark-type hits sharply raise ATTACK.
 
 #org @DESC_RATTLED
 Scary move types raise SPEED.
 
 #org @DESC_MERCILESS
-Critically hits poisoned foes.
+Critically hits if foe's suffering.
 
 #org @DESC_AROMAVEIL
 Protects against mental problems.
 
 #org @DESC_FLOWERVEIL
-Protects GRASS-types from status.
+GRASS-types become tougher.
 
 #org @DESC_LEAFGUARD
-Protects from status when sunny.
+Becomes tougher in sunlight.
 
 #org @DESC_KLUTZ
 Can't use items.
@@ -532,6 +528,30 @@ Knockouts boost SPECIAL ATTACK.
 
 #org @DESC_UNSEENFIST
 Contact moves go through protection.
+
+#org @DESC_COMPOUNDEYES
+Status moves don't miss.
+
+#org @DESC_DAMP
+Protects from heat and explosions.
+
+#org @DESC_WATERVEIL
+Ups evasion in rain. Can't be burned.
+
+#org @DESC_HYPERCUTTER
+Boosts cutting moves. Can't lower ATK.
+
+#org @DESC_ILLUMINATE
+May lower accuracy on contact.
+
+#org @DESC_INNERFOCUS
+Prevents flinching and full paralysis.
+
+#org @DESC_LIMBER
+Prevents paralysis and SPEED drops.
+
+#org @DESC_MAGMAARMOR
+Ups evasion and crit dodges in sun.
 
 #org @DESC_EMPTY_1
 Empty ability.

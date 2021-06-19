@@ -431,7 +431,8 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 
 	switch (atkAbility) {
 		case ABILITY_COMPOUNDEYES:
-			calc = udivsi((calc * 130), 100); // 1.3 Compound Eyes boost
+			if(moveSplit == SPLIT_STATUS)
+				calc = 0xFFFF; //  Compound Eyes always lands status moves
 			break;
 
 		case ABILITY_HUSTLE:
@@ -543,7 +544,8 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 
 	switch (atkAbility) {
 		case ABILITY_COMPOUNDEYES:
-			calc = udivsi((calc * 130), 100); // 1.3 Compound Eyes boost
+			if(moveSplit == SPLIT_STATUS)
+				calc = 0xFFFF; // 2x Compound Eyes boost
 			break;
 
 		case ABILITY_HUSTLE:
