@@ -1158,7 +1158,10 @@ void TailwindLuckyChantFunc(void)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
-				gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 4;
+				if(ABILITY(gBankAttacker) == ABILITY_GALEWINGS)
+					gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 7;
+				else
+					gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 4;
 				gBattleStringLoader = TailwindSetString;
 			}
 			break;

@@ -1185,6 +1185,9 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
+	if ((move == MOVE_SCALD || move == MOVE_STEAMERUPTION) && defType == TYPE_ICE)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
 	if (moveType == TYPE_FIRE && gNewBS->tarShotBits & gBitTable[bankDef]) //Fire always Super-Effective if covered in tar
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
@@ -3502,13 +3505,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 	switch (gTerrainType) {
 		case ELECTRIC_TERRAIN:
 		//1.5x Boost
-			if (data->atkIsGrounded && data->moveType == TYPE_ELECTRIC)
+			if (data->atkIsGrounded && data->moveType == TYPE_ELECTRIC && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power = (power * TERRAIN_BOOST) / 10;
 			break;
 
 		case GRASSY_TERRAIN:
 		//1.5x / 0.5 Boost
-			if (data->atkIsGrounded && data->moveType == TYPE_GRASS)
+			if (data->atkIsGrounded && data->moveType == TYPE_GRASS && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power = (power * TERRAIN_BOOST) / 10;
 
 			if ((move == MOVE_MAGNITUDE || move == MOVE_EARTHQUAKE || move == MOVE_BULLDOZE)
@@ -3518,13 +3521,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 
 		case MISTY_TERRAIN:
 		//0.5x Boost
-			if (data->defIsGrounded && data->moveType == TYPE_DRAGON)
+			if (data->defIsGrounded && data->moveType == TYPE_DRAGON && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power /= 2;
 			break;
 
 		case PSYCHIC_TERRAIN:
 		//1.5x Boost
-			if (data->atkIsGrounded && data->moveType == TYPE_PSYCHIC)
+			if (data->atkIsGrounded && data->moveType == TYPE_PSYCHIC && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power = (power * TERRAIN_BOOST) / 10;
 			break;
 	}

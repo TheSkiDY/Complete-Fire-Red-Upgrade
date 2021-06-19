@@ -3045,7 +3045,10 @@ void atk99_setmist(void)
 	else
 	{
 		gSideStatuses[SIDE(gBankAttacker)] |= SIDE_STATUS_MIST;
-		gSideTimers[SIDE(gBankAttacker)].mistTimer = 5;
+		if(ABILITY(gBankAttacker) == ABILITY_SNOWCLOAK)
+			gSideTimers[SIDE(gBankAttacker)].mistTimer = 8;
+		else
+			gSideTimers[SIDE(gBankAttacker)].mistTimer = 5;
 		gSideTimers[SIDE(gBankAttacker)].mistBank = gBankAttacker;
 		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 	}
@@ -3200,7 +3203,10 @@ void atkA1_counterdamagecalculator(void) {
 
 	if (gProtectStructs[gBankAttacker].physicalDmg && atkSide != defSide && gBattleMons[gProtectStructs[gBankAttacker].physicalBank].hp)
 	{
-		gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * 2;
+		if(ABILITY(gBankAttacker) == ABILITY_ANALYTIC)
+			gBattleMoveDamage = (gProtectStructs[gBankAttacker].physicalDmg * 25) / 10;
+		else
+			gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * 2;
 
 		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defSide))
 			gBankTarget = gSideTimers[defSide].followmeTarget;
@@ -3221,7 +3227,10 @@ void atkA2_mirrorcoatdamagecalculator(void) {
 
 	if (gProtectStructs[gBankAttacker].specialDmg && atkSide != defSide && gBattleMons[gProtectStructs[gBankAttacker].specialBank].hp)
 	{
-		gBattleMoveDamage = gProtectStructs[gBankAttacker].specialDmg * 2;
+		if(ABILITY(gBankAttacker) == ABILITY_ANALYTIC)
+			gBattleMoveDamage = (gProtectStructs[gBankAttacker].specialDmg * 25) / 10;
+		else
+			gBattleMoveDamage = gProtectStructs[gBankAttacker].specialDmg * 2;
 
 		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defSide))
 			gBankTarget = gSideTimers[defSide].followmeTarget;
@@ -3861,7 +3870,10 @@ void atkB8_setsafeguard(void)
 	else
 	{
 		gSideStatuses[SIDE(gBankAttacker)] |= SIDE_STATUS_SAFEGUARD;
-		gSideTimers[SIDE(gBankAttacker)].safeguardTimer = 5;
+		if(ABILITY(gBankAttacker) == ABILITY_PASTELVEIL || ABILITY(gBankAttacker) == ABILITY_SWEETVEIL)
+			gSideTimers[SIDE(gBankAttacker)].safeguardTimer = 8;
+		else
+			gSideTimers[SIDE(gBankAttacker)].safeguardTimer = 5;
 		gSideTimers[SIDE(gBankAttacker)].safeguardBank = gBankAttacker;
 		gBattleCommunication[MULTISTRING_CHOOSER] = 5;
 	}
