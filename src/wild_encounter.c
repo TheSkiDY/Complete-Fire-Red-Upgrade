@@ -535,6 +535,33 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 			goto SKIP_INDEX_SEARCH;
 		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORMDRAIN, &wildMonIndex, monsCount))
 			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_NORMAL, ABILITY_KLUTZ, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FIGHTING, ABILITY_NOGUARD, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FLYING, ABILITY_CLOUDNINE, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_POISON, ABILITY_LIQUIDOOZE, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GROUND, ABILITY_SANDFORCE, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_WHITESMOKE, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_SWARM, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GHOST, ABILITY_CURSEDBODY, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_PSYCHIC, ABILITY_TELEPATHY, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ICE, ABILITY_ICEBODY, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_DRAGON, ABILITY_MARVELSCALE, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_DARK, ABILITY_BERSERK, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FAIRY, ABILITY_PASTELVEIL, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH;
+			
 	}
 
 	switch (area) {
@@ -580,6 +607,32 @@ SKIP_INDEX_SEARCH:
 			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GRASS, ABILITY_HARVEST, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
 			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORMDRAIN, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_NORMAL, ABILITY_KLUTZ, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FIGHTING, ABILITY_NOGUARD, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FLYING, ABILITY_CLOUDNINE, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_POISON, ABILITY_LIQUIDOOZE, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GROUND, ABILITY_SANDFORCE, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_WHITESMOKE, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_SWARM, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GHOST, ABILITY_CURSEDBODY, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_PSYCHIC, ABILITY_TELEPATHY, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ICE, ABILITY_ICEBODY, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_DRAGON, ABILITY_MARVELSCALE, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_DARK, ABILITY_BERSERK, &wildMonIndex, monsCount))
+				goto SKIP_INDEX_SEARCH_2;
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FAIRY, ABILITY_PASTELVEIL, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
 		}
 
@@ -718,7 +771,6 @@ u8 GetAbilityEncounterRateModType(void)
         u8 ability = GetMonAbility(&gPlayerParty[0]);
 
 		switch (ability) {
-			case ABILITY_WHITESMOKE:
 			case ABILITY_STENCH:
 			case ABILITY_QUICKFEET:
 			case ABILITY_INFILTRATOR:
@@ -726,8 +778,6 @@ u8 GetAbilityEncounterRateModType(void)
 				break;
 			case ABILITY_ARENATRAP:
 			case ABILITY_ILLUMINATE:
-			case ABILITY_NOGUARD:
-			case ABILITY_SWARM:
 				sWildEncounterData.abilityEffect = 2;
 				break;
 			case ABILITY_SANDVEIL:

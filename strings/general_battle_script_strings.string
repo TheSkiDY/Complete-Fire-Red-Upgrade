@@ -234,7 +234,10 @@ The swamp around [FD][36] team\ndisappeared!
 The [LAST_ITEM] restored\n[SCRIPTING_BANK]'s status!
 
 #org @gText_BellyDrumMinimizedAttack
-[ATTACKER] cut its own HP\nand minimized Attack!
+[ATTACKER] cut its own HP\nand minimized ATTACK!
+
+#org @gText_BellyDrumMagicGuard
+[ATTACKER] maximized ATTACK\nwhile staying healthy!
 
 #org @gText_SqueezedByOctolock
 [ATTACKER] was squeezed\nby the Octolock!

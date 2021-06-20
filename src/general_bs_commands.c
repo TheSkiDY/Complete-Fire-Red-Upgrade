@@ -4038,10 +4038,13 @@ void atkBC_maxattackhalvehp(void)
 			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	}
 	else if (STAT_STAGE(gBankAttacker, STAT_STAGE_ATK) < STAT_STAGE_MAX
-	&& gBattleMons[gBankAttacker].hp > halfHp)
+	&& (gBattleMons[gBankAttacker].hp > halfHp || ABILITY(gBankAttacker) == ABILITY_MAGICGUARD))
 	{
 		gBattleMons[gBankAttacker].statStages[STAT_STAGE_ATK - 1] = STAT_STAGE_MAX;
-		gBattleMoveDamage = MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
+		if(ABILITY(gBankAttacker) == ABILITY_MAGICGUARD)
+			gBattleMoveDamage = 0;
+		else
+			gBattleMoveDamage = MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
 		gBattlescriptCurrInstr += 5;
 	}
 	else

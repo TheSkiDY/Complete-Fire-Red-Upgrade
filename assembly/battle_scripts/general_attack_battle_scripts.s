@@ -2947,6 +2947,7 @@ BS_142_BellyDrum:
 	datahpupdate BANK_ATTACKER
 	playanimation BANK_ATTACKER ANIM_STAT_BUFF ANIM_ARG_1
 	jumpifability BANK_ATTACKER ABILITY_CONTRARY BattleScript_PrintContraryBellyDrumLoweredAttack
+	jumpifability BANK_ATTACKER ABILITY_MAGICGUARD BattleScript_PrintMagicGuardBellyDrum
 	printstring 0x9B
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END
@@ -2955,6 +2956,14 @@ BattleScript_PrintContraryBellyDrumLoweredAttack:
 	setword BATTLE_STRING_LOADER gText_BellyDrumMinimizedAttack
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+BattleScript_PrintMagicGuardBellyDrum:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_BellyDrumMagicGuard
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
 	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
