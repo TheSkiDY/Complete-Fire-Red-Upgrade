@@ -17,6 +17,7 @@
 extern const u8 BattleScript_MustSelectEncoredMove[];
 extern const u8 BattleScript_SelectingNotAllowedMoveChoiceAbility[];
 extern const u8 BattleScript_SelectingNotAllowedMoveAssaultVest[];
+extern const u8 BattleScript_SelectingNotAllowedTruant[];
 extern const u8 BattleScript_SelectingNotAllowedSkyBattle[];
 extern const u8 BattleScript_SelectingNotAllowedGravity[];
 extern const u8 BattleScript_SelectingNotAllowedThroatChop[];

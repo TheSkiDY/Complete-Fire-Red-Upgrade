@@ -531,6 +531,8 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 		return TRUE;
 	else if (!isMaxMove && move == gDisableStructs[bank].disabledMove && check & MOVE_LIMITATION_DISABLED)
 		return TRUE;
+	else if (!isMaxMove && ability == ABILITY_TRUANT && gDisableStructs[bank].truantCounter && SPLIT(move) != SPLIT_STATUS)
+		return TRUE;
 	else if (!isMaxMove && move == gLastUsedMoves[bank] && check & MOVE_LIMITATION_TORMENTED && IsTormented(bank))
 		return TRUE;
 	else if (IsTaunted(bank) && check & MOVE_LIMITATION_TAUNT && SPLIT(move) == SPLIT_STATUS)
@@ -541,6 +543,7 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 		return TRUE;
 	else if (!isMaxMove
 		 && (holdEffect == ITEM_EFFECT_CHOICE_BAND || ability == ABILITY_GORILLATACTICS)
+		 && (!ABILITY_PRESENT(ABILITY_AROMAVEIL) && ability != ABILITY_AROMAVEIL)
 		 && choicedMove != 0 && choicedMove != 0xFFFF && choicedMove != move
 		 && check & MOVE_LIMITATION_CHOICE)
 	{
@@ -567,6 +570,7 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 u8 CheckMoveLimitationsFromParty(struct Pokemon* mon, u8 unusableMoves, u8 check)
 {
 	u8 holdEffect = GetMonItemEffect(mon);
+	//u8 ability = GetMonAbility(mon);
 
 	for (int i = 0; i < MAX_MON_MOVES; ++i)
 	{
@@ -576,6 +580,8 @@ u8 CheckMoveLimitationsFromParty(struct Pokemon* mon, u8 unusableMoves, u8 check
 			unusableMoves |= gBitTable[i];
 		else if (GetMonData(mon, MON_DATA_PP1 + i, NULL) == 0 && check & MOVE_LIMITATION_PP)
 			unusableMoves |= gBitTable[i];
+		// else if (ability == ABILITY_TRUANT && SPLIT(move) != SPLIT_STATUS)
+		// 	unusableMoves |= gBitTable[i];
 		else if (holdEffect == ITEM_EFFECT_ASSAULT_VEST && SPLIT(move) == SPLIT_STATUS)
 			unusableMoves |= gBitTable[i];
 		#ifdef FLAG_SKY_BATTLE

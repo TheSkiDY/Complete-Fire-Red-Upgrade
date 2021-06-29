@@ -326,19 +326,19 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			gBattleStruct->atkCancellerTracker++;
 			break;
 
-		case CANCELLER_TRUANT: // truant
-			if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter)
-			{
-				CancelMultiTurnMoves(gBankAttacker);
-				gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-				gBattleCommunication[MULTISTRING_CHOOSER] = 4;
-				gBattleScripting.bank = gBankAttacker;
-				gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
-				gMoveResultFlags |= MOVE_RESULT_MISSED;
-				effect = 1;
-			}
-			gBattleStruct->atkCancellerTracker++;
-			break;
+		// case CANCELLER_TRUANT: // truant
+		// 	if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter)
+		// 	{
+		// 		CancelMultiTurnMoves(gBankAttacker);
+		// 		gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+		// 		gBattleCommunication[MULTISTRING_CHOOSER] = 4;
+		// 		gBattleScripting.bank = gBankAttacker;
+		// 		gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
+		// 		gMoveResultFlags |= MOVE_RESULT_MISSED;
+		// 		effect = 1;
+		// 	}
+		// 	gBattleStruct->atkCancellerTracker++;
+		// 	break;
 
 		case CANCELLER_RECHARGE: // recharge
 			if (gBattleMons[gBankAttacker].status2 & STATUS2_RECHARGE)

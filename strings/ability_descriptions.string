@@ -553,6 +553,9 @@ Prevents paralysis and SPEED drops.
 #org @DESC_MAGMAARMOR
 Ups evasion and crit dodges in sun.
 
+#org @DESC_TRUANT
+Attacks only every two turns.
+
 #org @DESC_EMPTY_1
 Empty ability.
 
