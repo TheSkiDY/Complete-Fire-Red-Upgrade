@@ -801,7 +801,10 @@ enum
 #define ITEM_FREE_SPACE20 0x2EC
 #define ITEM_FREE_SPACE21 0x2ED
 
-#define ITEMS_COUNT (ITEM_FREE_SPACE21 + 1)
+#define ITEM_STAT_SCANNER 0x2EE
+#define ITEM_LAST 0x2EF
+
+#define ITEMS_COUNT (ITEM_LAST + 1)
 
 //For Pokemon Unbound
 #ifdef UNBOUND
