@@ -860,7 +860,7 @@ u16 CalcFinalAIMoveDamage(u16 move, u8 bankAtk, u8 bankDef, u8 numHits, struct D
 		return gBattleMons[bankDef].hp;
 
 	u8 defAbility = ABILITY(bankDef);
-	if (numHits >= 2 && BATTLER_MAX_HP(bankDef) && (defAbility == ABILITY_MULTISCALE || defAbility == ABILITY_SHADOWSHIELD))
+	if (numHits >= 2 && BATTLER_MAX_HP(bankDef) && (defAbility == ABILITY_MYTHICALSHIELD/* || defAbility == ABILITY_SHADOWSHIELD*/))
 		return MathMin(dmg + (dmg * 2) * (numHits - 1), gBattleMons[bankDef].maxHP); //Adjust damage on subsequent hits
 
 	return MathMin(dmg * numHits, gBattleMons[bankDef].maxHP);

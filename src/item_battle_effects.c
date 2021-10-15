@@ -898,7 +898,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 
 						gStringBank = bank;
 						gBattleScripting.bank = bank;
-						gBattleMoveDamage = MathMax(1, udivsi(gNewBS->totalDamageGiven, atkQuality)) * - 1;
+						gBattleMoveDamage = MathMax(1, udivsi(gNewBS->totalDamageGiven, atkQuality)) * - 2;
 						BattleScriptPushCursor();
 						gBattlescriptCurrInstr = BattleScript_ItemHealHP_Ret;
 						effect++;

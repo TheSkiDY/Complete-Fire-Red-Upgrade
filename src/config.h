@@ -308,11 +308,11 @@ enum //These vars need to be one after the other (hence the enum)
 #define FOG_IN_BATTLE_1 //Uncommenting this line enables the Fog weather effect when the OW weather is set to WEATHER_FOG_1 (0x6)
 #define FOG_IN_BATTLE_2 //Uncommenting this line enables the Fog weather effect when the OW weather is set to WEATHER_FOG_2 (0x9)
 #define FOG_IN_BATTLE_3 //Uncommenting this line enables the Fog weather effect when the OW weather is set to WEATHER_FOG_3 (0xA)
-//#define HIDE_HEALTHBOXES_DURING_ANIMS //Commenting this line prevents the health boxes from being hidden during move animations and some special animations.
-//#define DONT_HIDE_HEALTHBOXES_ATTACKER_STATUS_MOVES //Uncommenting this line doesn't hide the healthboxes when the attacker is using a status move that targets itself (Gen 4).
+#define HIDE_HEALTHBOXES_DURING_ANIMS //Commenting this line prevents the health boxes from being hidden during move animations and some special animations.
+#define DONT_HIDE_HEALTHBOXES_ATTACKER_STATUS_MOVES //Uncommenting this line doesn't hide the healthboxes when the attacker is using a status move that targets itself (Gen 4).
 //#define ENCOUNTER_MUSIC_BY_CLASS //Plays music when a trainer spots the player based on the trainer class rather than the value set in the trainer data.
 #define OKAY_WITH_AI_SUICIDE //The AI is allowed to use self-destructing moves
-#define HEALTHBAR_TYPE_ICONS //Pokemon types will always be shown next to the healthbar
+//#define HEALTHBAR_TYPE_ICONS //Pokemon types will always be shown next to the healthbar
 
 /* DexNav Options */
 //See "include/new/dexnav_config.h"

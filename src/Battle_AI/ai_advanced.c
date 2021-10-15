@@ -1285,7 +1285,7 @@ bool8 ShouldPivot(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 					&& SPLIT(move) != SPLIT_STATUS //Damaging move
 					&& (switchScore >= SWITCHING_INCREASE_RESIST_ALL_MOVES + SWITCHING_INCREASE_KO_FOE //Or remove hazards
 					 || (BATTLER_MAX_HP(bankDef)
-					    && (IsBankHoldingFocusSash(bankDef) || defAbility == ABILITY_STURDY || defAbility == ABILITY_MULTISCALE || defAbility == ABILITY_SHADOWSHIELD)))) //Pivot to break the sash/sturdy/multiscale
+					    && (IsBankHoldingFocusSash(bankDef) || defAbility == ABILITY_STURDY || defAbility == ABILITY_MYTHICALSHIELD /* || defAbility == ABILITY_SHADOWSHIELD*/)))) //Pivot to break the sash/sturdy/multiscale
 						return PIVOT;
 				}
 				else if (!hasUsefulStatBoost) //3HKO+ the foe
@@ -1293,7 +1293,7 @@ bool8 ShouldPivot(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 					if (IsClassDamager(class)
 					&& BATTLER_MAX_HP(bankDef)
 					&& SPLIT(move) != SPLIT_STATUS //Damaging move
-					&& (IsBankHoldingFocusSash(bankDef) || defAbility == ABILITY_STURDY || defAbility == ABILITY_MULTISCALE || defAbility == ABILITY_SHADOWSHIELD)) //Pivot to break the sash/sturdy/multiscale
+					&& (IsBankHoldingFocusSash(bankDef) || defAbility == ABILITY_STURDY || defAbility == ABILITY_MYTHICALSHIELD /*|| defAbility == ABILITY_SHADOWSHIELD*/)) //Pivot to break the sash/sturdy/multiscale
 						return PIVOT;
 
 					if (IsClassDamager(class) && switchScore >= SWITCHING_INCREASE_WALLS_FOE)

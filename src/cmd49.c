@@ -83,7 +83,7 @@ enum
 	ATK49_SHELL_BELL_LIFE_ORB_RECOIL,
 	ATK49_SWITCH_OUT_ABILITIES,
 	ATK49_RESTORE_ABILITIES,
-	ATK49_PICKPOCKET,
+//	ATK49_PICKPOCKET,
 	ATK49_RAID_MON_PREP_MORE_ATTACKS,
 	ATK49_SUBSTITUTE,
 	ATK49_END_ZMOVES,
@@ -761,7 +761,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 		case ATK49_MAGICIAN_MOXIE_BATTLEBOND:
 			switch (ABILITY(gBankAttacker)) {
-				case ABILITY_MAGICIAN:
+				case ABILITY_PLUNDER:
 					if (ITEM(gBankAttacker) == ITEM_NONE
 					&& ITEM(bankDef) != ITEM_NONE
 					&& BATTLER_ALIVE(gBankAttacker)
@@ -770,7 +770,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					&& MOVE_HAD_EFFECT
 					&& CanTransferItem(SPECIES(bankDef), ITEM(bankDef))
 					&& CanTransferItem(SPECIES(gBankAttacker), ITEM(bankDef))
-					&& (ABILITY(bankDef) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(bankDef)))
+					&& (ABILITY(bankDef) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(bankDef) || !CheckContact(gCurrentMove, gBankAttacker)))
 					{
 						gBattleScripting.bank = gBankAttacker;
 						BattleScriptPushCursor();
@@ -1305,37 +1305,37 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 			gBattleScripting.atk49_state++;
 			break;
 
-		case ATK49_PICKPOCKET: ;
-			u8 banks[4] = {0, 1, 2, 3};
-			SortBanksBySpeed(banks, FALSE);
+		// case ATK49_PICKPOCKET: ;
+		// 	u8 banks[4] = {0, 1, 2, 3};
+		// 	SortBanksBySpeed(banks, FALSE);
 
-			for (i = 0; i < gBattlersCount; ++i)
-			{
-				u8 bank = banks[i];
+		// 	for (i = 0; i < gBattlersCount; ++i)
+		// 	{
+		// 		u8 bank = banks[i];
 
-				if (bank != gBankAttacker
-				&&  !SheerForceCheck()
-				&&  ABILITY(bank) == ABILITY_PICKPOCKET
-				&&  !(gNewBS->ResultFlags[bank] & MOVE_RESULT_NO_EFFECT)
-				&&  TOOK_DAMAGE(bank)
-				&&  !MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bank)
-				&&  gBattleMons[bank].hp != 0
-				&&  CheckContact(gCurrentMove, gBankAttacker)
-				&&  ITEM(gBankAttacker) != ITEM_NONE
-				&&  ITEM(bank) == ITEM_NONE
-				&& (ABILITY(gBankAttacker) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(gBankAttacker)))
-				{
-					gNewBS->NoSymbiosisByte = TRUE;
-					gLastUsedItem = ITEM(gBankAttacker);
-					gBankTarget = gActiveBattler = gBattleScripting.bank = bank;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_Pickpocket;
-					effect = 1;
-					break; //Only fastest Pickpocket activates so exit loop.
-				}
-			}
-			gBattleScripting.atk49_state++;
-			break;
+		// 		if (bank != gBankAttacker
+		// 		&&  !SheerForceCheck()
+		// 		&&  ABILITY(bank) == ABILITY_PICKPOCKET
+		// 		&&  !(gNewBS->ResultFlags[bank] & MOVE_RESULT_NO_EFFECT)
+		// 		&&  TOOK_DAMAGE(bank)
+		// 		&&  !MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bank)
+		// 		&&  gBattleMons[bank].hp != 0
+		// 		&&  CheckContact(gCurrentMove, gBankAttacker)
+		// 		&&  ITEM(gBankAttacker) != ITEM_NONE
+		// 		&&  ITEM(bank) == ITEM_NONE
+		// 		&& (ABILITY(gBankAttacker) != ABILITY_STICKYHOLD || !BATTLER_ALIVE(gBankAttacker)))
+		// 		{
+		// 			gNewBS->NoSymbiosisByte = TRUE;
+		// 			gLastUsedItem = ITEM(gBankAttacker);
+		// 			gBankTarget = gActiveBattler = gBattleScripting.bank = bank;
+		// 			BattleScriptPushCursor();
+		// 			gBattlescriptCurrInstr = BattleScript_Pickpocket;
+		// 			effect = 1;
+		// 			break; //Only fastest Pickpocket activates so exit loop.
+		// 		}
+		// 	}
+		// 	gBattleScripting.atk49_state++;
+		// 	break;
 
 		case ATK49_RAID_MON_PREP_MORE_ATTACKS:
 			if (IsRaidBattle()

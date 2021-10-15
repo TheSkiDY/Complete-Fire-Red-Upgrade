@@ -77,6 +77,23 @@ u8 GetBankForBattleScript(u8 caseId)
 }
 
 
+bool8 NoStatusMoves(u8 bank)
+{
+	bool8 ifStatus = FALSE;
+	u16 move;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		move = gBattleMons[bank].moves[i];
+		if(gBattleMoves[move].split == SPLIT_STATUS)
+		{
+			ifStatus = TRUE;
+		}
+	}
+
+	return !ifStatus;
+}
+
 ability_t GetBankAbility(u8 bank)
 {
 	if (IsAbilitySuppressed(bank))

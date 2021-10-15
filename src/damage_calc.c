@@ -115,11 +115,15 @@ void atk04_critcalc(void)
 						+ (CheckTableForMove(gCurrentMove, gHighCriticalChanceMoves))
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
-						#ifdef SPECIES_CHANSEY
-						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && gBattleMons[gBankAttacker].species == SPECIES_CHANSEY)
-						#endif
+						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && IsOfType(gBankAttacker, TYPE_NORMAL))
 						#ifdef SPECIES_FARFETCHD
 						+ 2 * (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD)
+						#endif
+						#ifdef SPECIES_FARFETCHD_G
+						+ 2 * (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD_G)
+						#endif
+						#ifdef SPECIES_SIRRFETCHD
+						+ 2 * (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_SIRFETCHD)
 						#endif
 						+ 2 * (gCurrentMove == MOVE_10000000_VOLT_THUNDERBOLT);
 
@@ -2572,8 +2576,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage /= 2;
 			break;
 
-		case ABILITY_MULTISCALE:
-		case ABILITY_SHADOWSHIELD:
+		case ABILITY_MYTHICALSHIELD:
 		//0.5x Decrement
 			if (data->defHP >= data->defMaxHP)
 				damage /= 2;
