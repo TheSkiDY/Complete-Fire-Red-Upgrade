@@ -252,9 +252,9 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_CUT] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 50,
-		.type = TYPE_NORMAL,
+		.effect = EFFECT_HIGH_CRITICAL,
+		.power = 65,
+		.type = TYPE_STEEL,
 		.accuracy = 95,
 		.pp = 30,
 		.secondaryEffectChance = 0,
@@ -317,15 +317,15 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FLY] =
 	{
 		.effect = EFFECT_SEMI_INVULNERABLE,
-		.power = 90,
+		.power = 85,
 		.type = TYPE_FLYING,
-		.accuracy = 95,
-		.pp = 15,
+		.accuracy = 100,
+		.pp = 20,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 175,
+		.z_move_power = 180,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -934,7 +934,7 @@ const struct BattleMove gBattleMoves[] =
 	{
 		.effect = EFFECT_HIT,
 		#ifdef GEN_6_POWER_NERFS
-		.power = 90,
+		.power = 95,
 		#else
 		.power = 95,
 		#endif
@@ -1152,7 +1152,7 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_STRENGTH] =
 	{
-		.effect = EFFECT_HIT,
+		.effect = EFFECT_ATTACK_UP_HIT,
 		.power = 80,
 		.type = TYPE_NORMAL,
 		.accuracy = 100,
@@ -2081,7 +2081,7 @@ const struct BattleMove gBattleMoves[] =
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 15,
-		.secondaryEffectChance = 20,
+		.secondaryEffectChance = 30,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
@@ -2420,14 +2420,14 @@ const struct BattleMove gBattleMoves[] =
 
 	[MOVE_FLASH] =
 	{
-		.effect = EFFECT_ACCURACY_DOWN,
-		.power = 0,
-		.type = TYPE_NORMAL,
+		.effect = EFFECT_ACCURACY_DOWN_HIT,
+		.power = 20,
+		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 20,
-		.secondaryEffectChance = 0,
+		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
-		.priority = 0,
+		.priority = 1,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 0,
 		.split = SPLIT_STATUS,
@@ -4037,7 +4037,7 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_ROCKSMASH] =
 	{
 		.effect = EFFECT_DEFENSE_DOWN_HIT,
-		.power = 40,
+		.power = 60,
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
 		.pp = 15,
@@ -6353,11 +6353,11 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_ROCKCLIMB] =
 	{
 		.effect = EFFECT_CONFUSE_HIT,
-		.power = 90,
+		.power = 100,
 		.type = TYPE_NORMAL,
 		.accuracy = 85,
 		.pp = 20,
-		.secondaryEffectChance = 20,
+		.secondaryEffectChance = 30,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,

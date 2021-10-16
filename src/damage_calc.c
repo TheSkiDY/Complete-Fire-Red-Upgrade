@@ -104,6 +104,7 @@ void atk04_critcalc(void)
 		}
 		else if ((atkAbility == ABILITY_MERCILESS && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| IsLaserFocused(gBankAttacker)
+		|| (gCurrentMove == MOVE_ROCKSMASH && (gBattleMons[bankDef].type1 == TYPE_ROCK || gBattleMons[bankDef].type2 == TYPE_ROCK))
 		|| CheckTableForMove(gCurrentMove, gAlwaysCriticalMoves))
 		{
 			confirmedCrit = TRUE;
@@ -1170,7 +1171,7 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
 			return; //Miracle Eye causes normal damage hits
 
-		if (moveType == TYPE_POISON && defType == TYPE_STEEL && atkAbility == ABILITY_CORROSION)
+		if (moveType == TYPE_POISON && defType == TYPE_STEEL && (atkAbility == ABILITY_CORROSION) )
 			return; 
 
 		// if (moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
@@ -1187,6 +1188,15 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	}
 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_ACID && defType == TYPE_POISON)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_CUT && defType == TYPE_GRASS)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_STRENGTH && defType == TYPE_ROCK)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
 	if ((move == MOVE_SCALD || move == MOVE_STEAMERUPTION) && defType == TYPE_ICE)

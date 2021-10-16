@@ -539,6 +539,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_FLAMEWHEEL
 .hword MOVE_FLAMETHROWER
 .hword MOVE_FLAREBLITZ
+.hword MOVE_FLASH
 .hword MOVE_FLASHCANNON
 .hword MOVE_FOCUSBLAST
 .hword MOVE_FORCEPALM
@@ -598,7 +599,6 @@ gSheerForceBoostedMoves:
 .hword MOVE_RELICSONG
 .hword MOVE_ROCKCLIMB
 .hword MOVE_ROCKSLIDE
-.hword MOVE_ROCKSMASH
 .hword MOVE_ROCKTOMB
 .hword MOVE_ROLLINGKICK
 .hword MOVE_SACREDFIRE
@@ -630,6 +630,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_STOKED_SPARKSURFER
 .hword MOVE_STOMP
 .hword MOVE_STRANGESTEAM
+.hword MOVE_STRENGTH
 .hword MOVE_STRUGGLEBUG
 .hword MOVE_THROATCHOP
 .hword MOVE_THUNDER
@@ -946,6 +947,7 @@ gHighCriticalChanceMoves:
 .hword MOVE_SPACIALREND
 .hword MOVE_DRILLRUN
 .hword MOVE_SNIPESHOT
+.hword MOVE_CUT
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
