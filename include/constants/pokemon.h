@@ -11,17 +11,17 @@
 #define TYPE_GHOST    0x07
 #define TYPE_STEEL    0x08
 #define TYPE_MYSTERY  0x09
-#define TYPE_FIRE     0x0a
-#define TYPE_WATER    0x0b
-#define TYPE_GRASS    0x0c
-#define TYPE_ELECTRIC 0x0d
-#define TYPE_PSYCHIC  0x0e
-#define TYPE_ICE      0x0f
-#define TYPE_DRAGON   0x10
-#define TYPE_DARK     0x11
+#define TYPE_FIRE     0x0a //10
+#define TYPE_WATER    0x0b //11
+#define TYPE_GRASS    0x0c //12
+#define TYPE_ELECTRIC 0x0d //13
+#define TYPE_PSYCHIC  0x0e //14
+#define TYPE_ICE      0x0f //15
+#define TYPE_DRAGON   0x10 //16
+#define TYPE_DARK     0x11 //17
 #define TYPE_ROOSTLESS 0x13
-#define TYPE_BLANK	  0x14
-#define TYPE_FAIRY	  0x17
+#define TYPE_BLANK	  0x14 
+#define TYPE_FAIRY	  0x17 //23
 
 #define NUMBER_OF_MON_TYPES (TYPE_FAIRY + 1)
 

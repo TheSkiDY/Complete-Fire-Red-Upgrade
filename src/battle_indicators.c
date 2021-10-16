@@ -834,7 +834,7 @@ void CreateMegaIndicatorAfterAnim(void)
 {
 	if (!gNewBS->megaIndicatorObjIds[gActiveBattler] && gActiveBattler < gBattlersCount)
 	{
-		LoadMegaGraphics(0xFF);
+		//LoadMegaGraphics(0xFF);
 	}
 }
 
