@@ -30,7 +30,7 @@
 0806E280 00 00 00 00
 081360F7 E0
 ##PC Boxes Use More Wallpapers
-0808C836 0D
+0808C836 0F
 ##Increase Max Money to 9999999
 0808A006 09
 0809FE52 09
@@ -611,6 +611,23 @@
 
 ##Fix Slow Camera Update (OverworldBasic - see special_inserts.asm)
 08056578 00 B5 13 F0 95 FA 20 F0 FB FF B0 F7 EB FA 04 F0 13 FB 04 F0 4D FC 19 F0 9F FF 19 F0 13 FD A0 F0 0F F9 B0 F7 05 FB 00 BD
+
+##Show pokemon seen instead of captured
+0800CF56 00 20
+0800CF64 00 20
+080F803C 00 20
+080F8044 00 20
+
+##Prevent the Pokemon from fleeing in the Safari Zone
+080169D4 00
+
+##Remove HM animation
+080860C2 00 00 00 00 00 00 00 00 00 00 00 00
+
+##Auto National Dex
+0806E25C 01 20 70 47
+
+
 
 #ifdef GEN4_PLUS_SELECTION_SCREEN
 0845A148 02 16 0B 07 08 0E 61 03
