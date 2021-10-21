@@ -53,9 +53,19 @@ static void Task_GiveExpToMon(u8 taskId);
 static void sub_80300F4(u8 taskId);
 static u32 GetExpToLevel(u8 toLevel, u8 growthRate);
 static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
+void GetExp_Gen3_ExpShare();
+void GetExp_Gen6_ExpShare();
 
 ///////////////////// GAIN EXPERIENCE //////////////////////
 void atk23_getexp(void)
+{
+	if(FlagGet(FLAG_GEN_3_EXP_SHARE))
+		GetExp_Gen3_ExpShare();
+	else
+		GetExp_Gen6_ExpShare();
+}
+
+void GetExp_Gen3_ExpShare()
 {
 	u16 item = gPlayerParty[gBattleStruct->expGetterMonId].item;
 	u8 holdEffect = gItems[SanitizeItemId(item)].holdEffect;
@@ -108,8 +118,6 @@ void atk23_getexp(void)
 			gBattleMoveDamage = 0; // used for exp
 			break;
 		}
-
-		#ifndef FLAG_EXP_SHARE
 		else if (holdEffect != ITEM_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
 		{
 			gBattleStruct->sentInPokes >>= 1;
@@ -117,22 +125,6 @@ void atk23_getexp(void)
 			gBattleMoveDamage = 0; // used for exp
 			break;
 		}
-		#else //New Exp Share
-		else if (*expGiveType == GiveExpBattlePariticpants && !(gBattleStruct->sentInPokes & 1)) //Exp Share runs on a different loop
-		{
-			gBattleStruct->sentInPokes >>= 1;
-			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
-			gBattleMoveDamage = 0; // used for exp
-			break;
-		}
-		else if (*expGiveType == GiveExpViaExpShare && gBattleStruct->sentInPokes & 1)
-		{
-			gBattleStruct->sentInPokes >>= 1;
-			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
-			gBattleMoveDamage = 0; // used for exp
-			break;
-		}
-		#endif
 
 		if (gPlayerParty[gBattleStruct->expGetterMonId].level >= MAX_LEVEL) //Max level mons still gain EVs
 		{
@@ -156,15 +148,9 @@ void atk23_getexp(void)
 
 			if (gBitTable[i] & sentIn)
 				viaSentIn++;
-			#ifdef FLAG_EXP_SHARE //In new gens, you either get bonus for being in, or exp share
-			else if (FlagGet(FLAG_EXP_SHARE))
-				viaExpShare++;
-			#endif
 
-			#ifndef FLAG_EXP_SHARE
 			if (gItems[SanitizeItemId(gPlayerParty[i].item)].holdEffect == ITEM_EFFECT_EXP_SHARE)
 					viaExpShare++;
-			#endif
 		}
 
 		//Trainer Boost - a
@@ -175,7 +161,7 @@ void atk23_getexp(void)
 			&& FlagGet(FLAG_SYS_GAME_CLEAR) //Too OP before game end
 			#endif
 			)
-				trainerBonus = 15;
+				trainerBonus = 12;
 		#endif
 
 		//Trade Boost - t
@@ -215,34 +201,21 @@ void atk23_getexp(void)
 			evolutionBoost = 12;
 
 		//Exp Share/Num Battlers Divisor
-		#ifndef FLAG_EXP_SHARE
-			#ifdef OLD_EXP_SPLIT
-				if (viaExpShare) // at least one mon is getting exp via exp share
-				{
-					if (holdEffect == ITEM_EFFECT_EXP_SHARE)
-						calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaExpShare);
-					if (gNewBS->SentInBackup & (1 << gBattleStruct->expGetterMonId))
-						calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaSentIn);
-					goto SKIP_EXP_CALC;
-				}
-				else //No Pokemon holds Exp Share
-					divisor = viaSentIn;
-			#else
-				divisor = 1;
-			#endif
-		#else //New Exp. Share
-			#ifdef OLD_EXP_SPLIT
-				if (*expGiveType == GiveExpBattlePariticpants) //In battle recieves full EXP / num battlers
-					divisor = viaSentIn;
-				else //Otherwise Exp / 2
-					divisor = 2 * viaSentIn;
-			#else
-				if (*expGiveType == GiveExpBattlePariticpants) //In battle recieves full EXP
-					divisor = 1;
-				else //Otherwise Exp / 2
-					divisor = 2;
-			#endif
+		#ifdef OLD_EXP_SPLIT
+			if (viaExpShare) // at least one mon is getting exp via exp share
+			{
+				if (holdEffect == ITEM_EFFECT_EXP_SHARE)
+					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaExpShare);
+				if (gNewBS->SentInBackup & (1 << gBattleStruct->expGetterMonId))
+					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaSentIn);
+				goto SKIP_EXP_CALC;
+			}
+			else //No Pokemon holds Exp Share
+				divisor = viaSentIn;
+		#else
+			divisor = 1;
 		#endif
+
 
 		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor);
 		goto SKIP_EXP_CALC; //Only here so the compiler stops giving potential unused label errors (because it can be depending on your configuration)
@@ -310,12 +283,357 @@ void atk23_getexp(void)
 
 			PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 10, calculatedExp)
 
-			#ifdef FLAG_EXP_SHARE
-				if (*expGiveType == GiveExpBattlePariticpants) //Don't print the gained exp string unless it participated in battle
-					PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBank);
-			#else
-				PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBank);
+			PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBank);
+
+			MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBankFainted].species);
+		}
+		else
+		{
+			gBattleStruct->sentInPokes >>= 1;
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+		gBattleStruct->sentInPokes >>= 1;
+		gBattleScripting.expStateTracker++;
+	__attribute__ ((fallthrough));
+
+	case GetExp_SetStats: // Set stats and give exp
+		if (gBattleExecBuffer) break;
+
+		gBattleBufferB[gBattleStruct->expGetterBank][0] = 0;
+		if (gPlayerParty[gBattleStruct->expGetterMonId].hp && gPlayerParty[gBattleStruct->expGetterMonId].level < MAX_LEVEL)
+		{
+			gBattleResources->statsBeforeLvlUp->hp = gPlayerParty[gBattleStruct->expGetterMonId].maxHP;
+			gBattleResources->statsBeforeLvlUp->atk = gPlayerParty[gBattleStruct->expGetterMonId].attack;
+			gBattleResources->statsBeforeLvlUp->def = gPlayerParty[gBattleStruct->expGetterMonId].defense;
+			gBattleResources->statsBeforeLvlUp->spd = gPlayerParty[gBattleStruct->expGetterMonId].speed;
+			gBattleResources->statsBeforeLvlUp->spAtk = gPlayerParty[gBattleStruct->expGetterMonId].spAttack;
+			gBattleResources->statsBeforeLvlUp->spDef = gPlayerParty[gBattleStruct->expGetterMonId].spDefense;
+
+			gActiveBattler = gBattleStruct->expGetterBank;
+			EmitExpBarUpdate(0, gBattleStruct->expGetterMonId, gBattleMoveDamage);
+			MarkBufferBankForExecution(gActiveBattler);
+		}
+		else
+		{
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+		gBattleScripting.expStateTracker++;
+		break;
+
+	case GetExp_LevelUp: // lvl up if necessary
+		if (gBattleExecBuffer) break;
+
+		gActiveBattler = gBattleStruct->expGetterBank;
+		if (gBattleBufferB[gActiveBattler][0] == CONTROLLER_CHOSENMONRETURNVALUE
+		&&  gBattleBufferB[gActiveBattler][1] == RET_VALUE_LEVELED_UP)
+		{
+			u8 leveledUpBank = 0xFF;
+
+			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gBattlerPartyIndexes[gActiveBattler] == gBattleStruct->expGetterMonId)
+				HandleLowHpMusicChange(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
+
+			PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gActiveBattler, gBattleStruct->expGetterMonId)
+
+			PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff2, 3, gPlayerParty[gBattleStruct->expGetterMonId].level)
+
+			BattleScriptPushCursor();
+			gLeveledUpInBattle |= gBitTable[gBattleStruct->expGetterMonId];
+			gBattlescriptCurrInstr = BattleScript_LevelUp;
+			gBattleMoveDamage = (gBattleBufferB[gActiveBattler][2] | (gBattleBufferB[gActiveBattler][3] << 8) | (gBattleBufferB[gActiveBattler][4] << 0x10) | (gBattleBufferB[gActiveBattler][5] << 0x18));
+ 			AdjustFriendship(&gPlayerParty[gBattleStruct->expGetterMonId], FRIENDSHIP_EVENT_GROW_LEVEL);
+
+			// update battle mon structure after level up
+			if (gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] == gBattleStruct->expGetterMonId && BATTLER_ALIVE(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
+				leveledUpBank = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+			else if (IS_DOUBLE_BATTLE && gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)] == gBattleStruct->expGetterMonId && BATTLER_ALIVE(GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)))
+				leveledUpBank = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+
+			if (leveledUpBank != 0xFF)
+			{
+				gBattleMons[leveledUpBank].level = gPlayerParty[gBattleStruct->expGetterMonId].level;
+				gBattleMons[leveledUpBank].hp = gPlayerParty[gBattleStruct->expGetterMonId].hp;
+				gBattleMons[leveledUpBank].maxHP = gPlayerParty[gBattleStruct->expGetterMonId].maxHP;
+
+				if (!IS_TRANSFORMED(leveledUpBank)) //Don't replace the temp stats
+				{
+					gBattleMons[leveledUpBank].attack = gPlayerParty[gBattleStruct->expGetterMonId].attack;
+					gBattleMons[leveledUpBank].defense = gPlayerParty[gBattleStruct->expGetterMonId].defense;
+					gBattleMons[leveledUpBank].speed = gPlayerParty[gBattleStruct->expGetterMonId].speed;
+					gBattleMons[leveledUpBank].spAttack = gPlayerParty[gBattleStruct->expGetterMonId].spAttack;
+					gBattleMons[leveledUpBank].spDefense = gPlayerParty[gBattleStruct->expGetterMonId].spDefense;
+				}
+			}
+		}
+		else
+			gBattleMoveDamage = 0;
+
+		gBattleScripting.expStateTracker++;
+		break;
+
+	case GetExp_PrepareLoop: // looper increment
+		if (gBattleMoveDamage) // there is exp to give, goto case 3 that gives exp
+			gBattleScripting.expStateTracker = GetExp_SetStats;
+		else
+		{
+			gBattleStruct->expGetterMonId++;
+			if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) {
+				if (gBattleStruct->expGetterMonId < 3)
+					gBattleScripting.expStateTracker = GetExp_CheckCurrentMonDeserving; // loop again
+				else
+					gBattleScripting.expStateTracker = GetExp_End; // we're done
+			}
+			else {
+				if (gBattleStruct->expGetterMonId < 6)
+					gBattleScripting.expStateTracker = GetExp_CheckCurrentMonDeserving; // loop again
+				else
+					gBattleScripting.expStateTracker = GetExp_End; // we're done
+			}
+		}
+		break;
+
+	case GetExp_End: // increment instruction
+		if (gBattleExecBuffer) break;
+			{
+			END_EXP_GIVE:
+				gBattleMons[gBankFainted].item = 0;
+				gBattleMons[gBankFainted].ability = 0;
+				gBattlescriptCurrInstr += 2;
+			}
+		break;
+	}
+
+
+}
+
+void GetExp_Gen6_ExpShare()
+{
+	#ifdef FLAG_EXP_SHARE
+	u16 item = gPlayerParty[gBattleStruct->expGetterMonId].item;
+	u8 holdEffect = gItems[SanitizeItemId(item)].holdEffect;
+	u32 i; // also used as stringId
+	u32 sentIn;
+	u32 viaExpShare = 0, viaSentIn = 0;
+	u32 calculatedExp = 0;
+
+	u16* expGiveType = &gBattleStruct->expValue;
+
+	gBankFainted = GetBankForBattleScript(gBattlescriptCurrInstr[1]);
+	sentIn = gSentPokesToOpponent[(gBankFainted & 2) >> 1]; //sentIn = 0 if Bank 1 killed, sentIn = 1 if Bank 3 killed
+
+	switch (gBattleScripting.expStateTracker)
+	{
+	case GetExp_Start: // check if should receive exp at all
+
+		if (SIDE(gBankFainted) != B_SIDE_OPPONENT
+		|| gBattleStruct->givenExpMons & gBitTable[gBattlerPartyIndexes[gBankFainted]]
+		|| IsFrontierRaidBattle()
+		|| (gBattleTypeFlags &
+			 (BATTLE_TYPE_LINK
+			  | BATTLE_TYPE_SAFARI
+			  | BATTLE_TYPE_EREADER_TRAINER
+			  | BATTLE_TYPE_BENJAMIN_BUTTERFREE
+			  | BATTLE_TYPE_FRONTIER
+			  | BATTLE_TYPE_TRAINER_TOWER)))
+		{
+			goto END_EXP_GIVE; // goto last case
+		}
+		else
+		{
+			gBattleScripting.expStateTracker++;
+			gBattleStruct->givenExpMons |= gBitTable[gBattlerPartyIndexes[gBankFainted]]; //The party indices in the opponent's party that have fainted and been given exp for
+			gBattleStruct->expGetterMonId = 0;
+			gBattleStruct->sentInPokes = sentIn;
+			gNewBS->SentInBackup = sentIn;
+			gBattleMoveDamage = 0;
+			*expGiveType = GiveExpBattlePariticpants; //Start with battle participants
+		}
+		break;
+
+	case GetExp_CheckCurrentMonDeserving: //Check if Current mon deserves EXP
+		if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES, NULL) == SPECIES_NONE
+		||  GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP, NULL) == 0
+		||  GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG, 0))
+		{
+			gBattleStruct->sentInPokes >>= 1; //One less pokemon to distribute exp to
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+		else if (*expGiveType == GiveExpBattlePariticpants && !(gBattleStruct->sentInPokes & 1)) //Exp Share runs on a different loop
+		{
+			gBattleStruct->sentInPokes >>= 1;
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+		else if (*expGiveType == GiveExpViaExpShare && gBattleStruct->sentInPokes & 1)
+		{
+			gBattleStruct->sentInPokes >>= 1;
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+
+		if (gPlayerParty[gBattleStruct->expGetterMonId].level >= MAX_LEVEL) //Max level mons still gain EVs
+		{
+			MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBankFainted].species);
+			gBattleStruct->sentInPokes >>= 1; //One less pokemon to distribute exp to
+			gBattleScripting.expStateTracker = GetExp_PrepareLoop;
+			gBattleMoveDamage = 0; // used for exp
+			break;
+		}
+
+		gBattleScripting.expStateTracker++;
+	__attribute__ ((fallthrough));
+
+	case GetExp_Calculation:	; // calculate experience points to redistribute
+		u32 trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor;
+
+		for (viaSentIn = 0, i = 0; i < 6; i++)
+		{
+			if (gPlayerParty[i].species == SPECIES_NONE || gPlayerParty[i].hp == 0)
+				continue;
+
+			if (gBitTable[i] & sentIn)
+				viaSentIn++;
+			else if (FlagGet(FLAG_EXP_SHARE))
+				viaExpShare++;
+		}
+
+		//Trainer Boost - a
+		trainerBonus = 10;
+		#ifdef TRAINER_EXP_BOOST
+			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
+			#ifdef UNBOUND
+			&& FlagGet(FLAG_SYS_GAME_CLEAR) //Too OP before game end
 			#endif
+			)
+				trainerBonus = 12;
+		#endif
+
+		//Trade Boost - t
+		tradeBonus = 10;
+		if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
+			tradeBonus = 15;
+
+		//Base Experience - b
+		#ifdef GEN_7_BASE_EXP_YIELD
+			baseExp = gBaseExpBySpecies[gBattleMons[gBankFainted].species];
+		#else
+			baseExp = gBaseStats[gBattleMons[gBankFainted].species].expYield;
+		#endif
+
+		//Lucky Egg Boost - e
+		eggBoost = 10;
+		if (holdEffect == ITEM_EFFECT_LUCKY_EGG)
+			eggBoost = 15;
+
+		//Level of Fainted Mon
+		defLevel = gBattleMons[gBankFainted].level;
+
+		//Level of Victorious Mon
+		pokeLevel = gPlayerParty[gBattleStruct->expGetterMonId].level;
+
+		//Pass Power Bonus - Not implemented
+		passPower = 1;
+
+		//Affection Boost
+		affection = 10;
+		if (MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
+			affection = 12;
+
+		//Evolution Boost
+		evolutionBoost = 10;
+		if (CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId]))
+			evolutionBoost = 12;
+
+		#ifdef OLD_EXP_SPLIT
+			if (*expGiveType == GiveExpBattlePariticpants) //In battle recieves full EXP / num battlers
+				divisor = viaSentIn;
+			else //Otherwise Exp / 2
+				divisor = 2 * viaSentIn;
+		#else
+			if (*expGiveType == GiveExpBattlePariticpants) //In battle recieves full EXP
+				divisor = 1;
+			else //Otherwise Exp / 2
+				divisor = 2;
+		#endif
+
+
+		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor);
+		goto SKIP_EXP_CALC; //Only here so the compiler stops giving potential unused label errors (because it can be depending on your configuration)
+
+	SKIP_EXP_CALC:
+		calculatedExp = MathMax(1, calculatedExp);
+		gBattleMoveDamage = calculatedExp;
+
+		gBattleScripting.expStateTracker++;
+	__attribute__ ((fallthrough));
+
+	case GetExp_Distribute: // set exp value to the poke in expgetter_id and print message
+
+		// music change in wild battle after fainting a poke
+		if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_POKE_DUDE))
+		&& !gBattleStruct->wildVictorySong)
+		{
+			if ((IS_DOUBLE_BATTLE && (gBattleMons[0].hp || gBattleMons[2].hp) && gBattleMons[1].hp == 0 && gBattleMons[3].hp == 0)
+			|| (!(IS_DOUBLE_BATTLE) && gBattleMons[0].hp && gBattleMons[1].hp == 0))
+			{
+				BattleStopLowHpSound();
+				PlayBGM(BGM_VICTORY_WILD_POKE); //Wild PKMN Victory
+				gBattleStruct->wildVictorySong++;
+				//gAbsentBattlerFlags |= gBitTable[gBankFainted];
+			}
+		}
+
+		if (gPlayerParty[gBattleStruct->expGetterMonId].hp)
+		{
+			//Check Boosted String necessary
+			if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId])
+			||  CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId])
+			||  holdEffect == ITEM_EFFECT_LUCKY_EGG
+		    ||  MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
+			{
+				// check if the pokemon doesn't belong to the player
+				if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
+					i = STRINGID_EMPTYSTRING4;
+				else
+					i = STRINGID_ABOOSTED;
+			}
+			else
+				i = STRINGID_EMPTYSTRING4;
+
+			//Get exp getter bank
+			if (IS_DOUBLE_BATTLE)
+			{
+				if (gBattlerPartyIndexes[B_POSITION_PLAYER_RIGHT] == gBattleStruct->expGetterMonId && !(gAbsentBattlerFlags & gBitTable[B_POSITION_PLAYER_RIGHT]))
+					gBattleStruct->expGetterBank = B_POSITION_PLAYER_RIGHT;
+				else
+				{
+					if (!(gAbsentBattlerFlags & gBitTable[B_POSITION_PLAYER_LEFT]))
+						gBattleStruct->expGetterBank = B_POSITION_PLAYER_LEFT;
+					else
+						gBattleStruct->expGetterBank = B_POSITION_PLAYER_RIGHT;
+				}
+			}
+			else
+				gBattleStruct->expGetterBank = B_POSITION_PLAYER_LEFT;
+
+			PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBank, gBattleStruct->expGetterMonId)
+
+			// buffer 'gained' or 'gained a boosted'
+			PREPARE_STRING_BUFFER(gBattleTextBuff2, i)
+
+			PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 10, calculatedExp)
+
+
+			if (*expGiveType == GiveExpBattlePariticpants) //Don't print the gained exp string unless it participated in battle
+				PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBank);
+
 			MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBankFainted].species);
 		}
 		else
@@ -429,26 +747,26 @@ void atk23_getexp(void)
 	case GetExp_End: // increment instruction
 		if (gBattleExecBuffer) break;
 
-		#ifdef FLAG_EXP_SHARE
-			if (FlagGet(FLAG_EXP_SHARE) && *expGiveType == GiveExpBattlePariticpants && !WasWholeTeamSentIn(B_POSITION_PLAYER_LEFT, gNewBS->SentInBackup)) {
-				*expGiveType = GiveExpViaExpShare;
-				gBattleStruct->expGetterMonId = 0;
-				gBattleMoveDamage = 0;
-				gBattleStruct->sentInPokes = gNewBS->SentInBackup;
-				gBattleScripting.expStateTracker = GetExp_CheckCurrentMonDeserving; // Time for Exp Share loop
-				gBattleStringLoader = String_TeamExpGain;
-				PrepareStringBattle(0x184, 0);
-			}
-			else
-		#endif
-			{
-			END_EXP_GIVE:
-				gBattleMons[gBankFainted].item = 0;
-				gBattleMons[gBankFainted].ability = 0;
-				gBattlescriptCurrInstr += 2;
-			}
+		if (FlagGet(FLAG_EXP_SHARE) && *expGiveType == GiveExpBattlePariticpants && !WasWholeTeamSentIn(B_POSITION_PLAYER_LEFT, gNewBS->SentInBackup)) {
+			*expGiveType = GiveExpViaExpShare;
+			gBattleStruct->expGetterMonId = 0;
+			gBattleMoveDamage = 0;
+			gBattleStruct->sentInPokes = gNewBS->SentInBackup;
+			gBattleScripting.expStateTracker = GetExp_CheckCurrentMonDeserving; // Time for Exp Share loop
+			gBattleStringLoader = String_TeamExpGain;
+			PrepareStringBattle(0x184, 0);
+		}
+		else
+		{
+		END_EXP_GIVE:
+			gBattleMons[gBankFainted].item = 0;
+			gBattleMons[gBankFainted].ability = 0;
+			gBattlescriptCurrInstr += 2;
+		}
 		break;
 	}
+	#endif
+
 }
 
 static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s) {
