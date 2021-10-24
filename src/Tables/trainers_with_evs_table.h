@@ -1231,6 +1231,28 @@ const struct TrainersWithEvs gTrainersWithEvsSpreads[] =
 		.ball = TRAINER_EV_CLASS_BALL,
 		.ability = Ability_Hidden,
 	},
+	[121] = 
+	{
+		.nature = NATURE_HARDY,
+		.ivs = 31,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_1,
+	},
+	[122] = 
+	{
+		.nature = NATURE_HARDY,
+		.ivs = 31,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_2,
+	},
+	[123] = 
+	{
+		.nature = NATURE_HARDY,
+		.ivs = 31,
+		.ball = TRAINER_EV_CLASS_BALL,
+		.ability = Ability_Hidden,
+	},
+
 };
 #endif
 
