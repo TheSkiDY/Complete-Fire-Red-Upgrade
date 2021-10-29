@@ -1,23 +1,23 @@
 #org @gText_DexNav
-Dexnav
+DEXNAV
 
 #org @gText_MissionLog
-Missions
+MISSIONS
 
 #org @gText_MenuExitRight
-Exit  [DPAD_RIGHT]
+EXIT  [DPAD_RIGHT]
 
 #org @gText_MenuExitLeft
-Exit  [DPAD_LEFT]
+EXIT  [DPAD_LEFT]
 
 #org @gText_DexNavInstructions
-[R_BUTTON]Register [B_BUTTON]Cancel
+[R_BUTTON]REGISTER [B_BUTTON]CANCEL
 
 #org @gText_DexNavWater
-Water
+WATER
 
 #org @gText_DexNavLand
-Land
+LAND
 
 #org @gText_PinkFlowers
 Pink Flowers
@@ -38,13 +38,13 @@ Pink-Purple Flowers
 Blue-Yellow Flowers
 
 #org @gText_Magma
-Magma
+MAGMA
 
 #org @gText_Sand
-Sand
+SAND
 
 #org @gText_DexNavDescription
-Search for wild Pok\emon in the area\nwith potential special qualities!
+Search for wild POK\eMON in the area\nwith potential special qualities!
 
 #org @gText_GotAway
 [BUFFER1] got away!
@@ -62,10 +62,10 @@ There is no reaction.\nThe signal was lost!
 [BUFFER1] couldn't be found nearby.\nTry looking in a different area!
 
 #org @gText_TooDarkForDexNav
-It's too dark to search for\na Pok\emon!
+It's too dark to search for\na POK\eMON!
 
 #org @gText_DexNavBack
- Back  
+ BACK  
 
 #org @gText_DexNav_CaptureToSee
 Capture first!
@@ -74,19 +74,19 @@ Capture first!
 --------
 
 #org @gText_DexNav_ChooseMon
-Choose a Pok\emon.
+Choose a POK\eMON.
 
 #org @gText_DexNav_Invalid
-That Pok\emon can't be searched yet!
+That POK\eMON can't be searched yet!
 
 #org @gText_DexNav_NoDataForSlot
-There's no data for that Pok\emon[.]
+There's no data for that POK\eMON[.]
 
 #org @gText_DexNav_Locked
-Pok\emon searchable via [R_BUTTON]!
+POK\eMON searchable via [R_BUTTON]!
 
 #org @gText_DexNav_TooDark
-It's too dark to search for a Pok\emon!
+It's too dark to search for a POK\eMON!
 
 #org @gText_MenuCube
 Cube
