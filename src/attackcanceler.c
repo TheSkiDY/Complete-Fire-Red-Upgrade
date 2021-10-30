@@ -20,6 +20,7 @@
 #include "../include/new/item.h"
 #include "../include/new/move_tables.h"
 #include "../include/new/util.h"
+
 /*
 attackcanceler.c
 	Handles any logic for discerning if a move can be used or is effective, eg. mold breaker, flinch status, truant, etc.
@@ -1175,6 +1176,17 @@ static u8 IsMonDisobedient(void)
 				break;
 			default:
 				return 0;
+
+
+		}
+
+		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		{
+			obedienceLevel = VarGet(VAR_LEVEL_CAP);
+		}
+		else
+		{
+			obedienceLevel = 100;
 		}
 
 	#else
@@ -1196,6 +1208,15 @@ static u8 IsMonDisobedient(void)
 			obedienceLevel = BADGE_1_OBEDIENCE_LEVEL;
 		else
 			obedienceLevel = BASE_OBEDIENCE_LEVEL;
+
+		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		{
+			obedienceLevel = VarGet(VAR_LEVEL_CAP);
+		}
+		else
+		{
+			obedienceLevel = 100;
+		}
 	#endif
 
 	if (gBattleMons[gBankAttacker].level <= obedienceLevel)

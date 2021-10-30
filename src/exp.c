@@ -44,7 +44,7 @@ extern const u16 gBaseExpBySpecies[];
 extern u8 String_TeamExpGain[];
 
 //This file's functions:
-static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s);
+static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 c, u32 s);
 static bool8 WasWholeTeamSentIn(u8 bank, u8 sentIn);
 static bool8 MonGetsAffectionBoost(struct Pokemon* mon);
 static void EmitExpBarUpdate(u8 a, u8 b, u32 c);
@@ -139,7 +139,7 @@ void GetExp_Gen3_ExpShare()
 	__attribute__ ((fallthrough));
 
 	case GetExp_Calculation:	; // calculate experience points to redistribute
-		u32 trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor;
+		u32 trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, divisor;
 
 		for (viaSentIn = 0, i = 0; i < 6; i++)
 		{
@@ -195,6 +195,15 @@ void GetExp_Gen3_ExpShare()
 		if (MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
 			affection = 12;
 
+		charmBoost = 10;
+		#ifdef ITEM_EXP_CHARM
+		if(CheckBagHasItem(ITEM_EXP_CHARM, 1))
+		{
+			charmBoost = 15;
+		}
+
+		#endif
+
 		//Evolution Boost
 		evolutionBoost = 10;
 		if (CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId]))
@@ -205,9 +214,9 @@ void GetExp_Gen3_ExpShare()
 			if (viaExpShare) // at least one mon is getting exp via exp share
 			{
 				if (holdEffect == ITEM_EFFECT_EXP_SHARE)
-					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaExpShare);
+					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, 2 * viaExpShare);
 				if (gNewBS->SentInBackup & (1 << gBattleStruct->expGetterMonId))
-					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, 2 * viaSentIn);
+					calculatedExp += ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, 2 * viaSentIn);
 				goto SKIP_EXP_CALC;
 			}
 			else //No Pokemon holds Exp Share
@@ -217,11 +226,24 @@ void GetExp_Gen3_ExpShare()
 		#endif
 
 
-		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor);
+		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, divisor);
 		goto SKIP_EXP_CALC; //Only here so the compiler stops giving potential unused label errors (because it can be depending on your configuration)
 
 	SKIP_EXP_CALC:
 		calculatedExp = MathMax(1, calculatedExp);
+
+		u8 lvlCap = 100;
+
+		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		{
+			lvlCap = VarGet(VAR_LEVEL_CAP);
+		}
+
+		if(pokeLevel >= lvlCap)
+		{
+			calculatedExp = 1;
+		}
+
 		gBattleMoveDamage = calculatedExp;
 
 		gBattleScripting.expStateTracker++;
@@ -249,7 +271,8 @@ void GetExp_Gen3_ExpShare()
 			if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId])
 			||  CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId])
 			||  holdEffect == ITEM_EFFECT_LUCKY_EGG
-		    ||  MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
+		    ||  MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId])
+		    ||  CheckBagHasItem(ITEM_EXP_CHARM, 1))
 			{
 				// check if the pokemon doesn't belong to the player
 				if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
@@ -491,7 +514,7 @@ void GetExp_Gen6_ExpShare()
 	__attribute__ ((fallthrough));
 
 	case GetExp_Calculation:	; // calculate experience points to redistribute
-		u32 trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor;
+		u32 trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, divisor;
 
 		for (viaSentIn = 0, i = 0; i < 6; i++)
 		{
@@ -546,6 +569,16 @@ void GetExp_Gen6_ExpShare()
 		if (MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
 			affection = 12;
 
+		
+		charmBoost = 10;
+		#ifdef ITEM_EXP_CHARM
+		if(CheckBagHasItem(ITEM_EXP_CHARM, 1))
+		{
+			charmBoost = 15;
+		}
+
+		#endif
+
 		//Evolution Boost
 		evolutionBoost = 10;
 		if (CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId]))
@@ -564,11 +597,24 @@ void GetExp_Gen6_ExpShare()
 		#endif
 
 
-		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, divisor);
+		calculatedExp = ExpCalculator(trainerBonus, tradeBonus, baseExp, eggBoost, defLevel, pokeLevel, passPower, affection, evolutionBoost, charmBoost, divisor);
 		goto SKIP_EXP_CALC; //Only here so the compiler stops giving potential unused label errors (because it can be depending on your configuration)
 
 	SKIP_EXP_CALC:
 		calculatedExp = MathMax(1, calculatedExp);
+
+		u8 lvlCap = 100;
+
+		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		{
+			lvlCap = VarGet(VAR_LEVEL_CAP);
+		}
+
+		if(pokeLevel >= lvlCap)
+		{
+			calculatedExp = 1;
+		}
+
 		gBattleMoveDamage = calculatedExp;
 
 		gBattleScripting.expStateTracker++;
@@ -596,7 +642,8 @@ void GetExp_Gen6_ExpShare()
 			if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId])
 			||  CouldHaveEvolvedViaLevelUp(&gPlayerParty[gBattleStruct->expGetterMonId])
 			||  holdEffect == ITEM_EFFECT_LUCKY_EGG
-		    ||  MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId]))
+		    ||  MonGetsAffectionBoost(&gPlayerParty[gBattleStruct->expGetterMonId])
+		    ||  CheckBagHasItem(ITEM_EXP_CHARM, 1))
 			{
 				// check if the pokemon doesn't belong to the player
 				if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
@@ -769,12 +816,12 @@ void GetExp_Gen6_ExpShare()
 
 }
 
-static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 s) {
+static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f, u32 v, u32 c, u32 s) {
 	u32 calculatedExp;
 
 	#ifdef FLAT_EXP_FORMULA
 		++Lp; //So the variable doesn't remain unused
-		calculatedExp = udivsi(a * t * b * e * L * p * v, 10 * 10 * 10 * 10); //Did the calcs, shouldn't overflow (unless Base Exp > 1060)
+		calculatedExp = udivsi(a * t * b * e * L * p * v * c, 10 * 10 * 10 * 10 * 10); //Did the calcs, shouldn't overflow (unless Base Exp > 1060)
 		calculatedExp = (calculatedExp * f) / 10; //Affection boost
 		calculatedExp = udivsi(calculatedExp, 7 * s);
 
@@ -792,7 +839,7 @@ static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f
 
 		calculatedExp += 1;
 
-		calculatedExp = (udivsi(calculatedExp * t * e * v, 10 * 10 * 10) * p * f) / 10;
+		calculatedExp = (udivsi(calculatedExp * t * e * v * c, 10 * 10 * 10 * 10) * p * f) / 10;
 	#endif
 
 	if (IsRaidBattle())
