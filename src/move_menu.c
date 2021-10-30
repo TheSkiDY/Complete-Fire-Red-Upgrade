@@ -1901,6 +1901,22 @@ void HandleInputChooseAction(void)
 			ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
 		}
 	}
+	else if (gMain.newKeys & R_BUTTON)
+	{
+		PlaySE(SE_SELECT);
+
+
+		if ((IS_DOUBLE_BATTLE)
+			&& GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT
+			&& !(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)])
+			&& !(gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER))
+			&& gBattleBufferA[gActiveBattler][1] != ACTION_USE_ITEM) //Mon 1 didn't use item
+				goto CANCEL_PARTNER;
+
+		EmitTwoReturnValues(1, ACTION_RUN, 0);
+
+		PlayerBufferExecCompleted();
+	}
 	else if (gMain.newKeys & B_BUTTON)
 	{
 		if ((IS_DOUBLE_BATTLE)
