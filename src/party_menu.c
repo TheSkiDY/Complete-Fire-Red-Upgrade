@@ -1386,6 +1386,14 @@ static void Task_OfferGigantamaxChange(u8 taskId);
 static void Task_HandleGigantamaxChangeYesNoInput(u8 taskId);
 static void Task_ChangeGigantamax(u8 taskId);
 
+static void ItemUseCB_NaturePill(u8 taskId, TaskFunc func);
+static void GetNaturePillString(u8 changeTo);
+static void GetNatureChangedString(u8 nature);
+static u8 GetNaturePillNewNature(struct Pokemon* mon);
+static void Task_OfferNatureChange(u8 taskId);
+static void Task_HandleNatureChangeYesNoInput(u8 taskId);
+static void Task_ChangeNature(u8 taskId);
+
 void Task_ClosePartyMenuAfterText(u8 taskId)
 {
 	if (!IsPartyMenuTextPrinterActive())
@@ -2189,6 +2197,346 @@ static void Task_TryLearnPostFormeChangeMove(u8 taskId)
 		}
 	}
 }
+
+extern const u8 gText_NaturePillOfferChangeHardy[];
+extern const u8 gText_NaturePillChangedNatureHardy[];
+extern const u8 gText_NaturePillOfferChangeLonely[];
+extern const u8 gText_NaturePillChangedNatureLonely[];
+extern const u8 gText_NaturePillOfferChangeBrave[];
+extern const u8 gText_NaturePillChangedNatureBrave[];
+extern const u8 gText_NaturePillOfferChangeAdamant[];
+extern const u8 gText_NaturePillChangedNatureAdamant[];
+extern const u8 gText_NaturePillOfferChangeNaughty[];
+extern const u8 gText_NaturePillChangedNatureNaughty[];
+extern const u8 gText_NaturePillOfferChangeBold[];
+extern const u8 gText_NaturePillChangedNatureBold[];
+extern const u8 gText_NaturePillOfferChangeDocile[];
+extern const u8 gText_NaturePillChangedNatureDocile[];
+extern const u8 gText_NaturePillOfferChangeRelaxed[];
+extern const u8 gText_NaturePillChangedNatureRelaxed[];
+extern const u8 gText_NaturePillOfferChangeImpish[];
+extern const u8 gText_NaturePillChangedNatureImpish[];
+extern const u8 gText_NaturePillOfferChangeLax[];
+extern const u8 gText_NaturePillChangedNatureLax[];
+extern const u8 gText_NaturePillOfferChangeTimid[];
+extern const u8 gText_NaturePillChangedNatureTimid[];
+extern const u8 gText_NaturePillOfferChangeHasty[];
+extern const u8 gText_NaturePillChangedNatureHasty[];
+extern const u8 gText_NaturePillOfferChangeSerious[];
+extern const u8 gText_NaturePillChangedNatureSerious[];
+extern const u8 gText_NaturePillOfferChangeJolly[];
+extern const u8 gText_NaturePillChangedNatureJolly[];
+extern const u8 gText_NaturePillOfferChangeNaive[];
+extern const u8 gText_NaturePillChangedNatureNaive[];
+extern const u8 gText_NaturePillOfferChangeModest[];
+extern const u8 gText_NaturePillChangedNatureModest[];
+extern const u8 gText_NaturePillOfferChangeMild[];
+extern const u8 gText_NaturePillChangedNatureMild[];
+extern const u8 gText_NaturePillOfferChangeQuiet[];
+extern const u8 gText_NaturePillChangedNatureQuiet[];
+extern const u8 gText_NaturePillOfferChangeBashful[];
+extern const u8 gText_NaturePillChangedNatureBashful[];
+extern const u8 gText_NaturePillOfferChangeRash[];
+extern const u8 gText_NaturePillChangedNatureRash[];
+extern const u8 gText_NaturePillOfferChangeCalm[];
+extern const u8 gText_NaturePillChangedNatureCalm[];
+extern const u8 gText_NaturePillOfferChangeGentle[];
+extern const u8 gText_NaturePillChangedNatureGentle[];
+extern const u8 gText_NaturePillOfferChangeSassy[];
+extern const u8 gText_NaturePillChangedNatureSassy[];
+extern const u8 gText_NaturePillOfferChangeCareful[];
+extern const u8 gText_NaturePillChangedNatureCareful[];
+extern const u8 gText_NaturePillOfferChangeQuirky[];
+extern const u8 gText_NaturePillChangedNatureQuirky[];
+
+
+void FieldUseFunc_NaturePill(u8 taskId)
+{
+	gItemUseCB = ItemUseCB_NaturePill;
+	SetUpItemUseCallback(taskId);
+}
+
+
+static void ItemUseCB_NaturePill(u8 taskId, TaskFunc func)
+{
+	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+	u8 changeTo = GetNaturePillNewNature(mon);
+
+	PlaySE(SE_SELECT);
+
+	if(changeTo < NUM_NATURES)
+	{
+		GetMonNickname(mon, gStringVar1);
+		GetNaturePillString(changeTo);
+		DisplayPartyMenuMessage(gStringVar4, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = Task_OfferNatureChange;
+	}
+	else
+	{
+		gPartyMenuUseExitCallback = FALSE;
+		DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = func;
+	}
+}
+
+static void GetNaturePillString(u8 changeTo)
+{
+	switch(changeTo)
+	{
+        case 0:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeHardy);
+            break;
+        case 1:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeLonely);
+            break;
+        case 2:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeBrave);
+            break;
+        case 3:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeAdamant);
+            break;
+        case 4:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeNaughty);
+            break;
+        case 5:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeBold);
+            break;
+        case 6:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeDocile);
+            break;
+        case 7:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeRelaxed);
+            break;
+        case 8:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeImpish);
+            break;
+        case 9:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeLax);
+            break;
+        case 10:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeTimid);
+            break;
+        case 11:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeHasty);
+            break;
+        case 12:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeSerious);
+            break;
+        case 13:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeJolly);
+            break;
+        case 14:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeNaive);
+            break;
+        case 15:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeModest);
+            break;
+        case 16:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeMild);
+            break;
+        case 17:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeQuiet);
+            break;
+        case 18:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeBashful);
+            break;
+        case 19:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeRash);
+            break;
+        case 20:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeCalm);
+            break;
+        case 21:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeGentle);
+            break;
+        case 22:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeSassy);
+            break;
+        case 23:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeCareful);
+            break;
+        case 24:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillOfferChangeQuirky);
+            break;
+        default:
+        	break;
+
+	}
+}
+
+static void GetNatureChangedString(u8 nature)
+{
+	switch(nature)
+	{
+        case 0:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureHardy);
+            break;
+        case 1:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureLonely);
+            break;
+        case 2:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureBrave);
+            break;
+        case 3:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureAdamant);
+            break;
+        case 4:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureNaughty);
+            break;
+        case 5:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureBold);
+            break;
+        case 6:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureDocile);
+            break;
+        case 7:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureRelaxed);
+            break;
+        case 8:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureImpish);
+            break;
+        case 9:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureLax);
+            break;
+        case 10:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureTimid);
+            break;
+        case 11:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureHasty);
+            break;
+        case 12:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureSerious);
+            break;
+        case 13:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureJolly);
+            break;
+        case 14:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureNaive);
+            break;
+        case 15:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureModest);
+            break;
+        case 16:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureMild);
+            break;
+        case 17:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureQuiet);
+            break;
+        case 18:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureBashful);
+            break;
+        case 19:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureRash);
+            break;
+        case 20:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureCalm);
+            break;
+        case 21:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureGentle);
+            break;
+        case 22:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureSassy);
+            break;
+        case 23:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureCareful);
+            break;
+        case 24:
+            StringExpandPlaceholders(gStringVar4, gText_NaturePillChangedNatureQuirky);
+            break;
+        default:
+        	break;
+
+	}
+}
+
+static u8 GetNaturePillNewNature(struct Pokemon* mon)
+{
+	u16 item = Var800E;
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u8 currentNature = GetNatureFromPersonality(personality);
+	
+	u8 newNature = ItemId_GetHoldEffectParam(item);
+
+	if(currentNature == newNature)
+		return 0xFF;
+	else
+		return newNature;	
+}
+
+static void Task_OfferNatureChange(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        PartyMenuDisplayYesNoMenu();
+        gTasks[taskId].func = Task_HandleNatureChangeYesNoInput;
+    }
+}
+
+static void Task_HandleNatureChangeYesNoInput(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+		case 0:
+			gTasks[taskId].func = Task_ChangeNature;
+			break;
+		case MENU_B_PRESSED:
+			PlaySE(SE_SELECT);
+			// Fallthrough
+		case 1:
+			gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+			break;
+    }
+}
+
+
+static void Task_ChangeNature(u8 taskId)
+{
+	u16 item = Var800E;
+	u8 newNature = ItemId_GetHoldEffectParam(item);
+	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+	PlaySE(SE_USE_ITEM);
+	
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u8 abilityNum = personality & 1;
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+	bool8 isShiny = IsMonShiny(mon);
+	u8 letter = GetUnownLetterFromPersonality(personality);
+	bool8 isMinior = IsMinior(species);
+	u16 miniorCore = GetMiniorCoreFromPersonality(personality);
+
+	u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+	u16 sid = HIHALF(trainerId);
+	u16 tid = LOHALF(trainerId);
+
+	do
+	{
+		personality = Random32();
+
+		if(isShiny)
+		{
+			u8 shinyRange = 1;
+			personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+		}
+		personality &= ~(1);
+		personality |= abilityNum;
+
+	} while (GetNatureFromPersonality(personality) != newNature || GetGenderFromSpeciesAndPersonality(species, personality) != gender
+		|| (species == SPECIES_UNOWN && GetUnownLetterFromPersonality(personality) != letter)
+		|| (isMinior && GetMiniorCoreFromPersonality(personality) != miniorCore));
+
+	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+	CalculateMonStats(mon);
+	GetMonNickname(mon, gStringVar1);
+	GetNatureChangedString(newNature);
+	DisplayPartyMenuMessage(gStringVar4, TRUE);
+	ScheduleBgCopyTilemapToVram(2);
+	gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+	RemoveBagItem(item, 1);
+}
+
 
 void FieldUseFunc_AbilityCapsule(u8 taskId)
 {

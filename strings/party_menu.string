@@ -60,3 +60,153 @@ Remove the GIGANTAMAX factor from\n[BUFFER1]?
 
 #org @gText_MaxPowderRemovesGigantamax
 [BUFFER1] can no longer GIGANTAMAX.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeHardy
+Change [BUFFER1]'s nature\nto NEUTRAL?
+
+#org @gText_NaturePillChangedNatureHardy
+[BUFFER1]'s nature has been changed\nto NEUTRAL.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeLonely
+Change [BUFFER1]'s nature\nto LONELY?
+
+#org @gText_NaturePillChangedNatureLonely
+[BUFFER1]'s nature has been changed\nto LONELY.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeBrave
+Change [BUFFER1]'s nature\nto BRAVE?
+
+#org @gText_NaturePillChangedNatureBrave
+[BUFFER1]'s nature has been changed\nto BRAVE.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeAdamant
+Change [BUFFER1]'s nature\nto ADAMANT?
+
+#org @gText_NaturePillChangedNatureAdamant
+[BUFFER1]'s nature has been changed\nto ADAMANT.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeNaughty
+Change [BUFFER1]'s nature\nto NAUGHTY?
+
+#org @gText_NaturePillChangedNatureNaughty
+[BUFFER1]'s nature has been changed\nto NAUGHTY.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeBold
+Change [BUFFER1]'s nature\nto BOLD?
+
+#org @gText_NaturePillChangedNatureBold
+[BUFFER1]'s nature has been changed\nto BOLD.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeDocile
+Change [BUFFER1]'s nature\nto SAVAGE?
+
+#org @gText_NaturePillChangedNatureDocile
+[BUFFER1]'s nature has been changed\nto SAVAGE.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeRelaxed
+Change [BUFFER1]'s nature\nto RELAXED?
+
+#org @gText_NaturePillChangedNatureRelaxed
+[BUFFER1]'s nature has been changed\nto RELAXED.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeImpish
+Change [BUFFER1]'s nature\nto IMPISH?
+
+#org @gText_NaturePillChangedNatureImpish
+[BUFFER1]'s nature has been changed\nto IMPISH.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeLax
+Change [BUFFER1]'s nature\nto LAX?
+
+#org @gText_NaturePillChangedNatureLax
+[BUFFER1]'s nature has been changed\nto LAX.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeTimid
+Change [BUFFER1]'s nature\nto TIMID?
+
+#org @gText_NaturePillChangedNatureTimid
+[BUFFER1]'s nature has been changed\nto TIMID.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeHasty
+Change [BUFFER1]'s nature\nto HASTY?
+
+#org @gText_NaturePillChangedNatureHasty
+[BUFFER1]'s nature has been changed\nto HASTY.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeSerious
+Change [BUFFER1]'s nature\nto DISCREET?
+
+#org @gText_NaturePillChangedNatureSerious
+[BUFFER1]'s nature has been changed\nto DISCREET.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeJolly
+Change [BUFFER1]'s nature\nto JOLLY?
+
+#org @gText_NaturePillChangedNatureJolly
+[BUFFER1]'s nature has been changed\nto JOLLY.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeNaive
+Change [BUFFER1]'s nature\nto NAIVE?
+
+#org @gText_NaturePillChangedNatureNaive
+[BUFFER1]'s nature has been changed\nto NAIVE.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeModest
+Change [BUFFER1]'s nature\nto MODEST?
+
+#org @gText_NaturePillChangedNatureModest
+[BUFFER1]'s nature has been changed\nto MODEST.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeMild
+Change [BUFFER1]'s nature\nto MILD?
+
+#org @gText_NaturePillChangedNatureMild
+[BUFFER1]'s nature has been changed\nto MILD.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeQuiet
+Change [BUFFER1]'s nature\nto QUIET?
+
+#org @gText_NaturePillChangedNatureQuiet
+[BUFFER1]'s nature has been changed\nto QUIET.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeBashful
+Change [BUFFER1]'s nature\nto FURIOUS?
+
+#org @gText_NaturePillChangedNatureBashful
+[BUFFER1]'s nature has been changed\nto FURIOUS.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeRash
+Change [BUFFER1]'s nature\nto RASH?
+
+#org @gText_NaturePillChangedNatureRash
+[BUFFER1]'s nature has been changed\nto RASH.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeCalm
+Change [BUFFER1]'s nature\nto CALM?
+
+#org @gText_NaturePillChangedNatureCalm
+[BUFFER1]'s nature has been changed\nto CALM.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeGentle
+Change [BUFFER1]'s nature\nto GENTLE?
+
+#org @gText_NaturePillChangedNatureGentle
+[BUFFER1]'s nature has been changed\nto GENTLE.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeSassy
+Change [BUFFER1]'s nature\nto SASSY?
+
+#org @gText_NaturePillChangedNatureSassy
+[BUFFER1]'s nature has been changed\nto SASSY.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeCareful
+Change [BUFFER1]'s nature\nto CAREFUL?
+
+#org @gText_NaturePillChangedNatureCareful
+[BUFFER1]'s nature has been changed\nto CAREFUL.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NaturePillOfferChangeQuirky
+Change [BUFFER1]'s nature\nto LAVISH?
+
+#org @gText_NaturePillChangedNatureQuirky
+[BUFFER1]'s nature has been changed\nto LAVISH.[PAUSE_UNTIL_PRESS]
