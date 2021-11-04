@@ -125,6 +125,8 @@ void __attribute__((long_call)) PartyMenuTryEvolution(u8 taskId);
 void __attribute__((long_call)) FreePartyPointers(void);
 void __attribute__((long_call)) PartyMenuDisplayYesNoMenu(void);
 
+static bool8 IsItemVitamin(u16 item);
+
 //This file's functions:
 static void OpenSummary(u8 taskId);
 static void DisplayPartyPokemonSelectDataSpecial(u8 slot, u8 stringID);
@@ -1425,6 +1427,31 @@ static bool8 IsUsePartyMenuItemHPEVModifier(struct Pokemon* mon, u16 oldHP, u16 
 		&& GetItemEffectType(item) == ITEM_EFFECT_HP_EV;
 }
 
+static bool8 IsItemVitamin(u16 item)
+{
+	switch(item)
+	{
+		case ITEM_PROTEIN:
+		case ITEM_IRON:
+		case ITEM_CARBOS:
+		case ITEM_CALCIUM:
+		case ITEM_HP_UP:
+		case ITEM_ZINC:
+		case ITEM_HEALTH_WING:
+		case ITEM_MUSCLE_WING:
+		case ITEM_RESIST_WING:
+		case ITEM_GENIUS_WING:
+		case ITEM_CLEVER_WING:
+		case ITEM_SWIFT_WING:
+			return TRUE;
+		default:
+			return FALSE;
+	}
+
+	return FALSE;
+}
+
+
 #define gText_WontHaveEffect (const u8*) 0x84169DC
 void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 {
@@ -1432,6 +1459,11 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 	struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 	u16 item = Var800E;
 	bool8 canHeal;
+
+	if (FlagGet(FLAG_NO_EVS) && IsItemVitamin(item)) 
+	{
+		goto WONT_HAVE_EFFECT;
+	}
 
 	if (NotUsingHPEVItemOnShedinja(mon, item))
 	{

@@ -1070,7 +1070,7 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 	u8 holdEffect = ItemId_GetHoldEffect(heldItem);
 	u8 itemQuality = ItemId_GetHoldEffectParam(heldItem);
 
-	if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+	if (GetMonEVCount(mon) >= MAX_TOTAL_EVS || FlagGet(FLAG_NO_EVS))
 		return;
 
 	for (u8 stat = 0; stat < NUM_STATS; ++stat)

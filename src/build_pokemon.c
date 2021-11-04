@@ -768,7 +768,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 			{
 				const struct TrainersWithEvs* spread = &gTrainersWithEvsSpreads[spreadNum];
 
-				SET_EVS(spread);
+				if(!FlagGet(FLAG_NO_EVS))
+					SET_EVS(spread);
+				
 				SET_IVS_SINGLE_VALUE(MathMin(31, spread->ivs));
 
 				u8 ballType;
@@ -1801,7 +1803,9 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	struct Pokemon* party = mon;
 
 	SET_IVS(spread);
-	SET_EVS(spread);
+
+	if(!FlagGet(FLAG_NO_EVS))
+		SET_EVS(spread);
 
 	if (spread->ability > FRONTIER_ABILITY_HIDDEN)
 	{
