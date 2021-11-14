@@ -1409,9 +1409,9 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 					 | ((gBattleMons[bankAtk].spAttackIV & 1) << 4)
 					 | ((gBattleMons[bankAtk].spDefenseIV & 1) << 5);
 
-			moveType = (15 * moveType) / 63 + 1;
-			if (moveType >= TYPE_MYSTERY)
-				moveType++;
+			moveType = (16 * moveType) / 63 + 1;
+			if (moveType == TYPE_MYSTERY)
+				moveType = TYPE_FAIRY;
 			break;
 
 		case MOVE_WEATHERBALL:
@@ -1650,9 +1650,9 @@ u8 CalcMonHiddenPowerType(struct Pokemon* mon)
 			   ((mon->spAttackIV & 1) << 4) |
 			   ((mon->spDefenseIV & 1) << 5);
 
-	moveType = ((15 * moveType) / 63) + 1;
-	if (moveType >= TYPE_MYSTERY)
-		++moveType;
+    moveType = (16 * moveType) / 63 + 1;
+	if (moveType == TYPE_MYSTERY)
+		moveType = TYPE_FAIRY;
 
 	return moveType;
 }
