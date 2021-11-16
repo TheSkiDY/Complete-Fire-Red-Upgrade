@@ -125,6 +125,10 @@ void __attribute__((long_call)) PartyMenuTryEvolution(u8 taskId);
 void __attribute__((long_call)) FreePartyPointers(void);
 void __attribute__((long_call)) PartyMenuDisplayYesNoMenu(void);
 
+void __attribute__((long_call)) GetMonLevelUpWindowStats(struct Pokemon * pokemon, u16 *data);
+void __attribute__((long_call)) ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon * pokemon, u16 itemId, u16 param);
+void __attribute__((long_call)) Task_DisplayLevelUpStatsPg1(u8 taskId);
+
 static bool8 IsItemVitamin(u16 item);
 
 //This file's functions:
@@ -1453,6 +1457,43 @@ static bool8 IsItemVitamin(u16 item)
 
 
 #define gText_WontHaveEffect (const u8*) 0x84169DC
+#define gText_PkmnElevatedToLvVar2 (const u8*) 0x8417017
+
+void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct PartyMenuInternal *ptr = sPartyMenuInternal;
+    u16 *arrayPtr = ptr->data;
+    u8 level;
+
+    level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    if(FlagGet(FLAG_LVL_CAP_ENABLED) && level >= VarGet(VAR_LEVEL_CAP))
+    {
+    	PlaySE(SE_SELECT);
+    	gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = func;
+        return;
+    }
+
+    GetMonLevelUpWindowStats(mon, arrayPtr);
+    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
+    GetMonLevelUpWindowStats(mon, &ptr->data[NUM_STATS]);
+    gPartyMenuUseExitCallback = TRUE;
+    ItemUse_SetQuestLogEvent(4, mon, Var800E, 0xFFFF);
+    PlayFanfareByFanfareNum(0);
+    UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    RemoveBagItem(gSpecialVar_ItemId, 1);
+    GetMonNickname(mon, gStringVar1);
+    ConvertIntToDecimalStringN(gStringVar2, level + 1, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+}
+
+
 void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 {
 	u16 hp = 0;

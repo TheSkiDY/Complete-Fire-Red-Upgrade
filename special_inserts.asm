@@ -650,7 +650,7 @@ MaxLevelRareCandies:
 .org 0x126332, 0xFF
 RareCandiesPostUseFix:
 	mov r1, r8
-	bl RareCandiesPostUseFix + 0x1E @ItemUseCB_RareCandyStep
+	bl RareCandiesPostUseFix + 0x1E @0x8126350 ItemUseCB_RareCandyStep
 	mov r8, r8
 	mov r8, r8
 

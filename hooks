@@ -201,6 +201,7 @@ CanPokemonSelectedBeEnteredInBattleTower 81275F8 0
 ExpandedAbilityNamesSummaryScreen 8136714 1
 FieldMoveBadgeHook 812461C 0
 ItemUseCB_MedicineStep 81253B0 2
+ItemUseCB_RareCandyStep 8126350 2
 Task_DoLearnedMoveFanfareAfterText 8125CF4 1
 DrawLevelUpWindowPg2Hook 811E950 4
 

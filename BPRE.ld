@@ -1363,6 +1363,12 @@ InitChooseHalfPartyForBattle = 0x81274A8 | 1;
 sub_813A45C = 0x813A45C | 1;
 some_other_kind_of_link_test = 0x80BF748 |1;
 
+GetMonLevelUpWindowStats = 0x811D130 | 1;
+ItemUse_SetQuestLogEvent = 0x80A2294 | 1;
+PlayFanfareByFanfareNum = 0x8071BC4 | 1;
+Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
+
+
 /* Evolution Functions */
 BeginEvolutionScene = 0x80CDDA8 | 1;
 
