@@ -1159,6 +1159,306 @@ A cage made of\nelectricity that traps\nthe target for four\nto five turns.
 #org @DESC_DRAGON_ENERGY
 The higher the\nuser's HP, the\nmore powerful this\nattack becomes.
 
+#org @DESC_MOVE_EMPTY_1
+Empty move (1).
+
+#org @DESC_MOVE_EMPTY_2
+Empty move (2).
+
+#org @DESC_MOVE_EMPTY_3
+Empty move (3).
+
+#org @DESC_MOVE_EMPTY_4
+Empty move (4).
+
+#org @DESC_MOVE_EMPTY_5
+Empty move (5).
+
+#org @DESC_MOVE_EMPTY_6
+Empty move (6).
+
+#org @DESC_MOVE_EMPTY_7
+Empty move (7).
+
+#org @DESC_MOVE_EMPTY_8
+Empty move (8).
+
+#org @DESC_MOVE_EMPTY_9
+Empty move (9).
+
+#org @DESC_MOVE_EMPTY_10
+Empty move (10).
+
+#org @DESC_MOVE_EMPTY_11
+Empty move (11).
+
+#org @DESC_MOVE_EMPTY_12
+Empty move (12).
+
+#org @DESC_MOVE_EMPTY_13
+Empty move (13).
+
+#org @DESC_MOVE_EMPTY_14
+Empty move (14).
+
+#org @DESC_MOVE_EMPTY_15
+Empty move (15).
+
+#org @DESC_MOVE_EMPTY_16
+Empty move (16).
+
+#org @DESC_MOVE_EMPTY_17
+Empty move (17).
+
+#org @DESC_MOVE_EMPTY_18
+Empty move (18).
+
+#org @DESC_MOVE_EMPTY_19
+Empty move (19).
+
+#org @DESC_MOVE_EMPTY_20
+Empty move (20).
+
+#org @DESC_MOVE_EMPTY_21
+Empty move (21).
+
+#org @DESC_MOVE_EMPTY_22
+Empty move (22).
+
+#org @DESC_MOVE_EMPTY_23
+Empty move (23).
+
+#org @DESC_MOVE_EMPTY_24
+Empty move (24).
+
+#org @DESC_MOVE_EMPTY_25
+Empty move (25).
+
+#org @DESC_MOVE_EMPTY_26
+Empty move (26).
+
+#org @DESC_MOVE_EMPTY_27
+Empty move (27).
+
+#org @DESC_MOVE_EMPTY_28
+Empty move (28).
+
+#org @DESC_MOVE_EMPTY_29
+Empty move (29).
+
+#org @DESC_MOVE_EMPTY_30
+Empty move (30).
+
+#org @DESC_MOVE_EMPTY_31
+Empty move (31).
+
+#org @DESC_MOVE_EMPTY_32
+Empty move (32).
+
+#org @DESC_MOVE_EMPTY_33
+Empty move (33).
+
+#org @DESC_MOVE_EMPTY_34
+Empty move (34).
+
+#org @DESC_MOVE_EMPTY_35
+Empty move (35).
+
+#org @DESC_MOVE_EMPTY_36
+Empty move (36).
+
+#org @DESC_MOVE_EMPTY_37
+Empty move (37).
+
+#org @DESC_MOVE_EMPTY_38
+Empty move (38).
+
+#org @DESC_MOVE_EMPTY_39
+Empty move (39).
+
+#org @DESC_MOVE_EMPTY_40
+Empty move (40).
+
+#org @DESC_MOVE_EMPTY_41
+Empty move (41).
+
+#org @DESC_MOVE_EMPTY_42
+Empty move (42).
+
+#org @DESC_MOVE_EMPTY_43
+Empty move (43).
+
+#org @DESC_MOVE_EMPTY_44
+Empty move (44).
+
+#org @DESC_MOVE_EMPTY_45
+Empty move (45).
+
+#org @DESC_MOVE_EMPTY_46
+Empty move (46).
+
+#org @DESC_MOVE_EMPTY_47
+Empty move (47).
+
+#org @DESC_MOVE_EMPTY_48
+Empty move (48).
+
+#org @DESC_MOVE_EMPTY_49
+Empty move (49).
+
+#org @DESC_MOVE_EMPTY_50
+Empty move (50).
+
+#org @DESC_MOVE_EMPTY_51
+Empty move (51).
+
+#org @DESC_MOVE_EMPTY_52
+Empty move (52).
+
+#org @DESC_MOVE_EMPTY_53
+Empty move (53).
+
+#org @DESC_MOVE_EMPTY_54
+Empty move (54).
+
+#org @DESC_MOVE_EMPTY_55
+Empty move (55).
+
+#org @DESC_MOVE_EMPTY_56
+Empty move (56).
+
+#org @DESC_MOVE_EMPTY_57
+Empty move (57).
+
+#org @DESC_MOVE_EMPTY_58
+Empty move (58).
+
+#org @DESC_MOVE_EMPTY_59
+Empty move (59).
+
+#org @DESC_MOVE_EMPTY_60
+Empty move (60).
+
+#org @DESC_MOVE_EMPTY_61
+Empty move (61).
+
+#org @DESC_MOVE_EMPTY_62
+Empty move (62).
+
+#org @DESC_MOVE_EMPTY_63
+Empty move (63).
+
+#org @DESC_MOVE_EMPTY_64
+Empty move (64).
+
+#org @DESC_MOVE_EMPTY_65
+Empty move (65).
+
+#org @DESC_MOVE_EMPTY_66
+Empty move (66).
+
+#org @DESC_MOVE_EMPTY_67
+Empty move (67).
+
+#org @DESC_MOVE_EMPTY_68
+Empty move (68).
+
+#org @DESC_MOVE_EMPTY_69
+Empty move (69).
+
+#org @DESC_MOVE_EMPTY_70
+Empty move (70).
+
+#org @DESC_MOVE_EMPTY_71
+Empty move (71).
+
+#org @DESC_MOVE_EMPTY_72
+Empty move (72).
+
+#org @DESC_MOVE_EMPTY_73
+Empty move (73).
+
+#org @DESC_MOVE_EMPTY_74
+Empty move (74).
+
+#org @DESC_MOVE_EMPTY_75
+Empty move (75).
+
+#org @DESC_MOVE_EMPTY_76
+Empty move (76).
+
+#org @DESC_MOVE_EMPTY_77
+Empty move (77).
+
+#org @DESC_MOVE_EMPTY_78
+Empty move (78).
+
+#org @DESC_MOVE_EMPTY_79
+Empty move (79).
+
+#org @DESC_MOVE_EMPTY_80
+Empty move (80).
+
+#org @DESC_MOVE_EMPTY_81
+Empty move (81).
+
+#org @DESC_MOVE_EMPTY_82
+Empty move (82).
+
+#org @DESC_MOVE_EMPTY_83
+Empty move (83).
+
+#org @DESC_MOVE_EMPTY_84
+Empty move (84).
+
+#org @DESC_MOVE_EMPTY_85
+Empty move (85).
+
+#org @DESC_MOVE_EMPTY_86
+Empty move (86).
+
+#org @DESC_MOVE_EMPTY_87
+Empty move (87).
+
+#org @DESC_MOVE_EMPTY_88
+Empty move (88).
+
+#org @DESC_MOVE_EMPTY_89
+Empty move (89).
+
+#org @DESC_MOVE_EMPTY_90
+Empty move (90).
+
+#org @DESC_MOVE_EMPTY_91
+Empty move (91).
+
+#org @DESC_MOVE_EMPTY_92
+Empty move (92).
+
+#org @DESC_MOVE_EMPTY_93
+Empty move (93).
+
+#org @DESC_MOVE_EMPTY_94
+Empty move (94).
+
+#org @DESC_MOVE_EMPTY_95
+Empty move (95).
+
+#org @DESC_MOVE_EMPTY_96
+Empty move (96).
+
+#org @DESC_MOVE_EMPTY_97
+Empty move (97).
+
+#org @DESC_MOVE_EMPTY_98
+Empty move (98).
+
+#org @DESC_MOVE_EMPTY_99
+Empty move (99).
+
+#org @DESC_MOVE_EMPTY_100
+Empty move (100).
+
 #org @DESC_MAX_GUARD
 Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
 

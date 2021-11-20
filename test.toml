@@ -1,7 +1,9 @@
 [General]
-ApplicationVersion = '''0.4.0'''
-FreeSpaceSearch = '''512'''
+ApplicationVersion = '''0.4.3.2'''
+FreeSpaceSearch = '''000200'''
+FreeSpaceBuffer = '''100'''
 NextExportID = '''0'''
+ShowRawIVByteForTrainer = False
 
 #################################
 [[NamedAnchors]]
@@ -26,18 +28,18 @@ Format = '''`asc`32'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.names'''
-Address = 0x1618DB0
+Address = 0x16195D4
 Format = '''[name""11]823'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.names'''
-Address = 0x14B6B64
+Address = 0x14B8894
 Format = '''^[name""13]896'''
 
 [[NamedAnchors]]
 Name = '''data.abilities.names'''
-Address = 0x14A97D0
-Format = '''[name""13]2'''
+Address = 0x14AB500
+Format = '''[name""17]255'''
 
 [[NamedAnchors]]
 Name = '''data.trainers.classes.names'''
@@ -47,7 +49,22 @@ Format = '''[name""13]107'''
 [[NamedAnchors]]
 Name = '''data.pokemon.type.names'''
 Address = 0x24F1A0
-Format = '''^[name""7]18'''
+Format = '''^[name""7]data.pokemon.type.length'''
+
+[[NamedAnchors]]
+Name = '''data.items.stats'''
+Address = 0x900000
+Format = '''[name""13 unused. index: price: holdeffect.holdeffects param. description<""> keyitemvalue. bagkeyitem. pocket.pocketid type. fieldeffect<> battleusage:: battleeffect<> battleextra::]1000'''
+
+[[NamedAnchors]]
+Name = '''data.abilities.descriptions'''
+Address = 0x1408948
+Format = '''[description<"">]data.abilities.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.descriptions'''
+Address = 0x1436174
+Format = '''[description<"">]data.pokemon.moves.names-1'''
 
 [[NamedAnchors]]
 Name = '''scripts.text.multichoice'''
@@ -66,18 +83,13 @@ Format = '''[text<"">]7'''
 
 [[NamedAnchors]]
 Name = '''data.menus.text.pc'''
-Address = 0x143B198
+Address = 0x143B38C
 Format = '''[text<""> data::]31'''
 
 [[NamedAnchors]]
 Name = '''data.menus.text.pokemon'''
 Address = 0x45A2E8
 Format = '''[text<"">]27'''
-
-[[NamedAnchors]]
-Name = '''data.maps.names'''
-Address = 0x3F1CAC
-Format = '''[name<"">]109'''
 
 [[NamedAnchors]]
 Name = '''scripts.newgame.names.male'''
@@ -95,19 +107,34 @@ Address = 0x463124
 Format = '''[name<"">]4'''
 
 [[NamedAnchors]]
+Name = '''data.maps.names'''
+Address = 0x3F1CAC
+Format = '''[name<"">]109'''
+
+[[NamedAnchors]]
+Name = '''data.maps.banks'''
+Address = 0x3526A8
+Format = '''[maps<[map<[layout<[width:: height:: s1<> s2<> tiles<[a. b. c. d. tileset<`lzt4`> pal<`ucp4:0123456789ABCDEF`> block<> unknown<> blockend<>]1> s4<> borderwidth. borderheight. unused:]1> events<[e1 e2 e3 e4 ee1<> ee2<> ee3<> ee4<>]1> mapscripts<[type. pointer<>]!00> d<> song: map: label. flash. weather. type. unused: useLabel:]1>]1>]43'''
+
+[[NamedAnchors]]
 Name = '''data.maps.dungeons.stats'''
 Address = 0x3F1B3C
 Format = '''[id:: name<""> description<"">]19'''
 
 [[NamedAnchors]]
-Name = '''data.maps.heal'''
+Name = '''data.maps.heal.map'''
 Address = 0x3EEC98
-Format = '''[bank: map: x: y:]10'''
+Format = '''[bank: map:]20'''
+
+[[NamedAnchors]]
+Name = '''data.maps.heal.healerNPC'''
+Address = 0x3EECE8
+Format = '''[ID.]data.maps.heal.map'''
 
 [[NamedAnchors]]
 Name = '''data.maps.fly.spawn'''
 Address = 0x3EEBF8
-Format = '''[bank. map. x: y: unused:]20'''
+Format = '''[bank. map. x: y: unused:]data.maps.heal.map'''
 
 [[NamedAnchors]]
 Name = '''data.maps.fly.connections'''
@@ -115,34 +142,44 @@ Address = 0x3F2EE0
 Format = '''[bank. map. flight.]108'''
 
 [[NamedAnchors]]
-Name = '''data.map.banks'''
-Address = 0x3526A8
-Format = '''[maps<[map<[size<[width:: height:: s1<> s2<> s3<> s4<> borderwidth. borderheight. unused:]1> events<[e1 e2 e3 e4 ee1<> ee2<> ee3<> ee4<>]1> mapscripts<[type. pointer<>]!00> d<> song: map: label. flash. weather. type. unused: useLabel:]1>]1>]43'''
+Name = '''data.pokedex.hoennToNational'''
+Address = 0x252324
+Format = '''[index:]data.pokemon.names-1'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.sprites.back'''
+Address = 0x19AE6CC
+Format = '''[sprite<`lzs4x8x8`> uncompressedLength: index:]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.sprites.elevation'''
+Address = 0x19C4434
+Format = '''[elevation.]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.sprites.coordinates.back'''
-Address = 0x19A3028
-Format = '''[size. yOffset. unused:]data.pokemon.names+28'''
-
-[[NamedAnchors]]
-Name = '''scripts.specials.thumb'''
-Address = 0x15FD60
-Format = '''[code<>]455'''
+Address = 0x19AD210
+Format = '''[size. yOffset. unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.palettes.normal'''
-Address = 0x19FB2BC
-Format = '''[palette<`lzp4`> index: unused:]data.pokemon.names+28'''
+Address = 0x1A061BC
+Format = '''^[palette<`lzp4`> index: unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.palettes.shiny'''
-Address = 0x1A07E84
-Format = '''[palette<`lzp4`> index: unused:]data.pokemon.names+28'''
+Address = 0x1A12E60
+Format = '''[palette<`lzp4`> index: unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokemon.type.chart'''
-Address = 0x24F050
-Format = '''[attack.data.pokemon.type.names defend.data.pokemon.type.names strength.]!FFFF00'''
+Name = '''graphics.pokemon.icons.sprites'''
+Address = 0x19F39D8
+Format = '''[icon<`ucs4x4x8|graphics.pokemon.icons.index`>]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.icons.index'''
+Address = 0x19F34A6
+Format = '''[index.graphics.pokemon.icons.palettes]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.icons.palettes'''
@@ -155,14 +192,14 @@ Address = 0xE3A388
 Format = '''`ucs4x4x16|graphics.pokemon.icons.index`'''
 
 [[NamedAnchors]]
-Name = '''graphics.items.ball.sprites'''
-Address = 0x14C3C98
-Format = '''[sprite<`lzs4x2x6|graphics.items.ball.palettes`> uncompressedLength: a b]12'''
+Name = '''graphics.pokemon.shiny.star.sprite'''
+Address = 0x463B64
+Format = '''`lzs4x1x2|graphics.pokemon.shiny.star.palette`'''
 
 [[NamedAnchors]]
-Name = '''graphics.items.ball.palettes'''
-Address = 0x14C3BB8
-Format = '''[palette<`lzp4`> a b unused:]graphics.items.ball.sprites'''
+Name = '''graphics.pokemon.shiny.star.palette'''
+Address = 0x463B44
+Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.sprites.front'''
@@ -170,14 +207,24 @@ Address = 0x23957C
 Format = '''[sprite<`lzs4x8x8|graphics.trainers.palettes.front`> uncompressedLength: index:]148'''
 
 [[NamedAnchors]]
+Name = '''graphics.trainers.sprites.back.enter'''
+Address = 0x239FA4
+Format = '''[sprite<`ucs4x8x8|graphics.trainers.palettes.back`> a. b. c:]6'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainers.animations.back'''
+Address = 0x14C5854
+Format = '''[animationPointer<[animation<[a: b: c: d:]1> framedata<[frame: time:]!FFFF0000>]1>]graphics.trainers.sprites.back.enter'''
+
+[[NamedAnchors]]
 Name = '''graphics.trainers.animations.frames'''
 Address = 0x2390DC
 Format = '''[animationPointer<[animation<>]1>]graphics.trainers.sprites.front'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainers.animations.details'''
+Name = '''graphics.trainers.coordinates.front'''
 Address = 0x23932C
-Format = '''[value::]graphics.trainers.sprites.front'''
+Format = '''[x. y. unused:]graphics.trainers.sprites.front'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.palettes.front'''
@@ -185,19 +232,24 @@ Address = 0x239A1C
 Format = '''[palette<`lzp4`> index: unused:]graphics.trainers.sprites.front'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainers.sprites.back'''
-Address = 0x239FA4
-Format = '''[sprite<`ucs4x8x8|graphics.trainers.palettes.back`> a b c:]6'''
+Name = '''graphics.trainers.sprites.back.throw'''
+Address = 0x14C576C
+Format = '''[starterbytes:|h unknown:|h a<> b<> sprites<`osl|graphics.trainers.palettes.back:sprite`> d<> e<>]graphics.trainers.sprites.back.enter'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainers.sprites.back.throw'''
-Address = 0x14C32B4
-Format = '''[starterbytes:|h unknown:|h a<> b<> sprites<`osl|graphics.trainers.palettes.back:sprite`> d<> e<>]6'''
+Name = '''graphics.trainers.coordinates.back'''
+Address = 0x239F8C
+Format = '''[x. y. unused:]graphics.trainers.sprites.back.enter'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.palettes.back'''
 Address = 0x239FD4
-Format = '''[pal<`lzp4`> sprite::]graphics.trainers.sprites.back'''
+Format = '''[pal<`lzp4`> sprite::]graphics.trainers.sprites.back.enter'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainers.emotes.sprites'''
+Address = 0x3C72AC
+Format = '''[pointer<`ucs4x2x2|graphics.overworld.palettes:id=1100`> lengeth::]15'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokedex.habitats'''
@@ -210,6 +262,16 @@ Address = 0x440124
 Format = '''`lzs4x8x4|graphics.townmap.catchmap.palette`'''
 
 [[NamedAnchors]]
+Name = '''graphics.pokedex.regionaldex.tileset'''
+Address = 0x440274
+Format = '''`lzt4|graphics.townmap.catchmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokedex.nationaldex.tileset'''
+Address = 0x4403AC
+Format = '''`lzt4|graphics.townmap.catchmap.palette`'''
+
+[[NamedAnchors]]
 Name = '''graphics.moves.particles.sprites'''
 Address = 0x3ACC08
 Format = '''[ptr<`lzt4`> size: index:]289'''
@@ -218,6 +280,41 @@ Format = '''[ptr<`lzt4`> size: index:]289'''
 Name = '''graphics.moves.particles.palettes'''
 Address = 0x3AD510
 Format = '''[ptr<`lzp4`> index: unused:]graphics.moves.particles.sprites'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.all'''
+Address = 0x1408DE4
+Format = '''[tileset<`lzt4`> palette<`lzp4:2`> tilemap<`lzm4x32x32|graphics.moves.backgrounds.all`>]27'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.psychic'''
+Address = 0xD1EC78
+Format = '''`lzm4x32x20|graphics.moves.backgrounds.all`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.impact.opponent'''
+Address = 0xD26B2C
+Format = '''`lzm4x32x20|graphics.moves.backgrounds.all`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.impact.player'''
+Address = 0xD27028
+Format = '''`lzm4x32x20|graphics.moves.backgrounds.all`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.impact.contest'''
+Address = 0xD274F8
+Format = '''`lzm4x32x20|graphics.moves.backgrounds.all`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.backgrounds.impact.fissure'''
+Address = 0xE80280
+Format = '''`lzm4x32x64|graphics.moves.backgrounds.all`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.surf.palette'''
+Address = 0x14D8A7C
+Format = '''`lzp4:8`'''
 
 [[NamedAnchors]]
 Name = '''graphics.moves.surf.tileset'''
@@ -240,8 +337,18 @@ Address = 0xE822B8
 Format = '''`lzm4x32x64|graphics.moves.surf.tileset`'''
 
 [[NamedAnchors]]
+Name = '''graphics.items.ball.sprites'''
+Address = 0x14C6150
+Format = '''[sprite<`lzs4x2x6|graphics.items.ball.palettes`> uncompressedLength: a b]12'''
+
+[[NamedAnchors]]
+Name = '''graphics.items.ball.palettes'''
+Address = 0x14C6070
+Format = '''[palette<`lzp4`> a b unused:]graphics.items.ball.sprites'''
+
+[[NamedAnchors]]
 Name = '''graphics.items.sprites'''
-Address = 0x13C8100
+Address = 0x90ABF0
 Format = '''[sprite<`lzs4x3x3`> palette<`lzp4`>]data.items.stats+1'''
 
 [[NamedAnchors]]
@@ -250,14 +357,39 @@ Address = 0x3EE9C8
 Format = '''[pal<`ucp4`> tileset<`lzt4`> tilemap<`lzm4x32x20|graphics.items.mail`> size:: textcolor:|c shadow:|c]12'''
 
 [[NamedAnchors]]
-Name = '''data.pokemon.stats'''
-Address = 0x19A6E08
-Format = '''[hp. attack. def. speed. spatk. spdef. type1.data.pokemon.type.names type2.data.pokemon.type.names catchRate. baseExp. evs|b[]evbits item1:data.items.stats item2:data.items.stats genderratio. steps2hatch. basehappiness. growthrate. egg1. egg2. ability1.data.abilities.names ability2.data.abilities.names runrate. unknown. padding:]data.pokemon.names'''
+Name = '''graphics.items.fossils.palette1'''
+Address = 0x3E0F80
+Format = '''`ucp4`'''
 
 [[NamedAnchors]]
-Name = '''data.items.stats'''
-Address = 0x13C0000
-Format = '''[name""14 index: price: holdeffect. param. description<""> keyitemvalue. bagkeyitem. pocket. type. fieldeffect<> battleusage:: battleeffect<> battleextra::]750'''
+Name = '''graphics.items.fossils.palette2'''
+Address = 0x3E17A0
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.items.fossils.sprite1'''
+Address = 0x3E0780
+Format = '''`ucs4x8x8|graphics.items.fossils.palette1`'''
+
+[[NamedAnchors]]
+Name = '''graphics.items.fossils.sprite2'''
+Address = 0x3E0FA0
+Format = '''`ucs4x8x8|graphics.items.fossils.palette2`'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.stats'''
+Address = 0x19B1044
+Format = '''[hp. attack. def. speed. spatk. spdef. type1.data.pokemon.type.names type2.data.pokemon.type.names catchRate. baseExp. evs:|t|hp:|atk:|def:|spd:|spatk:|spdef: item1:data.items.stats item2:data.items.stats genderratio. steps2hatch. basehappiness. growthrate.growthrates egg1.egggroups egg2.egggroups ability1.data.abilities.names ability2.data.abilities.names runrate. dex.|t|color:::.bodycolors|noFlip. hiddenAbility.data.abilities.names padding]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.deoxys.stats'''
+Address = 0x25E026
+Format = '''[hp: atk: def: spd: spatk: spdef:]1'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.evolutions'''
+Address = 0x19C4964
+Format = '''[method1:evolutionmethods arg1:|s=method1(6=data.items.stats|7=data.items.stats) species1:data.pokemon.names unused1: method2:evolutionmethods arg2:|s=method2(6=data.items.stats|7=data.items.stats) species2:data.pokemon.names unused2: method3:evolutionmethods arg3:|s=method3(6=data.items.stats|7=data.items.stats) species3:data.pokemon.names unused3: method4:evolutionmethods arg4:|s=method4(6=data.items.stats|7=data.items.stats) species4:data.pokemon.names unused4: method5:evolutionmethods arg5:|s=method5(6=data.items.stats|7=data.items.stats) species5:data.pokemon.names unused5:]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''data.items.berry.stats'''
@@ -266,27 +398,27 @@ Format = '''[name""7 firmness. size: maxYield. minYield. description1<""> descri
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.stats.battle'''
-Address = 0x14C4438
-Format = '''[effect.moveeffects power. type.data.pokemon.type.names accuracy. pp. effectAccuracy. target|b[]movetarget priority. info|b[]moveinfo unused. unused:]data.pokemon.moves.names'''
+Address = 0x14C68F0
+Format = '''[effect.moveeffectoptions power. type.data.pokemon.type.names accuracy. pp. effectAccuracy. target|b[]movetarget priority. info|b[]moveinfo unused. unused:]data.pokemon.moves.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokedex.habitat.pages'''
-Address = 0x19E744C
-Format = '''[data<[pokemon<[species:data.pokemon.names]/pokecount> pokecount::]/count> count::]data.pokedex.habitat.names'''
+Name = '''data.pokemon.moves.levelup'''
+Address = 0x19F6880
+Format = '''[movesFromLevel<[move:data.pokemon.moves.names level.]!0000FF>]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.tutors'''
-Address = 0x1A0B212
+Address = 0x1A16234
 Format = '''[move:data.pokemon.moves.names]15'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.tutorcompatibility'''
-Address = 0x1605130
+Address = 0x16054E0
 Format = '''[moves|b[]data.pokemon.moves.tutors]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.tms'''
-Address = 0x1A0B312
+Address = 0x1A16334
 Format = '''[move:data.pokemon.moves.names]58'''
 
 [[NamedAnchors]]
@@ -300,14 +432,24 @@ Address = 0x25E014
 Format = '''[move:data.pokemon.moves.names]8'''
 
 [[NamedAnchors]]
+Name = '''data.pokemon.moves.flash.radius'''
+Address = 0x3C68D4
+Format = '''[max: current:]1'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.fallback.names'''
+Address = 0x3FEA28
+Format = '''[name<"">]data.pokemon.type.names'''
+
+[[NamedAnchors]]
 Name = '''data.trainers.stats'''
 Address = 0x23EAC8
-Format = '''[structType.trainerStructType class.data.trainers.classes.names introMusic. sprite.graphics.trainers.sprites.front name""12 item1:data.items.stats item2:data.items.stats item3:data.items.stats item4:data.items.stats doubleBattle:: ai|b[]traineraibits pokemonCount:: pokemon<`tpt`>]743'''
+Format = '''[structType.trainerStructType class.data.trainers.classes.names introMusicAndGender.|t|music:::.|female. sprite.graphics.trainers.sprites.front name""12 prizeMoney|=4*(data.trainers.money/class=class)/moneyrate*pokemon/last/level item1:data.items.stats item2:data.items.stats item3:data.items.stats item4:data.items.stats doubleBattle:: ai|b[]traineraibits pokemonCount:: pokemon<`tpt`>]743'''
 
 [[NamedAnchors]]
 Name = '''data.trainers.money'''
 Address = 0x24F220
-Format = '''[class.data.trainers.classes.names moneyrate. unused:]!FF050000'''
+Format = '''[class.data.trainers.classes.names moneyrate. unused:]105'''
 
 [[NamedAnchors]]
 Name = '''data.trainers.vsseeker'''
@@ -345,9 +487,29 @@ Address = 0x250104
 Format = '''[move:data.pokemon.moves.names]!FFFF'''
 
 [[NamedAnchors]]
+Name = '''data.pokemon.natures.stats'''
+Address = 0x252B48
+Format = '''[attack.|z defense.|z speed.|z spAttack.|z spDefense.|z]data.pokemon.natures.names'''
+
+[[NamedAnchors]]
+Name = '''scripts.moves.effects'''
+Address = 0x1437558
+Format = '''[effect<`bse`>]moveeffectoptions'''
+
+[[NamedAnchors]]
+Name = '''scripts.specials.thumb'''
+Address = 0x15FD60
+Format = '''[code<>]455'''
+
+[[NamedAnchors]]
 Name = '''scripts.battle.thumb'''
-Address = 0x1436DB8
+Address = 0x1436F70
 Format = '''[code<>]248'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.thumb'''
+Address = 0x3F55A4
+Format = '''[command<>]94'''
 
 [[NamedAnchors]]
 Name = '''scripts.newgame.setflags'''
@@ -357,7 +519,22 @@ Format = '''`xse`'''
 [[NamedAnchors]]
 Name = '''scripts.newgame.pc.item'''
 Address = 0x402220
-Format = '''[item:data.items.stats count:]1'''
+Format = '''[item:data.items.stats count:]!00000000'''
+
+[[NamedAnchors]]
+Name = '''scripts.credits.panmap'''
+Address = 0x414588
+Format = '''[data<[loadmapCommand: bank: map:: x: y: delay:: xspeed: yspeed: length:: end1Command: end2Command: end3Command::]1>]13'''
+
+[[NamedAnchors]]
+Name = '''scripts.credits.text'''
+Address = 0x4145BC
+Format = '''[header<""> text<""> bool::|t|unknown.]43'''
+
+[[NamedAnchors]]
+Name = '''scripts.evolution.routines'''
+Address = 0x042FC4
+Format = '''[thumb<>]scripts.evolution.count'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.castform.sprite.coordinates.front'''
@@ -386,43 +563,48 @@ Format = '''[index:]data.pokemon.names-1'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.national'''
-Address = 0x1A0A7C4
-Format = '''[index:]data.pokemon.names-1'''
-
-[[NamedAnchors]]
-Name = '''data.pokedex.hoennToNational'''
-Address = 0x252324
+Address = 0x1A157D8
 Format = '''[index:]data.pokemon.names-1'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.stats'''
-Address = 0x19FDF2C
-Format = '''[species""12 height: weight: description1<""> description2<""> unused: pokemonScale: pokemonOffset: trainerScale: trainerOffset: unused:]735'''
+Address = 0x1A08E84
+Format = '''[species""12 height: weight: description1<""> description2<""> unused: pokemonScale: pokemonOffset:|z trainerScale: trainerOffset:|z unused:]735'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.search.alpha'''
-Address = 0x1A0762C
+Address = 0x1A12602
 Format = '''[species:data.pokedex.national]data.pokedex.national'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.search.weight'''
-Address = 0x1A06F04
+Address = 0x1A11ED4
 Format = '''[species:data.pokedex.national]386'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.search.size'''
-Address = 0x1A067D6
+Address = 0x1A117A0
 Format = '''[species:data.pokedex.national]386'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.search.type'''
-Address = 0x1A0608E
+Address = 0x1A11052
 Format = '''[species:data.pokemon.names]data.pokedex.national'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.type.unionroom.options'''
+Address = 0x456E74
+Format = '''[type<> index::]data.pokemon.type.names-1+1'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.habitat.names'''
 Address = 0x452344
 Format = '''[name<"">]9'''
+
+[[NamedAnchors]]
+Name = '''data.pokedex.habitat.pages'''
+Address = 0x19F1F18
+Format = '''[data<[pokemon<[species:data.pokemon.names]/pokecount> pokecount::]/count> count::]data.pokedex.habitat.names'''
 
 [[NamedAnchors]]
 Name = '''data.battletower.items'''
@@ -440,29 +622,44 @@ Address = 0x400E04
 Format = '''[species:data.pokemon.names heldItem.data.battletower.items flags.|h move1:data.pokemon.moves.names move2:data.pokemon.moves.names move3:data.pokemon.moves.names move4:data.pokemon.moves.names evSpread|b[]battletowerEvFlags nature.data.pokemon.natures.names unused:]300'''
 
 [[NamedAnchors]]
-Name = '''data.trainertower.trainers'''
+Name = '''data.trainers.trainertower.trainers'''
 Address = 0x4827B4
-Format = '''[trainer<[header:: name""11 class. a. unused. a1: a2: a3: a4: a5: a6: b1: b2: b3: b4: b5: b6: c1: c2: c3: c4: c5: c6: d1: d2: d3: d4: d5: d6: unused:]1>]32'''
+Format = '''[trainer<[header1: header2: name""11 class. a. unused. a1: a2: a3: a4: a5: a6: b1: b2: b3: b4: b5: b6: c1: c2: c3: c4: c5: c6: d1: d2: d3: d4: d5: d6: unused: [species:data.pokemon.names item:data.items.stats move1:data.pokemon.moves.names move2:data.pokemon.moves.names move3:data.pokemon.moves.names move4:data.pokemon.moves.names e1:: e2:: e3:: e4:: e5:: nickname""12 f1:: f2:: f3:: f4:: f5:: f6:: f7:: f8:: f9:: f10:: f11::]3]1>]32'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.type.icons'''
-Address = 0x151D9E8
+Address = 0x15202A4
 Format = '''`ucs4x16x16|graphics.pokemon.type.palettes`'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.type.palettes'''
-Address = 0x151FDE8
+Address = 0x15226A4
 Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.type.map'''
-Address = 0x14394E0
-Format = '''[width. height. xy:]24'''
+Address = 0x14396D4
+Format = '''[width. height. xy:|t|:|x:|.|y::]data.pokemon.type.names+1+5'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.importer'''
 Address = 0x467FB8
 Format = '''[a:: tileset<`lzt4`> tilemap<`lzm4x30x20|graphics.text.importer`> pal<`ucp4`>]8'''
+
+[[NamedAnchors]]
+Name = '''graphics.text.box.palette'''
+Address = 0x471DEC
+Format = '''`ucp4:01234`'''
+
+[[NamedAnchors]]
+Name = '''graphics.text.box.message'''
+Address = 0x41F1C8
+Format = '''`uct4x18|graphics.text.box.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.text.box.signpost'''
+Address = 0x470B0C
+Format = '''`uct4x19|graphics.text.box.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.boxes'''
@@ -471,12 +668,12 @@ Format = '''[sprite<`ucs4x3x3`> pal<`ucp4`>]10'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.male'''
-Address = 0xE8362C
+Address = 0x35EA88
 Format = '''`lzs4x8x8|graphics.bag.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.female'''
-Address = 0xE83DBC
+Address = 0x3620A8
 Format = '''`lzs4x8x8|graphics.bag.palette`'''
 
 [[NamedAnchors]]
@@ -496,17 +693,17 @@ Format = '''`lzs4x8x8|graphics.bag.berrycase.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.inside1.palette'''
-Address = 0xE835B4
+Address = 0x35DBF0
 Format = '''`lzp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.inside1.tileset'''
-Address = 0xE830CC
+Address = 0x35D328
 Format = '''`lzt4|graphics.bag.inside1.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.inside1.tilemap.item'''
-Address = 0xE832C0
+Address = 0x35D8F8
 Format = '''`lzm4x32x32|graphics.bag.inside1.tileset`'''
 
 [[NamedAnchors]]
@@ -531,7 +728,7 @@ Format = '''`lzm4x32x32|graphics.bag.inside1.berry.tileset`'''
 
 [[NamedAnchors]]
 Name = '''graphics.bag.inside2.palette'''
-Address = 0xE85BF4
+Address = 0xE85BA4
 Format = '''`lzp4`'''
 
 [[NamedAnchors]]
@@ -625,8 +822,18 @@ Address = 0xE9B750
 Format = '''`lzm4x32x20|graphics.menu.summaryscreen.tileset`'''
 
 [[NamedAnchors]]
+Name = '''graphics.menu.summaryscreen.tilemap.knownmoves'''
+Address = 0xE9B950
+Format = '''`lzm4x32x32|graphics.menu.summaryscreen.tileset`'''
+
+[[NamedAnchors]]
 Name = '''graphics.menu.summaryscreen.tilemap.egg'''
 Address = 0xE9BBCC
+Format = '''`lzm4x32x20|graphics.menu.summaryscreen.tileset`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.summaryscreen.tilemap.changemoves'''
+Address = 0xE9BA30
 Format = '''`lzm4x32x20|graphics.menu.summaryscreen.tileset`'''
 
 [[NamedAnchors]]
@@ -643,6 +850,11 @@ Format = '''`lzt4|graphics.menu.relearner.palette`'''
 Name = '''graphics.menu.relearner.tilemap1'''
 Address = 0xE97EC4
 Format = '''`lzm4x32x32|graphics.menu.relearner.tileset`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.relearner.tilemap2'''
+Address = 0x463C80
+Format = '''`lzm4x32x32|graphics.menu.summaryscreen.tileset`'''
 
 [[NamedAnchors]]
 Name = '''graphics.menu.summaryscreen.unknown.tilemap3'''
@@ -675,9 +887,44 @@ Address = 0xE82A98
 Format = '''`lzm4x32x32|graphics.menu.pokemon.background.tileset`'''
 
 [[NamedAnchors]]
-Name = '''graphics.menu.boxes'''
+Name = '''graphics.menu.pokemon.item.sprite'''
+Address = 0x45A3AC
+Format = '''`ucs4x1x2|graphics.menu.pokemon.item.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.pokemon.item.palette'''
+Address = 0x45A3EC
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.background'''
 Address = 0x3D2A10
-Format = '''[tileset<`lzt4`> tilemap<`lzm4x20x18|graphics.menu.boxes`> palette<`ucp4`>]16'''
+Format = '''[tileset<`lzt4`> tilemap<`lzm4x20x18|graphics.menu.boxes.background`> palette<`ucp4`>]16'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.picker.palette'''
+Address = 0xE9C418
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.picker.tileset'''
+Address = 0xE9C438
+Format = '''`lzt4|graphics.menu.boxes.picker.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.hand.palette.normal'''
+Address = 0x3CE7F0
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.hand.palette.catch'''
+Address = 0x3D2BCC
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.hand.sprite'''
+Address = 0x3D2BEC
+Format = '''`ucs4x4x16|graphics.menu.boxes.hand.palette.normal`'''
 
 [[NamedAnchors]]
 Name = '''graphics.menu.tms.tileset'''
@@ -710,9 +957,34 @@ Address = 0x464128
 Format = '''`ucp4`'''
 
 [[NamedAnchors]]
-Name = '''graphics.gamecorner.game.palette'''
-Address = 0x4664BC
+Name = '''graphics.menu.text.bold.palette'''
+Address = 0x453098
 Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.tmcase.sprite'''
+Address = 0xE84D90
+Format = '''`lzs4x4x4|graphics.moves.tmcase.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.tmcase.palette'''
+Address = 0xE84F20
+Format = '''`lzp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.tmcase.palette2'''
+Address = 0xE85068
+Format = '''`lzp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.moves.tmcase.palettemap'''
+Address = 0x463238
+Format = '''[offset:|t|::|page::::]data.pokemon.type.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.gamecorner.game.palette'''
+Address = 0x465930
+Format = '''`ucp4:01234`'''
 
 [[NamedAnchors]]
 Name = '''graphics.gamecorner.game.tileset'''
@@ -727,7 +999,7 @@ Format = '''`lzm4x32x20|graphics.gamecorner.game.tileset`'''
 [[NamedAnchors]]
 Name = '''graphics.gamecorner.score.palette'''
 Address = 0x4665C0
-Format = '''`ucp4:012`'''
+Format = '''`ucp4:789`'''
 
 [[NamedAnchors]]
 Name = '''graphics.gamecorner.score.tileset'''
@@ -748,6 +1020,11 @@ Format = '''[rolls<`lzs4x4x4`> a:: cheer<`lzs4x4x4`> b:: digits<`lzs4x5x4`> c::]
 Name = '''graphics.gamecorner.palettes'''
 Address = 0x4655C8
 Format = '''[pal<`ucp4`> id::]7'''
+
+[[NamedAnchors]]
+Name = '''data.gamecorner.payout'''
+Address = 0x464966
+Format = '''[payout:]7'''
 
 [[NamedAnchors]]
 Name = '''graphics.questionnaire.palette'''
@@ -782,12 +1059,12 @@ Format = '''[id:: tileset<`lzt4`> tilemap<`lzm4x30x24|table`> palette<`ucp4`>]8'
 [[NamedAnchors]]
 Name = '''graphics.firstpersonview.sprites'''
 Address = 0x43E9E8
-Format = '''[id. transition. c. d. tileset<`lzt4|graphics.firstpersonview.sprites`> tilemap<`lzm4x32x20|graphics.firstpersonview.sprites`> pal<`ucp4:DE`>]28'''
+Format = '''[id. transition. worldmapflag: tileset<`lzt4|graphics.firstpersonview.sprites`> tilemap<`lzm4x32x20|graphics.firstpersonview.sprites`> pal<`ucp4:DE`>]28'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.background.sprites'''
-Address = 0x24EE34
-Format = '''[battletiles<`lzt4|graphics.battle.background.sprites`> battlemap<`lzm4x32x64|graphics.battle.background.sprites|battletiles`> introtiles<`lzt4`> intromap<`lzm4x32x14|graphics.battle.background.sprites|introtiles`> pal<`lzp4:234`>]20'''
+Address = 0x723158
+Format = '''[battletiles<`lzt4|graphics.battle.background.sprites`> battlemap<`lzm4x32x64|graphics.battle.background.sprites|battletiles`> introtiles<`lzt4`> intromap<`lzm4x32x14|graphics.battle.background.sprites|introtiles`> pal<`lzp4:234`>]255'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.background.fighttype'''
@@ -811,12 +1088,12 @@ Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.hud.hpbox.player'''
-Address = 0xD1F340
+Address = 0x750000
 Format = '''`lzs4x8x16|graphics.battle.hud.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.hud.hpbox.opponent'''
-Address = 0xD1F604
+Address = 0x7503A0
 Format = '''`lzs4x8x8|graphics.battle.hud.palette`'''
 
 [[NamedAnchors]]
@@ -858,11 +1135,6 @@ Format = '''`lzs4x12x3|graphics.battle.hud.idlelevel.palette`'''
 Name = '''graphics.battle.textbox.palette'''
 Address = 0xD004D8
 Format = '''`lzp4`'''
-
-[[NamedAnchors]]
-Name = '''graphics.battle.textbox.tileset'''
-Address = 0xD00000
-Format = '''`lzt4|graphics.battle.textbox.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.textbox.tilemap'''
@@ -937,7 +1209,7 @@ Format = '''`lzm4x32x20|graphics.titlescreen.widescreen.tileset`'''
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.gengar.palette'''
 Address = 0x405DA4
-Format = '''`ucp4`'''
+Format = '''`ucp4:5`'''
 
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.nidorino.palette'''
@@ -1047,7 +1319,7 @@ Format = '''`lzm4x32x64|graphics.titlescreen.introscene.forest.tileset2`'''
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.grass.palette1'''
 Address = 0x402D34
-Format = '''`ucp4`'''
+Format = '''`ucp4:1`'''
 
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.grass.tileset'''
@@ -1072,7 +1344,7 @@ Format = '''`lzm4x32x20|graphics.titlescreen.introscene.grass.tileset2`'''
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.grass.background.palette'''
 Address = 0x4048CC
-Format = '''`ucp4`'''
+Format = '''`ucp4:2`'''
 
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.introscene.grass.background.tileset'''
@@ -1215,11 +1487,6 @@ Address = 0x461D14
 Format = '''`lzs8x8x12|graphics.newgame.professor.palette`'''
 
 [[NamedAnchors]]
-Name = '''graphics.newgame.controls.background.palette'''
-Address = 0x471DEC
-Format = '''`ucp4:01234`'''
-
-[[NamedAnchors]]
 Name = '''graphics.newgame.background.palette'''
 Address = 0x460568
 Format = '''`ucp4:0123`'''
@@ -1247,7 +1514,7 @@ Format = '''`lzm4x32x20|graphics.newgame.background.tileset2`'''
 [[NamedAnchors]]
 Name = '''graphics.townmap.palette'''
 Address = 0x3EF2DC
-Format = '''`ucp4:0123`'''
+Format = '''`ucp4:01234`'''
 
 [[NamedAnchors]]
 Name = '''graphics.townmap.tileset'''
@@ -1285,6 +1552,16 @@ Address = 0x3F19A0
 Format = '''`lzm4x30x20|graphics.townmap.border.tileset`'''
 
 [[NamedAnchors]]
+Name = '''graphics.townmap.border.tileset2'''
+Address = 0x3F0330
+Format = '''`lzt4|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.border.tilemap2'''
+Address = 0x3F0E0C
+Format = '''`lzm4x30x20|graphics.townmap.border.tileset2`'''
+
+[[NamedAnchors]]
 Name = '''graphics.townmap.namesoverlay.xy'''
 Address = 0x3F1E60
 Format = '''[x: y:]data.maps.names'''
@@ -1303,11 +1580,6 @@ Format = '''`ucp4`'''
 Name = '''graphics.townmap.icon.area'''
 Address = 0x3F18D8
 Format = '''`lzs4x1x1|graphics.townmap.icon.palette`'''
-
-[[NamedAnchors]]
-Name = '''graphics.townmap.icon.fly'''
-Address = 0x3F1908
-Format = '''`lzs4x2x2|graphics.townmap.icon.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.townmap.icon.indicator'''
@@ -1345,9 +1617,24 @@ Address = 0x443620
 Format = '''`lzs4x12x9|graphics.townmap.catchmap.palette`'''
 
 [[NamedAnchors]]
-Name = '''graphics.townmap.catchmap.sevii'''
+Name = '''graphics.townmap.catchmap.island'''
 Address = 0x452254
 Format = '''[data<[a b c width height d e f]1> map<`lzt4|graphics.townmap.catchmap.palette`>]7'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.catchmap.shape'''
+Address = 0x463580
+Format = '''[shape.catchmap_shape x. y. unused.]80'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.catchmap.conversion.sevii'''
+Address = 0x4642BC
+Format = '''[data<[worldmap:data.maps.names+88 catchmap:]/length> length::]7'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.catchmap.conversion.kanto'''
+Address = 0x464148
+Format = '''[worldmap:data.maps.names+88 catchmap:]data.maps.catchmap.conversion.kanto.length'''
 
 [[NamedAnchors]]
 Name = '''graphics.townmap.selector.tilemap'''
@@ -1368,6 +1655,56 @@ Format = '''`lzm4x30x20|graphics.townmap.selector.tileset`'''
 Name = '''graphics.townmap.selector.tileset'''
 Address = 0x3F0580
 Format = '''`lzt4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.left.top'''
+Address = 0x3F12CC
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.left.center'''
+Address = 0x3F1550
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.left.down'''
+Address = 0x3F1738
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.right.top'''
+Address = 0x3F13EC
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.right.center'''
+Address = 0x3F1640
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.opening.right.down'''
+Address = 0x3F1804
+Format = '''`lzs4x4x8|graphics.townmap.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.annotations.kanto'''
+Address = 0x3F2490
+Format = '''[worldmap.data.maps.names+88]graphics.townmap.tilemap*2-4-4-4-1'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.annotations.island1'''
+Address = 0x3F2724
+Format = '''[worldmap.data.maps.names+88]graphics.townmap.islands.tilemap1*2-4-4-4-1'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.annotations.island2'''
+Address = 0x3F29B8
+Format = '''[worldmap.data.maps.names+88]graphics.townmap.islands.tilemap2*2-4-4-4-1'''
+
+[[NamedAnchors]]
+Name = '''graphics.townmap.annotations.island3'''
+Address = 0x3F2C4C
+Format = '''[worldmap.data.maps.names+88]graphics.townmap.islands.tilemap3*2-4-4-4-1'''
 
 [[NamedAnchors]]
 Name = '''graphics.credits.trainer.male.palette'''
@@ -1400,7 +1737,67 @@ Address = 0x4129C0
 Format = '''`lzs4x8x8|graphics.credits.trainer.rival.palette`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.palette'''
+Name = '''graphics.credits.pokemon.Starter1.idle'''
+Address = 0x71E370
+Format = '''`lzs4x10x10|graphics.pokemon.palettes.normal:index=6`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Starter1.animate'''
+Address = 0x71EA40
+Format = '''`lzs4x12x13|graphics.pokemon.palettes.normal:index=6`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Starter2.idle'''
+Address = 0x71D460
+Format = '''`lzs4x10x10|graphics.pokemon.palettes.normal:index=3`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Starter2.animate'''
+Address = 0x71DBC0
+Format = '''`lzs4x12x10|graphics.pokemon.palettes.normal:index=3`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Starter3.idle'''
+Address = 0x71F1E0
+Format = '''`lzs4x10x10|graphics.pokemon.palettes.normal:index=9`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Starter3.animate'''
+Address = 0x71F7B0
+Format = '''`lzs4x10x12|graphics.pokemon.palettes.normal:index=9`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Mascot.idle'''
+Address = 0x71FDD0
+Format = '''`lzs4x10x10|graphics.pokemon.palettes.normal:index=25`'''
+
+[[NamedAnchors]]
+Name = '''graphics.credits.pokemon.Mascot.animate'''
+Address = 0x7202F0
+Format = '''`lzs4x12x12|graphics.pokemon.palettes.normal:index=25`'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainercard.badges.palette'''
+Address = 0x3CD2C0
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainercard.stickers.palette'''
+Address = 0x3CD2E0
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainercard.badges.sprite'''
+Address = 0x3CD5E8
+Format = '''`lzs4x16x2|graphics.trainercard.stickers.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainercard.stickers.sprite'''
+Address = 0x3CC368
+Format = '''`lzs4x2x8|graphics.trainercard.stickers.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainercard.palette1'''
 Address = 0xE99198
 Format = '''`ucp4:012`'''
 
@@ -1415,24 +1812,14 @@ Address = 0x3CD160
 Format = '''`ucp4:012`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.badges.sprite'''
-Address = 0x3CD5E8
-Format = '''`lzs4x16x2`'''
-
-[[NamedAnchors]]
-Name = '''graphics.trainercard.stickers.sprite'''
-Address = 0x3CC368
-Format = '''`lzs4x2x8`'''
-
-[[NamedAnchors]]
 Name = '''graphics.trainercard.tileset'''
 Address = 0xE991F8
-Format = '''`lzt4|graphics.trainercard.palette`'''
+Format = '''`lzt4|graphics.trainercard.palette1`'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainercard.tileset2'''
 Address = 0xE998CC
-Format = '''`lzt4|graphics.trainercard.palette`'''
+Format = '''`lzt4|graphics.trainercard.palette1`'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainercard.front.tilemap'''
@@ -1480,14 +1867,24 @@ Address = 0xF15E70
 Format = '''[pal<`ucp4`> id:|h unused:]!0000000000000000'''
 
 [[NamedAnchors]]
+Name = '''graphics.overworld.palettes2'''
+Address = 0x3A5340
+Format = '''[pal<`ucp4`> id:|h unused:]2'''
+
+[[NamedAnchors]]
 Name = '''graphics.overworld.sprites'''
 Address = 0xEB1000
-Format = '''[data<[starterbytes:|h paletteid:|h secondid:|h length: width: height: slot.|h footprint.owfootprints unused: distribution<> sizedraw<> animation<> sprites<`osl`> ramstore<>]1>]152'''
+Format = '''[data<[starterbytes:|h paletteid:|h secondid:|h length: width: height: info.|t|palSlot::|shadowSize:|inanimate.|reflectionPalette. footprint.owfootprints unused: distribution<> sizedraw<> animation<> sprites<`osl`> ramstore<>]1>]152'''
 
 [[NamedAnchors]]
 Name = '''graphics.overworld.sprites2'''
 Address = 0x3A0010
-Format = '''[data<[starterbytes:|h unknown:|h a<> b<> sprites<`osl`> d<> e<>]1>]36'''
+Format = '''[data<[starterbytes:|h paletteid:|h a<> b<> sprites<`osl|graphics.overworld.palettes2:id=`> d<> e<>]1>]36'''
+
+[[NamedAnchors]]
+Name = '''graphics.overworld.textcolor'''
+Address = 0x464300
+Format = '''[data.|t|low::|high::]76'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.font.other.characters'''
@@ -1531,12 +1928,12 @@ Format = '''[width.]512'''
 
 [[NamedAnchors]]
 Name = '''data.text.menu.pause'''
-Address = 0x14C2DB0
-Format = '''[text<""> code<>]11'''
+Address = 0x14C5268
+Format = '''[text<""> code<>]13'''
 
 [[NamedAnchors]]
 Name = '''data.text.menu.pokemon.options'''
-Address = 0x14C26A0
+Address = 0x14C4B58
 Format = '''[text<""> code<>]34'''
 
 [[NamedAnchors]]
@@ -1546,12 +1943,12 @@ Format = '''[pointer<> musicplayer: unknown:]songnames'''
 
 [[NamedAnchors]]
 Name = '''sound.pokemon.cry.growl'''
-Address = 0x19B3C48
+Address = 0x19BDF9C
 Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. release.]388'''
 
 [[NamedAnchors]]
 Name = '''sound.pokemon.cry.normal'''
-Address = 0x19AFE68
+Address = 0x19BA168
 Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. release.]388'''
 
 [[NamedAnchors]]
@@ -1559,8 +1956,18 @@ Name = '''sound.pokemon.cry.hoennconversion'''
 Address = 0x2539D4
 Format = '''[index:]data.pokemon.names-277'''
 
+[[NamedAnchors]]
+Name = '''data.pokemon.type.chart'''
+Address = 0x24F050
+Format = '''[attack.data.pokemon.type.names defend.data.pokemon.type.names strength.]!FFFF00'''
+
 #################################
 #################################
+[[MatchedWords]]
+Name = '''scripts.shiny.odds'''
+Address = 0x104A24
+Length = 1
+
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x03DB5E
@@ -1587,33 +1994,25 @@ Offset = -1
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
-Address = 0x104A24
-Length = 1
-Offset = 0
-
-[[MatchedWords]]
-Name = '''scripts.shiny.odds'''
 Address = 0x0F1776
 Length = 1
 Offset = -1
 
 [[MatchedWords]]
 Name = '''scripts.pokedex.regional.length'''
+Address = 0x10352C
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.pokedex.regional.length'''
+Address = 0x126C4A
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.pokedex.regional.length'''
 Address = 0x088F18
 Length = 1
 Offset = -1
-
-[[MatchedWords]]
-Name = '''scripts.pokedex.regional.length'''
-Address = 0x088F76
-Length = 1
-Offset = -2
-
-[[MatchedWords]]
-Name = '''scripts.pokedex.regional.length'''
-Address = 0x10352C
-Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''scripts.pokedex.regional.length'''
@@ -1629,105 +2028,79 @@ Offset = -1
 
 [[MatchedWords]]
 Name = '''scripts.pokedex.regional.length'''
-Address = 0x126C4A
+Address = 0x088F76
 Length = 1
-Offset = 0
-
-[[MatchedWords]]
-Name = '''scripts.daycare.exp.multiplier'''
-Address = 0x0462E8
-Length = 1
-Offset = 0
-
-[[MatchedWords]]
-Name = '''scripts.daycare.exp.multiplier'''
-Address = 0x0463D4
-Length = 1
-Offset = 0
+Offset = -2
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''
 Address = 0x0C04CA
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''
 Address = 0x0C06E4
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''
 Address = 0x0C3284
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''
 Address = 0x0C34BC
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.x'''
 Address = 0x0C50A2
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.y'''
 Address = 0x0C04D6
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.y'''
 Address = 0x0C06F0
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.y'''
 Address = 0x0C3286
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.y'''
 Address = 0x0C34B8
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.cancel.y'''
 Address = 0x0C50AE
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.x'''
 Address = 0x0C049C
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.x'''
 Address = 0x0C06B0
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.x'''
 Address = 0x0C3288
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.x'''
 Address = 0x0C3478
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.x'''
@@ -1751,25 +2124,21 @@ Offset = 3
 Name = '''graphics.townmap.position.switch.y'''
 Address = 0x0C04A8
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.y'''
 Address = 0x0C06BC
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.y'''
 Address = 0x0C328A
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.y'''
 Address = 0x0C347C
 Length = 1
-Offset = 0
 
 [[MatchedWords]]
 Name = '''graphics.townmap.position.switch.y'''
@@ -1790,12 +2159,235 @@ Length = 1
 Offset = 5
 
 [[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x041B0E
+Length = 1
+Offset = -1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x041B1E
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x041B22
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x0420D8
+Length = 1
+Offset = -1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x0420E8
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x0420EC
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x042924
+Length = 1
+Offset = -1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.vitamins'''
+Address = 0x042AE0
+Length = 1
+Offset = -1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.stat'''
+Address = 0x0439FC
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.ev.cap.stat'''
+Address = 0x043A02
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.daycare.exp.multiplier'''
+Address = 0x0462E8
+Length = 1
+Note = '''Picking an even number will prevent new eggs from being created.'''
+
+[[MatchedWords]]
+Name = '''scripts.daycare.exp.multiplier'''
+Address = 0x0463D4
+Length = 1
+Note = '''Picking an even number will prevent new eggs from being created.'''
+
+[[MatchedWords]]
 Name = '''scripts.newgame.money'''
 Address = 0x054B60
 Length = 2
-Offset = 0
+
+[[MatchedWords]]
+Name = '''scripts.newgame.start.bank'''
+Address = 0x054A04
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.newgame.start.map'''
+Address = 0x054A06
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.newgame.start.x'''
+Address = 0x054A08
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.newgame.start.y'''
+Address = 0x054A00
+Length = 1
+
+[[MatchedWords]]
+Name = '''data.maps.catchmap.conversion.kanto.length'''
+Address = 0x13CA9C
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x014E2C
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x014F14
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x03EE36
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x03EE68
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x03EE9E
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.badge.boost'''
+Address = 0x03EED6
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.lucky.egg.exp.boost'''
+Address = 0x021DC2
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.battle.trade.exp.boost'''
+Address = 0x021E12
+Length = 1
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x456F10
+Length = 1
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x0E5448
+Length = 1
+Offset = 1
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x133408
+Length = 1
+Offset = 1
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x0E5454
+Length = 1
+Offset = 2
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x133414
+Length = 1
+Offset = 2
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x0E5460
+Length = 1
+Offset = 3
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x133420
+Length = 1
+Offset = 3
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x0E546C
+Length = 1
+Offset = 4
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x13342C
+Length = 1
+Offset = 4
+
+[[MatchedWords]]
+Name = '''data.pokemon.type.length'''
+Address = 0x0E5478
+Length = 1
+Offset = 5
+
+[[MatchedWords]]
+Name = '''scripts.evolution.count'''
+Address = 0x042FAA
+Length = 1
+Offset = -1
 
 #################################
+[[OffsetPointer]]
+Address = 0x011510
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x0116C0
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x03E8F8
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x03E9A0
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x040EE0
+Offset = 0x000004
+
+[[OffsetPointer]]
+Address = 0x046204
+Offset = 0x000011
+
+[[OffsetPointer]]
+Address = 0x0462A8
+Offset = 0x000011
+
 [[OffsetPointer]]
 Address = 0x0728B8
 Offset = 0xFFFEC780
@@ -1806,7 +2398,54 @@ Offset = 0xFFFEC780
 
 #################################
 [[List]]
-Name = '''moveeffects'''
+Name = '''egggroups'''
+0 = [
+   '''None''',
+   '''Monster''',
+   '''Water1''',
+   '''Bug''',
+   '''Flying''',
+   '''Field''',
+   '''Fairy''',
+   '''Grass''',
+   '''Human-Like''',
+   '''Water3''',
+   '''Mineral''',
+   '''Amorphous''',
+   '''Water2''',
+   '''Ditton''',
+   '''Dragon''',
+   '''Undiscovered''',
+]
+
+[[List]]
+Name = '''growthrates'''
+0 = [
+   '''Medium Fast''',
+   '''Erratic''',
+   '''Fluctuating''',
+   '''Medium Slow''',
+   '''Fast''',
+   '''Slow''',
+]
+
+[[List]]
+Name = '''bodycolors'''
+0 = [
+   '''Red''',
+   '''Blue''',
+   '''Yellow''',
+   '''Green''',
+   '''Black''',
+   '''Brown''',
+   '''Purple''',
+   '''Gray''',
+   '''White''',
+   '''Pink''',
+]
+
+[[List]]
+Name = '''moveeffectoptions'''
 0 = [
    '''None''',
    '''SleepPrimary''',
@@ -1815,7 +2454,7 @@ Name = '''moveeffects'''
    '''Burn''',
    '''Freeze''',
    '''Paralyze''',
-   '''Suicide''',
+   '''SelfKO''',
    '''HealHalfIfOpponentSleeping''',
    '''RepeatFoeMove''',
    '''RaiseAttackPrimary''',
@@ -1976,7 +2615,7 @@ Name = '''moveeffects'''
    '''Torment''',
    '''ConfuseAndRaiseSpAtk2''',
    '''BurnPrimary''',
-   '''SuicideLowerAtkSpAtk2''',
+   '''SelfKOLowerAtkSpAtk2''',
    '''DoubleDamageIfStatus''',
    '''SelfFlinchIfHit''',
    '''DoubleDamageToParalyzeAndHealParalyze''',
@@ -2036,6 +2675,78 @@ Name = '''moveinfo'''
 ]
 
 [[List]]
+Name = '''holdeffects'''
+0 = [
+   '''None''',
+   '''Heal|HP Yellow|Once''',
+   '''Remove Paralysis|Once''',
+   '''Remove Sleep|Once''',
+   '''Remove Poison|Once''',
+   '''Remove Burn|Once''',
+   '''Remove Freeze|Once''',
+   '''Restore PP|Empty|Once''',
+   '''Remove Confusion|Once''',
+   '''Remove Any Status Condition|Once''',
+   '''Heal, May Confuse|Once''',
+   '''Heal, May Confuse|Once''',
+   '''Heal, May Confuse|Once''',
+   '''Heal, May Confuse|Once''',
+   '''Heal, May Confuse|Once''',
+   '''Boost ATK|HP Red|Once''',
+   '''Boost DEF|HP Red|Once''',
+   '''Boost SPD|HP Red|Once''',
+   '''Boost SP.ATK|HP Red|Once''',
+   '''Boost SP.DEF|HP Red|Once''',
+   '''Boost Crit.Ratio|HP Red|Once''',
+   '''Sharp Boost Random Stat|HP Red|Once''',
+   '''Reduce Enemy Accuracy''',
+   '''Restore Any Stat Loss|Once''',
+   '''Macho Brace''',
+   '''Exp. Share''',
+   '''May Strike First''',
+   '''Boost Friendliness''',
+   '''Remove Infatuation''',
+   '''Choice Band''',
+   '''Enemy May Flinch''',
+   '''Boost Bug-Type Moves''',
+   '''Doubles Battle Money''',
+   '''Repels Wild PKMN''',
+   '''Soul Dew''',
+   '''Boost SP.ATK''',
+   '''Boost SP.DEF''',
+   '''Flee Any Wild Battle''',
+   '''Prevent Evolution''',
+   '''May Endure Hit''',
+   '''Boost Exp. Gain''',
+   '''Boost Crit Ratio''',
+   '''Boost Steel-Type Moves''',
+   '''Restore Health Each Round''',
+   '''No effect''',
+   '''Boost SP.ATK For Pikachu''',
+   '''Boost Ground-Type Moves''',
+   '''Boost Rock-Type Moves''',
+   '''Boost Grass-Type Moves''',
+   '''Boost Dark-Type Moves''',
+   '''Boost Fighting-Type Moves''',
+   '''Boost Electric-Type Moves''',
+   '''Boost Water-Type Moves''',
+   '''Boost Flying-Type Moves''',
+   '''Boost Poison-Type Moves''',
+   '''Boost Ice-Type Moves''',
+   '''Boost Ghost-Type Moves''',
+   '''Boost Psychic-Type Moves''',
+   '''Boost Fire-Type Moves''',
+   '''Boost Dragon-Type Moves''',
+   '''Boost Normal-Type Moves''',
+   '''Up-Grade''',
+   '''Heal When Striking An Enemy''',
+   '''Boost Chansey's Crit.Ratio''',
+   '''Boost Ditto's DEF''',
+   '''Boost Cubone and Marowak ATK''',
+   '''Boost Farfetch'd Crit.Ratio''',
+]
+
+[[List]]
 Name = '''contestPokemonFlags'''
 0 = [
    '''whichRankHigh''',
@@ -2059,7 +2770,7 @@ Name = '''owfootprints'''
 Name = '''movetarget'''
 0 = [
    '''RecentAttacker''',
-   '''Unused''',
+   '''UserOrSelected''',
    '''Random''',
    '''Both''',
    '''Self''',
@@ -2167,7 +2878,7 @@ Name = '''battletowerEvFlags'''
 Name = '''traineraibits'''
 0 = [
    '''CheckBadMove''',
-   '''TryToFaint''',
+   '''TryToKO''',
    '''CheckViability''',
    '''SetupFirstTurn''',
    '''Risky''',
@@ -2209,6 +2920,29 @@ Name = '''script_compare'''
    '''<=''',
    '''>=''',
    '''!=''',
+]
+
+[[List]]
+Name = '''catchmap_shape'''
+0 = [
+   '''small''',
+   '''wide''',
+   '''tall''',
+   '''wider''',
+   '''taller''',
+   '''widest''',
+   '''tallest''',
+]
+
+[[List]]
+Name = '''mapnamepopuptheme'''
+0 = [
+   '''wood''',
+   '''marble''',
+   '''stone''',
+   '''brick''',
+   '''underwater''',
+   '''stone2''',
 ]
 
 [[List]]
@@ -2673,4 +3407,36 @@ Name = '''songnames'''
    '''mus_slow_pallet''',
    '''mus_teachy_tv_menu''',
 ]
+
+[[List]]
+Name = '''pocketid'''
+1 = [
+   '''item''',
+   '''key''',
+   '''ball''',
+   '''tm''',
+   '''berry''',
+]
+
+#################################
+#################################
+[[GotoShortcut]]
+Name = '''Pokemon'''
+Image = '''graphics.pokemon.sprites.front/29/sprite/'''
+Destination = '''data.pokemon.stats/1'''
+
+[[GotoShortcut]]
+Name = '''Trainers'''
+Image = '''graphics.trainers.sprites.front/19/sprite/'''
+Destination = '''data.trainers.stats'''
+
+[[GotoShortcut]]
+Name = '''Moves'''
+Image = '''graphics.moves.tmcase.sprite'''
+Destination = '''data.pokemon.moves.stats.battle'''
+
+[[GotoShortcut]]
+Name = '''Items'''
+Image = '''graphics.items.sprites/13/sprite/'''
+Destination = '''data.items.stats'''
 
