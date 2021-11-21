@@ -42,7 +42,18 @@ attackcanceler_battle_scripts.s
 BattleScript_PrintCustomString:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	jumpifhalfword EQUALS CURRENT_MOVE MOVE_METALARROWS MetalArrowsBS
 	return
+
+MetalArrowsBS:
+	jumpifability BANK_ATTACKER ABILITY_SHEERFORCE BS_MOVE_END
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_SPD, STAT_ANIM_DOWN
+	setstatchanger STAT_SPD | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_BS_PTR BS_MOVE_END
+	jumpifbyte GREATERTHAN MULTISTRING_CHOOSER 0x2 BS_MOVE_END
+	printfromtable 0x83FE588
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

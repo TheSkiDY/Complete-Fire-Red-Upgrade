@@ -3740,8 +3740,10 @@ AquaRingBS:
 BS_182_Superpower:
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_CLOSECOMBAT CloseCombatBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_DRAGONASCENT CloseCombatBS
+	jumpifhalfword EQUALS CURRENT_MOVE MOVE_NATUREBREAK CloseCombatBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_HAMMERARM HammerArmBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_ICEHAMMER HammerArmBS
+	jumpifhalfword EQUALS CURRENT_MOVE MOVE_STONEAXE StoneAxeBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_CLANGINGSCALES ClangingScalesBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_VCREATE VCreateBS
 	jumpifhalfword EQUALS CURRENT_MOVE MOVE_HYPERSPACEHOLE HyperspaceHoleBS
@@ -3781,6 +3783,12 @@ CC_LowerSpDef:
 
 HammerArmBS:
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	goto BS_STANDARD_HIT
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+StoneAxeBS:
+	setmoveeffect MOVE_EFFECT_ATK_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BS_STANDARD_HIT
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

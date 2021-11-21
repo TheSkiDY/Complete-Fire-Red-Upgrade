@@ -535,6 +535,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_FIREFANG
 .hword MOVE_FIRELASH
 .hword MOVE_FIREPUNCH
+.hword MOVE_FLAMEBULLET
 .hword MOVE_FLAMECHARGE
 .hword MOVE_FLAMEWHEEL
 .hword MOVE_FLAMETHROWER
@@ -570,6 +571,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_LOWSWEEP
 .hword MOVE_LUNGE
 .hword MOVE_LUSTERPURGE
+.hword MOVE_METALARROWS
 .hword MOVE_METALCLAW
 .hword MOVE_METEORMASH
 .hword MOVE_MIRRORSHOT
@@ -585,6 +587,7 @@ gSheerForceBoostedMoves:
 .hword MOVE_NUZZLE
 .hword MOVE_OCTAZOOKA
 .hword MOVE_OMINOUSWIND
+.hword MOVE_PHANTOMBOLT
 .hword MOVE_PLAYROUGH
 .hword MOVE_POISONFANG
 .hword MOVE_POISONJAB
@@ -638,9 +641,11 @@ gSheerForceBoostedMoves:
 .hword MOVE_THUNDERPUNCH
 .hword MOVE_THUNDERSHOCK
 .hword MOVE_THUNDERBOLT
+.hword MOVE_TOXICCLENCH
 .hword MOVE_TRIATTACK
 .hword MOVE_TROPKICK
 .hword MOVE_TWINEEDLE
+.hword MOVE_TWIRLINGDANCE
 .hword MOVE_TWISTER
 .hword MOVE_VOLTTACKLE
 .hword MOVE_WATERPULSE
@@ -690,6 +695,7 @@ gPunchingMoves:
 .hword MOVE_ICEHAMMER
 .hword MOVE_PLASMAFISTS
 .hword MOVE_DOUBLEIRONBASH
+.hword MOVE_HITANDRUN
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -717,6 +723,7 @@ gBitingMoves:
 .hword MOVE_THUNDERFANG
 .hword MOVE_JAWLOCK
 .hword MOVE_FISHIOUSREND
+.hword MOVE_VAMPIRICBITE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -762,6 +769,7 @@ gDanceMoves:
 .hword MOVE_FIERYDANCE
 .hword MOVE_REVELATIONDANCE
 .hword MOVE_CLANGOROUSSOUL
+.hword MOVE_TWIRLINGDANCE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -834,6 +842,7 @@ gCuttingMoves:
 .hword MOVE_DRAGONCLAW
 .hword MOVE_CRUSHCLAW
 .hword MOVE_METALCLAW
+.hword MOVE_STONEAXE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -948,6 +957,7 @@ gHighCriticalChanceMoves:
 .hword MOVE_DRILLRUN
 .hword MOVE_SNIPESHOT
 .hword MOVE_CUT
+.hword MOVE_STONEAXE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1087,10 +1097,12 @@ gTwoToFiveStrikesMoves:
 .hword MOVE_FURYSWIPES
 .hword MOVE_ICICLESPEAR
 .hword MOVE_PINMISSILE
+.hword MOVE_PIXIESPREE
 .hword MOVE_ROCKBLAST
 .hword MOVE_SCALESHOT
 .hword MOVE_SPIKECANNON
 .hword MOVE_TAILSLAP
+.hword MOVE_TWIRLINGDANCE
 .hword MOVE_WATERSHURIKEN
 .hword MOVE_TABLES_TERMIN
 
@@ -1149,6 +1161,7 @@ gIgnoreInAirMoves:
 .hword MOVE_HURRICANE
 .hword MOVE_SMACKDOWN
 .hword MOVE_THOUSANDARROWS
+.hword MOVE_METALARROWS
 .hword MOVE_TABLES_TERMIN
 
 gIgnoreUndergoundMoves:
@@ -1204,6 +1217,7 @@ gMovesThatLiftProtectTable:
 .hword MOVE_HYPERSPACEHOLE
 .hword MOVE_PHANTOMFORCE
 .hword MOVE_SHADOWFORCE
+.hword MOVE_PHANTOMBOLT
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
