@@ -1202,6 +1202,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if ((move == MOVE_SCALD || move == MOVE_STEAMERUPTION) && defType == TYPE_ICE)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
+	if((move == MOVE_SOULFOCUS && defType == TYPE_DARK))
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if((move == MOVE_RUSTYWATER && defType == TYPE_STEEL))
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
 	if (moveType == TYPE_FIRE && gNewBS->tarShotBits & gBitTable[bankDef]) //Fire always Super-Effective if covered in tar
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 

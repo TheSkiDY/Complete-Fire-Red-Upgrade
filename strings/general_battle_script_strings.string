@@ -1,14 +1,14 @@
 #org @gText_SuperEffectiveTarget
-It's super effective on\n[TARGET]!
+[LIGHT_GREEN]It's super effective on\n[TARGET]![WHITE]
 
 #org @gText_SuperEffectiveTwoFoes
-It's super effective on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME]!
+[LIGHT_GREEN]It's super effective on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME]![WHITE]
 
 #org @gText_NotVeryEffectiveTarget
-It's not very effective on\n[TARGET][.]
+[RED]It's not very effective on\n[TARGET][.][WHITE]
 
 #org @gText_NotVeryEffectiveTwoFoes
-It's not very effective on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME][.]
+[RED]It's not very effective on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME][.][WHITE]
 
 #org @gText_DoesntAffectTwoFoes
 It had no effect on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME][.]

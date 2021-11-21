@@ -1159,41 +1159,41 @@ A cage made of\nelectricity that traps\nthe target for four\nto five turns.
 #org @DESC_DRAGON_ENERGY
 The higher the\nuser's HP, the\nmore powerful this\nattack becomes.
 
-#org @DESC_MOVE_EMPTY_1
-Empty move (1).
+#org @DESC_FLAME_BULLET
+The user rapidly\nstrikes while covered\nin flames. This move\nis guaranteed to go\nfirst.
 
-#org @DESC_MOVE_EMPTY_2
-Empty move (2).
+#org @DESC_STONE_AXE
+The user swings its\nown arm like an axe.\nLands critical hits\nmore often but lowers\nATTACK on use.
 
-#org @DESC_MOVE_EMPTY_3
-Empty move (3).
+#org @DESC_PHANTOM_BOLT
+The user crashes\nan electric blast\nfrom the shadows at\nthe foe. It may leave\nthe foe paralyzed.
 
-#org @DESC_MOVE_EMPTY_4
-Empty move (4).
+#org @DESC_PIXIE_SPREE
+The user sparkles\nmultiple pixies at the\nfoe. Can land a hit\ntwo to five times\nin a row.
 
-#org @DESC_MOVE_EMPTY_5
-Empty move (5).
+#org @DESC_VAMPIRIC_BITE
+The user bites the\nfoe with sharp fangs\nthat absorb half the\ndamage inflicted.
 
-#org @DESC_MOVE_EMPTY_6
-Empty move (6).
+#org @DESC_RUSTY_WATER
+The user attacks\nby shooting out\nrusty water.\nIt's super-effective\nagainst STEEL-type\nPOK\eMON.
 
-#org @DESC_MOVE_EMPTY_7
-Empty move (7).
+#org @DESC_TWIRLING_DANCE
+The user dizzyingly\ndances then attacks\ntwo to five times in\nsuccession. It may\nleave the foe confused.
 
-#org @DESC_MOVE_EMPTY_8
-Empty move (8).
+#org @DESC_NATURE_BREAK
+The user calls to\nmother nature for a\ndevastating attack.\nIt also cuts the user's\nDEFENSE and SP.DEF.
 
-#org @DESC_MOVE_EMPTY_9
-Empty move (9).
+#org @DESC_METAL_ARROWS
+The user shoots out\narrows made out of\nsteel. Can knock down\nPOK\eMON to the ground\nand lower SPEED.
 
-#org @DESC_MOVE_EMPTY_10
-Empty move (10).
+#org @DESC_TOXINE_CLENCH
+The user reverts to\nits virus form to\nlaunch toxic tentacles\ninto the foe. May\nleave the foe badly\npoisoned.
 
-#org @DESC_MOVE_EMPTY_11
-Empty move (11).
+#org @DESC_SOUL_FOCUS
+The user focuses its\nmind to defeat the\nfear of darkness.\nSuper-effective\nagainst DARK types.
 
-#org @DESC_MOVE_EMPTY_12
-Empty move (12).
+#org @DESC_HIT_AND_RUN
+After a quick punch,\nthe user rushes back\nto switch places with\na party POK\eMON\nin waiting.
 
 #org @DESC_MOVE_EMPTY_13
 Empty move (13).
