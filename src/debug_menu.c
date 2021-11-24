@@ -83,7 +83,7 @@ void DebugMenu_ProcessGiveItem(void)
 			AddBagItem(ITEM_LOVE_BALL, 100);
 			AddBagItem(ITEM_FRIEND_BALL, 100);
 			AddBagItem(ITEM_MOON_BALL, 100);
-			AddBagItem(ITEM_SPORT_BALL, 100);
+			AddBagItem(ITEM_SHINY_BALL, 100);
 			AddBagItem(ITEM_BEAST_BALL, 100);
 			AddBagItem(ITEM_DREAM_BALL, 100);
 			break;

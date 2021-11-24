@@ -19,6 +19,8 @@
 #include "../include/new/util.h"
 #include "../include/new/mega.h"
 #include "../include/new/pokemon_storage_system.h"
+#include "../include/wild_encounter.h"
+
 /*
 catching.c
 	handles the catch probability logic, expands pokeballs, etc.
@@ -168,6 +170,8 @@ void atkEF_handleballthrow(void)
 				case BALL_TYPE_CHERISH_BALL:
 				case BALL_TYPE_FRIEND_BALL:
 				case BALL_TYPE_HEAL_BALL:
+				case BALL_TYPE_DREAM_BALL:
+				case BALL_TYPE_SHINY_BALL:
 					ballMultiplier = 10;
 					break;
 
@@ -288,10 +292,6 @@ void atkEF_handleballthrow(void)
 						ballMultiplier = 40;
 					break;
 
-				case BALL_TYPE_SPORT_BALL:
-					ballMultiplier = 15;
-					break;
-
 				case BALL_TYPE_DUSK_BALL:
 					if (GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
 						ballMultiplier = DUSK_BALL_MULTIPLIER;
@@ -307,11 +307,6 @@ void atkEF_handleballthrow(void)
 						ballMultiplier = 50;
 					else
 						ballMultiplier = 10;
-					break;
-
-				case BALL_TYPE_DREAM_BALL:
-					if (gBattleMons[gBankTarget].status1 & STATUS1_SLEEP)
-						ballMultiplier = 30;
 					break;
 
 				case BALL_TYPE_BEAST_BALL:
@@ -513,6 +508,42 @@ bool8 IsCriticalCaptureSuccess(void)
 	return gNewBS->criticalCaptureSuccess;
 }
 
+void ForceShinyByShinyBall(struct Pokemon* mon)
+{
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+
+	u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+	u16 sid = HIHALF(otId);
+	u16 tid = LOHALF(otId);
+
+	u8 shinyRange = RandRange(0,8);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 ability = personality & 1;
+	u8 nature = GetNatureFromPersonality(personality);
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+	u8 letter = GetUnownLetterFromPersonality(personality);
+	bool8 abilityMatters = !mon->hiddenAbility;
+
+	mon->friendship = 200;
+	do
+	{
+		personality = Random32();
+		personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+
+		if (abilityMatters)
+		{
+			personality &= ~(1);
+			personality |= ability; //Either 0 or 1
+		}
+	} while (GetNatureFromPersonality(personality) != nature || GetGenderFromSpeciesAndPersonality(species, personality) != gender
+	#ifdef SPECIES_UNOWN
+	|| (species == SPECIES_UNOWN && GetUnownLetterFromPersonality(personality) != letter)
+	#endif
+	);
+
+	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+}
+
 u8 GiveMonToPlayer(struct Pokemon* mon) //Hook in
 {
 	int i;
@@ -532,6 +563,10 @@ u8 GiveMonToPlayer(struct Pokemon* mon) //Hook in
 			HealMon(mon);
 		else if (ItemId_GetType(gLastUsedItem) == BALL_TYPE_FRIEND_BALL)
 			mon->friendship = 200;
+		else if (ItemId_GetType(gLastUsedItem) == BALL_TYPE_DREAM_BALL)
+			mon->hiddenAbility = TRUE;
+		else if (ItemId_GetType(gLastUsedItem) == BALL_TYPE_SHINY_BALL)
+			ForceShinyByShinyBall(mon);
 	}
 
 	if (gMain.inBattle && IsRaidBattle() && FlagGet(FLAG_BATTLE_FACILITY))
