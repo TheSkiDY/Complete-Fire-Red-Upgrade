@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "../include/bg.h"
 #include "../include/evolution_scene.h"
 #include "../include/field_control_avatar.h"
 #include "../include/field_player_avatar.h"
@@ -154,7 +155,6 @@ static const u8 sTrainerCardTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_D
 //static const u8 sTrainerCardStatColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED, TEXT_COLOR_LIGHT_RED};
 //static const u8 sTimeColonInvisibleTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT};
 static const u8 sTrainerCardFontIds[] = {0, 2, 0};
-
 
 #define gText_TrainerCardPokedex (const u8*) 0x8419CEF
 #define gText_TrainerCardNull (const u8*) 0x8419CF7

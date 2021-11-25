@@ -1835,6 +1835,10 @@ ItemUse_SetQuestLogEvent = 0x80A2294 | 1;
 PlayFanfareByFanfareNum = 0x8071BC4 | 1;
 Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
 AddTextPrinterParameterized3 = 0x812E51C | 1;
+WriteSequenceToBgTilemapBuffer = 0x08002590 | 1;
+UpdateTrainerCardPhotoIcons = 0x80CC2BC | 1;
+CB2_ReturnToFieldWithOpenMenu = 0x80568A8 | 1;
+ShowPlayerTrainerCard = 0x808B698 | 1;
 
 /* IO */
 BG3HOFS = 0x400001C;

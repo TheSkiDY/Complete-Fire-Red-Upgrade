@@ -1,8 +1,10 @@
 #include "defines.h"
+#include "../include/field_weather.h"
 #include "../include/link.h"
 #include "../include/menu.h"
 #include "../include/menu_helpers.h"
 #include "../include/new_menu_helpers.h"
+#include "../include/palette.h"
 #include "../include/rtc.h"
 #include "../include/safari_zone.h"
 #include "../include/script.h"
@@ -85,7 +87,6 @@ void __attribute__((long_call)) HideStartMenu(void);
 bool8 __attribute__((long_call)) StartMenuPokedexCallback(void);
 bool8 __attribute__((long_call)) StartMenuPokemonCallback(void);
 bool8 __attribute__((long_call)) StartMenuBagCallback(void);
-bool8 __attribute__((long_call)) StartMenuPlayerCallback(void);
 bool8 __attribute__((long_call)) StartMenuSaveCallback(void);
 bool8 __attribute__((long_call)) StartMenuOptionCallback(void);
 bool8 __attribute__((long_call)) StartMenuExitCallback(void);
@@ -99,11 +100,15 @@ void __attribute__((long_call)) StartMenu_FadeScreenIfLeavingOverworld(void);
 bool8 __attribute__((long_call)) StartMenuPokedexSanityCheck(void);
 void __attribute__((long_call)) CloseStartMenu(void);
 void __attribute__((long_call)) PrintTextOnHelpMessageWindow(const u8 * text, u8 mode);
+void __attribute__((long_call)) UpdateTrainerCardPhotoIcons(void);
+void __attribute__((long_call)) CB2_ReturnToFieldWithOpenMenu(void);
+void __attribute__((long_call)) ShowPlayerTrainerCard(void (*callback)(void));
 
 //Exported functions:
 void BuildStartMenuActions(void);
 
 //This file's functions:
+static bool8 StartMenuPlayerCallback(void);
 static void SetUpStartMenu_NormalField(void);
 static void SetUpStartMenu_SafariZone(void);
 static void BuildPokeToolsMenu(void);
@@ -357,4 +362,18 @@ static bool8 ReloadStartMenuItems(void)
 	}
 
 	return FALSE;
+}
+
+static bool8 StartMenuPlayerCallback(void)
+{
+    if (!gPaletteFade->active)
+    {
+        PlayRainStoppingSoundEffect();
+        DestroySafariZoneStatsWindow();
+        CleanupOverworldWindowsAndTilemaps();
+        UpdateTrainerCardPhotoIcons();
+        ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu);
+        return TRUE;
+    }
+    return FALSE;
 }
