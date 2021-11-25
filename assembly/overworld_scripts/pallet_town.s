@@ -18,6 +18,8 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8003 0x2
 	callasm 0x8727CF9
 	faceplayer
+	setflag 0x971
+	setvar 0x50A0 14
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
@@ -30,6 +32,7 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_RABBLIT 10 0x0 0x0 0x0 0x0
 	givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
+	setflag 0x82F
 	callasm 0x8727DCD
 	end
 

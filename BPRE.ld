@@ -303,6 +303,11 @@ gInputToStoreInQuestLogMaybe = 0x3005078;
 gCB2_AfterEvolution = 0x300537C;
 gItemUseCB = 0x3005E98;
 
+
+/* NEW */
+gTrainerCards = 0x2039624;
+sTrainerCardDataPtr = 0x20397A4;
+
 /*==========================
 ===========ROM==============
 ==========================*/
@@ -1363,11 +1368,6 @@ InitChooseHalfPartyForBattle = 0x81274A8 | 1;
 sub_813A45C = 0x813A45C | 1;
 some_other_kind_of_link_test = 0x80BF748 |1;
 
-GetMonLevelUpWindowStats = 0x811D130 | 1;
-ItemUse_SetQuestLogEvent = 0x80A2294 | 1;
-PlayFanfareByFanfareNum = 0x8071BC4 | 1;
-Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
-
 
 /* Evolution Functions */
 BeginEvolutionScene = 0x80CDDA8 | 1;
@@ -1828,6 +1828,13 @@ GetEreaderTrainerName = 0x80E7460 | 1;
 RenderFont = 0x8002E7C | 1;
 sTextPrinters = 0x2020034;
 GetTextSpeedSetting = 0x80f78a8 | 1;
+
+/* NEW */
+GetMonLevelUpWindowStats = 0x811D130 | 1;
+ItemUse_SetQuestLogEvent = 0x80A2294 | 1;
+PlayFanfareByFanfareNum = 0x8071BC4 | 1;
+Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
+AddTextPrinterParameterized3 = 0x812E51C | 1;
 
 /* IO */
 BG3HOFS = 0x400001C;

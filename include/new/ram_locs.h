@@ -7,8 +7,8 @@
 //#define gSaveBlock2 ((struct SaveBlock2*) *((u32*) 0x300500C))
 //#define gSaveBlock3 ((struct SaveBlock3*) *((u32*) 0x3005010))
 
-//#define gEnemyParty ((struct Pokemon*) 0x202402C)
-//#define gPlayerParty ((struct Pokemon*) 0x2024284)
+#define gEnemyParty ((struct Pokemon*) 0x202402C)
+#define gPlayerParty ((struct Pokemon*) 0x2024284)
 
 //gBitTable;
 
