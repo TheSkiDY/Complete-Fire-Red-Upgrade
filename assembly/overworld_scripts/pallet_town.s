@@ -24,6 +24,7 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 100
+	additem ITEM_ABILITY_PATCH 1
 	additem ITEM_DREAM_BALL 3
 	additem ITEM_SHINY_BALL 4
 	additem ITEM_MEGA_RING 1
@@ -31,6 +32,7 @@ EventScript_PalletTown_TechnologyGuy:
 	special 0x62
 	givepokemon SPECIES_RABBLIT 10 0x0 0x0 0x0 0x0
 	givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
+	givepokemon SPECIES_DARMANITAN_G 10 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F
 	callasm 0x8727DCD
