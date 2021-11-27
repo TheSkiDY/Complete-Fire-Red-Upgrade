@@ -423,6 +423,11 @@ struct SaveBlock2 //0x2024588
 
 extern struct SaveBlock2* gSaveBlock2;
 
+
+#define OPTIONS_BUTTON_MODE_HELP         0
+#define OPTIONS_BUTTON_MODE_LR           1
+#define OPTIONS_BUTTON_MODE_L_EQUALS_A   2
+
 #define PARTY_SIZE 6
 
 struct SecretBaseParty

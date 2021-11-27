@@ -205,9 +205,12 @@ ItemUseCB_RareCandyStep 8126350 2
 Task_DoLearnedMoveFanfareAfterText 8125CF4 1
 DrawLevelUpWindowPg2Hook 811E950 4
 
-##NEW
+##NEWHOOKS
 PrintPokedexOnCard 808A100 0
 StartMenuPlayerCallback 806F4B4 0
+DrawSafariZoneStatsWindow 806EE7C 0
+DestroySafariZoneStatsWindow 806EF18 0
+DoDrawStartMenu 806F01C 0
 
 ##Battle Animation Hooks
 TryHandleLaunchBattleTableAnimationHook 803401E 4

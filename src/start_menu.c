@@ -1,14 +1,19 @@
 #include "defines.h"
 #include "../include/field_weather.h"
+#include "../include/global.h"
 #include "../include/link.h"
 #include "../include/menu.h"
 #include "../include/menu_helpers.h"
 #include "../include/new_menu_helpers.h"
 #include "../include/palette.h"
+#include "../include/region_map.h"
 #include "../include/rtc.h"
 #include "../include/safari_zone.h"
 #include "../include/script.h"
 #include "../include/start_menu.h"
+#include "../include/string_util.h"
+#include "../include/text.h"
+#include "../include/window.h"
 #include "../include/constants/flags.h"
 #include "../include/constants/songs.h"
 
@@ -78,6 +83,20 @@ extern u8 sNumStartMenuItems;
 extern u8 sStartMenuOrder[];
 extern s8 sDrawStartMenuState[2];
 extern u8 sStartMenuOpen;
+extern u8 sSafariZoneStatsWindowId;
+extern u16 gSafariZoneStepCounter;
+extern struct WindowTemplate sSafariZoneStatsWindowTemplate;
+
+static const struct WindowTemplate sLocationMenuWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 12,
+    .height = 2,
+    .paletteNum = 15,
+    .baseBlock = 0x008
+};
+
 
 //Vanilla functions:
 void __attribute__((long_call)) SetUpStartMenu_Link(void);
@@ -94,7 +113,7 @@ bool8 __attribute__((long_call)) StartMenuSafariZoneRetireCallback(void);
 bool8 __attribute__((long_call)) StartMenuLinkModePlayerCallback(void);
 bool8 __attribute__((long_call)) StartMenuQuestLogCallback(void);
 void __attribute__((long_call)) AppendToStartMenuItems(u8 action);
-void __attribute__((long_call)) DestroySafariZoneStatsWindow(void);
+//void __attribute__((long_call)) DestroySafariZoneStatsWindow(void);
 s8 __attribute__((long_call)) PrintStartMenuItems(s8* cursor_p, u8 nitems);
 void __attribute__((long_call)) StartMenu_FadeScreenIfLeavingOverworld(void);
 bool8 __attribute__((long_call)) StartMenuPokedexSanityCheck(void);
@@ -106,6 +125,7 @@ void __attribute__((long_call)) ShowPlayerTrainerCard(void (*callback)(void));
 
 //Exported functions:
 void BuildStartMenuActions(void);
+void DestroySafariZoneStatsWindow(void);
 
 //This file's functions:
 static bool8 StartMenuPlayerCallback(void);
@@ -377,3 +397,76 @@ static bool8 StartMenuPlayerCallback(void)
     }
     return FALSE;
 }
+
+#define gUnknown_84162A9 (const u8*) 0x84162A9
+void DrawSafariZoneStatsWindow(void)
+{
+	u8 x;
+
+	if(GetSafariZoneFlag())
+	{
+	    sSafariZoneStatsWindowId = AddWindow(&sSafariZoneStatsWindowTemplate);
+	    PutWindowTilemap(sSafariZoneStatsWindowId);
+	    DrawStdWindowFrame(sSafariZoneStatsWindowId, FALSE);
+	    ConvertIntToDecimalStringN(gStringVar1, gSafariZoneStepCounter, STR_CONV_MODE_RIGHT_ALIGN, 3);
+	    ConvertIntToDecimalStringN(gStringVar2, 600, STR_CONV_MODE_RIGHT_ALIGN, 3);
+	    ConvertIntToDecimalStringN(gStringVar3, gNumSafariBalls, STR_CONV_MODE_RIGHT_ALIGN, 2);
+	    StringExpandPlaceholders(gStringVar4, gUnknown_84162A9);
+	    AddTextPrinterParameterized(sSafariZoneStatsWindowId,2, gStringVar4, 4, 3, 0xFF, NULL);
+	    CopyWindowToVram(sSafariZoneStatsWindowId, COPYWIN_GFX);
+	}
+	else
+	{
+		sSafariZoneStatsWindowId = AddWindow(&sLocationMenuWindowTemplate);
+	    PutWindowTilemap(sSafariZoneStatsWindowId);
+	    DrawStdWindowFrame(sSafariZoneStatsWindowId, FALSE);
+	    GetMapNameGeneric(gStringVar4, gMapHeader.regionMapSectionId);
+	    x = (u32)(96 - GetStringWidth(2, gStringVar4, -1)) / 2;;
+	    AddTextPrinterParameterized(sSafariZoneStatsWindowId,2, gStringVar4, x, 2, 0xFF, NULL);
+	    CopyWindowToVram(sSafariZoneStatsWindowId, COPYWIN_GFX);
+	}
+}
+
+void DestroySafariZoneStatsWindow(void)
+{
+    ClearStdWindowAndFrameToTransparent(sSafariZoneStatsWindowId, FALSE);
+    CopyWindowToVram(sSafariZoneStatsWindowId, COPYWIN_GFX);
+    RemoveWindow(sSafariZoneStatsWindowId);
+}
+
+s8 DoDrawStartMenu(void)
+{
+    switch (sDrawStartMenuState[0])
+    {
+    case 0:
+        sDrawStartMenuState[0]++;
+        break;
+    case 1:
+        SetUpStartMenu();
+        sDrawStartMenuState[0]++;
+        break;
+    case 2:
+        LoadStdWindowFrameGfx();
+        DrawStdWindowFrame(CreateStartMenuWindow(sNumStartMenuItems), FALSE);
+        sDrawStartMenuState[0]++;
+        break;
+    case 3:
+        DrawSafariZoneStatsWindow();
+        sDrawStartMenuState[0]++;
+        break;
+    case 4:
+        if (PrintStartMenuItems(&sDrawStartMenuState[1], 2) == TRUE)
+            sDrawStartMenuState[0]++;
+        break;
+    case 5:
+        sStartMenuCursorPos = Menu_InitCursor(GetStartMenuWindowId(), 2, 0, 0, 15, sNumStartMenuItems, sStartMenuCursorPos);
+        if (!MenuHelpers_LinkSomething() && InUnionRoom() != TRUE && gSaveBlock2->optionsButtonMode == OPTIONS_BUTTON_MODE_HELP)
+        {
+            DrawHelpMessageWindowWithText(sStartMenuDescPointers[sStartMenuOrder[sStartMenuCursorPos]]);
+        }
+        CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
+        return TRUE;
+    }
+    return FALSE;
+}
+
