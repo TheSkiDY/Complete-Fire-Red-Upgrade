@@ -648,8 +648,12 @@ RunTextPrintersForInstantTextHook 08002DEE 0
 
 ##NEWHOOKS
 PrintPokedexOnCard 808A100 0
+PrintMoneyOnCard 8089FEC 0
+PrintTimeOnCard 808A22C 0
+PrintNameOnCardFront 8089EEC 0
 StartMenuPlayerCallback 806F4B4 0
 DrawSafariZoneStatsWindow 806EE7C 0
 DestroySafariZoneStatsWindow 806EF18 0
 DoDrawStartMenu 806F01C 0
 PokeSum_PrintAbilityNameAndDesc 8137C18 0
+

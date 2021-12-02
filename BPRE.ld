@@ -1844,6 +1844,7 @@ CB2_ReturnToFieldWithOpenMenu = 0x80568A8 | 1;
 ShowPlayerTrainerCard = 0x808B698 | 1;
 LoadStdWindowFrameGfx = 0x80F6E9C | 1;
 GetMapNameGeneric = 0x80C4DF8 | 1;
+ConvertInternationalString = 0x80093BC | 1;
 
 sSafariZoneStatsWindowTemplate = 0x83A738C;
 
