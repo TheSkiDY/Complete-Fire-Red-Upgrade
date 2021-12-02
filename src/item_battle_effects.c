@@ -726,6 +726,23 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 				}
 				break;
 
+			case ITEM_EFFECT_RELIC_MIRROR:
+				if (TOOK_DAMAGE(bank)
+				&& MOVE_HAD_EFFECT
+				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
+				&& !CheckContact(gCurrentMove, gBankAttacker)
+				&& !MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bank)
+				&& gBattleMons[gBankAttacker].hp)
+				{
+					gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankAttacker) / 6);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_RockyHelmetDamage;
+					RecordItemEffectBattle(bank, bankHoldEffect);
+					gActiveBattler = gBankAttacker;
+					effect = ITEM_HP_CHANGE;
+				}
+				break;
+
 			case ITEM_EFFECT_WEAKNESS_POLICY:
 				if (TOOK_DAMAGE(bank)
 				&& gMoveResultFlags == MOVE_RESULT_SUPER_EFFECTIVE
