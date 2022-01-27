@@ -258,12 +258,12 @@
 
 
 /*TO ADD:
-TRANSISTOR
-DRAGON'S MAW
-UNSEEN FIST
-GRIM NEIGH
-AS ONE
 CURIOUS MEDICINE
+
+TO MERGE:
+Blaze, Overgrow, Swarm, Torrent
+Dark Aura, Fairy Aura
+Flame Body, Poison Point, Static
 */
 
 #define ABILITIES_COUNT (ABILITY_PASTELVEIL + 1)

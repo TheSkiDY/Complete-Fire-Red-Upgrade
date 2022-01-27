@@ -742,7 +742,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_MOLDBREAKER:
-			gBattleStringLoader = gText_MoldBreakerActivate;
+			if (SPECIES(bank) == SPECIES_RESHIRAM)
+				gBattleStringLoader = gText_TurboblazeActivate;
+			else if(SPECIES(bank) == SPECIES_ZEKROM)
+				gBattleStringLoader = gText_TeravoltActivate;
+			else
+				gBattleStringLoader = gText_MoldBreakerActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
@@ -2748,7 +2753,8 @@ static void PrintBattlerOnAbilityPopUp(u8 battlerId, u8 spriteId1, u8 spriteId2)
 
 static void PrintAbilityOnAbilityPopUp(u32 ability, u8 spriteId1, u8 spriteId2)
 {
-	const u8* abilityName = GetAbilityName(ability);
+	u16 species = GetBankPartyData(gBattleAnimAttacker)->species;
+	const u8* abilityName = GetAbilityNameByMon(ability, species);
 
 	PrintOnAbilityPopUp(abilityName,
 						(void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32) + 256,

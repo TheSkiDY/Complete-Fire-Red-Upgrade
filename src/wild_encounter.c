@@ -545,9 +545,9 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 			goto SKIP_INDEX_SEARCH;
 		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GROUND, ABILITY_SANDFORCE, &wildMonIndex, monsCount))
 			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_WHITESMOKE, &wildMonIndex, monsCount))
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_ROCKHEAD, &wildMonIndex, monsCount))
 			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_SWARM, &wildMonIndex, monsCount))
+		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_ILLUMINATE, &wildMonIndex, monsCount))
 			goto SKIP_INDEX_SEARCH;
 		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GHOST, ABILITY_CURSEDBODY, &wildMonIndex, monsCount))
 			goto SKIP_INDEX_SEARCH;
@@ -618,9 +618,9 @@ SKIP_INDEX_SEARCH:
 				goto SKIP_INDEX_SEARCH_2;
 			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GROUND, ABILITY_SANDFORCE, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_WHITESMOKE, &wildMonIndex, monsCount))
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ROCK, ABILITY_ROCKHEAD, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_SWARM, &wildMonIndex, monsCount))
+			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_BUG, ABILITY_ILLUMINATE, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
 			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GHOST, ABILITY_CURSEDBODY, &wildMonIndex, monsCount))
 				goto SKIP_INDEX_SEARCH_2;
@@ -777,7 +777,6 @@ u8 GetAbilityEncounterRateModType(void)
 				sWildEncounterData.abilityEffect = 1;
 				break;
 			case ABILITY_ARENATRAP:
-			case ABILITY_ILLUMINATE:
 				sWildEncounterData.abilityEffect = 2;
 				break;
 			case ABILITY_SANDVEIL:

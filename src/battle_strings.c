@@ -33,6 +33,30 @@ extern u8 gStatusConditionString_EncoreProblem[];
 extern u8 gStatusConditionString_MentalState[];
 extern u8 gStatusConditionString_TauntProblem[];
 
+extern const u8 gText_TanglingHair[];
+extern const u8 gText_Gooey[];
+extern const u8 gText_AirLock[];
+extern const u8 gText_ShellArmor[];
+extern const u8 gText_ChillingNeigh[];
+extern const u8 gText_Dazzling[];
+extern const u8 gText_QueenlyMajesty[];
+extern const u8 gText_FullMetalBody[];
+extern const u8 gText_WimpOut[];
+extern const u8 gText_Turboblaze[];
+extern const u8 gText_Teravolt[];
+extern const u8 gText_SolidRock[];
+extern const u8 gText_PrismArmor[];
+extern const u8 gText_IronBarbs[];
+extern const u8 gText_Libero[];
+extern const u8 gText_Magician[];
+extern const u8 gText_Pickpocket[];
+extern const u8 gText_Multiscale[];
+extern const u8 gText_ShadowShield[];
+extern const u8 gText_PowerOfAlchemy[];
+extern const u8 gText_PropellerTail[];
+extern const u8 gText_Cacophony[];
+
+
 const u8 * const gStatusConditionStringsTable[11][2] =
 {
 	{gStatusConditionString_Poison, (const u8*) 0x83FE830},
@@ -425,6 +449,8 @@ u32 BattleStringExpandPlaceholders(const u8* src, u8* dst)
 	const u8* toCpy = NULL;
 
 	multiplayerId = GetMultiplayerId();
+	u16 species = 0;
+	VarSet(VAR_POKEMON_TO_READ_ABILITY, gBankAttacker);
 
 	while (*src != EOS)
 	{
@@ -567,18 +593,25 @@ u32 BattleStringExpandPlaceholders(const u8* src, u8* dst)
 				toCpy = text;
 				break;
 			case B_TXT_LAST_ABILITY: // last used ability
+				//???
 				toCpy = GetAbilityName(gLastUsedAbility);
 				break;
 			case B_TXT_ATK_ABILITY: // attacker ability
-				toCpy = GetAbilityName(gAbilitiesPerBank[gBankAttacker]);
+				//works
+				species = GetBankPartyData(gBankAttacker)->species;
+				toCpy = GetAbilityNameByMon(gAbilitiesPerBank[gBankAttacker],species);
 				break;
 			case B_TXT_DEF_ABILITY: // target ability
-				toCpy = GetAbilityName(gAbilitiesPerBank[gBankTarget]);
+				//works
+				species = GetBankPartyData(gBankTarget)->species;
+				toCpy = GetAbilityNameByMon(gAbilitiesPerBank[gBankTarget],species);
 				break;
 			case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
+				//????
 				toCpy = GetAbilityName(gAbilitiesPerBank[gBattleScripting.bank]);
 				break;
 			case B_TXT_EFF_ABILITY: // effect battlerId ability
+				//???
 				toCpy = GetAbilityName(gAbilitiesPerBank[gEffectBank]);
 				break;
 			case B_TXT_TRAINER1_CLASS: // trainer class name
@@ -1036,6 +1069,7 @@ void EmitPrintSelectionString(u8 bufferId, u16 stringID)
 	PrepareBufferDataTransfer(bufferId, gBattleBuffersTransferData, sizeof(struct BattleMsgData) + 4);
 }
 
+
 const u8* GetAbilityName(const u8 ability)
 {
 	const u8* ptr = gAbilityNames[ability];
@@ -1046,9 +1080,237 @@ const u8* GetAbilityName(const u8 ability)
 	return ptr;
 }
 
+
+const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
+{
+	const u8* ptr = NULL; 
+
+    switch(ability)
+    {
+        case ABILITY_STUN_TOUCH:
+            switch(species)
+            {
+                case SPECIES_DIGLETT_A:
+                case SPECIES_DUGTRIO_A:
+                    ptr = gText_TanglingHair;
+                    break;
+                case SPECIES_GOOMY:
+                case SPECIES_SLIGGOO:
+                case SPECIES_GOODRA:
+                    ptr = gText_Gooey;
+                    break;
+            }
+            break;
+        case ABILITY_CLOUDNINE:
+            switch(species)
+            {
+                case SPECIES_RAYQUAZA:
+                    ptr = gText_AirLock;
+                    break;
+            }
+            break;
+        case ABILITY_BATTLEARMOR:
+            switch(species)
+            {
+                case SPECIES_SLOWBRO_MEGA:
+                case SPECIES_SHELLDER:
+                case SPECIES_CLOYSTER:
+                case SPECIES_KRABBY:
+                case SPECIES_KINGLER:
+                case SPECIES_LAPRAS:
+                case SPECIES_OMANYTE:
+                case SPECIES_OMASTAR:
+                case SPECIES_CORPHISH:
+                case SPECIES_CRAWDAUNT:
+                case SPECIES_CLAMPERL:
+                case SPECIES_DWEBBLE:
+                case SPECIES_CRUSTLE:
+                case SPECIES_ESCAVALIER:
+                case SPECIES_SHELMET:
+                case SPECIES_TURTONATOR:
+                case SPECIES_CHEWTLE:
+                case SPECIES_DREDNAW:
+                case SPECIES_TORKOAL:
+                case SPECIES_TURTWIG:
+                case SPECIES_GROTLE:
+                case SPECIES_TORTERRA:
+                case SPECIES_OSHAWOTT:
+                case SPECIES_DEWOTT:
+                case SPECIES_SAMUROTT:
+                    ptr = gText_ShellArmor;
+                    break;
+            }
+            break;
+        case ABILITY_MOXIE:
+            switch(species)
+            {
+                case SPECIES_GLASTRIER:
+                case SPECIES_CALYREX_ICE:
+                    ptr = gText_ChillingNeigh;
+                    break;   
+            }
+            break;
+        case ABILITY_MAJESTIC:
+            switch(species)
+            {
+                case SPECIES_BRUXISH:
+                    ptr = gText_Dazzling;
+                    break;
+                case SPECIES_TSAREENA:
+                    ptr = gText_QueenlyMajesty;
+                    break;
+            }
+            break;
+        case ABILITY_CLEARBODY:
+            switch(species)
+            {
+                case SPECIES_SOLGALEO:
+                    ptr = gText_FullMetalBody;
+                    break;
+            }
+            break;
+        case ABILITY_EMERGENCYEXIT:
+            switch(species)
+            {
+                case SPECIES_WIMPOD:
+                    ptr = gText_WimpOut;
+                    break;   
+            }
+            break;
+        case ABILITY_MOLDBREAKER:
+            switch(species)
+            {
+                case SPECIES_KYUREM_WHITE:
+                case SPECIES_RESHIRAM:
+                    ptr = gText_Turboblaze;
+                    break;
+                case SPECIES_ZEKROM:
+                case SPECIES_KYUREM_BLACK:
+                    ptr = gText_Teravolt;
+                    break;
+            }
+            break;
+        case ABILITY_FILTER:
+            switch(species)
+            {
+                case SPECIES_CAMERUPT:
+                case SPECIES_RHYPERIOR:
+                case SPECIES_TIRTOUGA:
+                case SPECIES_CARRACOSTA:
+                    ptr = gText_SolidRock;
+                    break;
+                case SPECIES_NECROZMA:
+                case SPECIES_NECROZMA_DUSK_MANE:
+                case SPECIES_NECROZMA_DAWN_WINGS:
+                    ptr = gText_PrismArmor;
+                    break;
+            }
+            break;
+        case ABILITY_ROUGHSKIN:
+            switch(species)
+            {
+                case SPECIES_FERROSEED:
+                case SPECIES_FERROTHORN:
+                case SPECIES_TOGEDEMARU:
+                    ptr = gText_IronBarbs;
+                    break;
+            }
+            break;
+        case ABILITY_PROTEAN:
+            switch(species)
+            {
+                case SPECIES_SCORBUNNY:
+                case SPECIES_RABOOT:
+                case SPECIES_CINDERACE:
+                    ptr = gText_Libero;
+                    break;
+            }
+            break;
+        case ABILITY_PLUNDER:
+            switch(species)
+            {
+                case SPECIES_HOOPA:
+                case SPECIES_HOOPA_UNBOUND:
+                case SPECIES_FENNEKIN:
+                case SPECIES_BRAIXEN:
+                case SPECIES_DELPHOX:
+                case SPECIES_KLEFKI:
+                    ptr = gText_Magician;
+                    break;
+                case SPECIES_SNEASEL: 
+                case SPECIES_SEEDOT:
+                case SPECIES_NUZLEAF:
+                case SPECIES_SHIFTRY:
+                case SPECIES_WEAVILE:
+                case SPECIES_BINACLE:
+                case SPECIES_BARBARACLE:
+                case SPECIES_IMPIDIMP:
+                case SPECIES_MORGREM:
+                case SPECIES_GRIMMSNARL:
+                    ptr = gText_Pickpocket;
+                    break;
+            }
+            break;
+        case ABILITY_MYTHICALSHIELD:
+            switch(species)
+            {
+                case SPECIES_DRAGONITE:
+                case SPECIES_LUGIA:
+                    ptr = gText_Multiscale;
+                    break;
+                case SPECIES_LUNALA:
+                    ptr = gText_ShadowShield;
+                    break;
+            }
+            break;
+        case ABILITY_RECEIVER:
+            switch(species)
+            {
+                case SPECIES_GRIMER_A:
+                case SPECIES_MUK_A:
+                    ptr = gText_PowerOfAlchemy;
+                    break;
+            }
+            break;
+        case ABILITY_STALWART:
+            switch(species)
+            {
+                case SPECIES_ARROKUDA:
+                case SPECIES_BARRASKEWDA:
+                    ptr = gText_PropellerTail;
+                    break;
+            }  
+            break;
+        case ABILITY_SOUNDPROOF:
+        	switch(species)
+        	{
+        		case SPECIES_WHISMUR:
+        		case SPECIES_LOUDRED:
+        		case SPECIES_EXPLOUD:
+        			ptr = gText_Cacophony;
+        			break;
+        	}
+    }   
+
+    if (ptr == NULL)
+		ptr = gAbilityNames[ability];
+
+	if (ptr[3] == 0x8 || ptr[3] == 0x9) //Expanded Ability Names
+		ptr = T1_READ_PTR(ptr);
+
+
+
+	return ptr;	
+}
+
 void CopyAbilityName(u8* dst, const u8 ability)
 {
 	StringCopy(dst, GetAbilityName(ability));
+}
+
+void CopyAbilityNameByMon(u8* dst, const u8 ability, const u16 species)
+{
+	StringCopy(dst, GetAbilityNameByMon(ability, species));
 }
 
 #ifdef OPEN_WORLD_TRAINERS

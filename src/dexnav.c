@@ -1312,6 +1312,7 @@ static void DexNavDrawAbility(u8 ability, u8* spriteIdAddr)
 	LoadCompressedSpriteSheetUsingHeap(&sAbilityCanvasSpriteSheet);
 	LoadSpritePalette(&sHeldItemSpritePalette);
 	u8 spriteId = CreateSprite(&sAbilityCanvasTemplate, ICONX + 80, ICONY + 0x12, 0x0);
+	u16 species = sDexNavHudPtr->species;
 	if (spriteId < MAX_SPRITES)
 	{
 		//Ability name beside move name
@@ -1319,7 +1320,7 @@ static void DexNavDrawAbility(u8 ability, u8* spriteIdAddr)
 		gSprites[spriteId].pos1.x += ((8 * (len/2)) + (4 * (len % 2)));
 
 		//Copy ability string from table using state id
-		CopyAbilityName(gStringVar4, ability);
+		CopyAbilityNameByMon(gStringVar4, ability, species);
 
 		//Format string so it's even length or if it's odd ends in two spaces
 		len = StringLength(gStringVar4);
@@ -2069,7 +2070,7 @@ static void PrintGUIHiddenAbility(u16 species)
 	if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT) || species == SPECIES_NONE) //Only display hidden ability if Pokemon has been caught
 	{
 		if (species != SPECIES_NONE && gBaseStats[species].hiddenAbility != ABILITY_NONE)
-			text = GetAbilityName(gBaseStats[species].hiddenAbility);
+			text = GetAbilityNameByMon(gBaseStats[species].hiddenAbility, species);
 		else
 			text = gText_DexNav_NoInfo;
 	}

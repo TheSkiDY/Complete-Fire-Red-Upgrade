@@ -199,6 +199,7 @@ enum //These vars need to be one after the other (hence the enum)
 
 //custom vars
 #define VAR_LEVEL_CAP 0x50A0
+#define VAR_POKEMON_TO_READ_ABILITY 0x50A1
 
 
 /*===== Pre-existing Offsets =====*/

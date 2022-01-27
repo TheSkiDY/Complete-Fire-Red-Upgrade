@@ -57,16 +57,6 @@ Address = 0x900000
 Format = '''[name""13 unused. index: price: holdeffect.holdeffects param. description<""> keyitemvalue. bagkeyitem. pocket.pocketid type. fieldeffect<> battleusage:: battleeffect<> battleextra::]1000'''
 
 [[NamedAnchors]]
-Name = '''data.abilities.descriptions'''
-Address = 0x1408948
-Format = '''[description<"">]data.abilities.names'''
-
-[[NamedAnchors]]
-Name = '''data.pokemon.moves.descriptions'''
-Address = 0x1436174
-Format = '''[description<"">]data.pokemon.moves.names-1'''
-
-[[NamedAnchors]]
 Name = '''scripts.text.multichoice'''
 Address = 0x3E04B0
 Format = '''[options<[text<""> unused::]/count> count::]32'''
@@ -162,9 +152,9 @@ Address = 0x19AD210
 Format = '''[size. yOffset. unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''graphics.pokemon.palettes.normal'''
-Address = 0x1A061BC
-Format = '''^[palette<`lzp4`> index: unused:]data.pokemon.names'''
+Name = '''data.pokemon.moves.tutors'''
+Address = 0x1A16234
+Format = '''[move:data.pokemon.moves.names]15'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.palettes.shiny'''
@@ -210,11 +200,6 @@ Format = '''[sprite<`lzs4x8x8|graphics.trainers.palettes.front`> uncompressedLen
 Name = '''graphics.trainers.sprites.back.enter'''
 Address = 0x239FA4
 Format = '''[sprite<`ucs4x8x8|graphics.trainers.palettes.back`> a. b. c:]6'''
-
-[[NamedAnchors]]
-Name = '''graphics.trainers.animations.back'''
-Address = 0x14C5854
-Format = '''[animationPointer<[animation<[a: b: c: d:]1> framedata<[frame: time:]!FFFF0000>]1>]graphics.trainers.sprites.back.enter'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.animations.frames'''
@@ -312,11 +297,6 @@ Address = 0xE80280
 Format = '''`lzm4x32x64|graphics.moves.backgrounds.all`'''
 
 [[NamedAnchors]]
-Name = '''graphics.moves.surf.palette'''
-Address = 0x14D8A7C
-Format = '''`lzp4:8`'''
-
-[[NamedAnchors]]
 Name = '''graphics.moves.surf.tileset'''
 Address = 0xE809CC
 Format = '''`lzt4|graphics.moves.surf.palette`'''
@@ -407,11 +387,6 @@ Address = 0x19F6880
 Format = '''[movesFromLevel<[move:data.pokemon.moves.names level.]!0000FF>]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokemon.moves.tutors'''
-Address = 0x1A16234
-Format = '''[move:data.pokemon.moves.names]15'''
-
-[[NamedAnchors]]
 Name = '''data.pokemon.moves.tutorcompatibility'''
 Address = 0x16054E0
 Format = '''[moves|b[]data.pokemon.moves.tutors]data.pokemon.names'''
@@ -492,19 +467,9 @@ Address = 0x252B48
 Format = '''[attack.|z defense.|z speed.|z spAttack.|z spDefense.|z]data.pokemon.natures.names'''
 
 [[NamedAnchors]]
-Name = '''scripts.moves.effects'''
-Address = 0x1437558
-Format = '''[effect<`bse`>]moveeffectoptions'''
-
-[[NamedAnchors]]
 Name = '''scripts.specials.thumb'''
 Address = 0x15FD60
 Format = '''[code<>]455'''
-
-[[NamedAnchors]]
-Name = '''scripts.battle.thumb'''
-Address = 0x1436F70
-Format = '''[code<>]248'''
 
 [[NamedAnchors]]
 Name = '''scripts.battle.ai.thumb'''
@@ -1812,11 +1777,6 @@ Address = 0x3CD160
 Format = '''`ucp4:012`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.tileset'''
-Address = 0xE991F8
-Format = '''`lzt4|graphics.trainercard.palette1`'''
-
-[[NamedAnchors]]
 Name = '''graphics.trainercard.tileset2'''
 Address = 0xE998CC
 Format = '''`lzt4|graphics.trainercard.palette1`'''
@@ -1837,19 +1797,9 @@ Address = 0x3CC4DC
 Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.front.unknown.nobadges.tilemap'''
-Address = 0x3CCAB0
-Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
-
-[[NamedAnchors]]
 Name = '''graphics.trainercard.back.tilemap'''
 Address = 0x3CC984
 Format = '''`lzm4x30x20|graphics.trainercard.tileset`'''
-
-[[NamedAnchors]]
-Name = '''graphics.trainercard.back.unknown.tilemap'''
-Address = 0x3CC8A8
-Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainercard.background.tilemap'''
@@ -1955,6 +1905,11 @@ Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. releas
 Name = '''sound.pokemon.cry.hoennconversion'''
 Address = 0x2539D4
 Format = '''[index:]data.pokemon.names-277'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.palettes.normal'''
+Address = 0x1A061BC
+Format = '''^[palette<`lzp4`> index: unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.type.chart'''
