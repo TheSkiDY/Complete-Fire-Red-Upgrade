@@ -1817,11 +1817,6 @@ Address = 0x3CD160
 Format = '''`ucp4:012`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.tileset'''
-Address = 0xE991F8
-Format = '''`lzt4|graphics.trainercard.palette1`'''
-
-[[NamedAnchors]]
 Name = '''graphics.trainercard.tileset2'''
 Address = 0xE998CC
 Format = '''`lzt4|graphics.trainercard.palette1`'''
@@ -1842,19 +1837,9 @@ Address = 0x3CC4DC
 Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
 
 [[NamedAnchors]]
-Name = '''graphics.trainercard.front.unknown.nobadges.tilemap'''
-Address = 0x3CCAB0
-Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
-
-[[NamedAnchors]]
 Name = '''graphics.trainercard.back.tilemap'''
 Address = 0x3CC984
 Format = '''`lzm4x30x20|graphics.trainercard.tileset`'''
-
-[[NamedAnchors]]
-Name = '''graphics.trainercard.back.unknown.tilemap'''
-Address = 0x3CC8A8
-Format = '''`lzm4x30x20|graphics.trainercard.tileset2`'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainercard.background.tilemap'''

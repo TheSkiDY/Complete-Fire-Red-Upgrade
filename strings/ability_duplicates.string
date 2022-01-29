@@ -1,77 +1,290 @@
-#org @gText_TanglingHair
+#org @gAbilityName_TanglingHair
 TANGLING HAIR
 
-#org @gText_Gooey
+#org @gAbilityName_Gooey
 GOOEY
 
-#org @gText_AirLock
+#org @gAbilityName_AirLock
 AIR LOCK
 
-#org @gText_ShellArmor
+#org @gAbilityName_ShellArmor
 SHELL ARMOR
 
-#org @gText_ChillingNeigh
+#org @gAbilityName_ChillingNeigh
 CHILLING NEIGH
 
-#org @gText_Dazzling
+#org @gAbilityName_Dazzling
 DAZZLING
 
-#org @gText_QueenlyMajesty
+#org @gAbilityName_QueenlyMajesty
 QUEENLY MAJESTY
 
-#org @gText_FullMetalBody
+#org @gAbilityName_FullMetalBody
 FULL METAL BODY
 
-#org @gText_WimpOut
+#org @gAbilityName_WimpOut
 WIMP OUT
 
-#org @gText_Turboblaze
+#org @gAbilityName_Turboblaze
 TURBOBLAZE
 
-#org @gText_Teravolt
+#org @gAbilityName_Teravolt
 TERAVOLT
 
-#org @gText_SolidRock
+#org @gAbilityName_SolidRock
 SOLID ROCK
 
-#org @gText_PrismArmor
+#org @gAbilityName_PrismArmor
 PRISM ARMOR
 
-#org @gText_IronBarbs
+#org @gAbilityName_IronBarbs
 IRON BARBS
 
-#org @gText_Libero
+#org @gAbilityName_Libero
 LIBERO
 
-#org @gText_Magician
+#org @gAbilityName_Magician
 MAGICIAN
 
-#org @gText_Pickpocket
+#org @gAbilityName_Pickpocket
 PICKPOCKET
 
-#org @gText_Multiscale
+#org @gAbilityName_Multiscale
 MULTISCALE
 
-#org @gText_ShadowShield
+#org @gAbilityName_ShadowShield
 SHADOW SHIELD
 
-#org @gText_PowerOfAlchemy
+#org @gAbilityName_PowerOfAlchemy
 POWER OF ALCHEMY
 
-#org @gText_PropellerTail
+#org @gAbilityName_PropellerTail
 PROPELLER TAIL
 
-#org @gText_Cacophony
+#org @gAbilityName_Cacophony
 CACOPHONY
 
-#org @gText_Blaze
+#org @gAbilityName_Blaze
 BLAZE
 
-#org @gText_Torrent
+#org @gAbilityName_Torrent
 TORRENT
 
-#org @gText_Overgrow
+#org @gAbilityName_Overgrow
 OVERGROW
 
-#org @gText_Swarm
+#org @gAbilityName_Swarm
 SWARM
+
+#org @gAbilityName_Virtue
+VIRTUE
+
+#org @gAbilityName_Overcharged
+OVERCHARGE
+
+#org @gAbilityName_Snowfall
+SNOWFALL
+
+#org @gAbilityName_Brainstorm
+BRAINSTORM
+
+#org @gAbilityName_Cyclone
+CYCLONE
+
+#org @gAbilityName_Biohazard
+BIOHAZARD
+
+#org @gAbilityName_Rampage
+RAMPAGE
+
+#org @gAbilityName_Upheaval
+UPHEAVAL
+
+#org @gAbilityName_Bedrock
+BEDROCK
+
+#org @gAbilityName_Wrath
+WRATH
+
+#org @gAbilityName_Haunted
+HAUNTED
+
+#org @gAbilityName_Temper
+TEMPER
+
+#org @gAbilityName_MythicRage
+MYTHIC RAGE
+
+#org @gAbilityName_Enchant
+ENCHANT
+
+#org @gAbilityName_NormalAura
+NORMAL AURA
+
+#org @gAbilityName_FightingAura
+FIGHTING AURA
+
+#org @gAbilityName_FlyingAura
+FLYING AURA
+
+#org @gAbilityName_PoisonAura
+POISON AURA
+
+#org @gAbilityName_GroundAura
+GROUND AURA
+
+#org @gAbilityName_RockAura
+ROCK AURA
+
+#org @gAbilityName_BugAura
+BUG AURA
+
+#org @gAbilityName_GhostAura
+GHOST AURA
+
+#org @gAbilityName_SteelAura
+STEEL AURA
+
+#org @gAbilityName_FireAura
+FIRE AURA
+
+#org @gAbilityName_WaterAura
+WATER AURA
+
+#org @gAbilityName_GrassAura
+GRASS AURA
+
+#org @gAbilityName_ElectricAura
+ELECTRIC AURA
+
+#org @gAbilityName_PsychicAura
+PSYCHIC AURA
+
+#org @gAbilityName_IceAura
+ICE AURA
+
+#org @gAbilityName_DragonAura
+DRAGON AURA
+
+#org @gAbilityName_DarkAura
+DARK AURA
+
+#org @gAbilityName_FairyAura
+FAIRY AURA
+
+#org @gAbilityName_FlameBody
+FLAME BODY
+
+#org @gAbilityName_PoisonPoint
+POISON POINT
+
+#org @gAbilityName_Static
+STATIC
+
+#org @gAbilityDesc_Blaze
+Ups FIRE moves if below 33% HP.
+
+#org @gAbilityDesc_Torrent
+Ups WATER moves if below 33% HP.
+
+#org @gAbilityDesc_Swarm
+Ups BUG moves if below 33% HP.
+
+#org @gAbilityDesc_Overgrow
+Ups GRASS moves if below 33% HP.
+
+#org @gAbilityDesc_Virtue
+Ups NORMAL moves if below 33% HP.
+
+#org @gAbilityDesc_Overcharged
+Ups ELECTRIC moves if below 33% HP.
+
+#org @gAbilityDesc_Snowfall
+Ups ICE moves if below 33% HP.
+
+#org @gAbilityDesc_Brainstorm
+Ups PSYCHIC moves if below 33% HP.
+
+#org @gAbilityDesc_Cyclone
+Ups FLYING moves if below 33% HP.
+
+#org @gAbilityDesc_Biohazard
+Ups POISON moves if below 33% HP.
+
+#org @gAbilityDesc_Rampage
+Ups FIGHTING moves if below 33% HP.
+
+#org @gAbilityDesc_Upheaval
+Ups GROUND moves if below 33% HP.
+
+#org @gAbilityDesc_Bedrock
+Ups ROCK moves if below 33% HP.
+
+#org @gAbilityDesc_Wrath
+Ups DARK moves if below 33% HP.
+
+#org @gAbilityDesc_Haunted
+Ups GHOST moves if below 33% HP.
+
+#org @gAbilityDesc_Temper
+Ups STEEL moves if below 33% HP.
+
+#org @gAbilityDesc_MythicRage
+Ups DRAGON moves if below 33% HP.
+
+#org @gAbilityDesc_Enchant
+Ups FAIRY moves if below 33% HP.
+
+#org @gAbilityDesc_NormalAura
+Powers up NORMAL-type moves.
+
+#org @gAbilityDesc_FightingAura
+Powers up FIGHTING-type moves.
+
+#org @gAbilityDesc_FlyingAura
+Powers up FLYING-type moves.
+
+#org @gAbilityDesc_PoisonAura
+Powers up POISON-type moves.
+
+#org @gAbilityDesc_GroundAura
+Powers up GROUND-type moves.
+
+#org @gAbilityDesc_RockAura
+Powers up ROCK-type moves.
+
+#org @gAbilityDesc_BugAura
+Powers up BUG-type moves.
+
+#org @gAbilityDesc_GhostAura
+Powers up GHOST-type moves.
+
+#org @gAbilityDesc_SteelAura
+Powers up STEEL-type moves.
+
+#org @gAbilityDesc_FireAura
+Powers up FIRE-type moves.
+
+#org @gAbilityDesc_WaterAura
+Powers up WATER-type moves.
+
+#org @gAbilityDesc_GrassAura
+Powers up GRASS-type moves.
+
+#org @gAbilityDesc_ElectricAura
+Powers up ELECTRIC-type moves.
+
+#org @gAbilityDesc_PsychicAura
+Powers up PSYCHIC-type moves.
+
+#org @gAbilityDesc_IceAura
+Powers up ICE-type moves.
+
+#org @gAbilityDesc_DragonAura
+Powers up DRAGON-type moves.
+
+#org @gAbilityDesc_DarkAura
+Powers up DARK-type moves.
+
+#org @gAbilityDesc_FairyAura
+Powers up FAIRY-type moves.

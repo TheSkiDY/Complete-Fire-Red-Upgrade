@@ -25,6 +25,55 @@ The effects of weather\ndisappeared.
 #org @gText_FairyAuraActivate
 [SCRIPTING_BANK] is radiating\na fairy aura!
 
+#org @gText_NormalAuraActivate
+[SCRIPTING_BANK] is radiating\na normal aura!
+
+#org @gText_FlyingAuraActivate
+[SCRIPTING_BANK] is radiating\na flying aura!
+
+#org @gText_FightingAuraActivate
+[SCRIPTING_BANK] is radiating\na fighting aura!
+
+#org @gText_PoisonAuraActivate
+[SCRIPTING_BANK] is radiating\na poison aura!
+
+#org @gText_GroundAuraActivate
+[SCRIPTING_BANK] is radiating\na ground aura!
+
+#org @gText_RockAuraActivate
+[SCRIPTING_BANK] is radiating\na rock aura!
+
+#org @gText_BugAuraActivate
+[SCRIPTING_BANK] is radiating\na bug aura!
+
+#org @gText_SteelAuraActivate
+[SCRIPTING_BANK] is radiating\na steel aura!
+
+#org @gText_FireAuraActivate
+[SCRIPTING_BANK] is radiating\na fire aura!
+
+#org @gText_WaterAuraActivate
+[SCRIPTING_BANK] is radiating\na water aura!
+
+#org @gText_GrassAuraActivate
+[SCRIPTING_BANK] is radiating\na grass aura!
+
+#org @gText_ElectricAuraActivate
+[SCRIPTING_BANK] is radiating\nan electric aura!
+
+#org @gText_PsychicAuraActivate
+[SCRIPTING_BANK] is radiating\na psychic aura!
+
+#org @gText_IceAuraActivate
+[SCRIPTING_BANK] is radiating\nan ice aura!
+
+#org @gText_DragonAuraActivate
+[SCRIPTING_BANK] is radiating\na dragon aura!
+
+#org @gText_GhostAuraActivate
+[SCRIPTING_BANK] is radiating\na ghost aura!
+
+
 #org @gText_AuraBreakActivate
 [SCRIPTING_BANK] reversed all\nother Pok\emon's auras!
 

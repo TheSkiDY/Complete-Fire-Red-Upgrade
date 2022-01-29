@@ -553,6 +553,9 @@ Ups evasion and crit dodges in sun.
 #org @DESC_TRUANT
 Attacks only every two turns.
 
+#org @DESC_BLAZE
+Ups FIRE moves if below 33% HP.
+
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.
 

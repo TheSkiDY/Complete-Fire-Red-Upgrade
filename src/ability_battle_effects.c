@@ -780,6 +780,63 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		case ABILITY_DARKAURA:
 			gBattleStringLoader = gText_DarkAuraActivate;
+			switch(gBattleMons[gBankAttacker].type1)
+			{
+                case TYPE_NORMAL:
+                    gBattleStringLoader = gText_NormalAuraActivate;
+                    break;
+                case TYPE_FIGHTING:
+                    gBattleStringLoader = gText_FightingAuraActivate;
+                    break;
+                case TYPE_FLYING:
+                    gBattleStringLoader = gText_FlyingAuraActivate;
+                    break;
+                case TYPE_POISON:
+                    gBattleStringLoader = gText_PoisonAuraActivate;
+                    break;
+                case TYPE_GROUND:
+                    gBattleStringLoader = gText_GroundAuraActivate;
+                    break;
+                case TYPE_ROCK:
+                    gBattleStringLoader = gText_RockAuraActivate;
+                    break;
+                case TYPE_BUG:
+                    gBattleStringLoader = gText_BugAuraActivate;
+                    break;
+                case TYPE_GHOST:
+                    gBattleStringLoader = gText_GhostAuraActivate;
+                    break;
+                case TYPE_STEEL:
+                    gBattleStringLoader = gText_SteelAuraActivate;
+                    break;
+                case TYPE_FIRE:
+                    gBattleStringLoader = gText_FireAuraActivate;
+                    break;
+                case TYPE_WATER:
+                    gBattleStringLoader = gText_WaterAuraActivate;
+                    break;
+                case TYPE_GRASS:
+                    gBattleStringLoader = gText_GrassAuraActivate;
+                    break;
+                case TYPE_ELECTRIC:
+                    gBattleStringLoader = gText_ElectricAuraActivate;
+                    break;
+                case TYPE_PSYCHIC:
+                    gBattleStringLoader = gText_PsychicAuraActivate;
+                    break;
+                case TYPE_ICE:
+                    gBattleStringLoader = gText_IceAuraActivate;
+                    break;
+                 case TYPE_DRAGON:
+                    gBattleStringLoader = gText_DragonAuraActivate;
+                    break;
+                 case TYPE_DARK:
+                    gBattleStringLoader = gText_DarkAuraActivate;
+                    break;
+                 case TYPE_FAIRY:
+                    gBattleStringLoader = gText_FairyAuraActivate;
+                    break;
+			}
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
