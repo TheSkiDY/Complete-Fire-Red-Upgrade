@@ -1609,6 +1609,9 @@ bool8 CanBeConfused(u8 bank, u8 checkSafeguard)
 	if (IsConfused(bank))
 		return FALSE;
 
+	if (IsOfType(bank,TYPE_BUG))
+		return FALSE;
+
 	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bank))
 		return FALSE;
 

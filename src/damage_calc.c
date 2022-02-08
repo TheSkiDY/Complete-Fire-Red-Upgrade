@@ -2369,10 +2369,14 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		}
 	#endif
 
-//Sandstorm Sp. Def Increase
+//Weather Increase
 	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SANDSTORM_ANY)
 	&& ((!useMonDef && IsOfType(bankDef, TYPE_ROCK)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ROCK))))
 		data->spDefense = (15 * data->spDefense) / 10;
+
+	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY)
+	&& ((!useMonDef && IsOfType(bankDef, TYPE_ROCK)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE))))
+		data->defense = (15 * data->defense) / 10;
 
 //Old Exploding Check
 	#ifdef OLD_EXPLOSION_BOOST
@@ -2500,6 +2504,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	//Helping Hand Boost
 	if (!(data->specialFlags & FLAG_AI_CALC) && gProtectStructs[bankAtk].helpingHand)
 		damage = (damage * 15) / 10;
+
+	//Fighting types get boost if taunted
+	if(IsOfType(bankAtk,TYPE_FIGHTING) && IsTaunted(bankAtk))
+		damage = (damage * 15) / 10;
+
 
 	//Weather Boost
 	if (WEATHER_HAS_EFFECT && data->defItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA)

@@ -1182,10 +1182,12 @@ MOVESCR_CHECK_0:
 			switch (move) {
 				case MOVE_TEETERDANCE: //Check if can affect either target
 					if ((IsConfused(bankDef)
+					  || (IsOfType(bankDef,TYPE_BUG))
 					  || (NO_MOLD_BREAKERS(data->atkAbility, move) && data->defAbility == ABILITY_OWNTEMPO)
 					  || (CheckGrounding(bankDef) == GROUNDED && gTerrainType == MISTY_TERRAIN)
 					  || (MoveBlockedBySubstitute(move, bankAtk, bankDef)))
 					&&  (IsConfused(data->bankDefPartner)
+					  || (IsOfType(bankDef,TYPE_BUG))
 					  || (NO_MOLD_BREAKERS(data->atkAbility, move) && data->defPartnerAbility == ABILITY_OWNTEMPO)
 					  || (CheckGrounding(data->bankDefPartner) == GROUNDED && gTerrainType == MISTY_TERRAIN)
 					  || (MoveBlockedBySubstitute(move, bankAtk, data->bankDefPartner))))
@@ -1195,6 +1197,7 @@ MOVESCR_CHECK_0:
 					break;
 				default:
 					if (IsConfused(bankDef)
+					|| (IsOfType(bankDef,TYPE_BUG))
 					|| (NO_MOLD_BREAKERS(data->atkAbility, move) && data->defAbility == ABILITY_OWNTEMPO)
 					|| (CheckGrounding(bankDef) == GROUNDED && gTerrainType == MISTY_TERRAIN)
 					|| (MoveBlockedBySubstitute(move, bankAtk, bankDef))

@@ -1940,6 +1940,12 @@ void atkFF34_canconfuse(void)
 		gBattlescriptCurrInstr = BattleScript_PauseResultMessage;
 		return;
 	}
+	else if (IsOfType(bank, TYPE_BUG))
+	{
+		gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+		gBattlescriptCurrInstr = BattleScript_PauseResultMessage;
+		return;
+	}
 	else if (IsConfused(bank))
 	{
 		gBattleStringLoader = gText_TargetAlreadyConfused;
