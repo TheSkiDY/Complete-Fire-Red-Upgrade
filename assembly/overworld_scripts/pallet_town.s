@@ -19,7 +19,7 @@ EventScript_PalletTown_TechnologyGuy:
 	callasm 0x8727CF9
 	faceplayer
 	setflag 0x971
-	setvar 0x50A0 14
+	setvar 0x50A0 70
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
@@ -37,7 +37,7 @@ EventScript_PalletTown_TechnologyGuy:
 	special 0x62
 	givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
 	givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
-	givepokemon SPECIES_SLIGGOO 10 0x0 0x0 0x0 0x0
+	givepokemon SPECIES_ENAMORUS_THERIAN 60 0x0 0x0 0x0 0x0
 	givepokemon SPECIES_LUGIA_SHADOW 40 0x0 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F

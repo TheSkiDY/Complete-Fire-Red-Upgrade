@@ -188,6 +188,20 @@ void SetStatSwapSplit(void)
 			gBattleMons[bankDef].spDefense = MathMax(1, newSpDef);
 
 			gBattleStringLoader = GuardSplitString;
+
+			break;
+
+		case MOVE_POWERSHIFT:
+			temp = gBattleMons[bankAtk].attack;
+			gBattleMons[bankAtk].attack = gBattleMons[bankAtk].defense;
+			gBattleMons[bankAtk].defense = temp;
+
+			temp = gBattleMons[bankAtk].spAttack;
+			gBattleMons[bankAtk].spAttack = gBattleMons[bankAtk].spDefense;
+			gBattleMons[bankAtk].spDefense = temp;
+
+			gBattleStringLoader = PowerShiftString;
+			break;
 	}
 }
 

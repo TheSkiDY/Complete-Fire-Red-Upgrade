@@ -12150,20 +12150,20 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = 0
 	},
 
-	[MOVE_EMPTY_13] =
+	[MOVE_POWERSHIFT] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 40,
+		.effect = EFFECT_STAT_SWAP_SPLIT,
+		.power = 0,
 		.type = TYPE_NORMAL,
-		.accuracy = 100,
-		.pp = 35,
+		.accuracy = 0,
+		.pp = 10,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_USER,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
-		.z_move_effect = 0
+		.flags = FLAG_SNATCH_AFFECTED,
+		.z_move_power = 0,
+		.split = SPLIT_STATUS,
+		.z_move_effect = Z_EFFECT_DEF_UP_1
 	},
 
 	[MOVE_EMPTY_14] =

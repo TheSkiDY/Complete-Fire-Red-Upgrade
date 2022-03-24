@@ -1195,8 +1195,8 @@ The user focuses its\nmind to defeat the\nfear of darkness.\nSuper-effective\nag
 #org @DESC_HIT_AND_RUN
 After a quick punch,\nthe user rushes back\nto switch places with\na party POK\eMON\nin waiting.
 
-#org @DESC_MOVE_EMPTY_13
-Empty move (13).
+#org @DESC_POWERSHIFT
+The user's ATTACK and\nSP. ATTACK stats\nare swapped with its\nDEFENSE and SP. DEFENSE stats.
 
 #org @DESC_MOVE_EMPTY_14
 Empty move (14).
