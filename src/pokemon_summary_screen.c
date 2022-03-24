@@ -178,7 +178,9 @@ void HandleDuplicateNames_SummaryScreen()
                     break;
                 case SPECIES_GOOMY:
                 case SPECIES_SLIGGOO:
+                case SPECIES_SLIGGOO_H:
                 case SPECIES_GOODRA:
+                case SPECIES_GOODRA_H:
                     StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Gooey);
                     break;
             }
@@ -337,6 +339,7 @@ void HandleDuplicateNames_SummaryScreen()
                 case SPECIES_OSHAWOTT:
                 case SPECIES_DEWOTT:
                 case SPECIES_SAMUROTT:
+                case SPECIES_SAMUROTT_H:
                     StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_ShellArmor);
                     break;
             }

@@ -1073,7 +1073,9 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
                     break;
                 case SPECIES_GOOMY:
                 case SPECIES_SLIGGOO:
+                case SPECIES_SLIGGOO_H:
                 case SPECIES_GOODRA:
+                case SPECIES_GOODRA_H:
                     ptr = gAbilityName_Gooey;
                     break;
             }
@@ -1232,6 +1234,7 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
                 case SPECIES_OSHAWOTT:
                 case SPECIES_DEWOTT:
                 case SPECIES_SAMUROTT:
+                case SPECIES_SAMUROTT_H:
                     ptr = gAbilityName_ShellArmor;
                     break;
             }

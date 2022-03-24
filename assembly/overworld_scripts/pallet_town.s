@@ -25,8 +25,12 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 100
 	additem ITEM_ABILITY_PATCH 1
-	additem ITEM_DREAM_BALL 3
-	additem ITEM_SHINY_BALL 4
+	additem ITEM_ROOM_EXTENDER 1
+	additem ITEM_GALARICA_CUFF 1
+	additem ITEM_GALARICA_WREATH 1
+	additem ITEM_WISHING_PIECE 1 
+	additem ITEM_BLACK_AUGURITE 1
+	additem ITEM_PEAT_BLOCK 1
 	additem ITEM_MEGA_RING 1
 	setflag 0x91E
 	setvar 0x8004 0xF
@@ -37,7 +41,6 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_LUGIA_SHADOW 40 0x0 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F
-	setflag 0x200
 	callasm 0x8727DCD
 	end
 
