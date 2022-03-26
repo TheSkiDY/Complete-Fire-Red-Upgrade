@@ -3,6 +3,7 @@
 
 #include "../include/battle_string_ids.h"
 #include "../include/link.h"
+#include "../include/pokedex.h"
 #include "../include/string_util.h"
 #include "../include/text.h"
 #include "../include/constants/flags.h"
@@ -1055,6 +1056,13 @@ const u8* GetAbilityName(const u8 ability)
 		ptr = T1_READ_PTR(ptr);
 
 	return ptr;
+}
+
+const u8* GetAbilityNameDex(const u8 ability)
+{
+	u16 species = sPokedexScreenData->dexSpecies;
+
+	return GetAbilityNameByMon(ability,species);
 }
 
 

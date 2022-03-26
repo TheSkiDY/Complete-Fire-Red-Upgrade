@@ -302,7 +302,7 @@ gTotalCameraPixelOffsetX = 0x300506C;
 gInputToStoreInQuestLogMaybe = 0x3005078;
 gCB2_AfterEvolution = 0x300537C;
 gItemUseCB = 0x3005E98;
-
+sPokedexScreenData = 0x203ACF0;
 
 /* NEW */
 gTrainerCards = 0x2039624;
