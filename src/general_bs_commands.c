@@ -3520,7 +3520,22 @@ void atkAA_setdestinybond(void) {
 
 void atkAD_tryspiteppreduce(void)
 {
-	if (TrySpitePPReduce(gBankTarget, 4))
+	u8 lostPP;
+	switch(gCurrentMove)
+	{
+		case MOVE_EERIESPELL:
+			lostPP = 3;
+			break;
+		case MOVE_SPITE:
+		case MOVE_G_MAX_DEPLETION_P:
+		case MOVE_G_MAX_DEPLETION_S:
+		default:
+			lostPP = 4;
+			break;
+	}
+
+
+	if (TrySpitePPReduce(gBankTarget, lostPP))
 		gBattlescriptCurrInstr += 5;
 	else
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);

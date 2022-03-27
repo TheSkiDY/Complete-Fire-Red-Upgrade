@@ -11879,17 +11879,17 @@ const struct BattleMove gBattleMoves[] =
 	},
 
 	[MOVE_FREEZINGGLARE] =
-	{	//ANIM TODO
+	{    //ANIM TODO
 		.effect = EFFECT_FREEZE_HIT,
-		.power = 40, //PLACEHOLDERS
+		.power = 90,
 		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 10,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 150,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
@@ -11897,15 +11897,15 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_THUNDEROUSKICK] =
 	{	//ANIM TODO
 		.effect = EFFECT_DEFENSE_DOWN_HIT,
-		.power = 40, //PLACEHOLDER DATA
+		.power = 90,
 		.type = TYPE_FIGHTING,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 10,
 		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 140,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -11913,31 +11913,31 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_FIERYWRATH] =
 	{	//ANIM TODO
 		.effect = EFFECT_FLINCH_HIT,
-		.power = 40, //PLACEHOLDER DATA
+		.power = 90, 
 		.type = TYPE_DARK,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 10,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_BOTH,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 150,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 
 	[MOVE_THUNDERCAGE] =
 	{	//ANIM TODO
-		.effect = EFFECT_TRAP, //EFFECT TODO?
-		.power = 80, //PLACEHOLDER DATA
+		.effect = EFFECT_TRAP,
+		.power = 80,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 90,
-		.pp = 35,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 140,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
@@ -12151,7 +12151,7 @@ const struct BattleMove gBattleMoves[] =
 	},
 
 	[MOVE_POWERSHIFT] =
-	{
+	{    //ANIM TODO
 		.effect = EFFECT_STAT_SWAP_SPLIT,
 		.power = 0,
 		.type = TYPE_NORMAL,
@@ -12166,66 +12166,66 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = Z_EFFECT_DEF_UP_1
 	},
 
-	[MOVE_EMPTY_14] =
-	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
+	[MOVE_EERIESPELL] =
+	{	//ANIM TODO
+		.effect = EFFECT_SPITE,
+		.power = 80,
+		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 5,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 160,
+		.split = SPLIT_SPECIAL,
+		.z_move_effect = 0
+	},
+
+	[MOVE_GLACIALLANCE] =
+	{ 	//ANIM TODO
+		.effect = EFFECT_HIT,
+		.power = 130,
+		.type = TYPE_NORMAL,
+		.accuracy = 100,
+		.pp = 5,
+		.secondaryEffectChance = 0,
+		.target = MOVE_TARGET_BOTH,
+		.priority = 0,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 150,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 
-	[MOVE_EMPTY_15] =
-	{
+	[MOVE_ASTRALBARRAGE] =
+	{	//ANIM TODO
 		.effect = EFFECT_HIT,
-		.power = 40,
+		.power = 120,
 		.type = TYPE_NORMAL,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 5,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_BOTH,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
+		.z_move_power = 150,
+		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 
-	[MOVE_EMPTY_16] =
-	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
+	[MOVE_DIRECLAW] =
+	{	//ANIM TODO
+		.effect = EFFECT_TRI_ATTACK,
+		.power = 60,
+		.type = TYPE_POISON,
 		.accuracy = 100,
-		.pp = 35,
-		.secondaryEffectChance = 0,
+		.pp = 15,
+		.secondaryEffectChance = 50,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
-		.z_move_effect = 0
-	},
-
-	[MOVE_EMPTY_17] =
-	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
-		.accuracy = 100,
-		.pp = 35,
-		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
-		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 130,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -16565,5 +16565,7 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_TOXICCLENCH] = 140,
 	[MOVE_SOULFOCUS] = 120,
 	[MOVE_HITANDRUN] = 130,
+
+	[MOVE_EERIESPELL] = 140,
 };
 #endif

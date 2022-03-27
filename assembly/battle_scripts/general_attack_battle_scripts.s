@@ -2083,6 +2083,7 @@ BS_099_Flail:
 
 .global BS_100_Spite
 BS_100_Spite:
+	jumpifmove MOVE_EERIESPELL EerieSpellBS
 	attackcanceler
 	accuracycheck FAILED_PRE 0x0
 	attackstringnoprotean
@@ -2093,6 +2094,18 @@ BS_100_Spite:
 	waitanimation
 	printstring 0x8D
 	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+EerieSpellBS:
+	attackcanceler
+	accuracycheck FAILED_PRE 0x0
+	attackstringnoprotean
+	reducepprandom BS_STANDARD_HIT
+	call STANDARD_DAMAGE
+	waitmessage DELAY_1SECOND
+	printstring 0x8D
+	waitmessage DELAY_1SECOND
+	jumpiffainted BANK_TARGET BS_MOVE_FAINT
 	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

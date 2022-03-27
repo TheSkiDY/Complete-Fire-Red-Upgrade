@@ -10,6 +10,7 @@
 #include "../include/new/dynamax.h"
 #include "../include/new/item.h"
 #include "../include/new/move_battle_scripts.h"
+#include "../include/new/new_bs_commands.h"
 #include "../include/new/set_effect.h"
 #include "../include/new/stat_buffs.h"
 #include "../include/new/util.h"
@@ -387,8 +388,30 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				}
 				else
 				{
-					gBattleCommunication[MOVE_EFFECT_BYTE] = umodsi(Random(), 3) + 3;
-					SetMoveEffect(FALSE, 0);
+					if(gCurrentMove == MOVE_DIRECLAW)
+					{
+						u8 effect = umodsi(Random(), 3);
+						switch(effect)
+						{
+							case 0:
+								gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON;
+								SetMoveEffect(FALSE, 0);
+								break;
+						    case 1:
+						    	gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_PARALYSIS;
+								SetMoveEffect(FALSE, 0);
+						    	break;
+						    case 2:
+						    	BattleScriptPush(gBattlescriptCurrInstr + 1);
+								gBattlescriptCurrInstr = BattleScript_MaxMoveSetYawn;
+						    	break;
+						}
+					}
+					else
+					{
+						gBattleCommunication[MOVE_EFFECT_BYTE] = umodsi(Random(), 3) + 3;
+						SetMoveEffect(FALSE, 0);
+					}
 				}
 				break;
 

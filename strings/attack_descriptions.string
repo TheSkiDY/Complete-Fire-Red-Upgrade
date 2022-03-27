@@ -1198,17 +1198,17 @@ After a quick punch,\nthe user rushes back\nto switch places with\na party POK\e
 #org @DESC_POWERSHIFT
 The user's ATTACK and\nSP. ATTACK stats\nare swapped with its\nDEFENSE and SP. DEFENSE stats.
 
-#org @DESC_MOVE_EMPTY_14
-Empty move (14).
+#org @DESC_EERIESPELL
+The user attacks with its tremendous\npsychic power. This\nalso removes 3 PP from\nthe target's last move.
 
-#org @DESC_MOVE_EMPTY_15
-Empty move (15).
+#org @DESC_GLACIALLANCE
+The user attacks by\nhurling a blizzard\ncloaked icicle lance\nat opposing POK\eMON.
 
-#org @DESC_MOVE_EMPTY_16
-Empty move (16).
+#org @DESC_ASTRALBARRAGE
+The user attacks by\nsending a frightful\namount of small ghosts\nat opposing POK\eMON.
 
-#org @DESC_MOVE_EMPTY_17
-Empty move (17).
+#org @DESC_DIRECLAW
+The user lashes out\nat the target with\nruinous claws that may\nleave the target poisoned,\nparalyzed, or drowsy.
 
 #org @DESC_MOVE_EMPTY_18
 Empty move (18).

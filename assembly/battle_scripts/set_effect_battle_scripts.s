@@ -426,6 +426,7 @@ BattleScript_MaxMoveSetGravity:
 BattleScript_MaxMoveSetYawn:
 	callasm ActuallySetYawn
 	printstring 0xB6 @;STRINGID_PKMNWASMADEDROWSY
+	waitmessage DELAY_1SECOND
 	return
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
