@@ -3016,6 +3016,9 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 
 		case MOVE_HEX:
+		case MOVE_BARBBARRAGE:
+		case MOVE_BITTERMALICE:
+		case MOVE_INFERNALPARADE:
 			if (!(data->specialFlags & FLAG_IGNORE_TARGET)
 			&& data->defStatus1 & STATUS_ANY)
 				power *= 2;

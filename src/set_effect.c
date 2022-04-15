@@ -498,10 +498,34 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				}
 				else
 				{
-					gBattleScripting.animArg1 = gBattleCommunication[MOVE_EFFECT_BYTE] & ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
-					gBattleScripting.animArg2 = 0;
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattlescriptCurrInstr = BattleScript_StatUp;
+					switch(gCurrentMove)
+					{
+						case MOVE_PSYSHIELDBASH:
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = PsyshieldBashBS;
+							break;
+						case MOVE_MYSTICALPOWER: ;
+							u16 species = gBattleMons[gEffectBank].species;
+							u16 atkStats = gBaseStats[species].baseAttack + gBaseStats[species].baseSpAttack;
+							u16 defStats = gBaseStats[species].baseDefense + gBaseStats[species].baseSpDefense;
+							if(atkStats >= defStats)
+							{
+								BattleScriptPush(gBattlescriptCurrInstr + 1);
+								gBattlescriptCurrInstr = MysticalPowerAtkUpBS;
+							}
+							else
+							{
+								BattleScriptPush(gBattlescriptCurrInstr + 1);
+								gBattlescriptCurrInstr = PsyshieldBashBS;
+							}
+							break;
+						default:
+							gBattleScripting.animArg1 = gBattleCommunication[MOVE_EFFECT_BYTE] & ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
+							gBattleScripting.animArg2 = 0;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = BattleScript_StatUp;
+							break;
+					}
 				}
 				break;
 
@@ -672,9 +696,18 @@ void SetMoveEffect(bool8 primary, u8 certain)
 			case MOVE_EFFECT_ALL_STATS_UP:
 				if (gCurrentMove != MOVE_CLANGOROUS_SOULBLAZE || !gNewBS->secondaryEffectApplied) //Hits two targets but only gets effect once
 				{
-					gNewBS->secondaryEffectApplied = TRUE;
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattlescriptCurrInstr = BattleScript_AllStatsUp;
+					if(!(gCurrentMove == MOVE_SPRINGTIDESTORM && gBattleMons[gEffectBank].species == SPECIES_ENAMORUS_THERIAN))
+					{
+						gNewBS->secondaryEffectApplied = TRUE;
+						BattleScriptPush(gBattlescriptCurrInstr + 1);
+						gBattlescriptCurrInstr = BattleScript_AllStatsUp;
+					}
+					else
+					{
+						BattleScriptPush(gBattlescriptCurrInstr + 1);
+						gBattlescriptCurrInstr = SpringtideStormStatDownBS;
+					}
+
 				}
 				break;
 

@@ -66,6 +66,10 @@ extern const u8 BattleScript_CouldntFullyProtect[];
 extern const u8 BattleScript_TeleportSwitch[];
 extern const u8 BattleScript_TeleportFlee[];
 
+extern const u8 PsyshieldBashBS[];
+extern const u8 SpringtideStormStatDownBS[];
+extern const u8 MysticalPowerAtkUpBS[];
+
 extern const u8 BattleScript_TargetSleepHeal[];
 extern const u8 BattleScript_TargetBurnHeal[];
 extern const u8 BattleScript_ItemSteal[];

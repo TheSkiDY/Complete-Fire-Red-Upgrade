@@ -168,7 +168,7 @@ gBattleScriptingCommandsTable:
 .word atk97_tryinfatuating		@tryinfatuatebank
 .word 0x8029049					@refreshhpbar
 .word atk99_setmist				@setmisteffect
-.word 0x8029279					@setincreasedcriticalchance
+.word atk9A_setincreasedcriticalchance	@setincreasedcriticalchance
 .word atk9B_transformdataexecution
 .word 0x8029475					@setsubstituteeffect
 .word atk9D_mimicattackcopy		@copyattack

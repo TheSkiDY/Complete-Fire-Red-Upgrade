@@ -3055,6 +3055,40 @@ void atk99_setmist(void)
 	gBattlescriptCurrInstr++;
 }
 
+void atk9A_setincreasedcriticalchance(void)
+{
+    if (gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY)
+    {
+    	if(gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+    	{
+	        gMoveResultFlags |= MOVE_RESULT_FAILED;
+	        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+    	}
+    }
+    else
+    {
+        gBattleMons[gBankAttacker].status2 |= STATUS2_FOCUS_ENERGY;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+    }
+    gBattlescriptCurrInstr++;
+}
+
+void TryPrintFocusEnergyString(void)
+{
+	if (gBattleExecBuffer) return;
+
+	if (gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY) return;
+	else
+	{
+		u16* ptr = 0x83FE5B0;
+		ptr += gBattleCommunication[MULTISTRING_CHOOSER];
+		u16 stringId = *(u16*)ptr;
+		PrepareStringBattle(stringId, gBankAttacker);
+		gBattleCommunication[MSG_DISPLAY] = 1;
+	}
+
+}
+
 void atk9B_transformdataexecution(void)
 {
 	gChosenMove = 0xFFFF;
@@ -3688,6 +3722,7 @@ void atkB0_trysetspikes(void)
 
 	switch (gCurrentMove) {
 		case MOVE_STEALTHROCK:
+		case MOVE_STONEAXE:
 		case MOVE_G_MAX_STONESURGE_P:
 		case MOVE_G_MAX_STONESURGE_S:
 			if (gSideTimers[defSide].srAmount)
@@ -3749,6 +3784,7 @@ void atkB0_trysetspikes(void)
 			}
 			break;
 
+		case MOVE_CEASELESSEDGE:
 		default:
 			if (gSideTimers[defSide].spikesAmount >= 3)
 			{

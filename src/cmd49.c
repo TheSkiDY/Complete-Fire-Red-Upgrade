@@ -1041,7 +1041,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 			if (arg1 != ARG_IN_FUTURE_ATTACK
 			&&  !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE))
 			{
-				if ((gCurrentMove == MOVE_MINDBLOWN || gCurrentMove == MOVE_STEELBEAM)
+				if ((gCurrentMove == MOVE_MINDBLOWN || gCurrentMove == MOVE_STEELBEAM || (gCurrentMove == MOVE_CHLOROBLAST && !(gBattleWeather & WEATHER_SUN_ANY)))
 				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
 				&& BATTLER_ALIVE(gBankAttacker))
 				{

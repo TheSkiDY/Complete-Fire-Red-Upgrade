@@ -1163,7 +1163,7 @@ The higher the\nuser's HP, the\nmore powerful this\nattack becomes.
 The user rapidly\nstrikes while covered\nin flames. This move\nis guaranteed to go\nfirst.
 
 #org @DESC_STONE_AXE
-The user swings its\nown arm like an axe.\nLands critical hits\nmore often but lowers\nATTACK on use.
+The user swings its\nown arm like an axe.\nLands critical hits\nmore often and throws\nlevitating rocks around\nfoe's party.
 
 #org @DESC_PHANTOM_BOLT
 The user crashes\nan electric blast\nfrom the shadows at\nthe foe. It may leave\nthe foe paralyzed.
@@ -1210,68 +1210,68 @@ The user attacks by\nsending a frightful\namount of small ghosts\nat opposing PO
 #org @DESC_DIRECLAW
 The user lashes out\nat the target with\nruinous claws that may\nleave the target poisoned,\nparalyzed, or drowsy.
 
-#org @DESC_MOVE_EMPTY_18
-Empty move (18).
+#org @DESC_PSYSHIELDBASH
+Cloaking itself in\npsychic energy, the\nuser slams into the\ntarget. This may also\nraise the user's\ndefensive stats.
 
-#org @DESC_MOVE_EMPTY_19
-Empty move (19).
+#org @DESC_SPRINGTIDESTORM
+The user attacks with\nfierce winds brimming\nwith love and hate.\nThis move's additional\neffects depend on the\nuser's form.
 
-#org @DESC_MOVE_EMPTY_20
-Empty move (20).
+#org @DESC_MYSTICALPOWER
+Inflicts damage and\nraises either the\nuser's offensive stats\nor defensive stats,\nwhichever base stat is\nhigher.
 
-#org @DESC_MOVE_EMPTY_21
-Empty move (21).
+#org @DESC_RAGINGFURY
+The user rampages and\nspews vicious flames\nto inflict damage on\nthe target, then\nbecomes fixated on\nusing this move.
 
-#org @DESC_MOVE_EMPTY_22
-Empty move (22).
+#org @DESC_WAVECRASH
+The user shrouds itself\nin water and slams\ninto the target. This\nalso damages the user\nby 33% damage inflicted.
 
-#org @DESC_MOVE_EMPTY_23
-Empty move (23).
+#org @DESC_CHLOROBLAST
+The user launches its\namassed chlorophyll to\ninflict damage on the\ntarget. Damages the\nuser without harsh\nsunlight.
 
-#org @DESC_MOVE_EMPTY_24
-Empty move (24).
+#org @DESC_MOUNTAINGALE
+The user hurls giant\nchunks of ice at the\ntarget to inflict\ndamage. It may flinch\nthe opponent.
 
-#org @DESC_MOVE_EMPTY_25
-Empty move (25).
+#org @DESC_VICTORYDANCE
+The user performs a\ndance to usher in\nvictory, raising its\nATTACK, DEFENSE,\nand SPEED.
 
-#org @DESC_MOVE_EMPTY_26
-Empty move (26).
+#org @DESC_HEADLONGRUSH
+The user smashes\ninto the target in a\nfull-body tackle. This\nalso lowers the user's\ndefensive stats.
 
-#org @DESC_MOVE_EMPTY_27
-Empty move (27).
+#org @DESC_BARBBARRAGE
+The user launches\ncountless toxic barbs.\nDamage is doubled if\nthe target has a\nstatus condition.
 
-#org @DESC_MOVE_EMPTY_28
-Empty move (28).
+#org @DESC_ESPERWING
+The user slashes with\naura-enriched wings.\nIt raises user's SPEED\nand has a high chance\nto land critical hit.
 
-#org @DESC_MOVE_EMPTY_29
-Empty move (29).
+#org @DESC_BITTERMALICE
+The user attacks with\nspine-chilling grudge.\nDamage is doubled if\nthe target has a\nstatus condition.
 
-#org @DESC_MOVE_EMPTY_30
-Empty move (30).
+#org @DESC_SHELTER
+The user makes its\nskin as hard as an\niron shield, raising\nits defensive stats\nand evasiveness.
 
-#org @DESC_MOVE_EMPTY_31
-Empty move (31).
+#org @DESC_TRIPLEARROWS
+The user delivers an\naxe kick, then fires\nthree arrows. This\nraises the chance of\nlanding critical hits.
 
-#org @DESC_MOVE_EMPTY_32
-Empty move (32).
+#org @DESC_INFERNALPARADE
+The user attacks with\nmyriad fireballs.\nDamage is doubled if\nthe target has a\nstatus condition.
 
-#org @DESC_MOVE_EMPTY_33
-Empty move (33).
+#org @DESC_CEASELESSEDGE
+The user slashes its\nshell blade at the\ntarget. Spikes are\nleft behind by this\nattack. 
 
-#org @DESC_MOVE_EMPTY_34
-Empty move (34).
+#org @DESC_BLEAKWINDSTORM
+The user attacks with\nsavagely cold winds.\nThis may also leave\nthe target frozen.
 
-#org @DESC_MOVE_EMPTY_35
-Empty move (35).
+#org @DESC_WILDBOLTSTORM
+The user summons a\nthunderous tempest and\nsavagely attacks with\nlightning and wind.\nMay leave the foe\nparalyzed.
 
-#org @DESC_MOVE_EMPTY_36
-Empty move (36).
+#org @DESC_SANDSEARSTORM
+The user attacks by\nwrapping the target\nin fierce winds and\nsearingly hot sand.\nMay leave the foe\nburned.
 
-#org @DESC_MOVE_EMPTY_37
-Empty move (37).
+#org @DESC_LUNARBLESSING
+The user heals its\nown status condition,\nrestores its HP\nand also raises\nevasiveness. 
 
-#org @DESC_MOVE_EMPTY_38
-Empty move (38).
+#org @DESC_TAKEHEART
+The user lifts its\nspirits, healing its\nown status condition\nand raising all its\nstats.
 
 #org @DESC_MOVE_EMPTY_39
 Empty move (39).
