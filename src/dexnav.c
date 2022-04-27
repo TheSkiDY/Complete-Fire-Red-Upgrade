@@ -174,6 +174,11 @@ void DexNavGetMon(u16 species, u8 potential, u8 level, u8 ability, u16* moves, u
 		}
 	}
 
+
+	if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+	{
+		VarSet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES, (u16)sDexNavHudPtr->species);
+	}
 	//Create standard wild
 	CreateWildMon(species, level, FindHeaderIndexWithLetter(species, sDexNavHudPtr->unownLetter - 1), TRUE);
 
@@ -542,7 +547,7 @@ extern const u8 SystemScript_DisplayDexnavMsg[];
 static void DexNavShowFieldMessage(u8 id)
 {
 	u16 species = sDexNavHudPtr->species;
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 
 	ScriptContext2_Enable();
 	DismissMapNamePopup();
@@ -956,13 +961,20 @@ static u8 GetEncounterLevel(u16 species, u8 environment)
 			for (i = 0; i < NUM_LAND_MONS; ++i)
 			{
 				struct WildPokemon monData = landMonsInfo->wildPokemon[i];
-				if (monData.species == species)
+				u16 monSpecies = monData.species;
+				if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+				{
+					gLastWildIndex = i;
+					monSpecies = GetRandomizedSpecies(landMonsInfo->wildPokemon[i].species);
+				}
+				if (monSpecies == species)
 				{
 					min = (min < monData.minLevel) ? min : monData.minLevel;
 					max = (max > monData.maxLevel) ? max : monData.maxLevel;
 					break;
 				}
 			}
+			gLastWildIndex = 0;
 
 			if (i >= NUM_LAND_MONS) //Pokemon not found here
 				return MAX_LEVEL + 1;
@@ -975,13 +987,20 @@ static u8 GetEncounterLevel(u16 species, u8 environment)
 			for (i = 0; i < NUM_WATER_MONS; ++i)
 			{
 				struct WildPokemon monData = waterMonsInfo->wildPokemon[i];
-				if (monData.species == species)
+				u16 monSpecies = monData.species;
+				if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+				{
+					gLastWildIndex = i;
+					monSpecies = GetRandomizedSpecies(landMonsInfo->wildPokemon[i].species);
+				}
+				if (monSpecies == species)
 				{
 					min = (min < monData.minLevel) ? min : monData.minLevel;
 					max = (max > monData.maxLevel) ? max : monData.maxLevel;
 					break;
 				}
 			}
+			gLastWildIndex = 0;
 
 			if (i >= NUM_WATER_MONS) //Pokemon not found here
 				return MAX_LEVEL + 1;
@@ -1055,7 +1074,7 @@ static u8 DexNavGenerateHiddenAbility(u16 species, u8 searchLevel)
 {
 	bool8 genAbility = FALSE;
 	u16 randVal = Random() % 100;
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 
 	if (searchLevel < 5)
 	{
@@ -1404,7 +1423,7 @@ void DexNavHudDrawSpeciesIcon(u16 species, u8* spriteIdAddr)
 		pid = GenerateUnownPersonalityByLetter(sDexNavHudPtr->unownLetter - 1);
 
 	//Load which palette the species icon uses
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	LoadMonIconPalette(species);
 
 	//Create the icon
@@ -1872,7 +1891,7 @@ static void VBlankCB_DexNav(void)
 
 static bool8 SpeciesInArray(u16 species, u8 indexCount, u8 unownLetter)
 {
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	u16 dexNum = SpeciesToNationalPokedexNum(species);
 
 	//Disallow species not seen
@@ -1920,7 +1939,7 @@ static bool8 SpeciesInArray(u16 species, u8 indexCount, u8 unownLetter)
 			#endif
 			{
 				u16 wildSpecies = sDexNavGuiPtr->grassSpecies[i];
-				TryRandomizeSpecies(&wildSpecies);
+				//TryRandomizeSpecies(&wildSpecies);
 				if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 					return TRUE;
 			}
@@ -1928,7 +1947,7 @@ static bool8 SpeciesInArray(u16 species, u8 indexCount, u8 unownLetter)
 		else
 		{
 			u16 wildSpecies = sDexNavGuiPtr->waterSpecies[i];
-			TryRandomizeSpecies(&wildSpecies);
+			//TryRandomizeSpecies(&wildSpecies);
 			if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 				return TRUE;
 		}
@@ -1954,10 +1973,14 @@ static void DexNavPopulateEncounterList(void)
 		for (int i = 0; i < NUM_LAND_MONS; ++i)
 		{
 			species = landMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i;
+				species = GetRandomizedSpecies(landMonsInfo->wildPokemon[i].species);
+			}
 			if (species != SPECIES_NONE && !SpeciesInArray(species, NUM_LAND_MONS, PickUnownLetter(species, i)))
 			{
-				sDexNavGuiPtr->grassSpecies[grassIndex++] = landMonsInfo->wildPokemon[i].species;
-
+				sDexNavGuiPtr->grassSpecies[grassIndex++] = species;
 				if (InTanobyRuins())
 				{
 					sDexNavGuiPtr->unownForms[i] = PickUnownLetter(species, i);
@@ -1965,6 +1988,7 @@ static void DexNavPopulateEncounterList(void)
 				}
 			}
 		}
+		gLastWildIndex = 0;
 	}
 
 	sDexNavGuiPtr->hiddenSpecies[0] = SPECIES_TABLES_TERMIN;
@@ -1974,11 +1998,17 @@ static void DexNavPopulateEncounterList(void)
 		for (int i = 0; i < NUM_WATER_MONS; ++i)
 		{
 			species = waterMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i;
+				species = GetRandomizedSpecies(waterMonsInfo->wildPokemon[i].species);
+			}
 			if (species != SPECIES_NONE && !SpeciesInArray(species, NUM_WATER_MONS, PickUnownLetter(species, i)))
 			{
-				sDexNavGuiPtr->waterSpecies[waterIndex++] = waterMonsInfo->wildPokemon[i].species;
+				sDexNavGuiPtr->waterSpecies[waterIndex++] = species;
 			}
 		}
+		gLastWildIndex = 0;
 	}
 
 	#ifdef NATIONAL_DEX_UNOWN
@@ -2084,7 +2114,7 @@ static void PrintGUIHiddenAbility(u16 species)
 static void DexNavDisplaySpeciesData(void)
 {
 	u16 species = sDexNavGuiPtr->selectedArr == ROW_WATER ? sDexNavGuiPtr->waterSpecies[sDexNavGuiPtr->selectedIndex >> 1] : sDexNavGuiPtr->grassSpecies[sDexNavGuiPtr->selectedIndex >> 1];
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 
 	PrintGUISpeciesName(species);
 	PrintGUISearchLevel(species);
@@ -2189,7 +2219,7 @@ static void DexNavLoadMonIcons(void)
 		if (letter > 0)
 			pid = GenerateUnownPersonalityByLetter(letter - 1);
 
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 		CreateMonIcon(species, SpriteCB_PokeIcon, x, y, 0, pid, 0);
 	}
 
@@ -2214,7 +2244,7 @@ static void DexNavLoadMonIcons(void)
 		if (letter > 0)
 			pid = GenerateUnownPersonalityByLetter(letter - 1);
 
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 		CreateMonIcon(species, SpriteCB_PokeIcon, x, y, 0, pid, 0);
 	}
 }

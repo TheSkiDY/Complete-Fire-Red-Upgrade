@@ -577,6 +577,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	}
 
 SKIP_INDEX_SEARCH:
+	gLastWildIndex = wildMonIndex;
 
 	level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 
@@ -661,6 +662,8 @@ SKIP_INDEX_SEARCH:
 static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInfo, u8 rod)
 {
 	u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+	gLastWildIndex = wildMonIndex;
+	
 	u8 level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 
 	CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);

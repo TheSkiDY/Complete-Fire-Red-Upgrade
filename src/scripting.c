@@ -3192,6 +3192,11 @@ const u8* const* GetScrollingMultiList(void)
 #endif
 }
 
+void ReloadRandomizer(void)
+{
+	VarSet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES, SPECIES_NONE);
+}
+
 void SetScrollingListSize(unusedArg u8 taskId)
 {
 #ifdef SCROLLING_MULTICHOICE

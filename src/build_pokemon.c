@@ -3510,17 +3510,61 @@ u32 CheckShinyMon(struct Pokemon* mon)
  
 void TryRandomizeSpecies(unusedArg u16* species)
 {
+
 	#ifdef FLAG_POKEMON_RANDOMIZER
 	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY) && *species != SPECIES_NONE && *species < NUM_SPECIES)
 	{
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
-		u32 newSpecies = *species;
+		u32 idMod = 0;
 
-		do
+		u16 dexNavSpecies = VarGet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES);
+		if(dexNavSpecies != SPECIES_NONE)
 		{
-			newSpecies *= id;
-			newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			*species = dexNavSpecies;
+			VarSet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES, SPECIES_NONE);
+			return;
+		}
+
+		if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER))
+		{
+			idMod =  (u32)gSaveBlock2->playTimeSeconds;
+			if(gSaveBlock2->playTimeMinutes > 0)
+				idMod *= (u32)gSaveBlock2->playTimeMinutes;
+			if(gSaveBlock2->playTimeHours > 0)
+				idMod *= (u32)gSaveBlock2->playTimeHours + 1;
+			
+			idMod += umodsi(Random(), 36);
+		}
+		else if(!(gBattleTypeFlags & (BATTLE_TYPE_ROAMER)))
+		{
+			idMod = (((u32)gSaveBlock1->location.mapGroup + 1) * 10) + (u32)gSaveBlock1->location.mapNum + 1 + gLastWildIndex;
+		}
+	
+		u32 newSpecies = *species;
+		u32 prevNewSpecies = SPECIES_NONE;
+        u32 offset = 1;
+		u32 checkHowMany = 0; 
+		id += idMod;
+
+		//Rad Red code
+		do
+        {
+            newSpecies *= id;
+            newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			checkHowMany++;
+			if (checkHowMany >= 20){
+				newSpecies = (newSpecies + offset++) * id; 
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+			}
+            while (newSpecies == prevNewSpecies) 
+            {
+                newSpecies = (newSpecies + offset++) * id;
+                newSpecies = MathMax(1, newSpecies % NUM_SPECIES_RANDOMIZER);
+            }
+
+            prevNewSpecies = newSpecies;
 		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
+		
 		
 		*species = newSpecies;
 	}

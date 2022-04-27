@@ -26,6 +26,7 @@ sSavedWildDataMapNum = 0x203E085;
 gLastDexNavSpecies = 0x203E086;
 gMultiChoice = 0x203E088;
 gPartyPresetTeamIndices = 0x203E0C0;
+gLastWildIndex = 0x203E0C6;
 ExtensionState = 0x3000F28;
 sRtc = 0x3005E88;
 gClock = 0x3005EA0;
