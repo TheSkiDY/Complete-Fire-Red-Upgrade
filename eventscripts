@@ -1,2 +1,24 @@
 ##
 npc 3 0 1 EventScript_PalletTown_TechnologyGuy
+
+
+##New PokeCenter script
+npc 6 5 2 EventScript_FastPokeCenterHeal
+npc 5 4 0 EventScript_FastPokeCenterHeal
+npc 7 3 0 EventScript_FastPokeCenterHeal
+npc 8 0 0 EventScript_FastPokeCenterHeal
+npc 9 1 0 EventScript_FastPokeCenterHeal
+npc 10 12 0 EventScript_FastPokeCenterHeal
+npc 11 5 0 EventScript_FastPokeCenterHeal
+npc 12 5 0 EventScript_FastPokeCenterHeal
+npc 13 0 1 EventScript_FastPokeCenterHeal
+npc 14 6 0 EventScript_FastPokeCenterHeal
+npc 16 0 0 EventScript_FastPokeCenterHeal
+npc 21 0 0 EventScript_FastPokeCenterHeal
+npc 32 0 0 EventScript_FastPokeCenterHeal
+npc 33 2 0 EventScript_FastPokeCenterHeal
+npc 34 1 0 EventScript_FastPokeCenterHeal
+npc 35 1 0 EventScript_FastPokeCenterHeal
+npc 36 0 0 EventScript_FastPokeCenterHeal
+npc 37 0 0 EventScript_FastPokeCenterHeal
+npc 31 3 0 EventScript_FastPokeCenterHeal

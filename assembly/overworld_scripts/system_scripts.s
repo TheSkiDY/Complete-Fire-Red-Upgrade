@@ -978,3 +978,43 @@ SystemScript_DebugMenu_Level100Team:
 SystemScript_DebugMenu_MaxCoinage:
 	callasm DebugMenu_MaxMoneyAndCoins
 	goto SystemScript_DebugMenu
+
+@;@@@@@@@@@@@@@@@@@@@@@@@
+
+.global EventScript_FastPokeCenterHeal
+EventScript_FastPokeCenterHeal:
+	lock
+	faceplayer
+	special 0x187
+	compare LASTRESULT 0x2
+	if equal _goto 0x81A7AE0
+	goto EventScript_HealingAnim
+	end
+
+EventScript_HealingAnim:
+	incrementgamestat 0xF
+	preparemsg 0x81A54E1
+	waitmsg
+	applymovement LASTTALKED 0x81A75E7
+	waitmovement 0x0
+	doanimation 0x19
+	waitfieldeffect 0x19
+	applymovement LASTTALKED 0x81A75ED
+	waitmovement 0x0
+	special 0x0
+	special 0x169
+	preparemsg 0x81A552B
+	waitmsg
+	applymovement LASTTALKED 0x81A666C
+	waitmovement 0x0
+	msgbox 0x81A5511 MSG_KEEPOPEN
+	closeonkeypress
+	applymovement PLAYER Movement_FaceDownAfterHealing
+	waitmovement 0x0
+	release
+	end
+
+Movement_FaceDownAfterHealing:
+	.byte look_down, end_m
+
+	

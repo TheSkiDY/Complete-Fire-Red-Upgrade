@@ -10,6 +10,7 @@
 #include "../include/list_menu.h"
 #include "../include/map_name_popup.h"
 #include "../include/menu.h"
+#include "../include/mgba.h"
 #include "../include/m4a.h"
 #include "../include/naming_screen.h"
 #include "../include/overworld.h"
@@ -3195,6 +3196,12 @@ const u8* const* GetScrollingMultiList(void)
 void ReloadRandomizer(void)
 {
 	VarSet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES, SPECIES_NONE);
+}
+
+void PrintTest(void)
+{
+	mgba_printf(MGBA_LOG_INFO, "Hello.");
+	mgba_printf(MGBA_LOG_INFO, "World.");
 }
 
 void SetScrollingListSize(unusedArg u8 taskId)

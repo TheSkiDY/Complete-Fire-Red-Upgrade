@@ -42,6 +42,7 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
 	givepokemon SPECIES_VIKAVOLT 3 0x0 0x0 0x0
 	givepokemon SPECIES_LUGIA_SHADOW 3 ITEM_FLAME_ORB 0x0 0x0
+	callasm PrintTest
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F
 	callasm 0x8727DCD
