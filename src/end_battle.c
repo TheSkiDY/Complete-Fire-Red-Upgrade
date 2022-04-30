@@ -529,6 +529,7 @@ void EndOfBattleThings(void)
 		RestoreNonConsumableItems();
 		RevertDynamax();
 		FormsRevert(gPlayerParty);
+		HeroDuoRevert(gPlayerParty);
 		MegaRevert(gPlayerParty);
 		GigantamaxRevert(gPlayerParty);
 		UpdateBurmy();

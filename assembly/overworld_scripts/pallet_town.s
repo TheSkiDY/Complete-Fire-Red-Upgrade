@@ -33,6 +33,8 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_BLACK_AUGURITE 1
 	additem ITEM_PEAT_BLOCK 1
 	additem ITEM_MEGA_RING 1
+	additem ITEM_RUSTED_SWORD 1
+	additem ITEM_RUSTED_SHIELD 1
 	additem 0x140 1
 	additem 0x183 1
 	setflag 0x91E @dexnav
@@ -40,9 +42,8 @@ EventScript_PalletTown_TechnologyGuy:
 	special 0x62
 	givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
 	givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
-	givepokemon SPECIES_VIKAVOLT 3 0x0 0x0 0x0
-	givepokemon SPECIES_LUGIA_SHADOW 3 ITEM_FLAME_ORB 0x0 0x0
-	callasm PrintTest
+	givepokemon SPECIES_ZACIAN 5 0x0 0x0 0x0
+	givepokemon SPECIES_ZAMAZENTA 5 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F
 	callasm 0x8727DCD

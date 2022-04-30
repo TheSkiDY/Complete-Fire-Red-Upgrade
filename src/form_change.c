@@ -8,6 +8,7 @@
 #include "../include/new/frontier.h"
 #include "../include/new/util.h"
 #include "../include/new/set_z_effect.h"
+#include "../include/constants/items.h"
 /*
 form_change.c
 	functions/structures/arrays that handle species that change form
@@ -43,6 +44,62 @@ static const species_t sBannedBackupSpecies[] =
 	SPECIES_MINIOR_SHIELD,
 	SPECIES_TABLES_TERMIN
 };
+
+void HeroDuoFormsInit(pokemon_t* party)
+{
+	u8 i, j;
+	for(i = 0; i < PARTY_SIZE; ++i)
+	{
+		pokemon_t* mon = &party[i];
+		if(mon->species == SPECIES_ZACIAN && mon->item == ITEM_RUSTED_SWORD)
+		{
+			mon->species = SPECIES_ZACIAN_CROWNED;
+			CalculateMonStats(mon);
+			for (j = 0; j < MAX_MON_MOVES; ++j)
+			{
+				if (mon->moves[j] == MOVE_IRONHEAD)
+					break;
+			}
+			if (j != MAX_MON_MOVES) //Zacian knows Iron Head
+			{
+				mon->moves[j] = MOVE_BEHEMOTHBLADE;
+			}
+		}
+		if(mon->species == SPECIES_ZAMAZENTA && mon->item == ITEM_RUSTED_SHIELD)
+		{
+			mon->species = SPECIES_ZAMAZENTA_CROWNED;
+			CalculateMonStats(mon);
+			for (j = 0; j < MAX_MON_MOVES; ++j)
+			{
+				if (mon->moves[j] == MOVE_IRONHEAD)
+					break;
+			}
+			if (j != MAX_MON_MOVES) //Zacian knows Iron Head
+			{
+				mon->moves[j] = MOVE_BEHEMOTHBASH;
+			}
+		}
+	}
+}
+
+void HeroDuoRevert(pokemon_t* party)
+{
+	u8 i;
+	for(i = 0; i < PARTY_SIZE; ++i)
+	{
+		pokemon_t* mon = &party[i];
+		if(mon->species == SPECIES_ZACIAN_CROWNED)
+		{
+			mon->species = SPECIES_ZACIAN;
+			CalculateMonStats(mon);
+		}
+		if(mon->species == SPECIES_ZAMAZENTA_CROWNED)
+		{
+			mon->species = SPECIES_ZAMAZENTA;
+			CalculateMonStats(mon);
+		}
+	}
+}
 
 //This file's functions:
 void DoFormChange(u8 bank, u16 species, bool8 ReloadType, bool8 ReloadStats, bool8 reloadAbility)
