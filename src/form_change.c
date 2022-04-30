@@ -62,7 +62,7 @@ void HeroDuoFormsInit(pokemon_t* party)
 			}
 			if (j != MAX_MON_MOVES) //Zacian knows Iron Head
 			{
-				mon->moves[j] = MOVE_BEHEMOTHBLADE;
+				SetMonMoveSlot(mon, MOVE_BEHEMOTHBLADE, j);
 			}
 		}
 		if(mon->species == SPECIES_ZAMAZENTA && mon->item == ITEM_RUSTED_SHIELD)
@@ -76,7 +76,7 @@ void HeroDuoFormsInit(pokemon_t* party)
 			}
 			if (j != MAX_MON_MOVES) //Zacian knows Iron Head
 			{
-				mon->moves[j] = MOVE_BEHEMOTHBASH;
+				SetMonMoveSlot(mon, MOVE_BEHEMOTHBASH, j);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ void HeroDuoRevert(pokemon_t* party)
 			for (j = 0; j < MAX_MON_MOVES; ++j)
 			{
 				if (mon->moves[j] == MOVE_BEHEMOTHBLADE)
-					mon->moves[j] = MOVE_IRONHEAD;
+					SetMonMoveSlot(mon, MOVE_IRONHEAD, j);
 			}
 		}
 		if(mon->species == SPECIES_ZAMAZENTA_CROWNED)
@@ -105,7 +105,7 @@ void HeroDuoRevert(pokemon_t* party)
 			for (j = 0; j < MAX_MON_MOVES; ++j)
 			{
 				if (mon->moves[j] == MOVE_BEHEMOTHBASH)
-					mon->moves[j] = MOVE_IRONHEAD;
+					SetMonMoveSlot(mon, MOVE_IRONHEAD, j);
 			}
 		}
 	}
