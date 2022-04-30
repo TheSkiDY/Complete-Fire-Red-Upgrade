@@ -84,7 +84,7 @@ void HeroDuoFormsInit(pokemon_t* party)
 
 void HeroDuoRevert(pokemon_t* party)
 {
-	u8 i;
+	u8 i, j;
 	for(i = 0; i < PARTY_SIZE; ++i)
 	{
 		pokemon_t* mon = &party[i];
@@ -92,11 +92,21 @@ void HeroDuoRevert(pokemon_t* party)
 		{
 			mon->species = SPECIES_ZACIAN;
 			CalculateMonStats(mon);
+			for (j = 0; j < MAX_MON_MOVES; ++j)
+			{
+				if (mon->moves[j] == MOVE_BEHEMOTHBLADE)
+					mon->moves[j] = MOVE_IRONHEAD;
+			}
 		}
 		if(mon->species == SPECIES_ZAMAZENTA_CROWNED)
 		{
 			mon->species = SPECIES_ZAMAZENTA;
 			CalculateMonStats(mon);
+			for (j = 0; j < MAX_MON_MOVES; ++j)
+			{
+				if (mon->moves[j] == MOVE_BEHEMOTHBASH)
+					mon->moves[j] = MOVE_IRONHEAD;
+			}
 		}
 	}
 }
