@@ -380,7 +380,7 @@ u32 AccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 
 static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef, u8 defAbility, u8 defEffect)
 {
-	u8 moveAcc;
+	u8 moveAcc, moveType;
 	s8 buff;
 	u32 calc;
 	u8 atkEffect  = ITEM_EFFECT(bankAtk);
@@ -414,6 +414,7 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 		buff = STAT_STAGE_MAX;
 
 	moveAcc = gBattleMoves[move].accuracy;
+	moveType = gBattleMoves[move].type;
 
 	//Check Thunder + Hurricane in sunny weather
 	if (WEATHER_HAS_EFFECT
@@ -472,11 +473,18 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 
 		if (gBattleWeather & WEATHER_FOG_ANY)
 		{
-			#ifdef UNBOUND
 			if (atkAbility != ABILITY_KEENEYE && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
-			#endif
 				calc = udivsi((calc * 60), 100); // 0.6 Fog loss
 		}
+
+		if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+		{
+			if (moveType == TYPE_ROCK)
+			{
+				calc = udivsi((calc * 120), 100); //1.2 Rock-type accuracy boost in Sandstorm 
+			}
+		}
+
 	}
 
 	if (defAbility == ABILITY_TANGLEDFEET && IsConfused(bankDef))
@@ -522,7 +530,7 @@ u32 VisualAccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 
 u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 {
-	u8 moveAcc;
+	u8 moveAcc, moveType;
 	u8 acc;
 	u32 calc;
 	u8 atkEffect  = ITEM_EFFECT(bankAtk);
@@ -531,6 +539,7 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 	u8 moveSplit = SPLIT(move);
 
 	acc = gBattleMons[bankAtk].statStages[STAT_STAGE_ACC-1];
+	moveType = gBattleMoves[move].type;
 	moveAcc = gBattleMoves[move].accuracy;
 
 	//Check Thunder + Hurricane in sunny weather
@@ -584,6 +593,14 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 
 	if (WEATHER_HAS_EFFECT)
 	{
+		if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+		{
+			if (moveType == TYPE_ROCK)
+			{
+				calc = (calc * 12) / 10; //1.2 Rock-type accuracy boost in Sandstorm 
+			}
+		}
+
 		if (((gBattleWeather & WEATHER_RAIN_ANY) && CheckTableForMove(move, gAlwaysHitInRainMoves))
 		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))
 			calc = 0; //No Miss

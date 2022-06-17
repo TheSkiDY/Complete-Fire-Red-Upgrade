@@ -859,6 +859,7 @@ gCuttingMoves:
 .hword MOVE_CRUSHCLAW
 .hword MOVE_METALCLAW
 .hword MOVE_STONEAXE
+.hword MOVE_CEASELESSEDGE
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -973,6 +974,7 @@ gHighCriticalChanceMoves:
 .hword MOVE_DRILLRUN
 .hword MOVE_SNIPESHOT
 .hword MOVE_CUT
+.hword MOVE_BARRAGE
 .hword MOVE_STONEAXE
 .hword MOVE_ESPERWING
 .hword MOVE_CEASELESSEDGE
@@ -1071,6 +1073,7 @@ gFlinchChanceMoves:
 .hword MOVE_ICICLECRASH @30
 .hword MOVE_ZINGZAP @30
 .hword MOVE_DOUBLEIRONBASH @30
+.hword MOVE_MOUNTAINGALE @30
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1093,6 +1096,7 @@ gMovesCanUnfreezeTarget:
 .hword MOVE_SCALD
 .hword MOVE_STEAMERUPTION
 .hword MOVE_SCORCHINGSANDS
+.hword MOVE_SANDSEARSTORM
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

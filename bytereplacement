@@ -628,6 +628,10 @@
 ##Auto National Dex
 0806E25C 01 20 70 47
 
+##Allow space for 4 digits dex number
+08105F06 20
+08103A74 2A
+08136126 04
 
 
 #ifdef GEN4_PLUS_SELECTION_SCREEN

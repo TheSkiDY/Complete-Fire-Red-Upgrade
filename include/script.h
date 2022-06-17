@@ -53,6 +53,7 @@ void __attribute__((long_call)) ScriptContext1_Stop(void);
 void __attribute__((long_call)) SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void));
 
 void ReloadRandomizer(void);
+void PrintTest(void);
 
 /*
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);

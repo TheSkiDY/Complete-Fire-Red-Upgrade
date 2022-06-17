@@ -106,7 +106,7 @@ void atk04_critcalc(void)
 		}
 		else if ((atkAbility == ABILITY_MERCILESS && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| IsLaserFocused(gBankAttacker)
-		|| (gCurrentMove == MOVE_ROCKSMASH && (gBattleMons[bankDef].type1 == TYPE_ROCK || gBattleMons[bankDef].type2 == TYPE_ROCK))
+		|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
 		|| CheckTableForMove(gCurrentMove, gAlwaysCriticalMoves))
 		{
 			confirmedCrit = TRUE;
@@ -200,6 +200,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 
 	else if ((atkAbility == ABILITY_MERCILESS && (defStatus1 & STATUS_PSN_ANY))
 	|| (IsLaserFocused(bankAtk) && monAtk == NULL)
+	|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
 	|| CheckTableForMove(move, gAlwaysCriticalMoves))
 		return TRUE;
 
@@ -1176,6 +1177,9 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		if (moveType == TYPE_POISON && defType == TYPE_STEEL && (atkAbility == ABILITY_CORROSION) )
 			return; 
 
+		if((move == MOVE_SOULFOCUS && defType == TYPE_DARK))
+			return;
+
 		// if (moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
 		// 	return;
 
@@ -1204,8 +1208,6 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if ((move == MOVE_SCALD || move == MOVE_STEAMERUPTION) && defType == TYPE_ICE)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
-	if((move == MOVE_SOULFOCUS && defType == TYPE_DARK))
-		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
 	if((move == MOVE_RUSTYWATER && defType == TYPE_STEEL))
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
@@ -2375,7 +2377,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		data->spDefense = (15 * data->spDefense) / 10;
 
 	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY)
-	&& ((!useMonDef && IsOfType(bankDef, TYPE_ROCK)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE))))
+	&& ((!useMonDef && IsOfType(bankDef, TYPE_ICE)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE))))
 		data->defense = (15 * data->defense) / 10;
 
 //Old Exploding Check
@@ -2992,6 +2994,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 
 		case MOVE_FURYCUTTER:
+		case MOVE_CONSTRICT:
 			if (!useMonAtk)
 			{
 				for (i = 0; i < gDisableStructs[bankAtk].furyCutterCounter; ++i)

@@ -19,33 +19,31 @@ EventScript_PalletTown_TechnologyGuy:
 	callasm 0x8727CF9
 	faceplayer
 	@setflag 0x940 @randomizer
-	setflag 0x971 @lvl cap
-	setvar 0x50A0 70
+	@setflag 0x971 @lvl cap
+	@setvar 0x50A0 70
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
-	additem ITEM_RARE_CANDY 100
-	additem ITEM_ABILITY_PATCH 1
-	additem ITEM_ROOM_EXTENDER 1
-	additem ITEM_GALARICA_CUFF 1
-	additem ITEM_GALARICA_WREATH 1
-	additem ITEM_WISHING_PIECE 1 
-	additem ITEM_BLACK_AUGURITE 1
-	additem ITEM_PEAT_BLOCK 1
-	additem ITEM_MEGA_RING 1
-	additem ITEM_RUSTED_SWORD 1
-	additem ITEM_RUSTED_SHIELD 1
 	additem 0x140 1
 	additem 0x183 1
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
-	givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
-	givepokemon SPECIES_ZACIAN 5 0x0 0x0 0x0
-	givepokemon SPECIES_ZAMAZENTA 5 0x0 0x0 0x0
+	givepokemon SPECIES_LILLIGANT_H 10 0 0 0 0
+	givepokemon SPECIES_GOODRA_H 10 0 0 0 0
+	givepokemon 0x50C 10 0 0 0 0
+	givepokemon 0x50D 10 0 0 0 0
+	givepokemon 0x50E 10 0 0 0 0
+	givepokemon 0x50F 10 0 0 0 0
+	@givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
+	@givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
+	@givepokemon SPECIES_ZACIAN 50 0x0 0x0 0x0
+	@givepokemon SPECIES_ZAMAZENTA 50 0x0 0x0 0x0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
-	setflag 0x82F
+	@setflag 0x82F @running shoes
+	@setflag 0x91F @bike turbo
+	@setflag 0x940 @randomizer
+	@setflag 0x90E @trainer scale
 	callasm 0x8727DCD
 	end
 

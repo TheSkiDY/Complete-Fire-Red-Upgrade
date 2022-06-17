@@ -3321,6 +3321,7 @@ void atkA4_trysetencore(void)
 
 	if (gLastUsedMoves[gBankTarget] == MOVE_STRUGGLE
 	||  gLastUsedMoves[gBankTarget] == MOVE_ENCORE
+	||  gLastUsedMoves[gBankTarget] == MOVE_DYNAMAXCANNON 
 	||  gNewBS->playedShellTrapMessage & gBitTable[gBankTarget]
 	||  CheckTableForMove(gLastUsedMoves[gBankTarget], gMovesThatCallOtherMoves)
 	||  IsZMove(gLastUsedMoves[gBankTarget])

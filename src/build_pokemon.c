@@ -3508,6 +3508,237 @@ u32 CheckShinyMon(struct Pokemon* mon)
 	return personality;
 };
  
+bool8 CheckIfMonHasType(u16 species, u8 type)
+{
+	return (gBaseStats[species].type1 == type || gBaseStats[species].type2 == type);
+}
+
+bool8 CheckProperRandomizerSpecies(u16 species)
+{
+	bool8 goodMon = TRUE;
+
+	if(CheckTableForSpecies(species, gRandomizerSpeciesBanList))
+	{
+		return TRUE;
+	}
+
+	if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER))
+	{
+		u16 trainerId = gTrainerBattleOpponent_A;
+		u16 trainerClass = gTrainers[trainerId].trainerClass;
+		goodMon = FALSE;
+		if(trainerId == 0x19E) //Brock
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x19F) //Misty
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_WATER) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x1A0) //Surge
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x1A1) //Erika
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x1A2) //Koga
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x1A3) //Blaine
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_FIRE) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x1A4) //Sabrina
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_PSYCHIC) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x19A) //Lorelei
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_ICE) ? TRUE : goodMon;
+			goodMon = CheckIfMonHasType(species, TYPE_WATER) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x19B) //Bruno
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_FIGHTING) ? TRUE : goodMon;
+			goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x19C) //Agatha
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_GHOST) ? TRUE : goodMon;
+			goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x19D) //Lance
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_DRAGON) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		if(trainerId == 0x15C || trainerId == 0x15D || trainerId == 0x15E) //Giovanni
+		{
+			goodMon = CheckIfMonHasType(species, TYPE_GROUND) ? TRUE : goodMon;
+			return !goodMon;
+		}
+		switch(trainerClass)
+		{
+			case CLASS_YOUNGSTER:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_BUG) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FLYING) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_BUG_CATCHER:
+				goodMon = CheckIfMonHasType(species, TYPE_BUG) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_LASS:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FAIRY) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_WATER) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ICE) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FLYING) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_SAILOR:
+				goodMon = CheckIfMonHasType(species, TYPE_WATER) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_CAMPER:
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GROUND) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_PSYCHIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_PICNICKER:
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FAIRY) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GROUND) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_PSYCHIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_SUPER_NERD:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_STEEL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_HIKER:
+				goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_STEEL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GROUND) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_BIKER:
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FIRE) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GHOST) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FIGHTING) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_BURGLAR:
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FIRE) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_ENGINEER:
+				goodMon = CheckIfMonHasType(species, TYPE_STEEL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_FISHERMAN:
+			case CLASS_SWIMMER_M:
+			case CLASS_SWIMMER_F:
+			case CLASS_TUBER:
+				goodMon = CheckIfMonHasType(species, TYPE_WATER) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_CUE_BALL:
+				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FIGHTING) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_BEAUTY:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_FAIRY) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_PSYCHIC:
+				goodMon = CheckIfMonHasType(species, TYPE_PSYCHIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_ROCKER:
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_JUGGLER:
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_PSYCHIC) ? TRUE : goodMon;
+				return !goodMon;
+				break;	
+			case CLASS_TAMER:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
+				return !goodMon;
+				break;	
+			case CLASS_BIRD_KEEPER:
+				goodMon = CheckIfMonHasType(species, TYPE_FLYING) ? TRUE : goodMon;
+				return !goodMon;
+				break;	
+			case CLASS_BLACK_BELT:
+				goodMon = CheckIfMonHasType(species, TYPE_FIGHTING) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_SCIENTIST:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_ELECTRIC) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_STEEL) ? TRUE : goodMon;
+				return !goodMon;
+				break;	
+			case CLASS_TEAM_ROCKET:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GROUND) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			case CLASS_CHANNELER:
+				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
+				goodMon = CheckIfMonHasType(species, TYPE_GHOST) ? TRUE : goodMon;
+				return !goodMon;
+				break;
+			default:
+				goodMon = TRUE;
+				return !goodMon;
+				break;
+		}
+	}
+	return !goodMon;
+}
+
+
 void TryRandomizeSpecies(unusedArg u16* species)
 {
 
@@ -3563,7 +3794,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
             }
 
             prevNewSpecies = newSpecies;
-		} while (CheckTableForSpecies(newSpecies, gRandomizerSpeciesBanList));
+		} while (CheckProperRandomizerSpecies(newSpecies));
 		
 		
 		*species = newSpecies;
