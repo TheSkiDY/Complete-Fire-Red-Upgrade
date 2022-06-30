@@ -114,6 +114,7 @@ static struct Immunity sImmunities[] =
 extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
 extern const u8 gRandomizerAbilityBanList[];
 extern const species_t gRandomizerSpeciesBanList[];
+extern const species_t gRandomizerTrainerSpeciesBanList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -3507,7 +3508,26 @@ u32 CheckShinyMon(struct Pokemon* mon)
 
 	return personality;
 };
- 
+
+u32 GetPlayerAverageLevel()
+{
+	u32 i, sum, count;
+	
+	for (i = 0, sum = 0, count = 0; i < PARTY_SIZE; ++i)
+	{
+		u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL);
+	
+		if (species != SPECIES_NONE && species != SPECIES_EGG) //Viable mon
+		{
+			u8 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+			sum += level;
+			++count;
+		}
+	}
+
+	return sum / count;
+}
+
 bool8 CheckIfMonHasType(u16 species, u8 type)
 {
 	return (gBaseStats[species].type1 == type || gBaseStats[species].type2 == type);
@@ -3517,7 +3537,7 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 {
 	bool8 goodMon = TRUE;
 
-	if(CheckTableForSpecies(species, gRandomizerSpeciesBanList))
+	if(CheckTableForSpecies(species, gRandomizerTrainerSpeciesBanList))
 	{
 		return TRUE;
 	}
@@ -3526,7 +3546,20 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 	{
 		u16 trainerId = gTrainerBattleOpponent_A;
 		u16 trainerClass = gTrainers[trainerId].trainerClass;
+		u8 avgPartyLevel = GetPlayerAverageLevel();
+		if(avgPartyLevel >= 60 || ((trainerClass == CLASS_CHAMPION || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_FOUR) && avgPartyLevel >= 30))
+		{
+			if(CanSpeciesEvolve(species))
+				return TRUE;
+		}
+		if(avgPartyLevel <= 20 || ((trainerClass == CLASS_CHAMPION || trainerClass == CLASS_LEADER || trainerClass == CLASS_ELITE_FOUR) && avgPartyLevel <= 15))
+		{
+			if(!CanSpeciesEvolve(species))
+				return TRUE;
+		}
 		goodMon = FALSE;
+
+
 		if(trainerId == 0x19E) //Brock
 		{
 			goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
@@ -3603,7 +3636,6 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 				break;
 			case CLASS_BUG_CATCHER:
 				goodMon = CheckIfMonHasType(species, TYPE_BUG) ? TRUE : goodMon;
-				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
 				return !goodMon;
 				break;
 			case CLASS_LASS:
@@ -3620,6 +3652,7 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 				return !goodMon;
 				break;
 			case CLASS_CAMPER:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
@@ -3628,6 +3661,7 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 				return !goodMon;
 				break;
 			case CLASS_PICNICKER:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_GRASS) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_ROCK) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_FAIRY) ? TRUE : goodMon;
@@ -3649,6 +3683,7 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 				return !goodMon;
 				break;
 			case CLASS_BIKER:
+				goodMon = CheckIfMonHasType(species, TYPE_NORMAL) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_POISON) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_FIRE) ? TRUE : goodMon;
 				goodMon = CheckIfMonHasType(species, TYPE_DARK) ? TRUE : goodMon;
@@ -3734,6 +3769,10 @@ bool8 CheckProperRandomizerSpecies(u16 species)
 				return !goodMon;
 				break;
 		}
+	}
+	if(CheckTableForSpecies(species, gRandomizerSpeciesBanList))
+	{
+		return TRUE;
 	}
 	return !goodMon;
 }

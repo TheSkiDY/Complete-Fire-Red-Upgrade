@@ -29,12 +29,10 @@ EventScript_PalletTown_TechnologyGuy:
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_LILLIGANT_H 10 0 0 0 0
 	givepokemon SPECIES_GOODRA_H 10 0 0 0 0
-	givepokemon 0x50C 10 0 0 0 0
-	givepokemon 0x50D 10 0 0 0 0
-	givepokemon 0x50E 10 0 0 0 0
-	givepokemon 0x50F 10 0 0 0 0
+	givepokemon SPECIES_AVALUGG_H 10 0 0 0 0
+	givepokemon SPECIES_OVERQWIL 10 0 0 0 0
+	givepokemon SPECIES_LILLIGANT_H 10 0 0 0 0
 	@givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
 	@givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
 	@givepokemon SPECIES_ZACIAN 50 0x0 0x0 0x0

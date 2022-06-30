@@ -23,6 +23,7 @@ u8 ViableMonCount(struct Pokemon* party);
 void HealMon(struct Pokemon* mon);
 void SetMonPokedexFlags(struct Pokemon* mon);
 u16 GetNationalPokedexCount(u8 caseID);
+bool8 CanSpeciesEvolve(const u16 species);
 bool8 CanEvolve(struct Pokemon* mon);
 bool8 CouldHaveEvolvedViaLevelUp(struct Pokemon* mon);
 void EvolveSpeciesByLevel(u16* species, u8 level);

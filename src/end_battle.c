@@ -752,6 +752,7 @@ static void EndBattleFlagClear(void)
 	u16 backup = gTrainerBattleOpponent_B;
 	Memset(&ExtensionState, 0x0, sizeof(struct BattleExtensionState));
 	gTrainerBattleOpponent_B = backup;
+	gBattleTypeFlags = 0;
 	gBattleCircusFlags = 0;
 }
 

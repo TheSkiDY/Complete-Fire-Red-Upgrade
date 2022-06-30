@@ -176,9 +176,8 @@ u16 GetNationalPokedexCount(u8 caseID)
 	return count;
 }
 
-bool8 CanEvolve(struct Pokemon* mon)
+bool8 CanSpeciesEvolve(const u16 species)
 {
-	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 	const struct Evolution* evolutions = gEvolutionTable[species];
 
 	for (u32 i = 0; i < EVOS_PER_MON; ++i)
@@ -188,6 +187,12 @@ bool8 CanEvolve(struct Pokemon* mon)
 	}
 
 	return FALSE;
+}
+
+bool8 CanEvolve(struct Pokemon* mon)
+{
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	return CanSpeciesEvolve(species);	
 }
 
 bool8 CouldHaveEvolvedViaLevelUp(struct Pokemon* mon)
