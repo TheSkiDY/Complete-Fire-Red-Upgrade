@@ -58,7 +58,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_BEASTBOOST] = 7,
 	[ABILITY_BERSERK] = 5,
 	[ABILITY_BIGPECKS] = 1,
-	[ABILITY_BLAZE] = 5,
+	[ABILITY_BLAZE_LIKE] = 5,
 	[ABILITY_BULLETPROOF] = 7,
 	[ABILITY_CHEEKPOUCH] = 4,
 	[ABILITY_CHLOROPHYLL] = 6,
@@ -89,7 +89,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_EFFECTSPORE] = 4,
 	[ABILITY_ELECTRICSURGE] = 8,
 	[ABILITY_EMERGENCYEXIT] = 3,
-	[ABILITY_FAIRYAURA] = 6,
+//	[ABILITY_FAIRYAURA] = 6,
 	[ABILITY_FILTER] = 6,
 	[ABILITY_FLAMEBODY] = 4,
 	[ABILITY_VALOUR] = 5,
@@ -164,7 +164,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_NORMALIZE] = -1,
 	[ABILITY_OBLIVIOUS] = 2,
 	[ABILITY_OVERCOAT] = 5,
-	[ABILITY_OVERGROW] = 5,
+//	[ABILITY_OVERGROW] = 5,
 	[ABILITY_OWNTEMPO] = 3,
 	[ABILITY_PARENTALBOND] = 10,
 	[ABILITY_PICKUP] = 1,
@@ -240,7 +240,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SUCTIONCUPS] = 2,
 	[ABILITY_SUPERLUCK] = 3,
 	[ABILITY_SURGESURFER] = 4,
-	[ABILITY_SWARM] = 5,
+//	[ABILITY_SWARM] = 5,
 	[ABILITY_SWEETVEIL] = 4,
 	[ABILITY_SWIFTSWIM] = 6,
 	[ABILITY_SYMBIOSIS] = 0,
@@ -252,7 +252,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 //	[ABILITY_TERAVOLT] = 7,
 	[ABILITY_THICKFAT] = 7,
 	[ABILITY_TINTEDLENS] = 7,
-	[ABILITY_TORRENT] = 5,
+//	[ABILITY_TORRENT] = 5,
 //	[ABILITY_TOXICBOOST] = 6,
 	[ABILITY_TOUGHCLAWS] = 7,
 	[ABILITY_TRACE] = 6,
@@ -850,11 +850,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
-		case ABILITY_FAIRYAURA:
-			gBattleStringLoader = gText_FairyAuraActivate;
-			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-			effect++;
-			break;
+		// case ABILITY_FAIRYAURA:
+		// 	gBattleStringLoader = gText_FairyAuraActivate;
+		// 	BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+		// 	effect++;
+		// 	break;
 
 		case ABILITY_AURABREAK:
 			gBattleStringLoader = gText_AuraBreakActivate;
@@ -2022,10 +2022,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_BLAZE:
-			case ABILITY_OVERGROW:
-			case ABILITY_TORRENT:
-			case ABILITY_SWARM:
+			case ABILITY_BLAZE_LIKE:
+//			case ABILITY_OVERGROW:
+//			case ABILITY_TORRENT:
+//			case ABILITY_SWARM:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& BATTLER_ALIVE(bank)

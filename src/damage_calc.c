@@ -2155,15 +2155,15 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				spAttack = (spAttack * 15) / 10;
 			break;
 
-		case ABILITY_OVERGROW:
-		//1.5x Boost
-			if (data->moveType == TYPE_GRASS && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_BLAZE:
+		// case ABILITY_OVERGROW:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_GRASS && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
+		case ABILITY_BLAZE_LIKE:
 		//1.5x Boost
 			if(data->moveType == gBattleMons[gBankAttacker].type1 && data->atkHP <= data->atkMaxHP / 3)
 			{
@@ -2171,22 +2171,22 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				spAttack = (spAttack * 15) / 10;
 			}
 			break;
-		case ABILITY_TORRENT:
-		//1.5x Boost
-			if (data->moveType == TYPE_WATER && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_SWARM:
-		//1.5x Boost
-			if (data->moveType == TYPE_BUG && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
+		// case ABILITY_TORRENT:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_WATER && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
+		// case ABILITY_SWARM:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_BUG && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
 
 		case ABILITY_GORILLATACTICS:
 		//1.5x Boost

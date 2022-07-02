@@ -40,7 +40,7 @@ void HandleDuplicateDescriptions_SummaryScreen()
 
     switch(ability)
     {
-        case ABILITY_BLAZE:
+        case ABILITY_BLAZE_LIKE:
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
@@ -238,7 +238,7 @@ void HandleDuplicateNames_SummaryScreen()
                     break;
             }
             break;
-        case ABILITY_BLAZE:
+        case ABILITY_BLAZE_LIKE:
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:

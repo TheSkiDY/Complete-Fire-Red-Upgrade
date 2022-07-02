@@ -3482,7 +3482,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Pablo1Format2[] =
 		.spdIv = 31,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_FOCUS_SASH,
 		.moves =
 		{
@@ -5356,7 +5356,7 @@ const struct BattleTowerSpread gMiddleCupTowerSpread_Paula1[] =
 		.spAtkEv = 252,
 		.spDefEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_FOCUS_SASH,
 		.moves =
 		{
@@ -10277,7 +10277,7 @@ const struct BattleTowerSpread gLegendaryTowerSpread_Gail[] =
 		.spAtkEv = 252,
 		.spDefEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_CHARIZARDITE_Y,
 		.moves =
 		{
@@ -10303,7 +10303,7 @@ const struct BattleTowerSpread gLegendaryTowerSpread_Gail[] =
 		.spAtkEv = 252,
 		.spDefEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_CHARIZARDITE_Y,
 		.moves =
 		{
@@ -10992,7 +10992,7 @@ const struct BattleTowerSpread gLittleCupTowerSpread_Gail[] =
 		.spAtkEv = 240,
 		.spDefEv = 196,
 		.spdEv = 36,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_WEAKNESS_POLICY,
 		.moves =
 		{
@@ -14522,7 +14522,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Red[] =
 		.atkEv = 252,
 		.defEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_CHARIZARDITE_X,
 		.moves =
 		{
@@ -14548,7 +14548,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Red[] =
 		.hpEv = 252,
 		.atkEv = 4,
 		.spAtkEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_CHARIZARDITE_Y,
 		.moves =
 		{
@@ -15581,7 +15581,7 @@ const struct BattleTowerSpread gLittleCupTowerSpread_Red[] =
 		.atkEv = 180,
 		.defEv = 92,
 		.spdEv = 236,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_LIFE_ORB,
 		.moves =
 		{
@@ -15608,7 +15608,7 @@ const struct BattleTowerSpread gLittleCupTowerSpread_Red[] =
 		.atkEv = 180,
 		.spAtkEv = 36,
 		.spdEv = 236,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_WIDE_LENS,
 		.moves =
 		{
@@ -16849,7 +16849,7 @@ const struct BattleTowerSpread gMiddleCupTowerSpread_BigMo[] =
 		.atkEv = 252,
 		.defEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_BLAZE_LIKE
 		.item = ITEM_FOCUS_SASH,
 		.moves =
 		{

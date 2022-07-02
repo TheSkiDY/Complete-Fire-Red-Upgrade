@@ -1139,7 +1139,7 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
                     break;
             }
             break;
-        case ABILITY_BLAZE:
+        case ABILITY_BLAZE_LIKE:
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
