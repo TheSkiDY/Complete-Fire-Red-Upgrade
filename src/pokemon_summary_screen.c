@@ -14,6 +14,7 @@
 
 #include "../include/new/build_pokemon.h"
 #include "../include/new/ability_battle_scripts.h"
+#include "Tables/duplicate_abilities.h"
 #include "../include/new/form_change.h"
 #include "../include/new/frontier.h"
 #include "../include/new/item.h"
@@ -43,58 +44,58 @@ void HandleDuplicateDescriptions_SummaryScreen()
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Virtue);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_VIRTUE);
                     break;
                 case TYPE_FIGHTING:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Rampage);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_RAMPAGE);
                     break;
                 case TYPE_FLYING:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Cyclone);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_CYCLONE);
                     break;
                 case TYPE_POISON:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Biohazard);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_BIOHAZARD);
                     break;
                 case TYPE_GROUND:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Upheaval);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_UPHEAVAL);
                     break;
                 case TYPE_ROCK:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Bedrock);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_BEDROCK);
                     break;
                 case TYPE_BUG:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Swarm);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_SWARM);
                     break;
                 case TYPE_GHOST:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Haunted);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_HAUNTED);
                     break;
                 case TYPE_STEEL:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Temper);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_TEMPER);
                     break;
                 case TYPE_FIRE:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Blaze);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_BLAZE);
                     break;
                 case TYPE_WATER:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Torrent);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_TORRENT);
                     break;
                 case TYPE_GRASS:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Overgrow);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_OVERGROW);
                     break;
                 case TYPE_ELECTRIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Overcharged);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_OVERCHARGE);
                     break;
                 case TYPE_PSYCHIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Brainstorm);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_BRAINSTORM);
                     break;
                 case TYPE_ICE:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Snowfall);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_SNOWFALL);
                     break;
                  case TYPE_DRAGON:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_MythicRage);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_MYTHIC_RAGE);
                     break;
                  case TYPE_DARK:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Wrath);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_WRATH);
                     break;
                  case TYPE_FAIRY:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Enchant);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_ENCHANT);
                     break;
             }
             break;
@@ -102,58 +103,58 @@ void HandleDuplicateDescriptions_SummaryScreen()
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_NormalAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_NORMAL_AURA);
                     break;
                 case TYPE_FIGHTING:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_FightingAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_FIGHTING_AURA);
                     break;
                 case TYPE_FLYING:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_FlyingAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_FLYING_AURA);
                     break;
                 case TYPE_POISON:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_PoisonAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_POISON_AURA);
                     break;
                 case TYPE_GROUND:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_GroundAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_GROUND_AURA);
                     break;
                 case TYPE_ROCK:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_RockAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_ROCK_AURA);
                     break;
                 case TYPE_BUG:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_BugAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_BUG_AURA);
                     break;
                 case TYPE_GHOST:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_GhostAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_GHOST_AURA);
                     break;
                 case TYPE_STEEL:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_SteelAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_STEEL_AURA);
                     break;
                 case TYPE_FIRE:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_FireAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_FIRE_AURA);
                     break;
                 case TYPE_WATER:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_WaterAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_WATER_AURA);
                     break;
                 case TYPE_ELECTRIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_ElectricAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_ELECTRIC_AURA);
                     break;
                 case TYPE_GRASS:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_GrassAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_GRASS_AURA);
                     break;
                 case TYPE_PSYCHIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_PsychicAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_PSYCHIC_AURA);
                     break;
                 case TYPE_ICE:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_IceAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_ICE_AURA);
                     break;
                  case TYPE_DRAGON:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_DragonAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DRAGON_AURA);
                     break;
                  case TYPE_DARK:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_DarkAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_DARK_AURA);
                     break;
                  case TYPE_FAIRY:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_FairyAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_DUPE_FAIRY_AURA);
                     break;
             }
             break;
@@ -167,80 +168,73 @@ void HandleDuplicateNames_SummaryScreen()
     u8 ability = GetMonAbility(mon);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
+    for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
+    {
+        if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
+        {
+            StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, sDuplicateAbilities[i].replaceAbilityString);
+            break;
+        }
+    }
+
     switch(ability)
     {
-        case ABILITY_STUN_TOUCH:
-            switch(species)
-            {
-                case SPECIES_DIGLETT_A:
-                case SPECIES_DUGTRIO_A:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_TanglingHair);
-                    break;
-                case SPECIES_GOOMY:
-                case SPECIES_SLIGGOO:
-                case SPECIES_SLIGGOO_H:
-                case SPECIES_GOODRA:
-                case SPECIES_GOODRA_H:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Gooey);
-                    break;
-            }
-            break;
         case ABILITY_DARKAURA:
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_NormalAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_NORMAL_AURA);
                     break;
                 case TYPE_FIGHTING:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_FightingAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_FIGHTING_AURA);
                     break;
                 case TYPE_FLYING:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_FlyingAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_FLYING_AURA);
                     break;
                 case TYPE_POISON:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_PoisonAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_POISON_AURA);
                     break;
                 case TYPE_GROUND:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_GroundAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_GROUND_AURA);
                     break;
                 case TYPE_ROCK:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_RockAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_ROCK_AURA);
                     break;
                 case TYPE_BUG:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_BugAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_BUG_AURA);
                     break;
                 case TYPE_GHOST:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_GhostAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_GHOST_AURA);
                     break;
                 case TYPE_STEEL:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_SteelAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_STEEL_AURA);
                     break;
                 case TYPE_FIRE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_FireAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_FIRE_AURA);
                     break;
                 case TYPE_WATER:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_WaterAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_WATER_AURA);
                     break;
                 case TYPE_ELECTRIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_ElectricAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_ELECTRIC_AURA);
                     break;
                 case TYPE_GRASS:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_GrassAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_GRASS_AURA);
                     break;
                 case TYPE_PSYCHIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_PsychicAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_PSYCHIC_AURA);
                     break;
                 case TYPE_ICE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_IceAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_ICE_AURA);
                     break;
                  case TYPE_DRAGON:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_DragonAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DRAGON_AURA);
                     break;
                  case TYPE_DARK:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_DarkAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_DARK_AURA);
                     break;
                  case TYPE_FAIRY:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_FairyAura);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_FAIRY_AURA);
                     break;
             }
             break;
@@ -248,251 +242,61 @@ void HandleDuplicateNames_SummaryScreen()
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Virtue);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_VIRTUE);
                     break;
                 case TYPE_FIGHTING:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Rampage);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_RAMPAGE);
                     break;
                 case TYPE_FLYING:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Cyclone);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_CYCLONE);
                     break;
                 case TYPE_POISON:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Biohazard);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_BIOHAZARD);
                     break;
                 case TYPE_GROUND:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Upheaval);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_UPHEAVAL);
                     break;
                 case TYPE_ROCK:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Bedrock);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_BEDROCK);
                     break;
                 case TYPE_BUG:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Swarm);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_SWARM);
                     break;
                 case TYPE_GHOST:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Haunted);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_HAUNTED);
                     break;
                 case TYPE_STEEL:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Temper);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_TEMPER);
                     break;
                 case TYPE_FIRE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Blaze);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_BLAZE);
                     break;
                 case TYPE_WATER:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Torrent);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_TORRENT);
                     break;
                 case TYPE_ELECTRIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Overcharged);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_OVERCHARGE);
                     break;
                 case TYPE_GRASS:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Overgrow);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_DUPE_OVERGROW);
                     break;
                 case TYPE_PSYCHIC:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Brainstorm);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_BRAINSTORM);
                     break;
                 case TYPE_ICE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Snowfall);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_SNOWFALL);
                     break;
                  case TYPE_DRAGON:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_MythicRage);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_MYTHIC_RAGE);
                     break;
                  case TYPE_DARK:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Wrath);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_WRATH);
                     break;
                  case TYPE_FAIRY:
-                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDesc_Enchant);
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_ENCHANT);
                     break;
             }
             break;
-        case ABILITY_CLOUDNINE:
-            switch(species)
-            {
-                case SPECIES_RAYQUAZA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_AirLock);
-                    break;
-            }
-            break;
-        case ABILITY_BATTLEARMOR:
-            switch(species)
-            {
-                case SPECIES_SLOWBRO_MEGA:
-                case SPECIES_SHELLDER:
-                case SPECIES_CLOYSTER:
-                case SPECIES_KRABBY:
-                case SPECIES_KINGLER:
-                case SPECIES_LAPRAS:
-                case SPECIES_OMANYTE:
-                case SPECIES_OMASTAR:
-                case SPECIES_CORPHISH:
-                case SPECIES_CRAWDAUNT:
-                case SPECIES_CLAMPERL:
-                case SPECIES_DWEBBLE:
-                case SPECIES_CRUSTLE:
-                case SPECIES_ESCAVALIER:
-                case SPECIES_SHELMET:
-                case SPECIES_TURTONATOR:
-                case SPECIES_CHEWTLE:
-                case SPECIES_DREDNAW:
-                case SPECIES_TORKOAL:
-                case SPECIES_TURTWIG:
-                case SPECIES_GROTLE:
-                case SPECIES_TORTERRA:
-                case SPECIES_OSHAWOTT:
-                case SPECIES_DEWOTT:
-                case SPECIES_SAMUROTT:
-                case SPECIES_SAMUROTT_H:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_ShellArmor);
-                    break;
-            }
-            break;
-        case ABILITY_MOXIE:
-            switch(species)
-            {
-                case SPECIES_GLASTRIER:
-                case SPECIES_CALYREX_ICE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_ChillingNeigh);
-                    break;   
-            }
-            break;
-        case ABILITY_MAJESTIC:
-            switch(species)
-            {
-                case SPECIES_BRUXISH:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Dazzling);
-                    break;
-                case SPECIES_TSAREENA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_QueenlyMajesty);
-                    break;
-            }
-            break;
-        case ABILITY_CLEARBODY:
-            switch(species)
-            {
-                case SPECIES_SOLGALEO:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_FullMetalBody);
-                    break;
-            }
-            break;
-        case ABILITY_EMERGENCYEXIT:
-            switch(species)
-            {
-                case SPECIES_WIMPOD:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_WimpOut);
-                    break;   
-            }
-            break;
-        case ABILITY_MOLDBREAKER:
-            switch(species)
-            {
-                case SPECIES_KYUREM_WHITE:
-                case SPECIES_RESHIRAM:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Turboblaze);
-                    break;
-                case SPECIES_ZEKROM:
-                case SPECIES_KYUREM_BLACK:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Teravolt);
-                    break;
-            }
-            break;
-        case ABILITY_FILTER:
-            switch(species)
-            {
-                case SPECIES_CAMERUPT:
-                case SPECIES_RHYPERIOR:
-                case SPECIES_TIRTOUGA:
-                case SPECIES_CARRACOSTA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_SolidRock);
-                    break;
-                case SPECIES_NECROZMA:
-                case SPECIES_NECROZMA_DUSK_MANE:
-                case SPECIES_NECROZMA_DAWN_WINGS:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_PrismArmor);
-                    break;
-            }
-            break;
-        case ABILITY_ROUGHSKIN:
-            switch(species)
-            {
-                case SPECIES_FERROSEED:
-                case SPECIES_FERROTHORN:
-                case SPECIES_TOGEDEMARU:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_IronBarbs);
-                    break;
-            }
-            break;
-        case ABILITY_PROTEAN:
-            switch(species)
-            {
-                case SPECIES_SCORBUNNY:
-                case SPECIES_RABOOT:
-                case SPECIES_CINDERACE:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Libero);
-                    break;
-            }
-            break;
-        case ABILITY_PLUNDER:
-            switch(species)
-            {
-                case SPECIES_HOOPA:
-                case SPECIES_HOOPA_UNBOUND:
-                case SPECIES_FENNEKIN:
-                case SPECIES_BRAIXEN:
-                case SPECIES_DELPHOX:
-                case SPECIES_KLEFKI:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Magician);
-                    break;
-                case SPECIES_SNEASEL: 
-                case SPECIES_SEEDOT:
-                case SPECIES_NUZLEAF:
-                case SPECIES_SHIFTRY:
-                case SPECIES_WEAVILE:
-                case SPECIES_BINACLE:
-                case SPECIES_BARBARACLE:
-                case SPECIES_IMPIDIMP:
-                case SPECIES_MORGREM:
-                case SPECIES_GRIMMSNARL:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Pickpocket);
-                    break;
-            }
-            break;
-        case ABILITY_MYTHICALSHIELD:
-            switch(species)
-            {
-                case SPECIES_DRAGONITE:
-                case SPECIES_LUGIA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Multiscale);
-                    break;
-                case SPECIES_LUNALA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_ShadowShield);
-                    break;
-            }
-            break;
-        case ABILITY_RECEIVER:
-            switch(species)
-            {
-                case SPECIES_GRIMER_A:
-                case SPECIES_MUK_A:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_PowerOfAlchemy);
-                    break;
-            }
-            break;
-        case ABILITY_STALWART:
-            switch(species)
-            {
-                case SPECIES_ARROKUDA:
-                case SPECIES_BARRASKEWDA:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_PropellerTail);
-                    break;
-            }  
-            break;
-        case ABILITY_SOUNDPROOF:
-            switch(species)
-            {
-                case SPECIES_WHISMUR:
-                case SPECIES_LOUDRED:
-                case SPECIES_EXPLOUD:
-                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityName_Cacophony);
-                    break;
-            }
     }   
 }
 

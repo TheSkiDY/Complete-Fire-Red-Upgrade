@@ -24,19 +24,19 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
 	additem ITEM_RARE_CANDY 400
+	additem ITEM_ABILITY_CAPSULE 50
+	additem ITEM_ABILITY_PATCH 50
 	additem 0x140 1
 	additem 0x183 1
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_GOODRA_H 10 0 0 0 0
 	givepokemon SPECIES_AVALUGG_H 10 0 0 0 0
-	givepokemon SPECIES_OVERQWIL 10 0 0 0 0
-	givepokemon SPECIES_LILLIGANT_H 10 0 0 0 0
-	@givepokemon SPECIES_CHEWTLE 10 0x0 0x0 0x0 0x0
-	@givepokemon SPECIES_DARMANITAN_G 50 0x0 0x0 0x0
-	@givepokemon SPECIES_ZACIAN 50 0x0 0x0 0x0
-	@givepokemon SPECIES_ZAMAZENTA 50 0x0 0x0 0x0
+	givepokemon SPECIES_RESHIRAM 10 0 0 0 0
+	givepokemon SPECIES_SLIGGOO_H 10 0 0 0 0
+	givepokemon SPECIES_TOTODILE 10 0 0 0 0
+	givepokemon SPECIES_XERNEAS 10 0 0 0 0
+	givepokemon SPECIES_SCYTHER 10 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo

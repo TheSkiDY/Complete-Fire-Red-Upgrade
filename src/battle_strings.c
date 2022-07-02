@@ -13,6 +13,7 @@
 #include "../include/new/ability_battle_scripts.h"
 #include "../include/new/battle_strings_2.h"
 #include "../include/new/battle_util.h"
+#include "Tables/duplicate_abilities.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/frontier.h"
 #include "../include/new/general_battle_strings.h"
@@ -1069,81 +1070,72 @@ const u8* GetAbilityNameDex(const u8 ability)
 const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 {
 	const u8* ptr = NULL; 
-
+	for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
+	{
+		if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
+		{
+			ptr = sDuplicateAbilities[i].replaceAbilityString;
+			break;
+		}
+	}
     switch(ability)
     {
-        case ABILITY_STUN_TOUCH:
-            switch(species)
-            {
-                case SPECIES_DIGLETT_A:
-                case SPECIES_DUGTRIO_A:
-                    ptr = gAbilityName_TanglingHair;
-                    break;
-                case SPECIES_GOOMY:
-                case SPECIES_SLIGGOO:
-                case SPECIES_SLIGGOO_H:
-                case SPECIES_GOODRA:
-                case SPECIES_GOODRA_H:
-                    ptr = gAbilityName_Gooey;
-                    break;
-            }
-            break;
         case ABILITY_DARKAURA:
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    ptr = gAbilityName_NormalAura;
+                    ptr = NAME_NORMAL_AURA;
                     break;
                 case TYPE_FIGHTING:
-                    ptr = gAbilityName_FightingAura;
+                    ptr = NAME_FIGHTING_AURA;
                     break;
                 case TYPE_FLYING:
-                    ptr = gAbilityName_FlyingAura;
+                    ptr = NAME_FLYING_AURA;
                     break;
                 case TYPE_POISON:
-                    ptr = gAbilityName_PoisonAura;
+                    ptr = NAME_POISON_AURA;
                     break;
                 case TYPE_GROUND:
-                    ptr = gAbilityName_GroundAura;
+                    ptr = NAME_GROUND_AURA;
                     break;
                 case TYPE_ROCK:
-                    ptr = gAbilityName_RockAura;
+                    ptr = NAME_ROCK_AURA;
                     break;
                 case TYPE_BUG:
-                    ptr = gAbilityName_BugAura;
+                    ptr = NAME_BUG_AURA;
                     break;
                 case TYPE_GHOST:
-                    ptr = gAbilityName_GhostAura;
+                    ptr = NAME_GHOST_AURA;
                     break;
                 case TYPE_STEEL:
-                    ptr = gAbilityName_SteelAura;
+                    ptr = NAME_STEEL_AURA;
                     break;
                 case TYPE_FIRE:
-                    ptr = gAbilityName_FireAura;
+                    ptr = NAME_FIRE_AURA;
                     break;
                 case TYPE_WATER:
-                    ptr = gAbilityName_WaterAura;
+                    ptr = NAME_WATER_AURA;
                     break;
                 case TYPE_ELECTRIC:
-                    ptr = gAbilityName_ElectricAura;
+                    ptr = NAME_ELECTRIC_AURA;
                     break;
                 case TYPE_GRASS:
-                	ptr = gAbilityName_GrassAura;
-                	break;
+                    ptr = NAME_GRASS_AURA;
+                    break;
                 case TYPE_PSYCHIC:
-                    ptr = gAbilityName_PsychicAura;
+                    ptr = NAME_PSYCHIC_AURA;
                     break;
                 case TYPE_ICE:
-                    ptr = gAbilityName_IceAura;
+                    ptr = NAME_ICE_AURA;
                     break;
                  case TYPE_DRAGON:
-                    ptr = gAbilityName_DragonAura;
+                    ptr = NAME_DRAGON_AURA;
                     break;
                  case TYPE_DARK:
-                    ptr = gAbilityName_DarkAura;
+                    ptr = NAME_DUPE_DARK_AURA;
                     break;
                  case TYPE_FAIRY:
-                    ptr = gAbilityName_FairyAura;
+                    ptr = NAME_DUPE_FAIRY_AURA;
                     break;
             }
             break;
@@ -1151,251 +1143,61 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
             switch(gBaseStats[species].type1)
             {
                 case TYPE_NORMAL:
-                    ptr = gAbilityName_Virtue;
+                    ptr = NAME_VIRTUE;
                     break;
                 case TYPE_FIGHTING:
-                    ptr = gAbilityName_Rampage;
+                    ptr = NAME_RAMPAGE;
                     break;
                 case TYPE_FLYING:
-                    ptr = gAbilityName_Cyclone;
+                    ptr = NAME_CYCLONE;
                     break;
                 case TYPE_POISON:
-                    ptr = gAbilityName_Biohazard;
+                    ptr = NAME_BIOHAZARD;
                     break;
                 case TYPE_GROUND:
-                    ptr = gAbilityName_Upheaval;
+                    ptr = NAME_UPHEAVAL;
                     break;
                 case TYPE_ROCK:
-                    ptr = gAbilityName_Bedrock;
+                    ptr = NAME_BEDROCK;
                     break;
                 case TYPE_BUG:
-                    ptr = gAbilityName_Swarm;
+                    ptr = NAME_DUPE_SWARM;
                     break;
                 case TYPE_GHOST:
-                    ptr = gAbilityName_Haunted;
+                    ptr = NAME_HAUNTED;
                     break;
                 case TYPE_STEEL:
-                    ptr = gAbilityName_Temper;
+                    ptr = NAME_TEMPER;
                     break;
                 case TYPE_FIRE:
-                    ptr = gAbilityName_Blaze;
+                    ptr = NAME_DUPE_BLAZE;
                     break;
                 case TYPE_WATER:
-                    ptr = gAbilityName_Torrent;
+                    ptr = NAME_DUPE_TORRENT;
                     break;
                 case TYPE_ELECTRIC:
-                    ptr = gAbilityName_Overcharged;
+                    ptr = NAME_OVERCHARGE;
                     break;
                 case TYPE_GRASS:
-                    ptr = gAbilityName_Overgrow;
+                    ptr = NAME_DUPE_OVERGROW;
                     break;
                 case TYPE_PSYCHIC:
-                    ptr = gAbilityName_Brainstorm;
+                    ptr = NAME_BRAINSTORM;
                     break;
                 case TYPE_ICE:
-                    ptr = gAbilityName_Snowfall;
+                    ptr = NAME_SNOWFALL;
                     break;
                  case TYPE_DRAGON:
-                    ptr = gAbilityName_MythicRage;
+                    ptr = NAME_MYTHIC_RAGE;
                     break;
                  case TYPE_DARK:
-                    ptr = gAbilityName_Wrath;
+                    ptr = NAME_WRATH;
                     break;
                  case TYPE_FAIRY:
-                    ptr = gAbilityDesc_Enchant;
+                    ptr = NAME_ENCHANT;
                     break;
             }
             break;
-        case ABILITY_CLOUDNINE:
-            switch(species)
-            {
-                case SPECIES_RAYQUAZA:
-                    ptr = gAbilityName_AirLock;
-                    break;
-            }
-            break;
-        case ABILITY_BATTLEARMOR:
-            switch(species)
-            {
-                case SPECIES_SLOWBRO_MEGA:
-                case SPECIES_SHELLDER:
-                case SPECIES_CLOYSTER:
-                case SPECIES_KRABBY:
-                case SPECIES_KINGLER:
-                case SPECIES_LAPRAS:
-                case SPECIES_OMANYTE:
-                case SPECIES_OMASTAR:
-                case SPECIES_CORPHISH:
-                case SPECIES_CRAWDAUNT:
-                case SPECIES_CLAMPERL:
-                case SPECIES_DWEBBLE:
-                case SPECIES_CRUSTLE:
-                case SPECIES_ESCAVALIER:
-                case SPECIES_SHELMET:
-                case SPECIES_TURTONATOR:
-                case SPECIES_CHEWTLE:
-                case SPECIES_DREDNAW:
-                case SPECIES_TORKOAL:
-                case SPECIES_TURTWIG:
-                case SPECIES_GROTLE:
-                case SPECIES_TORTERRA:
-                case SPECIES_OSHAWOTT:
-                case SPECIES_DEWOTT:
-                case SPECIES_SAMUROTT:
-                case SPECIES_SAMUROTT_H:
-                    ptr = gAbilityName_ShellArmor;
-                    break;
-            }
-            break;
-        case ABILITY_MOXIE:
-            switch(species)
-            {
-                case SPECIES_GLASTRIER:
-                case SPECIES_CALYREX_ICE:
-                    ptr = gAbilityName_ChillingNeigh;
-                    break;   
-            }
-            break;
-        case ABILITY_MAJESTIC:
-            switch(species)
-            {
-                case SPECIES_BRUXISH:
-                    ptr = gAbilityName_Dazzling;
-                    break;
-                case SPECIES_TSAREENA:
-                    ptr = gAbilityName_QueenlyMajesty;
-                    break;
-            }
-            break;
-        case ABILITY_CLEARBODY:
-            switch(species)
-            {
-                case SPECIES_SOLGALEO:
-                    ptr = gAbilityName_FullMetalBody;
-                    break;
-            }
-            break;
-        case ABILITY_EMERGENCYEXIT:
-            switch(species)
-            {
-                case SPECIES_WIMPOD:
-                    ptr = gAbilityName_WimpOut;
-                    break;   
-            }
-            break;
-        case ABILITY_MOLDBREAKER:
-            switch(species)
-            {
-                case SPECIES_KYUREM_WHITE:
-                case SPECIES_RESHIRAM:
-                    ptr = gAbilityName_Turboblaze;
-                    break;
-                case SPECIES_ZEKROM:
-                case SPECIES_KYUREM_BLACK:
-                    ptr = gAbilityName_Teravolt;
-                    break;
-            }
-            break;
-        case ABILITY_FILTER:
-            switch(species)
-            {
-                case SPECIES_CAMERUPT:
-                case SPECIES_RHYPERIOR:
-                case SPECIES_TIRTOUGA:
-                case SPECIES_CARRACOSTA:
-                    ptr = gAbilityName_SolidRock;
-                    break;
-                case SPECIES_NECROZMA:
-                case SPECIES_NECROZMA_DUSK_MANE:
-                case SPECIES_NECROZMA_DAWN_WINGS:
-                    ptr = gAbilityName_PrismArmor;
-                    break;
-            }
-            break;
-        case ABILITY_ROUGHSKIN:
-            switch(species)
-            {
-                case SPECIES_FERROSEED:
-                case SPECIES_FERROTHORN:
-                case SPECIES_TOGEDEMARU:
-                    ptr = gAbilityName_IronBarbs;
-                    break;
-            }
-            break;
-        case ABILITY_PROTEAN:
-            switch(species)
-            {
-                case SPECIES_SCORBUNNY:
-                case SPECIES_RABOOT:
-                case SPECIES_CINDERACE:
-                    ptr = gAbilityName_Libero;
-                    break;
-            }
-            break;
-        case ABILITY_PLUNDER:
-            switch(species)
-            {
-                case SPECIES_HOOPA:
-                case SPECIES_HOOPA_UNBOUND:
-                case SPECIES_FENNEKIN:
-                case SPECIES_BRAIXEN:
-                case SPECIES_DELPHOX:
-                case SPECIES_KLEFKI:
-                    ptr = gAbilityName_Magician;
-                    break;
-                case SPECIES_SNEASEL: 
-                case SPECIES_SEEDOT:
-                case SPECIES_NUZLEAF:
-                case SPECIES_SHIFTRY:
-                case SPECIES_WEAVILE:
-                case SPECIES_BINACLE:
-                case SPECIES_BARBARACLE:
-                case SPECIES_IMPIDIMP:
-                case SPECIES_MORGREM:
-                case SPECIES_GRIMMSNARL:
-                    ptr = gAbilityName_Pickpocket;
-                    break;
-            }
-            break;
-        case ABILITY_MYTHICALSHIELD:
-            switch(species)
-            {
-                case SPECIES_DRAGONITE:
-                case SPECIES_LUGIA:
-                    ptr = gAbilityName_Multiscale;
-                    break;
-                case SPECIES_LUNALA:
-                    ptr = gAbilityName_ShadowShield;
-                    break;
-            }
-            break;
-        case ABILITY_RECEIVER:
-            switch(species)
-            {
-                case SPECIES_GRIMER_A:
-                case SPECIES_MUK_A:
-                    ptr = gAbilityName_PowerOfAlchemy;
-                    break;
-            }
-            break;
-        case ABILITY_STALWART:
-            switch(species)
-            {
-                case SPECIES_ARROKUDA:
-                case SPECIES_BARRASKEWDA:
-                    ptr = gAbilityName_PropellerTail;
-                    break;
-            }  
-            break;
-        case ABILITY_SOUNDPROOF:
-        	switch(species)
-        	{
-        		case SPECIES_WHISMUR:
-        		case SPECIES_LOUDRED:
-        		case SPECIES_EXPLOUD:
-        			ptr = gAbilityName_Cacophony;
-        			break;
-        	}
     }   
 
     if (ptr == NULL)
@@ -1403,8 +1205,6 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 
 	if (ptr[3] == 0x8 || ptr[3] == 0x9) //Expanded Ability Names
 		ptr = T1_READ_PTR(ptr);
-
-
 
 	return ptr;	
 }

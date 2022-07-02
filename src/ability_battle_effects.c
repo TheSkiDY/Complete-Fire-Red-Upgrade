@@ -18,6 +18,7 @@
 #include "../include/new/catching.h"
 #include "../include/new/cmd49.h"
 #include "../include/new/damage_calc.h"
+#include "Tables/duplicate_abilities.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/form_change.h"
 #include "../include/new/util.h"
@@ -742,12 +743,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_MOLDBREAKER:
-			if (SPECIES(bank) == SPECIES_RESHIRAM)
-				gBattleStringLoader = gText_TurboblazeActivate;
-			else if(SPECIES(bank) == SPECIES_ZEKROM)
-				gBattleStringLoader = gText_TeravoltActivate;
-			else
-				gBattleStringLoader = gText_MoldBreakerActivate;
+			gBattleStringLoader = gText_MoldBreakerActivate;
+			for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
+			{
+				if(sDuplicateAbilities[i].species == SPECIES(bank) && sDuplicateAbilities[i].replaceAbilityString == NAME_TURBOBLAZE)
+				{
+					gBattleStringLoader = gText_TurboblazeActivate;
+					break;
+				}
+				else if(sDuplicateAbilities[i].species == SPECIES(bank) && sDuplicateAbilities[i].replaceAbilityString == NAME_TERAVOLT)
+				{
+					gBattleStringLoader = gText_TeravoltActivate;
+					break;
+				}
+			}
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
