@@ -52,3 +52,10 @@ struct DuplicateAbility
     u8 currAbility;
     const u8* replaceAbilityString;
 };
+
+struct TypeBasedAbility
+{
+    u16 species;
+    u8 currAbility;
+    u8 type;
+};

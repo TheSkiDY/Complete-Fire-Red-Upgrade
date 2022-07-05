@@ -828,7 +828,7 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 			if (gBattleWeather & WEATHER_HAIL_ANY && WEATHER_HAS_EFFECT)
 			{
 				if (ability == ABILITY_ICEBODY)
-					amountToRecover += MathMax(1, maxHp / 16);
+					amountToRecover += MathMax(1, maxHp / 8);
 			}
 
 			if (gBattleMons[bankAtk].status1 & STATUS1_PSN_ANY)

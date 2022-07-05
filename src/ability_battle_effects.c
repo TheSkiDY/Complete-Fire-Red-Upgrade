@@ -74,7 +74,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_CUTECHARM] = 2,
 	[ABILITY_DAMP] = 2,
 	[ABILITY_DANCER] = 5,
-	[ABILITY_DARKAURA] = 6,
+	[ABILITY_AURA_LIKE] = 6,
 	[ABILITY_MAJESTIC] = 5,
 	[ABILITY_DEFEATIST] = -1,
 	[ABILITY_DEFIANT] = 5,
@@ -787,7 +787,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
-		case ABILITY_DARKAURA:
+		case ABILITY_AURA_LIKE:
 			gBattleStringLoader = gText_DarkAuraActivate;
 			switch(gBattleMons[gBankAttacker].type1)
 			{
@@ -1332,7 +1332,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_ICEBODY:
 					if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY) && !BATTLER_MAX_HP(bank))
 					{
-						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 16);
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 8);
 						gBattleMoveDamage *= -1;
 						BattleScriptExecute(BattleScript_RainDishActivates);
 						effect++;
@@ -2041,6 +2041,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 //			case ABILITY_TANGLINGHAIR:
 			case ABILITY_STUN_TOUCH:
+			case ABILITY_COTTONDOWN:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& CheckContact(move, gBankAttacker)
@@ -2148,12 +2149,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
-			case ABILITY_COTTONDOWN:
-				if (MOVE_HAD_EFFECT
-				&& TOOK_DAMAGE(bank))
-				{
-				}
-				break;
+			// case ABILITY_COTTONDOWN:
+			// 	if (MOVE_HAD_EFFECT
+			// 	&& TOOK_DAMAGE(bank))
+			// 	{
+			// 	}
+			// 	break;
 
 			case ABILITY_SANDSPIT:
 				if (MOVE_HAD_EFFECT

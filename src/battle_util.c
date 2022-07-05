@@ -560,7 +560,6 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 		return TRUE;
 	else if (!isMaxMove
 		 && (holdEffect == ITEM_EFFECT_CHOICE_BAND || ability == ABILITY_GORILLATACTICS)
-		 && (!ABILITY_PRESENT(ABILITY_AROMAVEIL) && ability != ABILITY_AROMAVEIL)
 		 && choicedMove != 0 && choicedMove != 0xFFFF && choicedMove != move
 		 && check & MOVE_LIMITATION_CHOICE)
 	{

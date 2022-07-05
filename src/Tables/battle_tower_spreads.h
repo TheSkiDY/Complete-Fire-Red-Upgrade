@@ -46127,7 +46127,7 @@ const struct BattleTowerSpread gFrontierLegendarySpreads[] =
 		.defEv = 4,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_DARKAURA
+		.ability = FRONTIER_ABILITY_1, //ABILITY_AURA_LIKE
 		.item = ITEM_CHOICE_SPECS,
 		.moves =
 		{
@@ -46152,7 +46152,7 @@ const struct BattleTowerSpread gFrontierLegendarySpreads[] =
 		.spdIv = 31,
 		.atkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_DARKAURA
+		.ability = FRONTIER_ABILITY_1, //ABILITY_AURA_LIKE
 		.item = ITEM_POWER_HERB,
 		.moves =
 		{
@@ -46178,7 +46178,7 @@ const struct BattleTowerSpread gFrontierLegendarySpreads[] =
 		.hpEv = 252,
 		.spDefEv = 72,
 		.spdEv = 184,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_DARKAURA
+		.ability = FRONTIER_ABILITY_1, //ABILITY_AURA_LIKE
 		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
@@ -46206,7 +46206,7 @@ const struct BattleTowerSpread gFrontierLegendarySpreads[] =
 		.spAtkEv = 44,
 		.spDefEv = 116,
 		.spdEv = 164,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_DARKAURA
+		.ability = FRONTIER_ABILITY_1, //ABILITY_AURA_LIKE
 		.item = ITEM_ASSAULT_VEST,
 		.moves =
 		{

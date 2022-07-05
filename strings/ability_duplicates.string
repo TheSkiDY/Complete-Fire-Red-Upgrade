@@ -181,110 +181,89 @@ POISON POINT
 #org @NAME_DUPE_STATIC
 STATIC
 
-#org @DESC_DUPE_BLAZE
-Ups FIRE moves if below 33% HP.
+#org @NAME_VOLT_BARRIER
+VOLT BARRIER
 
-#org @DESC_DUPE_TORRENT
-Ups WATER moves if below 33% HP.
+#org @NAME_GUARDING_SCALES
+GUARDING SCALES
 
-#org @DESC_DUPE_SWARM
-Ups BUG moves if below 33% HP.
+#org @NAME_GLUEY_FIELD
+GLUEY FIELD
 
-#org @DESC_DUPE_OVERGROW
-Ups GRASS moves if below 33% HP.
+#org @NAME_OPPORTUNIST
+OPPORTUNIST
 
-#org @DESC_VIRTUE
-Ups NORMAL moves if below 33% HP.
+#org @NAME_ICY_SKIN
+ICY SKIN
 
-#org @DESC_OVERCHARGE
-Ups ELECTRIC moves if below 33% HP.
+#org @NAME_FACE_SHIELD
+FACE SHIELD
 
-#org @DESC_SNOWFALL
-Ups ICE moves if below 33% HP.
+#org @NAME_VALIANT_SHIELD
+VALIANT SHIELD
 
-#org @DESC_BRAINSTORM
-Ups PSYCHIC moves if below 33% HP.
+#org @NAME_SPIKY_BODY
+SPIKY BODY
 
-#org @DESC_CYCLONE
-Ups FLYING moves if below 33% HP.
+#org @NAME_TIGHT_MASK
+TIGHT MASK
 
-#org @DESC_BIOHAZARD
-Ups POISON moves if below 33% HP.
+#org @NAME_BRAINS_SYNERGY
+BRAINS SYNERGY
 
-#org @DESC_RAMPAGE
-Ups FIGHTING moves if below 33% HP.
+#org @NAME_INGROWN
+INGROWN
 
-#org @DESC_UPHEAVAL
-Ups GROUND moves if below 33% HP.
+#org @NAME_TEMPESTUOUS_SEA
+TEMPESTUOUS SEA
 
-#org @DESC_BEDROCK
-Ups ROCK moves if below 33% HP.
+#org @NAME_WARFARE
+WARFARE
 
-#org @DESC_WRATH
-Ups DARK moves if below 33% HP.
+#org @NAME_DUPE_AERILATE
+AERILATE
 
-#org @DESC_HAUNTED
-Ups GHOST moves if below 33% HP.
+#org @NAME_TOXINATE
+TOXINATE
 
-#org @DESC_TEMPER
-Ups STEEL moves if below 33% HP.
+#org @NAME_EARTHBOUND
+EARTHBOUND
 
-#org @DESC_MYTHIC_RAGE
-Ups DRAGON moves if below 33% HP.
+#org @NAME_CRAGITATE
+CRAGITATE
 
-#org @DESC_ENCHANT
-Ups FAIRY moves if below 33% HP.
+#org @NAME_INFECTATE
+INFECATE
 
-#org @DESC_NORMAL_AURA
-Powers up NORMAL-type moves.
+#org @NAME_CHANNELING
+CHANELLING
 
-#org @DESC_FIGHTING_AURA
-Powers up FIGHTING-type moves.
+#org @NAME_FORTIFIED
+FORTIFIED
 
-#org @DESC_FLYING_AURA
-Powers up FLYING-type moves.
+#org @NAME_EMPYREAL
+EMPYREAL
 
-#org @DESC_POISON_AURA
-Powers up POISON-type moves.
+#org @NAME_HYDRATE
+HYDRATE
 
-#org @DESC_GROUND_AURA
-Powers up GROUND-type moves.
+#org @NAME_NATURALIZE
+NATURALIZE
 
-#org @DESC_ROCK_AURA
-Powers up ROCK-type moves.
+#org @NAME_DUPE_GALVANIZE
+GALVANIZE
 
-#org @DESC_BUG_AURA
-Powers up BUG-type moves.
+#org @NAME_COGNITIVE
+COGNITIVE
 
-#org @DESC_GHOST_AURA
-Powers up GHOST-type moves.
+#org @NAME_DUPE_REFRIGERATE
+REFRIGERATE
 
-#org @DESC_STEEL_AURA
-Powers up STEEL-type moves.
+#org @NAME_WYVERNATE
+WYVERNATE
 
-#org @DESC_FIRE_AURA
-Powers up FIRE-type moves.
+#org @NAME_ANTAGONIZE
+ANTAGONIZE
 
-#org @DESC_WATER_AURA
-Powers up WATER-type moves.
-
-#org @DESC_GRASS_AURA
-Powers up GRASS-type moves.
-
-#org @DESC_ELECTRIC_AURA
-Powers up ELECTRIC-type moves.
-
-#org @DESC_PSYCHIC_AURA
-Powers up PSYCHIC-type moves.
-
-#org @DESC_ICE_AURA
-Powers up ICE-type moves.
-
-#org @DESC_DRAGON_AURA
-Powers up DRAGON-type moves.
-
-#org @DESC_DUPE_DARK_AURA
-Powers up DARK-type moves.
-
-#org @DESC_DUPE_FAIRY_AURA
-Powers up FAIRY-type moves.
+#org @NAME_DUPE_PIXILATE
+PIXILATE

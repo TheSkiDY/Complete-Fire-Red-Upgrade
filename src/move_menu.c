@@ -1665,14 +1665,14 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingImprisionedMove;
 		++limitations;
 	}
-	else if (!isAnyMaxMove && ability == ABILITY_GORILLATACTICS && !ABILITY_PRESENT(ABILITY_AROMAVEIL) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
+	else if (!isAnyMaxMove && ability == ABILITY_GORILLATACTICS && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
 	{
 		gCurrentMove = *choicedMove;
 		gLastUsedAbility = ability;
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveChoiceAbility;
 		++limitations;
 	}
-	else if (!isAnyMaxMove && holdEffect == ITEM_EFFECT_CHOICE_BAND && !ABILITY_PRESENT(ABILITY_AROMAVEIL) && ability != ABILITY_AROMAVEIL  && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
+	else if (!isAnyMaxMove && holdEffect == ITEM_EFFECT_CHOICE_BAND && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
 	{
 		gCurrentMove = *choicedMove;
 		gLastUsedItem = ITEM(gActiveBattler);

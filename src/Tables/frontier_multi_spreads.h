@@ -692,7 +692,7 @@ const struct BattleTowerSpread gMultiLegendaryTowerSpread_Marlon[] =
 		.hpEv = 252,
 		.defEv = 172,
 		.spdEv = 84,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_DARKAURA
+		.ability = FRONTIER_ABILITY_1, //ABILITY_AURA_LIKE
 		.item = ITEM_ASSAULT_VEST,
 		.moves =
 		{

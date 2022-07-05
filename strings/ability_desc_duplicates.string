@@ -1,0 +1,158 @@
+#org @DESC_DUPE_BLAZE
+Ups FIRE moves if below 33% HP.
+
+#org @DESC_DUPE_TORRENT
+Ups WATER moves if below 33% HP.
+
+#org @DESC_DUPE_SWARM
+Ups BUG moves if below 33% HP.
+
+#org @DESC_DUPE_OVERGROW
+Ups GRASS moves if below 33% HP.
+
+#org @DESC_VIRTUE
+Ups NORMAL moves if below 33% HP.
+
+#org @DESC_OVERCHARGE
+Ups ELECTRIC moves if below 33% HP.
+
+#org @DESC_SNOWFALL
+Ups ICE moves if below 33% HP.
+
+#org @DESC_BRAINSTORM
+Ups PSYCHIC moves if below 33% HP.
+
+#org @DESC_CYCLONE
+Ups FLYING moves if below 33% HP.
+
+#org @DESC_BIOHAZARD
+Ups POISON moves if below 33% HP.
+
+#org @DESC_RAMPAGE
+Ups FIGHTING moves if below 33% HP.
+
+#org @DESC_UPHEAVAL
+Ups GROUND moves if below 33% HP.
+
+#org @DESC_BEDROCK
+Ups ROCK moves if below 33% HP.
+
+#org @DESC_WRATH
+Ups DARK moves if below 33% HP.
+
+#org @DESC_HAUNTED
+Ups GHOST moves if below 33% HP.
+
+#org @DESC_TEMPER
+Ups STEEL moves if below 33% HP.
+
+#org @DESC_MYTHIC_RAGE
+Ups DRAGON moves if below 33% HP.
+
+#org @DESC_ENCHANT
+Ups FAIRY moves if below 33% HP.
+
+#org @DESC_NORMAL_AURA
+Powers up NORMAL-type moves.
+
+#org @DESC_FIGHTING_AURA
+Powers up FIGHTING-type moves.
+
+#org @DESC_FLYING_AURA
+Powers up FLYING-type moves.
+
+#org @DESC_POISON_AURA
+Powers up POISON-type moves.
+
+#org @DESC_GROUND_AURA
+Powers up GROUND-type moves.
+
+#org @DESC_ROCK_AURA
+Powers up ROCK-type moves.
+
+#org @DESC_BUG_AURA
+Powers up BUG-type moves.
+
+#org @DESC_GHOST_AURA
+Powers up GHOST-type moves.
+
+#org @DESC_STEEL_AURA
+Powers up STEEL-type moves.
+
+#org @DESC_FIRE_AURA
+Powers up FIRE-type moves.
+
+#org @DESC_WATER_AURA
+Powers up WATER-type moves.
+
+#org @DESC_GRASS_AURA
+Powers up GRASS-type moves.
+
+#org @DESC_ELECTRIC_AURA
+Powers up ELECTRIC-type moves.
+
+#org @DESC_PSYCHIC_AURA
+Powers up PSYCHIC-type moves.
+
+#org @DESC_ICE_AURA
+Powers up ICE-type moves.
+
+#org @DESC_DRAGON_AURA
+Powers up DRAGON-type moves.
+
+#org @DESC_DUPE_DARK_AURA
+Powers up DARK-type moves.
+
+#org @DESC_DUPE_FAIRY_AURA
+Powers up FAIRY-type moves.
+
+#org @DESC_WARFARE
+NORMAL moves become FIGHTING.
+
+#org @DESC_DUPE_AERILATE
+NORMAL moves become FLYING.
+
+#org @DESC_TOXINATE
+NORMAL moves become POISON.
+
+#org @DESC_EARTHBOUND
+NORMAL moves become GROUND.
+
+#org @DESC_CRAGITATE
+NORMAL moves become ROCK.
+
+#org @DESC_INFECTATE
+NORMAL moves become BUG.
+
+#org @DESC_CHANNELING
+NORMAL moves become GHOST.
+
+#org @DESC_FORTIFIED
+NORMAL moves become STEEL.
+
+#org @DESC_EMPYREAL
+NORMAL moves become FIRE.
+
+#org @DESC_HYDRATE
+NORMAL moves become WATER.
+
+#org @DESC_NATURALIZE
+NORMAL moves become GRASS.
+
+#org @DESC_DUPE_GALVANIZE
+NORMAL moves become ELECTRIC.
+
+#org @DESC_COGNITIVE
+NORMAL moves become PSYCHIC.
+
+#org @DESC_DUPE_REFRIGERATE
+NORMAL moves become ICE.
+
+#org @DESC_WYVERNATE
+NORMAL moves become DRAGON.
+
+#org @DESC_ANTAGONIZE
+NORMAL moves become DARK.
+
+#org @DESC_DUPE_PIXILATE
+NORMAL moves become FAIRY.

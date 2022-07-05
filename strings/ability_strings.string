@@ -75,7 +75,7 @@ The effects of weather\ndisappeared.
 
 
 #org @gText_AuraBreakActivate
-[SCRIPTING_BANK] reversed all\nother Pok\emon's auras!
+[SCRIPTING_BANK] reversed all auras'\nand terrains' power changes!
 
 #org @gText_ComatoseActivate
 [SCRIPTING_BANK] is drowsing!

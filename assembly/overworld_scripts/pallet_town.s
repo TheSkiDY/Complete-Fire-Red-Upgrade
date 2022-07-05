@@ -34,9 +34,9 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_AVALUGG_H 10 0 0 0 0
 	givepokemon SPECIES_RESHIRAM 10 0 0 0 0
 	givepokemon SPECIES_SLIGGOO_H 10 0 0 0 0
-	givepokemon SPECIES_TOTODILE 10 0 0 0 0
-	givepokemon SPECIES_XERNEAS 10 0 0 0 0
-	givepokemon SPECIES_SCYTHER 10 0 0 0 0
+	givepokemon SPECIES_KLANG 2 0 0 0 0
+	givepokemon SPECIES_ARTICUNO_G 10 0 0 0 0
+	givepokemon SPECIES_SWANNA 10 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo

@@ -1960,6 +1960,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	bool8 useMonAtk = data->monAtk != NULL;
 	bool8 useMonDef = data->monDef != NULL;
 	
+	u8 auraType;
+
 	if (!data->attackerLoaded)
 		PopulateDamageCalcStructWithBaseAttackerData(data);
 	if (!data->defenderLoaded)
@@ -2540,206 +2542,16 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	}
 
 	//Universal Auras
-			if(data->moveType == TYPE_NORMAL && 
-			((CheckCorrectAuraOnField(TYPE_NORMAL)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_NORMAL) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_NORMAL)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_FIGHTING && 
-			((CheckCorrectAuraOnField(TYPE_FIGHTING)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_FIGHTING) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_FIGHTING)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_FLYING && 
-			((CheckCorrectAuraOnField(TYPE_FLYING)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_FLYING) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_FLYING)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_POISON && 
-			((CheckCorrectAuraOnField(TYPE_POISON)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_POISON) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_POISON)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_GROUND && 
-			((CheckCorrectAuraOnField(TYPE_GROUND)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_GROUND) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_GROUND)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_ROCK && 
-			((CheckCorrectAuraOnField(TYPE_ROCK)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_ROCK) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_ROCK)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_BUG && 
-			((CheckCorrectAuraOnField(TYPE_BUG)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_BUG) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_BUG)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_GHOST && 
-			((CheckCorrectAuraOnField(TYPE_GHOST)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_GHOST) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_GHOST)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_STEEL && 
-			((CheckCorrectAuraOnField(TYPE_STEEL)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_STEEL) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_STEEL)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_FIRE && 
-			((CheckCorrectAuraOnField(TYPE_FIRE)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_FIRE) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_FIRE)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_WATER && 
-			((CheckCorrectAuraOnField(TYPE_WATER)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_WATER) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_WATER)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_GRASS && 
-			((CheckCorrectAuraOnField(TYPE_GRASS)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_GRASS) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_GRASS)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_ELECTRIC && 
-			((CheckCorrectAuraOnField(TYPE_ELECTRIC)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_ELECTRIC) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_ELECTRIC)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_PSYCHIC && 
-			((CheckCorrectAuraOnField(TYPE_PSYCHIC)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_PSYCHIC) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_PSYCHIC)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_ICE && 
-			((CheckCorrectAuraOnField(TYPE_ICE)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_ICE) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_ICE)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_DRAGON && 
-			((CheckCorrectAuraOnField(TYPE_DRAGON)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_DRAGON) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_DRAGON)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_DARK && 
-			((CheckCorrectAuraOnField(TYPE_DARK)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_DARK) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_DARK)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-		if(data->moveType == TYPE_FAIRY && 
-			((CheckCorrectAuraOnField(TYPE_FAIRY)) || 
-			 (data->atkAbility == ABILITY_DARKAURA && gBaseStats[data->atkSpecies].type1 == TYPE_FAIRY) || 
-			 (data->defAbility == ABILITY_DARKAURA && gBaseStats[data->defSpecies].type1 == TYPE_FAIRY)))
-		{
-			if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-				damage = (damage * 75) / 100;
-			else
-				damage = (damage * 4) / 3;
-		}
-
-
-
+	auraType = data->moveType;
+	if(CheckCorrectAuraOnField(auraType) ||
+		(data->atkAbility == ABILITY_AURA_LIKE && gBaseStats[data->atkSpecies].type1 == auraType) || 
+		(data->defAbility == ABILITY_AURA_LIKE && gBaseStats[data->defSpecies].type1 == auraType))
+	{
+		if (ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
+			damage = (damage * 75) / 100;
+		else
+			damage = (damage * 4) / 3;
+	}
 
 	//Second Attacker Ability Checks
 	switch (data->atkAbility) {
@@ -2921,7 +2733,7 @@ u8 CheckCorrectAuraOnField(u8 type)
 	u8 i=0;
 	for (i = 0; i < gBattlersCount; i++)
 	{
-		if (ABILITY(i) == ABILITY_DARKAURA && gBattleMons[i].hp && gBattleMons[i].type1 == type)
+		if (ABILITY(i) == ABILITY_AURA_LIKE && gBattleMons[i].hp && gBattleMons[i].type1 == type)
 		{
 			return 1;
 		}

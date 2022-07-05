@@ -1,5 +1,8 @@
+#pragma once
+
 #include "../config.h"
 #include "../../include/new/build_pokemon.h"
+#include "../../include/pokemon.h"
 #include "../../include/constants/species.h"
 #include "../../include/constants/items.h"
 #include "../../include/constants/moves.h"
@@ -65,6 +68,19 @@ extern const u8 NAME_DUPE_FAIRY_AURA[];
 extern const u8 NAME_DUPE_FLAME_BODY[];
 extern const u8 NAME_DUPE_POISON_POINT[];
 extern const u8 NAME_DUPE_STATIC[];
+extern const u8 NAME_VOLT_BARRIER[];
+extern const u8 NAME_GUARDING_SCALES[];
+extern const u8 NAME_GLUEY_FIELD[];
+extern const u8 NAME_OPPORTUNIST[];
+extern const u8 NAME_ICY_SKIN[];
+extern const u8 NAME_FACE_SHIELD[];
+extern const u8 NAME_VALIANT_SHIELD[];
+extern const u8 NAME_SPIKY_BODY[];
+extern const u8 NAME_TIGHT_MASK[];
+extern const u8 NAME_BRAINS_SYNERGY[];
+extern const u8 NAME_INGROWN[];
+extern const u8 NAME_TEMPESTUOUS_SEA[];
+
 extern const u8 DESC_DUPE_BLAZE[];
 extern const u8 DESC_DUPE_TORRENT[];
 extern const u8 DESC_DUPE_SWARM[];
@@ -102,6 +118,289 @@ extern const u8 DESC_DRAGON_AURA[];
 extern const u8 DESC_DUPE_DARK_AURA[];
 extern const u8 DESC_DUPE_FAIRY_AURA[];
 
+extern const u8 NAME_WARFARE[];
+extern const u8 NAME_DUPE_AERILATE[];
+extern const u8 NAME_TOXINATE[];
+extern const u8 NAME_EARTHBOUND[];
+extern const u8 NAME_CRAGITATE[];
+extern const u8 NAME_INFECTATE[];
+extern const u8 NAME_CHANNELING[];
+extern const u8 NAME_FORTIFIED[];
+extern const u8 NAME_EMPYREAL[];
+extern const u8 NAME_HYDRATE[];
+extern const u8 NAME_NATURALIZE[];
+extern const u8 NAME_DUPE_GALVANIZE[];
+extern const u8 NAME_COGNITIVE[];
+extern const u8 NAME_DUPE_REFRIGERATE[];
+extern const u8 NAME_WYVERNATE[];
+extern const u8 NAME_ANTAGONIZE[];
+extern const u8 NAME_DUPE_PIXILATE[];
+
+extern const u8 DESC_WARFARE[];
+extern const u8 DESC_DUPE_AERILATE[];
+extern const u8 DESC_TOXINATE[];
+extern const u8 DESC_EARTHBOUND[];
+extern const u8 DESC_CRAGITATE[];
+extern const u8 DESC_INFECTATE[];
+extern const u8 DESC_CHANNELING[];
+extern const u8 DESC_FORTIFIED[];
+extern const u8 DESC_EMPYREAL[];
+extern const u8 DESC_HYDRATE[];
+extern const u8 DESC_NATURALIZE[];
+extern const u8 DESC_DUPE_GALVANIZE[];
+extern const u8 DESC_COGNITIVE[];
+extern const u8 DESC_DUPE_REFRIGERATE[];
+extern const u8 DESC_WYVERNATE[];
+extern const u8 DESC_ANTAGONIZE[];
+extern const u8 DESC_DUPE_PIXILATE[];
+
+static const u8* gAteAbilityNames[] =
+{
+    [0] = 0,
+    [TYPE_FIGHTING] = NAME_WARFARE,
+    [TYPE_FLYING] = NAME_DUPE_AERILATE,
+    [TYPE_POISON] = NAME_TOXINATE,
+    [TYPE_GROUND] = NAME_EARTHBOUND,
+    [TYPE_ROCK] = NAME_CRAGITATE,
+    [TYPE_BUG] = NAME_INFECTATE,
+    [TYPE_GHOST] = NAME_CHANNELING,
+    [TYPE_STEEL] = NAME_FORTIFIED,
+    [TYPE_FIRE] = NAME_EMPYREAL,
+    [TYPE_WATER] = NAME_HYDRATE,
+    [TYPE_GRASS] = NAME_NATURALIZE,
+    [TYPE_ELECTRIC] = NAME_DUPE_GALVANIZE,
+    [TYPE_PSYCHIC] = NAME_COGNITIVE,
+    [TYPE_ICE] = NAME_DUPE_REFRIGERATE,
+    [TYPE_DRAGON] = NAME_WYVERNATE,
+    [TYPE_DARK] = NAME_ANTAGONIZE,
+    [TYPE_FAIRY] = NAME_DUPE_PIXILATE,
+};
+
+static const u8* gAteAbilityDescriptions[] =
+{
+    [0] = 0,
+    [TYPE_FIGHTING] = DESC_WARFARE,
+    [TYPE_FLYING] = DESC_DUPE_AERILATE,
+    [TYPE_POISON] = DESC_TOXINATE,
+    [TYPE_GROUND] = DESC_EARTHBOUND,
+    [TYPE_ROCK] = DESC_CRAGITATE,
+    [TYPE_BUG] = DESC_INFECTATE,
+    [TYPE_GHOST] = DESC_CHANNELING,
+    [TYPE_STEEL] = DESC_FORTIFIED,
+    [TYPE_FIRE] = DESC_EMPYREAL,
+    [TYPE_WATER] = DESC_HYDRATE,
+    [TYPE_GRASS] = DESC_NATURALIZE,
+    [TYPE_ELECTRIC] = DESC_DUPE_GALVANIZE,
+    [TYPE_PSYCHIC] = DESC_COGNITIVE,
+    [TYPE_ICE] = DESC_DUPE_REFRIGERATE,
+    [TYPE_DRAGON] = DESC_WYVERNATE,
+    [TYPE_DARK] = DESC_ANTAGONIZE,
+    [TYPE_FAIRY] = DESC_DUPE_PIXILATE,
+};
+
+static const u8* gBlazeAbilityNames[] =
+{
+    [TYPE_NORMAL] = NAME_VIRTUE,
+    [TYPE_FIGHTING] = NAME_RAMPAGE,
+    [TYPE_FLYING] = NAME_CYCLONE,
+    [TYPE_POISON] = NAME_BIOHAZARD,
+    [TYPE_GROUND] = NAME_UPHEAVAL,
+    [TYPE_ROCK] = NAME_BEDROCK,
+    [TYPE_BUG] = NAME_DUPE_SWARM,
+    [TYPE_GHOST] = NAME_HAUNTED,
+    [TYPE_STEEL] = NAME_TEMPER,
+    [TYPE_FIRE] = NAME_DUPE_BLAZE,
+    [TYPE_WATER] = NAME_DUPE_TORRENT,
+    [TYPE_GRASS] = NAME_DUPE_OVERGROW,
+    [TYPE_ELECTRIC] = NAME_OVERCHARGE,
+    [TYPE_PSYCHIC] = NAME_BRAINSTORM,
+    [TYPE_ICE] = NAME_SNOWFALL,
+    [TYPE_DRAGON] = NAME_MYTHIC_RAGE,
+    [TYPE_DARK] = NAME_WRATH,
+    [TYPE_FAIRY] = NAME_ENCHANT,
+};
+
+static const u8* gBlazeAbilityDescriptions[] =
+{
+    [TYPE_NORMAL] = DESC_VIRTUE,
+    [TYPE_FIGHTING] = DESC_RAMPAGE,
+    [TYPE_FLYING] = DESC_CYCLONE,
+    [TYPE_POISON] = DESC_BIOHAZARD,
+    [TYPE_GROUND] = DESC_UPHEAVAL,
+    [TYPE_ROCK] = DESC_BEDROCK,
+    [TYPE_BUG] = DESC_DUPE_SWARM,
+    [TYPE_GHOST] = DESC_HAUNTED,
+    [TYPE_STEEL] = DESC_TEMPER,
+    [TYPE_FIRE] = DESC_DUPE_BLAZE,
+    [TYPE_WATER] = DESC_DUPE_TORRENT,
+    [TYPE_GRASS] = DESC_DUPE_OVERGROW,
+    [TYPE_ELECTRIC] = DESC_OVERCHARGE,
+    [TYPE_PSYCHIC] = DESC_BRAINSTORM,
+    [TYPE_ICE] = DESC_SNOWFALL,
+    [TYPE_DRAGON] = DESC_MYTHIC_RAGE,
+    [TYPE_DARK] = DESC_WRATH,
+    [TYPE_FAIRY] = DESC_ENCHANT,
+};
+
+static const u8* gAuraAbilityNames[] =
+{
+    [TYPE_NORMAL] = NAME_NORMAL_AURA,
+    [TYPE_FIGHTING] = NAME_FIGHTING_AURA,
+    [TYPE_FLYING] = NAME_FLYING_AURA,
+    [TYPE_POISON] = NAME_POISON_AURA,
+    [TYPE_GROUND] = NAME_GROUND_AURA,
+    [TYPE_ROCK] = NAME_ROCK_AURA,
+    [TYPE_BUG] = NAME_BUG_AURA,
+    [TYPE_GHOST] = NAME_GHOST_AURA,
+    [TYPE_STEEL] = NAME_STEEL_AURA,
+    [TYPE_FIRE] = NAME_FIRE_AURA,
+    [TYPE_WATER] = NAME_WATER_AURA,
+    [TYPE_GRASS] = NAME_GRASS_AURA,
+    [TYPE_ELECTRIC] = NAME_ELECTRIC_AURA,
+    [TYPE_PSYCHIC] = NAME_PSYCHIC_AURA,
+    [TYPE_ICE] = NAME_ICE_AURA,
+    [TYPE_DRAGON] = NAME_DRAGON_AURA,
+    [TYPE_DARK] = NAME_DUPE_DARK_AURA,
+    [TYPE_FAIRY] = NAME_DUPE_FAIRY_AURA,
+};
+
+static const u8* gAuraAbilityDescriptions[] =
+{
+    [TYPE_NORMAL] = DESC_NORMAL_AURA,
+    [TYPE_FIGHTING] = DESC_FIGHTING_AURA,
+    [TYPE_FLYING] = DESC_FLYING_AURA,
+    [TYPE_POISON] = DESC_POISON_AURA,
+    [TYPE_GROUND] = DESC_GROUND_AURA,
+    [TYPE_ROCK] = DESC_ROCK_AURA,
+    [TYPE_BUG] = DESC_BUG_AURA,
+    [TYPE_GHOST] = DESC_GHOST_AURA,
+    [TYPE_STEEL] = DESC_STEEL_AURA,
+    [TYPE_FIRE] = DESC_FIRE_AURA,
+    [TYPE_WATER] = DESC_WATER_AURA,
+    [TYPE_GRASS] = DESC_GRASS_AURA,
+    [TYPE_ELECTRIC] = DESC_ELECTRIC_AURA,
+    [TYPE_PSYCHIC] = DESC_PSYCHIC_AURA,
+    [TYPE_ICE] = DESC_ICE_AURA,
+    [TYPE_DRAGON] = DESC_DRAGON_AURA,
+    [TYPE_DARK] = DESC_DUPE_DARK_AURA,
+    [TYPE_FAIRY] = DESC_DUPE_FAIRY_AURA,
+};
+
+static struct TypeBasedAbility sAteAbilities[] = 
+{
+    //Fighting
+    {
+        0
+    },
+    //Flying
+    {
+        .species = SPECIES_SALAMENCE_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_PINSIR_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FLYING,
+    },
+    //Poison
+    {
+        0
+    },
+    //Ground
+    {
+        0
+    },
+    //Rock
+    {
+        0
+    },
+    //Bug
+    {
+        0
+    },
+    //Ghost
+    {
+        0
+    },
+    //Steel
+    {
+        0
+    },
+    //Fire
+    {
+        0
+    },
+    //Water
+    {
+        0
+    },
+    //Grass
+    {
+        0
+    },
+    //Electric
+    {
+        .species = SPECIES_GEODUDE_A,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ELECTRIC,
+    },
+    {
+        .species = SPECIES_GRAVELER_A,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ELECTRIC,
+    },
+    {
+        .species = SPECIES_GOLEM_A,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ELECTRIC,
+    },
+    //Psychic
+    {
+        0
+    },
+    //Ice
+    {
+        .species = SPECIES_GLALIE_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
+    {
+        .species = SPECIES_AMAURA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
+    {
+        .species = SPECIES_AURORUS,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
+    //Dragon
+    {   
+        0
+    },
+    //Dark
+    {
+        0
+    },
+    //Fairy
+    {
+        .species = SPECIES_GARDEVOIR_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FAIRY,
+    },
+    {
+        .species = SPECIES_ALTARIA_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FAIRY,
+    },
+    {
+        .species = SPECIES_SYLVEON,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FAIRY,
+    },
+
+};
 
 static struct DuplicateAbility sDuplicateAbilities[] =
 {
@@ -144,6 +443,21 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .species = SPECIES_RAYQUAZA,
         .currAbility = ABILITY_CLOUDNINE, 
         .replaceAbilityString = NAME_AIR_LOCK, 
+    },
+    {
+        .species = SPECIES_SQUIRTLE,
+        .currAbility = ABILITY_BATTLEARMOR, 
+        .replaceAbilityString = NAME_SHELL_ARMOR, 
+    },
+    {
+        .species = SPECIES_WARTORTLE,
+        .currAbility = ABILITY_BATTLEARMOR, 
+        .replaceAbilityString = NAME_SHELL_ARMOR, 
+    },
+    {
+        .species = SPECIES_BLASTOISE,
+        .currAbility = ABILITY_BATTLEARMOR, 
+        .replaceAbilityString = NAME_SHELL_ARMOR, 
     },
     {
         .species = SPECIES_SLOWBRO_MEGA,
@@ -361,6 +675,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_PRISM_ARMOR, 
     },
     {
+        .species = SPECIES_EKANS,
+        .currAbility = ABILITY_FILTER,
+        .replaceAbilityString = NAME_GUARDING_SCALES,
+    },
+    {
+        .species = SPECIES_ARBOK,
+        .currAbility = ABILITY_FILTER,
+        .replaceAbilityString = NAME_GUARDING_SCALES,
+    },
+    {
         .species = SPECIES_FERROSEED,
         .currAbility = ABILITY_ROUGHSKIN, 
         .replaceAbilityString = NAME_IRON_BARBS, 
@@ -519,5 +843,150 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .species = SPECIES_EXPLOUD,
         .currAbility = ABILITY_SOUNDPROOF, 
         .replaceAbilityString = NAME_CACOPHONY, 
+    },
+    {
+        .species = SPECIES_AMPHAROS,
+        .currAbility = ABILITY_FURCOAT,
+        .replaceAbilityString = NAME_VOLT_BARRIER,
+    },
+    {
+        .species = SPECIES_GRIMER,
+        .currAbility = ABILITY_ARENATRAP,
+        .replaceAbilityString = NAME_GLUEY_FIELD,
+    },
+    {
+        .species = SPECIES_MUK,
+        .currAbility = ABILITY_ARENATRAP,
+        .replaceAbilityString = NAME_GLUEY_FIELD,
+    },
+    {
+        .species = SPECIES_SPINDA,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_KECLEON,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_BURMY,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_BURMY_SANDY,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_BURMY_TRASH,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_WORMADAM,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_WORMADAM_SANDY,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_WORMADAM_TRASH,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_GLACEON,
+        .currAbility = ABILITY_ICESCALES,
+        .replaceAbilityString = NAME_ICY_SKIN,
+    },
+    {
+        .species = SPECIES_SHIELDON,
+        .currAbility = ABILITY_DAUNTLESSSHIELD,
+        .replaceAbilityString = NAME_FACE_SHIELD,
+    },
+    {
+        .species = SPECIES_BASTIODON,
+        .currAbility = ABILITY_DAUNTLESSSHIELD,
+        .replaceAbilityString = NAME_FACE_SHIELD,
+    },
+    {
+        .species = SPECIES_CORVIKNIGHT,
+        .currAbility = ABILITY_DAUNTLESSSHIELD,
+        .replaceAbilityString = NAME_VALIANT_SHIELD,
+    },
+    {
+        .species = SPECIES_CACNEA,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_CACTURNE,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_ROSELIA,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_ROSERADE,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_MARACTUS,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_CUBONE,
+        .currAbility = ABILITY_OVERCOAT,
+        .replaceAbilityString = NAME_TIGHT_MASK,
+    },
+    {
+        .species = SPECIES_MAROWAK,
+        .currAbility = ABILITY_OVERCOAT,
+        .replaceAbilityString = NAME_TIGHT_MASK,
+    },
+    {
+        .species = SPECIES_MAROWAK_A,
+        .currAbility = ABILITY_OVERCOAT,
+        .replaceAbilityString = NAME_TIGHT_MASK,
+    },
+    {
+        .species = SPECIES_GIRAFARIG,
+        .currAbility = ABILITY_PARENTALBOND,
+        .replaceAbilityString = NAME_BRAINS_SYNERGY,
+    },
+    {
+        .species = SPECIES_PHANTUMP,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
+        .species = SPECIES_TREVENANT,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
+        .species = SPECIES_EXEGGUTOR_A,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
+        .species = SPECIES_DUCKLETT,
+        .currAbility = ABILITY_SPEEDBOOST,
+        .replaceAbilityString = NAME_TEMPESTUOUS_SEA,
+    },
+    {
+        .species = SPECIES_SWANNA,
+        .currAbility = ABILITY_SPEEDBOOST,
+        .replaceAbilityString = NAME_TEMPESTUOUS_SEA,
     },
 };

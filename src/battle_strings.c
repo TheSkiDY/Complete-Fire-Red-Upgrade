@@ -1070,6 +1070,7 @@ const u8* GetAbilityNameDex(const u8 ability)
 const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 {
 	const u8* ptr = NULL; 
+	u8 firstType = gBaseStats[species].type1;
 	for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
 	{
 		if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
@@ -1078,127 +1079,15 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 			break;
 		}
 	}
-    switch(ability)
-    {
-        case ABILITY_DARKAURA:
-            switch(gBaseStats[species].type1)
-            {
-                case TYPE_NORMAL:
-                    ptr = NAME_NORMAL_AURA;
-                    break;
-                case TYPE_FIGHTING:
-                    ptr = NAME_FIGHTING_AURA;
-                    break;
-                case TYPE_FLYING:
-                    ptr = NAME_FLYING_AURA;
-                    break;
-                case TYPE_POISON:
-                    ptr = NAME_POISON_AURA;
-                    break;
-                case TYPE_GROUND:
-                    ptr = NAME_GROUND_AURA;
-                    break;
-                case TYPE_ROCK:
-                    ptr = NAME_ROCK_AURA;
-                    break;
-                case TYPE_BUG:
-                    ptr = NAME_BUG_AURA;
-                    break;
-                case TYPE_GHOST:
-                    ptr = NAME_GHOST_AURA;
-                    break;
-                case TYPE_STEEL:
-                    ptr = NAME_STEEL_AURA;
-                    break;
-                case TYPE_FIRE:
-                    ptr = NAME_FIRE_AURA;
-                    break;
-                case TYPE_WATER:
-                    ptr = NAME_WATER_AURA;
-                    break;
-                case TYPE_ELECTRIC:
-                    ptr = NAME_ELECTRIC_AURA;
-                    break;
-                case TYPE_GRASS:
-                    ptr = NAME_GRASS_AURA;
-                    break;
-                case TYPE_PSYCHIC:
-                    ptr = NAME_PSYCHIC_AURA;
-                    break;
-                case TYPE_ICE:
-                    ptr = NAME_ICE_AURA;
-                    break;
-                 case TYPE_DRAGON:
-                    ptr = NAME_DRAGON_AURA;
-                    break;
-                 case TYPE_DARK:
-                    ptr = NAME_DUPE_DARK_AURA;
-                    break;
-                 case TYPE_FAIRY:
-                    ptr = NAME_DUPE_FAIRY_AURA;
-                    break;
-            }
-            break;
-        case ABILITY_BLAZE_LIKE:
-            switch(gBaseStats[species].type1)
-            {
-                case TYPE_NORMAL:
-                    ptr = NAME_VIRTUE;
-                    break;
-                case TYPE_FIGHTING:
-                    ptr = NAME_RAMPAGE;
-                    break;
-                case TYPE_FLYING:
-                    ptr = NAME_CYCLONE;
-                    break;
-                case TYPE_POISON:
-                    ptr = NAME_BIOHAZARD;
-                    break;
-                case TYPE_GROUND:
-                    ptr = NAME_UPHEAVAL;
-                    break;
-                case TYPE_ROCK:
-                    ptr = NAME_BEDROCK;
-                    break;
-                case TYPE_BUG:
-                    ptr = NAME_DUPE_SWARM;
-                    break;
-                case TYPE_GHOST:
-                    ptr = NAME_HAUNTED;
-                    break;
-                case TYPE_STEEL:
-                    ptr = NAME_TEMPER;
-                    break;
-                case TYPE_FIRE:
-                    ptr = NAME_DUPE_BLAZE;
-                    break;
-                case TYPE_WATER:
-                    ptr = NAME_DUPE_TORRENT;
-                    break;
-                case TYPE_ELECTRIC:
-                    ptr = NAME_OVERCHARGE;
-                    break;
-                case TYPE_GRASS:
-                    ptr = NAME_DUPE_OVERGROW;
-                    break;
-                case TYPE_PSYCHIC:
-                    ptr = NAME_BRAINSTORM;
-                    break;
-                case TYPE_ICE:
-                    ptr = NAME_SNOWFALL;
-                    break;
-                 case TYPE_DRAGON:
-                    ptr = NAME_MYTHIC_RAGE;
-                    break;
-                 case TYPE_DARK:
-                    ptr = NAME_WRATH;
-                    break;
-                 case TYPE_FAIRY:
-                    ptr = NAME_ENCHANT;
-                    break;
-            }
-            break;
-    }   
+	switch(ability)
+	{
+		case ABILITY_BLAZE_LIKE:
+			ptr = gBlazeAbilityNames[firstType];
+			break;
+		case ABILITY_AURA_LIKE:
+			ptr = gAuraAbilityNames[firstType];
+			break;
+	}
 
     if (ptr == NULL)
 		ptr = gAbilityNames[ability];
