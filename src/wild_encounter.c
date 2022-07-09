@@ -577,6 +577,21 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	}
 
 SKIP_INDEX_SEARCH:
+	if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL) && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPLETIONIST)
+	{
+		switch(area)
+		{
+			case WILD_AREA_LAND:
+				wildMonIndex = LAND_WILD_COUNT - wildMonIndex - 1;
+				break;
+			case WILD_AREA_WATER:
+			case WILD_AREA_ROCKS:
+				wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+				break;
+		}
+		
+	}
+
 	gLastWildIndex = wildMonIndex;
 
 	level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
@@ -647,6 +662,21 @@ SKIP_INDEX_SEARCH:
 			case WILD_AREA_ROCKS:
 				wildMonIndex = ChooseWildMonIndex_WaterRock();
 				break;
+		}
+
+		if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL) && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPLETIONIST)
+		{
+			switch(area)
+			{
+				case WILD_AREA_LAND:
+					wildMonIndex = LAND_WILD_COUNT - wildMonIndex - 1;
+					break;
+				case WILD_AREA_WATER:
+				case WILD_AREA_ROCKS:
+					wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+					break;
+			}
+			
 		}
 
 		SKIP_INDEX_SEARCH_2:

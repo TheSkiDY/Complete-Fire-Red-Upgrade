@@ -1069,6 +1069,7 @@ bool8 CanFling(u16 item, u16 species, u8 ability, u8 bankOnSide, u8 embargoTimer
 	|| itemEffect == ITEM_EFFECT_GEM
 	|| itemEffect == ITEM_EFFECT_ABILITY_CAPSULE
 	|| (IsBerry(item) && AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankOnSide, ABILITY_UNNERVE, 0, 0))
+	|| (IsBerry(item) && AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankOnSide, ABILITY_ASONE, 0, 0))
 	|| GetPocketByItemId(item) == POCKET_POKE_BALLS)
 		return FALSE;
 
@@ -1216,6 +1217,15 @@ u8 CalcMoveSplit(u8 bank, u16 move)
 		else
 			return SPLIT_SPECIAL;
 	#else
+		if(ABILITY(bank) == ABILITY_SPLIT_CHANGE)
+		{
+			if(gBaseStats[SPECIES(bank)].baseAttack < gBaseStats[SPECIES(bank)].baseSpAttack)
+				return SPLIT_SPECIAL;
+			else
+				return SPLIT_PHYSICAL;
+		}
+
+
 		return SPLIT(move);
 	#endif
 }
@@ -1536,6 +1546,7 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	switch (ABILITY(bankDef)) {
 		case ABILITY_IMMUNITY:
 		case ABILITY_PASTELVEIL:
+		case ABILITY_PURIFIEDPOLLEN:
 			return FALSE;
 	}
 

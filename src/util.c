@@ -357,6 +357,7 @@ bool8 CanPartyMonBePoisoned(struct Pokemon* mon)
 	switch (GetMonAbility(mon)) {
 		case ABILITY_IMMUNITY:
 		case ABILITY_PASTELVEIL:
+		case ABILITY_PURIFIEDPOLLEN:
 			return FALSE;
 	}
 

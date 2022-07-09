@@ -229,7 +229,7 @@ void atk03_ppreduce(void) {
 
 static bool8 TryActivateWeakenessBerry(u8 bank, u8 resultFlags)
 {
-	if (ITEM_EFFECT(bank) == ITEM_EFFECT_WEAKNESS_BERRY && !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_UNNERVE, 0, 0))
+	if (ITEM_EFFECT(bank) == ITEM_EFFECT_WEAKNESS_BERRY && !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_UNNERVE, 0, 0) && !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bank, ABILITY_ASONE, 0, 0))
 	{
 		if ((resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && ITEM_QUALITY(bank) == gBattleStruct->dynamicMoveType && !DoesBankNegateDamage(bank, gCurrentMove))
 		||  (ITEM_QUALITY(bank) == TYPE_NORMAL && gBattleStruct->dynamicMoveType == TYPE_NORMAL)) //Chilan Berry

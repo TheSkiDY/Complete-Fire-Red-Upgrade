@@ -43,13 +43,14 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 {
 	[ABILITY_ADAPTABILITY] = 8,
 	[ABILITY_AFTERMATH] = 5,
-	[ABILITY_AERILATE] = 8,
+//	[ABILITY_AERILATE] = 8,
 //	[ABILITY_AIRLOCK] = 5,
 	[ABILITY_ANALYTIC] = 5,
 	[ABILITY_ANGERPOINT] = 4,
 	[ABILITY_ANTICIPATION] = 2,
 	[ABILITY_ARENATRAP] = 9,
 	[ABILITY_AROMAVEIL] = 3,
+	[ABILITY_ASONE] = 10,
 	[ABILITY_AURABREAK] = 3,
 	[ABILITY_BADDREAMS] = 4,
 	[ABILITY_BATTERY] = 0,
@@ -57,6 +58,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_BATTLEBOND] = 6,
 	[ABILITY_BEASTBOOST] = 7,
 	[ABILITY_BERSERK] = 5,
+	[ABILITY_BEWILDER] = 4,
 	[ABILITY_BIGPECKS] = 1,
 	[ABILITY_BLAZE_LIKE] = 5,
 	[ABILITY_BULLETPROOF] = 7,
@@ -67,6 +69,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_COLORCHANGE] = 2,
 	[ABILITY_COMATOSE] = 6,
 	[ABILITY_COMPETITIVE] = 5,
+	[ABILITY_COMPLETIONIST] = 3,
 	[ABILITY_COMPOUNDEYES] = 7,
 	[ABILITY_CONTRARY] = 8,
 	[ABILITY_CORROSION] = 5,
@@ -78,6 +81,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_MAJESTIC] = 5,
 	[ABILITY_DEFEATIST] = -1,
 	[ABILITY_DEFIANT] = 5,
+	[ABILITY_DEFLECTOR] = 5,
 	[ABILITY_DELTASTREAM] = 10,
 	[ABILITY_DESOLATELAND] = 10,
 	[ABILITY_DISGUISE] = 8,
@@ -104,7 +108,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 //	[ABILITY_FULLMETALBODY] = 4,
 	[ABILITY_FURCOAT] = 7,
 	[ABILITY_GALEWINGS] = 6,
-	[ABILITY_GALVANIZE] = 8,
+//	[ABILITY_GALVANIZE] = 8,
 	[ABILITY_GLUTTONY] = 3,
 	[ABILITY_STUN_TOUCH] = 5,
 	[ABILITY_GRASSPELT] = 2,
@@ -169,7 +173,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_PARENTALBOND] = 10,
 	[ABILITY_PICKUP] = 1,
 //	[ABILITY_PICKPOCKET] = 3,
-	[ABILITY_PIXILATE] = 8,
+//	[ABILITY_PIXILATE] = 8,
 	[ABILITY_PLUNDER] = 3,
 //	[ABILITY_PLUS] = 0,
 	[ABILITY_POISONHEAL] = 8,
@@ -191,7 +195,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_RATTLED] = 3,
 	[ABILITY_RECEIVER] = 0,
 	[ABILITY_RECKLESS] = 6,
-	[ABILITY_REFRIGERATE] = 8,
+	[ABILITY_ATE_LIKE] = 8,
 	[ABILITY_REGENERATOR] = 8,
 	[ABILITY_RIVALRY] = 1,
 	[ABILITY_RKS_SYSTEM] = 8,
@@ -300,7 +304,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_GORILLATACTICS] = 4,
 	[ABILITY_TRANSISTOR] = 6,
 	[ABILITY_DRAGONSMAW] = 6,
-	[ABILITY_GRIMNEIGH] = 7,
+	[ABILITY_CONFIDENCE] = 7,
 	[ABILITY_EMPTY_1] = 0,
 	[ABILITY_EMPTY_2] = 0,
 	[ABILITY_EMPTY_3] = 0,
@@ -462,6 +466,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_TRACE:			//Trace were included in this list. It has thus been
 				case ABILITY_DOWNLOAD:		//been expanded to support newer abilities.
 				case ABILITY_UNNERVE:
+				case ABILITY_ASONE:
 				case ABILITY_ANTICIPATION:
 				case ABILITY_FOREWARN:
 				case ABILITY_FRISK:
@@ -781,6 +786,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_UNNERVE:
+		case ABILITY_ASONE:
 			gBankAttacker = bank;
 			gBattleStringLoader = gText_UnnerveActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -1036,6 +1042,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_IMMUNITY:
+		case ABILITY_PURIFIEDPOLLEN:
 			effect = ImmunityAbilityCheck(bank, STATUS1_PSN_ANY, gStatusConditionString_Poison);
 			break;
 
@@ -1332,7 +1339,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_ICEBODY:
 					if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY) && !BATTLER_MAX_HP(bank))
 					{
-						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 8);
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 6);
 						gBattleMoveDamage *= -1;
 						BattleScriptExecute(BattleScript_RainDishActivates);
 						effect++;
@@ -1757,6 +1764,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_DEFLECTOR:
+				if(MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& CheckTableForMove(move, gPulseAuraBeamMoves)
+				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD)
+				{
+					gBattleMoveDamage = MathMax(1, gHpDealt / 2);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+					effect++;
+				}
+
 			case ABILITY_EFFECTSPORE:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
@@ -1843,6 +1864,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& umodsi(Random(), 3) == 0)
 				{
 					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_BURN;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD; //Safeguard checked earlier
+					effect++;
+				}
+				break;
+
+			case ABILITY_BEWILDER:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& CheckContact(move, gBankAttacker)
+				&& CanBeConfused(gBankAttacker, TRUE)
+				&& umodsi(Random(), 3) == 0)
+				{
+					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CONFUSION;
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
 					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD; //Safeguard checked earlier
@@ -2187,6 +2225,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				switch (ABILITY(bank))
 				{
 				case ABILITY_IMMUNITY:
+				case ABILITY_PURIFIEDPOLLEN:
 					if (gBattleMons[bank].status1 & (STATUS1_PSN_ANY))
 					{
 						StringCopy(gBattleTextBuff1, gStatusConditionString_Poison);

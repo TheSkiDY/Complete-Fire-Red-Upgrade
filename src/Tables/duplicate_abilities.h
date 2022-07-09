@@ -80,6 +80,11 @@ extern const u8 NAME_TIGHT_MASK[];
 extern const u8 NAME_BRAINS_SYNERGY[];
 extern const u8 NAME_INGROWN[];
 extern const u8 NAME_TEMPESTUOUS_SEA[];
+extern const u8 NAME_OVERTHINKING[];
+extern const u8 NAME_GRIM_NEIGH[];
+extern const u8 NAME_SCREECHING_BUZZ[];
+extern const u8 NAME_COSMOFORCE[];
+extern const u8 NAME_MYSTIC_SHELL[];
 
 extern const u8 DESC_DUPE_BLAZE[];
 extern const u8 DESC_DUPE_TORRENT[];
@@ -117,6 +122,7 @@ extern const u8 DESC_ICE_AURA[];
 extern const u8 DESC_DRAGON_AURA[];
 extern const u8 DESC_DUPE_DARK_AURA[];
 extern const u8 DESC_DUPE_FAIRY_AURA[];
+extern const u8 DESC_OVERTHINKING[];
 
 extern const u8 NAME_WARFARE[];
 extern const u8 NAME_DUPE_AERILATE[];
@@ -660,6 +666,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_SOLID_ROCK, 
     },
     {
+        .species = SPECIES_PUPITAR,
+        .currAbility = ABILITY_FILTER, 
+        .replaceAbilityString = NAME_SOLID_ROCK, 
+    },
+    {
         .species = SPECIES_NECROZMA,
         .currAbility = ABILITY_FILTER, 
         .replaceAbilityString = NAME_PRISM_ARMOR, 
@@ -810,6 +821,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_SHADOW_SHIELD, 
     },
     {
+        .species = SPECIES_CLAMPERL,
+        .currAbility = ABILITY_MYTHICALSHIELD, 
+        .replaceAbilityString = NAME_MYSTIC_SHELL, 
+    },
+    {
         .species = SPECIES_GRIMER_A,
         .currAbility = ABILITY_RECEIVER, 
         .replaceAbilityString = NAME_POWER_OF_ALCHEMY, 
@@ -845,7 +861,22 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_CACOPHONY, 
     },
     {
+        .species = SPECIES_KRICKETUNE,
+        .currAbility = ABILITY_SOUNDPROOF, 
+        .replaceAbilityString = NAME_CACOPHONY, 
+    },
+    {
+        .species = SPECIES_KRICKETOT,
+        .currAbility = ABILITY_SOUNDPROOF, 
+        .replaceAbilityString = NAME_CACOPHONY, 
+    },
+    {
         .species = SPECIES_AMPHAROS,
+        .currAbility = ABILITY_FURCOAT,
+        .replaceAbilityString = NAME_VOLT_BARRIER,
+    },
+    {
+        .species = SPECIES_STUNFISK,
         .currAbility = ABILITY_FURCOAT,
         .replaceAbilityString = NAME_VOLT_BARRIER,
     },
@@ -865,7 +896,7 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_OPPORTUNIST,
     },
     {
-        .species = SPECIES_KECLEON,
+        .species = SPECIES_VESPIQUEN,
         .currAbility = ABILITY_BEASTBOOST,
         .replaceAbilityString = NAME_OPPORTUNIST,
     },
@@ -900,7 +931,32 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_OPPORTUNIST,
     },
     {
+        .species = SPECIES_TYNAMO,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_EELEKTRIK,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
+        .species = SPECIES_EELEKTROSS,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
         .species = SPECIES_GLACEON,
+        .currAbility = ABILITY_ICESCALES,
+        .replaceAbilityString = NAME_ICY_SKIN,
+    },
+    {
+        .species = SPECIES_SANDSHREW_A,
+        .currAbility = ABILITY_ICESCALES,
+        .replaceAbilityString = NAME_ICY_SKIN,
+    },
+    {
+        .species = SPECIES_SANDSLASH_A,
         .currAbility = ABILITY_ICESCALES,
         .replaceAbilityString = NAME_ICY_SKIN,
     },
@@ -916,6 +972,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_CORVIKNIGHT,
+        .currAbility = ABILITY_DAUNTLESSSHIELD,
+        .replaceAbilityString = NAME_VALIANT_SHIELD,
+    },
+    {
+        .species = SPECIES_TYPE_NULL,
         .currAbility = ABILITY_DAUNTLESSSHIELD,
         .replaceAbilityString = NAME_VALIANT_SHIELD,
     },
@@ -980,6 +1041,21 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_INGROWN,
     },
     {
+        .species = SPECIES_TURTWIG,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
+        .species = SPECIES_GROTLE,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
+        .species = SPECIES_TORTERRA,
+        .currAbility = ABILITY_SUCTIONCUPS,
+        .replaceAbilityString = NAME_INGROWN,
+    },
+    {
         .species = SPECIES_DUCKLETT,
         .currAbility = ABILITY_SPEEDBOOST,
         .replaceAbilityString = NAME_TEMPESTUOUS_SEA,
@@ -988,5 +1064,25 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .species = SPECIES_SWANNA,
         .currAbility = ABILITY_SPEEDBOOST,
         .replaceAbilityString = NAME_TEMPESTUOUS_SEA,
+    },
+    {
+        .species = SPECIES_SPECTRIER,
+        .currAbility = ABILITY_CONFIDENCE,
+        .replaceAbilityString = NAME_GRIM_NEIGH,
+    },
+    {
+        .species = SPECIES_YANMEGA,
+        .currAbility = ABILITY_PUNKROCK,
+        .replaceAbilityString = NAME_SCREECHING_BUZZ,
+    },
+    {
+        .species = SPECIES_SOLROCK,
+        .currAbility = ABILITY_NEUROFORCE,
+        .replaceAbilityString = NAME_COSMOFORCE,
+    },
+    {
+        .species = SPECIES_LUNATONE,
+        .currAbility = ABILITY_NEUROFORCE,
+        .replaceAbilityString = NAME_COSMOFORCE,
     },
 };

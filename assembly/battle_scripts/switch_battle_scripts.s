@@ -25,6 +25,9 @@ switch_battle_scripts.s
 .global BattleScript_TSPoison
 .global BattleScript_TSHarshPoison
 .global BattleScript_TSAbsorb
+.global BattleScript_SpikesAbsorb
+.global BattleScript_SRAbsorb
+.global BattleScript_BothAbsorb
 .global BattleScript_StickyWebSpeedDrop
 .global BattleScript_SuccessForceOut
 
@@ -68,6 +71,30 @@ BattleScript_SpikesHurt:
 	waitmessage DELAY_1SECOND
 	faintpokemon BANK_TARGET 0x0 0x0
 	faintpokemon BANK_TARGET TRUE BattleScript_DmgHazardsOnAttackerFainted
+	return
+
+BattleScript_SpikesAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedSpikes
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_SRAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedRocks
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_BothAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedBoth
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
 	return
 
 BattleScript_DmgHazardsOnAttackerFainted:

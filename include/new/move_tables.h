@@ -27,6 +27,7 @@ extern const move_t gSheerForceBoostedMoves[];
 extern const move_t gRecklessBoostedMoves[];
 extern const move_t gPunchingMoves[];
 extern const move_t gPulseAuraMoves[];
+extern const move_t gPulseAuraBeamMoves[];
 extern const move_t gBitingMoves[];
 extern const move_t gBallBombMoves[];
 extern const move_t gDanceMoves[];

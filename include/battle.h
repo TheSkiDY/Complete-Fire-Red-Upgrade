@@ -654,7 +654,14 @@ struct BattleStruct
 	u8 wallyWaitFrames;
 	u8 wallyMoveFrames;
 	u16 lastTakenMove[MAX_BATTLERS_COUNT]; //Used by mirror move
-	u8 field_A0;
+	bool8 activatedCompression : 1; //So the scipt runs just once even if there are both rocks and spikes on the field
+    bool8 A0_flag1 : 1;
+    bool8 A0_flag2 : 1;
+    bool8 A0_flag3 : 1;
+    bool8 A0_flag4 : 1;
+    bool8 A0_flag5 : 1;
+    bool8 A0_flag6 : 1;
+    bool8 A0_flag7 : 1;
 	u8 field_A1;
 	u8 field_A2;
 	u8 field_A3;

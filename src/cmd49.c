@@ -802,7 +802,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					}
 					break;
 
-				case ABILITY_GRIMNEIGH:
+				case ABILITY_CONFIDENCE:
 					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
 					&& gBattleMons[bankDef].hp == 0
 					&& BATTLER_ALIVE(gBankAttacker)
@@ -817,6 +817,36 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						gBattleScripting.bank = gBankAttacker;
 						gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_SPATK;
 						gBattleScripting.animArg1 = 0xE + STAT_STAGE_SPATK;
+						gBattleScripting.animArg2 = 0;
+
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_Moxie;
+						effect = 1;
+					}
+					break;
+
+				case ABILITY_ASONE:
+					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+					&& gBattleMons[bankDef].hp == 0
+					&& BATTLER_ALIVE(gBankAttacker)
+					&& TOOK_DAMAGE(bankDef)
+					&& MOVE_HAD_EFFECT
+					&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
+					{
+						u16 species = SPECIES(gBankAttacker);
+						u16 stat;
+
+						if(gBaseStats[species].baseAttack >= gBaseStats[species].baseSpAttack)
+							stat = STAT_STAGE_ATK;
+						else
+							stat = STAT_STAGE_SPATK;
+
+						PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
+
+						gEffectBank = gBankAttacker;
+						gBattleScripting.bank = gBankAttacker;
+						gBattleScripting.statChanger = INCREASE_1 | stat;
+						gBattleScripting.animArg1 = 0xE + stat;
 						gBattleScripting.animArg2 = 0;
 
 						BattleScriptPushCursor();

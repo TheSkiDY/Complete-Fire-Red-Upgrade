@@ -1071,6 +1071,7 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 {
 	const u8* ptr = NULL; 
 	u8 firstType = gBaseStats[species].type1;
+	u8 ateType;
 	for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
 	{
 		if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
@@ -1087,6 +1088,24 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 		case ABILITY_AURA_LIKE:
 			ptr = gAuraAbilityNames[firstType];
 			break;
+		case ABILITY_ATE_LIKE:
+			for (u8 i = 0; i < ARRAY_COUNT(sAteAbilities); ++i)
+			{
+				if(species == sAteAbilities[i].species)
+               	{
+                    ateType = sAteAbilities[i].type;
+                    ptr = gAteAbilityNames[ateType];
+                    break;
+               	}
+			}
+			break;
+		case ABILITY_SPLIT_CHANGE:
+            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
+            {
+                ptr = NAME_OVERTHINKING;
+                break;
+            }
+            break;
 	}
 
     if (ptr == NULL)

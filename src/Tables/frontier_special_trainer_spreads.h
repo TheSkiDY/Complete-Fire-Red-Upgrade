@@ -10036,7 +10036,7 @@ const struct BattleTowerSpread gSpecialTowerSpread_Gail[] =
 		.hpEv = 252,
 		.spAtkEv = 4,
 		.spDefEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_REFRIGERATE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_ATE_LIKE
 		.item = ITEM_LEFTOVERS,
 		.moves =
 		{
@@ -11018,7 +11018,7 @@ const struct BattleTowerSpread gLittleCupTowerSpread_Gail[] =
 		.defEv = 36,
 		.spAtkEv = 220,
 		.spDefEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_REFRIGERATE
+		.ability = FRONTIER_ABILITY_1, //ABILITY_ATE_LIKE
 		.item = ITEM_SHUCA_BERRY,
 		.moves =
 		{

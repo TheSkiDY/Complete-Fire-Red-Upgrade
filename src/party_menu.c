@@ -128,6 +128,7 @@ void __attribute__((long_call)) PartyMenuDisplayYesNoMenu(void);
 void __attribute__((long_call)) GetMonLevelUpWindowStats(struct Pokemon * pokemon, u16 *data);
 void __attribute__((long_call)) ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon * pokemon, u16 itemId, u16 param);
 void __attribute__((long_call)) Task_DisplayLevelUpStatsPg1(u8 taskId);
+void __attribute__((long_call)) Task_TryLearnNewMoves(u8 taskId);
 
 static bool8 IsItemVitamin(u16 item);
 
@@ -1490,7 +1491,7 @@ void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
     StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
-    gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+    gTasks[taskId].func = Task_TryLearnNewMoves; //Task_TryLearnNewMoves
 }
 
 

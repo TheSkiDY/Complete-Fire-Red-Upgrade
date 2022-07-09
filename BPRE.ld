@@ -1838,6 +1838,7 @@ GetMonLevelUpWindowStats = 0x811D130 | 1;
 ItemUse_SetQuestLogEvent = 0x80A2294 | 1;
 PlayFanfareByFanfareNum = 0x8071BC4 | 1;
 Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
+Task_TryLearnNewMoves = 0x81265F8 | 1;
 AddTextPrinterParameterized3 = 0x812E51C | 1;
 WriteSequenceToBgTilemapBuffer = 0x08002590 | 1;
 UpdateTrainerCardPhotoIcons = 0x80CC2BC | 1;

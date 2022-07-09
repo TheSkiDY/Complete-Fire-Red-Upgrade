@@ -520,7 +520,7 @@ Powers up ELECTRIC-type moves.
 #org @DESC_DRAGONSMAW
 Powers up DRAGON-type moves.
 
-#org @DESC_GRIMNEIGH
+#org @DESC_CONFIDENCE
 Knockouts boost SPECIAL ATTACK.
 
 #org @DESC_UNSEENFIST
@@ -555,6 +555,30 @@ Attacks only every two turns.
 
 #org @DESC_BLAZE_LIKE
 Ups FIRE moves if below 33% HP.
+
+#org @DESC_ASONE
+Combines UNNERVE and KO boosts.
+
+#org @DESC_BEWILDER
+May cause confusion on contact.
+
+#org @DESC_SPLIT_CHANGE
+Special moves become physical.
+
+#org @DESC_COMPLETIONIST
+Reverses any encounter table.
+
+#org @DESC_COMPRESSION
+Absorbs stealth rocks and spikes.
+
+#org @DESC_DEFLECTOR
+Deflects damage by pulse and beam moves.
+
+#org @DESC_PUREAURA
+Doubles SPECIAL ATTACK.
+
+#org @DESC_PURIFIEDPOLLEN
+Lowers POISON-type damage by 75%.
 
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.
@@ -603,3 +627,13 @@ Empty ability.
 
 #org @DESC_ABILITY_EMPTY_16
 Empty ability.
+
+#org @DESC_ABILITY_EMPTY_17
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_18
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_19
+Empty ability.
+

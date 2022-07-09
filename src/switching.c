@@ -202,6 +202,7 @@ static bool8 TryRemoveNeutralizingGas(u8 ability)
 				//Some abilities don't reactivate
 				switch (ability) {
 					case ABILITY_UNNERVE:
+					case ABILITY_ASONE:
 						break;
 					case ABILITY_IMPOSTER: //Never gets another chance
 						gStatuses3[bank] |= STATUS3_SWITCH_IN_ABILITY_DONE;
@@ -224,8 +225,9 @@ static bool8 TryRemoveUnnerve(u8 bank)
 {
 	u8 side = SIDE(bank);
 	bool8 ret = FALSE;
+	u8 ability = ABILITY(bank);
 
-	if (ABILITY(bank) == ABILITY_UNNERVE)
+	if (ability == ABILITY_UNNERVE || ability == ABILITY_ASONE)
 	{
 		*GetAbilityLocation(bank) = ABILITY_NONE; //Temporarily remove Unnerve so Berries can activate
 
@@ -245,7 +247,7 @@ static bool8 TryRemoveUnnerve(u8 bank)
 			}
 		}
 
-		*GetAbilityLocation(bank) = ABILITY_UNNERVE; //Restore Unnerve so loop can continue when we return to this function
+		*GetAbilityLocation(bank) = ability; //Restore Unnerve so loop can continue when we return to this function
 	}
 
 	return ret;
@@ -630,16 +632,34 @@ void atk52_switchineffects(void)
 
 		case SwitchIn_Spikes:
 			if (CheckGrounding(gActiveBattler)
-			&& gSideTimers[SIDE(gActiveBattler)].spikesAmount > 0
-			&& ability != ABILITY_MAGICGUARD
-			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
+			&& gSideTimers[SIDE(gActiveBattler)].spikesAmount > 0)
 			{
-				gBattleMoveDamage = CalcSpikesDamage(gActiveBattler);
-				gNewBS->DamageTaken[gActiveBattler] += gBattleMoveDamage;
+				if(ability == ABILITY_COMPRESSION)
+				{
+					gSideTimers[SIDE(gActiveBattler)].spikesAmount = 0;
+					gBattleStruct->activatedCompression = 1;
+					if(gSideTimers[SIDE(gActiveBattler)].srAmount > 0)
+					{
+						gSideTimers[SIDE(gActiveBattler)].srAmount = 0;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_BothAbsorb;
+					}
+					else
+					{
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_SpikesAbsorb;
+					}
+				}
+				else if(ability != ABILITY_MAGICGUARD && itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
+				{
+					gBattleMoveDamage = CalcSpikesDamage(gActiveBattler);
+					gNewBS->DamageTaken[gActiveBattler] += gBattleMoveDamage;
 
-				BattleScriptPushCursor();
-				gBattlescriptCurrInstr = BattleScript_SpikesHurt;
-				gSideStatuses[SIDE(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SpikesHurt;
+					gSideStatuses[SIDE(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+					
+				}
 				gBattleScripting.bank = gActiveBattler;
 				gBankTarget = gActiveBattler;
 				//gBankAttacker = FOE(gActiveBattler); //For EXP
@@ -650,16 +670,23 @@ void atk52_switchineffects(void)
 		__attribute__ ((fallthrough));
 
 		case SwitchIn_StealthRock:
-			if (gSideTimers[SIDE(gActiveBattler)].srAmount > 0
-			&& ability != ABILITY_MAGICGUARD
-			&& itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
+			if (gSideTimers[SIDE(gActiveBattler)].srAmount > 0)
 			{
-				gBattleMoveDamage = CalcStealthRockDamage(gActiveBattler);
-				gNewBS->DamageTaken[gActiveBattler] += gBattleMoveDamage;
+				if(ability == ABILITY_COMPRESSION && !gBattleStruct->activatedCompression)
+				{
+					gSideTimers[SIDE(gActiveBattler)].srAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SRAbsorb;
+				}
+				else if(ability != ABILITY_MAGICGUARD && itemEffect != ITEM_EFFECT_HEAVY_DUTY_BOOTS)
+				{
+					gBattleMoveDamage = CalcStealthRockDamage(gActiveBattler);
+					gNewBS->DamageTaken[gActiveBattler] += gBattleMoveDamage;
 
-				BattleScriptPushCursor();
-				gBattlescriptCurrInstr = BattleScript_SRHurt;
-				gSideStatuses[SIDE(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SRHurt;
+					gSideStatuses[SIDE(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+				}
 				gBattleScripting.bank = gActiveBattler;
 				gBankTarget = gActiveBattler;
 				//gBankAttacker = FOE(gActiveBattler); //For EXP

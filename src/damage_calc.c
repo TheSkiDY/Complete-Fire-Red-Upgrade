@@ -19,6 +19,7 @@
 #include "../include/new/move_tables.h"
 
 #include "Tables/type_tables.h"
+#include "Tables/duplicate_abilities.h"
 
 /*
 damage_calc.c
@@ -1296,11 +1297,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 u8 GetMoveTypeSpecial(u8 bankAtk, u16 move)
 {
 	u8 atkAbility = ABILITY(bankAtk);
+	u16 species = SPECIES(bankAtk);
 	u8 moveType = GetMoveTypeSpecialPreAbility(move, bankAtk, NULL);
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing, species);
 }
 
 u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
@@ -1324,7 +1326,7 @@ u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
 	return 0xFF;
 }
 
-u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
+u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive, u16 speciesAtk)
 {
 	u8 moveType = gBattleMoves[move].type;
 	bool8 moveTypeCanBeChanged = !zMoveActive || SPLIT(move) == SPLIT_STATUS;
@@ -1332,18 +1334,26 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
 	if (moveTypeCanBeChanged)
 	{
 		//Change Normal-type Moves
-		if (moveType == TYPE_NORMAL)
+		if (moveType == TYPE_NORMAL && atkAbility == ABILITY_ATE_LIKE)
 		{
-			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-					return TYPE_ICE;
-				case ABILITY_PIXILATE:
-					return TYPE_FAIRY;
-				case ABILITY_AERILATE:
-					return TYPE_FLYING;
-				case ABILITY_GALVANIZE:
-					return TYPE_ELECTRIC;
+			for(u8 i = 0; i < ARRAY_COUNT(sAteAbilities); i++)
+			{
+				if(sAteAbilities[i].species == speciesAtk)
+				{
+					return sAteAbilities[i].type;
+				}
 			}
+
+			// switch (atkAbility) {
+			// 	case ABILITY_ATE_LIKE:
+			// 		return TYPE_ICE;
+			// 	case ABILITY_PIXILATE:
+			// 		return TYPE_FAIRY;
+			// 	case ABILITY_AERILATE:
+			// 		return TYPE_FLYING;
+			// 	case ABILITY_GALVANIZE:
+			// 		return TYPE_ELECTRIC;
+			// }
 		}
 
 		//Change non-Normal-type moves
@@ -1363,11 +1373,12 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
 u8 GetMonMoveTypeSpecial(struct Pokemon* mon, u16 move)
 {
 	u8 atkAbility = GetMonAbility(mon);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 	u8 moveType = GetMoveTypeSpecialPreAbility(move, 0, mon);
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE, species);
 }
 
 static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 checkIonDeluge, bool8 zMoveActive)
@@ -1389,10 +1400,10 @@ static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyT
 		if (moveTypeCanBeChanged)
 		{
 			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-				case ABILITY_PIXILATE:
-				case ABILITY_AERILATE:
-				case ABILITY_GALVANIZE:
+				case ABILITY_ATE_LIKE:
+				// case ABILITY_PIXILATE:
+				// case ABILITY_AERILATE:
+				// case ABILITY_GALVANIZE:
 					return TRUE;
 			}
 		}
@@ -2079,6 +2090,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			attack *= 2;
 			break;
 
+		case ABILITY_PUREAURA:
+			spAttack *= 2;
+
 		case ABILITY_FLOWERGIFT:
 		//1.5x Boost
 			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
@@ -2600,6 +2614,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 75) / 100;
 			break;
 
+		case ABILITY_PURIFIEDPOLLEN:
+			if(data->moveType == TYPE_POISON)
+				damage /= 4;
+			break;
+
 		case ABILITY_DAMP:
 		case ABILITY_WATERBUBBLE:
 		//0.5x Decrement
@@ -2649,7 +2668,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	//Second Target Item Checks
 	switch (data->defItemEffect) {
 		case ITEM_EFFECT_WEAKNESS_BERRY:
-			if (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE)
+			if (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE
+			 || !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONE, 0, 0) && data->atkAbility != ABILITY_ASONE)
 			{
 				if ((data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && data->defItemQuality == data->moveType)
 				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL)) //Chilan Berry
@@ -3344,10 +3364,10 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 13) / 10;
 			break;
 
-		case ABILITY_AERILATE:
-		case ABILITY_PIXILATE:
-		case ABILITY_REFRIGERATE:
-		case ABILITY_GALVANIZE:
+		//case ABILITY_AERILATE:
+		//case ABILITY_PIXILATE:
+		case ABILITY_ATE_LIKE:
+		//case ABILITY_GALVANIZE:
 		case ABILITY_NORMALIZE:
 		//1.2x / 1.3x Boost
 			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], TRUE, (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing)))

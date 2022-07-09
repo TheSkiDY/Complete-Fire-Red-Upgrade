@@ -38,6 +38,7 @@ void HandleDuplicateDescriptions_SummaryScreen()
     u8 ability = GetMonAbility(mon);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 firstType = gBaseStats[species].type1;
+    u8 ateType;
 
     switch(ability)
     {
@@ -47,6 +48,24 @@ void HandleDuplicateDescriptions_SummaryScreen()
         case ABILITY_AURA_LIKE:
             StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAuraAbilityDescriptions[firstType]);
             return;
+        case ABILITY_ATE_LIKE:
+            for (u8 i = 0; i < ARRAY_COUNT(sAteAbilities); ++i)
+            {
+               if(species == sAteAbilities[i].species)
+               {
+                    ateType = sAteAbilities[i].type;
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAteAbilityDescriptions[ateType]);
+                    return;
+               } 
+            }
+            break;
+        case ABILITY_SPLIT_CHANGE:
+            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
+            {
+                StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_OVERTHINKING);
+                return;
+            }
+            break;
     }
 }
 
@@ -56,6 +75,7 @@ void HandleDuplicateNames_SummaryScreen()
     u8 ability = GetMonAbility(mon);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 firstType = gBaseStats[species].type1;
+    u8 ateType;
 
     for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
     {
@@ -73,6 +93,24 @@ void HandleDuplicateNames_SummaryScreen()
         case ABILITY_AURA_LIKE:
             StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAuraAbilityNames[firstType]);
             return;
+        case ABILITY_ATE_LIKE:
+            for (u8 i = 0; i < ARRAY_COUNT(sAteAbilities); ++i)
+            {
+               if(species == sAteAbilities[i].species)
+               {
+                    ateType = sAteAbilities[i].type;
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAteAbilityNames[ateType]);
+                    return;
+               } 
+            }
+            break;
+        case ABILITY_SPLIT_CHANGE:
+            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
+            {
+                StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_OVERTHINKING);
+                return;
+            }
+            break;
     }
 }
 

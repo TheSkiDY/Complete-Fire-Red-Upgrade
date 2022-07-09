@@ -2372,7 +2372,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				|| !WillFaintFromSecondaryDamage(bankDef)
 				|| IsMovePredictionHealingMove(bankDef, bankAtk)
 				|| atkAbility == ABILITY_MOXIE
-				|| atkAbility == ABILITY_GRIMNEIGH
+				|| atkAbility == ABILITY_CONFIDENCE
 				|| atkAbility == ABILITY_BEASTBOOST)
 					INCREASE_VIABILITY(2);
 			}
@@ -2514,7 +2514,7 @@ u8 AIScript_SemiSmart(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				|| !WillFaintFromSecondaryDamage(bankDef)
 				|| IsMovePredictionHealingMove(bankDef, bankAtk)
 				|| data->atkAbility == ABILITY_MOXIE
-				|| data->atkAbility == ABILITY_GRIMNEIGH
+				|| data->atkAbility == ABILITY_CONFIDENCE
 				|| data->atkAbility == ABILITY_BEASTBOOST)
 					INCREASE_VIABILITY(2);
 			}

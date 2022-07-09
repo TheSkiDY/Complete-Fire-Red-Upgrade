@@ -1841,6 +1841,7 @@ void atkFF2C_trysetpoison(void)
 				}
 				break;
 			case ABILITY_IMMUNITY:
+			case ABILITY_PURIFIEDPOLLEN:
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;

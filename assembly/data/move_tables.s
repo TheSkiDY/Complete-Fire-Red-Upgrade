@@ -27,6 +27,7 @@ move_tables.s
 .global gRecklessBoostedMoves
 .global gPunchingMoves
 .global gPulseAuraMoves
+.global gPulseAuraBeamMoves
 .global gBitingMoves
 .global gBallBombMoves
 .global gDanceMoves
@@ -723,6 +724,30 @@ gPulseAuraMoves:
 .hword MOVE_ORIGINPULSE
 .hword MOVE_TERRAINPULSE
 .hword MOVE_WATERPULSE
+.hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gPulseAuraBeamMoves:
+.hword MOVE_AURASPHERE
+.hword MOVE_DARKPULSE
+.hword MOVE_DRAGONPULSE
+.hword MOVE_HEALPULSE
+.hword MOVE_ORIGINPULSE
+.hword MOVE_TERRAINPULSE
+.hword MOVE_WATERPULSE
+.hword MOVE_AURORABEAM
+.hword MOVE_BUBBLEBEAM
+.hword MOVE_CHARGEBEAM
+.hword MOVE_ETERNABEAM
+.hword MOVE_HYPERBEAM
+.hword MOVE_ICEBEAM
+.hword MOVE_METEORBEAM
+.hword MOVE_MOONGEISTBEAM
+.hword MOVE_PSYBEAM
+.hword MOVE_SIGNALBEAM
+.hword MOVE_SOLARBEAM
+.hword MOVE_STEELBEAM
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

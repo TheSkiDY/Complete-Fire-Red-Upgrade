@@ -2088,7 +2088,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 
 						if (ability == ABILITY_MOXIE
 						||  ability == ABILITY_SOULHEART
-						||  ability == ABILITY_GRIMNEIGH
+						||  ability == ABILITY_CONFIDENCE
 						||  ability == ABILITY_BEASTBOOST)
 							scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 						else

@@ -182,6 +182,7 @@ u8 TurnBasedEffects(void)
 				gNewBS->activatedCustapQuickClaw = 0;
 				gNewBS->criticalCapture = 0;
 				gNewBS->devolveForgotMove = 0;
+				gBattleStruct->activatedCompression = 0;
 
 				if (gNewBS->RetaliateCounters[0])
 					--gNewBS->RetaliateCounters[0];
