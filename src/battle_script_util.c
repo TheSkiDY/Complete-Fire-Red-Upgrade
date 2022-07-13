@@ -1179,7 +1179,7 @@ void TailwindLuckyChantFunc(void)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
-				if(ABILITY(gBankAttacker) == ABILITY_GALEWINGS)
+				if(ABILITY(gBankAttacker) == ABILITY_GALEWINGS && IsOfType(gBankAttacker, TYPE_FLYING))
 					gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 7;
 				else
 					gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 4;

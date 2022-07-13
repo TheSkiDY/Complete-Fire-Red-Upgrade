@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "../include/battle.h"
 #include "../include/event_data.h"
 #include "../include/menu.h"
 #include "../include/pokemon_icon.h"
@@ -38,7 +39,7 @@ void HandleDuplicateDescriptions_SummaryScreen()
     u8 ability = GetMonAbility(mon);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 firstType = gBaseStats[species].type1;
-    u8 ateType;
+    u8 ateType, terrainType;
 
     switch(ability)
     {
@@ -59,6 +60,28 @@ void HandleDuplicateDescriptions_SummaryScreen()
                } 
             }
             break;
+        case ABILITY_TERRAIN_SURGE:
+            for (u8 i = 0; i < ARRAY_COUNT(sSurgeAbilities); ++i)
+            {
+               if(species == sSurgeAbilities[i].species)
+               {
+                    terrainType = sSurgeAbilities[i].terrain;
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gSurgeAbilityDescriptions[terrainType]);
+                    return;
+               } 
+            }
+            break;
+        case ABILITY_GALEWINGS:
+            for (u8 i = 0; i < ARRAY_COUNT(sPriorityAbilities); ++i)
+            {
+               if(species == sPriorityAbilities[i].species)
+               {
+                    ateType = sPriorityAbilities[i].type;
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gPriorityAbilityDescriptions[ateType]);
+                    return;
+               } 
+            }
+            break;
         case ABILITY_SPLIT_CHANGE:
             if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
             {
@@ -75,7 +98,7 @@ void HandleDuplicateNames_SummaryScreen()
     u8 ability = GetMonAbility(mon);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 firstType = gBaseStats[species].type1;
-    u8 ateType;
+    u8 ateType, terrainType;
 
     for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
     {
@@ -100,6 +123,28 @@ void HandleDuplicateNames_SummaryScreen()
                {
                     ateType = sAteAbilities[i].type;
                     StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAteAbilityNames[ateType]);
+                    return;
+               } 
+            }
+            break;
+        case ABILITY_GALEWINGS:
+            for (u8 i = 0; i < ARRAY_COUNT(sPriorityAbilities); ++i)
+            {
+               if(species == sPriorityAbilities[i].species)
+               {
+                    ateType = sPriorityAbilities[i].type;
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gPriorityAbilityNames[ateType]);
+                    return;
+               } 
+            }
+            break;
+        case ABILITY_TERRAIN_SURGE:
+            for (u8 i = 0; i < ARRAY_COUNT(sSurgeAbilities); ++i)
+            {
+               if(species == sSurgeAbilities[i].species)
+               {
+                    terrainType = sSurgeAbilities[i].terrain;
+                    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gSurgeAbilityNames[terrainType]);
                     return;
                } 
             }

@@ -26,6 +26,7 @@
 #include "../include/new/move_tables.h"
 #include "../include/new/set_z_effect.h"
 #include "../include/new/util.h"
+#include "Tables/duplicate_abilities.h"
 
 /*
 battle_start_turn_start.c
@@ -1652,13 +1653,22 @@ s8 PriorityCalc(u8 bank, u8 action, u16 move)
 					++priority;
 				break;
 
+			case ABILITY_RAPIDKICKS:
+				if(CheckTableForMove(move, gKickingMoves))
+					priority += 3;
+				break;
+
 			case ABILITY_GALEWINGS:
-				if (GetMoveTypeSpecial(bank, move) == TYPE_FLYING)
+				for (u8 i = 0; i < ARRAY_COUNT(sPriorityAbilities); ++i)
 				{
-					#ifndef OLD_GALE_WINGS
-						if (BATTLER_MAX_HP(bank))
-					#endif
-							++priority;
+					if(SPECIES(bank) == sPriorityAbilities[i].species && GetMoveTypeSpecial(bank, move) == sPriorityAbilities[i].type)
+	               	{
+	                    #ifndef OLD_GALE_WINGS
+							if (BATTLER_MAX_HP(bank))
+						#endif
+								++priority;
+	                    break;
+	               	}
 				}
 				break;
 
@@ -1689,6 +1699,11 @@ s8 PriorityCalcMon(struct Pokemon* mon, u16 move)
 		case ABILITY_PRANKSTER:
 			if (SPLIT(move) == SPLIT_STATUS)
 				++priority;
+			break;
+
+		case ABILITY_RAPIDKICKS:
+			if(CheckTableForMove(move, gKickingMoves))
+				priority += 3;
 			break;
 
 		case ABILITY_GALEWINGS:

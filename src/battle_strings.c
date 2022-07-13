@@ -1071,7 +1071,7 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 {
 	const u8* ptr = NULL; 
 	u8 firstType = gBaseStats[species].type1;
-	u8 ateType;
+	u8 ateType, terrainType;
 	for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
 	{
 		if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
@@ -1099,6 +1099,28 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
                	}
 			}
 			break;
+		case ABILITY_GALEWINGS:
+			for (u8 i = 0; i < ARRAY_COUNT(sPriorityAbilities); ++i)
+			{
+				if(species == sPriorityAbilities[i].species)
+               	{
+                    ateType = sPriorityAbilities[i].type;
+                    ptr = gPriorityAbilityNames[ateType];
+                    break;
+               	}
+			}
+			break;
+		case ABILITY_TERRAIN_SURGE:
+            for (u8 i = 0; i < ARRAY_COUNT(sSurgeAbilities); ++i)
+            {
+               if(species == sSurgeAbilities[i].species)
+               {
+                    terrainType = sSurgeAbilities[i].terrain;
+                    ptr = gSurgeAbilityNames[terrainType];
+                    break;
+               } 
+            }
+            break;
 		case ABILITY_SPLIT_CHANGE:
             if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
             {

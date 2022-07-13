@@ -85,7 +85,7 @@ bool8 NoStatusMoves(u8 bank)
 	for (int i = 0; i < 4; ++i)
 	{
 		move = gBattleMons[bank].moves[i];
-		if(gBattleMoves[move].split == SPLIT_STATUS)
+		if(gBattleMoves[move].split == SPLIT_STATUS && gBattleMoves[move].effect != EFFECT_PROTECT && gBattleMoves[move].effect != EFFECT_REST)
 		{
 			ifStatus = TRUE;
 		}

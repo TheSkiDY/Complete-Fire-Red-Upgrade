@@ -34,6 +34,7 @@ defines_battle.h
 #define ITEM_QUALITY(bank) ItemId_GetHoldEffectParam(gBattleMons[bank].item)
 #define ITEM_POCKET(bank) GetPocketByItemId(gBattleMons[bank].item)
 #define SPLIT(move) gBattleMoves[move].split
+#define EFFECT(move) gBattleMoves[move].effect
 #define CONSUMED_ITEMS(bank) gBattleStruct->usedHeldItems[bank]
 #define SAVED_CONSUMED_ITEMS(bank) gNewBS->SavedConsumedItems[gBattlerPartyIndexes[bank]]
 #define CHOICED_MOVE(bank) gBattleStruct->choicedMove[bank]

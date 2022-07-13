@@ -160,6 +160,21 @@ extern const u8 DESC_WYVERNATE[];
 extern const u8 DESC_ANTAGONIZE[];
 extern const u8 DESC_DUPE_PIXILATE[];
 
+extern const u8 NAME_DUPE_ELECTRIC_SURGE[];
+extern const u8 NAME_DUPE_MISTY_SURGE[];
+extern const u8 NAME_DUPE_PSYCHIC_SURGE[];
+extern const u8 NAME_DUPE_GRASSY_SURGE[];
+
+extern const u8 DESC_ELECTRIC_SURGE[];
+extern const u8 DESC_MISTY_SURGE[];
+extern const u8 DESC_PSYCHIC_SURGE[];
+extern const u8 DESC_GRASSY_SURGE[];
+
+extern const u8 NAME_DUPE_GALE_WINGS[];
+extern const u8 NAME_SHADOW_BOOST[];
+extern const u8 DESC_GALE_WINGS[];
+extern const u8 DESC_SHADOW_BOOST[];
+
 static const u8* gAteAbilityNames[] =
 {
     [0] = 0,
@@ -290,6 +305,160 @@ static const u8* gAuraAbilityDescriptions[] =
     [TYPE_DRAGON] = DESC_DRAGON_AURA,
     [TYPE_DARK] = DESC_DUPE_DARK_AURA,
     [TYPE_FAIRY] = DESC_DUPE_FAIRY_AURA,
+};
+
+static const u8* gSurgeAbilityNames[] = 
+{
+    [0] = 0,
+    [ELECTRIC_TERRAIN] = NAME_DUPE_ELECTRIC_SURGE,
+    [MISTY_TERRAIN] = NAME_DUPE_MISTY_SURGE,
+    [PSYCHIC_TERRAIN] = NAME_DUPE_PSYCHIC_SURGE,
+    [GRASSY_TERRAIN] = NAME_DUPE_GRASSY_SURGE,
+};
+
+static const u8* gSurgeAbilityDescriptions[] = 
+{
+    [0] = 0,
+    [ELECTRIC_TERRAIN] = DESC_ELECTRIC_SURGE,
+    [MISTY_TERRAIN] = DESC_MISTY_SURGE,
+    [PSYCHIC_TERRAIN] = DESC_PSYCHIC_SURGE,
+    [GRASSY_TERRAIN] = DESC_GRASSY_SURGE,
+};
+
+static const u8* gPriorityAbilityNames[] = 
+{
+    [0] = 0,
+    [TYPE_FLYING] = NAME_DUPE_GALE_WINGS,
+    [TYPE_GHOST] = NAME_SHADOW_BOOST,
+};
+
+static const u8* gPriorityAbilityDescriptions[] = 
+{
+    [0] = 0,
+    [TYPE_FLYING] = DESC_GALE_WINGS,
+    [TYPE_GHOST] = DESC_SHADOW_BOOST,
+};
+
+static struct TerrainBasedAbility sSurgeAbilities[] = 
+{
+    //electric terrain
+    {
+        .species = SPECIES_TAPU_KOKO,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = ELECTRIC_TERRAIN,
+    },
+    {
+        .species = SPECIES_PINCURCHIN,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = ELECTRIC_TERRAIN,
+    },
+    //misty terrain
+    {
+        .species = SPECIES_TAPU_FINI,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = MISTY_TERRAIN,
+    },
+    {
+        .species = SPECIES_WEEZING_G,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = MISTY_TERRAIN,
+    },
+    {
+        .species = SPECIES_SYLVEON,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = MISTY_TERRAIN,
+    },
+    //psychic terrain
+    {
+        .species = SPECIES_TAPU_LELE,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = PSYCHIC_TERRAIN,
+    },
+    {
+        .species = SPECIES_ESPEON,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = PSYCHIC_TERRAIN,
+    },
+    {
+        .species = SPECIES_INDEEDEE,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = PSYCHIC_TERRAIN,
+    },
+    {
+        .species = SPECIES_INDEEDEE_FEMALE,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = PSYCHIC_TERRAIN,
+    },
+    //grassy terrain
+    {
+        .species = SPECIES_TAPU_BULU,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_PANSAGE,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_SIMISAGE,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_GROOKEY,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_THWACKEY,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_RILLABOOM,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_RILLABOOM_GIGA,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+};
+
+static struct TypeBasedAbility sPriorityAbilities[] = 
+{
+    {
+        .species = SPECIES_HOOTHOOT,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_NOCTOWL,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_FLETCHLING,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_FLETCHINDER,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_TALONFLAME,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_HOOTHOOT,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
 };
 
 static struct TypeBasedAbility sAteAbilities[] = 

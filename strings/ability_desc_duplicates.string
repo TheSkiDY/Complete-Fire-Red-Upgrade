@@ -159,3 +159,21 @@ NORMAL moves become FAIRY.
 
 #org @DESC_OVERTHINKING
 Physical moves become special.
+
+#org @DESC_ELECTRIC_SURGE
+Creates an ELECTRIC TERRAIN.
+
+#org @DESC_MISTY_SURGE
+Creates a MISTY TERRAIN.
+
+#org @DESC_PSYCHIC_SURGE
+Creates a PSYCHIC TERRAIN.
+
+#org @DESC_GRASSY_SURGE
+Creates a GRASSY TERRAIN.
+
+#org @DESC_GALE_WINGS
+FLYING moves hit first.
+
+#org @DESC_SHADOW_BOOST
+GHOST moves hit first.

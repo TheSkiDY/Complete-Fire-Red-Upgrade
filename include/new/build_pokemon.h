@@ -53,6 +53,13 @@ struct DuplicateAbility
     const u8* replaceAbilityString;
 };
 
+struct TerrainBasedAbility
+{
+    u16 species;
+    u8 currAbility;
+    u8 terrain;
+};
+
 struct TypeBasedAbility
 {
     u16 species;

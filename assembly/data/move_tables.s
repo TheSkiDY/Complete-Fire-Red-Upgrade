@@ -35,6 +35,7 @@ move_tables.s
 .global gSoundMoves
 .global gCuttingMoves
 .global gPeckingMoves
+.global gKickingMoves
 .global gSubstituteBypassMoves
 .global gTypeChangeExceptionMoves
 .global gIgnoreStatChangesMoves
@@ -895,6 +896,24 @@ gPeckingMoves:
 .hword MOVE_PLUCK
 .hword MOVE_BEAKBLAST
 .hword MOVE_BOLTBEAK
+.hword MOVE_TABLES_TERMIN
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gKickingMoves:
+.hword MOVE_BLAZEKICK
+.hword MOVE_DOUBLEKICK
+.hword MOVE_HIGHJUMPKICK
+.hword MOVE_JUMPKICK
+.hword MOVE_LOWKICK
+.hword MOVE_MEGAKICK
+.hword MOVE_ROLLINGKICK
+.hword MOVE_STOMP
+.hword MOVE_THUNDEROUSKICK
+.hword MOVE_TRIPLEARROWS
+.hword MOVE_TRIPLEAXEL
+.hword MOVE_TRIPLEKICK
+.hword MOVE_TROPKICK
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

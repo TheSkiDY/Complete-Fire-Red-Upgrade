@@ -2491,7 +2491,7 @@ static bool8 TeamDoesntHaveSynergy(const struct BattleTowerSpread* const spread,
 	bool8 hasSunSetter = builder->abilityOnTeam[ABILITY_DROUGHT] || builder->moveOnTeam[MOVE_SUNNYDAY];
 	bool8 hasSandSetter = builder->abilityOnTeam[ABILITY_SANDSTREAM] || builder->moveOnTeam[MOVE_SANDSTORM];
 	bool8 hasHailSetter = builder->abilityOnTeam[ABILITY_SNOWWARNING] || builder->moveOnTeam[MOVE_HAIL];
-	bool8 hasElectricTerrainSetter = builder->abilityOnTeam[ABILITY_ELECTRICSURGE] || builder->moveOnTeam[MOVE_ELECTRICTERRAIN];
+	bool8 hasElectricTerrainSetter = builder->abilityOnTeam[ABILITY_TERRAIN_SURGE] || builder->moveOnTeam[MOVE_ELECTRICTERRAIN];
 	bool8 hasWonderGuard = builder->abilityOnTeam[ABILITY_WONDERGUARD];
 	bool8 hasJustified = builder->abilityOnTeam[ABILITY_JUSTIFIED];
 
@@ -2956,10 +2956,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder)
 			case ABILITY_SNOWWARNING:
 				weatherIndex = i;
 				break;
-			case ABILITY_ELECTRICSURGE:
-			case ABILITY_GRASSYSURGE:
-			case ABILITY_MISTYSURGE:
-			case ABILITY_PSYCHICSURGE:
+			case ABILITY_TERRAIN_SURGE:
 				terrainIndex = i;
 				break;
 			case ABILITY_DEFIANT:

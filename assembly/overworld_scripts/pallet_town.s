@@ -33,10 +33,10 @@ EventScript_PalletTown_TechnologyGuy:
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_SPINDA 3 0 0 0 0
-	givepokemon SPECIES_CHARJABUG 10 0 0 0 0
-	givepokemon SPECIES_CRUSTLE 10 0 0 0 0
-	givepokemon SPECIES_SUICUNE 4 0 0 0 0
+	givepokemon SPECIES_NOCTOWL 8 0 0 0 0
+	givepokemon SPECIES_FLETCHINDER 8 0 0 0 0
+	givepokemon SPECIES_THWACKEY 8 0 0 0 0
+	givepokemon SPECIES_WEEZING_G 8 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo

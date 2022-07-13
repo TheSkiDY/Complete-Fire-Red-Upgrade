@@ -2092,6 +2092,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		case ABILITY_PUREAURA:
 			spAttack *= 2;
+			break;
 
 		case ABILITY_FLOWERGIFT:
 		//1.5x Boost
@@ -2668,8 +2669,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	//Second Target Item Checks
 	switch (data->defItemEffect) {
 		case ITEM_EFFECT_WEAKNESS_BERRY:
-			if (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE
-			 || !AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONE, 0, 0) && data->atkAbility != ABILITY_ASONE)
+			if ((!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_UNNERVE, 0, 0) && data->atkAbility != ABILITY_UNNERVE)
+			 || (!AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, bankDef, ABILITY_ASONE, 0, 0) && data->atkAbility != ABILITY_ASONE))
 			{
 				if ((data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && data->defItemQuality == data->moveType)
 				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL)) //Chilan Berry
@@ -3338,6 +3339,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (CheckTableForMove(move, gPunchingMoves))
 				power = (power * 12) / 10;
 			break;
+
+		case ABILITY_RAPIDKICKS:
+		//1.1x Boost
+			if (CheckTableForMove(move, gKickingMoves))
+				power = (power * 11) / 10;
+			break;
 /*
 		case ABILITY_TOXICBOOST:
 		//1.5x Boost
@@ -3594,6 +3601,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//0.5x Boost
 			if (data->defIsGrounded && data->moveType == TYPE_DRAGON && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power /= 2;
+		//1.2x Boost
+			if (data->atkIsGrounded && data->moveType == TYPE_FAIRY && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
+				power = (power * 12) / 10;
 			break;
 
 		case PSYCHIC_TERRAIN:

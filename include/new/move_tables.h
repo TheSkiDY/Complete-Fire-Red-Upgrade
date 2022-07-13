@@ -35,6 +35,7 @@ extern const move_t gPowderMoves[];
 extern const move_t gSoundMoves[];
 extern const move_t gCuttingMoves[];
 extern const move_t gPeckingMoves[];
+extern const move_t gKickingMoves[];
 
 //Other Moves
 extern const move_t gSubstituteBypassMoves[];

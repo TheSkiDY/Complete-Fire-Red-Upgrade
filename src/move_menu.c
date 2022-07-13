@@ -1643,7 +1643,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingDisabledMove;
 		++limitations;
 	}
-	else if (ability == ABILITY_TRUANT && gDisableStructs[gActiveBattler].truantCounter && SPLIT(move) != SPLIT_STATUS)
+	else if (ability == ABILITY_TRUANT && gDisableStructs[gActiveBattler].truantCounter && SPLIT(move) != SPLIT_STATUS && EFFECT(move) != EFFECT_PROTECT && EFFECT(move) != EFFECT_REST)
 	{
 		gLastUsedAbility = ability;
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedTruant;

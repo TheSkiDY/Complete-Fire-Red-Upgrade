@@ -91,7 +91,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_DRYSKIN] = 6,
 	[ABILITY_EARLYBIRD] = 4,
 	[ABILITY_EFFECTSPORE] = 4,
-	[ABILITY_ELECTRICSURGE] = 8,
+	[ABILITY_TERRAIN_SURGE] = 8,
 	[ABILITY_EMERGENCYEXIT] = 3,
 //	[ABILITY_FAIRYAURA] = 6,
 	[ABILITY_FILTER] = 6,
@@ -112,7 +112,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_GLUTTONY] = 3,
 	[ABILITY_STUN_TOUCH] = 5,
 	[ABILITY_GRASSPELT] = 2,
-	[ABILITY_GRASSYSURGE] = 8,
+//	[ABILITY_GRASSYSURGE] = 8,
 	[ABILITY_GUTS] = 6,
 	[ABILITY_HARVEST] = 5,
 	[ABILITY_HEALER] = 0,
@@ -154,7 +154,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_MEGALAUNCHER] = 7,
 	[ABILITY_MERCILESS] = 4,
 //	[ABILITY_MINUS] = 0,
-	[ABILITY_MISTYSURGE] = 8,
+//	[ABILITY_MISTYSURGE] = 8,
 	[ABILITY_MOLDBREAKER] = 7,
 	[ABILITY_MOODY] = 10,
 	[ABILITY_MOTORDRIVE] = 6,
@@ -187,7 +187,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_PRIMORDIALSEA] = 10,
 //	[ABILITY_PRISMARMOR] = 6,
 	[ABILITY_PROTEAN] = 8,
-	[ABILITY_PSYCHICSURGE] = 8,
+//	[ABILITY_PSYCHICSURGE] = 8,
 //	[ABILITY_PUREPOWER] = 10,
 //	[ABILITY_QUEENLYMAJESTY] = 6,
 	[ABILITY_QUICKFEET] = 5,
@@ -232,6 +232,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_STAKEOUT] = 6,
 	[ABILITY_STALL] = -1,
 	[ABILITY_STAMINA] = 6,
+	[ABILITY_SANITY] = 5,
 	[ABILITY_STANCECHANGE] = 10,
 	[ABILITY_STATIC] = 4,
 	[ABILITY_STEADFAST] = 2,
@@ -1206,20 +1207,31 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			#endif
 			break;
 
-		case ABILITY_ELECTRICSURGE:
-			effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
-			break;
-
-		case ABILITY_GRASSYSURGE:
-			effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
-			break;
-
-		case ABILITY_MISTYSURGE:
-			effect = TryActivateTerrainAbility(MISTY_TERRAIN, B_ANIM_MISTY_SURGE, bank);
-			break;
-
-		case ABILITY_PSYCHICSURGE:
-			effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
+		case ABILITY_TERRAIN_SURGE: ;
+			u8 terrain = 0;
+			for(u8 i = 0; i < ARRAY_COUNT(sSurgeAbilities); i++)
+			{
+				if(sSurgeAbilities[i].species == SPECIES(bank))
+				{
+					terrain = sSurgeAbilities[i].terrain;
+					break;
+				}
+			}
+			switch(terrain)
+			{
+				case ELECTRIC_TERRAIN:
+					effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
+					break;
+				case MISTY_TERRAIN:
+					effect = TryActivateTerrainAbility(MISTY_TERRAIN, B_ANIM_MISTY_SURGE, bank);
+					break;
+				case PSYCHIC_TERRAIN:
+					effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
+					break;
+				case GRASSY_TERRAIN:
+					effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+					break;
+			}
 			break;
 
 		case ABILITY_INTREPIDSWORD:
@@ -1777,6 +1789,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
 					effect++;
 				}
+				break;
 
 			case ABILITY_EFFECTSPORE:
 				if (MOVE_HAD_EFFECT
@@ -2134,6 +2147,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& gBattleMons[bank].statStages[STAT_DEF - 1] < 12)
 				{
 					gBattleScripting.statChanger = STAT_DEF | INCREASE_1;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+					effect++;
+				}
+				break;
+
+			case ABILITY_SANITY:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank
+				&& gBattleMons[bank].statStages[STAT_SPDEF - 1] < 12)
+				{
+					gBattleScripting.statChanger = STAT_SPDEF | INCREASE_1;
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
 					effect++;
