@@ -577,6 +577,9 @@ Taking a hit raises SP.DEFENSE.
 #org @DESC_RAPIDKICKS
 Kicking moves hit first.
 
+#org @DESC_FORM_CHANGE_SIGNATURE
+Form change.
+
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.
 
@@ -632,5 +635,17 @@ Empty ability.
 Empty ability.
 
 #org @DESC_ABILITY_EMPTY_19
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_20
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_21
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_22
+Empty ability.
+
+#org @DESC_ABILITY_EMPTY_23
 Empty ability.
 

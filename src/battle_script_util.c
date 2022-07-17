@@ -240,7 +240,7 @@ void MoldBreakerRemoveAbilitiesOnForceSwitchIn(void)
 	||  ABILITY(bank) == ABILITY_TURBOBLAZE
 	||  ABILITY(bank) == ABILITY_TERAVOLT*/)
 	{
-		if (gMoldBreakerIgnoredAbilities[ABILITY(gBankSwitching)])
+		if (gMoldBreakerIgnoredAbilities[ABILITY(gBankSwitching)] || (ABILITY(gBankSwitching) == ABILITY_FORM_CHANGE_SIGNATURE && (SPECIES(gBankSwitching) == SPECIES_MIMIKYU || SPECIES(gBankSwitching) == SPECIES_EISCUE)))
 		{
 			gNewBS->DisabledMoldBreakerAbilities[gBankSwitching] = gBattleMons[gBankSwitching].ability;
 			gBattleMons[gBankSwitching].ability = 0;
@@ -1588,6 +1588,11 @@ void DoProteanTypeChange(void)
 	gBattleScripting.bank = gBankAttacker;
 	SET_BATTLER_TYPE(gBankAttacker, moveType);
 	PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
+}
+
+void SetupGulpMissile(void)
+{
+	gBattleScripting.bank = gBankTarget;
 }
 
 void HarvestActivateBerry(void)

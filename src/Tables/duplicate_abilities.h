@@ -7,6 +7,28 @@
 #include "../../include/constants/items.h"
 #include "../../include/constants/moves.h"
 
+extern const u8 NAME_SHIELDS_DOWN[];
+extern const u8 NAME_ZEN_MODE[];
+extern const u8 NAME_ICE_FACE[];
+extern const u8 NAME_STANCE_CHANGE[];
+extern const u8 NAME_GULP_MISSILE[];
+extern const u8 NAME_HUNGER_SWITCH[];
+extern const u8 NAME_DISGUISE[];
+extern const u8 NAME_SCHOOLING[];
+extern const u8 NAME_BATTLE_BOND[];
+extern const u8 NAME_POWER_CONSTRUCT[];
+
+extern const u8 DESC_SHIELDSDOWN[];
+extern const u8 DESC_ZENMODE[];
+extern const u8 DESC_ICEFACE[];
+extern const u8 DESC_STANCECHANGE[];
+extern const u8 DESC_GULPMISSILE[];
+extern const u8 DESC_HUNGERSWITCH[];
+extern const u8 DESC_DISGUISE[];
+extern const u8 DESC_SCHOOLING[];
+extern const u8 DESC_BATTLEBOND[];
+extern const u8 DESC_POWERCONSTRUCT[];
+
 extern const u8 NAME_TANGLING_HAIR[];
 extern const u8 NAME_GOOEY[];
 extern const u8 NAME_AIR_LOCK[];
@@ -575,6 +597,160 @@ static struct TypeBasedAbility sAteAbilities[] =
         .type = TYPE_FAIRY,
     },
 
+};
+
+static struct DuplicateAbility sDuplicateDescriptions[] =
+{
+     {
+        .species = SPECIES_DARMANITAN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ZENMODE,
+    },
+    {
+        .species = SPECIES_DARMANITANZEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ZENMODE,
+    },
+    {
+        .species = SPECIES_DARMANITAN_G,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ZENMODE,
+    },
+    {
+        .species = SPECIES_DARMANITAN_G_ZEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ZENMODE,
+    },
+    {
+        .species = SPECIES_AEGISLASH,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_STANCECHANGE,
+    },
+    {
+        .species = SPECIES_AEGISLASH_BLADE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_STANCECHANGE,
+    },
+    {
+        .species = SPECIES_WISHIWASHI,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SCHOOLING,
+    },
+    {
+        .species = SPECIES_WISHIWASHI_S,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SCHOOLING,
+    },
+    {
+        .species = SPECIES_MINIOR_SHIELD,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_RED,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_BLUE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_ORANGE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_YELLOW,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_INDIGO,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_GREEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_VIOLET,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_SHIELDSDOWN,
+    },
+    {
+        .species = SPECIES_MIMIKYU,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_DISGUISE,
+    },
+    {
+        .species = SPECIES_MIMIKYU_BUSTED,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_DISGUISE,
+    },
+    {
+        .species = SPECIES_GRENINJA,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_BATTLEBOND,
+    },
+    {
+        .species = SPECIES_ASHGRENINJA,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_BATTLEBOND,
+    },
+    {
+        .species = SPECIES_ZYGARDE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_POWERCONSTRUCT,
+    },
+    {
+        .species = SPECIES_ZYGARDE_10,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_POWERCONSTRUCT,
+    },
+    {
+        .species = SPECIES_ZYGARDE_COMPLETE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_POWERCONSTRUCT,
+    },
+    {
+        .species = SPECIES_EISCUE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ICEFACE,
+    },
+    {
+        .species = SPECIES_EISCUE_NOICE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ICEFACE,
+    },
+    {
+        .species = SPECIES_MORPEKO,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_HUNGERSWITCH,
+    },
+    {
+        .species = SPECIES_MORPEKO_HANGRY,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_HUNGERSWITCH,
+    },
+    {
+        .species = SPECIES_CRAMORANT,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_GULPMISSILE,
+    },
+    {
+        .species = SPECIES_CRAMORANT_GULPING,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_GULPMISSILE,
+    },
+    {
+        .species = SPECIES_CRAMORANT_GORGING,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_GULPMISSILE,
+    },
 };
 
 static struct DuplicateAbility sDuplicateAbilities[] =
@@ -1253,5 +1429,155 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .species = SPECIES_LUNATONE,
         .currAbility = ABILITY_NEUROFORCE,
         .replaceAbilityString = NAME_COSMOFORCE,
+    },
+    {
+        .species = SPECIES_DARMANITAN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ZEN_MODE,
+    },
+    {
+        .species = SPECIES_DARMANITANZEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ZEN_MODE,
+    },
+    {
+        .species = SPECIES_DARMANITAN_G,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ZEN_MODE,
+    },
+    {
+        .species = SPECIES_DARMANITAN_G_ZEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ZEN_MODE,
+    },
+    {
+        .species = SPECIES_AEGISLASH,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_STANCE_CHANGE,
+    },
+    {
+        .species = SPECIES_AEGISLASH_BLADE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_STANCE_CHANGE,
+    },
+    {
+        .species = SPECIES_WISHIWASHI,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SCHOOLING,
+    },
+    {
+        .species = SPECIES_WISHIWASHI_S,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SCHOOLING,
+    },
+    {
+        .species = SPECIES_MINIOR_SHIELD,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_RED,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_BLUE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_ORANGE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_YELLOW,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_INDIGO,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_GREEN,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MINIOR_VIOLET,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_SHIELDS_DOWN,
+    },
+    {
+        .species = SPECIES_MIMIKYU,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_DISGUISE,
+    },
+    {
+        .species = SPECIES_MIMIKYU_BUSTED,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_DISGUISE,
+    },
+    {
+        .species = SPECIES_GRENINJA,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_BATTLE_BOND,
+    },
+    {
+        .species = SPECIES_ASHGRENINJA,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_BATTLE_BOND,
+    },
+    {
+        .species = SPECIES_ZYGARDE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_POWER_CONSTRUCT,
+    },
+    {
+        .species = SPECIES_ZYGARDE_10,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_POWER_CONSTRUCT,
+    },
+    {
+        .species = SPECIES_ZYGARDE_COMPLETE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_POWER_CONSTRUCT,
+    },
+    {
+        .species = SPECIES_EISCUE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ICE_FACE,
+    },
+    {
+        .species = SPECIES_EISCUE_NOICE,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ICE_FACE,
+    },
+    {
+        .species = SPECIES_MORPEKO,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_HUNGER_SWITCH,
+    },
+    {
+        .species = SPECIES_MORPEKO_HANGRY,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_HUNGER_SWITCH,
+    },
+    {
+        .species = SPECIES_CRAMORANT,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_GULP_MISSILE,
+    },
+    {
+        .species = SPECIES_CRAMORANT_GULPING,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_GULP_MISSILE,
+    },
+    {
+        .species = SPECIES_CRAMORANT_GORGING,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_GULP_MISSILE,
     },
 };

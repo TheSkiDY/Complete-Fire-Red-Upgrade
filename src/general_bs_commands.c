@@ -275,10 +275,10 @@ static bool8 DoesBankNegateDamage(u8 bank, unusedArg u16 move)
 
 	return FALSE
 			#ifdef SPECIES_MIMIKYU
-			|| (ability == ABILITY_DISGUISE && species == SPECIES_MIMIKYU && !IS_TRANSFORMED(bank))
+			|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_MIMIKYU && !IS_TRANSFORMED(bank))
 			#endif
 			#ifdef SPECIES_EISCUE
-			|| (ability == ABILITY_ICEFACE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && !IS_TRANSFORMED(bank))
+			|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && !IS_TRANSFORMED(bank))
 			#endif
 			;
 }
@@ -478,7 +478,7 @@ void atk0B_healthbarupdate(void)
 				DoublesHPBarReduction();
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ability == ABILITY_DISGUISE
+		else if (ability == ABILITY_FORM_CHANGE_SIGNATURE
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -492,7 +492,7 @@ void atk0B_healthbarupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ability == ABILITY_ICEFACE
+		else if (ability == ABILITY_FORM_CHANGE_SIGNATURE
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical moves are stopped by the ice face
@@ -577,7 +577,7 @@ void atk0C_datahpupdate(void)
 			}
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ABILITY(gActiveBattler) == ABILITY_DISGUISE //Disguise Protected
+		else if (ABILITY(gActiveBattler) == ABILITY_FORM_CHANGE_SIGNATURE //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -614,7 +614,7 @@ void atk0C_datahpupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ABILITY(gActiveBattler) == ABILITY_ICEFACE //Disguise Protected
+		else if (ABILITY(gActiveBattler) == ABILITY_FORM_CHANGE_SIGNATURE //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical attacks break the ice
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
@@ -2423,16 +2423,14 @@ void atk81_trysetrest(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ButItFailed;
 				fail = TRUE;
-				break;
-			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
+				break;			
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(gBankAttacker) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ButItFailed;
 					fail = TRUE;
 				}
 				break;
-			#endif
 		}
 	}
 
@@ -2573,11 +2571,14 @@ void atk8D_setmultihitcounter(void) {
 	if (gBattlescriptCurrInstr[1])
 		gMultiHitCounter = gBattlescriptCurrInstr[1];
 
-	if (ABILITY(gBankAttacker) == ABILITY_SKILLLINK)
+	if(ABILITY(gBankTarget) == ABILITY_PRESSURE)
+		gMultiHitCounter = 2;
+
+	else if (ABILITY(gBankAttacker) == ABILITY_SKILLLINK)
 		gMultiHitCounter = 5;
 
 	#ifdef SPECIES_ASHGRENINJA
-	else if (ABILITY(gBankAttacker) == ABILITY_BATTLEBOND
+	else if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE_SIGNATURE
 	&& gCurrentMove == MOVE_WATERSHURIKEN
 	&& gBattleMons[gBankAttacker].species == SPECIES_ASHGRENINJA)
 	{

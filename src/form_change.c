@@ -226,6 +226,21 @@ void SwitchOutFormsRevert(u8 bank)
 				DoFormChange(bank, GetMiniorCoreSpecies(mon), FALSE, TRUE, FALSE);
 			break;
 		#endif
+
+		case SPECIES_CRAMORANT_GORGING:
+		case SPECIES_CRAMORANT_GULPING:
+			if (backupSpecies != SPECIES_NONE)
+				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+			else
+				DoFormChange(bank, SPECIES_CRAMORANT, FALSE, TRUE, FALSE);
+			break;
+
+		case SPECIES_MORPEKO_HANGRY:
+			if (backupSpecies != SPECIES_NONE)
+				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+			else
+				DoFormChange(bank, SPECIES_MORPEKO, FALSE, TRUE, FALSE);
+			break;
 	}
 }
 

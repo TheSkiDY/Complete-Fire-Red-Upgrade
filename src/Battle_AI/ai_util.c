@@ -727,10 +727,10 @@ static bool8 CalculateMoveKnocksOutXHits(u16 move, u8 bankAtk, u8 bankDef, u8 nu
 
 	if (MoveBlockedBySubstitute(move, bankAtk, bankDef)
 	#ifdef SPECIES_MIMIKYU
-	|| (ability == ABILITY_DISGUISE && species == SPECIES_MIMIKYU && noMoldBreakers)
+	|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_MIMIKYU && noMoldBreakers)
 	#endif
 	#ifdef SPECIES_EISCUE
-	|| (ability == ABILITY_ICEFACE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
+	|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
 	#endif
 	)
 	{
@@ -785,10 +785,10 @@ bool8 MoveKnocksOutXHitsFromParty(u16 move, struct Pokemon* monAtk, u8 bankDef, 
 
 	if (MonMoveBlockedBySubstitute(move, monAtk, bankDef)
 	#ifdef SPECIES_MIMIKYU
-	|| (ability == ABILITY_DISGUISE && species == SPECIES_MIMIKYU && noMoldBreakers)
+	|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_MIMIKYU && noMoldBreakers)
 	#endif
 	#ifdef SPECIES_EISCUE
-	|| (ability == ABILITY_ICEFACE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
+	|| (ability == ABILITY_FORM_CHANGE_SIGNATURE && species == SPECIES_EISCUE && SPLIT(move) == SPLIT_PHYSICAL && noMoldBreakers)
 	#endif
 	)
 	{
@@ -3032,11 +3032,11 @@ bool8 ShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 				return FALSE; //Don't use a Z-Move on a Substitute or if the enemy is going to go first and use Substitute
 
 			#ifdef SPECIES_MIMIKYU
-			if (noMoldBreakers && defAbility == ABILITY_DISGUISE && defSpecies == SPECIES_MIMIKYU)
+			if (noMoldBreakers && defAbility == ABILITY_FORM_CHANGE_SIGNATURE && defSpecies == SPECIES_MIMIKYU)
 				return FALSE; //Don't waste a Z-Move busting Mimikyu's disguise
 			#endif
 			#ifdef SPECIES_EISCUE
-			if (noMoldBreakers && defAbility == ABILITY_ICEFACE && defSpecies == SPECIES_EISCUE && SPLIT(zMove) == SPLIT_PHYSICAL)
+			if (noMoldBreakers && defAbility == ABILITY_FORM_CHANGE_SIGNATURE && defSpecies == SPECIES_EISCUE && SPLIT(zMove) == SPLIT_PHYSICAL)
 				return FALSE; //Don't waste a Z-Move busting Eiscue's Ice Face
 			#endif
 
@@ -3186,8 +3186,11 @@ static bool8 MonCanTriggerWeatherAbilityWithMaxMove(struct Pokemon* mon)
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_SANDSTORM);
 			case ABILITY_SLUSHRUSH:
 			case ABILITY_ICEBODY:
-			case ABILITY_ICEFACE:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_HAIL);
+			case ABILITY_FORM_CHANGE_SIGNATURE:
+				if(mon->species == SPECIES_EISCUE || mon->species == SPECIES_EISCUE_NOICE)
+					return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_HAIL);
+				break;
 			case ABILITY_SURGESURFER:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_ELECTRIC_TERRAIN);
 		}

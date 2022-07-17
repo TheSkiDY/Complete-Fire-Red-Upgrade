@@ -45,7 +45,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	u8 defAbility = GetAIAbility(bankDef, bankAtk, predictedMove);
 
 	if (!NO_MOLD_BREAKERS(atkAbility, move)
-	&& gMoldBreakerIgnoredAbilities[defAbility])
+	&& (gMoldBreakerIgnoredAbilities[defAbility] || (defAbility == ABILITY_FORM_CHANGE_SIGNATURE && (SPECIES(bankDef) == SPECIES_MIMIKYU || SPECIES(bankDef) == SPECIES_EISCUE))))
 		defAbility = ABILITY_NONE;
 
 	u8 moveEffect = gBattleMoves[move].effect;
@@ -933,7 +933,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 				case MOVE_KINGSSHIELD:
 					#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-					if (atkAbility == ABILITY_STANCECHANGE //Special logic for Aegislash
+					if (atkAbility == ABILITY_FORM_CHANGE_SIGNATURE //Special logic for Aegislash
 					&&  data->atkSpecies == SPECIES_AEGISLASH_BLADE
 					&&  !IsBankIncapacitated(bankDef))
 					{

@@ -105,7 +105,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	data->atkAbility = GetAIAbility(bankAtk, bankDef, move);
 	data->defAbility = GetAIAbility(bankDef, bankAtk, predictedMove);
 
-	if (!NO_MOLD_BREAKERS(data->atkAbility, move) && gMoldBreakerIgnoredAbilities[data->defAbility])
+	if (!NO_MOLD_BREAKERS(data->atkAbility, move) && (gMoldBreakerIgnoredAbilities[data->defAbility] || (data->defAbility == ABILITY_FORM_CHANGE_SIGNATURE && (data->defSpecies == SPECIES_MIMIKYU || data->defSpecies == SPECIES_EISCUE))))
 		data->defAbility = ABILITY_NONE;
 
 	u8 moveEffect = gBattleMoves[move].effect;
@@ -419,7 +419,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD
 				&&  CheckTableForMoveEffect(move, gSetStatusMoveEffects))
 				{

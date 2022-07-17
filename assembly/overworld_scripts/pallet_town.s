@@ -28,15 +28,16 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 50
 	additem ITEM_SALAMENCITE 1
 	additem 0x161 1
-	additem 0x140 1
-	additem 0x183 1
+	additem 341 1
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_NOCTOWL 8 0 0 0 0
-	givepokemon SPECIES_FLETCHINDER 8 0 0 0 0
-	givepokemon SPECIES_THWACKEY 8 0 0 0 0
-	givepokemon SPECIES_WEEZING_G 8 0 0 0 0
+	givepokemon SPECIES_MINIOR_SHIELD 3 0 0 0 0
+	givepokemon SPECIES_ZYGARDE 3 0 0 0 0
+	givepokemon SPECIES_MORPEKO 4 0 0 0 0
+	givepokemon SPECIES_GRENINJA 4 0 0 0 0
+	givepokemon SPECIES_AEGISLASH 8 0 0 0 0
+	givepokemon SPECIES_WISHIWASHI 20 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo

@@ -43,6 +43,16 @@ void HandleDuplicateDescriptions_SummaryScreen()
 
     switch(ability)
     {
+        case ABILITY_FORM_CHANGE_SIGNATURE:
+            for(u8 i = 0; i < ARRAY_COUNT(sDuplicateDescriptions); ++i)
+            {
+                if(species == sDuplicateDescriptions[i].species)
+                {
+                    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, sDuplicateDescriptions[i].replaceAbilityString);
+                    return;
+                }
+            }
+            break;
         case ABILITY_BLAZE_LIKE:
             StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gBlazeAbilityDescriptions[firstType]);
             return;

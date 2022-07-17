@@ -61,7 +61,7 @@ void atk00_attackcanceler(void)
 		{
 			if (i == gBankAttacker) continue;
 
-			if (gMoldBreakerIgnoredAbilities[ABILITY(i)])
+			if (gMoldBreakerIgnoredAbilities[ABILITY(i)] || (ABILITY(i) == ABILITY_FORM_CHANGE_SIGNATURE && (SPECIES(i) == SPECIES_MIMIKYU || SPECIES(i) == SPECIES_EISCUE)))
 			{
 				gNewBS->DisabledMoldBreakerAbilities[i] = gBattleMons[i].ability; //Temporarily disable all relevant abilities on the field
 				gBattleMons[i].ability = ABILITY_NONE;
@@ -679,35 +679,36 @@ static u8 AtkCanceller_UnableToUseMove(void)
 
 		case CANCELLER_STANCE_CHANGE:
 		case CANCELLER_STANCE_CHANGE_2:
-			#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-			if (ABILITY(gBankAttacker) == ABILITY_STANCECHANGE && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
+			if(SPECIES(gBankAttacker) == SPECIES_AEGISLASH || SPECIES(gBankAttacker) == SPECIES_AEGISLASH_BLADE)
 			{
-				switch (gBattleMons[gBankAttacker].species)
+				if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE_SIGNATURE && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
 				{
-					case SPECIES_AEGISLASH:
-						if (SPLIT(gCurrentMove) != SPLIT_STATUS)
-						{
-							DoFormChange(gBankAttacker, SPECIES_AEGISLASH_BLADE, FALSE, TRUE, FALSE);
-							BattleScriptPushCursor();
-							gBattlescriptCurrInstr = BattleScript_StanceChangeToBlade;
-							gBattleScripting.bank = gBankAttacker;
-							effect = 1;
-						}
-						break;
+					switch (gBattleMons[gBankAttacker].species)
+					{
+						case SPECIES_AEGISLASH:
+							if (SPLIT(gCurrentMove) != SPLIT_STATUS)
+							{
+								DoFormChange(gBankAttacker, SPECIES_AEGISLASH_BLADE, FALSE, TRUE, FALSE);
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_StanceChangeToBlade;
+								gBattleScripting.bank = gBankAttacker;
+								effect = 1;
+							}
+							break;
 
-					case SPECIES_AEGISLASH_BLADE:
-						if (gCurrentMove == MOVE_KINGSSHIELD)
-						{
-							DoFormChange(gBankAttacker, SPECIES_AEGISLASH, FALSE, TRUE, FALSE);
-							BattleScriptPushCursor();
-							gBattlescriptCurrInstr = BattleScript_StanceChangeToShield;
-							gBattleScripting.bank = gBankAttacker;
-							effect = 1;
-						}
-						break;
+						case SPECIES_AEGISLASH_BLADE:
+							if (gCurrentMove == MOVE_KINGSSHIELD)
+							{
+								DoFormChange(gBankAttacker, SPECIES_AEGISLASH, FALSE, TRUE, FALSE);
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_StanceChangeToShield;
+								gBattleScripting.bank = gBankAttacker;
+								effect = 1;
+							}
+							break;
+					}
 				}
 			}
-			#endif
 			gBattleStruct->atkCancellerTracker++;
 			break;
 
@@ -977,7 +978,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 					gMultiHitCounter = 5;
 				}
 				#ifdef SPECIES_ASHGRENINJA
-				else if (ability == ABILITY_BATTLEBOND
+				else if (ability == ABILITY_FORM_CHANGE_SIGNATURE
 				&& gCurrentMove == MOVE_WATERSHURIKEN
 				&& SPECIES(gBankAttacker) == SPECIES_ASHGRENINJA)
 				{

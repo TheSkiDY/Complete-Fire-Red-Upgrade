@@ -3062,7 +3062,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		#ifdef SPECIES_ASHGRENINJA
 		case MOVE_WATERSHURIKEN:
-			if (data->atkSpecies == SPECIES_ASHGRENINJA && data->atkAbility == ABILITY_BATTLEBOND)
+			if (data->atkSpecies == SPECIES_ASHGRENINJA && data->atkAbility == ABILITY_FORM_CHANGE_SIGNATURE)
 				power = 20;
 			break;
 		#endif

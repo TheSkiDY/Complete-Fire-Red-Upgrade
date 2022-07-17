@@ -1448,7 +1448,7 @@ void atkFF29_trysetsleep(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
@@ -1557,7 +1557,7 @@ void atkD7_setyawn(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
@@ -1663,7 +1663,7 @@ void atkFF2A_trysetparalysis(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
@@ -1752,7 +1752,7 @@ void atkFF2B_trysetburn(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
@@ -1845,7 +1845,7 @@ void atkFF2C_trysetpoison(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE_SIGNATURE:
 				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;

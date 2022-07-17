@@ -1444,7 +1444,7 @@ bool8 DoesSleepClausePrevent(u8 bank)
 bool8 CanBeGeneralStatused(u8 bank, bool8 checkFlowerVeil)
 {
 	#ifdef SPECIES_MINIOR_SHIELD
-	if (ABILITY(bank) == ABILITY_SHIELDSDOWN
+	if (ABILITY(bank) == ABILITY_FORM_CHANGE_SIGNATURE
 	&&  GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
 		return FALSE;
 	#endif
@@ -1502,7 +1502,7 @@ bool8 CanBePutToSleep(u8 bank, bool8 checkFlowerVeil)
 bool8 CanBeYawned(u8 bank)
 {
 	#ifdef SPECIES_MINIOR_SHIELD
-	if (ABILITY(bank) == ABILITY_SHIELDSDOWN
+	if (ABILITY(bank) == ABILITY_FORM_CHANGE_SIGNATURE
 	&&  GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
 		return FALSE;
 	#endif

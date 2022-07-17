@@ -673,14 +673,14 @@ const ability_t gSmogonOU_AbilityBanList[] =
 {
 	ABILITY_ARENATRAP,
 	ABILITY_SHADOWTAG,
-	ABILITY_POWERCONSTRUCT,
+//	ABILITY_POWERCONSTRUCT,
 	ABILITY_MOODY,
 	ABILITY_TABLES_TERMIN
 };
 
 const ability_t gSmogonOUDoubles_AbilityBanList[] =
 {
-	ABILITY_POWERCONSTRUCT,
+//	ABILITY_POWERCONSTRUCT,
 	ABILITY_MOODY,
 	ABILITY_TABLES_TERMIN
 };
@@ -1249,7 +1249,7 @@ const species_t gSmogonMonotype_SpeciesBanList[] =
 
 const ability_t gSmogonMonotype_AbilityBanList[] =
 {
-	ABILITY_BATTLEBOND,
+//	ABILITY_BATTLEBOND,
 	ABILITY_TABLES_TERMIN
 };
 
