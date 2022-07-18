@@ -1245,7 +1245,7 @@ MOVESCR_CHECK_0:
 		case EFFECT_RAZOR_WIND:
 		case EFFECT_SKULL_BASH:
 		case EFFECT_SKY_ATTACK:
-			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB)
+			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT)
 				goto AI_STANDARD_DAMAGE;
 
 			if (CanKnockOut(bankDef, bankAtk) //Attacker can be knocked out
@@ -1750,7 +1750,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_SOLARBEAM:
-			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB
+			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT
 			|| (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && data->atkItemEffect != ITEM_EFFECT_UTILITY_UMBRELLA))
 				goto AI_STANDARD_DAMAGE;
 

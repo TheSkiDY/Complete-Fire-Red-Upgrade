@@ -638,6 +638,7 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 			}
 			else if (hasRedirection
 			|| (ability == ABILITY_INTIMIDATE && hasFakeOut)
+			|| (ability == ABILITY_TERRORIZE && hasFakeOut)
 			|| (hasFakeOut && hasPivot))
 			{
 				class = FIGHT_CLASS_DOUBLES_UTILITY;

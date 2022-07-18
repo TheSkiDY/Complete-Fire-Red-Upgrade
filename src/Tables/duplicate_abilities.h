@@ -186,11 +186,15 @@ extern const u8 NAME_DUPE_ELECTRIC_SURGE[];
 extern const u8 NAME_DUPE_MISTY_SURGE[];
 extern const u8 NAME_DUPE_PSYCHIC_SURGE[];
 extern const u8 NAME_DUPE_GRASSY_SURGE[];
+extern const u8 NAME_SHADOWY_SURGE[];
+extern const u8 NAME_DRACO_SURGE[];
 
 extern const u8 DESC_ELECTRIC_SURGE[];
 extern const u8 DESC_MISTY_SURGE[];
 extern const u8 DESC_PSYCHIC_SURGE[];
 extern const u8 DESC_GRASSY_SURGE[];
+extern const u8 DESC_SHADOWY_SURGE[];
+extern const u8 DESC_DRACO_SURGE[];
 
 extern const u8 NAME_DUPE_GALE_WINGS[];
 extern const u8 NAME_SHADOW_BOOST[];
@@ -336,6 +340,8 @@ static const u8* gSurgeAbilityNames[] =
     [MISTY_TERRAIN] = NAME_DUPE_MISTY_SURGE,
     [PSYCHIC_TERRAIN] = NAME_DUPE_PSYCHIC_SURGE,
     [GRASSY_TERRAIN] = NAME_DUPE_GRASSY_SURGE,
+    [SHADOW_TERRAIN] = NAME_SHADOWY_SURGE,
+    [DRACO_TERRAIN] = NAME_DRACO_SURGE,
 };
 
 static const u8* gSurgeAbilityDescriptions[] = 
@@ -345,6 +351,8 @@ static const u8* gSurgeAbilityDescriptions[] =
     [MISTY_TERRAIN] = DESC_MISTY_SURGE,
     [PSYCHIC_TERRAIN] = DESC_PSYCHIC_SURGE,
     [GRASSY_TERRAIN] = DESC_GRASSY_SURGE,
+    [SHADOW_TERRAIN] = DESC_SHADOWY_SURGE,
+    [DRACO_TERRAIN] = DESC_DRACO_SURGE,
 };
 
 static const u8* gPriorityAbilityNames[] = 
@@ -446,6 +454,16 @@ static struct TerrainBasedAbility sSurgeAbilities[] =
         .species = SPECIES_RILLABOOM_GIGA,
         .currAbility = ABILITY_TERRAIN_SURGE,
         .terrain = GRASSY_TERRAIN,
+    },
+    //shadow terrain
+    {
+
+    },
+    //draco terrain
+    {
+        .species = SPECIES_CHARIZARD_MEGA_X,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = DRACO_TERRAIN,
     },
 };
 

@@ -2066,6 +2066,12 @@ const u8* TryActivateMimicryForBank(u8 bank)
 		case PSYCHIC_TERRAIN:
 			monType = TYPE_PSYCHIC;
 			break;
+		case SHADOW_TERRAIN:
+			monType = TYPE_GHOST;
+			break;
+		case DRACO_TERRAIN:
+			monType = TYPE_DRAGON;
+			break;
 		default:
 			monType = 0xFF;
 	}

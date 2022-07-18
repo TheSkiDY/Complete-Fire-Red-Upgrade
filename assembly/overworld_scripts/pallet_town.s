@@ -27,22 +27,22 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_CAPSULE 50
 	additem ITEM_ABILITY_PATCH 50
 	additem ITEM_SALAMENCITE 1
+	additem ITEM_CHARIZARDITE_X 1
 	additem 0x161 1
+	additem 310 1
 	additem 341 1
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_MINIOR_SHIELD 3 0 0 0 0
-	givepokemon SPECIES_ZYGARDE 3 0 0 0 0
-	givepokemon SPECIES_MORPEKO 4 0 0 0 0
-	givepokemon SPECIES_GRENINJA 4 0 0 0 0
-	givepokemon SPECIES_AEGISLASH 8 0 0 0 0
+	givepokemon SPECIES_DUSKNOIR 60 0 0 0 0
+	givepokemon SPECIES_INCINEROAR 4 0 0 0 0
 	givepokemon SPECIES_WISHIWASHI 20 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo
 	@setflag 0x940 @randomizer
 	@setflag 0x90E @trainer scale
+	setflag 0x200
 	callasm 0x8727DCD
 	end
 
@@ -56,7 +56,7 @@ TechnologyGuy_Battle:
 	callasm 0x8727CF9
 	faceplayer
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
-	setflag 0x918
+	@setflag 0x918
 	trainerbattle3 0x3 0x1B4 0x0 0x8188B08
 	callasm 0x8727DCD
 	end

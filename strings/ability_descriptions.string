@@ -553,7 +553,7 @@ Combines UNNERVE and KO boosts.
 #org @DESC_BEWILDER
 May cause confusion on contact.
 
-#org @DESC_SPLIT_CHANGE
+#org @DESC_BRUTEFORCE
 Special moves become physical.
 
 #org @DESC_COMPLETIONIST
@@ -579,6 +579,24 @@ Kicking moves hit first.
 
 #org @DESC_FORM_CHANGE_SIGNATURE
 Form change.
+
+#org @DESC_TERRORIZE
+Lowers the foe's SPEED.
+
+#org @DESC_HEAVYBULLET
+Powers up bullet moves but moves slower.
+
+#org @DESC_OVERTHINKING
+Physical moves become special.
+
+#org @DESC_LURE
+Boosts catch rate of a wild encounter.
+
+#org @DESC_QUICKDRAW
+Occasionally gains priority.
+
+#org @DESC_IMPATIENT
+Uses charging moves in one turn. 
 
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.

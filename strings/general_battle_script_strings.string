@@ -55,6 +55,12 @@ Mist swirls around the\nbattlefield!
 #org @PsychicTerrainSetString
 The battlefield got weird!
 
+#org @ShadowTerrainSetString
+The battlefield got shady!\nGHOST-types take less contact damage!
+
+#org @DracoTerrainSetString
+The battlefield got harsh!\nEvery move will hit critically!
+
 #org @TargetTransformedIntoType
 [TARGET]'s type\nchanged to [BUFFER][00]!
 
@@ -149,6 +155,9 @@ Neither Pok\emon can run away!
 
 #org @gText_ItemIncreasedSpeedBracket
 [SCRIPTING_BANK] can act\nfaster, thanks to its [LAST_ITEM]!
+
+#org @gText_QuickDrawSpeedBracket
+QUICK DRAW made [SCRIPTING_BANK] move faster!
 
 #org @gText_MeteorBeamCharge
 [ATTACKER] is\noverflowing with space power!
@@ -376,3 +385,11 @@ The storm is getting too strong to\nwithstand!
 #org @gText_RaidMonRanAway
 [PLAY_SE][11][00][FD][06] disappeared\nsomewhere[.]\p
 
+#org @gText_ImpatientString
+[ATTACKER] was too impatient\nto wait 2 turns!
+
+#org @gText_ShadowTerrainBattleBeginString
+The battlefield is shady.
+
+#org @gText_DracoTerrainBattleBeginString
+The battlefield is harsh.

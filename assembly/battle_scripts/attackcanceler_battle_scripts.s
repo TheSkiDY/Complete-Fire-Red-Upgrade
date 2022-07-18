@@ -11,6 +11,7 @@ attackcanceler_battle_scripts.s
 
 .global BattleScript_PrintCustomString
 .global BattleScript_QuickClaw
+.global BattleScript_QuickDraw
 .global BattleScript_MagicBounce
 .global BattleScript_MoveUsedFlinched
 .global BattleScript_MoveUsedDevolvedForgot

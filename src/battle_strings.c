@@ -1121,13 +1121,6 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
                } 
             }
             break;
-		case ABILITY_SPLIT_CHANGE:
-            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
-            {
-                ptr = NAME_OVERTHINKING;
-                break;
-            }
-            break;
 	}
 
     if (ptr == NULL)

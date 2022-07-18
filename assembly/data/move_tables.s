@@ -430,6 +430,8 @@ gSkyBattleBannedMoves:
 .hword MOVE_LANDSWRATH
 .hword MOVE_PRECIPICEBLADES
 .hword MOVE_PSYCHICTERRAIN
+.hword MOVE_SHADOWTERRAIN
+.hword MOVE_DRACOTERRAIN
 .hword MOVE_TABLES_TERMIN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

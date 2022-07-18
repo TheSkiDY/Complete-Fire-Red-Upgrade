@@ -21,7 +21,10 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_GrassyTerrainBattleBegin
 .global BattleScript_MistyTerrainBattleBegin
 .global BattleScript_PsychicTerrainBattleBegin
+.global BattleScript_ShadowTerrainBattleBegin
+.global BattleScript_DracoTerrainBattleBegin
 .global BattleScript_QuickClaw
+.global BattleScript_QuickDraw
 .global BattleScript_FocusPunchSetUp
 .global BattleScript_BeakBlastSetUp
 .global BattleScript_ShellTrapSetUp
@@ -136,6 +139,19 @@ BattleScript_PsychicTerrainBattleBegin:
 	playanimation 0x0 PSYCHIC_TERRAIN_ACTIVE_ANIM 0x0
 	end3
 
+BattleScript_ShadowTerrainBattleBegin:
+	setword BATTLE_STRING_LOADER gText_ShadowTerrainBattleBeginString
+	printstring 0x184
+	playanimation 0x0 SHADOW_TERRAIN_ACTIVE_ANIM 0x0
+	end3
+
+BattleScript_DracoTerrainBattleBegin:
+	setword BATTLE_STRING_LOADER gText_DracoTerrainBattleBeginString
+	printstring 0x184
+	playanimation 0x0 DRACO_TERRAIN_ACTIVE_ANIM 0x0
+	end3
+
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_QuickClaw:
@@ -154,6 +170,18 @@ QuickClawBS:
 	printstring 0x184
 	waitmessage DELAY_HALFSECOND
 	end3
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_QuickDraw:
+	setword BATTLE_STRING_LOADER StringNull
+	printstring 0x184
+	setword BATTLE_STRING_LOADER gText_QuickDrawSpeedBracket
+	call BattleScript_AbilityPopUp
+	printstring 0x184
+	waitmessage DELAY_HALFSECOND
+	call BattleScript_AbilityPopUpRevert
+	end3 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

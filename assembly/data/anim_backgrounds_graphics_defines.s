@@ -140,3 +140,9 @@ definitions for battle backgrounds
 .equ BG_AURA_SPHERE_IMG, Focus_BlastTiles
 .equ BG_AURA_SPHERE_PAL, Aura_Sphere_BGPal
 .equ BG_AURA_SPHERE_RAW, Focus_BlastMap
+.equ BG_SHADOW_TERRAIN_IMG, BG_Shadow_TerrainTiles
+.equ BG_SHADOW_TERRAIN_PAL, BG_Shadow_TerrainPal
+.equ BG_SHADOW_TERRAIN_RAW, BG_Shadow_TerrainMap
+.equ BG_DRACO_TERRAIN_IMG, BG_Draco_TerrainTiles
+.equ BG_DRACO_TERRAIN_PAL, BG_Draco_TerrainPal
+.equ BG_DRACO_TERRAIN_RAW, BG_Draco_TerrainMap

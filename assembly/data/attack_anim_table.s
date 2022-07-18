@@ -1,4 +1,4 @@
-.thumb
+	.thumb
 .text
 .align 2
 .global AttackAnimationTable
@@ -815,8 +815,8 @@ gMoveAnimations:
 .word ANIM_SCORCHING_SANDS	@ANIM_SANDSEARSTORM
 .word 0x81cb54e	@ANIM_LUNARBLESSING
 .word 0x81d196b	@ANIM_TAKEHEART
-.word 0x81c6f34	@ANIM_MOVE_EMPTY_39
-.word 0x81c6f34	@ANIM_MOVE_EMPTY_40
+.word ANIM_SHADOWTERRAIN
+.word ANIM_DRACOTERRAIN
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_41
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_42
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_43
@@ -13719,6 +13719,70 @@ ANIM_PSYCHICTERRAIN:
 .align 2
 PSY_TERRAIN_BALL: objtemplate ANIM_TAG_ORBS ANIM_TAG_POISON_BUBBLE OAM_NORMAL_BLEND_16x16 0x83E2A40 0x0 0x83E2A54 0x80AA175
 PSY_TERRAIN_PURPLESTAR: objtemplate ANIM_TAG_GREEN_SPARKLE ANIM_TAG_POISON_BUBBLE OAM_OFF_16x16 0x83E3760 0x0 gDummySpriteAffineAnimTable 0x80AA2B1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SHADOWTERRAIN:
+	loadparticle ANIM_TAG_ORBS @Recover Ball
+	loadparticle ANIM_TAG_GREEN_SPARKLE @Green Star
+	loadparticle ANIM_TAG_POISON_BUBBLE @Purple Colour
+	playsound2 0xBC SOUND_PAN_ATTACKER
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x0
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x2a
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x54
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x7e
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0xa8
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xDB SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x20
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x40
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x60
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x80
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0xa0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 SOUND_PAN_ATTACKER
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0xe0
+	waitanimation
+	loaddefaultBG
+	waitbgfadein
+	soundcomplex 0xb1 SOUND_PAN_TARGET 0xa 0x3
+	waitforsound
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_DRACOTERRAIN:
+	loadparticle ANIM_TAG_ORBS @Recover Ball
+	loadparticle ANIM_TAG_GREEN_SPARKLE @Green Star
+	loadparticle ANIM_TAG_WATER_GUN @Light Blue Colour
+	playsound2 0xBC SOUND_PAN_ATTACKER
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x0
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x2a
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x54
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x7e
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0xa8
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xDB SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x20
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x40
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x60
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x80
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0xa0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 SOUND_PAN_ATTACKER
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0xe0
+	waitanimation
+	loaddefaultBG
+	waitbgfadein
+	playsound2 0xEC SOUND_PAN_ATTACKER
+	pause 0x40
+	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

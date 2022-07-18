@@ -438,6 +438,15 @@ bool8 TryActivateOWTerrain(void)
 			case PSYCHIC_TERRAIN:
 				BattleScriptPushCursorAndCallback(BattleScript_PsychicTerrainBattleBegin);
 				effect = TRUE;
+				break;
+			case SHADOW_TERRAIN:
+				BattleScriptPushCursorAndCallback(BattleScript_ShadowTerrainBattleBegin);
+				effect = TRUE;
+				break;
+			case DRACO_TERRAIN:
+				BattleScriptPushCursorAndCallback(BattleScript_DracoTerrainBattleBegin);
+				effect = TRUE;
+				break;
 		}
 
 		if (effect)
@@ -671,7 +680,14 @@ void RunTurnActionsFunctions(void)
 			{
 				gNewBS->CustapQuickClawIndicator &= ~(gBitTable[i]);
 
-				if (gActionsByTurnOrder[i] != ACTION_USE_ITEM)
+				if(ABILITY(i) == ABILITY_QUICKDRAW)
+				{
+					gBattleScripting.bank = i;
+					BattleScriptExecute(BattleScript_QuickDraw);
+					gCurrentActionFuncId = savedActionFuncId;
+					return;
+				}
+				else if (gActionsByTurnOrder[i] != ACTION_USE_ITEM)
 				{
 					gBattleScripting.bank = i;
 					gLastUsedItem = ITEM(i);
@@ -1760,9 +1776,20 @@ s32 BracketCalc(u8 bank)
 			case ITEM_EFFECT_LAGGING_TAIL:
 				return -2;
 		}
-
-		if (ability == ABILITY_STALL && !IsTrickRoomActive())
-			return -1;
+		switch(ability)
+		{
+			case ABILITY_STALL:
+				if(!IsTrickRoomActive())
+					return -1;
+				break;
+			case ABILITY_QUICKDRAW:
+				if(gRandomTurnNumber % 100 < 30 || (itemEffect == ITEM_EFFECT_QUICK_CLAW && gRandomTurnNumber % 100 < 44))
+				{
+					gNewBS->CustapQuickClawIndicator |= gBitTable[bank];
+					return 1;
+				}
+				break;
+		}
 	}
 
 	return 0;
@@ -1847,6 +1874,9 @@ u32 SpeedCalc(u8 bank)
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;
 			break;
+		case ABILITY_HEAVYBULLET:
+			speed = (speed * 10) / 15;
+			break;
 		case ABILITY_TANGLEDFEET:
 			if (IsConfused(bank))
 				speed *= 2;
@@ -1906,6 +1936,9 @@ u32 SpeedCalcMon(u8 side, struct Pokemon* mon)
 		case ABILITY_SLOWSTART:
 			speed /= 2;
 			break;
+		case ABILITY_HEAVYBULLET:
+			speed = (speed * 10) / 15;
+			break; 
 		case ABILITY_SURGESURFER:
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				speed *= 2;

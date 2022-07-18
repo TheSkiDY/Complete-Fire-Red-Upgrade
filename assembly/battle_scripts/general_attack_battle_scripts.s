@@ -1681,12 +1681,21 @@ PrintMeteorBeamString:
 
 BattleScript_CheckPowerHerb:
 	waitmessage DELAY_1SECOND
+	jumpifability BANK_ATTACKER ABILITY_IMPATIENT ImpatientBS
 	jumpifhelditemeffect BANK_ATTACKER ITEM_EFFECT_POWER_HERB PowerHerbChargeBS
 	jumpifraidboss BANK_ATTACKER TwoTurnMovesRaidBossSkipCharge
 	orword HIT_MARKER HITMARKER_CHARGING
 	setmoveeffect MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
 	seteffectprimary
 	return
+
+ImpatientBS:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_ImpatientString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto TwoTurnMovesRaidBossSkipCharge
 
 PowerHerbChargeBS:
 	playanimation BANK_ATTACKER ANIM_ITEM_USE 0x0

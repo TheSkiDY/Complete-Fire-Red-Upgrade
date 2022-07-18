@@ -469,6 +469,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_TRACE:			//Trace were included in this list. It has thus been
 				case ABILITY_DOWNLOAD:		//been expanded to support newer abilities.
 				case ABILITY_UNNERVE:
+				case ABILITY_TERRORIZE:
 				case ABILITY_ASONE:
 				case ABILITY_ANTICIPATION:
 				case ABILITY_FOREWARN:
@@ -485,6 +486,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		switch (gLastUsedAbility) {
 			case ABILITY_INTIMIDATE:
+			case ABILITY_TERRORIZE:
 			case ABILITY_DOWNLOAD:
 			case ABILITY_FOREWARN:
 			case ABILITY_IMPOSTER:
@@ -668,6 +670,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_INTIMIDATE:
+		case ABILITY_TERRORIZE:
 			if (!(gBattleMons[FOE(bank)].status2 & STATUS2_SUBSTITUTE) || !(gBattleMons[PARTNER(FOE(bank))].status2 & STATUS2_SUBSTITUTE))
 			{
 				BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
@@ -1241,6 +1244,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					break;
 				case GRASSY_TERRAIN:
 					effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+					break;
+				case SHADOW_TERRAIN:
+					effect = TryActivateTerrainAbility(SHADOW_TERRAIN, B_ANIM_SHADOWY_SURGE, bank);
+					break;
+				case DRACO_TERRAIN:
+					effect = TryActivateTerrainAbility(DRACO_TERRAIN, B_ANIM_DRACO_SURGE, bank);
 					break;
 			}
 			break;
@@ -2645,6 +2654,12 @@ static u8 TryActivateTerrainAbility(u8 terrain, u8 anim, u8 bank)
 				break;
 			case PSYCHIC_TERRAIN:
 				gBattleStringLoader = PsychicTerrainSetString;
+				break;
+			case SHADOW_TERRAIN:
+				gBattleStringLoader = ShadowTerrainSetString;
+				break;
+			case DRACO_TERRAIN:
+				gBattleStringLoader = DracoTerrainSetString;
 				break;
 		}
 

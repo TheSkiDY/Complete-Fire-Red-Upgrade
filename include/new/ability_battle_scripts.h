@@ -151,6 +151,8 @@ extern const u8 ElectricTerrainSetString[];
 extern const u8 GrassyTerrainSetString[];
 extern const u8 MistyTerrainSetString[];
 extern const u8 PsychicTerrainSetString[];
+extern const u8 ShadowTerrainSetString[];
+extern const u8 DracoTerrainSetString[];
 extern const u8 gText_SlowStartEnd[];
 extern const u8 PrimalRainEndString[];
 extern const u8 PrimalSunEndString[];

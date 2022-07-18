@@ -108,6 +108,7 @@ void atk04_critcalc(void)
 		else if ((atkAbility == ABILITY_MERCILESS && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| IsLaserFocused(gBankAttacker)
 		|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
+		|| (gTerrainType == DRACO_TERRAIN)
 		|| CheckTableForMove(gCurrentMove, gAlwaysCriticalMoves))
 		{
 			confirmedCrit = TRUE;
@@ -202,6 +203,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 	else if ((atkAbility == ABILITY_MERCILESS && (defStatus1 & STATUS_PSN_ANY))
 	|| (IsLaserFocused(bankAtk) && monAtk == NULL)
 	|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
+	|| (gTerrainType == DRACO_TERRAIN)
 	|| CheckTableForMove(move, gAlwaysCriticalMoves))
 		return TRUE;
 
@@ -1231,7 +1233,11 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 				multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
-		{			
+		{		
+			if(gTerrainType == DRACO_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;	
 			multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
 	}
@@ -1251,6 +1257,10 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 		}
 		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
 		{			
+			if(gTerrainType == DRACO_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
 			multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
 	}
@@ -1538,6 +1548,12 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 				case PSYCHIC_TERRAIN:
 					moveType = TYPE_PSYCHIC;
 					break;
+				case SHADOW_TERRAIN:
+					moveType = TYPE_GHOST;
+					break;
+				case DRACO_TERRAIN:
+					moveType = TYPE_DRAGON;
+					break;
 				default:
 					moveType = TYPE_NORMAL;
 					break;
@@ -1649,6 +1665,12 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 					break;
 				case PSYCHIC_TERRAIN:
 					moveType = TYPE_PSYCHIC;
+					break;
+				case SHADOW_TERRAIN:
+					moveType = TYPE_GHOST;
+					break;
+				case DRACO_TERRAIN:
+					moveType = TYPE_DRAGON;
 					break;
 				default:
 					moveType = TYPE_NORMAL;
@@ -2253,6 +2275,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//2x Boost
 			data->defense *= 2;
 			break;
+
 /*
 		case ABILITY_PORTALPOWER:
 		//0.75x Decrement
@@ -2396,6 +2419,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY)
 	&& ((!useMonDef && IsOfType(bankDef, TYPE_ICE)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE))))
 		data->defense = (15 * data->defense) / 10;
+
+//Terrain effects
+	if(gTerrainType == SHADOW_TERRAIN && ((useMonAtk && CheckContactByMon(move, data->monAtk)) || (!useMonAtk && CheckContact(move, bankAtk))))
+	{
+		attack = (attack * 50) / 100;
+		spAttack = (spAttack * 50) / 100;
+	}
 
 //Old Exploding Check
 	#ifdef OLD_EXPLOSION_BOOST
@@ -3328,6 +3358,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
+		case ABILITY_HEAVYBULLET:
+		//1.5x Boost
+			if (CheckTableForMove(move, gBallBombMoves))
+				power = (power * 15) / 10;
+			break;
+		
+
 		case ABILITY_BIGPECKS:
 		//1.6x Boost
 			if (CheckTableForMove(move, gPeckingMoves))
@@ -3610,6 +3647,18 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//1.5x Boost
 			if (data->atkIsGrounded && data->moveType == TYPE_PSYCHIC && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
 				power = (power * TERRAIN_BOOST) / 10;
+			break;
+
+		case SHADOW_TERRAIN:
+		//1.5x Boost
+			if (data->atkIsGrounded && data->moveType == TYPE_GHOST && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
+				power = (power * 15) / 10;
+			break;
+
+		case DRACO_TERRAIN:
+		//1.2x Boost
+			if (data->atkIsGrounded && data->moveType == TYPE_DRAGON && !(ABILITY_PRESENT(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK))
+				power = (power * 12) / 10;
 			break;
 	}
 

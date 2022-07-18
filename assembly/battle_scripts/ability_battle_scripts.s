@@ -144,9 +144,17 @@ BattleScript_IntimidateActivatesEnd3:
 BattleScript_PauseIntimidateActivates:
 	call BattleScript_AbilityPopUp
 	setbyte TARGET_BANK 0x0
+	jumpifability BANK_ATTACKER ABILITY_TERRORIZE BS_TerrorizeSetStatChanger
+
+BS_IntimidateSetStatChanger:
+	setstatchanger STAT_ATK | DECREASE_1
+	goto BS_IntimidateActivatesLoop
+
+BS_TerrorizeSetStatChanger:
+	setstatchanger STAT_SPD | DECREASE_1
+	goto BS_IntimidateActivatesLoop
 
 BS_IntimidateActivatesLoop:
-	setstatchanger STAT_ATK | DECREASE_1
 	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
 	jumpifbehindsubstitute BANK_TARGET IntimidateActivatesLoopIncrement
 	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR IntimidateActivatesLoopIncrement

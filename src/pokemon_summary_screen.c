@@ -92,13 +92,6 @@ void HandleDuplicateDescriptions_SummaryScreen()
                } 
             }
             break;
-        case ABILITY_SPLIT_CHANGE:
-            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
-            {
-                StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, DESC_OVERTHINKING);
-                return;
-            }
-            break;
     }
 }
 
@@ -157,13 +150,6 @@ void HandleDuplicateNames_SummaryScreen()
                     StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gSurgeAbilityNames[terrainType]);
                     return;
                } 
-            }
-            break;
-        case ABILITY_SPLIT_CHANGE:
-            if(gBaseStats[species].baseAttack < gBaseStats[species].baseSpAttack)
-            {
-                StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, NAME_OVERTHINKING);
-                return;
             }
             break;
     }

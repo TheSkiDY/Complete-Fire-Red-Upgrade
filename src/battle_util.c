@@ -1193,6 +1193,12 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 bankAtk)
 
 u8 CalcMoveSplit(u8 bank, u16 move)
 {
+	if(ABILITY(bank) == ABILITY_BRUTEFORCE && SPLIT(move) == SPLIT_SPECIAL)
+		return SPLIT_PHYSICAL;
+
+	if(ABILITY(bank) == ABILITY_OVERTHINKING && SPLIT(move) == SPLIT_PHYSICAL)
+		return SPLIT_SPECIAL;
+	
 	if (CheckTableForMove(move, gMovesThatChangePhysicality)
 	&&  SPLIT(move) != SPLIT_STATUS)
 	{
@@ -1217,21 +1223,13 @@ u8 CalcMoveSplit(u8 bank, u16 move)
 		else
 			return SPLIT_SPECIAL;
 	#else
-		if(ABILITY(bank) == ABILITY_SPLIT_CHANGE)
-		{
-			if(gBaseStats[SPECIES(bank)].baseAttack < gBaseStats[SPECIES(bank)].baseSpAttack)
-				return SPLIT_SPECIAL;
-			else
-				return SPLIT_PHYSICAL;
-		}
-
-
 		return SPLIT(move);
 	#endif
 }
 
 u8 CalcMoveSplitFromParty(struct Pokemon* mon, u16 move)
 {
+
 	if (CheckTableForMove(move, gMovesThatChangePhysicality))
 	{
 		if (mon->spAttack >= mon->attack)
@@ -1264,6 +1262,9 @@ bool8 MoveInMoveset(u16 move, u8 bank)
 u8 AttacksThisTurn(u8 bank, u16 move) // Note: returns 1 if it's a charging turn, otherwise 2
 {
 	u8 moveEffect = gBattleMoves[move].effect;
+
+	if (ABILITY(bank) == ABILITY_IMPATIENT)
+		return 2;
 
 	// first argument is unused
 	if (ITEM_EFFECT(bank) == ITEM_EFFECT_POWER_HERB)

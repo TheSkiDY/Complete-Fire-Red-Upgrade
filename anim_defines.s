@@ -91,6 +91,8 @@
 .equ BG_HYPER_BEAM, 0x49
 .equ BG_DYNAMAX_CANNON, 0x4A
 .equ BG_AURA_SPHERE, 0x4B
+.equ BG_SHADOW_TERRAIN, 0x4C
+.equ BG_DRACO_TERRAIN, 0x4D
 
 @pals for pal fading tasks
 .equ PAL_BG, 0x1

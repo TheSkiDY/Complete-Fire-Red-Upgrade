@@ -1,5 +1,5 @@
 [General]
-ApplicationVersion = '''0.4.3.4'''
+ApplicationVersion = '''0.4.4'''
 FreeSpaceSearch = '''000200'''
 FreeSpaceBuffer = '''100'''
 NextExportID = '''0'''
@@ -27,18 +27,33 @@ Address = 0x000108
 Format = '''`asc`32'''
 
 [[NamedAnchors]]
+Name = '''scripts.newgame.starters.left'''
+Address = 0x169BB5
+Format = '''[species1:data.pokemon.names]scripts.newgame.starters.middle'''
+
+[[NamedAnchors]]
+Name = '''scripts.newgame.starters.middle'''
+Address = 0x169D82
+Format = '''[species2:data.pokemon.names]1'''
+
+[[NamedAnchors]]
+Name = '''scripts.newgame.starters.right'''
+Address = 0x169DB8
+Format = '''[species3:data.pokemon.names]scripts.newgame.starters.middle'''
+
+[[NamedAnchors]]
 Name = '''data.pokemon.names'''
-Address = 0x16195D4
+Address = 0x141B7CC
 Format = '''[name""11]823'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.names'''
-Address = 0x14B8894
-Format = '''^[name""13]896'''
+Address = 0x10BE914
+Format = '''^[name""13]996'''
 
 [[NamedAnchors]]
 Name = '''data.abilities.names'''
-Address = 0x14AB500
+Address = 0x10AF900
 Format = '''[name""17]255'''
 
 [[NamedAnchors]]
@@ -54,7 +69,17 @@ Format = '''^[name""7]data.pokemon.type.length'''
 [[NamedAnchors]]
 Name = '''data.items.stats'''
 Address = 0x900000
-Format = '''[name""13 unused. index: price: holdeffect.holdeffects param. description<""> keyitemvalue. bagkeyitem. pocket.pocketid type. fieldeffect<> battleusage:: battleeffect<> battleextra::]1000'''
+Format = '''[name""13 unused. index: price: holdeffect.holdeffects param. description<""> keyitemvalue. bagkeyitem. pocket.pocketid type. fieldeffect<> battleusage:: battleeffect<> battleextra::]823'''
+
+[[NamedAnchors]]
+Name = '''data.abilities.descriptions'''
+Address = 0x1008F30
+Format = '''[description<"">]data.abilities.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.descriptions'''
+Address = 0x1036A30
+Format = '''[description<"">]data.pokemon.moves.names-1'''
 
 [[NamedAnchors]]
 Name = '''scripts.text.multichoice'''
@@ -73,13 +98,18 @@ Format = '''[text<"">]7'''
 
 [[NamedAnchors]]
 Name = '''data.menus.text.pc'''
-Address = 0x143B38C
+Address = 0x103C06C
 Format = '''[text<""> data::]31'''
 
 [[NamedAnchors]]
 Name = '''data.menus.text.pokemon'''
 Address = 0x45A2E8
 Format = '''[text<"">]27'''
+
+[[NamedAnchors]]
+Name = '''data.menus.text.pcoptions'''
+Address = 0x4021E8
+Format = '''[text<""> code<>]3'''
 
 [[NamedAnchors]]
 Name = '''scripts.newgame.names.male'''
@@ -104,7 +134,7 @@ Format = '''[name<"">]109'''
 [[NamedAnchors]]
 Name = '''data.maps.banks'''
 Address = 0x3526A8
-Format = '''[maps<[map<[layout<[width:: height:: s1<> s2<> tiles<[a. b. c. d. tileset<`lzt4`> pal<`ucp4:0123456789ABCDEF`> block<> unknown<> blockend<>]1> s4<> borderwidth. borderheight. unused:]1> events<[e1 e2 e3 e4 ee1<> ee2<> ee3<> ee4<>]1> mapscripts<[type. pointer<>]!00> d<> song: map: label. flash. weather. type. unused: useLabel:]1>]1>]43'''
+Format = '''[maps<[map<[layout<[width:: height:: s1<> s2<> tiles<[a. b. c. d. tileset<`lzt4`> pal<`ucp4:0123456789ABCDEF`> block<> unknown<> blockend<>]1> s4<> borderwidth. borderheight. unused:]1> events<[e1 e2 e3 e4 ee1<> ee2<> ee3<> ee4<>]1> mapscripts<[type. pointer<>]!00> connections<> song: map: label. flash. weather. type. unused: useLabel:]1>]1>]43'''
 
 [[NamedAnchors]]
 Name = '''data.maps.dungeons.stats'''
@@ -132,38 +162,68 @@ Address = 0x3F2EE0
 Format = '''[bank. map. flight.]108'''
 
 [[NamedAnchors]]
-Name = '''data.pokedex.hoennToNational'''
-Address = 0x252324
-Format = '''[index:]data.pokemon.names-1'''
+Name = '''graphics.pokemon.sprites.front'''
+Address = 0x182E5B8
+Format = '''^[sprite<`lzs4x8x8`> uncompressedLength: index:]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokemon.stats'''
-Address = 0x19E50B4
-Format = '''[hp. attack. def. speed. spatk. spdef. type1.data.pokemon.type.names type2.data.pokemon.type.names catchRate. baseExp. evs:|t|hp:|atk:|def:|spd:|spatk:|spdef: item1:data.items.stats item2:data.items.stats genderratio. steps2hatch. basehappiness. growthrate.growthrates egg1.egggroups egg2.egggroups ability1.data.abilities.names ability2.data.abilities.names runrate. dex.|t|color:::.bodycolors|noFlip. padding:]data.pokemon.names'''
+Name = '''graphics.pokemon.sprites.back'''
+Address = 0x17E7C5C
+Format = '''[sprite<`lzs4x8x8`> uncompressedLength: index:]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.sprites.ghost'''
+Address = 0xE93B38
+Format = '''`lzs4x8x8|graphics.pokemon.palettes.ghost`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.palettes.ghost'''
+Address = 0xE93B14
+Format = '''`lzp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.sprites.egg'''
+Address = 0x25F862
+Format = '''`ucs4x4x17|graphics.pokemon.palettes.egg`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.palettes.egg'''
+Address = 0x25F842
+Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.sprites.elevation'''
-Address = 0x19C4434
+Address = 0x17FF782
 Format = '''[elevation.]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.items.effects'''
-Address = 0x90CB50
-Format = '''[data<`pie`>]data.items.stats-13-199'''
+Name = '''graphics.pokemon.sprites.coordinates.back'''
+Address = 0x17E65CC
+Format = '''[size.|t|width::|height:: yOffset. render|render=graphics.battle.background.sprites/0/battlemap/|0|0|240|112|graphics.pokemon.sprites.back|40|48||yOffset unused:]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokedex.search.alpha'''
-Address = 0x1A4EA2E
-Format = '''[species:data.pokedex.national]data.pokedex.national'''
+Name = '''graphics.pokemon.sprites.anchor'''
+Address = 0x18343F0
+Format = '''[x1. y1. yClose. x2. y2.]data.pokemon.names-1+2'''
 
 [[NamedAnchors]]
-Name = '''data.pokedex.search.size'''
-Address = 0x1A4DC0E
-Format = '''[species:data.pokedex.national]data.pokedex.national-25'''
+Name = '''graphics.pokemon.palettes.normal'''
+Address = 0x184771C
+Format = '''^[palette<`lzp4`> index: unused:]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.palettes.shiny'''
+Address = 0x1855914
+Format = '''[palette<`lzp4`> index: unused:]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.icons.sprites'''
+Address = 0x1832D60
+Format = '''[icon<`ucs4x4x8|graphics.pokemon.icons.index`>]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.icons.index'''
-Address = 0x19F34A6
+Address = 0x18327BA
 Format = '''[index.graphics.pokemon.icons.palettes]data.pokemon.names'''
 
 [[NamedAnchors]]
@@ -187,6 +247,26 @@ Address = 0x463B44
 Format = '''`ucp4`'''
 
 [[NamedAnchors]]
+Name = '''graphics.pokemon.evolution.scene.palette'''
+Address = 0x3F8400
+Format = '''`ucp4:AB`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.evolution.scene.tileset'''
+Address = 0x3F6CB0
+Format = '''`lzt4|graphics.pokemon.evolution.scene.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.evolution.scene.tilemap1'''
+Address = 0x3F73A8
+Format = '''`lzm4x32x32|graphics.pokemon.evolution.scene.tileset`'''
+
+[[NamedAnchors]]
+Name = '''graphics.pokemon.evolution.scene.tilemap2'''
+Address = 0x3F788C
+Format = '''`lzm4x32x32|graphics.pokemon.evolution.scene.tileset`'''
+
+[[NamedAnchors]]
 Name = '''graphics.trainers.sprites.front'''
 Address = 0x23957C
 Format = '''[sprite<`lzs4x8x8|graphics.trainers.palettes.front`> uncompressedLength: index:]148'''
@@ -195,6 +275,11 @@ Format = '''[sprite<`lzs4x8x8|graphics.trainers.palettes.front`> uncompressedLen
 Name = '''graphics.trainers.sprites.back.enter'''
 Address = 0x239FA4
 Format = '''[sprite<`ucs4x8x8|graphics.trainers.palettes.back`> a. b. c:]6'''
+
+[[NamedAnchors]]
+Name = '''graphics.trainers.animations.back'''
+Address = 0x10CD7A8
+Format = '''[animationPointer<[animation<[a: b: c: d:]1> framedata<[frame: time:]!FFFF0000>]1>]graphics.trainers.sprites.back.enter'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.animations.frames'''
@@ -212,9 +297,9 @@ Address = 0x239A1C
 Format = '''[palette<`lzp4`> index: unused:]graphics.trainers.sprites.front'''
 
 [[NamedAnchors]]
-Name = '''graphics.moves.surf.palette'''
-Address = 0x14C5770
-Format = '''`lzp4:8`'''
+Name = '''graphics.trainers.sprites.back.throw'''
+Address = 0x10CD6C0
+Format = '''[starterbytes:|h unknown:|h a<> b<> sprites<`osl|graphics.trainers.palettes.back:sprite`> d<> e<>]graphics.trainers.sprites.back.enter'''
 
 [[NamedAnchors]]
 Name = '''graphics.trainers.coordinates.back'''
@@ -263,7 +348,7 @@ Format = '''[ptr<`lzp4`> index: unused:]graphics.moves.particles.sprites'''
 
 [[NamedAnchors]]
 Name = '''graphics.moves.backgrounds.all'''
-Address = 0x1408DE4
+Address = 0x1009380
 Format = '''[tileset<`lzt4`> palette<`lzp4:2`> tilemap<`lzm4x32x32|graphics.moves.backgrounds.all`>]27'''
 
 [[NamedAnchors]]
@@ -292,6 +377,11 @@ Address = 0xE80280
 Format = '''`lzm4x32x64|graphics.moves.backgrounds.all`'''
 
 [[NamedAnchors]]
+Name = '''graphics.moves.surf.palette'''
+Address = 0x10E10EC
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
 Name = '''graphics.moves.surf.tileset'''
 Address = 0xE809CC
 Format = '''`lzt4|graphics.moves.surf.palette`'''
@@ -313,13 +403,23 @@ Format = '''`lzm4x32x64|graphics.moves.surf.tileset`'''
 
 [[NamedAnchors]]
 Name = '''graphics.items.ball.sprites'''
-Address = 0x14C6150
+Address = 0x10CE0A4
 Format = '''[sprite<`lzs4x2x6|graphics.items.ball.palettes`> uncompressedLength: a b]12'''
 
 [[NamedAnchors]]
 Name = '''graphics.items.ball.palettes'''
-Address = 0x14C6070
+Address = 0x10CDFC4
 Format = '''[palette<`lzp4`> a b unused:]graphics.items.ball.sprites'''
+
+[[NamedAnchors]]
+Name = '''graphics.items.ball.trade.sprite'''
+Address = 0x1127D9C
+Format = '''`ucs4x2x24|graphics.items.ball.trade.palette`'''
+
+[[NamedAnchors]]
+Name = '''graphics.items.ball.trade.palette'''
+Address = 0x112839C
+Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.items.sprites'''
@@ -352,9 +452,9 @@ Address = 0x3E0FA0
 Format = '''`ucs4x8x8|graphics.items.fossils.palette2`'''
 
 [[NamedAnchors]]
-Name = '''graphics.pokemon.moves.animations'''
-Address = 0x13F1A6C
-Format = '''[animation<`ase`>]data.pokemon.moves.names'''
+Name = '''data.pokemon.stats'''
+Address = 0x17EA97C
+Format = '''[hp. attack. def. speed. spatk. spdef. type1.data.pokemon.type.names type2.data.pokemon.type.names catchRate. baseExp. evs:|t|hp:|atk:|def:|spd:|spatk:|spdef: item1:data.items.stats item2:data.items.stats genderratio.genderratiovalues steps2hatch. basehappiness. growthrate.growthrates egg1.egggroups egg2.egggroups ability1.data.abilities.names ability2.data.abilities.names runrate. dex.|t|color:::.bodycolors|noFlip. padding:]data.pokemon.names'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.deoxys.stats'''
@@ -363,7 +463,7 @@ Format = '''[hp: atk: def: spd: spatk: spdef:]1'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.evolutions'''
-Address = 0x19C4964
+Address = 0x17FFD26
 Format = '''[method1:evolutionmethods arg1:|s=method1(6=data.items.stats|7=data.items.stats) species1:data.pokemon.names unused1: method2:evolutionmethods arg2:|s=method2(6=data.items.stats|7=data.items.stats) species2:data.pokemon.names unused2: method3:evolutionmethods arg3:|s=method3(6=data.items.stats|7=data.items.stats) species3:data.pokemon.names unused3: method4:evolutionmethods arg4:|s=method4(6=data.items.stats|7=data.items.stats) species4:data.pokemon.names unused4: method5:evolutionmethods arg5:|s=method5(6=data.items.stats|7=data.items.stats) species5:data.pokemon.names unused5:]data.pokemon.names'''
 
 [[NamedAnchors]]
@@ -373,22 +473,32 @@ Format = '''[name""7 firmness. size: maxYield. minYield. description1<""> descri
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.stats.battle'''
-Address = 0x14C68F0
-Format = '''[effect.moveeffectoptions power. type.data.pokemon.type.names accuracy. pp. effectAccuracy. target|b[]movetarget priority. info|b[]moveinfo unused. unused:]data.pokemon.moves.names'''
+Address = 0x10CE8A8
+Format = '''[effect.moveeffectoptions power. type.data.pokemon.type.names accuracy. pp. effectAccuracy. target|b[]movetarget priority.|z info|b[]moveinfo unused. unused:]data.pokemon.moves.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.levelup'''
+Address = 0x1836024
+Format = '''[movesFromLevel<[move:data.pokemon.moves.names level.]!0000FF>]data.pokemon.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.tutors'''
+Address = 0x185917A
+Format = '''[move:data.pokemon.moves.names]15'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.tutorcompatibility'''
-Address = 0x16054E0
+Address = 0x1405CA0
 Format = '''[moves|b[]data.pokemon.moves.tutors]data.pokemon.names'''
 
 [[NamedAnchors]]
-Name = '''data.pokedex.national'''
-Address = 0x1A51F8C
-Format = '''[index:]data.pokemon.names-1'''
+Name = '''data.pokemon.moves.tms'''
+Address = 0x185927A
+Format = '''[move:data.pokemon.moves.names]58'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.moves.tmcompatibility'''
-Address = 0x1600260
+Address = 0x1400260
 Format = '''[moves|b[]data.pokemon.moves.tms]data.pokemon.names'''
 
 [[NamedAnchors]]
@@ -409,7 +519,7 @@ Format = '''[name<"">]data.pokemon.type.names'''
 [[NamedAnchors]]
 Name = '''data.trainers.stats'''
 Address = 0x23EAC8
-Format = '''[structType.trainerStructType class.data.trainers.classes.names introMusicAndGender.|t|music:::.|female. sprite.graphics.trainers.sprites.front name""12 prizeMoney|=4*(data.trainers.money/class=class)/moneyrate*pokemon/last/level item1:data.items.stats item2:data.items.stats item3:data.items.stats item4:data.items.stats doubleBattle:: ai|b[]traineraibits pokemonCount:: pokemon<`tpt`>]743'''
+Format = '''[structType.trainerStructType class.data.trainers.classes.names introMusicAndGender.|t|music:::.|female. sprite.graphics.trainers.sprites.front name""12 prizeMoney|=4*(data.trainers.money/class=class)/moneyrate*pokemon/last/level item1:data.items.stats item2:data.items.stats item3:data.items.stats item4:data.items.stats doubleBattle:: ai|b[]traineraibits | pokemonCount:: pokemon<`tpt`>]743'''
 
 [[NamedAnchors]]
 Name = '''data.trainers.money'''
@@ -444,7 +554,7 @@ Format = '''[move:data.pokemon.moves.names]!FFFF'''
 [[NamedAnchors]]
 Name = '''data.abilities.pickup.items'''
 Address = 0x250848
-Format = '''[item:data.items.stats chance:]16'''
+Format = '''[item:data.items.stats chance:]data.abilities.pickup.length'''
 
 [[NamedAnchors]]
 Name = '''data.abilities.soundproof.moves'''
@@ -457,9 +567,24 @@ Address = 0x252B48
 Format = '''[attack.|z defense.|z speed.|z spAttack.|z spDefense.|z]data.pokemon.natures.names'''
 
 [[NamedAnchors]]
+Name = '''scripts.moves.effects'''
+Address = 0x1037FA4
+Format = '''[effect<`bse`>]moveeffectoptions'''
+
+[[NamedAnchors]]
+Name = '''scripts.moves.setupeffects'''
+Address = 0x1DBAA7
+Format = '''[effects.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
 Name = '''scripts.specials.thumb'''
 Address = 0x15FD60
-Format = '''[code<>]455'''
+Format = '''[code<>]444'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.thumb'''
+Address = 0x10379BC
+Format = '''[code<>]248'''
 
 [[NamedAnchors]]
 Name = '''scripts.battle.ai.thumb'''
@@ -467,14 +592,44 @@ Address = 0x3F55A4
 Format = '''[command<>]94'''
 
 [[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.self.high'''
+Address = 0x1DBBC3
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.self.medium'''
+Address = 0x1DBBD1
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.self.low'''
+Address = 0x1DBBFC
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.target.high'''
+Address = 0x1DBC2C
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.target.medium'''
+Address = 0x1DBC2D
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
+Name = '''scripts.battle.ai.hpaware.discourage.when.target.low'''
+Address = 0x1DBC55
+Format = '''[effect.moveeffectoptions]!FF'''
+
+[[NamedAnchors]]
 Name = '''scripts.newgame.setflags'''
 Address = 0x1A6481
 Format = '''`xse`'''
 
 [[NamedAnchors]]
-Name = '''data.abilities.descriptions'''
-Address = 0x13EFB40
-Format = '''[description<"">]data.abilities.names'''
+Name = '''scripts.newgame.pc.item'''
+Address = 0x402220
+Format = '''[item:data.items.stats count:]!00000000'''
 
 [[NamedAnchors]]
 Name = '''scripts.credits.panmap'''
@@ -517,34 +672,39 @@ Address = 0x251CB8
 Format = '''[index:]data.pokemon.names-1'''
 
 [[NamedAnchors]]
+Name = '''data.pokedex.national'''
+Address = 0x1858634
+Format = '''[index:]data.pokemon.names-1'''
+
+[[NamedAnchors]]
+Name = '''data.pokedex.hoennToNational'''
+Address = 0x252324
+Format = '''[index:]data.pokemon.names-1'''
+
+[[NamedAnchors]]
+Name = '''data.pokedex.stats'''
+Address = 0x184A6E4
+Format = '''[species""12 height: weight: description1<""> description2<""> unused: pokemonScale: pokemonOffset:|z trainerScale: trainerOffset:|z unused:]735'''
+
+[[NamedAnchors]]
+Name = '''data.pokedex.search.alpha'''
+Address = 0x18550D6
+Format = '''[species:data.pokedex.national]data.pokedex.national'''
+
+[[NamedAnchors]]
 Name = '''data.pokedex.search.weight'''
-Address = 0x1A4E320
+Address = 0x18549C8
 Format = '''[species:data.pokedex.national]data.pokedex.national-25'''
 
 [[NamedAnchors]]
-Name = '''data.pokemon.moves.naturepower.list'''
-Address = 0x25081C
-Format = '''[move:data.pokemon.moves.names]terrains'''
+Name = '''data.pokedex.search.size'''
+Address = 0x18542B6
+Format = '''[species:data.pokedex.national]data.pokedex.national-25'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.search.type'''
-Address = 0x1A4D4E2
+Address = 0x1853B8A
 Format = '''[species:data.pokemon.names]data.pokedex.national'''
-
-[[NamedAnchors]]
-Name = '''graphics.menu.boxes.picker.party.palette'''
-Address = 0xE9C3D8
-Format = '''`ucp4`'''
-
-[[NamedAnchors]]
-Name = '''graphics.menu.boxes.picker.cursor.palette'''
-Address = 0xE9C3F8
-Format = '''`ucp4`'''
-
-[[NamedAnchors]]
-Name = '''data.pokemon.type.camouflage'''
-Address = 0x250888
-Format = '''[type.data.pokemon.type.names]terrains'''
 
 [[NamedAnchors]]
 Name = '''data.pokemon.type.unionroom.options'''
@@ -558,7 +718,7 @@ Format = '''[name<"">]9'''
 
 [[NamedAnchors]]
 Name = '''data.pokedex.habitat.pages'''
-Address = 0x19F1F18
+Address = 0x18312D8
 Format = '''[data<[pokemon<[species:data.pokemon.names]/pokecount> pokecount::]/count> count::]data.pokedex.habitat.names'''
 
 [[NamedAnchors]]
@@ -583,23 +743,33 @@ Format = '''[trainer<[header1: header2: name""11 class. a. unused. a1: a2: a3: a
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.type.icons'''
-Address = 0x15202A4
+Address = 0x112B45C
 Format = '''`ucs4x16x16|graphics.pokemon.type.palettes`'''
 
 [[NamedAnchors]]
+Name = '''graphics.pokemon.type.pokeball.palettes'''
+Address = 0xE95D9C
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
 Name = '''graphics.pokemon.type.palettes'''
-Address = 0x15226A4
+Address = 0x112D85C
 Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.pokemon.type.map'''
-Address = 0x14396D4
+Address = 0x103A3B4
 Format = '''[width. height. xy:|t|:|x:|.|y::]data.pokemon.type.names+1+5'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.importer'''
 Address = 0x467FB8
 Format = '''[a:: tileset<`lzt4`> tilemap<`lzm4x30x20|graphics.text.importer`> pal<`ucp4`>]8'''
+
+[[NamedAnchors]]
+Name = '''graphics.text.box.about'''
+Address = 0x4566A8
+Format = '''`ucs4x5x4|graphics.text.box.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.box.palette'''
@@ -662,7 +832,7 @@ Address = 0x35D8F8
 Format = '''`lzm4x32x32|graphics.bag.inside1.tileset`'''
 
 [[NamedAnchors]]
-Name = '''graphics.bag.inside1.tilemap.keyitems'''
+Name = '''graphics.bag.inside1.tilemap.deposite'''
 Address = 0xE83444
 Format = '''`lzm4x32x32|graphics.bag.inside1.tileset`'''
 
@@ -759,7 +929,7 @@ Format = '''`lzs4x12x1|graphics.menu.bar.palette`'''
 [[NamedAnchors]]
 Name = '''graphics.menu.summaryscreen.palette'''
 Address = 0xE9B310
-Format = '''`ucp4:012345`'''
+Format = '''`ucp4:0123456`'''
 
 [[NamedAnchors]]
 Name = '''graphics.menu.summaryscreen.tileset'''
@@ -802,12 +972,12 @@ Address = 0xE97DFC
 Format = '''`lzt4|graphics.menu.relearner.palette`'''
 
 [[NamedAnchors]]
-Name = '''graphics.menu.relearner.tilemap1'''
+Name = '''graphics.menu.relearner.tilemap'''
 Address = 0xE97EC4
 Format = '''`lzm4x32x32|graphics.menu.relearner.tileset`'''
 
 [[NamedAnchors]]
-Name = '''graphics.menu.relearner.tilemap2'''
+Name = '''graphics.menu.summaryscreen.tilemap.relearner'''
 Address = 0x463C80
 Format = '''`lzm4x32x32|graphics.menu.summaryscreen.tileset`'''
 
@@ -855,6 +1025,16 @@ Format = '''`ucp4`'''
 Name = '''graphics.menu.boxes.background'''
 Address = 0x3D2A10
 Format = '''[tileset<`lzt4`> tilemap<`lzm4x20x18|graphics.menu.boxes.background`> palette<`ucp4:01`>]16'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.picker.party.palette'''
+Address = 0xE9C3D8
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.boxes.picker.palette2'''
+Address = 0xE9C3F8
+Format = '''`ucp4`'''
 
 [[NamedAnchors]]
 Name = '''graphics.menu.boxes.picker.palette'''
@@ -917,6 +1097,26 @@ Address = 0x453098
 Format = '''`ucp4`'''
 
 [[NamedAnchors]]
+Name = '''graphics.menu.storage.background.palette1'''
+Address = 0x3CE738
+Format = '''`ucp4:3`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.storage.background.palette2'''
+Address = 0x3CE758
+Format = '''`ucp4:3`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.storage.background.tileset'''
+Address = 0x3CE438
+Format = '''`lzs4x4x2|graphics.menu.storage.background.palette1`'''
+
+[[NamedAnchors]]
+Name = '''graphics.menu.storage.background.tilemap'''
+Address = 0x3CE4D0
+Format = '''`lzm4x32x32|graphics.menu.storage.background.tileset`'''
+
+[[NamedAnchors]]
 Name = '''graphics.moves.tmcase.sprite'''
 Address = 0xE84D90
 Format = '''`lzs4x4x4|graphics.moves.tmcase.palette`'''
@@ -935,6 +1135,16 @@ Format = '''`lzp4`'''
 Name = '''graphics.moves.tmcase.palettemap'''
 Address = 0x463238
 Format = '''[offset:|t|::|page::::]data.pokemon.type.names'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.type.camouflage'''
+Address = 0x250888
+Format = '''[type.data.pokemon.type.names]terrains'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.moves.naturepower.list'''
+Address = 0x25081C
+Format = '''[move:data.pokemon.moves.names]terrains'''
 
 [[NamedAnchors]]
 Name = '''graphics.gamecorner.game.palette'''
@@ -1019,7 +1229,7 @@ Format = '''[id. transition. worldmapflag: tileset<`lzt4|graphics.firstpersonvie
 [[NamedAnchors]]
 Name = '''graphics.battle.background.sprites'''
 Address = 0x723158
-Format = '''[battletiles<`lzt4|graphics.battle.background.sprites`> battlemap<`lzm4x32x64|graphics.battle.background.sprites|battletiles`> introtiles<`lzt4`> intromap<`lzm4x32x14|graphics.battle.background.sprites|introtiles`> pal<`lzp4:234`>]255'''
+Format = '''[battletiles<`lzt4|graphics.battle.background.sprites`> battlemap<`lzm4x32x64|graphics.battle.background.sprites|battletiles`> | introtiles<`lzt4`> intromap<`lzm4x32x14|graphics.battle.background.sprites|introtiles`> pal<`lzp4:234`>]255'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.background.fighttype'''
@@ -1069,7 +1279,7 @@ Format = '''`lzs4x8x16|graphics.battle.hud.palette`'''
 [[NamedAnchors]]
 Name = '''graphics.battle.hud.status'''
 Address = 0xD12404
-Format = '''`ucs4x10x5|graphics.battle.hud.hpbar.palette`'''
+Format = '''`ucs4x13x4|graphics.battle.hud.hpbar.palette`'''
 
 [[NamedAnchors]]
 Name = '''graphics.battle.hud.pokeballbar'''
@@ -1095,6 +1305,71 @@ Format = '''`lzp4`'''
 Name = '''graphics.battle.textbox.tilemap'''
 Address = 0xD0051C
 Format = '''`lzm4x32x64|graphics.battle.textbox.tileset`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.status'''
+Address = 0x1C6E84
+Format = '''[animation<`ase`>]statusanimations'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.special'''
+Address = 0x1C6EA8
+Format = '''[animation<`ase`>]effectanimations'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p1'''
+Address = 0xD2DD3C
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p2'''
+Address = 0xD2DD5C
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p3'''
+Address = 0xD2DD7C
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p4'''
+Address = 0xD2DD9C
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p5'''
+Address = 0xD2DDBC
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p6'''
+Address = 0xD2DDDC
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p7'''
+Address = 0xD2DDFC
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.palette.p8'''
+Address = 0xD2DE1C
+Format = '''`lzp4:8`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.tileset'''
+Address = 0xD2D8F4
+Format = '''`lzt4|graphics.battle.animations.statchange.palette.p1`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.tilemap1'''
+Address = 0xD2DB04
+Format = '''`lzm4x32x32|graphics.battle.animations.statchange.tileset`'''
+
+[[NamedAnchors]]
+Name = '''graphics.battle.animations.statchange.tilemap2'''
+Address = 0xD2DC20
+Format = '''`lzm4x32x32|graphics.battle.animations.statchange.tileset`'''
 
 [[NamedAnchors]]
 Name = '''graphics.titlescreen.background.animation.sprite'''
@@ -1467,6 +1742,36 @@ Address = 0x460CE8
 Format = '''`lzm4x32x20|graphics.newgame.background.tileset2`'''
 
 [[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.palette1'''
+Address = 0xE98024
+Format = '''`ucp4:0123`'''
+
+[[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.palette2'''
+Address = 0xE980A4
+Format = '''`ucp4:01`'''
+
+[[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.palette3'''
+Address = 0xE97FE4
+Format = '''`ucp4`'''
+
+[[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.sprite1'''
+Address = 0xE985D8
+Format = '''`ucs4x5x18|graphics.newgame.menu.naming.palette2`'''
+
+[[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.sprite2'''
+Address = 0x3E1800
+Format = '''`ucs4x2x6|graphics.newgame.menu.naming.palette1`'''
+
+[[NamedAnchors]]
+Name = '''graphics.newgame.menu.naming.tileset'''
+Address = 0xF578E0
+Format = '''`lzs4x6x6|graphics.newgame.menu.naming.palette1`'''
+
+[[NamedAnchors]]
 Name = '''graphics.townmap.palette'''
 Address = 0x3EF2DC
 Format = '''`ucp4:01234`'''
@@ -1767,6 +2072,11 @@ Address = 0x3CD160
 Format = '''`ucp4:012`'''
 
 [[NamedAnchors]]
+Name = '''graphics.trainercard.tileset'''
+Address = 0x72ECD4
+Format = '''`lzt4|graphics.trainercard.palette1`'''
+
+[[NamedAnchors]]
 Name = '''graphics.trainercard.tileset2'''
 Address = 0xE998CC
 Format = '''`lzt4|graphics.trainercard.palette1`'''
@@ -1867,69 +2177,9 @@ Address = 0x227930
 Format = '''[width.]512'''
 
 [[NamedAnchors]]
-Name = '''data.text.menu.pause'''
-Address = 0x14C5268
-Format = '''[text<""> code<>]13'''
-
-[[NamedAnchors]]
-Name = '''data.text.menu.pokemon.options'''
-Address = 0x14C4B58
-Format = '''[text<""> code<>]34'''
-
-[[NamedAnchors]]
-Name = '''sound.tracks'''
-Address = 0x4A32CC
-Format = '''[pointer<> musicplayer: unknown:]songnames'''
-
-[[NamedAnchors]]
-Name = '''sound.pokemon.cry.growl'''
-Address = 0x19BDF9C
-Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. release.]388'''
-
-[[NamedAnchors]]
-Name = '''graphics.trainers.animations.back'''
-Address = 0x14B1E90
-Format = '''[animationPointer<[animation<[a: b: c: d:]1> framedata<[frame: time:]!FFFF0000>]1>]graphics.trainers.sprites.back.enter'''
-
-[[NamedAnchors]]
-Name = '''sound.pokemon.cry.hoennconversion'''
-Address = 0x2539D4
-Format = '''[index:]data.pokemon.names-277'''
-
-[[NamedAnchors]]
 Name = '''graphics.text.font.short.characters'''
 Address = 0x1EAF00
 Format = '''`ucs2x1x1024`'''
-
-[[NamedAnchors]]
-Name = '''data.pokemon.moves.descriptions'''
-Address = 0x141D4FC
-Format = '''[description<"">]data.pokemon.moves.names-1'''
-
-[[NamedAnchors]]
-Name = '''scripts.battle.thumb'''
-Address = 0x141E488
-Format = '''[code<>]248'''
-
-[[NamedAnchors]]
-Name = '''scripts.newgame.pc.item'''
-Address = 0x402220
-Format = '''[item:data.items.stats count:]!00000000'''
-
-[[NamedAnchors]]
-Name = '''data.pokemon.type.chart'''
-Address = 0x24F050
-Format = '''[attack.data.pokemon.type.names defend.data.pokemon.type.names strength.]!FFFF00'''
-
-[[NamedAnchors]]
-Name = '''scripts.moves.effects'''
-Address = 0x141EA70
-Format = '''[effect<`bse`>]moveeffectoptions'''
-
-[[NamedAnchors]]
-Name = '''data.pokedex.stats'''
-Address = 0x1A4403C
-Format = '''[species""12 height: weight: description1<""> description2<""> unused: pokemonScale: pokemonOffset:|z trainerScale: trainerOffset:|z unused:]735'''
 
 [[NamedAnchors]]
 Name = '''graphics.text.font.short.width'''
@@ -1982,9 +2232,49 @@ Address = 0x22FC48
 Format = '''`ucs2x32x16`'''
 
 [[NamedAnchors]]
-Name = '''sound.pokemon.cry.normal'''
-Address = 0x19EEEA4
+Name = '''data.text.menu.battle'''
+Address = 0x3FE725
+Format = '''""'''
+
+[[NamedAnchors]]
+Name = '''data.text.menu.pause'''
+Address = 0x10CD19C
+Format = '''[text<""> code<>]13'''
+
+[[NamedAnchors]]
+Name = '''data.text.menu.pokemon.options'''
+Address = 0x10CC0D8
+Format = '''[text<""> code<>]34'''
+
+[[NamedAnchors]]
+Name = '''sound.fanfares'''
+Address = 0x3AC990
+Format = '''[songID:songnames duration:]14'''
+
+[[NamedAnchors]]
+Name = '''sound.tracks'''
+Address = 0x800000
+Format = '''[pointer<> musicplayer: unknown:]songnames'''
+
+[[NamedAnchors]]
+Name = '''sound.pokemon.cry.growl'''
+Address = 0x17F8B1C
 Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. release.]data.pokemon.names-24'''
+
+[[NamedAnchors]]
+Name = '''sound.pokemon.cry.normal'''
+Address = 0x17F476C
+Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. release.]data.pokemon.names-24'''
+
+[[NamedAnchors]]
+Name = '''sound.pokemon.cry.hoennconversion'''
+Address = 0x2539D4
+Format = '''[index:]data.pokemon.names-277'''
+
+[[NamedAnchors]]
+Name = '''data.pokemon.type.chart'''
+Address = 0x24F050
+Format = '''[attack.data.pokemon.type.names defend.data.pokemon.type.names strength.effectiveness]!FFFF00'''
 
 #################################
 #################################
@@ -1992,36 +2282,42 @@ Format = '''^[type.|h key. length. pan_sweep. p<> attack. decay. sustain. releas
 Name = '''scripts.shiny.odds'''
 Address = 0x104A24
 Length = 1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x03DB5E
 Length = 1
 Offset = -1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x044120
 Length = 1
 Offset = -1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x044196
 Length = 1
 Offset = -1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x0444B0
 Length = 1
 Offset = -1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.shiny.odds'''
 Address = 0x0F1776
 Length = 1
 Offset = -1
+Note = '''The odds of a pokemon being shiny are n/65535. For example, if you set the odds to 250, then the final odds are about 1 in 262.'''
 
 [[MatchedWords]]
 Name = '''scripts.pokedex.regional.length'''
@@ -2275,6 +2571,24 @@ Address = 0x054A00
 Length = 1
 
 [[MatchedWords]]
+Name = '''scripts.newgame.professor.pokemon'''
+Address = 0x12FB38
+Length = 1
+Note = '''ID of the pokemon shown during the professor's introduction. Also edit pointers to graphics.pokemon.sprites.front/29 and graphics.pokemon.palettes.normal/29'''
+
+[[MatchedWords]]
+Name = '''scripts.newgame.professor.pokemon'''
+Address = 0x130F40
+Length = 1
+Note = '''ID of the pokemon shown during the professor's introduction. Also edit pointers to graphics.pokemon.sprites.front/29 and graphics.pokemon.palettes.normal/29'''
+
+[[MatchedWords]]
+Name = '''scripts.newgame.professor.pokemon'''
+Address = 0x130F4C
+Length = 1
+Note = '''ID of the pokemon shown during the professor's introduction. Also edit pointers to graphics.pokemon.sprites.front/29 and graphics.pokemon.palettes.normal/29'''
+
+[[MatchedWords]]
 Name = '''data.maps.catchmap.conversion.kanto.length'''
 Address = 0x13CA9C
 Length = 1
@@ -2307,6 +2621,21 @@ Length = 1
 [[MatchedWords]]
 Name = '''scripts.battle.badge.boost'''
 Address = 0x03EED6
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.exp.boost.luckyegg'''
+Address = 0x021DC2
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.exp.boost.trainer'''
+Address = 0x021DDE
+Length = 1
+
+[[MatchedWords]]
+Name = '''scripts.exp.boost.traded'''
+Address = 0x021E12
 Length = 1
 
 [[MatchedWords]]
@@ -2375,19 +2704,10 @@ Length = 1
 Offset = -1
 
 [[MatchedWords]]
-Name = '''scripts.exp.boost.luckyegg'''
-Address = 0x021DC2
+Name = '''data.abilities.pickup.length'''
+Address = 0x02CEEC
 Length = 1
-
-[[MatchedWords]]
-Name = '''scripts.exp.boost.trainer'''
-Address = 0x021DDE
-Length = 1
-
-[[MatchedWords]]
-Name = '''scripts.exp.boost.traded'''
-Address = 0x021E12
-Length = 1
+Offset = -2
 
 #################################
 [[OffsetPointer]]
@@ -2429,6 +2749,7 @@ Offset = 0xFFFEC780
 #################################
 [[List]]
 Name = '''egggroups'''
+DefaultHash = '''4CF53988'''
 0 = [
    '''None''',
    '''Monster''',
@@ -2443,13 +2764,30 @@ Name = '''egggroups'''
    '''Mineral''',
    '''Amorphous''',
    '''Water2''',
-   '''Ditton''',
+   '''Ditto''',
    '''Dragon''',
    '''Undiscovered''',
 ]
 
 [[List]]
+Name = '''terrains'''
+DefaultHash = '''E83FE8B9'''
+0 = [
+   '''grass''',
+   '''long grass''',
+   '''sand''',
+   '''underwater''',
+   '''water''',
+   '''pond water''',
+   '''rock''',
+   '''cave''',
+   '''building''',
+   '''plain''',
+]
+
+[[List]]
 Name = '''growthrates'''
+DefaultHash = '''A63200DC'''
 0 = [
    '''Medium Fast''',
    '''Erratic''',
@@ -2461,6 +2799,7 @@ Name = '''growthrates'''
 
 [[List]]
 Name = '''bodycolors'''
+DefaultHash = '''89A569F4'''
 0 = [
    '''Red''',
    '''Blue''',
@@ -2475,33 +2814,178 @@ Name = '''bodycolors'''
 ]
 
 [[List]]
+Name = '''effectiveness'''
+DefaultHash = '''381AF281'''
+0 = '''None'''
+5 = '''Half'''
+10 = '''Normal'''
+20 = '''Double'''
+
+[[List]]
+Name = '''contesteffectnames'''
+DefaultHash = '''DAA1D7FA'''
+0 = [
+   '''HighlyAppealing''',
+   '''UserMoreEasilyStartled''',
+   '''GreatAppealButNoMoreMoves''',
+   '''RepetitionNotBoring''',
+   '''AvoidStartleOnce''',
+   '''AvoidStartle''',
+   '''AvoidStartleSlightly''',
+   '''UserLessEasilyStartled''',
+   '''StartleFrontMon''',
+   '''SlightlyStartlePrevMons''',
+   '''StartlePrevMon''',
+   '''StartlePrevMons''',
+   '''BadlyStartleFrontMon''',
+   '''BadlyStartlePrevMons''',
+   '''StartlePrevMon2''',
+   '''StartPrevMons2''',
+   '''ShiftJudgeAttention''',
+   '''StartleMonWithJudgesAttention''',
+   '''JamsOthersButMissOneTurn''',
+   '''StartleMonsSameTypeAppeal''',
+   '''StartMonsCoolAppeal''',
+   '''StartleMonsBeautyAppeal''',
+   '''StartleMonsCuteAppeal''',
+   '''StartleMonsSmartAppeal''',
+   '''StartleMonsToughAppeal''',
+   '''MakeFollowingMonNervous''',
+   '''MakeFollowingMonsNervous''',
+   '''WorsenConditionOfPrevMons''',
+   '''BadlyStartlesMonsInGoodCondition''',
+   '''BetterIfFirst''',
+   '''BetterIfLast''',
+   '''AppealAsGoodAsPrevOnes''',
+   '''AppealAsGoodAsPrevOne''',
+   '''BetterWhenLater''',
+   '''QualityDependsOnTiming''',
+   '''BetterIfSameType''',
+   '''BetterIfDiffType''',
+   '''AffectedByPrevAppeal''',
+   '''ImproveConditionPreventNervousness''',
+   '''BetterWithGoodCondition''',
+   '''NextAppealEarlier''',
+   '''NextAppealLater''',
+   '''MakeScramblingTurnOrderEasier''',
+   '''ScrambleNextTurnOrder''',
+   '''ExciteAudienceInAnyContest''',
+   '''BadlyStartleMonsWithGoodAppeals''',
+   '''BettenWhenAudienceExcited''',
+   '''DontExciteAudience''',
+]
+
+[[List]]
+Name = '''contesteffects'''
+DefaultHash = '''A97C9ED7'''
+0 = [
+   '''Appeal''',
+   '''AvoidStartle''',
+   '''StartleMon''',
+   '''StartleMons''',
+   '''Worsen''',
+   '''SpecialAppeal''',
+   '''TurnOrder''',
+]
+
+[[List]]
+Name = '''contestcombostarter'''
+DefaultHash = '''0355FE77'''
+0 = [
+   '''-''',
+   '''Rain Dance''',
+   '''Rage''',
+   '''Focus Energy''',
+   '''Hypnosis''',
+   '''Endure''',
+   '''Horn Attack''',
+   '''Swords Dance''',
+   '''Stockpile''',
+   '''Sunny Day''',
+   '''Rest''',
+   '''Vice Grip''',
+   '''Defense Curl''',
+   '''Charge''',
+   '''Rock Throw''',
+   '''Yawn''',
+   '''Scary Face''',
+   '''Powder Snow''',
+   '''Lock On''',
+   '''Soft Boiled''',
+   '''Mean Look''',
+   '''Scratch''',
+   '''Growth''',
+   '''Hail''',
+   '''Sandstorm''',
+   '''Belly Drum''',
+   '''Mind Reader''',
+   '''Dragon Breath''',
+   '''Dragon Rage''',
+   '''Dragon Dance''',
+   '''Serf''',
+   '''Dife''',
+   '''String Shot''',
+   '''Leer''',
+   '''Taunt''',
+   '''Charm''',
+   '''Harden''',
+   '''Sing''',
+   '''Earthquake''',
+   '''DoubleTeam''',
+   '''Curse''',
+   '''SweetScent''',
+   '''Sludge''',
+   '''Sludge Bomb''',
+   '''Thunder Punch''',
+   '''Fire Punch''',
+   '''Ice Punch''',
+   '''Peck''',
+   '''Metal Sound''',
+   '''Mud Sport''',
+   '''Water Sport''',
+   '''Bone Club''',
+   '''Bonemerang''',
+   '''Bone Rush''',
+   '''Sand Attack''',
+   '''Mud Slap''',
+   '''Fake Out''',
+   '''Psychic''',
+   '''Kinesis''',
+   '''Confusion''',
+   '''Pound''',
+   '''Smog''',
+   '''Calm Mind''',
+]
+
+[[List]]
 Name = '''moveeffectoptions'''
+DefaultHash = '''BEB1E0CE'''
 0 = [
    '''None''',
    '''SleepPrimary''',
-   '''Poison''',
-   '''HealHalf''',
-   '''Burn''',
-   '''Freeze''',
-   '''Paralyze''',
-   '''SelfKO''',
+   '''PoisonHitChance''',
+   '''HealHalfDamage''',
+   '''BurnHitChance''',
+   '''FreezeHitChance''',
+   '''ParalyzeHitChance''',
+   '''SelfKOAndAttack''',
    '''HealHalfIfOpponentSleeping''',
-   '''RepeatFoeMove''',
-   '''RaiseAttackPrimary''',
-   '''RaiseDefensePrimary''',
-   '''???RaiseSpeedPrimary???''',
-   '''RaiseSpAttackPrimary''',
-   '''unknown1''',
-   '''???RaiseAccuracyPrimary???''',
-   '''RaiseEvasivenessPrimary''',
+   '''RepeatTargetMove''',
+   '''RaiseAttack1Primary''',
+   '''RaiseDefense1Primary''',
+   '''Unused0C''',
+   '''RaiseSpAttack1Primary''',
+   '''Unused0E''',
+   '''Unused0F''',
+   '''RaiseEvasiveness1Primary''',
    '''NeverMiss''',
-   '''LowerAttackPrimary''',
-   '''LowerDefensePrimary''',
-   '''LowerSpeedPrimary''',
-   '''???LowerAttackSpAttackPrimary???''',
-   '''unknown2''',
-   '''LowerAccuracyPrimary''',
-   '''LowerEvasionPrimary''',
+   '''LowerAttack1Primary''',
+   '''LowerDefense1Primary''',
+   '''LowerSpeed1Primary''',
+   '''Unused15''',
+   '''Unused16''',
+   '''LowerAccuracy1Primary''',
+   '''LowerEvasion1Primary''',
    '''RemoveStateChanges''',
    '''Bide''',
    '''2to3turnsThenConfused''',
@@ -2509,16 +2993,16 @@ Name = '''moveeffectoptions'''
    '''2to5hits''',
    '''ChangeTypeToFriendlyMove''',
    '''Flinch''',
-   '''Recover''',
+   '''HealHalfSelf''',
    '''BadPoisonPrimary''',
    '''Money''',
-   '''RaiseSpDef2Wall''',
+   '''RaiseSpDefense2Wall''',
    '''ParalyzeBurnFreeze''',
    '''Rest''',
    '''OHKO''',
    '''2turnHighCrit''',
    '''HalfDamage''',
-   '''20Damage''',
+   '''40Damage''',
    '''2to5turnTrap''',
    '''HighCrit''',
    '''2hits''',
@@ -2530,35 +3014,35 @@ Name = '''moveeffectoptions'''
    '''RaiseAttack2Primary''',
    '''RaiseDefense2Primary''',
    '''RaiseSpeed2Primary''',
-   '''RaiseSpAtk2Primary''',
-   '''RaiseSpDef2Primary''',
-   '''???RaiseAccuracy2Primary???''',
-   '''???RaiseEvasiveness2Primary???''',
+   '''RaiseSpAttack2Primary''',
+   '''RaiseSpDefense2Primary''',
+   '''Unused37''',
+   '''Unused38''',
    '''Transform''',
    '''LowerAttack2Primary''',
    '''LowerDefense2Primary''',
    '''LowerSpeed2Primary''',
-   '''???LowerSpAtk2Primary???''',
-   '''LowerSpDef2Primary''',
-   '''???''',
-   '''????''',
+   '''Unused3D''',
+   '''LowerSpDefense2Primary''',
+   '''Unused3F''',
+   '''Unused40''',
    '''RaiseDefense2Wall''',
    '''PoisonPrimary''',
    '''ParalyzePrimary''',
-   '''LowerAttack''',
-   '''LowerDefense''',
-   '''LowerSpeed''',
-   '''LowerSpAtk''',
-   '''LowerSpDef''',
-   '''LowerAccuracy''',
-   '''?????''',
+   '''LowerAttack1HitChance''',
+   '''LowerDefense1HitChance''',
+   '''LowerSpeed1HitChance''',
+   '''LowerSpAttack1HitChance''',
+   '''LowerSpDefense1HitChance''',
+   '''LowerAccuracy1HitChance''',
+   '''Unused4A''',
    '''2turnHighCritFlinch''',
-   '''Confusion''',
-   '''2hitsPoison''',
-   '''NeverMiss(VitalThrow)''',
+   '''ConfusionHitChance''',
+   '''2hitsPoisonHitChance''',
+   '''NeverMissMoveLast''',
    '''Substitute''',
    '''SkipNextTurn''',
-   '''StrongerForLessHealth''',
+   '''RaiseAttack1IfDamaged''',
    '''Mimic''',
    '''RandomMove''',
    '''SeedOpponent''',
@@ -2566,19 +3050,19 @@ Name = '''moveeffectoptions'''
    '''Disable''',
    '''DamageBasedOnLevel''',
    '''DamageRandom''',
-   '''DoublePhysicalDamage''',
+   '''DoubleBackPhysicalDamage''',
    '''OpponentRepeatMoveFor2to6turns''',
    '''PainSplit''',
-   '''WhileSleepingFlinch''',
+   '''WhileSleepingAndFlinch''',
    '''ChangeTypeToResistPreviousHit''',
    '''NextAttackHits''',
    '''Sketch''',
-   '''??????''',
+   '''Unused60''',
    '''SleepTalk''',
    '''DestinyBond''',
    '''StrengthDependsOnHealth''',
    '''ReducePP''',
-   '''FalseSwipe''',
+   '''NeverKOTarget''',
    '''HealPartyStatus''',
    '''NormalPlusPriority''',
    '''3turnTripleHit''',
@@ -2587,12 +3071,12 @@ Name = '''moveeffectoptions'''
    '''Nightmare''',
    '''RaiseEvasivenessAndBecomeSmaller''',
    '''Curse''',
-   '''??''',
+   '''Unused6E''',
    '''EvadeNextAttack''',
    '''Spikes''',
-   '''FoeCannnotRaiseEvasion''',
+   '''TargetCannnotRaiseEvasion''',
    '''PerishSong''',
-   '''Sandstorm''',
+   '''Sand5Turns''',
    '''Endure''',
    '''5turnsUntilMiss''',
    '''ConfuseAndRaiseAttack2''',
@@ -2608,20 +3092,20 @@ Name = '''moveeffectoptions'''
    '''DoublePowerIfOpponentSwitching''',
    '''RemoveBindSeedSpikes''',
    '''20Damage''',
-   '''???????''',
+   '''Unused83''',
    '''MorningSun''',
    '''Synthesis''',
    '''Moonlight''',
    '''HiddenPower''',
    '''Rain5turns''',
    '''Sun5turns''',
-   '''RaiseDefense''',
-   '''RaiseAttack''',
-   '''RaiseAllStats''',
-   '''????????''',
-   '''HalfHealthToRaiseAttack6''',
-   '''CopyFoeStatChangesPrimary''',
-   '''DoubleSpecialDamage''',
+   '''RaiseDefense1HitChance''',
+   '''RaiseAttack1HitChance''',
+   '''RaiseAllStats1HitChance''',
+   '''Unused8D''',
+   '''HalfHealthToRaiseAttackMax''',
+   '''CopyTargetStatChangesPrimary''',
+   '''DoubleBackSpecialDamage''',
    '''RaiseDefenseThenAttackTurn2''',
    '''FlinchAndDoubleDamageToFly''',
    '''DoubleDamageToDig''',
@@ -2634,22 +3118,22 @@ Name = '''moveeffectoptions'''
    '''DamageBasedOnPartySize''',
    '''2turn''',
    '''RaiseDefenseAndImproveRollingMoves''',
-   '''RecoverOrFriend''',
-   '''OnlyWorksOnce''',
-   '''2to5turnsNoSleep''',
+   '''RestoreHPOrAllyInField''',
+   '''MoveFirstFlinchOnlyWorksTurn1''',
+   '''2to5turnsAndAllNoSleep''',
    '''Stockpile''',
    '''Spit Up''',
    '''Swallow''',
-   '''?????????''',
+   '''UnusedA3''',
    '''Hail5turns''',
    '''Torment''',
-   '''ConfuseAndRaiseSpAtk2''',
+   '''ConfuseAndRaiseSpAttack2''',
    '''BurnPrimary''',
-   '''SelfKOLowerAtkSpAtk2''',
-   '''DoubleDamageIfStatus''',
+   '''SelfKOLowerAttack2SpAttack2''',
+   '''DoubleDamageIfSelfStatus''',
    '''SelfFlinchIfHit''',
    '''DoubleDamageToParalyzeAndHealParalyze''',
-   '''ForceFoesAttackMe''',
+   '''ForceFoesTargetUser''',
    '''NaturePower''',
    '''BoostNextElectricMove''',
    '''Taunt''',
@@ -2659,42 +3143,43 @@ Name = '''moveeffectoptions'''
    '''HealHalfNextTurn''',
    '''UseAllyMove''',
    '''Ingrain''',
-   '''LowerSelfAtkDef''',
+   '''LowerSelfAttack1Defense1''',
    '''ReflectStatusMoves''',
    '''Recycle''',
    '''DoubleDamageIfHitThisTurn''',
    '''BreakWall''',
    '''Yawn''',
    '''KnockOff''',
-   '''Endeavor''',
+   '''TargetHPEqualUser''',
    '''DamageBasedOnHighRemainingHealth''',
-   '''SkillSwap''',
+   '''SwapAbilityWithTarget''',
    '''Imprison''',
    '''HealSelfStatus''',
    '''Grudge''',
    '''Snatch''',
-   '''DamageBasedOnWeight''',
+   '''DamageBasedOnTargetWeight''',
    '''SecondEffectBasedOnTerrain''',
    '''33Recoil''',
    '''ConfuseAllPokemon''',
    '''HighCritBurn''',
    '''MudSport''',
-   '''BadPoison''',
+   '''BadPoisonHitChance''',
    '''WeatherBall''',
-   '''LowerSpAtk2Self''',
-   '''LowerAttackDefensePrimary''',
-   '''RaiseDefenseSpDef''',
+   '''LowerSpAttack2Self''',
+   '''LowerAttack1Defense1Primary''',
+   '''RaiseDefense1SpDefense1''',
    '''CanDamageFly''',
-   '''RaiseAttackDefensePrimary''',
+   '''RaiseAttack1Defense1Primary''',
    '''HighCritPoison''',
    '''WaterSport''',
-   '''RaiseSpAtkSpDefPrimary''',
-   '''RaiseAttackSpeedPrimary''',
+   '''RaiseSpAttack1SpDefense1Primary''',
+   '''RaiseAttack1Speed1Primary''',
    '''ChangetypeFromTerrain''',
 ]
 
 [[List]]
 Name = '''moveinfo'''
+DefaultHash = '''631AD2F4'''
 0 = [
    '''Makes Contact''',
    '''Affected by Protect''',
@@ -2706,6 +3191,7 @@ Name = '''moveinfo'''
 
 [[List]]
 Name = '''holdeffects'''
+DefaultHash = '''074627CF'''
 0 = [
    '''None''',
    '''Heal|HP Yellow|Once''',
@@ -2778,6 +3264,7 @@ Name = '''holdeffects'''
 
 [[List]]
 Name = '''contestPokemonFlags'''
+DefaultHash = '''2A30B5CC'''
 0 = [
    '''whichRankHigh''',
    '''whichRankLow''',
@@ -2790,6 +3277,7 @@ Name = '''contestPokemonFlags'''
 
 [[List]]
 Name = '''owfootprints'''
+DefaultHash = '''538F93B1'''
 0 = [
    '''None''',
    '''Feet''',
@@ -2798,6 +3286,7 @@ Name = '''owfootprints'''
 
 [[List]]
 Name = '''movetarget'''
+DefaultHash = '''7A9872EA'''
 0 = [
    '''RecentAttacker''',
    '''UserOrSelected''',
@@ -2810,6 +3299,7 @@ Name = '''movetarget'''
 
 [[List]]
 Name = '''trainerStructType'''
+DefaultHash = '''945C1CA6'''
 0 = [
    '''Normal''',
    '''Moves''',
@@ -2819,6 +3309,7 @@ Name = '''trainerStructType'''
 
 [[List]]
 Name = '''decorpermissions'''
+DefaultHash = '''D9A29CA3'''
 0 = [
    '''Normal''',
    '''Put On Floor''',
@@ -2829,6 +3320,7 @@ Name = '''decorpermissions'''
 
 [[List]]
 Name = '''decorcategory'''
+DefaultHash = '''F5F8A39C'''
 0 = [
    '''Desk''',
    '''Chair''',
@@ -2842,6 +3334,7 @@ Name = '''decorcategory'''
 
 [[List]]
 Name = '''decorshape'''
+DefaultHash = '''F1BAB4AA'''
 0 = [
    '''1x1''',
    '''2x1''',
@@ -2857,6 +3350,7 @@ Name = '''decorshape'''
 
 [[List]]
 Name = '''evolutionmethods'''
+DefaultHash = '''721F046F'''
 0 = [
    '''None''',
    '''Happiness''',
@@ -2878,6 +3372,7 @@ Name = '''evolutionmethods'''
 
 [[List]]
 Name = '''evbits'''
+DefaultHash = '''51251C05'''
 0 = [
    '''+1 HP''',
    '''+2 HP''',
@@ -2895,6 +3390,7 @@ Name = '''evbits'''
 
 [[List]]
 Name = '''battletowerEvFlags'''
+DefaultHash = '''0D84B8FB'''
 0 = [
    '''Hp''',
    '''Attack''',
@@ -2906,6 +3402,7 @@ Name = '''battletowerEvFlags'''
 
 [[List]]
 Name = '''traineraibits'''
+DefaultHash = '''D888191A'''
 0 = [
    '''CheckBadMove''',
    '''TryToKO''',
@@ -2943,6 +3440,7 @@ Name = '''traineraibits'''
 
 [[List]]
 Name = '''script_compare'''
+DefaultHash = '''BC033B2D'''
 0 = [
    '''<''',
    '''=''',
@@ -2954,6 +3452,7 @@ Name = '''script_compare'''
 
 [[List]]
 Name = '''catchmap_shape'''
+DefaultHash = '''CD8C2E92'''
 0 = [
    '''small''',
    '''wide''',
@@ -2966,6 +3465,7 @@ Name = '''catchmap_shape'''
 
 [[List]]
 Name = '''mapnamepopuptheme'''
+DefaultHash = '''D3484352'''
 0 = [
    '''wood''',
    '''marble''',
@@ -2976,7 +3476,84 @@ Name = '''mapnamepopuptheme'''
 ]
 
 [[List]]
+Name = '''trainergender'''
+DefaultHash = '''928E9941'''
+0 = [
+   '''male''',
+   '''female''',
+]
+
+[[List]]
+Name = '''songloopoptions'''
+DefaultHash = '''50E56293'''
+0 = [
+   '''playOnce''',
+   '''loop''',
+]
+
+[[List]]
+Name = '''genderratiovalues'''
+DefaultHash = '''405B6BC5'''
+0 = '''100% Male'''
+31 = '''87% Male'''
+63 = '''75% Male'''
+89 = '''65% Male'''
+127 = '''50% Male & 50% Female'''
+165 = '''65% Female'''
+181 = '''75% Female'''
+223 = '''87% Female'''
+254 = [
+   '''100% Female''',
+   '''Genderless''',
+]
+
+[[List]]
+Name = '''statusanimations'''
+DefaultHash = '''A00173C0'''
+0 = [
+   '''Poison''',
+   '''Confusion''',
+   '''Burn''',
+   '''Infatuation''',
+   '''Sleep''',
+   '''Paralysis''',
+   '''Freeze''',
+   '''Curse''',
+   '''Nightmare''',
+]
+
+[[List]]
+Name = '''effectanimations'''
+DefaultHash = '''4850EA54'''
+0 = [
+   '''FormChange''',
+   '''StatChange''',
+   '''SubstituteFade''',
+   '''SubstituteAppear''',
+   '''PokeblockThrow''',
+   '''ItemKnockOff''',
+   '''TurnTrap''',
+   '''HeldItemEffect''',
+   '''SmokeBall''',
+   '''FocusBand''',
+   '''Rain''',
+   '''Sun''',
+   '''Sandstorm''',
+   '''Hail''',
+   '''LeechSeedDrain''',
+   '''ConfuseHit''',
+   '''ItemSteal''',
+   '''SnatchMove''',
+   '''FutureSight''',
+   '''DoomDesire''',
+   '''FocusPunchSetUp''',
+   '''IngrainHeal''',
+   '''WishHeal''',
+]
+
+[[List]]
 Name = '''movementtypes'''
+DefaultHash = '''72B22E7B'''
 0 = [
    '''face_down''',
    '''face_up''',
@@ -3088,6 +3665,7 @@ Name = '''movementtypes'''
 
 [[List]]
 Name = '''songnames'''
+DefaultHash = '''FF06B947'''
 0 = [
    '''mus_dummy''',
    '''se_use_item''',
@@ -3440,34 +4018,13 @@ Name = '''songnames'''
 
 [[List]]
 Name = '''pocketid'''
+DefaultHash = '''9EDBDA24'''
 1 = [
    '''item''',
    '''key''',
    '''ball''',
    '''tm''',
    '''berry''',
-]
-
-[[List]]
-Name = '''terrains'''
-0 = [
-   '''grass''',
-   '''long grass''',
-   '''sand''',
-   '''underwater''',
-   '''water''',
-   '''pond water''',
-   '''rock''',
-   '''cave''',
-   '''building''',
-   '''plain''',
-]
-
-[[List]]
-Name = '''trainergender'''
-0 = [
-   '''male''',
-   '''female''',
 ]
 
 #################################
@@ -3491,4 +4048,102 @@ Destination = '''data.pokemon.moves.stats.battle'''
 Name = '''Items'''
 Image = '''graphics.items.sprites/13/sprite/'''
 Destination = '''data.items.stats'''
+
+#################################
+[[TableGroup]]
+Name = '''Pokemon'''
+0 = [
+   '''data.pokemon.names''',
+   '''data.pokemon.stats''',
+   '''data.pokemon.evolutions''',
+   '''data.pokedex.regional''',
+   '''data.pokedex.national''',
+   '''data.pokedex.hoennToNational''',
+   '''data.pokedex.search.alpha''',
+   '''data.pokedex.search.weight''',
+   '''data.pokedex.search.size''',
+   '''data.pokedex.search.type''',
+   '''sound.pokemon.cry.growl''',
+   '''sound.pokemon.cry.normal''',
+   '''sound.pokemon.cry.hoennconversion''',
+]
+
+[[TableGroup]]
+Name = '''Sprites'''
+0 = [
+   '''graphics.pokemon.sprites.front''',
+   '''graphics.pokemon.sprites.coordinates.front''',
+   '''graphics.pokemon.animations.front''',
+   '''graphics.pokemon.sprites.back''',
+   '''graphics.pokemon.sprites.coordinates.back''',
+   '''graphics.pokemon.animations.back''',
+   '''graphics.pokemon.palettes.normal''',
+   '''graphics.pokemon.palettes.shiny''',
+   '''graphics.pokemon.icons.sprites''',
+   '''graphics.pokemon.icons.index''',
+   '''graphics.pokemon.sprites.elevation''',
+   '''graphics.pokemon.sprites.anchor''',
+   '''graphics.pokemon.animations.frames''',
+   '''graphics.pokemon.sprites.footprint''',
+]
+
+[[TableGroup]]
+Name = '''Moves'''
+0 = [
+   '''data.pokemon.moves.levelup''',
+   '''data.pokemon.moves.tutorcompatibility''',
+   '''data.pokemon.moves.tmcompatibility''',
+]
+
+[[TableGroup]]
+Name = '''Trainer'''
+0 = [
+   '''data.trainers.stats|0''',
+]
+
+[[TableGroup]]
+Name = '''Team'''
+0 = [
+   '''data.trainers.stats|1''',
+]
+
+[[TableGroup]]
+Name = '''Move'''
+0 = [
+   '''data.pokemon.moves.names''',
+   '''data.pokemon.moves.descriptions''',
+   '''graphics.pokemon.moves.animations''',
+   '''data.pokemon.moves.stats.contest''',
+]
+
+[[TableGroup]]
+Name = '''Battle'''
+0 = [
+   '''data.pokemon.moves.stats.battle''',
+]
+
+[[TableGroup]]
+Name = '''Stats'''
+0 = [
+   '''data.items.stats''',
+]
+
+[[TableGroup]]
+Name = '''More'''
+0 = [
+   '''graphics.items.sprites''',
+   '''data.items.effects''',
+]
+
+[[TableGroup]]
+Name = '''Background'''
+0 = [
+   '''graphics.battle.background.sprites|0''',
+]
+
+[[TableGroup]]
+Name = '''Intro'''
+0 = [
+   '''graphics.battle.background.sprites|1''',
+]
 

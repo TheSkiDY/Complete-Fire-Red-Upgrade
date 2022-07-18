@@ -1273,11 +1273,11 @@ The user heals its\nown status condition,\nrestores its HP\nand also raises\neva
 #org @DESC_TAKEHEART
 The user lifts its\nspirits, healing its\nown status condition\nand raising all its\nstats.
 
-#org @DESC_MOVE_EMPTY_39
-Empty move (39).
+#org @DESC_SHADOWTERRAIN
+The user overshadows\nthe ground for five\nturns, powering up\nGHOST moves and\nreducing contact damage\ntaken by ghosts.
 
-#org @DESC_MOVE_EMPTY_40
-Empty move (40).
+#org @DESC_DRACOTERRAIN
+The user covers the\nground in harsh mist\nfive turns, powering up\nDRAGON moves and\nforcing critical hits.
 
 #org @DESC_MOVE_EMPTY_41
 Empty move (41).

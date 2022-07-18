@@ -31,6 +31,12 @@ extern const u8 BG_Misty_TerrainPal[];
 extern const u8 BG_Psychic_TerrainTiles[];
 extern const u8 BG_Psychic_TerrainMap[];
 extern const u8 BG_Psychic_TerrainPal[];
+extern const u8 BG_Shadow_TerrainTiles[];
+extern const u8 BG_Shadow_TerrainMap[];
+extern const u8 BG_Shadow_TerrainPal[];
+extern const u8 BG_Draco_TerrainTiles[];
+extern const u8 BG_Draco_TerrainMap[];
+extern const u8 BG_Draco_TerrainPal[];
 
 const struct TerrainTableStruct gTerrainTable[] =
 {
@@ -65,8 +71,22 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.secretPowerAnim = MOVE_CONFUSION,
 			.naturePowerMove = MOVE_PSYCHIC,
 		},
+	[SHADOW_TERRAIN - 1] =
+		{
+			.camouflageType = TYPE_GHOST,
+			.secretPowerEffect = MOVE_EFFECT_EVS_PLUS_1,
+			.secretPowerAnim = MOVE_SHADOWSNEAK,
+			.naturePowerMove = MOVE_SHADOWBALL,
+		},
+	[DRACO_TERRAIN - 1]=
+		{
+			.camouflageType = TYPE_DRAGON,
+			.secretPowerEffect = MOVE_EFFECT_BREAK_SCREENS,
+			.secretPowerAnim = MOVE_DRAGONRAGE,
+			.naturePowerMove = MOVE_DRAGONPULSE,
+		},
 
-	[BATTLE_TERRAIN_GRASS + 4] =
+	[BATTLE_TERRAIN_GRASS + 6] =
 		{
 			.camouflageType = TYPE_GRASS,
 			.secretPowerEffect = MOVE_EFFECT_SLEEP,
@@ -75,7 +95,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY,
 		},
 
-	[BATTLE_TERRAIN_LONG_GRASS + 4] =
+	[BATTLE_TERRAIN_LONG_GRASS + 6] =
 		{
 			.camouflageType = TYPE_GRASS,
 			.secretPowerEffect = MOVE_EFFECT_SLEEP,
@@ -84,7 +104,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY,
 		},
 
-	[BATTLE_TERRAIN_SAND + 4] =
+	[BATTLE_TERRAIN_SAND + 6] =
 		{
 			.camouflageType = TYPE_GROUND,
 			.secretPowerEffect = MOVE_EFFECT_ACC_MINUS_1,
@@ -93,7 +113,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_SANDY,
 		},
 
-	[BATTLE_TERRAIN_UNDERWATER + 4] =
+	[BATTLE_TERRAIN_UNDERWATER + 6] =
 		{
 			.camouflageType = TYPE_WATER,
 			.secretPowerEffect = MOVE_EFFECT_ATK_MINUS_1,
@@ -102,7 +122,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_NONE,
 		},
 
-	[BATTLE_TERRAIN_WATER + 4] =
+	[BATTLE_TERRAIN_WATER + 6] =
 		{
 			.camouflageType = TYPE_WATER,
 			.secretPowerEffect = MOVE_EFFECT_ATK_MINUS_1,
@@ -111,7 +131,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_NONE,
 		},
 
-	[BATTLE_TERRAIN_POND + 4] =
+	[BATTLE_TERRAIN_POND + 6] =
 		{
 			.camouflageType = TYPE_WATER,
 			.secretPowerEffect = MOVE_EFFECT_ATK_MINUS_1,
@@ -120,7 +140,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_NONE,
 		},
 
-	[BATTLE_TERRAIN_MOUNTAIN + 4] =
+	[BATTLE_TERRAIN_MOUNTAIN + 6] =
 		{
 			.camouflageType = TYPE_GROUND,
 			.secretPowerEffect = MOVE_EFFECT_ACC_MINUS_1,
@@ -129,7 +149,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_SANDY,
 		},
 
-	[BATTLE_TERRAIN_CAVE + 4] =
+	[BATTLE_TERRAIN_CAVE + 6] =
 		{
 			.camouflageType = TYPE_ROCK,
 			.secretPowerEffect = MOVE_EFFECT_FLINCH,
@@ -138,7 +158,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_SANDY,
 		},
 
-	[BATTLE_TERRAIN_INSIDE + 4] =
+	[BATTLE_TERRAIN_INSIDE + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -147,7 +167,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_PLAIN + 4] =
+	[BATTLE_TERRAIN_PLAIN + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -156,7 +176,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY,
 		},
 
-	[BATTLE_TERRAIN_INSIDE_2 + 4] =
+	[BATTLE_TERRAIN_INSIDE_2 + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -165,7 +185,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_INSIDE_3 + 4] =
+	[BATTLE_TERRAIN_INSIDE_3 + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -174,7 +194,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_INSIDE_4 + 4] =
+	[BATTLE_TERRAIN_INSIDE_4 + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -183,7 +203,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_INSIDE_5 + 4] =
+	[BATTLE_TERRAIN_INSIDE_5 + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -192,7 +212,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_INSIDE_6 + 4] =
+	[BATTLE_TERRAIN_INSIDE_6 + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -201,7 +221,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_LORLEI + 4] =
+	[BATTLE_TERRAIN_LORLEI + 6] =
 		{
 			.camouflageType = TYPE_ICE,
 			.secretPowerEffect = MOVE_EFFECT_FREEZE,
@@ -210,7 +230,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_BRUNO + 4] =
+	[BATTLE_TERRAIN_BRUNO + 6] =
 		{
 			.camouflageType = TYPE_FIGHTING,
 			.secretPowerEffect = MOVE_EFFECT_FLINCH,
@@ -219,7 +239,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_AGATHA + 4] =
+	[BATTLE_TERRAIN_AGATHA + 6] =
 		{
 			.camouflageType = TYPE_GHOST,
 			.secretPowerEffect = MOVE_EFFECT_EVS_MINUS_1,
@@ -228,7 +248,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_LANCE + 4] =
+	[BATTLE_TERRAIN_LANCE + 6] =
 		{
 			.camouflageType = TYPE_DRAGON,
 			.secretPowerEffect = MOVE_EFFECT_ATK_MINUS_1,
@@ -237,7 +257,7 @@ const struct TerrainTableStruct gTerrainTable[] =
 			.burmyForm = SPECIES_BURMY_TRASH,
 		},
 
-	[BATTLE_TERRAIN_CHAMPION + 4] =
+	[BATTLE_TERRAIN_CHAMPION + 6] =
 		{
 			.camouflageType = TYPE_NORMAL,
 			.secretPowerEffect = MOVE_EFFECT_PARALYSIS,
@@ -453,6 +473,22 @@ const struct BattleBackground gAttackTerrainTable[] =
         .entryTileset = gBattleTerrainAnimTiles_Building,
         .entryTilemap = gBattleTerrainAnimTilemap_Building,
         .palette = BG_Psychic_TerrainPal,
+    },
+
+    {
+    	.tileset = BG_Shadow_TerrainTiles,
+        .tilemap = BG_Shadow_TerrainMap,
+        .entryTileset = gBattleTerrainAnimTiles_Building,
+        .entryTilemap = gBattleTerrainAnimTilemap_Building,
+        .palette = BG_Shadow_TerrainPal,
+    },
+
+    {
+    	.tileset = BG_Draco_TerrainTiles,
+        .tilemap = BG_Draco_TerrainMap,
+        .entryTileset = gBattleTerrainAnimTiles_Building,
+        .entryTilemap = gBattleTerrainAnimTilemap_Building,
+        .palette = BG_Draco_TerrainPal,
     },
 };
 

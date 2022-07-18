@@ -1876,7 +1876,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				switch (move) {
 					case MOVE_GEOMANCY:
-						if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB)
+						if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT)
 							INCREASE_STAT_VIABILITY(STAT_STAGE_SPEED, STAT_STAGE_MAX, 3);
 						__attribute__ ((fallthrough));
 
@@ -1899,7 +1899,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				switch (move) {
 					case MOVE_SHELLSMASH:
-						if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB)
+						if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT)
 							INCREASE_STAT_VIABILITY(STAT_STAGE_SPEED, STAT_STAGE_MAX, 3);
 						else if (SpeedCalc(bankAtk) <= SpeedCalc(bankDef) || IsClassBatonPass(class))
 							goto AI_SPEED_PLUS;

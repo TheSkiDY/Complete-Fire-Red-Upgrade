@@ -2965,6 +2965,7 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder)
 				defiantIndex = i;
 				break;
 			case ABILITY_INTIMIDATE:
+			case ABILITY_TERRORIZE:
 				intimidateIndex = i;
 				break;
 			case ABILITY_ILLUSION:

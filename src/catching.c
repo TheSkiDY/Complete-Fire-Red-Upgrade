@@ -70,6 +70,7 @@ void atkEF_handleballthrow(void)
 	u16 defSpecies = gBattleMons[gBankTarget].species;
 	u8 atkLevel = gBattleMons[gBankAttacker].level;
 	u8 defLevel = gBattleMons[gBankTarget].level;
+	u8 atkAbility = gBattleMons[gBankAttacker].ability;
 
 	u8 ballType = ItemId_GetType(gLastUsedItem);
 
@@ -346,6 +347,9 @@ void atkEF_handleballthrow(void)
 			odds = (odds * 25) / 10;
 		if (gBattleMons[gBankTarget].status1 & (STATUS_PSN_ANY | STATUS_BURN | STATUS_PARALYSIS))
 			odds = (odds * 15) / 10;
+
+		if(atkAbility == ABILITY_LURE)
+			odds *= 2;
 
 		if (IsRaidBattle()) //Dynamax Raid Pokemon can be caught easier
 			odds *= 4;

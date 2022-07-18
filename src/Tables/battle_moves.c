@@ -12462,36 +12462,36 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = Z_EFFECT_RESET_STATS
 	},
 
-	[MOVE_EMPTY_39] =
+	[MOVE_SHADOWTERRAIN] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
-		.accuracy = 100,
-		.pp = 35,
+		.effect = EFFECT_SET_TERRAIN,
+		.power = 0,
+		.type = TYPE_GHOST,
+		.accuracy = 0,
+		.pp = 10,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_USER,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
-		.z_move_effect = 0
+		.flags = 0,
+		.z_move_power = 0,
+		.split = SPLIT_STATUS,
+		.z_move_effect = Z_EFFECT_EVSN_UP_1
 	},
 
-	[MOVE_EMPTY_40] =
+	[MOVE_DRACOTERRAIN] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
-		.accuracy = 100,
-		.pp = 35,
+		.effect = EFFECT_SET_TERRAIN,
+		.power = 0,
+		.type = TYPE_DRAGON,
+		.accuracy = 0,
+		.pp = 10,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_USER,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
-		.z_move_effect = 0
+		.flags = 0,
+		.z_move_power = 0,
+		.split = SPLIT_STATUS,
+		.z_move_effect = Z_EFFECT_ACC_UP_1
 	},
 
 	[MOVE_EMPTY_41] =

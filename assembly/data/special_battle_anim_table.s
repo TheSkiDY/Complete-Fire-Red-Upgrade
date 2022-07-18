@@ -93,6 +93,8 @@ gBattleAnims_General:
 .word ANIM_G_MAX_WILDFIRE
 .word ANIM_G_MAX_CANNONADE
 .word ANIM_G_MAX_VOLCALITH
+.word SHADOW_TERRAIN_ACTIVE_ANIM
+.word DRACO_TERRAIN_ACTIVE_ANIM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -408,6 +410,82 @@ PSYCHIC_TERRAIN_ACTIVE_ANIM:
 .align 2
 PSYCHIC_TERRAIN_1: objtemplate ANIM_TAG_GREEN_SPARKLE ANIM_TAG_GREEN_SPARKLE 0x83AC9D0 0x83E3760 0x0 gDummySpriteAffineAnimTable 0x80AA2B1
 PSYCHIC_TERRAIN_2: objtemplate ANIM_TAG_ORBS ANIM_TAG_ORBS 0x83ACB50 0x83E2A40 0x0 0x83E2A54 0x80AA175
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SHADOW_SURGE:
+	loadparticle ANIM_TAG_ORBS
+	loadparticle ANIM_TAG_GREEN_SPARKLE
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_ORBS 0x0 0xC 0xC 0x680F @;Purple
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_GREEN_SPARKLE 0x0 0xC 0xC 0x680F @;Purple
+	playsound2 0xbc SOUND_PAN_ATTACKER
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0x0
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0x2a
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0x54
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0x7e
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0xa8
+	launchtemplate SHADOW_TERRAIN_2 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xdb SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0x0
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0x20
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0x40
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0x60
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0x80
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0xa0
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0xc0
+	launchtemplate SHADOW_TERRAIN_1 0x82 0x1 0xe0
+	waitanimation
+SHADOW_TERRAIN_ACTIVE_ANIM:
+	loaddefaultBG @At this point the new BG is in effect
+	waitbgfadein
+	soundcomplex 0xb1 SOUND_PAN_ABOVE 0xa 0x3
+	waitforsound
+	endanimation
+
+.align 2
+SHADOW_TERRAIN_1: objtemplate ANIM_TAG_GREEN_SPARKLE ANIM_TAG_GREEN_SPARKLE 0x83AC9D0 0x83E3760 0x0 gDummySpriteAffineAnimTable 0x80AA2B1
+SHADOW_TERRAIN_2: objtemplate ANIM_TAG_ORBS ANIM_TAG_ORBS 0x83ACB50 0x83E2A40 0x0 0x83E2A54 0x80AA175
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_DRACO_SURGE:
+	loadparticle ANIM_TAG_ORBS
+	loadparticle ANIM_TAG_GREEN_SPARKLE
+	loadparticle ANIM_TAG_WATER_GUN
+	playsound2 0xbc SOUND_PAN_ATTACKER
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0x0
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0x2a
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0x54
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0x7e
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0xa8
+	launchtemplate DRACO_TERRAIN_2 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xdb SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0x0
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0x20
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0x40
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0x60
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0x80
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0xa0
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0xc0
+	launchtemplate DRACO_TERRAIN_1 0x82 0x1 0xe0
+	waitanimation
+DRACO_TERRAIN_ACTIVE_ANIM:
+	loaddefaultBG @At this point the new BG is in effect
+	waitbgfadein
+	soundcomplex 0xb1 SOUND_PAN_ABOVE 0xa 0x3
+	waitforsound
+	endanimation
+
+.align 2
+DRACO_TERRAIN_1: objtemplate ANIM_TAG_GREEN_SPARKLE ANIM_TAG_GREEN_SPARKLE 0x83AC9D0 0x83E3760 0x0 gDummySpriteAffineAnimTable 0x80AA2B1
+DRACO_TERRAIN_2: objtemplate ANIM_TAG_ORBS ANIM_TAG_ORBS 0x83ACB50 0x83E2A40 0x0 0x83E2A54 0x80AA175
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

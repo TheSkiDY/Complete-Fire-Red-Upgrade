@@ -157,9 +157,6 @@ NORMAL moves become DARK.
 #org @DESC_DUPE_PIXILATE
 NORMAL moves become FAIRY.
 
-#org @DESC_OVERTHINKING
-Physical moves become special.
-
 #org @DESC_ELECTRIC_SURGE
 Creates an ELECTRIC TERRAIN.
 
@@ -171,6 +168,12 @@ Creates a PSYCHIC TERRAIN.
 
 #org @DESC_GRASSY_SURGE
 Creates a GRASSY TERRAIN.
+
+#org @DESC_SHADOWY_SURGE
+Creates a SHADOW TERRAIN.
+
+#org @DESC_DRACO_SURGE
+Creates a DRACO TERRAIN.
 
 #org @DESC_GALE_WINGS
 FLYING moves hit first.

@@ -4478,11 +4478,19 @@ u16 GetNaturePowerMove(void)
 			move = gTerrainTable[3].naturePowerMove;
 			break;
 
+		case SHADOW_TERRAIN:
+			move = gTerrainTable[4].naturePowerMove;
+			break;
+
+		case DRACO_TERRAIN:
+			move = gTerrainTable[5].naturePowerMove;
+			break;
+
 		default:
 			if (IsTerrainMoveIndoors())
-				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].naturePowerMove;
+				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 6].naturePowerMove;
 			else
-				move = gTerrainTable[gBattleTerrain + 4].naturePowerMove;
+				move = gTerrainTable[gBattleTerrain + 6].naturePowerMove;
 	}
 
 	return move;
@@ -4820,11 +4828,19 @@ void atkE4_getsecretpowereffect(void) {
 			gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[3].secretPowerEffect;
 			break;
 
+		case SHADOW_TERRAIN:
+			gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[4].secretPowerEffect;
+			break;
+
+		case DRACO_TERRAIN:
+			gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[5].secretPowerEffect;
+			break;
+
 		default:
 			if (IsTerrainMoveIndoors())
-				gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].secretPowerEffect;
+				gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[BATTLE_TERRAIN_INSIDE + 6].secretPowerEffect;
 			else
-				gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[gBattleTerrain + 4].secretPowerEffect;
+				gBattleCommunication[MOVE_EFFECT_BYTE] = gTerrainTable[gBattleTerrain + 6].secretPowerEffect;
 	}
 	gBattlescriptCurrInstr++;
 }
@@ -5071,11 +5087,20 @@ u8 GetCamouflageType(void)
 			type = gTerrainTable[3].camouflageType;
 			break;
 
+		case SHADOW_TERRAIN:
+			type = gTerrainTable[4].camouflageType;
+			break;
+
+		case DRACO_TERRAIN:
+			type = gTerrainTable[5].camouflageType;
+			break;
+
+
 		default:
 			if (IsTerrainMoveIndoors())
-				type = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].camouflageType;
+				type = gTerrainTable[BATTLE_TERRAIN_INSIDE + 6].camouflageType;
 			else
-				type = gTerrainTable[gBattleTerrain + 4].camouflageType;
+				type = gTerrainTable[gBattleTerrain + 6].camouflageType;
 	}
 
 	return type;
