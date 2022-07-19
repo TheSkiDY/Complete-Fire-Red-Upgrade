@@ -35,14 +35,14 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_DUSKNOIR 60 0 0 0 0
-	givepokemon SPECIES_INCINEROAR 4 0 0 0 0
+	givepokemon SPECIES_TRAPINCH 3 0 0 0 0
 	givepokemon SPECIES_WISHIWASHI 20 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo
 	@setflag 0x940 @randomizer
 	@setflag 0x90E @trainer scale
-	setflag 0x200
+	@setflag 0x200
 	callasm 0x8727DCD
 	end
 

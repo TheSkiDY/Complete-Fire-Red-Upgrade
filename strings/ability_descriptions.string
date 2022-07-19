@@ -598,6 +598,12 @@ Occasionally gains priority.
 #org @DESC_IMPATIENT
 Uses charging moves in one turn. 
 
+#org @DESC_WIZARDRY
+Summons magic room.
+
+#org @DESC_CLOCKWORK
+Summons trick room.
+
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.
 

@@ -23,6 +23,7 @@
 #include "../include/new/dynamax.h"
 #include "../include/new/form_change.h"
 #include "../include/new/util.h"
+#include "../include/new/move_battle_scripts.h"
 #include "../include/new/move_tables.h"
 #include "../include/new/text.h"
 /*
@@ -883,6 +884,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 		case ABILITY_VICTORYSTAR:
 			gBattleStruct->moneyMultiplier *= 2;
 			effect++;
+			break;
+
+		case ABILITY_CLOCKWORK: ;
+			if(!IsTrickRoomActive())
+			{
+				if(ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->TrickRoomTimer = 8;
+
+				gNewBS->TrickRoomTimer = 5;
+				gBattleStringLoader = TrickRoomSetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
+
+		case ABILITY_WIZARDRY: ;
+			if(!IsMagicRoomActive())
+			{
+				if(ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->MagicRoomTimer = 8;
+
+				gNewBS->MagicRoomTimer = 5;
+				gBattleStringLoader = MagicRoomSetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
 			break;
 
 		case ABILITY_ANTICIPATION:
