@@ -120,6 +120,7 @@ void atk04_critcalc(void)
 						+ (CheckTableForMove(gCurrentMove, gHighCriticalChanceMoves))
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
+						+ 2 * (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[gBankAttacker].status1 & STATUS_ANY)
 						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && IsOfType(gBankAttacker, TYPE_NORMAL))
 						#ifdef SPECIES_FARFETCHD
 						+ 2 * (atkEffect == ITEM_EFFECT_STICK && gBattleMons[gBankAttacker].species == SPECIES_FARFETCHD)

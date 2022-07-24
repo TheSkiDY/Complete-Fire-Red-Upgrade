@@ -604,6 +604,18 @@ Summons magic room.
 #org @DESC_CLOCKWORK
 Summons trick room.
 
+#org @DESC_CURIOUSMEDICINE
+Removes stat changes from allies.
+
+#org @DESC_FABULOUSDREAMS
+Restores HP if asleep.
+
+#org @DESC_FOCUSEDWARRIOR
+Raises crit ratio if suffering.
+
+#org @DESC_WISHPEARL
+Restores 50% more HP.
+
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.
 

@@ -65,6 +65,7 @@ enum EndTurnEffects
 	ET_Item_Effects8,
 	ET_Perish_Song,
 	ET_Roost,
+	ET_Sleep,
 	ET_Reflect,
 	ET_Light_Screen,
 	ET_Safeguard,
@@ -912,6 +913,21 @@ u8 TurnBasedEffects(void)
 						gBattleMons[gActiveBattler].type2 = TYPE_FLYING;
 					if (gBattleMons[gActiveBattler].type3 == TYPE_ROOSTLESS)
 						gBattleMons[gActiveBattler].type3 = TYPE_FLYING;
+				}
+				break;
+
+			case ET_Sleep:
+				if (BATTLER_ALIVE(gActiveBattler) 
+					&& gBattleMons[gActiveBattler].status1 & STATUS_SLEEP)
+				{
+					gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gActiveBattler) / 6);
+					if(ABILITY(gActiveBattler) == ABILITY_FABULOUSDREAMS && !BATTLER_MAX_HP(gActiveBattler) && !IsHealBlocked(gActiveBattler))
+					{
+						gBattleMoveDamage *= -1;
+						gBattleScripting.bank = gActiveBattler;
+						BattleScriptExecute(BattleScript_PoisonHeal);
+						++effect;
+					}
 				}
 				break;
 
