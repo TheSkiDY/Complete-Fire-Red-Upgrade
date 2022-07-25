@@ -219,9 +219,9 @@ void EvolveSpeciesByLevel(u16* species, u8 level)
 	for (u32 i = 0; i < EVOS_PER_MON; ++i)
 	{
 		if ((IsLevelUpEvolutionMethod(evolutions[i].method) && level >= evolutions[i].param)
-		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 40)
-		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 50)
-		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 60))
+		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 35)
+		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 35)
+		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 30))
 		{
 			*species = evolutions[i].targetSpecies;
 			goto START; //Evolve until it can't evolve any more
