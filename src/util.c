@@ -209,6 +209,50 @@ bool8 CouldHaveEvolvedViaLevelUp(struct Pokemon* mon)
 	return FALSE;
 }
 
+void DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
+{
+	int j, k;
+	bool8 found;
+	u16 species = *originalSpecies;
+
+	START:
+	found = FALSE;
+	for (j = 1; j < NUM_SPECIES; ++j)
+	{
+		for (k = 0; k < EVOS_PER_MON; ++k)
+		{
+			if(gEvolutionTable[j][k].targetSpecies == *originalSpecies)
+			{
+				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
+					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < FRIENDSHIP_EVO_LEVEL)
+					|| (IsItemEvolutionMethod(gEvolutionTable[j][k].method) && level < ITEM_USAGE_EVO_LEVEL)
+					|| (IsOtherEvolutionMethod(gEvolutionTable[j][k].method && level < OTHER_EVO_LEVEL)))
+				{
+					species = j;
+					goto START; //devolve until it can't
+				}
+			}
+		}
+	}
+
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+	switch(dexNum) {
+		#if (defined NATIONAL_DEX_PIKACHU && defined SPECIES_PICHU)
+		case NATIONAL_DEX_PIKACHU: //Get's all the special forms
+			species = SPECIES_PICHU;
+			break;
+		#endif
+		#if (defined NATIONAL_DEX_VIVILLON && defined SPECIES_SCATTERBUG)
+		case NATIONAL_DEX_VIVILLON:
+			species = SPECIES_SCATTERBUG;
+			break;
+		#endif
+	}
+
+	if (species != *originalSpecies)
+		*originalSpecies = species;
+}
+
 void EvolveSpeciesByLevel(u16* species, u8 level)
 {
 	const struct Evolution* evolutions;
@@ -219,9 +263,9 @@ void EvolveSpeciesByLevel(u16* species, u8 level)
 	for (u32 i = 0; i < EVOS_PER_MON; ++i)
 	{
 		if ((IsLevelUpEvolutionMethod(evolutions[i].method) && level >= evolutions[i].param)
-		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 40)
-		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 50)
-		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 60))
+		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= OTHER_EVO_LEVEL)
+		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= ITEM_USAGE_EVO_LEVEL)
+		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= FRIENDSHIP_EVO_LEVEL))
 		{
 			*species = evolutions[i].targetSpecies;
 			goto START; //Evolve until it can't evolve any more

@@ -1565,6 +1565,7 @@ void RunOnTransitionMapScript(void)
 	gFishingStreak = 0;
 	gLastFishingSpecies = 0;
 	gLastWildIndex = 0;
+	gPartyIndexLoaded = 0;
 	gDontFadeWhite = FALSE;
 	gBattleTypeFlags = 0;
 	ResetMiningSpots();

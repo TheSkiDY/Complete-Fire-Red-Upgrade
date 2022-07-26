@@ -754,6 +754,7 @@ static void EndBattleFlagClear(void)
 	gTrainerBattleOpponent_B = backup;
 	gBattleTypeFlags = 0;
 	gBattleCircusFlags = 0;
+	gPartyIndexLoaded = 0;
 }
 
 static void HealPokemonInFrontier(void)

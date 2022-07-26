@@ -2,6 +2,7 @@
 
 #include "../../src/defines.h"
 #include "../../src/defines_battle.h"
+#include "build_pokemon.h"
 
 /**
  * \file build_pokemon_2.h
@@ -20,7 +21,13 @@
 	u8 lvl = structure[i].lvl;																																\
 	if (FlagGet(FLAG_SCALE_TRAINER_LEVELS)																													\
 	|| (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER))																										\
-		lvl = GetHighestMonLevel(gPlayerParty);																												\
+	{																																						\
+		if(IsBossTrainerClassForLevelScaling(trainerId))																									\
+			lvl = GetHighestMonLevel(gPlayerParty);																											\
+		else 																																				\
+			lvl = GetPlayerAverageLevel() - 1;																												\
+	}																																						\
+																																							\
 																																							\
 	if (levelScaling && (side == B_SIDE_OPPONENT || !firstTrainer))																							\
 	{																																						\

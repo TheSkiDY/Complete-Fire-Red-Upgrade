@@ -41,3 +41,9 @@ bool8 CanPartyMonBePoisoned(struct Pokemon* mon);
 bool8 CanPartyMonBeParalyzed(struct Pokemon* mon);
 bool8 CanPartyMonBeBurned(struct Pokemon* mon);
 bool8 CanPartyMonBeFrozen(struct Pokemon* mon);
+
+#define FRIENDSHIP_EVO_LEVEL 40
+#define ITEM_USAGE_EVO_LEVEL 35
+#define OTHER_EVO_LEVEL 30
+void DevolveSpeciesByLevel(u16* originalSpecies, u8 level);
+
