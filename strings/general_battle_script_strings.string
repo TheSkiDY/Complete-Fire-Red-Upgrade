@@ -260,6 +260,9 @@ The [LAST_ITEM] restored\n[SCRIPTING_BANK]'s status!
 #org @gText_TargetWasCaughtInSnapTrap
 [TARGET] got trapped\nby a snap trap!
 
+#org @gText_TargetTrappedInThunderCage
+[TARGET] got trapped\nin electricity!
+
 #org @gText_HurtBySeaOfFire
 [ATTACKER] is hurt\nby the sea of fire!
 

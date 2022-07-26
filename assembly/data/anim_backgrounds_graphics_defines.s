@@ -146,3 +146,6 @@ definitions for battle backgrounds
 .equ BG_DRACO_TERRAIN_IMG, BG_Draco_TerrainTiles
 .equ BG_DRACO_TERRAIN_PAL, BG_Draco_TerrainPal
 .equ BG_DRACO_TERRAIN_RAW, BG_Draco_TerrainMap
+.equ BG_BITTER_MALICE_IMG, NightmareTiles
+.equ BG_BITTER_MALICE_PAL, Bitter_MalicePal
+.equ BG_BITTER_MALICE_RAW, NightmareMap

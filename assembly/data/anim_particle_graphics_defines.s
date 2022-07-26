@@ -96,6 +96,16 @@ definitions for animation particles
 .equ TORNADO_IMG, TornadoTiles
 .equ STRAIGHT_BEAM_IMG, Straight_BeamTiles
 .equ DREEPY_IMG, Dreepy_MissileTiles
+.equ SCALE_SHOT_IMG, Scale_ShotTiles
+.equ EXPANDING_FORCE_BALL_IMG, Expanding_Force_BallTiles
+.equ STONE_AXE_IMG, Stone_AxeTiles
+.equ WICKED_ENERGY_IMG, Wicked_EnergyTiles
+.equ SURGING_ENERGY_IMG, Surging_EnergyTiles
+.equ FREEZING_BEAM_IMG, Freezing_BeamTiles
+.equ LASH_OUT_IMG, Lash_OutTiles
+.equ MISTY_EXPLOSION_IMG, Misty_ExplosionTiles
+.equ DECORATE_IMG, DecorateTiles
+.equ SNAPTRAP_IMG, SnapTrapTiles
 
 @;Palettes
 .equ SWORD_PAL, SwordPal
@@ -194,3 +204,13 @@ definitions for animation particles
 .equ TORNADO_PAL, TornadoPal
 .equ STRAIGHT_BEAM_PAL, Straight_BeamPal
 .equ DREEPY_PAL, Dreepy_MissilePal
+.equ SCALE_SHOT_PAL, Scale_ShotPal
+.equ EXPANDING_FORCE_BALL_PAL, Expanding_Force_BallPal
+.equ STONE_AXE_PAL, Stone_AxePal
+.equ WICKED_ENERGY_PAL, Wicked_EnergyPal
+.equ SURGING_ENERGY_PAL, Surging_EnergyPal
+.equ FREEZING_BEAM_PAL, Freezing_BeamPal
+.equ LASH_OUT_PAL, Lash_OutPal
+.equ MISTY_EXPLOSION_PAL, Misty_ExplosionPal
+.equ DECORATE_PAL, DecoratePal
+.equ SNAPTRAP_PAL, SnapTrapPal

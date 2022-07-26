@@ -93,6 +93,7 @@
 .equ BG_AURA_SPHERE, 0x4B
 .equ BG_SHADOW_TERRAIN, 0x4C
 .equ BG_DRACO_TERRAIN, 0x4D
+.equ BG_BITTER_MALICE, 0x4E
 
 @pals for pal fading tasks
 .equ PAL_BG, 0x1
@@ -463,6 +464,8 @@
 .equ AnimTask_TraceMonBlended, 0x80bab99
 .equ AnimTask_SmokescreenImpact, 0x80de34d
 .equ AnimTask_AttackerPunchWithTrace, 0x8077031
+.equ AnimTask_ThrashMoveMonHorizontal, 0x80A864
+.equ AnimTask_ThrashMoveMonVertical, 0x80A86A5
 
 @launchtemplate
 
@@ -1009,3 +1012,13 @@ waitbgfadein
 .equ ANIM_TAG_DREEPY, 0x287D
 .equ ANIM_TAG_ICE_ROCK_SINGLE, 0x287E
 .equ ANIM_TAG_STONE_PILLAR_MULTI, 0x287F
+.equ ANIM_TAG_SCALE_SHOT, 0x2880
+.equ ANIM_TAG_EXPANDING_FORCE_BALL, 0x2881
+.equ ANIM_TAG_STONE_AXE, 0x2882
+.equ ANIM_TAG_WICKED_ENERGY, 0x2883
+.equ ANIM_TAG_SURGING_ENERGY, 0x2884
+.equ ANIM_TAG_FREEZING_GLARE_BEAM, 0x2885
+.equ ANIM_TAG_LASH_OUT, 0x2886
+.equ ANIM_TAG_MISTY_EXPLOSION, 0x2887
+.equ ANIM_TAG_DECORATE, 0x2888
+.equ ANIM_TAG_SNAPTRAP, 0x2889
