@@ -37,13 +37,13 @@ EventScript_PalletTown_TechnologyGuy:
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_MEWTWO 20 0 0 0 0
-	givepokemon SPECIES_TRAPINCH 3 0 0 0 0
-	givepokemon SPECIES_WISHIWASHI 3 0 0 0 0
-	givepokemon SPECIES_DIALGA_ORIGIN 3 0 0 0 0
-	givepokemon SPECIES_MORPEKO 3 0 0 0 0
-	givepokemon SPECIES_SKWOVET 3 0 0 0 0
-	givepokemon SPECIES_OVERQWIL 3 0 0 0 0
+	givepokemon SPECIES_MEWTWO 50 0 0 0 0
+	givepokemon SPECIES_TRAPINCH 50 0 0 0 0
+	givepokemon SPECIES_WISHIWASHI 50 0 0 0 0
+	givepokemon SPECIES_DIALGA_ORIGIN 50 0 0 0 0
+	givepokemon SPECIES_MORPEKO 50 0 0 0 0
+	givepokemon SPECIES_SKWOVET 50 0 0 0 0
+	givepokemon SPECIES_OVERQWIL 50 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo

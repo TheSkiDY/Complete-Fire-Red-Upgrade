@@ -18562,28 +18562,7 @@ ANIM_BITTER_MALICE:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 ANIM_SHELTER:
-	loadparticle ANIM_TAG_METAL_BITS @Metal Bits
-	setblends 0x80c
-	pokespritetoBG side_attacker
-	launchtask AnimTask_TranslateMonEllipticalRespectSide 0x2 0x5 0x0 0x18 0x6 0x4 0x4
-	launchtask AnimTask_TraceMonBlended 0x2 0x4 0x0 0x4 0x7 0xa
-	playsound2 0x52 SOUND_PAN_ATTACKER
-	launchtemplate METALBITS 0x2 0x2 0x0 0x0
-	launchtemplate METALBITS 0x2 0x2 0x0 0x1
-	pause 0xc
-	launchtemplate METALBITS 0x2 0x2 0x0 0x2
-	launchtemplate METALBITS 0x2 0x2 0x0 0x3
-	pause 0xc
-	launchtemplate METALBITS 0x2 0x2 0x0 0x0
-	launchtemplate METALBITS 0x2 0x2 0x0 0x1
-	pause 0xc
-	launchtemplate METALBITS 0x2 0x2 0x0 0x2
-	launchtemplate METALBITS 0x2 0x2 0x0 0x3
-	pause 0x18
-	waitanimation
-	stopmusic
-	pokespritefromBG side_attacker
-	resetblends
+	goto 0x81ccca3
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

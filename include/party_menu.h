@@ -2,6 +2,8 @@
 
 #include "global.h"
 #include "pokemon.h"
+#include "bg.h"
+#include "window.h"
 
 enum
 {
@@ -108,9 +110,11 @@ enum
 #define MENU_TRADE1 16
 #define MENU_TRADE2 17
 #define MENU_MOVE_ITEM 18
-#define MENU_FIELD_MOVES 19
+#define MENU_NICKNAME 19
+#define MENU_RELEARN 20
+#define MENU_FIELD_MOVES 21
 
-#define MENU_FIELD_MOVES_MINUS_1 18
+#define MENU_FIELD_MOVES_MINUS_1 20
 
 struct PartyMenu
 {
@@ -153,6 +157,9 @@ void __attribute__((long_call)) DisplayPartyMenuStdMessage(u32 stringID);
 u8* __attribute__((long_call)) GetMonNickname(struct Pokemon *mon, u8 *dest);
 u8 __attribute__((long_call)) GetCursorSelectionMonId(void);
 bool8 __attribute__((long_call)) FieldCallback_PrepareFadeInFromMenu(void);
+void __attribute__((long_call)) CB2_ReturnToPartyMenuFromSummaryScreen(void);
+void __attribute__((long_call)) CB2_MoveRelearner_Init(void);
+void __attribute__((long_call)) Task_InitMoveRelearnerMenu(u8 taskId);
 
 void __attribute__((long_call)) AnimatePartySlot(u8 slot, u8 b);
 u16 __attribute__((long_call)) PartyMenuButtonHandler(s8 *ptr);
@@ -161,3 +168,5 @@ bool8 __attribute__((long_call)) some_other_kind_of_link_test(void);
 void __attribute__((long_call)) InitChooseHalfPartyForBattle(u8 a1);
 u8 __attribute__((long_call)) GetItemEffectType(u16 item);
 void __attribute__((long_call)) PartyMenuModifyHP(u8 taskId, u8 slot, s8 hpIncrement, s16 hpDifference, TaskFunc task);
+
+static void MoveRelearnerLoadBgGfx(void);

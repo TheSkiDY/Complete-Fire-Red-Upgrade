@@ -8,8 +8,10 @@
 #include "../include/fieldmap.h"
 #include "../include/item_use.h"
 #include "../include/item_menu.h"
+#include "../include/bg.h"
 #include "../include/menu.h"
 #include "../include/metatile_behavior.h"
+#include "../include/naming_screen.h"
 #include "../include/overworld.h"
 #include "../include/party_menu.h"
 #include "../include/pokemon_icon.h"
@@ -87,6 +89,7 @@ struct PartyMenuInternal
 	s16 data[16];
 };
 
+
 extern struct PartyMenuInternal* sPartyMenuInternal;
 extern struct PartyMenuBox* sPartyMenuBoxes;
 
@@ -148,7 +151,11 @@ static void FieldCallback_Defog(void);
 static bool8 SetUpFieldMove_Defog(void);
 static void CursorCb_MoveItemCallback(u8 taskId);
 static void CursorCb_MoveItem(u8 taskId);
-
+static void CursorCb_NicknameCallback(u8 taskId);
+static void CursorCb_Nickname(u8 taskId);
+void NicknameFuncPartyMenu();
+static void CursorCb_Relearn(u8 taskId);
+static void CursorCb_RelearnCallback(u8 taskId);
 //*highlightedMon = 0 is Player's Pokemon out
 //*highlightedMon = 1 is Link Partner's Pokemon out
 /*FR LG Format is:		DPPT+ Format is:
@@ -744,6 +751,8 @@ u8 CanPokemonSelectedBeEnteredInBattleTower(void)
 extern u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 
 extern const u8 gMenuText_Move[];
+extern const u8 gMenuText_Nickname[];
+extern const u8 gMenuText_Relearn[];
 extern const u8 gText_FieldMoveDesc_RockClimb[];
 extern const u8 gText_FieldMoveDesc_Defog[];
 extern const u8 gText_FieldMoveDesc_Dive[];
@@ -799,6 +808,8 @@ struct
 	[MENU_TRADE1] =	{(void*) 0x84169bc, (void*) 0x8124491},
 	[MENU_TRADE2] =	{(void*) 0x84169bc, (void*) 0x81245a1},
 	[MENU_MOVE_ITEM] = {gMenuText_Move, CursorCb_MoveItem},
+	[MENU_NICKNAME] = {gMenuText_Nickname, CursorCb_Nickname},
+	[MENU_RELEARN] = {gMenuText_Relearn, CursorCb_Relearn},
 
 	//Field Moves
 	[MENU_FIELD_MOVES + FIELD_MOVE_FLASH] =	      {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
@@ -913,6 +924,47 @@ const u8 gFieldMoveBadgeRequirements[FIELD_MOVE_COUNT] =
 
 #endif
 
+static void CursorCb_Relearn(u8 taskId)
+{
+	PlaySE(SE_SELECT);
+	gTasks[taskId].func = CursorCb_RelearnCallback;
+}
+
+static void CursorCb_RelearnCallback(u8 taskId)
+{
+	Var8004 = gPartyMenu.slotId;
+	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	gTasks[taskId].func = Task_InitMoveRelearnerMenu;
+}
+
+
+static void CursorCb_NicknameCallback(unusedArg u8 taskid)
+{
+	void* src =  &gPlayerParty[gPartyMenu.slotId];
+
+	GetMonData(src, MON_DATA_NICKNAME, gStringVar3);
+	GetMonData(src, MON_DATA_NICKNAME, gStringVar2);
+	u16 species = GetMonData(src, MON_DATA_SPECIES, 0);
+	u8 gender = GetMonGender(src);
+	u16 PID = GetMonData(src, MON_DATA_PERSONALITY, 0);
+	DoNamingScreen(3, gStringVar2, species, gender, PID, (void*) NicknameFuncPartyMenu);
+}
+
+void NicknameFuncPartyMenu()
+{
+	SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_NICKNAME, gStringVar2);
+	CB2_ReturnToPartyMenuFromSummaryScreen();
+}
+
+static void CursorCb_Nickname(u8 taskId)
+{
+	PlaySE(SE_SELECT);
+	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+	PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+	gTasks[taskId].func = CursorCb_NicknameCallback;
+}
+
+
 void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
 	u8 i, j, k;
@@ -983,6 +1035,8 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
 	}
 
+	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
+	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_RELEARN);
 	AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 

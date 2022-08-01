@@ -144,56 +144,6 @@ u16 MonTryLearningNewMoveAfterEvolution(struct Pokemon* mon, bool8 firstMove)
 	return retVal;
 }
 
-u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
-{
-	u16 learnedMoves[4];
-	u8 numMoves = 0;
-	u16 species = mon->species;
-	u8 level = mon->level;
-	int i, j, k;
-
-#ifdef FLAG_MOVE_RELEARNER_IGNORE_LEVEL
-	if (FlagGet(FLAG_MOVE_RELEARNER_IGNORE_LEVEL))
-		level = MAX_LEVEL;
-#endif
-
-#ifdef FLAG_EGG_MOVE_RELEARNER
-	if (FlagGet(FLAG_EGG_MOVE_RELEARNER))
-	{
-		numMoves = GetAllEggMoves(mon, moves, TRUE);
-		return numMoves;
-	}
-#endif
-
-	for (i = 0; i < MAX_MON_MOVES; ++i)
-		learnedMoves[i] = mon->moves[i];
-
-	for (i = 0; i < MAX_LEARNABLE_MOVES; ++i) //50 max moves can be relearned
-	{
-		struct LevelUpMove lvlUpMove = gLevelUpLearnsets[species][i];
-
-		if (lvlUpMove.move == 0 && lvlUpMove.level == 0xFF)
-			break;
-
-		if (lvlUpMove.level <= level)
-		{
-			for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != lvlUpMove.move; ++j)
-				;
-
-			if (j == MAX_MON_MOVES)
-			{
-				for (k = 0; k < numMoves && moves[k] != lvlUpMove.move; ++k)
-					;
-
-				if (k == numMoves)
-					moves[numMoves++] = lvlUpMove.move;
-			}
-		}
-	}
-
-	return numMoves;
-}
-
 u8 GetLevelUpMovesBySpecies(u16 species, u16* moves)
 {
 	u8 numMoves = 0;
@@ -437,6 +387,55 @@ const u8* CopyMoveReminderMoveName(u8 cursor)
 	return gText_MoveRelearnerAskTeach;
 }
 
+
+u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
+{
+	u16 learnedMoves[4];
+	u8 numMoves = 0;
+	u16 species = mon->species;
+	u8 level = mon->level;
+	int i, j, k;
+
+#ifdef FLAG_MOVE_RELEARNER_IGNORE_LEVEL
+	if (FlagGet(FLAG_MOVE_RELEARNER_IGNORE_LEVEL))
+		level = MAX_LEVEL;
+#endif
+
+#ifdef FLAG_EGG_MOVE_RELEARNER
+	if (FlagGet(FLAG_EGG_MOVE_RELEARNER))
+	{
+		numMoves = GetAllEggMoves(mon, moves, TRUE);
+		return numMoves;
+	}
+#endif
+
+	for (i = 0; i < MAX_MON_MOVES; ++i)
+		learnedMoves[i] = mon->moves[i];
+
+	for (i = 0; i < MAX_LEARNABLE_MOVES; ++i) //50 max moves can be relearned
+	{
+		struct LevelUpMove lvlUpMove = gLevelUpLearnsets[species][i];
+
+		if (lvlUpMove.move == 0 && lvlUpMove.level == 0xFF)
+			break;
+
+		if (lvlUpMove.level <= level)
+		{
+			for (j = 0; j < MAX_MON_MOVES; ++j)
+				;
+
+			if (j == MAX_MON_MOVES)
+			{
+				for (k = 0; k < numMoves && moves[k] != lvlUpMove.move; ++k)
+					;
+
+				if (k == numMoves)
+					moves[numMoves++] = lvlUpMove.move;
+			}
+		}
+	}
+	return numMoves;
+}
 
 bool16 InitMoveRelearnerWindows(void)
 {
