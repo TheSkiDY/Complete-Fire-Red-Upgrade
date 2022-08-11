@@ -1853,6 +1853,14 @@ LoadStdWindowFrameGfx = 0x80F6E9C | 1;
 GetMapNameGeneric = 0x80C4DF8 | 1;
 ConvertInternationalString = 0x80093BC | 1;
 
+sItemIconTilesBuffer = 0x2039884;
+sItemIconTilesBufferPadded = 0x2039888;
+sSpriteTemplate_ItemIcon = 0x83d427C;
+CopyItemIconPicTo4x4Buffer = 0x809872C | 1;
+TryAllocItemIconTilesBuffers = 0x80986EC | 1;
+sListItemTextColor_RegularItem = 0x8452F60;
+sListItemTextColor_TmCase_BerryPouch = 0x8452F66;
+SetPartyHPBarSprite = 0x8097414 | 1;
 sSafariZoneStatsWindowTemplate = 0x83A738C;
 
 /* IO */
