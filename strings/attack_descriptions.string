@@ -1279,8 +1279,8 @@ The user overshadows\nthe ground for five\nturns, powering up\nGHOST moves and\n
 #org @DESC_DRACOTERRAIN
 The user covers the\nground in harsh mist\nfive turns, powering up\nDRAGON moves and\nforcing critical hits.
 
-#org @DESC_MOVE_EMPTY_41
-Empty move (41).
+#org @DESC_STEELYSPIKES
+Steel spikes\nare laid around the\nfoe's party to hurt\nfoes switching in.
 
 #org @DESC_MOVE_EMPTY_42
 Empty move (42).

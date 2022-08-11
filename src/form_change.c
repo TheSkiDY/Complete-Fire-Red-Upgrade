@@ -39,7 +39,7 @@ static const species_t sBannedBackupSpecies[] =
 	SPECIES_KELDEO_RESOLUTE,
 	SPECIES_MELOETTA_PIROUETTE,
 	SPECIES_AEGISLASH_BLADE,
-	SPECIES_WISHIWASHI_S,
+	SPECIES_WISHIWASHI_SCHOOLING,
 	SPECIES_MIMIKYU_BUSTED,
 	SPECIES_MINIOR_SHIELD,
 	SPECIES_TABLES_TERMIN
@@ -209,8 +209,8 @@ void SwitchOutFormsRevert(u8 bank)
 			break;
 		#endif
 
-		#if (defined SPECIES_WISHIWASHI && defined SPECIES_WISHIWASHI_S)
-		case SPECIES_WISHIWASHI_S:
+		#if (defined SPECIES_WISHIWASHI && defined SPECIES_WISHIWASHI_SCHOOLING)
+		case SPECIES_WISHIWASHI_SCHOOLING:
 			if (backupSpecies != SPECIES_NONE)
 				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
 			else
@@ -240,6 +240,12 @@ void SwitchOutFormsRevert(u8 bank)
 				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
 			else
 				DoFormChange(bank, SPECIES_MORPEKO, FALSE, TRUE, FALSE);
+			break;
+		case SPECIES_DEMOLETT_SHELTER:
+			if (backupSpecies != SPECIES_NONE)
+				DoFormChange(bank, backupSpecies, FALSE, TRUE, FALSE);
+			else
+				DoFormChange(bank, SPECIES_DEMOLETT, FALSE, TRUE, FALSE);
 			break;
 	}
 }

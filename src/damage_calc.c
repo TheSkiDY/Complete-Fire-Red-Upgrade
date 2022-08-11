@@ -1375,6 +1375,10 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive, u16
 				if (CheckSoundMove(move)) //Change Sound Moves
 					return TYPE_WATER;
 				break;
+			case ABILITY_MODULATOR:
+				if (CheckSoundMove(move))
+					return TYPE_STEEL;
+				break;
 		}
 	}
 

@@ -13,6 +13,7 @@ extern const u8 NAME_ICE_FACE[];
 extern const u8 NAME_STANCE_CHANGE[];
 extern const u8 NAME_GULP_MISSILE[];
 extern const u8 NAME_HUNGER_SWITCH[];
+extern const u8 NAME_ROCKY_SHELTER[];
 extern const u8 NAME_DISGUISE[];
 extern const u8 NAME_SCHOOLING[];
 extern const u8 NAME_BATTLE_BOND[];
@@ -24,6 +25,7 @@ extern const u8 DESC_ICEFACE[];
 extern const u8 DESC_STANCECHANGE[];
 extern const u8 DESC_GULPMISSILE[];
 extern const u8 DESC_HUNGERSWITCH[];
+extern const u8 DESC_ROCKYSHELTER[];
 extern const u8 DESC_DISGUISE[];
 extern const u8 DESC_SCHOOLING[];
 extern const u8 DESC_BATTLEBOND[];
@@ -113,6 +115,8 @@ extern const u8 NAME_VIOLENT_DRUMS[];
 extern const u8 NAME_SOAKAGE[];
 extern const u8 NAME_SONIC_FORCE[];
 extern const u8 NAME_HONEY_ARMOR[];
+extern const u8 NAME_INSTANT_FLASH[];
+extern const u8 NAME_WILL_OF_FIRE[];
 
 extern const u8 DESC_DUPE_BLAZE[];
 extern const u8 DESC_DUPE_TORRENT[];
@@ -393,6 +397,11 @@ static struct TerrainBasedAbility sSurgeAbilities[] =
         .currAbility = ABILITY_TERRAIN_SURGE,
         .terrain = ELECTRIC_TERRAIN,
     },
+    {
+        .species = SPECIES_PINSIR_S,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = ELECTRIC_TERRAIN,
+    },
     //misty terrain
     {
         .species = SPECIES_TAPU_FINI,
@@ -466,9 +475,26 @@ static struct TerrainBasedAbility sSurgeAbilities[] =
         .currAbility = ABILITY_TERRAIN_SURGE,
         .terrain = GRASSY_TERRAIN,
     },
+    {
+        .species = SPECIES_CYNDAQUIL_S,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_QUILAVA_S,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
+    {
+        .species = SPECIES_TYPHLOSION_S,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = GRASSY_TERRAIN,
+    },
     //shadow terrain
     {
-
+        .species = SPECIES_DIANCIE_SHADOW,
+        .currAbility = ABILITY_TERRAIN_SURGE,
+        .terrain = SHADOW_TERRAIN,
     },
     //draco terrain
     {
@@ -531,6 +557,11 @@ static struct TypeBasedAbility sPriorityAbilities[] =
         .type = TYPE_FLYING,
     },
     {
+        .species = SPECIES_PUFFINIGHT,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_FLYING,
+    },
+    {
         .species = SPECIES_DECIDUEYE,
         .currAbility = ABILITY_GALEWINGS,
         .type = TYPE_GHOST,
@@ -542,6 +573,21 @@ static struct TypeBasedAbility sPriorityAbilities[] =
     },
     {
         .species = SPECIES_DOUBLADE,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_GHOST,
+    },
+    {
+        .species = SPECIES_SANDYGAST_S,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_GHOST,
+    },
+    {
+        .species = SPECIES_PALOSSAND_S,
+        .currAbility = ABILITY_GALEWINGS,
+        .type = TYPE_GHOST,
+    },
+    {
+        .species = SPECIES_ALAKAZAM_S_MEGA,
         .currAbility = ABILITY_GALEWINGS,
         .type = TYPE_GHOST,
     },
@@ -576,6 +622,16 @@ static struct TypeBasedAbility sAteAbilities[] =
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_FLYING,
     },
+    {
+        .species = SPECIES_OSTREECH,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FLYING,
+    },
+    {
+        .species = SPECIES_SWELLOW_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FLYING,
+    },
     //Poison
     {
         .species = SPECIES_STUNKY,
@@ -594,6 +650,21 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     {
         .species = SPECIES_TOXICROAK,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_POISON,
+    },
+    {
+        .species = SPECIES_CARAXIC,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_POISON,
+    },
+    {
+        .species = SPECIES_VELYNX,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_POISON,
+    },
+    {
+        .species = SPECIES_THIEVUL_S,
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_POISON,
     },
@@ -641,6 +712,11 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     {
         .species = SPECIES_TYRANITAR_MEGA,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ROCK,
+    },
+    {
+        .species = SPECIES_LAPRAS_S,
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_ROCK,
     },
@@ -706,6 +782,11 @@ static struct TypeBasedAbility sAteAbilities[] =
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_GHOST,
     },
+    {
+        .species = SPECIES_GLALIE_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_GHOST,
+    },
     //Steel
     {
         .species = SPECIES_FORRETRESS,
@@ -732,6 +813,11 @@ static struct TypeBasedAbility sAteAbilities[] =
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_STEEL,
     },
+    {
+        .species = SPECIES_SABLEYE_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_STEEL,
+    },
     //Fire
     {
         .species = SPECIES_FLETCHLING,
@@ -745,6 +831,26 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     {
         .species = SPECIES_TALONFLAME,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FIRE,
+    },
+    {
+        .species = SPECIES_KOFFING_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FIRE,
+    },
+    {
+        .species = SPECIES_WEEZING_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FIRE,
+    },
+    {
+        .species = SPECIES_SHROOMISH_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_FIRE,
+    },
+    {
+        .species = SPECIES_BRELOOM_S,
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_FIRE,
     },
@@ -766,6 +872,16 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     {
         .species = SPECIES_CLAWITZER,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_WATER,
+    },
+    {
+        .species = SPECIES_COTTONEE_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_WATER,
+    },
+    {
+        .species = SPECIES_WHIMSICOTT_S,
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_WATER,
     },
@@ -797,6 +913,21 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     {
         .species = SPECIES_GOGOAT,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_GRASS,
+    },
+    {
+        .species = SPECIES_CEBULACK,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_GRASS,
+    },
+    {
+        .species = SPECIES_WOOPER_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_GRASS,
+    },
+    {
+        .species = SPECIES_QUAGSIRE_S,
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_GRASS,
     },
@@ -858,6 +989,21 @@ static struct TypeBasedAbility sAteAbilities[] =
         .currAbility = ABILITY_ATE_LIKE,
         .type = TYPE_ICE,
     },
+    {
+        .species = SPECIES_AXEW_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
+    {
+        .species = SPECIES_FRAXURE_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
+    {
+        .species = SPECIES_HAXORUS_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_ICE,
+    },
     //Dragon
     {
         .species = SPECIES_RAYQUAZA,
@@ -876,7 +1022,29 @@ static struct TypeBasedAbility sAteAbilities[] =
     },
     //Dark
     {
-        0
+        .species = SPECIES_CROBAT_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_DARK,
+    },
+    {
+        .species = SPECIES_MAGMORTAR_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_DARK,
+    },
+    {
+        .species = SPECIES_TORCHIC_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_DARK,
+    },
+    {
+        .species = SPECIES_COMBUSKEN_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_DARK,
+    },
+    {
+        .species = SPECIES_BLAZIKEN_S,
+        .currAbility = ABILITY_ATE_LIKE,
+        .type = TYPE_DARK,
     },
     //Fairy
     {
@@ -935,7 +1103,7 @@ static struct DuplicateAbility sDuplicateDescriptions[] =
         .replaceAbilityString = DESC_SCHOOLING,
     },
     {
-        .species = SPECIES_WISHIWASHI_S,
+        .species = SPECIES_WISHIWASHI_SCHOOLING,
         .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
         .replaceAbilityString = DESC_SCHOOLING,
     },
@@ -1035,6 +1203,16 @@ static struct DuplicateAbility sDuplicateDescriptions[] =
         .replaceAbilityString = DESC_HUNGERSWITCH,
     },
     {
+        .species = SPECIES_DEMOLETT,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ROCKYSHELTER,
+    },
+    {
+        .species = SPECIES_DEMOLETT_SHELTER,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = DESC_ROCKYSHELTER,
+    },
+    {
         .species = SPECIES_CRAMORANT,
         .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
         .replaceAbilityString = DESC_GULPMISSILE,
@@ -1060,6 +1238,21 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_DUGTRIO_A,
+        .currAbility = ABILITY_STUN_TOUCH, 
+        .replaceAbilityString = NAME_TANGLING_HAIR, 
+    },
+    {
+        .species = SPECIES_POOCHYENA_S,
+        .currAbility = ABILITY_STUN_TOUCH, 
+        .replaceAbilityString = NAME_TANGLING_HAIR, 
+    },
+    {
+        .species = SPECIES_MIGHTYENA_S,
+        .currAbility = ABILITY_STUN_TOUCH, 
+        .replaceAbilityString = NAME_TANGLING_HAIR, 
+    },
+    {
+        .species = SPECIES_JUNGYENA,
         .currAbility = ABILITY_STUN_TOUCH, 
         .replaceAbilityString = NAME_TANGLING_HAIR, 
     },
@@ -1269,6 +1462,21 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_QUEENLY_MAJESTY, 
     },
     {
+        .species = SPECIES_TSAREENA_S,
+        .currAbility = ABILITY_MAJESTIC, 
+        .replaceAbilityString = NAME_QUEENLY_MAJESTY, 
+    },
+    {
+        .species = SPECIES_SUNFLORA_S,
+        .currAbility = ABILITY_MAJESTIC, 
+        .replaceAbilityString = NAME_QUEENLY_MAJESTY, 
+    },
+    {
+        .species = SPECIES_FROSLASS_S,
+        .currAbility = ABILITY_MAJESTIC, 
+        .replaceAbilityString = NAME_QUEENLY_MAJESTY, 
+    },
+    {
         .species = SPECIES_SOLGALEO,
         .currAbility = ABILITY_CLEARBODY, 
         .replaceAbilityString = NAME_FULL_METAL_BODY, 
@@ -1354,6 +1562,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_SOLID_ROCK, 
     },
     {
+        .species = SPECIES_LAPRAS_S,
+        .currAbility = ABILITY_FILTER, 
+        .replaceAbilityString = NAME_SOLID_ROCK, 
+    },
+    {
         .species = SPECIES_NECROZMA,
         .currAbility = ABILITY_FILTER, 
         .replaceAbilityString = NAME_PRISM_ARMOR, 
@@ -1365,6 +1578,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_NECROZMA_DAWN_WINGS,
+        .currAbility = ABILITY_FILTER, 
+        .replaceAbilityString = NAME_PRISM_ARMOR, 
+    },
+    {
+        .species = SPECIES_ELGYEM_S,
+        .currAbility = ABILITY_FILTER, 
+        .replaceAbilityString = NAME_PRISM_ARMOR, 
+    },
+    {
+        .species = SPECIES_BEHEEYEM_S,
         .currAbility = ABILITY_FILTER, 
         .replaceAbilityString = NAME_PRISM_ARMOR, 
     },
@@ -1489,6 +1712,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_PICKPOCKET, 
     },
     {
+        .species = SPECIES_BIDOOF_S,
+        .currAbility = ABILITY_PLUNDER, 
+        .replaceAbilityString = NAME_PICKPOCKET, 
+    },
+    {
+        .species = SPECIES_BIBAREL_S,
+        .currAbility = ABILITY_PLUNDER, 
+        .replaceAbilityString = NAME_PICKPOCKET, 
+    },
+    {
         .species = SPECIES_DRAGONITE,
         .currAbility = ABILITY_MYTHICALSHIELD, 
         .replaceAbilityString = NAME_MULTISCALE, 
@@ -1500,6 +1733,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_LUNALA,
+        .currAbility = ABILITY_MYTHICALSHIELD, 
+        .replaceAbilityString = NAME_SHADOW_SHIELD, 
+    },
+    {
+        .species = SPECIES_BEEDRILL_S,
         .currAbility = ABILITY_MYTHICALSHIELD, 
         .replaceAbilityString = NAME_SHADOW_SHIELD, 
     },
@@ -1664,6 +1902,11 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_OPPORTUNIST,
     },
     {
+        .species = SPECIES_VESPIKING,
+        .currAbility = ABILITY_BEASTBOOST,
+        .replaceAbilityString = NAME_OPPORTUNIST,
+    },
+    {
         .species = SPECIES_GLACEON,
         .currAbility = ABILITY_ICESCALES,
         .replaceAbilityString = NAME_ICY_SKIN,
@@ -1680,6 +1923,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_JYNX,
+        .currAbility = ABILITY_ICESCALES,
+        .replaceAbilityString = NAME_ICY_SKIN,
+    },
+    {
+        .species = SPECIES_SKIDDO_S,
+        .currAbility = ABILITY_ICESCALES,
+        .replaceAbilityString = NAME_ICY_SKIN,
+    },
+    {
+        .species = SPECIES_GOGOAT_S,
         .currAbility = ABILITY_ICESCALES,
         .replaceAbilityString = NAME_ICY_SKIN,
     },
@@ -1714,6 +1967,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_HONEY_ARMOR,
     },
     {
+        .species = SPECIES_GRIMER_S,
+        .currAbility = ABILITY_FLUFFY,
+        .replaceAbilityString = NAME_HONEY_ARMOR,
+    },
+    {
+        .species = SPECIES_MUK_S,
+        .currAbility = ABILITY_FLUFFY,
+        .replaceAbilityString = NAME_HONEY_ARMOR,
+    },
+    {
         .species = SPECIES_CACNEA,
         .currAbility = ABILITY_ROUGHSKIN,
         .replaceAbilityString = NAME_SPIKY_BODY,
@@ -1735,6 +1998,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
     },
     {
         .species = SPECIES_MARACTUS,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_WYNAUT_S,
+        .currAbility = ABILITY_ROUGHSKIN,
+        .replaceAbilityString = NAME_SPIKY_BODY,
+    },
+    {
+        .species = SPECIES_WOBBUFFET_S,
         .currAbility = ABILITY_ROUGHSKIN,
         .replaceAbilityString = NAME_SPIKY_BODY,
     },
@@ -1939,7 +2212,7 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_SCHOOLING,
     },
     {
-        .species = SPECIES_WISHIWASHI_S,
+        .species = SPECIES_WISHIWASHI_SCHOOLING,
         .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
         .replaceAbilityString = NAME_SCHOOLING,
     },
@@ -2039,6 +2312,16 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .replaceAbilityString = NAME_HUNGER_SWITCH,
     },
     {
+        .species = SPECIES_DEMOLETT,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ROCKY_SHELTER,
+    },
+    {
+        .species = SPECIES_DEMOLETT_SHELTER,
+        .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
+        .replaceAbilityString = NAME_ROCKY_SHELTER,
+    },
+    {
         .species = SPECIES_CRAMORANT,
         .currAbility = ABILITY_FORM_CHANGE_SIGNATURE,
         .replaceAbilityString = NAME_GULP_MISSILE,
@@ -2082,5 +2365,15 @@ static struct DuplicateAbility sDuplicateAbilities[] =
         .species = SPECIES_QUILLADIN,
         .currAbility = ABILITY_WATERCOMPACTION,
         .replaceAbilityString = NAME_SOAKAGE,
+    },
+    {
+        .species = SPECIES_LANTURN_MEGA,
+        .currAbility = ABILITY_QUICKDRAW,
+        .replaceAbilityString = NAME_INSTANT_FLASH,
+    },
+    {
+        .species = SPECIES_BASIBLAZE,
+        .currAbility = ABILITY_TOUGHCLAWS,
+        .replaceAbilityString = NAME_WILL_OF_FIRE,
     },
 };

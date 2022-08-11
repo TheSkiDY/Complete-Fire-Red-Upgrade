@@ -401,6 +401,29 @@ bool8 TryActivateOWTerrain(void)
 	bool8 effect = FALSE;
 	u8 owTerrain = VarGet(VAR_TERRAIN);
 
+	u8 group = gSaveBlock1->location.mapGroup;
+	u8 num = gSaveBlock1->location.mapNum;
+	if(group == 6 && num == 9) //Surge gym
+	{
+		owTerrain = ELECTRIC_TERRAIN;
+	}
+	else if(group == 10 && num == 16) //Erika gym
+	{
+		owTerrain = GRASSY_TERRAIN;
+	}
+	else if(group == 14 && num == 3) //Sabrina gym
+	{
+		owTerrain = PSYCHIC_TERRAIN;
+	}
+	else if(group == 1 && num == 77) //Agatha
+	{
+		owTerrain = SHADOW_TERRAIN;
+	}
+	else if(group == 1 && num == 78) // Lance
+	{
+		owTerrain = DRACO_TERRAIN;
+	}
+
 	if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_CIRCUS)
 	{
 		//Can have at most one of these set at a time

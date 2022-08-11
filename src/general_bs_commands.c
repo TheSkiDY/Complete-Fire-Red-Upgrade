@@ -3081,7 +3081,7 @@ void TryPrintFocusEnergyString(void)
 	if (gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY) return;
 	else
 	{
-		u16* ptr = 0x83FE5B0;
+		u16* ptr = (u16*)0x83FE5B0;
 		ptr += gBattleCommunication[MULTISTRING_CHOOSER];
 		u16 stringId = *(u16*)ptr;
 		PrepareStringBattle(stringId, gBankAttacker);
@@ -3771,6 +3771,7 @@ void atkB0_trysetspikes(void)
 			}
 			break;
 
+		case MOVE_STEELYSPIKES:
 		case MOVE_G_MAX_STEELSURGE_P:
 		case MOVE_G_MAX_STEELSURGE_S:
 			if (gSideTimers[defSide].steelsurge)

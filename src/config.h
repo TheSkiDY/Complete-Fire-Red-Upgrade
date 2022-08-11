@@ -193,8 +193,9 @@ enum //These vars need to be one after the other (hence the enum)
 
 //custom flags
 #define FLAG_GEN_3_EXP_SHARE 0x970
-#define FLAG_LVL_CAP_ENABLED 0x971
+#define FLAG_SCRIPT_LVL_CAP_ENABLED 0x971
 #define FLAG_NO_EVS 0x972
+#define FLAG_GYM_LVL_CAP_ENABLED 0x973
 
 //custom vars
 #define VAR_LEVEL_CAP 0x50A0

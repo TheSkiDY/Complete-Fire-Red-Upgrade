@@ -36,6 +36,7 @@
 #include "../include/new/battle_strings.h"
 #include "../include/new/build_pokemon.h"
 #include "../include/new/evolution.h"
+#include "../include/new/exp.h"
 #include "../include/new/follow_me.h"
 #include "../include/new/form_change.h"
 #include "../include/new/item.h"
@@ -173,9 +174,12 @@ void PrintPokedexOnCard(void)
     u8 x;
     u16 levelCap;
 
-    if (FlagGet(FLAG_LVL_CAP_ENABLED))
+    if (FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED) || FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
     {
-    	levelCap = VarGet(VAR_LEVEL_CAP);
+        if(FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
+    	   levelCap = GetGymBasedLevelCap();
+        else
+            levelCap = VarGet(VAR_LEVEL_CAP);
     	ConvertIntToDecimalStringN(buffer, levelCap, 0, 3);
 		x = -128 - 6 * StringLength(buffer);
         AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 72, sTrainerCardTextColors, TEXT_SPEED_FF, gText_TrainerCardLevelCap);

@@ -3200,8 +3200,9 @@ void ReloadRandomizer(void)
 
 void PrintTest(void)
 {
-	mgba_printf(MGBA_LOG_INFO, "Hello.");
-	mgba_printf(MGBA_LOG_INFO, "World.");
+	MgbaPrintfBounded(MGBA_LOG_INFO, "Item id Kabuto: %d", GetMegaEvolutionStone(SPECIES_KABUTO));
+	MgbaPrintfBounded(MGBA_LOG_INFO, "Item id Aerodactyl: %d", GetMegaEvolutionStone(SPECIES_AERODACTYL));
+	MgbaPrintfBounded(MGBA_LOG_INFO, "Item id Absol: %d", GetMegaEvolutionStone(SPECIES_ABSOL));
 }
 
 void SetScrollingListSize(unusedArg u8 taskId)

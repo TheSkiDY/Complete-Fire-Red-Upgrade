@@ -46,4 +46,5 @@ bool8 CanPartyMonBeFrozen(struct Pokemon* mon);
 #define ITEM_USAGE_EVO_LEVEL 35
 #define OTHER_EVO_LEVEL 30
 void DevolveSpeciesByLevel(u16* originalSpecies, u8 level);
+u16 GetMegaEvolutionStone(u16 species);
 

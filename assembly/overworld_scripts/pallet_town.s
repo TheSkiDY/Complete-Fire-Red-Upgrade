@@ -20,10 +20,11 @@ EventScript_PalletTown_TechnologyGuy:
 	faceplayer
 	@setflag 0x940 @randomizer
 	@setflag 0x971 @lvl cap
+	setflag 0x973 @lvl cap
+	setflag 0x820
+	setflag 0x821
 	@setvar 0x50A0 70
-	additem ITEM_RARE_CANDY 400
-	additem ITEM_RARE_CANDY 400
-	additem ITEM_RARE_CANDY 400
+	additem ITEM_RARE_CANDY 999
 	additem ITEM_PP_UP 500
 	additem ITEM_ABILITY_CAPSULE 50
 	additem ITEM_ABILITY_PATCH 50
@@ -37,19 +38,19 @@ EventScript_PalletTown_TechnologyGuy:
 	setflag 0x91E @dexnav
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_MEWTWO 50 0 0 0 0
-	givepokemon SPECIES_TRAPINCH 50 0 0 0 0
-	givepokemon SPECIES_WISHIWASHI 50 0 0 0 0
-	givepokemon SPECIES_DIALGA_ORIGIN 50 0 0 0 0
-	givepokemon SPECIES_MORPEKO 50 0 0 0 0
-	givepokemon SPECIES_SKWOVET 50 0 0 0 0
-	givepokemon SPECIES_OVERQWIL 50 0 0 0 0
+	givepokemon SPECIES_MEWTWO 12 0 0 0 0
+	givepokemon SPECIES_CEBULBA 12 0 0 0 0
+	givepokemon SPECIES_NAH 12 0 0 0 0
+	givepokemon SPECIES_DEMOLETT 12 0 0 0 0
+	givepokemon SPECIES_TOXEL_S 12 0 0 0 0
+	givepokemon SPECIES_ELDEGOSS_S 12 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x82F @running shoes
 	@setflag 0x91F @bike turbo
 	setflag 0x940 @randomizer
 	@setflag 0x90E @trainer scale
 	@setflag 0x200
+	@callasm PrintTest
 	callasm 0x8727DCD
 	end
 

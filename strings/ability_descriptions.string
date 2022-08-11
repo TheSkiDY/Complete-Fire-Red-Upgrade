@@ -503,6 +503,7 @@ All abilities are nullified.
 Protects team from poison.
 
 #org @DESC_HUNGERSWITCH
+#org @DESC_ROCKYSHELTER
 Changes form each turn.
 
 #org @DESC_TRANSISTOR
@@ -615,6 +616,9 @@ Raises crit ratio if suffering.
 
 #org @DESC_WISHPEARL
 Restores 50% more HP.
+
+#org @DESC_MODULATOR
+Sound moves become STEEL-type.
 
 #org @DESC_ABILITY_EMPTY_1
 Empty ability.

@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "../include/random.h"
 #include "../include/constants/abilities.h"
+#include "../include/constants/items.h"
 
 #include "../include/new/damage_calc.h"
 #include "../include/new/evolution.h"
@@ -212,11 +213,11 @@ bool8 CouldHaveEvolvedViaLevelUp(struct Pokemon* mon)
 void DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 {
 	int j, k;
-	bool8 found;
+	//bool8 found;
 	u16 species = *originalSpecies;
 
 	START:
-	found = FALSE;
+	//found = FALSE;
 	for (j = 1; j < NUM_SPECIES; ++j)
 	{
 		for (k = 0; k < EVOS_PER_MON; ++k)
@@ -271,6 +272,26 @@ void EvolveSpeciesByLevel(u16* species, u8 level)
 			goto START; //Evolve until it can't evolve any more
 		}
 	}
+}
+
+u16 GetMegaEvolutionStone(u16 species)
+{
+	const struct Evolution* evolutions;
+	u16 item = ITEM_NONE;
+
+	evolutions = gEvolutionTable[species];
+	for(u32 i = 0; i < EVOS_PER_MON; ++i)
+	{
+		if(evolutions[i].method == EVO_MEGA && evolutions[i].unknown)
+		{
+			if(evolutions[i].unknown == MEGA_VARIANT_WISH)
+				item = ITEM_LIFE_ORB;
+			else
+				item = evolutions[i].param;
+			break;
+		}
+	}
+	return item;
 }
 
 u32 GetBaseStatsTotal(const u16 species)

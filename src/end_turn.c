@@ -1467,17 +1467,17 @@ u8 TurnBasedEffects(void)
 									#endif
 								}
 							}
-							else if(species == SPECIES_WISHIWASHI || species == SPECIES_WISHIWASHI_S)
+							else if(species == SPECIES_WISHIWASHI || species == SPECIES_WISHIWASHI_SCHOOLING)
 							{
 								if (species == SPECIES_WISHIWASHI && gBattleMons[gActiveBattler].level >= 20
 								&& gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 4)
 								{
-									newSpecies = SPECIES_WISHIWASHI_S;
+									newSpecies = SPECIES_WISHIWASHI_SCHOOLING;
 									changedForm = TRUE;
 									reloadStats = TRUE;
 									battleScript = BattleScript_StartedSchooling;
 								}
-								else if (species == SPECIES_WISHIWASHI_S
+								else if (species == SPECIES_WISHIWASHI_SCHOOLING
 									&&  (gBattleMons[gActiveBattler].level < 20
 									  || gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 4))
 								{
@@ -1529,6 +1529,21 @@ u8 TurnBasedEffects(void)
 								else if (species == SPECIES_MORPEKO_HANGRY)
 								{
 									newSpecies = SPECIES_MORPEKO;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+							}
+							else if(species == SPECIES_DEMOLETT || species == SPECIES_DEMOLETT_SHELTER)
+							{
+								if (species == SPECIES_DEMOLETT)
+								{
+									newSpecies = SPECIES_DEMOLETT_SHELTER;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+								else if (species == SPECIES_DEMOLETT_SHELTER)
+								{
+									newSpecies = SPECIES_DEMOLETT;
 									changedForm = TRUE;
 									battleScript = BattleScript_FlowerGiftEnd2;
 								}

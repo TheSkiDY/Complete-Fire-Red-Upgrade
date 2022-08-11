@@ -1125,6 +1125,7 @@ malloc_ = 0x8002B9C | 1;
 Calloc = 0x8002BB0 | 1;
 AllocZeroed = 0x8002BB0 | 1;
 calloc_ = 0x8002BB0 | 1;
+Alloc = 0x8002B9C | 1;
 Free = 0x8002BC4 | 1;
 free_ = 0x8002BC4 | 1;
 LZDecompressWram = 0x0800EBB4|1;

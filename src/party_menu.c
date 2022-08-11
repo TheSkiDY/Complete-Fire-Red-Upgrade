@@ -35,6 +35,7 @@
 #include "../include/new/battle_strings.h"
 #include "../include/new/build_pokemon.h"
 #include "../include/new/evolution.h"
+#include "../include/new/exp.h"
 #include "../include/new/follow_me.h"
 #include "../include/new/form_change.h"
 #include "../include/new/item.h"
@@ -1522,7 +1523,7 @@ void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
     u8 level;
 
     level = GetMonData(mon, MON_DATA_LEVEL, NULL);
-    if(FlagGet(FLAG_LVL_CAP_ENABLED) && level >= VarGet(VAR_LEVEL_CAP))
+    if((FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED) && level >= VarGet(VAR_LEVEL_CAP)) || (FlagGet(FLAG_GYM_LVL_CAP_ENABLED) && level >= GetGymBasedLevelCap()))
     {
     	PlaySE(SE_SELECT);
     	gPartyMenuUseExitCallback = FALSE;
@@ -1539,7 +1540,7 @@ void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func)
     ItemUse_SetQuestLogEvent(4, mon, Var800E, 0xFFFF);
     PlayFanfareByFanfareNum(0);
     UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    //RemoveBagItem(gSpecialVar_ItemId, 1);
     GetMonNickname(mon, gStringVar1);
     ConvertIntToDecimalStringN(gStringVar2, level + 1, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);

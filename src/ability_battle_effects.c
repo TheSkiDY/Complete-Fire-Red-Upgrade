@@ -147,6 +147,7 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_LIMBER] = 3,
 	[ABILITY_LIQUIDOOZE] = 3,
 	[ABILITY_LIQUIDVOICE] = 5,
+	[ABILITY_MODULATOR] = 5,
 	[ABILITY_LONGREACH] = 3,
 	[ABILITY_MAGICBOUNCE] = 9,
 	[ABILITY_MAGICGUARD] = 9,
@@ -756,7 +757,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		case ABILITY_MOLDBREAKER:
 			gBattleStringLoader = gText_MoldBreakerActivate;
-			for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
+			for(u16 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
 			{
 				if(sDuplicateAbilities[i].species == SPECIES(bank) && sDuplicateAbilities[i].replaceAbilityString == NAME_TURBOBLAZE)
 				{
@@ -1165,18 +1166,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_FORM_CHANGE_SIGNATURE:
-			if(SPECIES(bank) == SPECIES_WISHIWASHI || SPECIES(bank) == SPECIES_WISHIWASHI_S)
+			if(SPECIES(bank) == SPECIES_WISHIWASHI || SPECIES(bank) == SPECIES_WISHIWASHI_SCHOOLING)
 			{
 				if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
 				{
 					if (SPECIES(bank) == SPECIES_WISHIWASHI && gBattleMons[bank].level >= 20
 					&&  gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 4))
 					{
-						DoFormChange(bank, SPECIES_WISHIWASHI_S, FALSE, TRUE, FALSE);
+						DoFormChange(bank, SPECIES_WISHIWASHI_SCHOOLING, FALSE, TRUE, FALSE);
 						BattleScriptPushCursorAndCallback(BattleScript_StartedSchoolingEnd3);
 						++effect;
 					}
-					else if (SPECIES(bank) == SPECIES_WISHIWASHI_S
+					else if (SPECIES(bank) == SPECIES_WISHIWASHI_SCHOOLING
 					&& (gBattleMons[bank].level < 20 ||
 						gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 4)))
 					{

@@ -15,6 +15,7 @@
 #include "../include/new/battle_util.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/exp.h"
 #include "../include/new/form_change.h"
 #include "../include/new/general_bs_commands.h"
 #include "../include/new/item.h"
@@ -1181,9 +1182,13 @@ static u8 IsMonDisobedient(void)
 
 		}
 
-		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		if(FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED))
 		{
 			obedienceLevel = VarGet(VAR_LEVEL_CAP);
+		}
+		else if(FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
+		{
+			obedienceLevel = GetGymBasedLevelCap();
 		}
 		else
 		{
@@ -1210,9 +1215,13 @@ static u8 IsMonDisobedient(void)
 		else
 			obedienceLevel = BASE_OBEDIENCE_LEVEL;
 
-		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		if(FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED))
 		{
 			obedienceLevel = VarGet(VAR_LEVEL_CAP);
+		}
+		else if(FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
+		{
+			obedienceLevel = GetGymBasedLevelCap();
 		}
 		else
 		{

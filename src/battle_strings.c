@@ -1072,7 +1072,7 @@ const u8* GetAbilityNameByMon(const u8 ability, const u16 species)
 	const u8* ptr = NULL; 
 	u8 firstType = gBaseStats[species].type1;
 	u8 ateType, terrainType;
-	for(u8 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
+	for(u16 i = 0; i < ARRAY_COUNT(sDuplicateAbilities); i++)
 	{
 		if(ability == sDuplicateAbilities[i].currAbility && species == sDuplicateAbilities[i].species)
 		{

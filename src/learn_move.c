@@ -390,7 +390,7 @@ const u8* CopyMoveReminderMoveName(u8 cursor)
 
 u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
 {
-	u16 learnedMoves[4];
+	//u16 learnedMoves[4];
 	u8 numMoves = 0;
 	u16 species = mon->species;
 	u8 level = mon->level;
@@ -409,8 +409,8 @@ u8 GetMoveRelearnerMoves(struct Pokemon* mon, u16* moves)
 	}
 #endif
 
-	for (i = 0; i < MAX_MON_MOVES; ++i)
-		learnedMoves[i] = mon->moves[i];
+	// for (i = 0; i < MAX_MON_MOVES; ++i)
+	// 	learnedMoves[i] = mon->moves[i];
 
 	for (i = 0; i < MAX_LEARNABLE_MOVES; ++i) //50 max moves can be relearned
 	{

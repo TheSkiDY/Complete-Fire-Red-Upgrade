@@ -10,6 +10,7 @@
 
 #include "../include/new/battle_strings.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/exp.h"
@@ -55,6 +56,28 @@ static u32 GetExpToLevel(u8 toLevel, u8 growthRate);
 static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
 void GetExp_Gen3_ExpShare();
 void GetExp_Gen6_ExpShare();
+
+
+u8 GymLevelCaps[] =
+{
+	[0] = 16,
+	[1] = 27,
+	[2] = 35,
+	[3] = 44,
+	[4] = 55,
+	[5] = 60,
+	[6] = 70,
+	[7] = 81,
+	[8] = 88,
+	[9] = 100,
+};
+
+u8 GetGymBasedLevelCap()
+{
+	u8 gymCount = GetOpenWorldBadgeCount();
+	u8 cap = GymLevelCaps[gymCount];
+	return cap;
+}
 
 ///////////////////// GAIN EXPERIENCE //////////////////////
 void atk23_getexp(void)
@@ -234,9 +257,13 @@ void GetExp_Gen3_ExpShare()
 
 		u8 lvlCap = 100;
 
-		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		if(FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED))
 		{
 			lvlCap = VarGet(VAR_LEVEL_CAP);
+		}
+		else if(FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
+		{
+			lvlCap = GetGymBasedLevelCap();
 		}
 
 		if(pokeLevel >= lvlCap)
@@ -605,9 +632,13 @@ void GetExp_Gen6_ExpShare()
 
 		u8 lvlCap = 100;
 
-		if(FlagGet(FLAG_LVL_CAP_ENABLED))
+		if(FlagGet(FLAG_SCRIPT_LVL_CAP_ENABLED))
 		{
 			lvlCap = VarGet(VAR_LEVEL_CAP);
+		}
+		else if(FlagGet(FLAG_GYM_LVL_CAP_ENABLED))
+		{
+			lvlCap = GetGymBasedLevelCap();
 		}
 
 		if(pokeLevel >= lvlCap)

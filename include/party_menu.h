@@ -168,5 +168,3 @@ bool8 __attribute__((long_call)) some_other_kind_of_link_test(void);
 void __attribute__((long_call)) InitChooseHalfPartyForBattle(u8 a1);
 u8 __attribute__((long_call)) GetItemEffectType(u16 item);
 void __attribute__((long_call)) PartyMenuModifyHP(u8 taskId, u8 slot, s8 hpIncrement, s16 hpDifference, TaskFunc task);
-
-static void MoveRelearnerLoadBgGfx(void);

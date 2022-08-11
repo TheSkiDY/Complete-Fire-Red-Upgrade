@@ -172,6 +172,8 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder);
 static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 trainerId);
 static u8 GetPartyIdFromPartyData(struct Pokemon* mon);
 static u8 GetHighestMonLevel(const struct Pokemon* const party);
+static u8 CheckProperRandomizerSpecies(u16 species);
+static bool8 CheckIfMonHasType(u16 species, u8 type);
 
 #ifdef OPEN_WORLD_TRAINERS
 
@@ -741,6 +743,15 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 						break;
 				}
 			}
+
+			//Assign mega evolutions to randomized mons
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER) && IsBossTrainerClassForLevelScaling(trainerId))
+			{
+				u16 itemId = GetMegaEvolutionStone(party[i].species);
+				if(itemId != ITEM_NONE)
+					SetMonData(&party[i], MON_DATA_HELD_ITEM, &itemId);
+			}
+
 
 			//Assign Trainer information to mon
 			u8 otGender = trainer->gender;
@@ -3711,6 +3722,9 @@ u8 CheckProperRandomizerSpecies(u16 species)
 				break;
 			case CLASS_CHANNELER:
 				foundGoodMon = CheckIfMonHasType(species, TYPE_GHOST);
+				break;
+			case CLASS_CHAMPION:
+				foundGoodMon = CheckTableForSpecies(species, gSetPerfectXIvList);
 				break;
 			default:
 				foundGoodMon = 1;

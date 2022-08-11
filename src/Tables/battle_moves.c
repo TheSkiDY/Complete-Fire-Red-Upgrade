@@ -12494,20 +12494,20 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = Z_EFFECT_ACC_UP_1
 	},
 
-	[MOVE_EMPTY_41] =
+	[MOVE_STEELYSPIKES] =
 	{
-		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
-		.accuracy = 100,
-		.pp = 35,
+		.effect = EFFECT_SPIKES,
+		.power = 0,
+		.type = TYPE_STEEL,
+		.accuracy = 0,
+		.pp = 15,
 		.secondaryEffectChance = 0,
-		.target = MOVE_TARGET_SELECTED,
+		.target = MOVE_TARGET_OPPONENTS_FIELD,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
-		.z_move_effect = 0
+		.flags = FLAG_MAGIC_COAT_AFFECTED,
+		.z_move_power = 0,
+		.split = SPLIT_STATUS,
+		.z_move_effect = Z_EFFECT_DEF_UP_1
 	},
 
 	[MOVE_EMPTY_42] =

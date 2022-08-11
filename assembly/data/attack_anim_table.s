@@ -817,7 +817,7 @@ gMoveAnimations:
 .word ANIM_TAKE_HEART
 .word ANIM_SHADOW_TERRAIN
 .word ANIM_DRACO_TERRAIN
-.word 0x81c6f34	@ANIM_MOVE_EMPTY_41
+.word ANIM_STEELY_SPIKES
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_42
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_43
 .word 0x81c6f34	@ANIM_MOVE_EMPTY_44
@@ -5739,6 +5739,12 @@ ANIM_TOXICSPIKES:
 
 .align 2
 TSPIKES: objtemplate ANIM_TAG_SPIKES ANIM_TAG_SHADOW_BALL OAM_OFF_16x16 gDummySpriteAnimTable 0x0 gDummySpriteAffineAnimTable 0x80DE8B1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_STEELY_SPIKES:
+	goto 0x81cf503
+	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

@@ -806,8 +806,8 @@ MOVESCR_CHECK_0:
 		case EFFECT_SPECIAL_ATTACK_UP_2:
 			switch(move) {
 				case MOVE_GROWTH:
-				case MOVE_WORKUP:
-				AI_WORK_UP_CHECK: ;
+				case MOVE_WORKUP: ;
+				//AI_WORK_UP_CHECK: ;
 					if (((!STAT_CAN_RISE(bankAtk,STAT_STAGE_ATK)|| !PhysicalMoveInMoveset(bankAtk))
 					  && (!STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk)))
 					|| data->atkAbility == ABILITY_CONTRARY)
