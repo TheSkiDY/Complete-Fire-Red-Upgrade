@@ -465,6 +465,9 @@ s32 CalcStrengthSapHealAmount(u8 bankAtk, u8 bankDef)
 	if (ITEM_EFFECT(bankAtk) == ITEM_EFFECT_BIG_ROOT)
 		attack = (13 * attack) / 10;
 
+	if(ABILITY(bankAtk) == ABILITY_WISHPEARL)
+		attack = (15 * attack) / 10;
+
 	return attack * -1;
 }
 
@@ -1606,6 +1609,8 @@ void TryManipulateDamageForLeechSeedBigRoot(void)
 {
 	if (ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_BIG_ROOT)
 		gBattleMoveDamage = (gBattleMoveDamage * 130) / 100;
+	if(ABILITY(gBankTarget) == ABILITY_WISHPEARL)
+		gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
 }
 
 #define gText_BattleYesNoChoice (u8*) 0x83FE791

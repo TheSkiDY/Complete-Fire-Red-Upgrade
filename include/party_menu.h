@@ -159,6 +159,7 @@ u8 __attribute__((long_call)) GetCursorSelectionMonId(void);
 bool8 __attribute__((long_call)) FieldCallback_PrepareFadeInFromMenu(void);
 void __attribute__((long_call)) CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void __attribute__((long_call)) CB2_MoveRelearner_Init(void);
+void __attribute__((long_call)) Move_Relearner(void);
 void __attribute__((long_call)) Task_InitMoveRelearnerMenu(u8 taskId);
 
 void __attribute__((long_call)) AnimatePartySlot(u8 slot, u8 b);

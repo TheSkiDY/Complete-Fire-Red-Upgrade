@@ -774,6 +774,8 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 
 				if (ITEM_EFFECT(bankAtk) == ITEM_EFFECT_BIG_ROOT)
 					amountToRecover = (130 * predictedDmg) / 100;
+				if(ABILITY(bankAtk) == ABILITY_WISHPEARL)
+					amountToRecover = (150 * predictedDmg) / 100;
 			}
 			break;
 
@@ -795,6 +797,8 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 				u16 hp = MathMax(1, maxHp / 16);
 				if (itemEffect == ITEM_EFFECT_BIG_ROOT)
 					amountToRecover += (130 * hp) / 100;
+				if(ability == ABILITY_WISHPEARL)
+					amountToRecover += (150 * hp) / 100;
 			}
 
 			for (int i = 0; i < gBattlersCount; ++i)

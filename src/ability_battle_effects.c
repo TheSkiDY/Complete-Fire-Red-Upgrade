@@ -1,3 +1,5 @@
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
 #include "defines.h"
 #include "defines_battle.h"
 #include "../include/battle_anim.h"
@@ -580,6 +582,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 				#endif
 			#endif
+			}
+
+			u8 group = gSaveBlock1->location.mapGroup;
+			u8 num = gSaveBlock1->location.mapNum;
+			if(group == 12 && num == 0) //Blaine gym
+			{
+				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+				gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+				effect++;
 			}
 
 			if (effect)

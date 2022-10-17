@@ -8,6 +8,7 @@
 #include "../include/script.h"
 #include "../include/string_util.h"
 #include "../include/wild_encounter.h"
+#include "../include/mgba.h"
 #include "../include/constants/event_objects.h"
 #include "../include/constants/items.h"
 #include "../include/constants/maps.h"
@@ -145,7 +146,6 @@ static u8 GetPlayerBiasedAverageLevel(u8 maxLevel);
 static bool8 CanTrainerEvolveMon(void);
 static bool8 IsPseudoBossTrainerPartyForLevelScaling(u8 trainerPartyFlags);
 #endif
-static bool8 IsBossTrainerClassForLevelScaling(u16 trainerId);
 static void ModifySpeciesAndLevelForGenericBattle(u16* species, u8* level, u8 minEnemyTeamLevel, u8 averagePlayerTeamLevel, u8 trainerClass, bool8 shouldEvolve);
 static void ModifySpeciesAndLevelForBossBattle(unusedArg u16* species, unusedArg u8* level, unusedArg u8 maxEnemyTeamLevel, unusedArg u8 maxPlayerTeamLevel, unusedArg bool8 shouldEvolve);
 static u8 BuildFrontierParty(struct Pokemon* const party, const u16 trainerNum, const u8 tier, const bool8 firstTrainer, const bool8 forPlayer, const u8 side);
@@ -933,7 +933,7 @@ static bool8 IsPseudoBossTrainerPartyForLevelScaling(u8 trainerPartyFlags)
 
 #endif
 
-static bool8 IsBossTrainerClassForLevelScaling(u16 trainerId)
+bool8 IsBossTrainerClassForLevelScaling(u16 trainerId)
 {
 	switch (gTrainers[trainerId].trainerClass) {
 		case CLASS_LEADER:
@@ -3546,9 +3546,14 @@ bool8 CheckIfMonHasType(u16 species, u8 type)
 u8 CheckProperRandomizerSpecies(u16 species)
 {
 	u8 foundGoodMon = 0;
+	//MgbaPrintfBounded(MGBA_LOG_INFO, "Checking species:");
+	//MgbaPrintEncoded(MGBA_LOG_INFO, gSpeciesNames[species]);
 
 	if(CheckTableForSpecies(species, gRandomizerTrainerSpeciesBanList))
+	{
+		//MgbaPrintfBounded(MGBA_LOG_INFO, "Mon is in ban list.");
 		return 0;
+	}
 
 	if(gBattleTypeFlags & (BATTLE_TYPE_TRAINER))
 	{
@@ -3751,6 +3756,8 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		u32 id = MathMax(1, T1_READ_32(gSaveBlock2->playerTrainerId)); //0 id would mean every Pokemon would crash the game
 		u32 idMod = 0;
 
+		//MgbaPrintfBounded(MGBA_LOG_INFO, "TryRandomize entered.");
+
 		u16 dexNavSpecies = VarGet(VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES);
 		if(dexNavSpecies != SPECIES_NONE)
 		{
@@ -3797,6 +3804,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
             }
 
             prevNewSpecies = newSpecies;
+
 		} while (CheckProperRandomizerSpecies(newSpecies) == 0);
 		
 
@@ -3806,6 +3814,8 @@ void TryRandomizeSpecies(unusedArg u16* species)
 			DevolveSpeciesByLevel(species, GetPlayerAverageLevel() + 1);
 			EvolveSpeciesByLevel(species, GetPlayerAverageLevel() - 1);
 		}
+		// MgbaPrintfBounded(MGBA_LOG_INFO, "This species passed:");
+		// MgbaPrintEncoded(MGBA_LOG_INFO, gSpeciesNames[*species]);
 	}
 	#endif
 }

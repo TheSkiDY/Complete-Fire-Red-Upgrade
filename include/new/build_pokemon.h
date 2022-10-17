@@ -27,6 +27,7 @@ u8 GetOpenWorldBadgeCount(void);
 u8 GetScaledWildBossLevel(u8 level);
 void TryRandomizeSpecies(u16* species);
 u8 TryRandomizeAbility(u8 ability, u16 species);
+bool8 IsBossTrainerClassForLevelScaling(u16 trainerId);
 
 //Functions Hooked In
 void BuildTrainerPartySetup(void);

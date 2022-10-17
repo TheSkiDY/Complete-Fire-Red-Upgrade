@@ -928,14 +928,14 @@ const u8 gFieldMoveBadgeRequirements[FIELD_MOVE_COUNT] =
 static void CursorCb_Relearn(u8 taskId)
 {
 	PlaySE(SE_SELECT);
-	gTasks[taskId].func = CursorCb_RelearnCallback;
+	Var8004 = gPartyMenu.slotId;
+	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	gTasks[taskId].func = Task_InitMoveRelearnerMenu;
 }
 
 static void CursorCb_RelearnCallback(u8 taskId)
 {
-	Var8004 = gPartyMenu.slotId;
-	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-	gTasks[taskId].func = Task_InitMoveRelearnerMenu;
+	gTasks[taskId].func = CursorCb_RelearnCallback;
 }
 
 
@@ -2639,6 +2639,7 @@ static void Task_ChangeNature(u8 taskId)
 	u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
 	u16 sid = HIHALF(trainerId);
 	u16 tid = LOHALF(trainerId);
+	u8 formeId = personality % 20;
 
 	do
 	{
@@ -2722,7 +2723,7 @@ static u8 GetAbilityCapsuleNewAbility(struct Pokemon* mon)
 			&& gBaseStats[species].ability2 != ABILITY_NONE)
 				changeTo = gBaseStats[species].ability2;
 		}
-		else if (ability == gBaseStats[species].ability2) //Explicit check just in case the Pokemon has its Hidden Ability
+		else
 		{
 			if (gBaseStats[species].ability1 != ABILITY_NONE)
 				changeTo = gBaseStats[species].ability1;
@@ -2785,6 +2786,7 @@ static void Task_ChangeAbility(u8 taskId)
 		u8 nature = GetNatureFromPersonality(personality);
 		bool8 isMinior = IsMinior(species);
 		u16 miniorCore = GetMiniorCoreFromPersonality(personality);
+		u8 formeId = personality % 20;
 
 		//Change the ability while keeping other personality values the same
 		do

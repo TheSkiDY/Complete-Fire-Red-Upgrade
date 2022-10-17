@@ -166,7 +166,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 						break;
 
-					if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
+					if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN)
 						INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
 					/*else if (IsMaxMove(move) && IS_DOUBLE_BATTLE && BATTLER_ALIVE(data->bankAtkPartner)
 						&& PhysicalMoveInMoveset(data->bankAtkPartner) && atkAbility != ABILITY_CONTRARY)
@@ -219,7 +219,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			}*/
 
 			//Continue defense check
-			if (BankLikelyToUseMoveSplit(bankDef, class) == SPLIT_PHYSICAL && atkAbility != ABILITY_CONTRARY)
+			if (BankLikelyToUseMoveSplit(bankDef, class) == SPLIT_PHYSICAL && atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 				INCREASE_STAT_VIABILITY(STAT_STAGE_DEF, 10, 1);
 			break;
 
@@ -228,7 +228,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		AI_SPEED_PLUS:
 			if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 				break;
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY || gTerrainType != SHADOW_TERRAIN)
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPEED, 8, 3);
 			break;
 
@@ -272,7 +272,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				AI_SPECIAL_ATTACK_PLUS:
 					if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 						break;
-					if (SpecialMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
+					if (SpecialMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 						INCREASE_STAT_VIABILITY(STAT_STAGE_SPATK, 8, 2);
 					break;
 			}
@@ -283,7 +283,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		AI_SPECIAL_DEFENSE_PLUS: ;
 			if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 				break;
-			if (BankLikelyToUseMoveSplit(bankDef, class) == SPLIT_SPECIAL && atkAbility != ABILITY_CONTRARY)
+			if (BankLikelyToUseMoveSplit(bankDef, class) == SPLIT_SPECIAL && atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPDEF, 10, 1);
 			break;
 
@@ -292,7 +292,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		AI_ACCURACY_PLUS: ;
 			if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 				break;
-			if (MoveInMovesetWithAccuracyLessThan(bankAtk, bankDef, 90, TRUE) && defAbility != ABILITY_CONTRARY)
+			if (MoveInMovesetWithAccuracyLessThan(bankAtk, bankDef, 90, TRUE) && defAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 				INCREASE_STAT_VIABILITY(STAT_STAGE_ACC, STAT_STAGE_MAX, 2);
 			break;
 
@@ -303,7 +303,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 			if (move != MOVE_ACUPRESSURE)
 			{
-				if (atkAbility != ABILITY_CONTRARY)
+				if (atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 					INCREASE_STAT_VIABILITY(STAT_STAGE_EVASION, STAT_STAGE_MAX, 4);
 			}
 			break;
@@ -594,6 +594,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				else //Double Battle
 				{
 					if (defAbility != ABILITY_CONTRARY
+					&&  gTerrainType != SHADOW_TERRAIN
 					&& defAbility != ABILITY_CLEARBODY
 					&& !(WEATHER_HAS_EFFECT && (defAbility == ABILITY_LEAFGUARD && gBattleWeather & WEATHER_SUN_ANY))
 					&& defAbility != ABILITY_WHITESMOKE
@@ -1368,7 +1369,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_BELLY_DRUM:
-			if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY)
+			if (PhysicalMoveInMoveset(bankAtk) && atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 			{
 				if (IsTypeZCrystal(data->atkItem, moveType) && !IsMegaZMoveBannedBattle())
 					INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, STAT_STAGE_MAX, 5);
@@ -1672,7 +1673,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_INGRAIN: //+ Aqua Ring
-			if (data->atkItemEffect == ITEM_EFFECT_BIG_ROOT)
+			if(atkAbility == ABILITY_WISHPEARL)
+				INCREASE_STATUS_VIABILITY(4);
+			else if (data->atkItemEffect == ITEM_EFFECT_BIG_ROOT)
 				INCREASE_STATUS_VIABILITY(2);
 			else
 				INCREASE_STATUS_VIABILITY(1);
@@ -1797,7 +1800,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_TICKLE:
-			if (STAT_STAGE(bankDef, STAT_STAGE_DEF) > 4 && PhysicalMoveInMoveset(bankAtk) && defAbility != ABILITY_CONTRARY)
+			if (STAT_STAGE(bankDef, STAT_STAGE_DEF) > 4 && PhysicalMoveInMoveset(bankAtk) && defAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 				goto AI_DEFENSE_MINUS;
 			else
 				goto AI_ATTACK_MINUS;
@@ -1805,7 +1808,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_COSMIC_POWER:
 		AI_COSMIC_POWER: ;
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 			{
 				if (STAT_STAGE(bankAtk, STAT_STAGE_DEF) < 10 || IsClassBatonPass(class))
 					goto AI_DEFENSE_PLUS;
@@ -1834,7 +1837,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 						break; //Will be able to KO after the HP cut
 					//Fallthrough
 				case MOVE_NORETREAT:
-					if (IsMovePredictionPhazingMove(bankDef, bankAtk) || atkAbility == ABILITY_CONTRARY)
+					if (IsMovePredictionPhazingMove(bankDef, bankAtk) || atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 						break;
 
 					//Try to boost either Attack, Sp. Attack, or Speed
@@ -1858,7 +1861,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_BULK_UP:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN)
 			{
 				if (STAT_STAGE(bankAtk, STAT_STAGE_ATK) < 8 || IsClassBatonPass(class))
 					goto AI_ATTACK_PLUS;
@@ -1873,7 +1876,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY &&  gTerrainType != SHADOW_TERRAIN)
 			{
 				switch (move) {
 					case MOVE_GEOMANCY:
@@ -1896,7 +1899,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_DRAGON_DANCE:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN)
 			{
 				switch (move) {
 					case MOVE_SHELLSMASH:

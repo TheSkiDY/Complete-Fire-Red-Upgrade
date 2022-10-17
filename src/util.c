@@ -3,6 +3,7 @@
 #include "../include/constants/abilities.h"
 #include "../include/constants/items.h"
 
+#include "../include/mgba.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/evolution.h"
 #include "../include/new/util.h"
@@ -222,7 +223,7 @@ void DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 	{
 		for (k = 0; k < EVOS_PER_MON; ++k)
 		{
-			if(gEvolutionTable[j][k].targetSpecies == *originalSpecies)
+			if(gEvolutionTable[j][k].targetSpecies == species)
 			{
 				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
 					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < FRIENDSHIP_EVO_LEVEL)
@@ -250,6 +251,7 @@ void DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 		#endif
 	}
 
+
 	if (species != *originalSpecies)
 		*originalSpecies = species;
 }
@@ -272,6 +274,10 @@ void EvolveSpeciesByLevel(u16* species, u8 level)
 			goto START; //Evolve until it can't evolve any more
 		}
 	}
+
+
+	// MgbaPrintfBounded(MGBA_LOG_INFO, "Species evolving function done.");
+
 }
 
 u16 GetMegaEvolutionStone(u16 species)
@@ -282,7 +288,7 @@ u16 GetMegaEvolutionStone(u16 species)
 	evolutions = gEvolutionTable[species];
 	for(u32 i = 0; i < EVOS_PER_MON; ++i)
 	{
-		if(evolutions[i].method == EVO_MEGA && evolutions[i].unknown)
+		if(evolutions[i].method == EVO_MEGA)
 		{
 			if(evolutions[i].unknown == MEGA_VARIANT_WISH)
 				item = ITEM_LIFE_ORB;

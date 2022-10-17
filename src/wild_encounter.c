@@ -872,7 +872,7 @@ bool8 StandardWildEncounter(const u32 currMetaTileBehavior, const u16 previousMe
 			#ifdef FLAG_DOUBLE_WILD_BATTLE
 			if (!FlagGet(FLAG_DOUBLE_WILD_BATTLE) //Flag hasn't already been set by user
 			&&  ViableMonCount(gPlayerParty) >= 2
-			&&  (lowerByte & TILE_FLAG_WILD_DOUBLE)
+			&&  (lowerByte & TILE_FLAG_ENCOUNTER_TILE)
 			&&  Random() % 100 < WILD_DOUBLE_RANDOM_CHANCE)
 			{
 				FlagSet(FLAG_DOUBLE_WILD_BATTLE);

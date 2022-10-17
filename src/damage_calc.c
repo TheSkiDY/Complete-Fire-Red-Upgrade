@@ -1,3 +1,5 @@
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
 #include "defines.h"
 #include "defines_battle.h"
 #include "../include/event_data.h"

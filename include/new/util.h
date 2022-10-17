@@ -42,9 +42,9 @@ bool8 CanPartyMonBeParalyzed(struct Pokemon* mon);
 bool8 CanPartyMonBeBurned(struct Pokemon* mon);
 bool8 CanPartyMonBeFrozen(struct Pokemon* mon);
 
-#define FRIENDSHIP_EVO_LEVEL 40
-#define ITEM_USAGE_EVO_LEVEL 35
-#define OTHER_EVO_LEVEL 30
+#define FRIENDSHIP_EVO_LEVEL 20
+#define ITEM_USAGE_EVO_LEVEL 45
+#define OTHER_EVO_LEVEL 40
 void DevolveSpeciesByLevel(u16* originalSpecies, u8 level);
 u16 GetMegaEvolutionStone(u16 species);
 

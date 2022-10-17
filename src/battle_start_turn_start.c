@@ -1,3 +1,5 @@
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
 #include "defines.h"
 #include "defines_battle.h"
 #include "../include/battle_transition.h"
@@ -403,7 +405,7 @@ bool8 TryActivateOWTerrain(void)
 
 	u8 group = gSaveBlock1->location.mapGroup;
 	u8 num = gSaveBlock1->location.mapNum;
-	if(group == 6 && num == 9) //Surge gym
+	if(group == 9 && num == 6) //Surge gym
 	{
 		owTerrain = ELECTRIC_TERRAIN;
 	}

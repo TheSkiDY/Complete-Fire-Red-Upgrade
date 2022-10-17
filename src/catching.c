@@ -166,13 +166,15 @@ void atkEF_handleballthrow(void)
 					ballMultiplier = MathMax(40, 10 + gBattleResults.battleTurnCounter * 3);
 					break;
 
+				case BALL_TYPE_SHINY_BALL:
+					ballMultiplier = 35;
+					break;
 				case BALL_TYPE_LUXURY_BALL:
 				case BALL_TYPE_PREMIER_BALL:
 				case BALL_TYPE_CHERISH_BALL:
 				case BALL_TYPE_FRIEND_BALL:
 				case BALL_TYPE_HEAL_BALL:
 				case BALL_TYPE_DREAM_BALL:
-				case BALL_TYPE_SHINY_BALL:
 					ballMultiplier = 10;
 					break;
 
@@ -532,6 +534,7 @@ void ForceShinyByShinyBall(struct Pokemon* mon)
 	u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
 	u8 letter = GetUnownLetterFromPersonality(personality);
 	bool8 abilityMatters = !mon->hiddenAbility;
+	u8 formeId = personality % 20;
 
 	mon->friendship = 200;
 	do

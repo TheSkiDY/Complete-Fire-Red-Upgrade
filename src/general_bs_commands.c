@@ -2234,6 +2234,9 @@ void atk7B_tryhealhalfhealth(void)
 		else
 			gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankTarget) / 2); //50 %
 
+		if(ABILITY(gBankAttacker) == ABILITY_WISHPEARL)
+			gBattleMoveDamage = (gBattleMoveDamage * 15) / 10;
+
 		gBattleMoveDamage *= -1;
 		gBattlescriptCurrInstr += 6;
 	}
@@ -2545,6 +2548,9 @@ void atk88_negativedamage(void) {
 
 	if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_BIG_ROOT)
 		gBattleMoveDamage = udivsi(130 * gHpDealt, 100);
+
+	if(ABILITY(gBankAttacker) == ABILITY_WISHPEARL)
+		gBattleMoveDamage = udivsi(150 * gHpDealt, 100);
 
 	gBattleMoveDamage *= -1;
 
@@ -4268,6 +4274,9 @@ void atkC0_recoverbasedonsunlight(void) {
 
 			gBattleMoveDamage = GetBaseMaxHP(gBankAttacker) / 4;
 		}
+
+		if(ABILITY(gBankAttacker) == ABILITY_WISHPEARL)
+			gBattleMoveDamage = (15 * gBattleMoveDamage) / 10;
 
 		gBattleMoveDamage = MathMax(1, gBattleMoveDamage);
 		gBattleMoveDamage *= -1;

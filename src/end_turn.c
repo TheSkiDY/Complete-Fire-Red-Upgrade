@@ -518,6 +518,8 @@ u8 TurnBasedEffects(void)
 					gBattleMoveDamage = GetBaseMaxHP(gActiveBattler) / 16;
 					if (ITEM_EFFECT(gActiveBattler) == ITEM_EFFECT_BIG_ROOT)
 						gBattleMoveDamage = (gBattleMoveDamage * 130) / 100;
+					if(ABILITY(gActiveBattler) == ABILITY_WISHPEARL)
+						gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
 
@@ -536,6 +538,8 @@ u8 TurnBasedEffects(void)
 					gBattleMoveDamage = GetBaseMaxHP(gActiveBattler) / 16;
 					if (ITEM_EFFECT(gActiveBattler) == ITEM_EFFECT_BIG_ROOT)
 						gBattleMoveDamage = (gBattleMoveDamage * 13) / 10;
+					if(ABILITY(gActiveBattler) == ABILITY_WISHPEARL)
+						gBattleMoveDamage = (gBattleMoveDamage * 15) / 10;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
 
@@ -1682,7 +1686,12 @@ u32 GetLeechSeedDamage(u8 bank)
 
 	if (gStatuses3[bank] & STATUS3_LEECHSEED
 	&& ABILITY(bank) != ABILITY_MAGICGUARD)
-		damage = MathMax(1, GetBaseMaxHP(bank) / 8);
+	{
+		if(ABILITY(gBankTarget) == ABILITY_WISHPEARL)
+			damage = MathMax(1, GetBaseMaxHP(bank) * 3 / 16);
+		else
+			damage = MathMax(1, GetBaseMaxHP(bank) / 8);
+	}
 
 	return damage;
 }

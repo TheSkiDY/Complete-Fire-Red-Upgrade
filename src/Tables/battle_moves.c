@@ -2394,7 +2394,7 @@ const struct BattleMove gBattleMoves[] =
 		.priority = 1,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 0,
-		.split = SPLIT_STATUS,
+		.split = SPLIT_SPECIAL,
 		.z_move_effect = Z_EFFECT_EVSN_UP_1
 	},
 
@@ -5845,7 +5845,7 @@ const struct BattleMove gBattleMoves[] =
 		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 10,
-		.secondaryEffectChance = 70,
+		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,

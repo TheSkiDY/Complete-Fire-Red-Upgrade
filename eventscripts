@@ -1,5 +1,8 @@
 ##
 npc 3 0 1 EventScript_PalletTown_TechnologyGuy
+tile 3 0 3 EventScript_PalletTown_RandomizerStop
+tile 3 0 4 EventScript_PalletTown_RandomizerStop
+npc 1 0 0 EventScript_ViridianForest_AllItemsGuy
 
 
 ##New PokeCenter script
@@ -56,6 +59,7 @@ npc 3 7 11 EventScript_CutTree
 npc 3 7 12 EventScript_CutTree 
 npc 3 7 13 EventScript_CutTree
 npc 3 13 5 EventScript_CutTree
+npc 3 1 9 EventScript_RockSmash
 npc 3 20 4 EventScript_RockSmash
 npc 1 82 11 EventScript_RockSmash 
 npc 1 82 12 EventScript_RockSmash 

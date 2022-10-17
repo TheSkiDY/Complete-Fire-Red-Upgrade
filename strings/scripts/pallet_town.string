@@ -1,5 +1,8 @@
 #org @gText_PalletTown_TechnologyGuy
-Hello, world!\nI'm a debug NPC created by\lCFRU scripting.\pIsn't it cool?
+Hello, world!\nI'm a debug NPC created by\lCFRU scripting.\pThe randomizer has been\nturned [GREEN]on[BLACK].
 
 #org @gText_TechnologyGuyName
 Mr. Debug
+
+#org @gText_PalletTown_NotRandomized
+I should enable\nthe randomizer first.

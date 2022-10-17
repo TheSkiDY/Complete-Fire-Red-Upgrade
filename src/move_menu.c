@@ -9,6 +9,7 @@
 #include "../include/new/ai_util.h"
 #include "../include/new/battle_indicators.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/general_bs_commands.h"
@@ -1965,6 +1966,13 @@ bool8 IsBagDisabled(void)
 			return FALSE;
 	}
 	#endif
+	if(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	{
+		if(IsBossTrainerClassForLevelScaling(gTrainerBattleOpponent_A))
+		{
+			return TRUE;
+		}		
+	}
 
 	return FlagGet(FLAG_DISABLE_BAG) || (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_FRONTIER));
 }

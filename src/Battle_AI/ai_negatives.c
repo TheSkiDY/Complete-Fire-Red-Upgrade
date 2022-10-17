@@ -620,6 +620,8 @@ MOVESCR_CHECK_0:
 			{
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
+				else if(gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(4);
 				else if (!STAT_CAN_FALL(bankDef, STAT_STAGE_ATK))
 					DECREASE_VIABILITY(10);
 				break;
@@ -735,7 +737,7 @@ MOVESCR_CHECK_0:
 
 		case EFFECT_ATTACK_UP:
 		case EFFECT_ATTACK_UP_2:
-			if (data->atkAbility != ABILITY_CONTRARY)
+			if (data->atkAbility != ABILITY_CONTRARY || gTerrainType != SHADOW_TERRAIN)
 			{
 				switch (move) {
 					case MOVE_HONECLAWS:
@@ -791,14 +793,14 @@ MOVESCR_CHECK_0:
 					break;
 
 				default:
-					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_DEF))
+					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_DEF) || gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 			}
 			break;
 
 		case EFFECT_SPEED_UP:
 		case EFFECT_SPEED_UP_2:
-			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED))
+			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED) || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -810,7 +812,7 @@ MOVESCR_CHECK_0:
 				//AI_WORK_UP_CHECK: ;
 					if (((!STAT_CAN_RISE(bankAtk,STAT_STAGE_ATK)|| !PhysicalMoveInMoveset(bankAtk))
 					  && (!STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk)))
-					|| data->atkAbility == ABILITY_CONTRARY)
+					|| data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 					break;
 
@@ -820,10 +822,12 @@ MOVESCR_CHECK_0:
 						if (!(IsOfType(bankAtk, TYPE_GRASS)
 							  && CheckGrounding(bankAtk)
 							  && data->atkAbility != ABILITY_CONTRARY
+							  && gTerrainType != SHADOW_TERRAIN
 							  && (STAT_CAN_RISE(bankAtk, STAT_STAGE_ATK) || STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK)))
 						&&  !(IsOfType(bankAtkPartner, TYPE_GRASS)
 							  && CheckGrounding(bankAtkPartner)
 							  && data->atkPartnerAbility != ABILITY_CONTRARY
+							  && gTerrainType != SHADOW_TERRAIN
 							  && (STAT_CAN_RISE(bankAtkPartner, STAT_STAGE_ATK) || STAT_CAN_RISE(bankAtkPartner, STAT_STAGE_SPATK))))
 						{
 							DECREASE_VIABILITY(10);
@@ -832,6 +836,7 @@ MOVESCR_CHECK_0:
 					else if (!(IsOfType(bankAtk, TYPE_GRASS)
 						    && CheckGrounding(bankAtk)
 						    && data->atkAbility != ABILITY_CONTRARY
+						    && gTerrainType != SHADOW_TERRAIN
 						    && (STAT_CAN_RISE(bankAtk, STAT_STAGE_ATK) || STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK))))
 					{
 						DECREASE_VIABILITY(10);
@@ -854,7 +859,7 @@ MOVESCR_CHECK_0:
 					break;
 */
 				default:
-					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))
+					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk) ||  gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 			}
 			break;
@@ -862,13 +867,13 @@ MOVESCR_CHECK_0:
 		case EFFECT_SPECIAL_DEFENSE_UP:
 		case EFFECT_SPECIAL_DEFENSE_UP_2:
 		AI_SPDEF_RAISE_1: ;
-			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPDEF))
+			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_SPDEF) ||  gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			break;
 
 		case EFFECT_ACCURACY_UP:
 		case EFFECT_ACCURACY_UP_2:
-			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_ACC))
+			if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_ACC) ||  gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -877,12 +882,12 @@ MOVESCR_CHECK_0:
 		case EFFECT_MINIMIZE:
 			switch (move) {
 				case MOVE_ACUPRESSURE:
-					if (StatsMaxed(bankDef) || data->defAbility == ABILITY_CONTRARY)
+					if (StatsMaxed(bankDef) || data->defAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 					break;
 
 				default:
-					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_EVASION))
+					if (data->atkAbility == ABILITY_CONTRARY || !STAT_CAN_RISE(bankAtk, STAT_STAGE_EVASION) ||  gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 			}
 			break;
@@ -1084,7 +1089,8 @@ MOVESCR_CHECK_0:
 		case EFFECT_TOXIC:
 			if (move == MOVE_TOXICTHREAD
 			&& STAT_STAGE(bankDef, STAT_STAGE_SPEED) > STAT_STAGE_MIN
-			&& data->defAbility != ABILITY_CONTRARY)
+			&& data->defAbility != ABILITY_CONTRARY
+			&& gTerrainType != SHADOW_TERRAIN)
 				break;
 
 			if (AI_SpecialTypeCalc(move, bankAtk, bankDef) & MOVE_RESULT_NO_EFFECT)
@@ -1629,6 +1635,8 @@ MOVESCR_CHECK_0:
 			{
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
+				else if(gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(3);
 			}
 			else
 				goto AI_CONFUSE;
@@ -1729,7 +1737,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_BELLY_DRUM:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else if (GetHealthPercentage(bankAtk) <= 50)
 				DECREASE_VIABILITY(10);
@@ -1828,6 +1836,8 @@ MOVESCR_CHECK_0:
 			{
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
+				else if(gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(3);
 			}
 			else
 				goto AI_CONFUSE;
@@ -2116,7 +2126,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_TICKLE:
-			if (data->defAbility == ABILITY_CONTRARY)
+			if (data->defAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 			{
 				DECREASE_VIABILITY(10);
 				break;
@@ -2133,7 +2143,7 @@ MOVESCR_CHECK_0:
 			goto AI_SUBSTITUTE_CHECK;
 
 		case EFFECT_COSMIC_POWER:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -2164,7 +2174,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_BULK_UP:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -2191,7 +2201,7 @@ MOVESCR_CHECK_0:
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 					DECREASE_VIABILITY(10);
 			else
 			{
@@ -2215,7 +2225,7 @@ MOVESCR_CHECK_0:
 		case EFFECT_DRAGON_DANCE:
 			switch (move) {
 				case MOVE_SHELLSMASH:
-					if (data->atkAbility == ABILITY_CONTRARY)
+					if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 						goto AI_COSMIC_POWER;
 
 					if ((STAT_STAGE(bankAtk, STAT_STAGE_SPATK) >= STAT_STAGE_MAX || !SpecialMoveInMoveset(bankAtk))
@@ -2225,7 +2235,7 @@ MOVESCR_CHECK_0:
 					break;
 
 				default: //Dragon Dance + Shift Gear
-					if (data->atkAbility == ABILITY_CONTRARY)
+					if (data->atkAbility == ABILITY_CONTRARY ||  gTerrainType == SHADOW_TERRAIN)
 						DECREASE_VIABILITY(10);
 					else
 					{
