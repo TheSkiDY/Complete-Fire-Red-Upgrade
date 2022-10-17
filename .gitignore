@@ -2,6 +2,8 @@ Grit_Flags.docx
 *.ini
 *.gba
 build/*
+.vscode
+.vscode/*
 */Images/*.h
 *.sgm
 *.dmp
