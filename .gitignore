@@ -13,6 +13,10 @@ build/*
 *.ss1
 *.ss2
 *.ss3
+test.*
+BPRE0.*
+.vscode
+.vscode/*
 Multi Target Moves Plan.txt
 generatedrepoints
 *__pycache__
