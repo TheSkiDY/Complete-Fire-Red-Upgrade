@@ -983,7 +983,7 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			{
 				#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
 				if (gFieldMoves[j] == MOVE_ROCKCLIMB
-				&& !CheckBagHasItem(ITEM_HM08_ROCK_CLIMB, 1))
+				&& !CheckBagHasItem(ITEM_HM08, 1))
 					continue; //Don't allow Rock Climbing until the item is obtained
 				#endif
 
@@ -1037,7 +1037,7 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			 #ifdef FLAG_SANDBOX_MODE
 			 FlagGet(FLAG_SANDBOX_MODE) ||
 			 #endif
-			 (CheckBagHasItem(ITEM_HM02_FLY, 1) > 0 && CanMonLearnTMTutor(&mons[slotId], ITEM_HM02_FLY, 0) == CAN_LEARN_MOVE))
+			 (CheckBagHasItem(ITEM_HM02, 1) > 0 && CanMonLearnTMTutor(&mons[slotId], ITEM_HM02, 0) == CAN_LEARN_MOVE))
 			#endif
 			)
 			{
@@ -1058,7 +1058,7 @@ void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 			 #ifdef FLAG_SANDBOX_MODE
 			 FlagGet(FLAG_SANDBOX_MODE) ||
 			 #endif
-			 (CheckBagHasItem(ITEM_TM28_DIG, 1) > 0 && CanMonLearnTMTutor(&mons[slotId], ITEM_TM28_DIG, 0) == CAN_LEARN_MOVE))
+			 (CheckBagHasItem(ITEM_TM28, 1) > 0 && CanMonLearnTMTutor(&mons[slotId], ITEM_TM28, 0) == CAN_LEARN_MOVE))
 			#endif
 			)
 			{
@@ -1116,7 +1116,7 @@ static bool8 SetUpFieldMove_Surf(void)
 
 	u16 item = ITEM_NONE;
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-	item = ITEM_HM03_SURF;
+	item = ITEM_HM03;
 	#endif
 
 	if (PartyHasMonWithFieldMovePotential(MOVE_SURF, item, SHOULDNT_BE_SURFING) < PARTY_SIZE
@@ -1349,7 +1349,7 @@ void sp10A_CanUseCutOnTree(void)
 	u16 item = ITEM_NONE;
 
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-	item = ITEM_HM01_CUT;
+	item = ITEM_HM01;
 	#endif
 
 	Var8004 = PARTY_SIZE;
@@ -1374,7 +1374,7 @@ void sp10B_CanUseRockSmashOnRock(void)
 	u16 item = ITEM_NONE;
 
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-	item = ITEM_HM06_ROCK_SMASH;
+	item = ITEM_HM06;
 	#endif
 
 	Var8004 = PARTY_SIZE;
@@ -1399,7 +1399,7 @@ void sp10C_CanUseStrengthOnBoulder(void)
 	u16 item = ITEM_NONE;
 
 	#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-	item = ITEM_HM04_STRENGTH;
+	item = ITEM_HM04;
 	#endif
 
 	Var8004 = PARTY_SIZE;

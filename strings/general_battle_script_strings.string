@@ -221,7 +221,7 @@ The sleep clause prevents more\nPOK\eMON from being put to sleep!
 #org @gText_RemovedTargetFrostbite
 [TARGET]'s frostbite\nwas cured!
 
-#org @gText_RemovedATTACKerFrostbite
+#org @gText_RemovedAttackerFrostbite
 [ATTACKER]'s frostbite\nwas cured!
 
 #org @gText_ItemRemovedFrostbite

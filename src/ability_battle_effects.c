@@ -1134,11 +1134,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				if (SPECIES(bank) == SPECIES_WISHIWASHI && gBattleMons[bank].level >= 20
 				&&  gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 4))
 				{
-					DoFormChange(bank, SPECIES_WISHIWASHI_S, FALSE, TRUE, FALSE);
+					DoFormChange(bank, SPECIES_WISHIWASHI_SCHOOLING, FALSE, TRUE, FALSE);
 					BattleScriptPushCursorAndCallback(BattleScript_StartedSchoolingEnd3);
 					++effect;
 				}
-				else if (SPECIES(bank) == SPECIES_WISHIWASHI_S
+				else if (SPECIES(bank) == SPECIES_WISHIWASHI_SCHOOLING
 				&& (gBattleMons[bank].level < 20 ||
 					gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 4)))
 				{
