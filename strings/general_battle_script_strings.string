@@ -58,7 +58,7 @@ The battlefield got weird!
 #org @TargetTransformedIntoType
 [TARGET]'s type\nchanged to [BUFFER][00]!
 
-#org @gText_ATTACKerChangedType
+#org @gText_AttackerChangedType
 [ATTACKER]'s type\nchanged to [BUFFER][00]!
 
 #org @gText_AbilityChangedType
