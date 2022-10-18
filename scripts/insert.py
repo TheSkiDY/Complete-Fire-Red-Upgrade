@@ -452,6 +452,29 @@ def main():
 
                     Hook(rom, code, offset, int(register))
 
+        # Read routine repoints from a file
+        if os.path.isfile(ROUTINE_POINTERS):
+            with open(ROUTINE_POINTERS, 'r') as pointerlist:
+                definesDict = {}
+                conditionals = []
+                for line in pointerlist:
+                    if TryProcessFileInclusion(line, definesDict):
+                        continue
+                    if TryProcessConditionalCompilation(line, definesDict, conditionals):
+                        continue
+                    if line.strip().startswith('#') or line.strip() == '':
+                        continue
+
+                    symbol, address = line.split()
+                    offset = int(address, 16) - 0x08000000
+                    try:
+                        code = table[symbol]
+                    except KeyError:
+                        print('Symbol missing:', symbol)
+                        continue
+
+                    Repoint(rom, code, offset, 1)
+
         # Read repoints from a file
         if os.path.isfile(REPOINTS):
             with open(REPOINTS, 'r') as repointList:
@@ -487,28 +510,6 @@ def main():
 
                         Repoint(rom, code, offset, int(slide))
 
-        # Read routine repoints from a file
-        if os.path.isfile(ROUTINE_POINTERS):
-            with open(ROUTINE_POINTERS, 'r') as pointerlist:
-                definesDict = {}
-                conditionals = []
-                for line in pointerlist:
-                    if TryProcessFileInclusion(line, definesDict):
-                        continue
-                    if TryProcessConditionalCompilation(line, definesDict, conditionals):
-                        continue
-                    if line.strip().startswith('#') or line.strip() == '':
-                        continue
-
-                    symbol, address = line.split()
-                    offset = int(address, 16) - 0x08000000
-                    try:
-                        code = table[symbol]
-                    except KeyError:
-                        print('Symbol missing:', symbol)
-                        continue
-
-                    Repoint(rom, code, offset, 1)
 
         # Read routine rewrite wrapper from a file
         if os.path.isfile(FUNCTION_REWRITES):

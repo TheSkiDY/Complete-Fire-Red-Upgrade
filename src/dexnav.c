@@ -2423,10 +2423,13 @@ static void PrintDexNavMessage(u8 messageId)
 	StringExpandPlaceholders(gStringVar4, text);
 	WindowPrint(WIN_TEXTBOX, 1, 4, 0, &sBlackText, GetPlayerTextSpeedDelay(), gStringVar4);
 	RunTextPrinters();
-
-	if (sDexNavGUIPtr->cursorSpriteId < MAX_SPRITES)
-		StartSpriteAnim(&gSprites[sDexNavGUIPtr->cursorSpriteId], 1); //Pointing and unmoving
-
+	
+	if (messageId != MESSAGE_NO_POKEMON_HERE) //Don't animate cursor if it doesn't exist
+    {
+        if (sDexNavGUIPtr->cursorSpriteId < MAX_SPRITES)
+            StartSpriteAnim(&gSprites[sDexNavGUIPtr->cursorSpriteId], 1); //Pointing and unmoving
+    }
+	
 	ShowBg(BG_TEXTBOX);
 }
 
