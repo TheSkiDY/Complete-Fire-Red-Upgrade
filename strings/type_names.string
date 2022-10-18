@@ -3,58 +3,58 @@ FILL_FF=True
 
 #org @gTypeNames
 #org @NAME_NORMAL
-Normal
+NORMAL
 
 #org @NAME_FIGHTING
-Fight
+FIGHT
 
 #org @NAME_FLYING
-Flying
+FLYING
 
 #org @NAME_POISON
-Poison
+POISON
 
 #org @NAME_GROUND
-Ground
+GROUND
 
 #org @NAME_ROCK
-Rock
+ROCK
 
 #org @NAME_BUG
-Bug
+BUG
 
 #org @NAME_GHOST
-Ghost
+GHOST
 
 #org @NAME_STEEL
-Steel
+STEEL
 
 #org @NAME_TYPELESS
 ???
 
 #org @NAME_FIRE
-Fire
+FIRE
 
 #org @NAME_WATER
-Water
+WATER
 
 #org @NAME_GRASS
-Grass
+GRASS
 
 #org @NAME_ELECTRIC
-Electr
+ELECTR
 
 #org @NAME_PSYCHC
-Psychc
+PSYCHC
 
 #org @NAME_ICE
-Ice
+ICE
 
 #org @NAME_DRAGON
-Dragon
+DRAGON
 
 #org @NAME_DARK
-Dark
+DARK
 
 #org @FAIRY_TYPE_ALIGNMENT_1
 -
@@ -72,4 +72,4 @@ Dark
 -
 
 #org @NAME_FAIRY
-Fairy
+FAIRY

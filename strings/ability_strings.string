@@ -26,7 +26,7 @@ The effects of weather\ndisappeared.
 [SCRIPTING_BANK] is radiating\na fairy aura!
 
 #org @gText_AuraBreakActivate
-[SCRIPTING_BANK] reversed all\nother Pok\emon's auras!
+[SCRIPTING_BANK] reversed all\nother POK\eMON's auras!
 
 #org @gText_ComatoseActivate
 [SCRIPTING_BANK] is drowsing!
@@ -53,7 +53,7 @@ A heavy rain began to fall!
 The sunlight turned extremely harsh!
 
 #org @gText_DeltaStream
-Mysterious strong winds are protecting\nFlying-type Pok\emon!
+Mysterious strong winds are protecting\nFLYING-type POK\eMON!
 
 #org @gText_StrongWindsWeakenedAttack
 The mysterious strong winds\nweakened the attack!
@@ -73,8 +73,8 @@ But the vicious sandstorm refuses\nto let up!
 #org @gText_SlowStartEnd
 [SCRIPTING_BANK] got its\nact together!
 
-#org @gText_FlashFirePowerUp
-The power of [SCRIPTING_BANK]'s\nFire-type moves rose!
+#org @gText_FlashFIREPowerUp
+The power of [SCRIPTING_BANK]'s\nFIRE-type moves rose!
 
 #org @gText_AbilityCuredStatusProblem
 [SCRIPTING_BANK] was cured of\nits [BUFFER][00] problem!
@@ -95,19 +95,19 @@ The power of [SCRIPTING_BANK]'s\nFire-type moves rose!
 [LAST_ABILITY] allows only\n[CURRENT_MOVE] to be used!\p
 
 #org @gText_IceFaceTookDamage
-The Ice Face took damage for\n[TARGET]!
+The ICE FACE took damage for\n[TARGET]!
 
 #org @gText_IceFaceBusted
-[TARGET]'s Ice Face\nshattered!
+[TARGET]'s ICE FACE\nshattered!
 
 #org @gText_ScreenCleanerActivate
 All screens on the field were\ncleansed!
 
 #org @gText_NeutralizingGasActivate
-Neutralizing Gas fills the area!
+NEUTRALIZING GAS fills the area!
 
 #org @gText_NeutralizingGasEnd
-The effects of Neutralizing Gas\nwore off!
+The effects of NEUTRALIZING GAS\nwore off!
 
 #org @gText_CuriousMedicineActivate
 [TARGET]'s stat changes\nwere removed!

@@ -279,7 +279,7 @@ BattleScript_MoveUsedRingChallengePrevents:
 	attackstring
 	pause DELAY_HALFSECOND
 	orbyte OUTCOME OUTCOME_FAILED
-	setword BATTLE_STRING_LOADER gText_RingChallengeAttackCancel
+	setword BATTLE_STRING_LOADER gText_RingChallengeBanSpecificMove
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END

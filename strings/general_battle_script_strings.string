@@ -26,7 +26,7 @@ It had no effect on [DEF_PREFIX_5]\n[TARGET_NAME] and [TARGET_PARTNER_NAME][.]
 [ATTACKER] twisted\nthe dimensions!
 
 #org @WonderRoomSetString
-It created a bizarre area in which\nthe Def and Sp. Def stats are swapped!
+It created a bizarre area in which\nthe DEFENSE and SP.DEF stats are swapped!
 
 #org @MagicRoomSetString
 It created a bizarre are in which\nheld items lose their effects!
@@ -38,7 +38,7 @@ Gravity intensified!
 A deluge of ions showers the\nbattlefield!
 
 #org @NoMoreAirborneFromGravityString
-[SCRIPTING_BANK] couldn't\nstay airborne due to Gravity!
+[SCRIPTING_BANK] couldn't\nstay airborne due to GRAVITY!
 
 #org @Bank0AWasBroughtDownString
 [SCRIPTING_BANK] was\nbrought down!
@@ -58,7 +58,7 @@ The battlefield got weird!
 #org @TargetTransformedIntoType
 [TARGET]'s type\nchanged to [BUFFER][00]!
 
-#org @gText_AttackerChangedType
+#org @gText_ATTACKerChangedType
 [ATTACKER]'s type\nchanged to [BUFFER][00]!
 
 #org @gText_AbilityChangedType
@@ -86,7 +86,7 @@ Congratulations [PLAYER_NAME]!
 The tailwind blew from behind\n[FD][36] team!
 
 #org @LuckyChantSetString
-The Lucky Chant shielded\n[FD][36] team from critical hits!
+The LUCKY CHANT shielded\n[FD][36] team from critical hits!
 
 #org @EntrainmentString
 #org @WorrySeedString
@@ -94,7 +94,7 @@ The Lucky Chant shielded\n[FD][36] team from critical hits!
 [TARGET] acquired\n[TARGET_ABILITY]!
 
 #org @AbilitySuppressedString
-[TARGET]'s Ability\nwas suppressed!
+[TARGET]'s ability\nwas suppressed!
 
 #org @TargetStatsResetString
 [TARGET]'s stat changes\nwere removed!
@@ -103,40 +103,40 @@ The Lucky Chant shielded\n[FD][36] team from critical hits!
 [TARGET]'s [FD][16]\nwas burnt up!
 
 #org @gText_TargetWasInfested
-[TARGET] has been\nafflicted with an Infestation!
+[TARGET] has been\nafflicted with an INFESTATION!
 
 #org @SkyDropUpString
 [ATTACKER] took\n[TARGET] into the sky!
 
 #org @FreedFromSkyDropString
-[SCRIPTING_BANK] was freed\nfrom the Sky Drop!
+[SCRIPTING_BANK] was freed\nfrom the SKY DROP!
 
 #org @CraftyShieldSetString
-Crafty Shield protected\n[FD][36] team!
+CRAFTY SHIELD protected\n[FD][36] team!
 
 #org @MatBlockSetString
-[ATTACKER] intends to flip\nup a mat and block incoming attacks!
+[ATTACKER] intends to flip\nup a mat and block incoming ATTACKs!
 
 #org @QuickGuardSetString
-Quick Guard protected\n[FD][36] team!
+QUICK GUARD protected\n[FD][36] team!
 
 #org @WideGuardSetString
-Wide Guard protected\n[FD][36] team!
+WIDE GUARD protected\n[FD][36] team!
 
 #org @CraftyShieldProtectedString
-The Crafty Shield protected\n[TARGET]!
+The CRAFTY SHIELD protected\n[TARGET]!
 
 #org @MatBlockProtectedString
 [CURRENT_MOVE] was blocked by the\nkicked-up mat!
 
 #org @QuickGuardProtectedString
-The Quick Guard protected\n[TARGET]!
+The QUICK GUARD protected\n[TARGET]!
 
 #org @WideGuardProtectedString
-The Wide Guard protected\n[TARGET]!
+The WIDE GUARD protected\n[TARGET]!
 
 #org @gText_JawLockNoEscape
-Neither Pok\emon can run away!
+Neither POK\eMON can run away!
 
 #org @gText_CanNoLongerEscape
 [TARGET] can no longer\nescape!
@@ -160,7 +160,7 @@ Neither Pok\emon can run away!
 [ATTACKER] is\noverflowing with space power!
 
 #org @gText_PoltergeistWarn
-[TARGET] is about to\nbe attacked by its [LAST_ITEM]!
+[TARGET] is about to\nbe ATTACKed by its [LAST_ITEM]!
 
 #org @gText_WokenByUproar
 [SCRIPTING_BANK] was woken up\nby the Uproar!
@@ -180,7 +180,7 @@ Neither Pok\emon can run away!
 [TARGET] stays awake!
 
 #org @gText_TeamProtectedBySafeguard
-[TARGET]'s party is\nprotected by Safeguard!
+[TARGET]'s party is\nprotected by SAFEGUARD!
 
 #org @gText_TargetWrappedInMistyTerrain
 [TARGET] surrounds\nitself in a protective mist!
@@ -207,7 +207,7 @@ Neither Pok\emon can run away!
 [TARGET] is protected\nby an aromatic veil!
 
 #org @gText_SleepClausePrevents
-The sleep clause prevents more\nPok\emon from being put to sleep!
+The sleep clause prevents more\nPOK\eMON from being put to sleep!
 
 #org @gText_GotFrostbite
 [EFFECT_BANK] got frostbite!
@@ -221,7 +221,7 @@ The sleep clause prevents more\nPok\emon from being put to sleep!
 #org @gText_RemovedTargetFrostbite
 [TARGET]'s frostbite\nwas cured!
 
-#org @gText_RemovedAttackerFrostbite
+#org @gText_RemovedATTACKerFrostbite
 [ATTACKER]'s frostbite\nwas cured!
 
 #org @gText_ItemRemovedFrostbite
@@ -261,13 +261,13 @@ Aurora Veil protects [FD][36] team\nagainst physical and special moves!
 [BUFFER][38] team's [BUFFER][00]\nwore off!
 
 #org @gText_TauntWoreOff
-[SCRIPTING_BANK]'s Taunt\nwore off!
+[SCRIPTING_BANK]'s TAUNT\nwore off!
 
 #org @gText_TailwindWoreOff
 [BUFFER][38] team's tailwind\npetered out!
 
 #org @gText_LuckyChantWoreOff
-[BUFFER][38] team's Lucky Chant\nwore off!
+[BUFFER][38] team's LUCKY CHANT\nwore off!
 
 #org @gText_RainbowDisappeared
 The rainbow on [FD][36] team's\nside disappeared!
@@ -282,7 +282,7 @@ The swamp around [FD][36] team\ndisappeared!
 The [LAST_ITEM] restored\n[SCRIPTING_BANK]'s status!
 
 #org @gText_BellyDrumMinimizedAttack
-[ATTACKER] cut its own HP\nand minimized Attack!
+[ATTACKER] cut its own HP\nand minimized ATTACK!
 
 #org @gText_SqueezedByOctolock
 [ATTACKER] was squeezed\nby the Octolock!
@@ -315,13 +315,13 @@ Jagged splinters dug into\n[EFFECT_BANK]!
 [SCRIPTING_BANK] found one\n[LAST_ITEM]!
 
 #org @gText_PerishBodyActivated
-Both Pok\emon will faint in\nthree turns!
+Both POK\eMON will faint in\nthree turns!
 
 #org @gText_SurroundedByGMaxVineLash
 [FD][37] team got trapped\nwith vines!
 
 #org @gText_HurtByGMaxVineLash
-[ATTACKER] is hurt by\nG-Max Vine Lash's ferocious beating!
+[ATTACKER] is hurt by\nG-MAX VINE LASH's ferocious beating!
 
 #org @gText_GMaxVineLashEnded
 The vines around [FD][36]\nteam disappeared!
@@ -330,16 +330,16 @@ The vines around [FD][36]\nteam disappeared!
 [FD][37] team was surrounded\nby fire!
 
 #org @gText_HurtByGMaxWildfire
-[ATTACKER] is burning\nup within G-Max Wildfire's flame!
+[ATTACKER] is burning\nup within G-MAX WILDFIRE's flame!
 
 #org @gText_GMaxWildfireEnded
-The G-Max Wildfire flames around\n[FD][36] team disappeared!
+The G-MAX WILDFIRE flames around\n[FD][36] team disappeared!
 
 #org @gText_SurroundedByGMaxCannonade
 [FD][37] team got caught in\nthe vortex of water!
 
 #org @gText_HurtByGMaxCannonade
-[ATTACKER] is hurt by\nG-Max Cannonade's vortex!
+[ATTACKER] is hurt by\nG-MAX CANNONADE's vortex!
 
 #org @gText_GMaxCannonadeEnded
 The vortex of water around\n[FD][36] team disappeared!
@@ -348,7 +348,7 @@ The vortex of water around\n[FD][36] team disappeared!
 [FD][37] team was surrounded\nby rocks!
 
 #org @gText_HurtByGMaxVolcalith
-[ATTACKER] is hurt\nby G-Max Volcalith's rocks!
+[ATTACKER] is hurt\nby G-MAX VOLCALITH's rocks!
 
 #org @gText_GMaxVolcalithEnded
 The G-Max Volcalith rocks around\n[FD][36] team disappeared!
@@ -366,7 +366,7 @@ The mysterious strong winds\ncontinue to blow.
 [CURRENT_MOVE] can't be selected on the\nInsane difficulty!\p
 
 #org @gText_PickUpItemToBag
-[BUFFER][00] found and placed one\n[LAST_ITEM] in the Bag!
+[BUFFER][00] found and placed one\n[LAST_ITEM] in the BAG!
 
 #org @gText_PickUpItemToCube
 [BUFFER][00] found and placed one\n[LAST_ITEM] in the Cube!
@@ -378,7 +378,7 @@ The mysterious strong winds\ncontinue to blow.
 [BUFFER][00] appears to be holding\nthe [LAST_ITEM].\pWould you like to take the\n[LAST_ITEM] from it?
 
 #org @gText_TookCaughtItemToBag
-One [LAST_ITEM] was taken from\n[BUFFER][00] and placed in the Bag.
+One [LAST_ITEM] was taken from\n[BUFFER][00] and placed in the BAG.
 
 #org @gText_TookCaughtItemToCube
 One [LAST_ITEM] was taken from\n[BUFFER][00] and placed in the Cube.
@@ -392,7 +392,7 @@ One [LAST_ITEM] was taken from\n[BUFFER][00] and placed in the Cube.
 [ATTACKER]'s stats rose!
 
 #org @gText_SemiSwitchOffer
-[TRAINER1_CLASS] [TRAINER1_NAME] is\nabout to send out a new Pok\emon.\pWill [PLAYER_NAME] change\nPok\emon?
+[TRAINER1_CLASS] [TRAINER1_NAME] is\nabout to send out a new POK\eMON.\pWill [PLAYER_NAME] change\nPOK\eMON?
 
 #org @gText_Devolved
 [EFFECT_BANK] has devolved\ninto [BUFFER][00]!
@@ -416,16 +416,16 @@ Negative emotions fill the air!
 [ATTACKER] is\ntormented by the negative emotions!
 
 #org @gText_TailwindBattleStart
-A tailwind blew from behind\nFlying-type Pok\emon!
+A tailwind blew from behind\nFLYING-type POK\eMON!
 
 #org @gText_MagnetRiseBattleStart
 [SCRIPTING_BANK] is\nlevitating with electromagnetism!
 
 #org @gText_TrickRoomBattleStart
-The dimensions are permanently\ntwisted!\pSlower Pok\emon will always move\nfirst!
+The dimensions are permanently\ntwisted!\pSlower POK\eMON will always move\nfirst!
 
 #org @gText_WeightSpeedBattleStart
-Heavy Pok\emon have an advantage\nhere!\pThe heavier the Pok\emon, the\nfaster it will be!
+Heavy POK\eMON have an advantage\nhere!\pThe heavier the POK\eMON, the\nfaster it will be!
 
 #org @gText_ViciousSandstormBrewed
 A vicious sandstorm brewed!
@@ -437,13 +437,13 @@ A vicious sandstorm is raging.
 [ATTACKER] is buffeted\nby the vicious sandstorm!
 
 #org @gText_ShadowShieldBattleStart
-A shadowy veil is covering\nthe field!\pGhost-type Pok\emon will take half\ndamage when at full health!
+A shadowy veil is covering\nthe field!\pGHOST-type POK\eMON will take half\ndamage when at full health!
 
 #org @gText_ShadowShieldBattleBlocksSafeguard
-But only Ghost-types can create a\nSafeguard under the shadowy veil!
+But only GHOST-types can create a\nSAFEGUARD under the shadowy veil!
 
 #org @gText_ShadowShieldBattleBlocksSubstitute
-But only Ghost-types can create a\nSubstitute under the shadowy veil!
+But only GHOST-types can create a\nSUBSTITUTE under the shadowy veil!
 
 #org @gText_PixieBattleStart
 Pixies are flying around the field!
@@ -452,34 +452,34 @@ Pixies are flying around the field!
 The Pixies in the air increased\n[SCRIPTING_BANK]'s [BUFFER][00]!
 
 #org @gText_RainbowBattleStart
-A rainbow appeared in the sky above\nthe entire battlefield!\pThe chance of secondary effects used\nby Dragon-types has been doubled!
+A rainbow appeared in the sky above\nthe entire battlefield!\pThe chance of secondary effects used\nby DRAGON-types has been doubled!
 
 #org @gText_RingChallengeAttackCancel
-But the attack's type can't be used\nin this fight!
+But the ATTACK's type can't be used\nin this fight!
 
 #org @gText_RingChallengeBanMoveMenu
-[BUFFER][00]-type moves can't be used\nin this round of the Ring Challenge!\p
+[BUFFER][00]-type moves can't be used\nin this round of the RING CHALLENGE!\p
 
 #org @gText_RingChallengeBanSpecificMove
-[CURRENT_MOVE] can't be used in\nthe Ring Challenge!\p
+[CURRENT_MOVE] can't be used in\nthe RING CHALLENGE!\p
 
 #org @gText_DynamaxUsable
-Dynamax Energy gathered\naround you!
+Dynamax energy gathered\naround you!
 
 #org @gText_MonDynamaxed
-[SCRIPTING_BANK] created a\nprojection of itself with Dynamax!
+[SCRIPTING_BANK] created a\nprojection of itself with DYNAMAX!
 
 #org @gText_DynamaxEnded
-[SCRIPTING_BANK] is no longer\nDynamaxed!
+[SCRIPTING_BANK] is no longer\ndynamaxed!
 
 #org @gText_DynamaxAttackCancel
 [ATTACKER] shook its\nhead.\pIt seems like it can't use\nthis move[.]
 
 #org @gText_RaidBattleAttackCancel
-But the move was blocked by the\npower of Dynamax!
+But the move was blocked by the\npower of DYNAMAX!
 
 #org @gText_DynamaxItemBlock
-The item was blocked by the\npower of Dynamax!
+The item was blocked by the\npower of DYNAMAX!
 
 #org @gText_RaidBattleReveal
 [SCRIPTING_BANK] appears\nto be massive!
@@ -491,7 +491,7 @@ A storm started brewing above you.
 [SCRIPTING_BANK] is getting\ndesperate!
 
 #org @gText_RaidPokemonGettingDesperateAttacks
-[SCRIPTING_BANK] is getting\ndesperate!\pIts attacks are growing more\naggressive!
+[SCRIPTING_BANK] is getting\ndesperate!\pIts ATTACKs are growing more\naggressive!
 
 #org @gText_RaidShield
 A mysterious barrier appeared in\nfront of [SCRIPTING_BANK]\land is protecting it from attacks!
@@ -506,7 +506,7 @@ The mysterious barrier that was\nprotecting [SCRIPTING_BANK]\ldisappeared!
 [SCRIPTING_BANK]'s [BUFFER][00]\n[BUFFER][01]
 
 #org @gText_RaidBattleStatNullification
-[SCRIPTING_BANK] nullified the\nstat changes and Abilities of\lother Pok\emon!
+[SCRIPTING_BANK] nullified the\nstat changes and abilities of\lother POK\eMON!
 
 #org @gText_RaidBattleKO1
 The storm raging above you is\ngrowing stronger!

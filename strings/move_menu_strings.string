@@ -11,13 +11,13 @@
 [MAIN_COLOUR][07][SHADOW_COLOUR][06]+
 
 #org @gText_Power
-Power: 
+POWER: 
 
 #org @gText_OHKO
 OHKO
 
 #org @gText_Acc
-Acc: 
+ACC: 
 
 #org @gText_NoMiss
 No Miss
