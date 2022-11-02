@@ -397,13 +397,28 @@ PrintTimerString:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_ToxicOrb:
+	jumpifability BANK_EFFECT ABILITY_GUTS ToxicOrbGuts
+	jumpifability BANK_EFFECT ABILITY_VALOUR ToxicOrbGuts
 	statusanimation BANK_EFFECT
 	setword BATTLE_STRING_LOADER ToxicOrbString
+	goto ToxicOrbRest
+	end
+
+ToxicOrbGuts:
+	call BattleScript_AbilityPopUp_BankEffect
+	statusanimation BANK_EFFECT
+	call BattleScript_AbilityPopUp_BankEffectRevert
+	setword BATTLE_STRING_LOADER gText_ToxicOrbGutsString
+	goto ToxicOrbRest
+	end
+ 
+ToxicOrbRest:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_EFFECT
 	waitstateatk
 	end2
+
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

@@ -28,9 +28,9 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 50
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_ESPEON 5 0 0 0 0
-	givepokemon SPECIES_TAPU_FINI 5 0 0 0 0
-	givepokemon SPECIES_QUILAVA_S 5 0 0 0 0
+	givepokemon SPECIES_ZANGOOSE 5 ITEM_TOXIC_ORB 0 0 0
+	givepokemon SPECIES_DRIFBLIM 5 ITEM_TOXIC_ORB 0 0 0
+	givepokemon SPECIES_QUILAVA_S 5 ITEM_TOXIC_ORB 0 0 0
 	givepokemon SPECIES_PINCURCHIN 5 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav

@@ -113,3 +113,5 @@ extern const u8 gText_GMaxVolcalithEnded[];
 extern const u8 gText_PickedUpKnockedOffItem[];
 extern const u8 gText_PickUpItemToBag[];
 extern const u8 gText_PickUpItemToCube[];
+
+extern const u8 gText_ToxicOrbGutsString[];

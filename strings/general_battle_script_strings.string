@@ -525,3 +525,6 @@ The storm is getting too strong to\nwithstand!
 
 #org @gText_BugTypesCantBeConfused
 BUG-type POK\eMON can't be confused!
+
+#org @gText_ToxicOrbGutsString
+[EFFECT_BANK] was poisoned\nby the [LAST_ITEM]!

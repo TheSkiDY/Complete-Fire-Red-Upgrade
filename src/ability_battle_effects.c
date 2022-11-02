@@ -120,7 +120,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#endif
 	[ABILITY_FILTER] = 6,
 	[ABILITY_FLAMEBODY] = 4,
+	#ifdef ABILITY_FLAREBOOST
 	[ABILITY_FLAREBOOST] = 5,
+	#endif
+	[ABILITY_VALOUR] = 6,
 	[ABILITY_FLASHFIRE] = 6,
 	[ABILITY_FLOWERGIFT] = 4,
 	[ABILITY_FLOWERVEIL] = 0,
@@ -342,7 +345,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#ifdef ABILITY_TORRENT
 	[ABILITY_TORRENT] = 5,
 	#endif
+	#ifdef ABILITY_TOXICBOOST
 	[ABILITY_TOXICBOOST] = 6,
+	#endif
 	[ABILITY_TOUGHCLAWS] = 7,
 	[ABILITY_TRACE] = 6,
 	#ifdef ABILITY_TRANSISTOR
@@ -3234,6 +3239,18 @@ void TransferAbilityPopUpHelper(void)
 	}
 
 	TransferAbilityPopUp(gBattleScripting.bank, CopyAbility(gBattleScripting.bank));
+	gLastUsedAbility = gAbilityPopUpHelper;
+}
+
+void TransferAbilityPopUpHelperBankEffect(void)
+{
+	if (gBattleExecBuffer)
+	{
+		gBattlescriptCurrInstr -= 5;
+		return;
+	}
+
+	TransferAbilityPopUp(gEffectBank, CopyAbility(gEffectBank));
 	gLastUsedAbility = gAbilityPopUpHelper;
 }
 

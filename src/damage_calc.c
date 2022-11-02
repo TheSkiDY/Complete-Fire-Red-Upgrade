@@ -2684,6 +2684,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				attack = (attack * 15) / 10;
 			break;
 
+		case ABILITY_VALOUR:
+		//1.5x Boost
+			if (data->atkStatus1 & STATUS_ANY)
+				spAttack = (spAttack * 15) / 10;
+			break;
+			
 		case ABILITY_SOLARPOWER:
 		//1.5x Boost
 			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
@@ -3255,6 +3261,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		damage /= 2;
 	#ifdef FROSTBITE
 	else if (data->moveSplit == SPLIT_SPECIAL
+	&& data->atkAbility != ABILITY_VALOUR
 	&& data->atkStatus1 & STATUS_FREEZE)
 		damage /= 2;
 	#endif
@@ -3939,17 +3946,17 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 12) / 10;
 			break;
 
-		case ABILITY_TOXICBOOST:
-		//1.5x Boost
-			if (data->atkStatus1 & STATUS_PSN_ANY && data->moveSplit == SPLIT_PHYSICAL)
-				power = (power * 15) / 10;
-			break;
+		// case ABILITY_TOXICBOOST:
+		// //1.5x Boost
+		// 	if (data->atkStatus1 & STATUS_PSN_ANY && data->moveSplit == SPLIT_PHYSICAL)
+		// 		power = (power * 15) / 10;
+		// 	break;
 
-		case ABILITY_FLAREBOOST:
-		//1.5x Boost
-			if (data->atkStatus1 & STATUS_BURN && data->moveSplit == SPLIT_SPECIAL)
-				power = (power * 15) / 10;
-			break;
+		// case ABILITY_FLAREBOOST:
+		// //1.5x Boost
+		// 	if (data->atkStatus1 & STATUS_BURN && data->moveSplit == SPLIT_SPECIAL)
+		// 		power = (power * 15) / 10;
+		// 	break;
 
 		case ABILITY_SANDFORCE:
 		//1.3x Boost

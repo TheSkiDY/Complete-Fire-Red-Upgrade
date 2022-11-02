@@ -106,6 +106,8 @@ ability_battle_scripts.s
 
 .global BattleScript_AbilityPopUp
 .global BattleScript_AbilityPopUpRevert
+.global BattleScript_AbilityPopUp_BankEffect
+.global BattleScript_AbilityPopUp_BankEffectRevert
 
 .global BattleScript_BlazeLikeActivates
 
@@ -1388,6 +1390,16 @@ BattleScript_AbilityPopUp:
 
 BattleScript_AbilityPopUpRevert:
 	playanimation BANK_SCRIPTING ANIM_REMOVE_ABILITY_POP_UP 0x0
+	return
+
+BattleScript_AbilityPopUp_BankEffect:
+	callasm TransferAbilityPopUpHelperBankEffect
+	recordlastability BANK_EFFECT
+	playanimation BANK_EFFECT ANIM_LOAD_ABILITY_POP_UP 0x0
+	return
+
+BattleScript_AbilityPopUp_BankEffectRevert:
+	playanimation BANK_EFFECT ANIM_REMOVE_ABILITY_POP_UP 0x0
 	return
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

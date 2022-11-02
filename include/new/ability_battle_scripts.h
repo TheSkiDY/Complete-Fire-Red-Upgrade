@@ -112,6 +112,9 @@ extern const u8 BattleScript_PrimalWeatherEnd[];
 extern const u8 BattleScript_AbilityPopUp[];
 extern const u8 BattleScript_AbilityPopUpRevert[];
 
+extern const u8 BattleScript_AbilityPopUp_BankEffect[];
+extern const u8 BattleScript_AbilityPopUp_BankEffectRevert[];
+
 extern const u8 BattleScript_BlazeLikeActivates[];
 
 

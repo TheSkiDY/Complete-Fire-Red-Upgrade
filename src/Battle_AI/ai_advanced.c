@@ -1068,17 +1068,20 @@ static bool8 BankHoldingUsefulItemToProtectFor(u8 bank)
 	if (itemEffect == ITEM_EFFECT_TOXIC_ORB
 	&& CanBePoisoned(bank, bank, FALSE)
 	&& (ability == ABILITY_POISONHEAL
-	 || ability == ABILITY_TOXICBOOST
-	 || ability == ABILITY_QUICKFEET
+	 /* || ability == ABILITY_TOXICBOOST */
+ 	 || ability == ABILITY_QUICKFEET
 	 || ability == ABILITY_MAGICGUARD
+	 || ability == ABILITY_GUTS
+	 || ability == ABILITY_VALOUR
 	 || MoveInMoveset(MOVE_FACADE, bank)))
 		return TRUE;
 
 	if (itemEffect == ITEM_EFFECT_FLAME_ORB
 	&& CanBeBurned(bank, bank, FALSE)
 	&& (ability == ABILITY_GUTS
-	 || ability == ABILITY_FLAREBOOST
-	 || ability == ABILITY_MAGICGUARD
+  /* || ability == ABILITY_FLAREBOOST */
+ 	 || ability == ABILITY_MAGICGUARD
+ 	 || ability == ABILITY_VALOUR
 	 || MoveInMoveset(MOVE_FACADE, bank)))
 		return TRUE;
 

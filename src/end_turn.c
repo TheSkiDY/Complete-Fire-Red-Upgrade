@@ -1436,7 +1436,7 @@ u8 TurnBasedEffects(void)
 									{
 										gLastUsedItem = ITEM(gActiveBattler);
 										RecordItemEffectBattle(gActiveBattler, itemEffect);
-										gBattleMons[gActiveBattler].status1 |= STATUS1_TOXIC_POISON;
+										gBattleMons[gActiveBattler].status1 |= ((ABILITY(gActiveBattler) == ABILITY_GUTS || ABILITY(gActiveBattler) == ABILITY_VALOUR) ? STATUS1_POISON : STATUS1_TOXIC_POISON);
 										EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
 										MarkBufferBankForExecution(gActiveBattler);
 

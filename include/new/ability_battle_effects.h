@@ -14,6 +14,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 void AnimTask_LoadAbilityPopUp(u8 taskId);
 void AnimTask_DestroyAbilityPopUp(u8 taskId);
 void TransferAbilityPopUpHelper(void);
+void TransferAbilityPopUpHelperBankEffect(void);
 void TransferAbilityPopUpHelperAsTrace(void);
 void TransferAbilityPopUpHelperAsImposter(void);
 void TransferAbilityPopUp(u8 bank, u8 ability);
