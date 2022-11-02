@@ -104,7 +104,9 @@ void atk04_critcalc(void)
 		u8 defAbility = ABILITY(bankDef);
 
 		if (defAbility == ABILITY_BATTLEARMOR
+			#ifdef ABILITY_SHELLARMOR
 		||  defAbility == ABILITY_SHELLARMOR
+			#endif
 		||  CantScoreACrit(gBankAttacker, NULL)
 		||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL | BATTLE_TYPE_POKE_DUDE)
 		||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -198,11 +200,13 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 		defStatus1 = gBattleMons[bankDef].status1;
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move, SPECIES(bankDef)))
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	if (defAbility == ABILITY_BATTLEARMOR
+		#ifdef ABILITY_SHELLARMOR
 	||  defAbility == ABILITY_SHELLARMOR
+		#endif
 	||  CantScoreACrit(bankAtk, monAtk)
 	||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL)
 	||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -1066,7 +1070,7 @@ u8 TypeCalc(u16 move, u8 bankAtk, u8 bankDef, struct Pokemon* monAtk)
 		moveType = GetMoveTypeSpecial(bankAtk, move);
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move, SPECIES(bankDef)))
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check stab
@@ -1149,7 +1153,7 @@ u8 AI_TypeCalc(u16 move, u8 bankAtk, u8 bankDef, struct Pokemon* monDef) //bankD
 		defType3 = gBattleMons[imposterBank].type3;
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move, monDef->species))
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check STAB
@@ -1232,7 +1236,7 @@ u8 AI_SpecialTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	}
 	defType3 = gBattleMons[bankDef].type3; //Same type 3 - eg switched in on Forest's curse
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move, SPECIES(bankDef)))
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check STAB
@@ -1325,7 +1329,7 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 
 	defType3 = gBattleMons[bankDef].type3; //Not affected by Illusion
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move, SPECIES(bankDef)))
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	if (IsDynamaxed(bankDef) && gSpecialMoveFlags[move].gDynamaxBannedMoves) //These moves aren't related to type matchups, but they can still cause the move to fail and should be known to the player
@@ -1657,7 +1661,7 @@ u8 GetMoveTypeSpecial(u8 bankAtk, u16 move)
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing, GetProperAbilityPopUpSpecies(bankAtk));
 }
 
 u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
@@ -1682,7 +1686,7 @@ u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
 	return 0xFF;
 }
 
-u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
+u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive, u16 species)
 {
 	u8 moveType = gBattleMoves[move].type;
 	bool8 moveTypeCanBeChanged = !zMoveActive || SPLIT(move) == SPLIT_STATUS;
@@ -1693,14 +1697,16 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
 		if (moveType == TYPE_NORMAL)
 		{
 			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-					return TYPE_ICE;
-				case ABILITY_PIXILATE:
-					return TYPE_FAIRY;
-				case ABILITY_AERILATE:
-					return TYPE_FLYING;
-				case ABILITY_GALVANIZE:
-					return TYPE_ELECTRIC;
+				case ABILITY_ATE:
+					return GetAteTypeFromSpecies(species);
+				// case ABILITY_REFRIGERATE:
+				// 	return TYPE_ICE;
+				// case ABILITY_PIXILATE:
+				// 	return TYPE_FAIRY;
+				// case ABILITY_AERILATE:
+				// 	return TYPE_FLYING;
+				// case ABILITY_GALVANIZE:
+				// 	return TYPE_ELECTRIC;
 			}
 		}
 
@@ -1725,7 +1731,7 @@ u8 GetMonMoveTypeSpecial(struct Pokemon* mon, u16 move)
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE, mon->species);
 }
 
 static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 zMoveActive)
@@ -1744,10 +1750,11 @@ static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyT
 		if (moveTypeCanBeChanged)
 		{
 			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-				case ABILITY_PIXILATE:
-				case ABILITY_AERILATE:
-				case ABILITY_GALVANIZE:
+				case ABILITY_ATE:
+				// case ABILITY_REFRIGERATE:
+				// case ABILITY_PIXILATE:
+				// case ABILITY_AERILATE:
+				// case ABILITY_GALVANIZE:
 					return TRUE;
 			}
 		}
@@ -2430,7 +2437,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (!data->defenderLoaded)
 		PopulateDamageCalcStructWithBaseDefenderData(data);
 
-	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move))
+	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move, data->defSpecies))
 		data->defAbility = ABILITY_NONE; //Ignore Ability - modify original value intentionally
 
 	//Create new variables so original values stay constant
@@ -2708,38 +2715,47 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				spAttack = (spAttack * 15) / 10;
 			break;
 
-		case ABILITY_OVERGROW:
+		case ABILITY_BLAZE_LIKE:
 		//1.5x Boost
-			if (data->moveType == TYPE_GRASS && data->atkHP <= data->atkMaxHP / 3)
+			if(data->moveType == GetTypeOfBlazeLikeAbilityFromSpecies(GetProperAbilityPopUpSpecies(bankAtk)) && data->atkHP <= data->atkMaxHP / 3)
 			{
 				attack = (attack * 15) / 10;
 				spAttack = (spAttack * 15) / 10;
 			}
 			break;
-		case ABILITY_BLAZE:
-		//1.5x Boost
-			if (data->moveType == TYPE_FIRE && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_TORRENT:
-		//1.5x Boost
-			if (data->moveType == TYPE_WATER && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_SWARM:
-		//1.5x Boost
-			if (data->moveType == TYPE_BUG && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
+
+		// case ABILITY_OVERGROW:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_GRASS && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
+		// case ABILITY_BLAZE:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_FIRE && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
+		// case ABILITY_TORRENT:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_WATER && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
+		// case ABILITY_SWARM:
+		// //1.5x Boost
+		// 	if (data->moveType == TYPE_BUG && data->atkHP <= data->atkMaxHP / 3)
+		// 	{
+		// 		attack = (attack * 15) / 10;
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	}
+		// 	break;
 
 		case ABILITY_GORILLATACTICS:
 		//1.5x Boost
@@ -2784,17 +2800,17 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			defense *= 2;
 			break;
 
-		case ABILITY_PORTALPOWER:
-		//0.75x Decrement
-		#ifdef PORTAL_POWER
-			if ((useMonAtk && !CheckContactByMon(move, data->monAtk))
-			|| (!useMonAtk && !CheckContact(move, bankAtk, bankDef)))
-			{
-				attack = (attack * 75) / 100;
-				spAttack = (spAttack * 75) / 100;
-			}
-		#endif
-			break;
+		// case ABILITY_PORTALPOWER:
+		// //0.75x Decrement
+		// #ifdef PORTAL_POWER
+		// 	if ((useMonAtk && !CheckContactByMon(move, data->monAtk))
+		// 	|| (!useMonAtk && !CheckContact(move, bankAtk, bankDef)))
+		// 	{
+		// 		attack = (attack * 75) / 100;
+		// 		spAttack = (spAttack * 75) / 100;
+		// 	}
+		// #endif
+		// 	break;
 	}
 
 //Attacker Item Checks
@@ -3091,16 +3107,26 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	}
 
 	//Aura Abilities
-	if ((data->moveType == TYPE_DARK
-		&& (ABILITY_ON_FIELD(ABILITY_DARKAURA) || data->atkAbility == ABILITY_DARKAURA || data->defAbility == ABILITY_DARKAURA)) //Check all because may be party mon
-	||  (data->moveType == TYPE_FAIRY
-		&& (ABILITY_ON_FIELD(ABILITY_FAIRYAURA) || data->atkAbility == ABILITY_FAIRYAURA || data->defAbility == ABILITY_FAIRYAURA)))
+	u16 auraSpecies = GetCurrentAuraSpecies(data->bankAtk, data->bankDef);
+	if(auraSpecies != SPECIES_NONE && data->moveType == GetAuraTypeFromSpecies(auraSpecies))
 	{
 		if (ABILITY_ON_FIELD(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
 			damage = (damage * 75) / 100;
 		else
-			damage = (damage * 4) / 3;
+			damage = (damage * 4) / 3;	
 	}
+
+
+	// if ((data->moveType == TYPE_DARK
+	// 	&& (ABILITY_ON_FIELD(ABILITY_DARKAURA) || data->atkAbility == ABILITY_DARKAURA || data->defAbility == ABILITY_DARKAURA)) //Check all because may be party mon
+	// ||  (data->moveType == TYPE_FAIRY
+	// 	&& (ABILITY_ON_FIELD(ABILITY_FAIRYAURA) || data->atkAbility == ABILITY_FAIRYAURA || data->defAbility == ABILITY_FAIRYAURA)))
+	// {
+	// 	if (ABILITY_ON_FIELD(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
+	// 		damage = (damage * 75) / 100;
+	// 	else
+	// 		damage = (damage * 4) / 3;
+	// }
 
 	//Second Attacker Ability Checks
 	switch (data->atkAbility) {
@@ -3135,8 +3161,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		#ifdef ABILITY_SOLIDROCK
 		case ABILITY_SOLIDROCK:
 		#endif
-		case ABILITY_FILTER:
+		#ifdef ABILITY_PRISMARMOR
 		case ABILITY_PRISMARMOR:
+		#endif
+		case ABILITY_FILTER:
 		//0.75x Decrement
 			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
 				damage = (damage * 75) / 100;
@@ -3149,8 +3177,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage /= 2;
 			break;
 
-		case ABILITY_MULTISCALE:
+		case ABILITY_MYTHICALSHIELD:
+		#ifdef ABILITY_SHADOWSHIELD
 		case ABILITY_SHADOWSHIELD:
+		#endif
 		//0.5x Decrement
 			if (data->defHP >= data->defMaxHP)
 				damage /= 2;
@@ -3605,7 +3635,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		#ifdef SPECIES_ASHGRENINJA
 		case MOVE_WATERSHURIKEN:
-			if (data->atkSpecies == SPECIES_ASHGRENINJA && data->atkAbility == ABILITY_BATTLEBOND)
+			if (data->atkSpecies == SPECIES_ASHGRENINJA && data->atkAbility == ABILITY_FORM_CHANGE && SpeciesHasBattleBond(data->atkSpecies))
 				power = 20;
 			break;
 		#endif
@@ -3931,10 +3961,11 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 13) / 10;
 			break;
 
-		case ABILITY_AERILATE:
-		case ABILITY_PIXILATE:
-		case ABILITY_REFRIGERATE:
-		case ABILITY_GALVANIZE:
+		case ABILITY_ATE:
+		// case ABILITY_AERILATE:
+		// case ABILITY_PIXILATE:
+		// case ABILITY_REFRIGERATE:
+		// case ABILITY_GALVANIZE:
 		case ABILITY_NORMALIZE:
 		//1.2x / 1.3x Boost
 			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing)))

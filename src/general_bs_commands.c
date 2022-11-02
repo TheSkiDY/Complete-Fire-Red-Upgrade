@@ -418,7 +418,8 @@ void atk09_attackanimation(void)
 
 	#if (defined SPECIES_CRAMORANT && defined SPECIES_CRAMORANT_GORGING && defined SPECIES_CRAMORANT_GULPING)
 	if ((move == MOVE_SURF || move == MOVE_DIVE)
-	&& ABILITY(gBankAttacker) == ABILITY_GULPMISSILE
+	&& ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE
+	&& SpeciesHasGulpMissile(SPECIES(gBankAttacker))
 	&& !IsDynamaxed(gBankAttacker))
 	{
 		u16 species = GetMonData(GetBankPartyData(gBankAttacker), MON_DATA_SPECIES2, NULL);
@@ -606,7 +607,7 @@ void atk0B_healthbarupdate(void)
 				DoublesHPBarReduction();
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ability == ABILITY_DISGUISE
+		else if (ability == ABILITY_FORM_CHANGE && SpeciesHasDisguise(SPECIES(gActiveBattler))
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -620,7 +621,8 @@ void atk0B_healthbarupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ability == ABILITY_ICEFACE
+		else if (ABILITY(gActiveBattler) == ABILITY_FORM_CHANGE 
+		&& SpeciesHasIceFace(SPECIES(gActiveBattler))
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical moves are stopped by the ice face
@@ -705,7 +707,8 @@ void atk0C_datahpupdate(void)
 			}
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ABILITY(gActiveBattler) == ABILITY_DISGUISE //Disguise Protected
+		else if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE
+		&& SpeciesHasDisguise(SPECIES(gBankAttacker)) //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -742,7 +745,8 @@ void atk0C_datahpupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ABILITY(gActiveBattler) == ABILITY_ICEFACE //Disguise Protected
+		else if (ABILITY(gActiveBattler) == ABILITY_FORM_CHANGE
+		&& SpeciesHasIceFace(SPECIES(gActiveBattler)) //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical attacks break the ice
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
@@ -1468,7 +1472,7 @@ void atk1B_cleareffectsonfaint(void) {
 				|| partnerAbility == ABILITY_POWEROFALCHEMY
 				#endif
 				)
-				&& !gSpecialAbilityFlags[CopyAbility(gActiveBattler)].gReceiverBannedAbilities)
+				&& !IsAbilityReceiverBanned(CopyAbility(gActiveBattler), SPECIES(gActiveBattler)))
 				{
 					gLastUsedAbility = partnerAbility;
 					*GetAbilityLocation(partner) = CopyAbility(gActiveBattler);
@@ -2699,8 +2703,8 @@ void atk81_trysetrest(void)
 				fail = TRUE;
 				break;
 			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(gBankAttacker)->species == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(gActiveBattler)) && GetBankPartyData(gBankAttacker)->species == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ButItFailed;
 					fail = TRUE;
@@ -2865,7 +2869,8 @@ void atk8D_setmultihitcounter(void) {
 		gMultiHitCounter = 5;
 
 	#ifdef SPECIES_ASHGRENINJA
-	else if (ABILITY(gBankAttacker) == ABILITY_BATTLEBOND
+	else if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE
+	&& SpeciesHasBattleBond(SPECIES(gBankAttacker))
 	&& gCurrentMove == MOVE_WATERSHURIKEN
 	&& gBattleMons[gBankAttacker].species == SPECIES_ASHGRENINJA)
 	{
@@ -5039,8 +5044,8 @@ void atkD3_trycopyability(void) //Role Play
 
 	if (atkAbility == defAbility
 	||  defAbility == ABILITY_NONE
-	||  gSpecialAbilityFlags[atkAbility].gRolePlayAttackerBannedAbilities
-	||  gSpecialAbilityFlags[defAbility].gRolePlayBannedAbilities)
+	||  IsAbilityRolePlayAttackerBanned(defAbility, SPECIES(gBankTarget))
+	||  IsAbilityRolePlayBanned(defAbility, SPECIES(gBankTarget)))
 	{
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	}
@@ -5111,7 +5116,7 @@ void atkDA_tryswapabilities(void) //Skill Swap
 
 	if (atkAbility == ABILITY_NONE || defAbility == ABILITY_NONE
 	|| IsDynamaxed(gBankAttacker) || IsDynamaxed(gBankTarget)
-	|| gSpecialAbilityFlags[atkAbility].gSkillSwapBannedAbilities || gSpecialAbilityFlags[defAbility].gSkillSwapBannedAbilities
+	|| IsAbilitySkillSwapBanned(atkAbility, SPECIES(gBankAttacker)) || IsAbilitySkillSwapBanned(defAbility, SPECIES(gBankTarget))
 	|| gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 	{
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -5395,7 +5400,7 @@ void atkE7_trycastformdatachange(void)
 
 			#if (defined SPECIES_EISCUE && defined SPECIES_EISCUE_NOICE)
 			case SPECIES_EISCUE_NOICE:
-				if (ABILITY(bank) == ABILITY_ICEFACE && !IS_TRANSFORMED(bank)
+				if (ABILITY(bank) == ABILITY_FORM_CHANGE && SpeciesHasIceFace(SPECIES(bank)) && !IS_TRANSFORMED(bank)
 				&& WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
 				{
 					DoFormChange(bank, SPECIES_EISCUE, FALSE, FALSE, FALSE);

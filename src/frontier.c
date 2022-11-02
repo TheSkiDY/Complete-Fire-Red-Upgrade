@@ -7,6 +7,7 @@
 #include "../include/string_util.h"
 #include "../include/constants/items.h"
 
+#include "../include/new/ability_util.h"
 #include "../include/new/battle_start_turn_start.h"
 #include "../include/new/build_pokemon.h"
 #include "../include/new/damage_calc.h"
@@ -804,7 +805,7 @@ bool8 PokemonTierBan(const u16 species, const u16 item, const struct BattleTower
 
 			if (gSpecialSpeciesFlags[species].battleTowerStandardBan
 			||  CheckTableForItem(item, gBattleTowerStandard_ItemBanList)
-			|| (ability == ABILITY_BATTLEBOND && tier != BATTLE_FACILITY_MEGA_BRAWL && BATTLE_FACILITY_NUM != IN_RING_CHALLENGE)) //Battle Bond is banned in Standard
+			|| (ability == ABILITY_FORM_CHANGE && SpeciesHasBattleBond(species) && tier != BATTLE_FACILITY_MEGA_BRAWL && BATTLE_FACILITY_NUM != IN_RING_CHALLENGE)) //Battle Bond is banned in Standard
 				return TRUE;
 
 			if (BATTLE_FACILITY_NUM == IN_RING_CHALLENGE) //1v1

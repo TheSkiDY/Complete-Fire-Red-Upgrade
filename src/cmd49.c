@@ -5,6 +5,7 @@
 #include "../include/constants/items.h"
 
 #include "../include/new/ability_battle_scripts.h"
+#include "../include/new/ability_util.h"
 #include "../include/new/accuracy_calc.h"
 #include "../include/new/attackcanceler.h"
 #include "../include/new/battle_indicators.h"
@@ -805,8 +806,9 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 		case ATK49_MAGICIAN_MOXIE_BATTLEBOND:
 			switch (ABILITY(gBankAttacker)) {
-				case ABILITY_MAGICIAN:
-					if (arg1 != ARG_IN_FUTURE_ATTACK
+				case ABILITY_PICKPOCKET:
+					if (SpeciesHasMagician(GetProperAbilityPopUpSpecies(gBankAttacker))
+					&& arg1 != ARG_IN_FUTURE_ATTACK
 					&& ITEM(gBankAttacker) == ITEM_NONE
 					&& ITEM(bankDef) != ITEM_NONE
 					&& BATTLER_ALIVE(gBankAttacker)
@@ -858,7 +860,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					}
 					break;
 
-				#if (defined ABILITY_GRIMNEIGH || defined ABILITY_ASONE_GRIM)
+				case ABILITY_CONFIDENCE:
 				#ifdef ABILITY_GRIMNEIGH
 				case ABILITY_GRIMNEIGH:
 				#endif
@@ -886,7 +888,6 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						effect = 1;
 					}
 					break;
-				#endif
 
 				case ABILITY_BEASTBOOST: ;
 					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
@@ -936,8 +937,9 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					break;
 
 				#if (defined SPECIES_GRENINJA && defined SPECIES_ASHGRENINJA)
-				case ABILITY_BATTLEBOND:
+				case ABILITY_FORM_CHANGE:
 					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+					&& SpeciesHasBattleBond(SPECIES(gBankAttacker))
 					&& SPECIES(gBankAttacker) == SPECIES_GRENINJA
 					&& gBattleMons[bankDef].hp == 0
 					&& BATTLER_ALIVE(gBankAttacker)

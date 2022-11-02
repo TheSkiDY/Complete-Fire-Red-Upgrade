@@ -71,7 +71,7 @@ void atk00_attackcanceler(void)
 			for (i = 0; i < gBattlersCount; ++i)
 			{
 				if (i != gBankAttacker
-				&& gSpecialAbilityFlags[ABILITY(i)].gMoldBreakerIgnoredAbilities)
+				&& IsAbilityIgnoredByMoldBreaker(ABILITY(i), SPECIES(i)))
 				{
 					gNewBS->DisabledMoldBreakerAbilities[i] = gBattleMons[i].ability; //Temporarily disable all relevant abilities on the field
 					gBattleMons[i].ability = ABILITY_NONE;
@@ -662,7 +662,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 		case CANCELLER_STANCE_CHANGE:
 		case CANCELLER_STANCE_CHANGE_2:
 			#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-			if (ABILITY(gBankAttacker) == ABILITY_STANCECHANGE && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
+			if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE && SpeciesHasStanceChange(SPECIES(gBankAttacker)) && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
 			{
 				switch (gBattleMons[gBankAttacker].species)
 				{
@@ -961,7 +961,8 @@ static u8 AtkCanceller_UnableToUseMove(void)
 					gMultiHitCounter = 5;
 				}
 				#ifdef SPECIES_ASHGRENINJA
-				else if (ability == ABILITY_BATTLEBOND
+				else if (ability == ABILITY_FORM_CHANGE
+				&& SpeciesHasBattleBond(SPECIES(gBankAttacker))
 				&& gCurrentMove == MOVE_WATERSHURIKEN
 				&& SPECIES(gBankAttacker) == SPECIES_ASHGRENINJA)
 				{

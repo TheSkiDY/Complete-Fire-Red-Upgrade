@@ -409,7 +409,7 @@ bool8 IsDamageHalvedDueToFullHP(u8 bank, u8 defAbility, u16 move, u8 atkAbility)
 	if (BATTLER_MAX_HP(bank))
 	{
 		if (IsMultiscaleAbility(defAbility))
-			return NO_MOLD_BREAKERS(atkAbility, move) || !gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities;
+			return NO_MOLD_BREAKERS(atkAbility, move) || !IsAbilityIgnoredByMoldBreaker(defAbility, SPECIES(bank));
 
 		return IsAffectedByShadowShieldBattle(bank);
 	}
@@ -422,7 +422,7 @@ bool8 IsMonDamageHalvedDueToFullHP(struct Pokemon* mon, u8 defAbility, u16 move,
 	if (mon->hp == mon->maxHP)
 	{
 		if (IsMultiscaleAbility(defAbility))
-			return NO_MOLD_BREAKERS(atkAbility, move) || !gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities;
+			return NO_MOLD_BREAKERS(atkAbility, move) || !IsAbilityIgnoredByMoldBreaker(defAbility, mon->species);
 
 		return IsMonAffectedByShadowShieldBattle(mon);
 	}
@@ -2038,7 +2038,7 @@ bool8 DoesSleepClausePrevent(u8 bankToPutToSleep)
 
 static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool8 checkFlowerVeil)
 {
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_COMATOSE:
@@ -2055,8 +2055,8 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 				break;
 
 			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(GetBankPartyData(bankDef)->species) && GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
 					return FALSE;
 				break;
 			#endif
@@ -2067,7 +2067,7 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 	&& IS_DOUBLE_BATTLE
 	&& ABILITY(PARTNER(bankDef)) == ABILITY_FLOWERVEIL //Check target partner Flower Veil
 	&& IsOfType(bankDef, TYPE_GRASS)
-	&& !IsTargetAbilityIgnoredNoMove(ABILITY_FLOWERVEIL, atkAbility)
+	&& !IsTargetAbilityIgnoredNoMove(ABILITY_FLOWERVEIL, atkAbility, SPECIES(bankDef))
 	&& !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD))
 		return FALSE;
 
@@ -2091,7 +2091,7 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (!CanBeGeneralStatused(bankDef, defAbility, atkAbility, checkFlowerVeil))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_INSOMNIA:
@@ -2106,7 +2106,7 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef))
 		return FALSE;
 
-	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_SWEETVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_SWEETVEIL, atkAbility))
+	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_SWEETVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_SWEETVEIL, atkAbility, SPECIES(bankDef)))
 		return FALSE;
 
 	if (DoesSleepClausePrevent(bankDef))
@@ -2134,7 +2134,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 		return FALSE;
 
 	u8 defAbility = ABILITY(bankDef);
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_INSOMNIA:
@@ -2153,7 +2153,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 					return FALSE;
 				break;
 			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
+			case ABILITY_FORM_CHANGE:
 				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
 					return FALSE;
 				break;
@@ -2165,7 +2165,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 	{
 		u8 defPartnerAbility = ABILITY(PARTNER(bankDef));
 
-		if (!IsTargetAbilityIgnoredNoMove(defPartnerAbility, atkAbility)) //Target partner's Ability is not ignored
+		if (!IsTargetAbilityIgnoredNoMove(defPartnerAbility, atkAbility, SPECIES(PARTNER(bankDef)))) //Target partner's Ability is not ignored
 		{
 			switch (defPartnerAbility) {
 				case ABILITY_SWEETVEIL:
@@ -2230,8 +2230,8 @@ bool8 CanRest(u8 bank)
 				return FALSE;
 			break;
 		#ifdef SPECIES_MINIOR_SHIELD
-		case ABILITY_SHIELDSDOWN:
-			if (GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
+		case ABILITY_FORM_CHANGE:
+			if (SpeciesHasShieldsDown(SPECIES(bank)) && GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
 				return FALSE;
 			break;
 		#endif
@@ -2248,7 +2248,7 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (!CanBeGeneralStatused(bankDef, defAbility, atkAbility, checkFlowerVeil))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_IMMUNITY:
@@ -2257,7 +2257,7 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		}
 	}
 
-	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_PASTELVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_PASTELVEIL, atkAbility))
+	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_PASTELVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_PASTELVEIL, atkAbility, SPECIES(bankDef)))
 		return FALSE;
 
 	if (atkAbility != ABILITY_CORROSION)
@@ -2280,7 +2280,7 @@ bool8 CanBeParalyzed(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (IsOfType(bankDef, TYPE_ELECTRIC))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_LIMBER:
@@ -2307,7 +2307,7 @@ bool8 CanBeBurned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		return FALSE;
 	#endif
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_WATERVEIL:
@@ -2335,7 +2335,7 @@ bool8 CanBeFrozen(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		return FALSE;
 	#endif
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_MAGMAARMOR:
@@ -2359,7 +2359,7 @@ bool8 CanBeConfused(u8 bankDef, u8 bankAtk, u8 checkSafeguard)
 
 	u8 atkAbility = ABILITY(bankAtk);
 	u8 defAbility = ABILITY(bankDef);
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, SPECIES(bankDef))) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_OWNTEMPO:
@@ -2395,7 +2395,7 @@ bool8 CanBeInfatuated(u8 bankDef, u8 bankAtk)
 
 	return BATTLER_ALIVE(bankDef)
 		&& !(gBattleMons[bankDef].status2 & STATUS2_INFATUATION)
-		&& (ABILITY(bankDef) != ABILITY_OBLIVIOUS || IsTargetAbilityIgnoredNoMove(ABILITY_OBLIVIOUS, ABILITY(bankAtk)))
+		&& (ABILITY(bankDef) != ABILITY_OBLIVIOUS || IsTargetAbilityIgnoredNoMove(ABILITY_OBLIVIOUS, ABILITY(bankAtk), SPECIES(bankDef)))
 		&& GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget)
 		&& GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != MON_GENDERLESS
 		&& GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget) != MON_GENDERLESS

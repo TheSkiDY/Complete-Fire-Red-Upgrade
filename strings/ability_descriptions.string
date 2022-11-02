@@ -16,7 +16,7 @@ Multi-hit moves hit five times.
 #org @DESC_MOTORDRIVE
 Turns electricity into SPEED.
 
-#org @DESC_MULTISCALE
+#org @DESC_MYTHICALSHIELD
 Reduces damage at full HP.
 
 #org @DESC_TECHNICIAN
@@ -140,6 +140,7 @@ Fainting damages the foe.
 #org @DESC_CURSEDBODY
 May disable a foe's move.
 
+#org @DESC_STUNTOUCH
 #org @DESC_GOOEY
 #org @DESC_TANGLINGHAIR
 Lowers the foe's SPEED if hit.
@@ -174,23 +175,8 @@ Raises own and ally's accuracy.
 #org @DESC_STORMDRAIN
 Draws in water to up SP. ATK.
 
-#org @DESC_DARKAURA
-Powers up DARK-type moves.
-
-#org @DESC_FAIRYAURA
-Powers up FAIRY-type moves.
-
 #org @DESC_AURABREAK
 Reverses AURA abilities.
-
-#org @DESC_REFRIGERATE
-NORMAL moves become ICE.
-
-#org @DESC_PIXILATE
-NORMAL moves become FAIRY.
-
-#org @DESC_AERILATE
-NORMAL moves become FLYING.
 
 #org @DESC_NORMALIZE
 All moves become NORMAL-type.
@@ -240,10 +226,10 @@ Moves get a weaker second hit.
 #org @DESC_TERAVOLT
 Moves ignore abilities.
 
-#org @DESC_ZENMODE
+#org @DESC_ZEN_MODE
 Transforms below half HP.
 
-#org @DESC_BATTLEBOND
+#org @DESC_BATTLE_BOND
 Transforms after a KO.
 
 #org @DESC_BEASTBOOST
@@ -266,7 +252,7 @@ Halves contact hits. Weak to FIRE.
 #org @DESC_BROKEN_2
 No special ability.
 
-#org @DESC_POWERCONSTRUCT
+#org @DESC_POWER_CONSTRUCT
 Transforms below half HP.
 
 #org @DESC_RKS_SYSTEM
@@ -278,7 +264,7 @@ Schools up with high HP.
 #org @DESC_SHADOWSHIELD
 Reduces damage at full HP.
 
-#org @DESC_SHIELDSDOWN
+#org @DESC_SHIELDS_DOWN
 Lowers shields below half HP.
 
 #org @DESC_SLUSHRUSH
@@ -307,18 +293,6 @@ Often attacks last.
 
 #org @DESC_MULTITYPE
 Changes type to match held Plate.
-
-#org @DESC_ELECTRICSURGE
-Creates an electric terrain.
-
-#org @DESC_GRASSYSURGE
-Creates a grassy terrain.
-
-#org @DESC_MISTYSURGE
-Creates a misty terrain.
-
-#org @DESC_PSYCHICSURGE
-Creates a psychic terrain.
 
 #org @DESC_SURGESURFER
 Boosts SPEED on electric terrain.
@@ -398,7 +372,7 @@ Can poison foe on contact.
 #org @DESC_MAGICIAN
 Can steal foe's item after attack.
 
-#org @DESC_STANCECHANGE
+#org @DESC_STANCE_CHANGE
 Switches form when attacking.
 
 #org @DESC_PRIMORDIALSEA
@@ -425,7 +399,7 @@ Blocks priority moves.
 #org @DESC_INNARDSOUT
 Fainting damages the foe.
 
-#org @DESC_DAZZLING
+#org @DESC_MAJESTIC
 Blocks priority moves.
 
 #org @DESC_GLUTTONY
@@ -471,9 +445,6 @@ Takes over a KOed ally's ability.
 #org @DESC_NEUROFORCE
 Powers up super effective hits.
 
-#org @DESC_GALVANIZE
-NORMAL moves become ELECTRIC.
-
 //Sword and Shield Abilities.
 
 #org @DESC_INTREPIDSWORD
@@ -491,7 +462,7 @@ Lowers everyone's SPEED when hit.
 #org @DESC_MIRRORARMOR
 Bounces back stat decreases.
 
-#org @DESC_GULPMISSILE
+#org @DESC_GULP_MISSILE
 Spits prey if hit after a swim.
 
 #org @DESC_STALWART
@@ -513,7 +484,7 @@ Halves special damage.
 #org @DESC_RIPEN
 Doubles berry effects.
 
-#org @DESC_ICEFACE
+#org @DESC_ICE_FACE
 Free physical hit. Hail renews.
 
 #org @DESC_POWERSPOT
@@ -541,9 +512,10 @@ Ups ATTACK, but allows one move.
 All abilities are nullified.
 
 #org @DESC_PASTEL_VEIL
-PROTECTs team from poison.
+Protects team from poison.
 
-#org @DESC_HUNGERSWITCH
+#org @DESC_HUNGER_SWITCH
+#org @DESC_ROCKY_SHELTER
 Changes form each turn.
 
 #org @DESC_UNSEENFIST
@@ -555,14 +527,14 @@ Powers up DRAGON-type moves.
 #org @DESC_TRANSISTOR
 Powers up ELECTRIC-type moves.
 
-#org @DESC_GRIMNEIGH
+#org @DESC_CONFIDENCE
 Knockouts boost SP. ATK.
 
 #org @DESC_ASONE_GRIM
 Both UNNERVE and GRIM NEIGH.
 
 #org @DESC_ASONE_CHILLING
-Both UNNERVE and Chilling NEIGH.
+Both UNNERVE and CHILLING NEIGH.
 
 #org @DESC_QUICKDRAW
 Sometimes moves quicker.
@@ -570,16 +542,20 @@ Sometimes moves quicker.
 #org @DESC_CURIOUSMEDICINE
 Resets ally's stat changes.
 
-//Unbound Custom Abilities//
+#org @DESC_FORMCHANGE
+(FC)Probably a bug if you see this.
 
-#org @gText_AbilityDescription_Evaporate
-Nullifies all water to up SP. ATK.
+#org @DESC_BLAZE_LIKE
+(BL)Probably a bug if you see this.
 
-#org @gText_AbilityDescription_GrassDash
-GRASS-type moves hit first.
+#org @DESC_AURA
+(AU)Probably a bug if you see this.
 
-#org @gText_AbilityDescription_SlipperyTail
-Tail moves hit first.
+#org @DESC_ATE
+(AT)Probably a bug if you see this.
 
-#org @gText_AbilityDescription_DrillBeak
-Drill moves land critical hits.
+#org @DESC_TERRAIN_SURGE
+(TS)Probably a bug if you see this.
+
+#org @DESC_UNUSED
+Unused ability.

@@ -159,7 +159,7 @@ ability_t GetBankMegaFormAbility(u8 megaBank, u8 foe)
 		if (ability == ABILITY_TRACE && IS_SINGLE_BATTLE)
 		{
 			u8 foeAbility = *GetAbilityLocation(foe);
-			if (!gSpecialAbilityFlags[foeAbility].gTraceBannedAbilities)
+			if (!IsAbilityTraceBanned(foeAbility, SPECIES(foe)))
 				ability = foeAbility; //What the Ability will become
 		}
 	}

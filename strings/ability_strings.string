@@ -19,12 +19,6 @@ The effects of weather\ndisappeared.
 #org @gText_UnnerveActivate
 [FD][37] team is too\nnervous to eat Berries!
 
-#org @gText_DarkAuraActivate
-[SCRIPTING_BANK] is radiating\na dark aura!
-
-#org @gText_FairyAuraActivate
-[SCRIPTING_BANK] is radiating\na fairy aura!
-
 #org @gText_AuraBreakActivate
 [SCRIPTING_BANK] reversed all\nother POK\eMON's auras!
 
@@ -126,3 +120,10 @@ But [TARGET] evaporated\nthe attack!
 
 #org @gText_ButAbilityEvaporatesRain
 But [SCRIPTING_BANK] evaporates\nrain!
+
+#org @gText_BlazeLikeActivate
+[BUFFER][00] type moves became more\npowerful!
+
+#org @gText_AuraActivate
+[SCRIPTING_BANK] is radiating\na [BUFFER][00] aura!
+

@@ -28,6 +28,7 @@
 #include "../include/new/dynamax.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
+#include "../include/new/species_tables.h"
 #include "../include/new/util.h"
 #include "../include/new/wild_encounter.h"
 /*
@@ -826,9 +827,10 @@ u8 GetAbilityEncounterRateModType(void)
 
     if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL))
     {
+    	u16 species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
         u8 ability = GetMonAbility(&gPlayerParty[0]);
 		#ifndef ABILITY_WHITESMOKE
-		if (IsWhiteSmokeAbility(ability, GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL)))
+		if (IsWhiteSmokeAbility(ability, species))
 			ability = ABILITY_STENCH;
 		#endif
 	
@@ -844,8 +846,11 @@ u8 GetAbilityEncounterRateModType(void)
 			case ABILITY_ARENATRAP:
 			case ABILITY_ILLUMINATE:
 			case ABILITY_NOGUARD:
-			case ABILITY_SWARM:
 				sWildEncounterData.abilityEffect = 2;
+				break;
+			case ABILITY_BLAZE_LIKE:
+				if(gSpecialSpeciesFlags[species].hasSwarm)
+					sWildEncounterData.abilityEffect = 2;
 				break;
 			case ABILITY_SANDVEIL:
 				if (GetCurrentWeather() == WEATHER_SANDSTORM)

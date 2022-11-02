@@ -1453,8 +1453,8 @@ void atkFF29_trysetsleep(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bank)) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1564,8 +1564,8 @@ void atkD7_setyawn(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bank)) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1676,8 +1676,8 @@ void atkFF2A_trysetparalysis(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bank)) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1769,8 +1769,8 @@ void atkFF2B_trysetburn(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bank)) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1878,8 +1878,8 @@ void atkFF2C_trysetpoison(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bank)) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;

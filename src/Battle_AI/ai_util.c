@@ -2165,7 +2165,7 @@ u8 GetMonAbilityAfterTrace(struct Pokemon* mon, u8 foe)
 	if (IS_SINGLE_BATTLE && ability == ABILITY_TRACE)
 	{
 		u8 foeAbility = *GetAbilityLocation(foe);
-		if (!gSpecialAbilityFlags[foeAbility].gTraceBannedAbilities)
+		if (!IsAbilityTraceBanned(foeAbility, SPECIES(foe)))
 			ability = foeAbility; //What the Ability will become
 	}
 
@@ -2227,7 +2227,10 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 					return TRUE;
 				break;
 
+			case ABILITY_MAJESTIC:
+			#ifdef ABILITY_DAZZLING
 			case ABILITY_DAZZLING:
+			#endif
 			#ifdef ABILITY_QUEENLYMAJESTY
 			case ABILITY_QUEENLYMAJESTY:
 			#endif
@@ -2341,7 +2344,10 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 					return TRUE;
 				break;
 
+			case ABILITY_MAJESTIC:
+			#ifdef ABILITY_DAZZLING
 			case ABILITY_DAZZLING:
+			#endif
 			#ifdef ABILITY_QUEENLYMAJESTY
 			case ABILITY_QUEENLYMAJESTY:
 			#endif
@@ -3011,7 +3017,10 @@ bool8 BadIdeaToMakeContactWith(u8 bankAtk, u8 bankDef)
 		#ifdef ABILITY_TANGLINGHAIR
 		case ABILITY_TANGLINGHAIR:
 		#endif
+		#ifdef ABILITY_GOOEY
 		case ABILITY_GOOEY:
+		#endif
+		case ABILITY_STUNTOUCH:
 			badIdea = STAT_CAN_FALL(gBankAttacker, STAT_SPD) && atkAbility != ABILITY_MIRRORARMOR;
 			break;
 		#ifdef ABILITY_IRONBARBS
@@ -5294,13 +5303,13 @@ static bool8 CalcShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 			u8 defAbility = ABILITY(bankDef);
 			u16 defSpecies = SPECIES(bankDef);
 
-			if (IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Don't factor in the Z-Move
+			if (IsTargetAbilityIgnoredNoMove(defAbility, atkAbility, defSpecies)) //Don't factor in the Z-Move
 				defAbility = ABILITY_NONE;
 
 			if (move == MOVE_FAKEOUT && ShouldUseFakeOut(bankAtk, bankDef, defAbility))
 				return FALSE; //Prefer actual Fake Out over Breakneck Blitz
 
-			if (IsTargetAbilityIgnored(defAbility, atkAbility, zMove)) //This time account for the Z-Move
+			if (IsTargetAbilityIgnored(defAbility, atkAbility, zMove, defSpecies)) //This time account for the Z-Move
 				defAbility = ABILITY_NONE;
 
 			if (MoveBlockedBySubstitute(zMove, bankAtk, bankDef)
@@ -5488,8 +5497,12 @@ static bool8 MonCanTriggerWeatherAbilityWithMaxMove(struct Pokemon* mon)
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_SANDSTORM);
 			case ABILITY_SLUSHRUSH:
 			case ABILITY_ICEBODY:
-			case ABILITY_ICEFACE:
-				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_HAIL);
+			case ABILITY_FORM_CHANGE:
+				if(SpeciesHasIceFace(mon->species))
+				{
+					return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_HAIL);
+				}
+				break;
 			case ABILITY_SURGESURFER:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_ELECTRIC_TERRAIN);
 		}

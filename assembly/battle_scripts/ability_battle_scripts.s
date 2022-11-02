@@ -107,6 +107,8 @@ ability_battle_scripts.s
 .global BattleScript_AbilityPopUp
 .global BattleScript_AbilityPopUpRevert
 
+.global BattleScript_BlazeLikeActivates
+
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_OverworldWeatherStarts:
@@ -1389,6 +1391,19 @@ BattleScript_AbilityPopUpRevert:
 	return
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_BlazeLikeActivates:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_BlazeLikeActivate
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
 
 .global HarvestString
 AdrenalineOrbString: .byte 0xFD, 0x10, 0xB4, 0xE7, 0x00, 0xBB, 0xD8, 0xE6, 0xD9, 0xE2, 0xD5, 0xE0, 0xDD, 0xE2, 0xD9, 0x00, 0xC9, 0xE6, 0xD6, 0xFE, 0xE6, 0xD5, 0xDD, 0xE7, 0xD9, 0xD8, 0x00, 0xDD, 0xE8, 0xE7, 0x00, 0xCD, 0xE4, 0xD9, 0xD9, 0xD8, 0xAB, 0xFF

@@ -106,7 +106,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	data->atkAbility = GetAIAbility(bankAtk, bankDef, move);
 	data->defAbility = GetAIAbility(bankDef, bankAtk, predictedMove);
 
-	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move))
+	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move, SPECIES(bankDef)))
 		data->defAbility = ABILITY_NONE;
 
 	u8 moveEffect = gBattleMoves[move].effect;
@@ -324,7 +324,10 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
+			case ABILITY_MAJESTIC:
+			#ifdef ABILITY_DAZZLING
 			case ABILITY_DAZZLING:
+			#endif
 			#ifdef ABILITY_QUEENLYMAJESTY
 			case ABILITY_QUEENLYMAJESTY:
 			#endif
@@ -463,8 +466,8 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasShieldsDown(SPECIES(bankDef)) && GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD
 				&&  CheckTableForMovesEffect(move, gSetStatusMoveEffects))
 				{
 					DECREASE_VIABILITY(10);
@@ -547,7 +550,10 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 					break;
 
+				case ABILITY_MAJESTIC:
+				#ifdef ABILITY_DAZZLING
 				case ABILITY_DAZZLING:
+				#endif
 				#ifdef ABILITY_QUEENLYMAJESTY
 				case ABILITY_QUEENLYMAJESTY:
 				#endif
@@ -1788,7 +1794,11 @@ SKIP_CHECK_TARGET:
 				case MOVE_LASERFOCUS:
 					if (IsLaserFocused(bankAtk))
 						DECREASE_VIABILITY(10);
-					else if (data->defAbility == ABILITY_SHELLARMOR || data->defAbility == ABILITY_BATTLEARMOR)
+					else if (data->defAbility == ABILITY_BATTLEARMOR
+							#ifdef ABILITY_SHELLARMOR
+						|| data->defAbility == ABILITY_SHELLARMOR
+							#endif
+						)
 						DECREASE_VIABILITY(8);
 					break;
 
@@ -2454,8 +2464,8 @@ SKIP_CHECK_TARGET:
 
 			if (atkAbility == defAbility
 			||  defAbility == ABILITY_NONE
-			||  gSpecialAbilityFlags[atkAbility].gRolePlayAttackerBannedAbilities
-			||  gSpecialAbilityFlags[defAbility].gRolePlayBannedAbilities)
+			||  IsAbilityRolePlayAttackerBanned(defAbility, SPECIES(bankDef))
+			||  IsAbilityRolePlayBanned(defAbility, SPECIES(bankDef)))
 				DECREASE_VIABILITY(10);
 			break;
 
@@ -2552,7 +2562,7 @@ SKIP_CHECK_TARGET:
 			switch (move) {
 				case MOVE_WORRYSEED:
 					if (defAbility2 == ABILITY_INSOMNIA
-					|| gSpecialAbilityFlags[defAbility2].gWorrySeedBannedAbilities
+					|| IsAbilityWorrySeedBanned(defAbility2, SPECIES(bankDef))
 					|| MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2561,7 +2571,7 @@ SKIP_CHECK_TARGET:
 
 				case MOVE_GASTROACID:
 					if (IsAbilitySuppressed(bankDef)
-					||  gSpecialAbilityFlags[defAbility2].gGastroAcidBannedAbilities
+					||  IsAbilityGastroAcidBanned(defAbility2, SPECIES(bankDef))
 					||  MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2571,8 +2581,8 @@ SKIP_CHECK_TARGET:
 				case MOVE_ENTRAINMENT:
 					if (atkAbility2 == ABILITY_NONE
 					||  IsDynamaxed(bankDef)
-					||  gSpecialAbilityFlags[atkAbility2].gEntrainmentBannedAbilitiesAttacker
-					||  gSpecialAbilityFlags[defAbility2].gEntrainmentBannedAbilitiesTarget
+					||  IsAbilityEntrainmentAttackerBanned(atkAbility2, SPECIES(bankAtk))
+					||  IsAbilityEntrainmentTargetBanned(defAbility2, SPECIES(bankDef))
 					||  MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2584,7 +2594,7 @@ SKIP_CHECK_TARGET:
 
 				case MOVE_SIMPLEBEAM:
 					if (defAbility2 == ABILITY_SIMPLE
-					||  gSpecialAbilityFlags[defAbility2].gSimpleBeamBannedAbilities
+					||  IsAbilitySimpleBeamBanned(defAbility2, SPECIES(bankDef))
 					||  MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2595,8 +2605,8 @@ SKIP_CHECK_TARGET:
 					if (atkAbility2 == ABILITY_NONE || defAbility2 == ABILITY_NONE
 					|| IsDynamaxed(bankAtk)
 					|| IsDynamaxed(bankDef)
-					|| gSpecialAbilityFlags[atkAbility2].gSkillSwapBannedAbilities
-					|| gSpecialAbilityFlags[defAbility2].gSkillSwapBannedAbilities)
+					|| IsAbilitySkillSwapBanned(atkAbility2, SPECIES(bankAtk))
+					|| IsAbilitySkillSwapBanned(defAbility2, SPECIES(bankDef)))
 						DECREASE_VIABILITY(10);
 					else
 						goto AI_SUBSTITUTE_CHECK;

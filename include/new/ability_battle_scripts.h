@@ -112,6 +112,9 @@ extern const u8 BattleScript_PrimalWeatherEnd[];
 extern const u8 BattleScript_AbilityPopUp[];
 extern const u8 BattleScript_AbilityPopUpRevert[];
 
+extern const u8 BattleScript_BlazeLikeActivates[];
+
+
 //Strings
 extern const u8 gText_ItIsHailing[];
 extern const u8 gText_FogIsDeep[];
@@ -127,8 +130,6 @@ extern const u8 gText_TeravoltActivate[];
 extern const u8 gText_TurboblazeActivate[];
 extern const u8 gText_SlowStartActivate[];
 extern const u8 gText_UnnerveActivate[];
-extern const u8 gText_DarkAuraActivate[];
-extern const u8 gText_FairyAuraActivate[];
 extern const u8 gText_AuraBreakActivate[];
 extern const u8 gText_ComatoseActivate[];
 extern const u8 gText_AnticipationActivate[];
@@ -146,3 +147,7 @@ extern const u8 gText_SlowStartEnd[];
 extern const u8 PrimalRainEndString[];
 extern const u8 PrimalSunEndString[];
 extern const u8 PrimalAirCurrentEndString[];
+
+extern const u8 gText_BlazeLikeActivate[];
+
+extern const u8 gText_AuraActivate[];

@@ -1517,112 +1517,155 @@ u8 TurnBasedEffects(void)
 								effect++;
 							break;
 
-						case ABILITY_ZENMODE:
-							if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
+						case ABILITY_FORM_CHANGE:
+							if(SpeciesHasZenMode(species))
 							{
-								#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
-								if (species == SPECIES_DARMANITAN)
+								if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
 								{
-									newSpecies = SPECIES_DARMANITANZEN;
+									#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
+									if (species == SPECIES_DARMANITAN)
+									{
+										newSpecies = SPECIES_DARMANITANZEN;
+										changedForm = TRUE;
+										reloadType = TRUE;
+										reloadStats = TRUE;
+										battleScript = BattleScript_TransformedEnd2;
+									}
+									#endif
+									#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
+									if (species == SPECIES_DARMANITAN_G)
+									{
+										newSpecies = SPECIES_DARMANITAN_G_ZEN;
+										changedForm = TRUE;
+										reloadType = TRUE;
+										reloadStats = TRUE;
+										battleScript = BattleScript_TransformedEnd2;
+									}
+									#endif
+								}
+								else //gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 2
+								{
+									//Revert if back above half health
+									#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
+									if (species == SPECIES_DARMANITANZEN)
+									{
+										newSpecies = SPECIES_DARMANITAN;
+										changedForm = TRUE;
+										reloadType = TRUE;
+										reloadStats = TRUE;
+										battleScript = BattleScript_TransformedEnd2;
+									}
+									#endif
+									#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
+									if (species == SPECIES_DARMANITAN_G_ZEN)
+									{
+										newSpecies = SPECIES_DARMANITAN_G;
+										changedForm = TRUE;
+										reloadType = TRUE;
+										reloadStats = TRUE;
+										battleScript = BattleScript_TransformedEnd2;
+									}
+									#endif
+								}
+								break;
+							}
+							#if (defined SPECIES_ZYGARDE && defined SPECIES_ZYGARDE_10 && defined SPECIES_ZYGARDE_COMPLETE)
+							else if(SpeciesHasPowerConstruct(species))
+							{
+								if ((species == SPECIES_ZYGARDE || species == SPECIES_ZYGARDE_10)
+								&& gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
+								{
+									newSpecies = SPECIES_ZYGARDE_COMPLETE;
 									changedForm = TRUE;
 									reloadType = TRUE;
 									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
+									battleScript = BattleScript_PowerConstruct;
 								}
-								#endif
-								#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
-								if (species == SPECIES_DARMANITAN_G)
+								break;
+							}
+							#endif
+							#if (defined SPECIES_WISHIWASHI && defined SPECIES_WISHIWASHI_SCHOOLING)
+							else if(SpeciesHasSchooling(species))
+							{
+								if (species == SPECIES_WISHIWASHI && gBattleMons[gActiveBattler].level >= 20
+								&& gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 4)
 								{
-									newSpecies = SPECIES_DARMANITAN_G_ZEN;
+									newSpecies = SPECIES_WISHIWASHI_SCHOOLING;
 									changedForm = TRUE;
-									reloadType = TRUE;
 									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
+									battleScript = BattleScript_StartedSchooling;
 								}
-								#endif
-							}
-							else //gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 2
-							{
-								//Revert if back above half health
-								#if (defined SPECIES_DARMANITAN && defined SPECIES_DARMANITANZEN)
-								if (species == SPECIES_DARMANITANZEN)
+								else if (species == SPECIES_WISHIWASHI_SCHOOLING
+									&&  (gBattleMons[gActiveBattler].level < 20
+									  || gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 4))
 								{
-									newSpecies = SPECIES_DARMANITAN;
+									newSpecies = SPECIES_WISHIWASHI;
 									changedForm = TRUE;
-									reloadType = TRUE;
 									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
+									battleScript = BattleScript_StoppedSchooling;
 								}
-								#endif
-								#if (defined SPECIES_DARMANITAN_G && defined SPECIES_DARMANITAN_G_ZEN)
-								if (species == SPECIES_DARMANITAN_G_ZEN)
+								break;
+							}
+							#endif
+							#ifdef SPECIES_MINIOR_SHIELD
+							else if(SpeciesHasShieldsDown(species))
+							{
+								if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2
+								&& species == SPECIES_MINIOR_SHIELD)
 								{
-									newSpecies = SPECIES_DARMANITAN_G;
+									newSpecies = GetMiniorCoreSpecies(mon);
 									changedForm = TRUE;
-									reloadType = TRUE;
 									reloadStats = TRUE;
-									battleScript = BattleScript_TransformedEnd2;
+									battleScript = BattleScript_ShieldsDownToCore;
 								}
-								#endif
+								else if (gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2)
+								&& CheckTableForSpecies(species, gMiniorCores))
+								{
+									newSpecies = SPECIES_MINIOR_SHIELD;
+									changedForm = TRUE;
+									reloadStats = TRUE;
+									battleScript = BattleScript_ShieldsDownToMeteor;
+								}
+								break;
 							}
+							#endif
+							#if (defined SPECIES_MORPEKO && defined SPECIES_MORPEKO_HANGRY)
+							else if(SpeciesHasHungerSwitch(species))
+							{
+								if (species == SPECIES_MORPEKO)
+								{
+									newSpecies = SPECIES_MORPEKO_HANGRY;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+								else if (species == SPECIES_MORPEKO_HANGRY)
+								{
+									newSpecies = SPECIES_MORPEKO;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+								break;
+							}
+							#endif
+							#if (defined SPECIES_DEMOLETT && defined SPECIES_DEMOLETT_SHELTER)
+							else if(SpeciesHasRockyShelter(species))
+							{
+								if (species == SPECIES_DEMOLETT)
+								{
+									newSpecies = SPECIES_DEMOLETT_SHELTER;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+								else if (species == SPECIES_DEMOLETT_SHELTER)
+								{
+									newSpecies = SPECIES_DEMOLETT;
+									changedForm = TRUE;
+									battleScript = BattleScript_FlowerGiftEnd2;
+								}
+								break;
+							}
+							#endif
 							break;
-
-						#if (defined SPECIES_ZYGARDE && defined SPECIES_ZYGARDE_10 && defined SPECIES_ZYGARDE_COMPLETE)
-						case ABILITY_POWERCONSTRUCT:
-							if ((species == SPECIES_ZYGARDE || species == SPECIES_ZYGARDE_10)
-							&& gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2)
-							{
-								newSpecies = SPECIES_ZYGARDE_COMPLETE;
-								changedForm = TRUE;
-								reloadType = TRUE;
-								reloadStats = TRUE;
-								battleScript = BattleScript_PowerConstruct;
-							}
-							break;
-						#endif
-
-						#if (defined SPECIES_WISHIWASHI && defined SPECIES_WISHIWASHI_S)
-						case ABILITY_SCHOOLING:
-							if (species == SPECIES_WISHIWASHI && gBattleMons[gActiveBattler].level >= 20
-							&& gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 4)
-							{
-								newSpecies = SPECIES_WISHIWASHI_S;
-								changedForm = TRUE;
-								reloadStats = TRUE;
-								battleScript = BattleScript_StartedSchooling;
-							}
-							else if (species == SPECIES_WISHIWASHI_S
-								&&  (gBattleMons[gActiveBattler].level < 20
-								  || gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 4))
-							{
-								newSpecies = SPECIES_WISHIWASHI;
-								changedForm = TRUE;
-								reloadStats = TRUE;
-								battleScript = BattleScript_StoppedSchooling;
-							}
-							break;
-						#endif
-
-						#ifdef SPECIES_MINIOR_SHIELD
-						case ABILITY_SHIELDSDOWN:
-							if (gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2
-							&& species == SPECIES_MINIOR_SHIELD)
-							{
-								newSpecies = GetMiniorCoreSpecies(mon);
-								changedForm = TRUE;
-								reloadStats = TRUE;
-								battleScript = BattleScript_ShieldsDownToCore;
-							}
-							else if (gBattleMons[gActiveBattler].hp > (gBattleMons[gActiveBattler].maxHP / 2)
-							&& CheckTableForSpecies(species, gMiniorCores))
-							{
-								newSpecies = SPECIES_MINIOR_SHIELD;
-								changedForm = TRUE;
-								reloadStats = TRUE;
-								battleScript = BattleScript_ShieldsDownToMeteor;
-							}
-							break;
-						#endif
 
 						#if (defined SPECIES_CHERRIM && defined SPECIES_CHERRIM_SUN)
 						case ABILITY_FLOWERGIFT:
@@ -1650,24 +1693,7 @@ u8 TurnBasedEffects(void)
 									break;
 							}
 						#endif
-							break;
-
-						#if (defined SPECIES_MORPEKO && defined SPECIES_MORPEKO_HANGRY)
-						case ABILITY_HUNGERSWITCH:
-							if (species == SPECIES_MORPEKO)
-							{
-								newSpecies = SPECIES_MORPEKO_HANGRY;
-								changedForm = TRUE;
-								battleScript = BattleScript_FlowerGiftEnd2;
-							}
-							else if (species == SPECIES_MORPEKO_HANGRY)
-							{
-								newSpecies = SPECIES_MORPEKO;
-								changedForm = TRUE;
-								battleScript = BattleScript_FlowerGiftEnd2;
-							}
-						#endif
-							break;
+						break;
 					}
 
 					if (changedForm)

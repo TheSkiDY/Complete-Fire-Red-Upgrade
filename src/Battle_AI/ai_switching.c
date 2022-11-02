@@ -195,7 +195,7 @@ static bool8 PredictedMoveWontDoTooMuchToMon(u8 activeBattler, struct Pokemon* m
 	u8 monAbility = GetMonAbility(mon);
 	if (IsAffectedByDisguse(monAbility, mon->species, CalcMoveSplit(defMove, foe, activeBattler)))
 	{
-		if (monAbility == ABILITY_DISGUISE) //Disguise only - no Ice Face
+		if (monAbility == ABILITY_FORM_CHANGE && SpeciesHasDisguise(mon->species)) //Disguise only - no Ice Face
 			predictedDmg = mon->maxHP / 8; //Loses an 1/8 of max HP when the disguise is busted
 	}
 	else
@@ -228,7 +228,7 @@ static bool8 PredictedMoveWontKOMon(u8 activeBattler, struct Pokemon* mon, u8 fo
 	u8 monAbility = GetMonAbility(mon);
 	if (IsAffectedByDisguse(monAbility, mon->species, CalcMoveSplit(defMove, foe, activeBattler)))
 	{
-		if (monAbility == ABILITY_DISGUISE) //Disguise only - no Ice Face
+		if (monAbility == ABILITY_FORM_CHANGE && SpeciesHasDisguise(mon->species)) //Disguise only - no Ice Face
 			predictedDmg = mon->maxHP / 8;
 	}
 	else
@@ -1273,7 +1273,8 @@ static bool8 ShouldSwitchToAvoidDeath(struct Pokemon* party)
 		&& defMove != MOVE_NONE //Aegislash would be hit
 		&& CheckContact(defMove, bankDef, gActiveBattler) //With a contact move
 		&& RealPhysicalMoveInMoveset(bankDef) //That's probably physical
-		&& ABILITY(gActiveBattler) == ABILITY_STANCECHANGE
+		&& ABILITY(gActiveBattler) == ABILITY_FORM_CHANGE
+		&& SpeciesHasStanceChange(SPECIES(gActiveBattler))
 		&& MoveInMoveset(MOVE_KINGSSHIELD, gActiveBattler))
 			return FALSE; //Don't switch and use King's Shield instead
 
@@ -1730,7 +1731,7 @@ static bool8 ShouldSaveSweeperForLater(struct Pokemon* party)
 		//OPTION B:
 		|| (foeMovePrediction == MOVE_FAKEOUT //The AI can KO but the foe will go first with Fake Out
 	     && CanBeFlinched(gActiveBattler, foe,
-		                  IsTargetAbilityIgnored(ABILITY(gActiveBattler), ABILITY(foe), foeMovePrediction) ? ABILITY_NONE : ABILITY(gActiveBattler),
+		                  IsTargetAbilityIgnored(ABILITY(gActiveBattler), ABILITY(foe), foeMovePrediction, SPECIES(gActiveBattler)) ? ABILITY_NONE : ABILITY(gActiveBattler),
 		                  foeMovePrediction) //Fake Out will cause a flinch
 	     && GetFinalAIMoveDamage(foeMovePrediction, foe, gActiveBattler, 1, NULL) >= gBattleMons[gActiveBattler].maxHP / 2) //And deal a ton of damage
 	)
@@ -2311,7 +2312,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 							//Check if KO in one shot
 							if (IsAffectedByDisguse(foeDamageData.defAbility, foeDamageData.defSpecies, foeDamageData.moveSplit))
 							{
-								if (foeDamageData.defAbility == ABILITY_DISGUISE) //Disguise only - not Ice Face
+								if (foeDamageData.defAbility == ABILITY_FORM_CHANGE && SpeciesHasDisguise(foeDamageData.defSpecies)) //Disguise only - not Ice Face
 									firstHitDmg = foeDamageData.defMaxHP / 8;
 								else
 									firstHitDmg = 0;

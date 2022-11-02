@@ -43,7 +43,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 {
 	[ABILITY_ADAPTABILITY] = 8,
 	[ABILITY_AFTERMATH] = 5,
+	#ifdef ABILITY_AERILATE
 	[ABILITY_AERILATE] = 8,
+	#endif
 	#ifdef ABILITY_AIRLOCK
 	[ABILITY_AIRLOCK] = 5,
 	#endif
@@ -62,11 +64,16 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_BADDREAMS] = 4,
 	[ABILITY_BATTERY] = 0,
 	[ABILITY_BATTLEARMOR] = 2,
+	#ifdef ABILITY_BATTLEBOND
 	[ABILITY_BATTLEBOND] = 6,
+	#endif
 	[ABILITY_BEASTBOOST] = 7,
 	[ABILITY_BERSERK] = 5,
 	[ABILITY_BIGPECKS] = 1,
+	#ifdef ABILITY_BLAZE
 	[ABILITY_BLAZE] = 5,
+	#endif
+	[ABILITY_BLAZE_LIKE] = 5,
 	[ABILITY_BULLETPROOF] = 7,
 	[ABILITY_CHEEKPOUCH] = 4,
 	[ABILITY_CHLOROPHYLL] = 6,
@@ -82,13 +89,18 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_CUTECHARM] = 2,
 	[ABILITY_DAMP] = 2,
 	[ABILITY_DANCER] = 5,
+	#ifdef ABILITY_DARKAURA
 	[ABILITY_DARKAURA] = 6,
-	[ABILITY_DAZZLING] = 5,
+	#endif
+	[ABILITY_AURA] = 6,
+	[ABILITY_MAJESTIC] = 5,
 	[ABILITY_DEFEATIST] = -1,
 	[ABILITY_DEFIANT] = 5,
 	[ABILITY_DELTASTREAM] = 10,
 	[ABILITY_DESOLATELAND] = 10,
+	#ifdef ABILITY_DISGUISE
 	[ABILITY_DISGUISE] = 8,
+	#endif
 	[ABILITY_DOWNLOAD] = 7,
 	#ifdef ABILITY_DRAGONSMAW
 	[ABILITY_DRAGONSMAW] = 6,
@@ -98,9 +110,14 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_DRYSKIN] = 6,
 	[ABILITY_EARLYBIRD] = 4,
 	[ABILITY_EFFECTSPORE] = 4,
+	#ifdef ABILITY_ELECTRICSURGE
 	[ABILITY_ELECTRICSURGE] = 8,
+	#endif
+	[ABILITY_TERRAIN_SURGE] = 8,
 	[ABILITY_EMERGENCYEXIT] = 3,
+	#ifdef ABILITY_FAIRYAURA
 	[ABILITY_FAIRYAURA] = 6,
+	#endif
 	[ABILITY_FILTER] = 6,
 	[ABILITY_FLAMEBODY] = 4,
 	[ABILITY_FLAREBOOST] = 5,
@@ -112,16 +129,20 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_FOREWARN] = 2,
 	[ABILITY_FRIENDGUARD] = 0,
 	[ABILITY_FRISK] = 3,
-	#ifdef ABILITY_FULLMETALBODY
-	[ABILITY_FULLMETALBODY] = 4,
-	#endif
+	// #ifdef ABILITY_FULLMETALBODY
+	// [ABILITY_FULLMETALBODY] = 4,
+	// #endif
 	[ABILITY_FURCOAT] = 7,
 	[ABILITY_GALEWINGS] = 6,
+	#ifdef ABILITY_GALVANIZE
 	[ABILITY_GALVANIZE] = 8,
+	#endif
 	[ABILITY_GLUTTONY] = 3,
-	[ABILITY_GOOEY] = 5,
+	[ABILITY_STUNTOUCH] = 5,
 	[ABILITY_GRASSPELT] = 2,
+	#ifdef ABILITY_GRASSYSURGE
 	[ABILITY_GRASSYSURGE] = 8,
+	#endif
 	[ABILITY_GUTS] = 6,
 	[ABILITY_HARVEST] = 5,
 	[ABILITY_HEALER] = 0,
@@ -159,14 +180,18 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_LONGREACH] = 3,
 	[ABILITY_MAGICBOUNCE] = 9,
 	[ABILITY_MAGICGUARD] = 9,
+	#ifdef ABILITY_MAGICIAN
 	[ABILITY_MAGICIAN] = 3,
+	#endif
 	[ABILITY_MAGMAARMOR] = 1,
 	[ABILITY_MAGNETPULL] = 9,
 	[ABILITY_MARVELSCALE] = 5,
 	[ABILITY_MEGALAUNCHER] = 7,
 	[ABILITY_MERCILESS] = 4,
 	[ABILITY_MINUS] = 0,
+	#ifdef ABILITY_MISTYSURGE
 	[ABILITY_MISTYSURGE] = 8,
+	#endif
 	[ABILITY_MOLDBREAKER] = 7,
 	[ABILITY_MOODY] = 10,
 	[ABILITY_MOTORDRIVE] = 6,
@@ -177,7 +202,8 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#ifdef ABILITY_CHILLINGNEIGH
 	[ABILITY_CHILLINGNEIGH] = 7,
 	#endif
-	[ABILITY_MULTISCALE] = 8,
+	[ABILITY_CONFIDENCE] = 7,
+	[ABILITY_MYTHICALSHIELD] = 8,
 	[ABILITY_MULTITYPE] = 8,
 	[ABILITY_MUMMY] = 5,
 	[ABILITY_NATURALCURE] = 7,
@@ -186,27 +212,39 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_NORMALIZE] = -1,
 	[ABILITY_OBLIVIOUS] = 2,
 	[ABILITY_OVERCOAT] = 5,
+	#ifdef ABILITY_OVERGROW
 	[ABILITY_OVERGROW] = 5,
+	#endif
 	[ABILITY_OWNTEMPO] = 3,
 	[ABILITY_PARENTALBOND] = 10,
 	[ABILITY_PICKUP] = 1,
 	[ABILITY_PICKPOCKET] = 3,
+	#ifdef ABILITY_PIXILATE
 	[ABILITY_PIXILATE] = 8,
+	#endif
 	[ABILITY_PLUS] = 0,
 	[ABILITY_POISONHEAL] = 8,
 	[ABILITY_POISONPOINT] = 4,
 	[ABILITY_POISONTOUCH] = 4,
+	#ifdef ABILITY_PORTALPOWER
 	[ABILITY_PORTALPOWER] = 8,
+	#endif
+	#ifdef ABILITY_POWERCONSTRUCT
 	[ABILITY_POWERCONSTRUCT] = 10,
+	#endif
 	#ifdef ABILITY_POWEROFALCHEMY
 	[ABILITY_POWEROFALCHEMY] = 0,
 	#endif
 	[ABILITY_PRANKSTER] = 8,
 	[ABILITY_PRESSURE] = 5,
 	[ABILITY_PRIMORDIALSEA] = 10,
+	#ifdef ABILITY_PRISMARMOR
 	[ABILITY_PRISMARMOR] = 6,
+	#endif 
 	[ABILITY_PROTEAN] = 8,
+	#ifdef ABILITY_PSYCHICSURGE
 	[ABILITY_PSYCHICSURGE] = 8,
+	#endif
 	#ifdef ABILITY_PUREPOWER
 	[ABILITY_PUREPOWER] = 10,
 	#endif
@@ -218,7 +256,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_RATTLED] = 3,
 	[ABILITY_RECEIVER] = 0,
 	[ABILITY_RECKLESS] = 6,
+	[ABILITY_ATE] = 8,
+	#ifdef ABILITY_REFRIGERATE
 	[ABILITY_REFRIGERATE] = 8,
+	#endif
 	[ABILITY_REGENERATOR] = 8,
 	[ABILITY_RIVALRY] = 1,
 	[ABILITY_RKS_SYSTEM] = 8,
@@ -230,16 +271,24 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SANDSTREAM] = 9,
 	[ABILITY_SANDVEIL] = 3,
 	[ABILITY_SAPSIPPER] = 7,
+	#ifdef ABILITY_SCHOOLING
 	[ABILITY_SCHOOLING] = 6,
+	#endif
 	[ABILITY_SCRAPPY] = 6,
 	[ABILITY_SERENEGRACE] = 8,
+	#ifdef ABILITY_SHADOWSHIELD
 	[ABILITY_SHADOWSHIELD] = 8,
+	#endif
 	[ABILITY_SHADOWTAG] = 10,
 	[ABILITY_SHEDSKIN] = 7,
 	[ABILITY_SHEERFORCE] = 8,
+	#ifdef ABILITY_SHELLARMOR
 	[ABILITY_SHELLARMOR] = 2,
+	#endif
 	[ABILITY_SHIELDDUST] = 5,
+	#ifdef ABILITY_SHIELDSDOWN
 	[ABILITY_SHIELDSDOWN] = 6,
+	#endif
 	[ABILITY_SIMPLE] = 8,
 	[ABILITY_SKILLLINK] = 7,
 	[ABILITY_SLOWSTART] = -2,
@@ -257,7 +306,10 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_STAKEOUT] = 6,
 	[ABILITY_STALL] = -1,
 	[ABILITY_STAMINA] = 6,
+	#ifdef ABILITY_STANCECHANGE
 	[ABILITY_STANCECHANGE] = 10,
+	#endif
+	[ABILITY_FORM_CHANGE] = 9,
 	[ABILITY_STATIC] = 4,
 	[ABILITY_STEADFAST] = 2,
 	[ABILITY_STEELWORKER] = 6,
@@ -269,7 +321,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SUCTIONCUPS] = 2,
 	[ABILITY_SUPERLUCK] = 3,
 	[ABILITY_SURGESURFER] = 4,
+	#ifdef ABILITY_SWARM
 	[ABILITY_SWARM] = 5,
+	#endif
 	[ABILITY_SWEETVEIL] = 4,
 	[ABILITY_SWIFTSWIM] = 6,
 	[ABILITY_SYMBIOSIS] = 0,
@@ -285,7 +339,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#endif
 	[ABILITY_THICKFAT] = 7,
 	[ABILITY_TINTEDLENS] = 7,
+	#ifdef ABILITY_TORRENT
 	[ABILITY_TORRENT] = 5,
+	#endif
 	[ABILITY_TOXICBOOST] = 6,
 	[ABILITY_TOUGHCLAWS] = 7,
 	[ABILITY_TRACE] = 6,
@@ -318,13 +374,17 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#endif
 	[ABILITY_WONDERGUARD] = 10,
 	[ABILITY_WONDERSKIN] = 4,
+	#ifdef ABILITY_ZENMODE
 	[ABILITY_ZENMODE] = -1,
+	#endif
 	[ABILITY_INTREPIDSWORD] = 3,
 	[ABILITY_DAUNTLESSSHIELD] = 3,
 	[ABILITY_BALLFETCH] = 0,
 	[ABILITY_COTTONDOWN] = 3,
 	[ABILITY_MIRRORARMOR] = 6,
+	#ifdef ABILITY_GULPMISSILE
 	[ABILITY_GULPMISSILE] = 3,
+	#endif
 	[ABILITY_STALWART] = 2,
 	#ifdef ABILITY_PROPELLERTAIL
 	[ABILITY_PROPELLERTAIL] = 3,
@@ -334,12 +394,16 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_SANDSPIT] = 5,
 	[ABILITY_ICESCALES] = 7,
 	[ABILITY_RIPEN] = 4,
+	#ifdef ABILITY_ICEFACE
 	[ABILITY_ICEFACE] = 4,
+	#endif
 	[ABILITY_POWERSPOT] = 2, //UPDATE
 	[ABILITY_MIMICRY] = 2,
 	[ABILITY_SCREENCLEANER] = 3,
 	[ABILITY_NEUTRALIZINGGAS] = 5,
+	#ifdef ABILITY_HUNGERSWITCH
 	[ABILITY_HUNGERSWITCH] = 2,
+	#endif
 	[ABILITY_PASTELVEIL] = 4,
 	[ABILITY_STEELYSPIRIT] = 2,
 	[ABILITY_PERISHBODY] = -1,
@@ -726,7 +790,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				if (*GetAbilityLocation(target1) != ABILITY_NONE && BATTLER_ALIVE(target1)
 				&& *GetAbilityLocation(target2) != ABILITY_NONE && BATTLER_ALIVE(target2))
 				{
-					if (gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
+					if (IsAbilityTraceBanned(*GetAbilityLocation(target1), SPECIES(target1)))
 						target1 = target2; //Pick the one that might not have a banned Ability
 					else if (Random() & 1)
 						target1 = target2; //50% chance of picking flank bank
@@ -755,7 +819,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 			if (effect)
 			{
-				if (!gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
+				if (!IsAbilityTraceBanned(*GetAbilityLocation(target1), SPECIES(target1)))
 				{
 					gBankAttacker = bank;
 					*GetAbilityLocation(bank) = *GetAbilityLocation(target1);
@@ -841,17 +905,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
-		case ABILITY_DARKAURA:
-			gBattleStringLoader = gText_DarkAuraActivate;
+		case ABILITY_AURA:
+			PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetAuraTypeFromSpecies(GetProperAbilityPopUpSpecies(bank)));
+			gBattleStringLoader = gText_AuraActivate;
 			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 			effect++;
 			break;
 
-		case ABILITY_FAIRYAURA:
-			gBattleStringLoader = gText_FairyAuraActivate;
-			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-			effect++;
-			break;
+		// case ABILITY_DARKAURA:
+		// 	gBattleStringLoader = gText_DarkAuraActivate;
+		// 	BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+		// 	effect++;
+		// 	break;
+
+		// case ABILITY_FAIRYAURA:
+		// 	gBattleStringLoader = gText_FairyAuraActivate;
+		// 	BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+		// 	effect++;
+		// 	break;
 
 		case ABILITY_AURABREAK:
 			gBattleStringLoader = gText_AuraBreakActivate;
@@ -1128,53 +1199,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			break;
 
-		case ABILITY_SCHOOLING:
-			if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
-			{
-				if (SPECIES(bank) == SPECIES_WISHIWASHI && gBattleMons[bank].level >= 20
-				&&  gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 4))
-				{
-					DoFormChange(bank, SPECIES_WISHIWASHI_SCHOOLING, FALSE, TRUE, FALSE);
-					BattleScriptPushCursorAndCallback(BattleScript_StartedSchoolingEnd3);
-					++effect;
-				}
-				else if (SPECIES(bank) == SPECIES_WISHIWASHI_SCHOOLING
-				&& (gBattleMons[bank].level < 20 ||
-					gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 4)))
-				{
-					DoFormChange(bank, SPECIES_WISHIWASHI, FALSE, TRUE, FALSE);
-					BattleScriptPushCursorAndCallback(BattleScript_StoppedSchoolingEnd3);
-					++effect;
-				}
-			}
-			break;
-
-		case ABILITY_SHIELDSDOWN:
-			if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
-			{
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD
-				&& gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 2))
-				{
-					DoFormChange(bank, umodsi(GetBankPartyData(bank)->personality, 7), FALSE, TRUE, FALSE); //Get Minior Colour
-					BattleScriptPushCursorAndCallback(BattleScript_ShieldsDownToCoreEnd3);
-					++effect;
-				}
-				else if ((SPECIES(bank) == SPECIES_MINIOR_RED ||
-						  SPECIES(bank) == SPECIES_MINIOR_BLUE ||
-						  SPECIES(bank) == SPECIES_MINIOR_ORANGE ||
-						  SPECIES(bank) == SPECIES_MINIOR_YELLOW ||
-						  SPECIES(bank) == SPECIES_MINIOR_INDIGO ||
-						  SPECIES(bank) == SPECIES_MINIOR_GREEN ||
-						  SPECIES(bank) == SPECIES_MINIOR_VIOLET)
-				&& gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 2))
-				{
-					DoFormChange(bank, SPECIES_MINIOR_SHIELD, FALSE, TRUE, FALSE);
-					BattleScriptPushCursorAndCallback(BattleScript_ShieldsDownToMeteorEnd3);
-					++effect;
-				}
-			}
-			break;
-
 		case ABILITY_FLOWERGIFT:
 			#if (defined SPECIES_CHERRIM && defined SPECIES_CHERRIM_SUN)
 			if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
@@ -1201,33 +1225,102 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			#endif
 			break;
 
-		case ABILITY_ICEFACE:
-			#if (defined SPECIES_EISCUE && defined SPECIES_EISCUE_NOICE)
-			if (!IS_TRANSFORMED(bank) && SPECIES(bank) == SPECIES_EISCUE_NOICE
-			&& WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
+		case ABILITY_FORM_CHANGE:
+			if(SpeciesHasShieldsDown(SPECIES(bank)))
 			{
-				DoFormChange(bank, SPECIES_EISCUE, FALSE, FALSE, FALSE);
-				BattleScriptPushCursorAndCallback(BattleScript_TransformedEnd3);
-				++effect;
+				if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
+				{
+					if (SPECIES(bank) == SPECIES_MINIOR_SHIELD
+					&& gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 2))
+					{
+						DoFormChange(bank, umodsi(GetBankPartyData(bank)->personality, 7), FALSE, TRUE, FALSE); //Get Minior Colour
+						BattleScriptPushCursorAndCallback(BattleScript_ShieldsDownToCoreEnd3);
+						++effect;
+					}
+					else if ((SPECIES(bank) == SPECIES_MINIOR_RED ||
+							  SPECIES(bank) == SPECIES_MINIOR_BLUE ||
+							  SPECIES(bank) == SPECIES_MINIOR_ORANGE ||
+							  SPECIES(bank) == SPECIES_MINIOR_YELLOW ||
+							  SPECIES(bank) == SPECIES_MINIOR_INDIGO ||
+							  SPECIES(bank) == SPECIES_MINIOR_GREEN ||
+							  SPECIES(bank) == SPECIES_MINIOR_VIOLET)
+					&& gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 2))
+					{
+						DoFormChange(bank, SPECIES_MINIOR_SHIELD, FALSE, TRUE, FALSE);
+						BattleScriptPushCursorAndCallback(BattleScript_ShieldsDownToMeteorEnd3);
+						++effect;
+					}
+				}
 			}
-			#endif
-			break;
-	
-		case ABILITY_ELECTRICSURGE:
-			effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
+			else if(SpeciesHasSchooling(SPECIES(bank)))
+			{
+				if (!(gBattleMons[bank].status2 & STATUS2_TRANSFORMED))
+				{
+					if (SPECIES(bank) == SPECIES_WISHIWASHI && gBattleMons[bank].level >= 20
+					&&  gBattleMons[bank].hp > (gBattleMons[bank].maxHP / 4))
+					{
+						DoFormChange(bank, SPECIES_WISHIWASHI_SCHOOLING, FALSE, TRUE, FALSE);
+						BattleScriptPushCursorAndCallback(BattleScript_StartedSchoolingEnd3);
+						++effect;
+					}
+					else if (SPECIES(bank) == SPECIES_WISHIWASHI_SCHOOLING
+					&& (gBattleMons[bank].level < 20 ||
+						gBattleMons[bank].hp <= (gBattleMons[bank].maxHP / 4)))
+					{
+						DoFormChange(bank, SPECIES_WISHIWASHI, FALSE, TRUE, FALSE);
+						BattleScriptPushCursorAndCallback(BattleScript_StoppedSchoolingEnd3);
+						++effect;
+					}
+				}
+			}
+			else if(SpeciesHasIceFace(SPECIES(bank)))
+			{
+				#if (defined SPECIES_EISCUE && defined SPECIES_EISCUE_NOICE)
+				if (!IS_TRANSFORMED(bank) && SPECIES(bank) == SPECIES_EISCUE_NOICE
+				&& WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY))
+				{
+					DoFormChange(bank, SPECIES_EISCUE, FALSE, FALSE, FALSE);
+					BattleScriptPushCursorAndCallback(BattleScript_TransformedEnd3);
+					++effect;
+				}
+				#endif
+			}
 			break;
 
-		case ABILITY_GRASSYSURGE:
-			effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+		case ABILITY_TERRAIN_SURGE: ;
+			u8 terrain = GetSurgeTerrainFromSpecies(GetProperAbilityPopUpSpecies(bank));
+			switch(terrain)
+			{
+				case ELECTRIC_TERRAIN:
+					effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
+					break;
+				case GRASSY_TERRAIN:
+					effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+					break;
+				case MISTY_TERRAIN:
+					effect = TryActivateTerrainAbility(MISTY_TERRAIN, B_ANIM_MISTY_SURGE, bank);
+					break;
+				case PSYCHIC_TERRAIN:
+					effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
+					break;
+			}
 			break;
 
-		case ABILITY_MISTYSURGE:
-			effect = TryActivateTerrainAbility(MISTY_TERRAIN, B_ANIM_MISTY_SURGE, bank);
-			break;
+		// case ABILITY_ELECTRICSURGE:
+		// 	effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
+		// 	break;
 
-		case ABILITY_PSYCHICSURGE:
-			effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
-			break;
+		// case ABILITY_GRASSYSURGE:
+		// 	effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+		// 	break;
+
+		// case ABILITY_MISTYSURGE:
+		// 	effect = TryActivateTerrainAbility(MISTY_TERRAIN, B_ANIM_MISTY_SURGE, bank);
+		// 	break;
+
+		// case ABILITY_PSYCHICSURGE:
+		// 	effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
+		// 	break;
 
 		case ABILITY_INTREPIDSWORD:
 			if (STAT_STAGE(bank, STAT_STAGE_ATK) < STAT_STAGE_MAX)
@@ -1279,7 +1372,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			{
 				if (!IsAbilitySuppressed(i) //Gastro Acid has higher priority
 				&& ABILITY(i) != ABILITY_NONE
-				&& !gSpecialAbilityFlags[ABILITY(i)].gNeutralizingGasBannedAbilities)
+				&& !IsAbilityNeutralizingGasBanned(ABILITY(i), SPECIES(i)))
 				{
 					u8* abilityLoc = GetAbilityLocation(i);
 					gNewBS->neutralizingGasBlockedAbilities[i] = *abilityLoc;
@@ -1634,7 +1727,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 							effect = 1;
 						break;
 
-					case ABILITY_DAZZLING: //Cannot use
+					case ABILITY_MAJESTIC: //Cannot use
+					#ifdef ABILITY_DAZZLING
+					case ABILITY_DAZZLING:
+					#endif
 					#ifdef ABILITY_QUEENLYMAJESTY
 					case ABILITY_QUEENLYMAJESTY: //Cannot use
 					#endif
@@ -1670,7 +1766,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			if (gBankAttacker != PARTNER(bank)) //Can't block against partner
 			{
 				switch (gLastUsedAbility) {
+					case ABILITY_MAJESTIC:
+					#ifdef ABILITY_DAZZLING
 					case ABILITY_DAZZLING:
+					#endif
 					#ifdef ABILITY_QUEENLYMAJESTY
 					case ABILITY_QUEENLYMAJESTY:
 					#endif
@@ -2012,17 +2111,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				{
 					switch (ABILITY(gBankAttacker)) {
 						case ABILITY_MUMMY:
-						case ABILITY_BATTLEBOND:
+						//case ABILITY_BATTLEBOND:
 						case ABILITY_COMATOSE:
-						case ABILITY_DISGUISE:
+						//case ABILITY_DISGUISE:
 						case ABILITY_MULTITYPE:
-						case ABILITY_POWERCONSTRUCT:
+						//case ABILITY_POWERCONSTRUCT:
 						case ABILITY_RKS_SYSTEM:
-						case ABILITY_SCHOOLING:
-						case ABILITY_SHIELDSDOWN:
-						case ABILITY_STANCECHANGE:
-						case ABILITY_ICEFACE:
+						//case ABILITY_SCHOOLING:
+						//case ABILITY_SHIELDSDOWN:
+						//case ABILITY_STANCECHANGE:
+						//case ABILITY_ICEFACE:
 							break;
+						case ABILITY_FORM_CHANGE:
+							if(SpeciesHasBattleBond(SPECIES(gBankAttacker))
+								|| SpeciesHasDisguise(SPECIES(gBankAttacker))
+								|| SpeciesHasPowerConstruct(SPECIES(gBankAttacker))
+								|| SpeciesHasSchooling(SPECIES(gBankAttacker))
+								|| SpeciesHasShieldsDown(SPECIES(gBankAttacker))
+								|| SpeciesHasStanceChange(SPECIES(gBankAttacker))
+								|| SpeciesHasIceFace(SPECIES(gBankAttacker)))
 						default:
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -2079,6 +2186,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_BLAZE_LIKE:
+				if(TOOK_DAMAGE(bank) 
+				&& BATTLER_ALIVE(bank)
+				&& gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 3
+				&& gBattleMons[bank].hp + gHpDealt >= gBattleMons[bank].maxHP / 3)
+				{
+					PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetTypeOfBlazeLikeAbilityFromSpecies(GetProperAbilityPopUpSpecies(bank)));
+					gBattleStringLoader = gText_BlazeLikeActivate;
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
+				break;
+
 			case ABILITY_BERSERK:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
@@ -2095,10 +2215,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_STUNTOUCH:
 			#ifdef ABILITY_TANGLINGHAIR
 			case ABILITY_TANGLINGHAIR:
 			#endif
+			#ifdef ABILITY_GOOEY
 			case ABILITY_GOOEY:
+			#endif
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& CheckContact(move, gBankAttacker, bank)
@@ -2236,8 +2359,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			#if (defined SPECIES_CRAMORANT && defined SPECIES_CRAMORANT_GORGING && defined SPECIES_CRAMORANT_GULPING)
-			case ABILITY_GULPMISSILE:
-				if (MOVE_HAD_EFFECT
+			case ABILITY_FORM_CHANGE:
+				if (SpeciesHasGulpMissile(SPECIES(bank))
+				&& MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& gBankAttacker != bank)
 				{

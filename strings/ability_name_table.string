@@ -197,17 +197,17 @@ MARVEL SCALE
 #org @NAME_LIQUID_OOZE
 LIQUID OOZE
 
-#org @NAME_OVERGROW
-OVERGROW
+#org @NAME_UNUSED_17
+Unused 17
 
-#org @NAME_BLAZE
-BLAZE
+#org @NAME_BLAZE_LIKE
+BLAZE LIKE
 
-#org @NAME_TORRENT
-TORRENT
+#org @NAME_UNUSED_18
+Unused 18
 
-#org @NAME_SWARM
-SWARM
+#org @NAME_UNUSED_19
+Unused 19
 
 #org @NAME_ROCK_HEAD
 ROCK HEAD
@@ -227,11 +227,11 @@ DRAGON'S MAW
 #org @NAME_NEUTRALISING_GAS
 NEUTRALIZE GAS
 
-#org @NAME_SHELL_ARMOR
-SHELL ARMOR
+#org @NAME_UNUSED_5
+Unused 5
 
-#org @NAME_HUNGER_SWITCH
-HUNGER SWITCH
+#org @NAME_UNUSED_10
+Unused 10
 
 #org @NAME_UNUSED
 UNUSED
@@ -245,8 +245,8 @@ SKILL LINK
 #org @NAME_MOTOR_DRIVE
 MOTOR DRIVE
 
-#org @NAME_MULTISCALE
-MULTISCALE
+#org @NAME_MYTHICALSHIELD
+MYTHICAL SHIELD
 
 #org @NAME_TECHNICIAN
 TECHNICIAN
@@ -365,14 +365,14 @@ AFTERMATH
 #org @NAME_CURSED_BODY
 CURSED BODY
 
-#org @NAME_GOOEY
-GOOEY
+#org @NAME_STUN_TOUCH
+STUN TOUCH
 
 #org @NAME_MUMMY
 MUMMY
 
-#org @NAME_GRIM_NEIGH
-GRIM NEIGH
+#org @NAME_CONFIDENCE
+CONFIDENCE
 
 #org @NAME_SAND_RUSH
 SAND RUSH
@@ -398,23 +398,23 @@ VICTORY STAR
 #org @NAME_STORM_DRAIN
 STORM DRAIN
 
-#org @NAME_DARK_AURA
-DARK AURA
+#org @NAME_AURA
+AURA
 
-#org @NAME_FAIRY_AURA
-FAIRY AURA
+#org @NAME_UNUSED_20
+Unused 20
 
 #org @NAME_AURA_BREAK
 AURA BREAK
 
-#org @NAME_REFRIGERATE
-REFRIGERATE
+#org @NAME_ATE
+ATE
 
-#org @NAME_PIXILATE
-PIXILATE
+#org @NAME_UNUSED_21
+Unused 21
 
-#org @NAME_AERILATE
-AERILATE
+#org @NAME_UNUSED_22
+Unused 22
 
 #org @NAME_NORMALIZE
 NORMALIZE
@@ -467,11 +467,11 @@ AS ONE
 #org @NAME_AS_ONE_CHILLING
 AS ONE
 
-#org @NAME_ZEN_MODE
-ZEN MODE
+#org @NAME_FORM_CHANGE
+FORM CHANGE
 
-#org @NAME_BATTLE_BOND
-BATTLE BOND
+#org @NAME_UNUSED_14
+Unused 14
 
 #org @NAME_BEAST_BOOST
 BEAST BOOST
@@ -479,8 +479,8 @@ BEAST BOOST
 #org @NAME_CORROSION
 CORROSION
 
-#org @NAME_DISGUISE
-DISGUISE
+#org @NAME_UNUSED_8
+Unused 8
 
 #org @NAME_EMERGENCY_EXIT
 EMERGENCY EXIT
@@ -497,23 +497,23 @@ PERISH BODY
 #org @NAME_WANDERING_SPIRIT
 WANDERING SOUL
 
-#org @NAME_POWER_CONSTRUCT
-POWER CONSTRUCT
+#org @NAME_UNUSED_15
+Unused 15
 
-#org @NAME_PRISM_ARMOR
-PRISM ARMOR
+#org @NAME_UNUSED_3
+Unused 3
 
 #org @NAME_RKS_SYSTEM
 RKS SYSTEM
 
-#org @NAME_SCHOOLING
-SCHOOLING
+#org @NAME_UNUSED_13
+Unused 13
 
-#org @NAME_SHADOW_SHIELD
-SHADOW SHIELD
+#org @NAME_UNUSED_4
+Unused 4
 
-#org @NAME_SHIELDS_DOWN
-SHIELDS DOWN
+#org @NAME_UNUSED_11
+Unused 11
 
 #org @NAME_SLUSH_RUSH
 SLUSH RUSH
@@ -527,8 +527,8 @@ STAMINA
 #org @NAME_STEELWORKER
 STEELWORKER
 
-#org @NAME_FULL_METAL_BODY
-FULL METAL BODY
+#org @NAME_UNUSED_2
+Unused 2
 
 #org @NAME_TRIAGE
 TRIAGE
@@ -545,17 +545,17 @@ STALL
 #org @NAME_MULTITYPE
 MULTITYPE
 
-#org @NAME_ELECTRIC_SURGE
-ELECTRIC SURGE
+#org @NAME_TERRAIN_SURGE
+TERRAIN SURGE
 
-#org @NAME_GRASSY_SURGE
-GRASSY SURGE
+#org @NAME_UNUSED_24
+Unused 24
 
-#org @NAME_MISTY_SURGE
-MISTY SURGE
+#org @NAME_UNUSED_25
+Unused 25
 
-#org @NAME_PSYCHIC_SURGE
-PSYCHIC SURGE
+#org @NAME_UNUSED_26
+Unused 26
 
 #org @NAME_SURGE_SURFER
 SURGE SURFER
@@ -626,17 +626,17 @@ BAD DREAMS
 #org @NAME_PICKPOCKET
 PICKPOCKET
 
-#org @NAME_PORTAL_POWER
-PORTAL POWER
+#org @NAME_UNUSED_16
+Unused 16
 
 #org @NAME_POISON_TOUCH
 POISON TOUCH
 
-#org @NAME_MAGICIAN
-MAGICIAN
+#org @NAME_UNUSED_6
+Unused 6
 
-#org @NAME_STANCE_CHANGE
-STANCE CHANGE
+#org @NAME_UNUSED_7
+Unused 7
 
 #org @NAME_PRIMORDIAL_SEA
 PRIMORDIAL SEA
@@ -665,8 +665,8 @@ QUICK DRAW
 #org @NAME_INNARDS_OUT
 INNARDS OUT
 
-#org @NAME_DAZZLING
-DAZZLING
+#org @NAME_MAJESTIC
+MAJESTIC
 
 #org @NAME_GLUTTONY
 GLUTTONY
@@ -708,19 +708,19 @@ BATTERY
 RECEIVER
 
 #org @NAME_CURIOUS_MEDICINE
-ODD MEDICINE
+CURIOUS MEDICINE
 
 #org @NAME_NEUROFORCE
 NEUROFORCE
 
-#org @NAME_GALVANIZE
-GALVANIZE
+#org @NAME_UNUSED_23
+Unused 23
 
 #org @NAME_INTREPID_SWORD
 INTREPID SWORD
 
 #org @NAME_DAUNTLESS_SHIELD
-VALIANT SHIELD
+DAUNTLESS SHIELD
 
 #org @NAME_BALL_FETCH
 BALL FETCH
@@ -731,8 +731,8 @@ COTTON DOWN
 #org @NAME_MIRROR_ARMOR
 MIRROR ARMOR
 
-#org @NAME_GULP_MISSILE
-GULP MISSILE
+#org @NAME_UNUSED_12
+Unused 12
 
 #org @NAME_STALWART
 STALWART
@@ -752,8 +752,8 @@ ICE SCALES
 #org @NAME_RIPEN
 RIPEN
 
-#org @NAME_ICE_FACE
-ICE FACE
+#org @NAME_UNUSED_9
+Unused 9
 
 #org @NAME_POWER_SPOT
 POWER SPOT
@@ -770,116 +770,3 @@ PASTEL VEIL
 #org @NAME_LAST_ABILITY
 -
 
-//Below Abilities are loaded dynamically by the engine
-#org @gText_AbilityName_AirLock
-AIR LOCK
-
-#org @gText_AbilityName_VitalSpirit
-VITAL SPIRIT
-
-#org @gText_AbilityName_WhiteSmoke
-WHITE SMOKE
-
-#org @gText_AbilityName_PurePower
-PURE POWER
-
-#org @gText_AbilityName_IronBarbs
-IRON BARBS
-
-#org @gText_AbilityName_SolidRock
-SOLID ROCK
-
-#org @gText_AbilityName_Turboblaze
-TURBOBLAZE
-
-#org @gText_AbilityName_Teravolt
-TERAVOLT
-
-#org @gText_AbilityName_ChillingNeigh
-CHILLING NEIGH
-
-#org @gText_AbilityName_Libero
-LIBERO
-
-#org @gText_AbilityName_TanglingHair
-TANGLING HAIR
-
-#org @gText_AbilityName_WimpOut
-WIMP OUT
-
-#org @gText_AbilityName_QueenlyMajesty
-QUEENLY MAJESTY
-
-#org @gText_AbilityName_PowerOfAlchemy
-ALCHEMIC POWER
-
-#org @gText_AbilityName_PropellerTail
-PROPELLER TAIL
-
-//Unbound Custom Abilities//
-
-#org @gText_AbilityName_NineLives
-NINE LIVES
-
-#org @gText_AbilityName_FocusBelt
-FOCUS BELT
-
-#org @gText_AbilityName_Evaporate
-EVAPORATE
-
-#org @gText_AbilityName_FieryNeigh
-FIERY NEIGH
-
-#org @gText_AbilityName_ShockingNeigh
-SHOCKING NEIGH
-
-#org @gText_AbilityName_Pride
-PRIDE
-
-#org @gText_AbilityName_Multieye
-MULTIEYE
-
-#org @gText_AbilityName_Subterfuge
-SUBTERFUGE
-
-#org @gText_AbilityName_HoneyArmor
-HONEY ARMOR
-
-#org @gText_AbilityName_TanglingWool
-TANGLING WOOL
-
-#org @gText_AbilityName_BrainBond
-BRAIN BOND
-
-#org @gText_AbilityName_GrassDash
-GRASS DASH
-
-#org @gText_AbilityName_SlipperyTail
-SLIPPERY TAIL
-
-#org @gText_AbilityName_DrillBeak
-DRILL BEAK
-
-#org @gText_AbilityName_CottonCloud
-COTTON CLOUD
-
-#org @gText_AbilityName_Bellow
-BELLOW
-
-#org @gText_AbilityName_SoundWaves
-SOUND WAVES
-
-#org @gText_AbilityName_IcySkin
-ICY SKIN
-
-#org @gText_AbilityName_DustyScales
-DUSTY SCALES
-
-#org @gText_AbilityName_CrabbyTactics
-CRABBY TACTICS
-
-#org @gText_AbilityName_FaceShield
-FACE SHIELD
-
-#org @gText_AbilityName_RoyalRoar
-ROYAL ROAR

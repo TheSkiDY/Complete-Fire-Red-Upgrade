@@ -632,7 +632,7 @@ void atk52_switchineffects(void)
 		case SwitchIn_NeutralizingGasRemoveAbility:
 			if (!IsAbilitySuppressed(gActiveBattler) //Gastro Acid has higher priority
 			&& ABILITY(gActiveBattler) != ABILITY_NONE
-			&& !gSpecialAbilityFlags[ABILITY(gActiveBattler)].gNeutralizingGasBannedAbilities
+			&& !IsAbilityNeutralizingGasBanned(ABILITY(gActiveBattler), SPECIES(gActiveBattler))
 			&& AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BANK, gActiveBattler, ABILITY_NEUTRALIZINGGAS, 0, 0))
 			{
 				u8* abilityLoc = GetAbilityLocation(gActiveBattler);

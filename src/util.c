@@ -15,7 +15,7 @@ util.c
 */
 
 //This file's functions:
-static u8 TryRandomizeAbility(u8 ability, unusedArg u16 species);
+static u8 TryRandomizeAbility(u8 ability, u16 species);
 
 u32 MathMax(u32 num1, u32 num2)
 {
@@ -278,7 +278,7 @@ static u8 TryRandomizeAbility(u8 originalAbility, unusedArg u16 species)
 
 	#ifdef FLAG_ABILITY_RANDOMIZER
 	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY)
-	&& !gSpecialAbilityFlags[originalAbility].gRandomizerBannedOriginalAbilities) //This Ability can be changed
+	&& !IsOriginalAbilityBannedInRandomizer(originalAbility, species)) //This Ability can be changed
 	{
 		u32 id = T1_READ_32(gSaveBlock2->playerTrainerId);
 		u16 startAt = (id & 0xFFFF) % (u32) ABILITIES_COUNT + species;
@@ -295,14 +295,14 @@ static u8 TryRandomizeAbility(u8 originalAbility, unusedArg u16 species)
 		newAbility ^= xorVal;
 		newAbility %= (u32) ABILITIES_COUNT; //Prevent overflow
 
-		while (gSpecialAbilityFlags[newAbility].gRandomizerBannedNewAbilities && numAttempts < 100)
+		while (IsNewAbilityBannedInRandomizer(newAbility, species) && numAttempts < 100)
 		{
 			newAbility *= xorVal; //Multiply this time
 			newAbility %= (u32) ABILITIES_COUNT;
 			++numAttempts;
 		}
 
-		if (numAttempts >= 100 && gSpecialAbilityFlags[newAbility].gRandomizerBannedNewAbilities) //If the Ability is still banned
+		if (numAttempts >= 100 && IsNewAbilityBannedInRandomizer(newAbility, species)) //If the Ability is still banned
 			newAbility = originalAbility; //Just use the original ability
 		else if (newAbility == ABILITY_NONE) //Somehow wound up with no Ability
 			newAbility = originalAbility; //Just use the original ability

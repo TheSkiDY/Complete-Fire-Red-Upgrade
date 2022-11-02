@@ -275,7 +275,7 @@ void MoldBreakerRemoveAbilitiesOnForceSwitchIn(void)
 
 	if (IsMoldBreakerAbility(ABILITY(bank)))
 	{
-		if (gSpecialAbilityFlags[ABILITY(gBankSwitching)].gMoldBreakerIgnoredAbilities)
+		if (IsAbilityIgnoredByMoldBreaker(ABILITY(gBankSwitching), SPECIES(gBankSwitching)))
 		{
 			gNewBS->DisabledMoldBreakerAbilities[gBankSwitching] = gBattleMons[gBankSwitching].ability;
 			gBattleMons[gBankSwitching].ability = 0;
@@ -1405,7 +1405,7 @@ void AbilityChangeBSFunc(void)
 
 	switch (gCurrentMove) {
 		case MOVE_WORRYSEED:
-			if (gSpecialAbilityFlags[defAbility].gWorrySeedBannedAbilities)
+			if (IsAbilityWorrySeedBanned(defAbility, SPECIES(gBankTarget)))
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
@@ -1418,7 +1418,7 @@ void AbilityChangeBSFunc(void)
 			break;
 
 		case MOVE_GASTROACID:
-			if (gSpecialAbilityFlags[defAbility].gGastroAcidBannedAbilities
+			if (IsAbilityGastroAcidBanned(defAbility, SPECIES(gBankTarget))
 			|| gStatuses3[gBankTarget] & STATUS3_ABILITY_SUPPRESS)
 			{
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
@@ -1440,8 +1440,8 @@ void AbilityChangeBSFunc(void)
 			if (atkAbility == ABILITY_NONE
 			||  IsDynamaxed(gBankTarget)
 			||  *atkAbilityLoc == *defAbilityLoc
-			||  gSpecialAbilityFlags[atkAbility].gEntrainmentBannedAbilitiesAttacker
-			||  gSpecialAbilityFlags[defAbility].gEntrainmentBannedAbilitiesTarget)
+			||  IsAbilityEntrainmentAttackerBanned(atkAbility, SPECIES(gBankAttacker))
+			||  IsAbilityEntrainmentTargetBanned(defAbility, SPECIES(gBankTarget)))
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
@@ -1457,7 +1457,7 @@ void AbilityChangeBSFunc(void)
 			break;
 
 		case MOVE_SIMPLEBEAM:
-			if (gSpecialAbilityFlags[defAbility].gSimpleBeamBannedAbilities)
+			if (IsAbilitySimpleBeamBanned(defAbility, SPECIES(gBankTarget)))
 			{
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			}
