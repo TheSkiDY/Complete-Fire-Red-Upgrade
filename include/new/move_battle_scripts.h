@@ -234,3 +234,5 @@ extern const u8 gText_SurroundedByGMaxVineLash[];
 extern const u8 gText_SurroundedByGMaxWildfire[];
 extern const u8 gText_SurroundedByGMaxCannonade[];
 extern const u8 gText_SurroundedByGMaxVolcalith[];
+
+extern const u8 gText_BugTypesCantBeConfused[];

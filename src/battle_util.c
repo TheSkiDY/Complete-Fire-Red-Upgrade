@@ -2354,6 +2354,9 @@ bool8 CanBeConfused(u8 bankDef, u8 bankAtk, u8 checkSafeguard)
 	if (IsConfused(bankDef))
 		return FALSE;
 
+	if (IsOfType(bankDef, TYPE_BUG))
+		return FALSE;
+
 	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef))
 		return FALSE;
 

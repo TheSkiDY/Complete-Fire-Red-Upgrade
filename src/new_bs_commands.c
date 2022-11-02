@@ -1979,6 +1979,11 @@ void atkFF34_canconfuse(void)
 		gBattleStringLoader = gText_TargetAlreadyConfused;
 		fail = TRUE;
 	}
+	else if (IsOfType(bank, TYPE_BUG))
+	{
+		gBattleStringLoader = gText_BugTypesCantBeConfused;
+		fail = TRUE;
+	}
 	else if (!BypassesScreens(ABILITY(gBankAttacker)) && BankSideHasSafeguard(bank))
 	{
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;

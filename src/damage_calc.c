@@ -3079,6 +3079,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (!(data->specialFlags & FLAG_AI_CALC) && gProtectStructs[bankAtk].helpingHand)
 		damage = (damage * 15) / 10;
 
+	if (IsOfType(bankAtk, TYPE_FIGHTING) && IsTaunted(bankAtk))
+		damage = (damage * 15) / 10;
+
 	//Weather Boost
 	if (WEATHER_HAS_EFFECT && !ItemEffectIgnoresSunAndRain(data->defItemEffect))
 	{
