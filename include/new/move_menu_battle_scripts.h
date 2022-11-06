@@ -95,3 +95,10 @@ extern const u8 gText_MaxMoveLowerSpeed2[];
 #define gText_TypeWord (u8*) 0x83FE76A
 #define gText_MoveInterfaceType (u8*) 0x83FE770
 #define Pal_PPDisplay (u16*) 0x8D2FBB4
+
+extern const u8 gText_EncoreMoveMenu[];
+extern const u8 gText_AssualtVestMoveMenu[];
+extern const u8 gText_SkyBattleMoveMenu[];
+extern const u8 gText_GravityMoveMenu[];
+extern const u8 gText_ThroatChopMoveMenu[];
+extern const u8 gText_HealBlockMoveMenu[];

@@ -37,3 +37,17 @@ extern const u8 BattleScript_AbilityTransformed[];
 extern const u8 BattleScript_RaidShields[];
 extern const u8 BattleScript_BrokenRaidBarrier[];
 extern const u8 BattleScript_RaidBattleStatIncrease[];
+
+extern const u8 gText_PoisonTouch[];
+extern const u8 gText_SpikyShield[];
+extern const u8 gText_ToxicSpikesPSN[];
+extern const u8 gText_ToxicSpikesBadPSN[];
+extern const u8 gText_ToxicOrb[];
+extern const u8 gText_BanefulBunkerPSN[];
+extern const u8 gText_BeakBlast[];
+extern const u8 gText_FlameOrb[];
+extern const u8 gText_MagicianSteal[];
+extern const u8 gText_PickpocketSteal[];
+extern const u8 gText_MindBlown[];
+extern const u8 gText_LifeOrb[];
+extern const u8 gText_Pluck[];

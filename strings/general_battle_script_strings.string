@@ -528,3 +528,407 @@ BUG-type POK\eMON can't be confused!
 
 #org @gText_ToxicOrbGutsString
 [EFFECT_BANK] was poisoned\nby the [LAST_ITEM]!
+
+#org @gText_AbilityRaisedStatString
+[SCRIPTING_BANK]'s [BUFFER][00]!
+
+#org @gText_GravityAttackCancelString
+[ATTACKER] can't use [CURRENT_MOVE]\nbecause of gravity!
+
+#org @gText_HealBlockAttackCancelString
+[ATTACKER] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!
+
+#org @gText_ThroatChopAttackCancelString
+[ATTACKER] can't use sound moves\nafter the THROAT CHOP!
+
+#org @gText_MoveEvaporatedInHarshSunString
+The WATER-type attack evaporated\nin the harsh sunlight!
+
+#org @gText_MoveFizzledInHeavyRainString
+The FIRE-type attack fizzled\nout in the heavy rain!
+
+#org @gText_PsychicTerrainAttackCancelString
+[TARGET] surrounds itself\nwith psychic terrain!
+
+#org @gText_PowderExplosionString
+When the flame touched the powder on\n[ATTACKER], it exploded!
+
+#org @gText_SwitchedToBladeForm
+[ATTACKER] transformed\ninto its blade form!
+
+#org @gText_SwitchedToShieldForm
+[ATTACKER] transformed\ninto its shield form!
+
+#org @gText_ZPowerSurroundsString
+[ATTACKER] surrounded\nitself with its Z-POWER!
+
+#org @gText_ZMoveUnleashedString
+[ATTACKER] unleashes\nits full-force Z-MOVE!
+
+#org @gText_SkyBattleAttackCancelString
+But it won't work well in\nSKY BATTLES[.]
+
+#org @gText_AirBalloonEntry
+[ATTACKER] floats in the air\nwith its AIR BALLOON!
+
+#org @gText_TotemAuraFlared
+[SCRIPTING_BANK]'s aura\nflared to life!
+
+#org @gText_PrimalReversion
+[ATTACKER]'s PRIMAL REVERSION!\nIt reverted to its primal form!
+
+#org @gText_ElectricTerrainBattleBegin
+An electric current runs across\nthe battlefield.
+
+#org @gText_GrassyTerrainBattleBegin
+Grass covers the battlefield.
+
+#org @gText_MistyTerrainBattleBegin
+Mist swirls around the battlefield.
+
+#org @gText_PsychicTerrainBattleBegin
+The battlefield is weird.
+
+#org @gText_BeakBlastWarmUp
+[SCRIPTING_BANK] started\nheating up its beak!
+
+#org @gText_ShellTrapSet
+[SCRIPTING_BANK] set a\nSHELL TRAP!
+
+#org @gText_PoisonTouch
+[ATTACKER]'s poisoned [EFFECT_BANK]!
+
+#org @gText_SpikyShield
+[ATTACKER] was hurt by [TARGET]'s\nSPIKY SHIELD!
+
+#org @gText_ToxicSpikesPSN
+[EFFECT_BANK] was poisoned\nby the TOXIC SPIKES!
+
+#org @gText_ToxicSpikesBadPSN
+[EFFECT_BANK] is badly poisoned\nby the TOXIC SPIKES!
+
+#org @gText_ToxicOrb
+[EFFECT_BANK] was badly poisoned\nby the [LAST_ITEM]!
+
+#org @gText_BanefulBunkerPSN
+[EFFECT_BANK] was poisoned\nby the BANEFUL BUNKER!
+
+#org @gText_BeakBlast
+[EFFECT_BANK] was burned by\n[ATTACKER]'s beak!
+
+#org @gText_FlameOrb
+[EFFECT_BANK] was burned\nby the [LAST_ITEM]!
+
+#org @gText_MagicianSteal
+[TARGET]'s [LAST_ITEM]\nwas stolen by [ATTACKER_ABILITY]!
+
+#org @gText_PickpocketSteal
+[TARGET]'s [LAST_ITEM]\nwas stolen!
+
+#org @gText_MindBlown
+[ATTACKER] cut its own HP\nto power up its attack!
+
+#org @gText_LifeOrb
+[ATTACKER] lost some of its\nHP!
+
+#org @gText_Pluck
+[ATTACKER] stole and ate\nits foe's [LAST_ITEM]!
+
+#org @gText_FogEnded
+The fog disappeared.
+
+#org @gText_FogContinues
+The fog is deep...
+
+#org @gText_GrassyTerrainHeal
+The grassy terrain restored\n[ATTACKER]'s health!
+
+#org @gText_AquaRingHeal
+The Aqua Ring restored\n[ATTACKER]'s health!
+
+#org @gText_MagnetRiseEnd
+[ATTACKER]'s electromagnetism\nwore off!
+
+#org @gText_TelekinesisStringEnd
+[ATTACKER] was freed from\nthe telekinesis!
+
+#org @gText_HealBlockEnd
+[ATTACKER]'s HEAL BLOCK\nwore off!
+
+#org @gText_EmbargoEnd
+[ATTACKER]'s EMBARGO\nended!
+
+#org @gText_TrickRoomEnd
+The twisted dimensions returned\nto normal!
+
+#org @gText_WaterSportEnd
+WATER SPORT's effects wore off!
+
+#org @gText_MudSportEnd
+MUD SPORT's effects wore off!
+
+#org @gText_WonderRoomEnd
+WONDER ROOM wore off, and the DEFENSE\nand SP. DEF. stats returned to normal!
+
+#org @gText_MagicRoomEnd
+MAGIC ROOM wore off, and held items'\neffects returned to normal!
+
+#org @gText_GravityEnd
+Gravity returned to normal!
+
+#org @gText_TerrainEnd
+The terrain returned to normal!
+
+#org @gText_AbilityActivated
+#org @gText_ToCore
+[SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY] activated!
+
+#org @gText_PresenceOfMany
+You sense the presence of many!
+
+#org @gText_PowerConstructComplete
+[SCRIPTING_BANK] transformed\ninto its complete form!
+
+#org @gText_ToMeteor
+[SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY] deactivated!
+
+#org @gText_Transformed
+[SCRIPTING_BANK] transformed!
+
+#org @gText_ScriptingBankFainted
+[SCRIPTING_BANK] fainted!
+
+#org @gText_ProtectedByTerrain
+[TARGET] is protected\nby the terrain!
+
+#org @gText_ReflectType
+[ATTACKER]'s type became\nthe same as [TARGET]'s!
+
+#org @gText_Purify
+[TARGET] was cured of\nits problem!
+
+#org @gText_BecameNimble
+[ATTACKER] became nimble!
+
+#org @gText_FreezeShockCharging
+[ATTACKER] became cloaked\nin a freezing light!
+
+#org @gText_IceBurnCharging
+[ATTACKER] became cloaked\nin freezing air!
+
+#org @gText_ShadowForce
+[ATTACKER] vanished instantly!
+
+#org @gText_LaserFocus
+[ATTACKER] concentrated intensely!
+
+#org @gText_BurnUp
+[ATTACKER] burned itself out!
+
+#org @gText_UTurn
+[ATTACKER] went back to [TRAINER_NAME]!
+
+#org @gText_RemoveFog
+[ATTACKER] blew away the deep fog\nwith [CURRENT_MOVE]!
+
+#org @gText_SpectralThief
+[ATTACKER] stole [TARGET]'s\nstat boosts!
+
+#org @gText_StockpileWoreOff
+[ATTACKER]'s stockpiled effect\nwore off!
+
+#org @gText_Bestow
+[TARGET] received the [LAST_ITEM]\nfrom [ATTACKER]!
+
+#org @gText_AquaRingSet
+[ATTACKER] surrounded itself\nwith a veil of water!
+
+#org @gText_CantUseMove
+[ATTACKER] can't use the move!
+
+#org @gText_WrongHoopaForm
+But [ATTACKER] can't use it\nthe way it is now!
+
+#org @gText_PsychoShift
+[ATTACKER] shifted its status\nproblem onto [TARGET]!
+
+#org @gText_GeomancyCharge
+[ATTACKER] is absorbing\npower!
+
+#org @gText_PowerHerb
+[ATTACKER] became fully charged\ndue to its POWER HERB!
+
+#org @gText_PowerTrick
+[ATTACKER] switched its\nATTACK and DEFENSE!
+
+#org @gText_PowerSwap
+[ATTACKER] switched all changes to\nits ATTACK and SP. ATK with [TARGET]!
+
+#org @gText_GuardSwap
+[ATTACKER] switched all changes to\nits DEFENSE and SP. DEF with [TARGET]!
+
+#org @gText_SpeedSwap
+[ATTACKER] switched speed\nwith [TARGET]!
+
+#org @gText_HeartSwap
+[ATTACKER] switched stat changes\nwith [TARGET]!
+
+#org @gText_PowerSplit
+[ATTACKER] shared its power\nwith [TARGET]!
+
+#org @gText_GuardSplit
+[ATTACKER] shared its guard\nwith [TARGET]!
+
+#org @gText_PledgeReady
+[ATTACKER] is waiting for\n[SCRIPTING_BANK]'s move!
+
+#org @gText_PledgeCombined
+[ATTACKER] used [CURRENT_MOVE]!\nThe two moves are joined!\lIt's a combined move!
+
+#org @gText_Swamp
+A swamp enveloped team!
+
+#org @gText_SeaOfFire
+A sea of fire enveloped team!
+
+#org @gText_Rainbow
+A rainbow appeared in the sky\non [SCRIPTING_BANK_TRAINER] team's side!
+
+#org @gText_Fling
+[ATTACKER] flung its [LAST_ITEM]!
+
+#org @gText_ProtectLifted
+The protection effects were lifted\nfrom the target's side!
+
+#org @gText_HealBlockSet
+[TARGET] was prevented\nfrom healing!
+
+#org @gText_EmbargoSet
+[TARGET] can't use items\nanymore!
+
+#org @gText_PowderSet
+[TARGET] is covered\nin powder!
+
+#org @gText_TelekinesisSet
+[TARGET] was hurled\ninto the air!
+
+#org @gText_HealBlockTarget
+[TARGET] was prevented from\nhealing due to HEAL BLOCK!
+
+#org @gText_Electrify
+[TARGET]'s moves\nhave been electrified!
+
+#org @gText_TopsyTurvy
+[TARGET]'s stats changes\nwere reversed!
+
+#org @gText_AfterYou
+[TARGET] took\nthe kind offer!
+
+#org @gText_Quash
+[TARGET]'s move\nwas postponed!
+
+#org @gText_MagnetRiseSet
+[TARGET] levitated\nwith electromagnetism!
+
+#org @gText_FlameBurst
+The bursting flame hit\n[SCRIPTING_BANK]!
+
+#org @gText_CheekPouch
+[SCRIPTING_BANK]'s HP\nwas restored!
+
+#org @gText_AirBalloonPop
+[TARGET]'s [LAST_ITEM]\npopped!
+
+#org @gText_WeaknessPolicy
+[TARGET]'s [LAST_ITEM]\nactivated!
+
+#org @gText_RockyHelmet
+[TARGET]'s [LAST_ITEM]\nhurt [ATTACKER]!
+
+#org @gText_BlackSludgeHurt
+[SCRIPTING_BANK] was hurt\nby its [LAST_ITEM]!
+
+#org @gText_MicleBerry
+[SCRIPTING_BANK] boosted the accuracy of\nits next move using\lits [LAST_ITEM]!
+
+#org @gText_StickyBarb
+The [LAST_ITEM] attached itself\nto [ATTACKER]!
+
+#org @gText_EjectButton
+[SCRIPTING_BANK] is switched\nout with the [LAST_ITEM]!
+
+#org @gText_RedCard
+[SCRIPTING_BANK] held up its\n[LAST_ITEM] against [ATTACKER]!
+
+#org @gText_RedCardIngrain
+But [ATTACKER] anchored\nitself with its roots!
+
+#org @gText_RedCardSuctionCups
+But [ATTACKER] anchors\nitself with [ATTACKER_ABILITY]!
+
+#org @gText_TypeResistBerry
+#org @gText_WeaknessBerry
+[SCRIPTING_BANK]'s [LAST_ITEM]\nreduced [CURRENT_MOVE]'s power!
+
+#org @gText_Gem
+The [LAST_ITEM] strengthened\nthe power of [CURRENT_MOVE]!
+
+#org @gText_MegaReacting
+[BUFFER][00]'s [LAST_ITEM] is reactin[SCRIPTING_BANK]\nto [TRAINER_NAME]'s [BUFFER][01]!
+
+#org @gText_MegaEvolutionComplete
+[SCRIPTING_BANK] mega evolved\ninto MEGA [SPECIES_NAME]!
+
+#org @gText_FerventWish
+[TRAINER_NAME]'s fervent wish\nhas reached [BUFFER][00]!
+
+#org @gText_UltraBurstGlowing
+Bright light is about to burst out of\n[SCRIPTING_BANK]!
+
+#org @gText_UltraBurstComplete
+[SCRIPTING_BANK] regained its true power\nthrough ULTRA BURST!
+
+#org @gText_SlappedAwake
+[TARGET] was slapped\nawake!
+
+#org @gText_BurnCured
+[TARGET]'s burn was healed!
+
+#org @gText_ItemCantBeRemoved
+[TARGET]'s item\ncan't be removed!
+
+#org @gText_HealingWishHeal
+The HEALING WISH came true\nfor [ATTACKER]!
+
+#org @gText_LunarDanceHeal
+[ATTACKER] became cloaked\nin mystical moonlight!
+
+#org @gText_PrimalRainEnd
+The heavy rain has lifted!
+
+#org @gText_PrimalSunEnd
+The extremely harsh sunlight\nfaded!
+
+#org @gText_PrimalAirCurrentEnd
+The mysterious air current has\ndissipated!
+
+#org @gText_StatsResetZMove
+[SCRIPTING_BANK] returned its\ndecreased stats to normal using\lits Z-POWER!
+
+#org @gText_StatRaisedZMove
+[SCRIPTING_BANK] boosted its\n[BUFFER][00] [BUFFER][01] using its Z-POWER!
+
+#org @gText_StatsRaisedZMove
+[SCRIPTING_BANK] boosted its\nstats using its Z-POWER!
+
+#org @gText_CritBoostedZMove
+[SCRIPTING_BANK] boosted its\ncritical-hit ratio using its Z-POWER!
+
+#org @gText_HPRestoredZMove
+[SCRIPTING_BANK] restored its HP\nusing its Z-POWER!
+
+#org @gText_HPWillRestoreZMove
+[SCRIPTING_BANK] will restore its\nreplacement's HP using its Z-POWER!
+
+#org @gText_HPSwitchInRestoredZMove
+[SCRIPTING_BANK]'s HP was\nrestored by the Z-POWER!

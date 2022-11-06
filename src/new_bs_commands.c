@@ -14,6 +14,7 @@
 #include "../include/new/cmd49_battle_scripts.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/end_turn_battle_scripts.h"
 #include "../include/new/form_change.h"
 #include "../include/new/general_bs_commands.h"
 #include "../include/new/item.h"
@@ -237,7 +238,7 @@ void atkFF06_setterrain(void)
 				//	gNewBS->terrainForcefullyRemoved = TRUE; //Screw this lol
 				type = 0;
 				gBattleScripting.animArg1 = B_ANIM_LOAD_DEFAULT_BG;
-				gBattleStringLoader = TerrainEndString;
+				gBattleStringLoader = gText_TerrainEnd;
 				break;
 		}
 	}
@@ -851,7 +852,7 @@ void atkFF1F_flowershieldlooper(void)
 			}
 			else if (priority && gBankAttacker != bank && gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(bank))
 			{
-				gBattleStringLoader = PsychicTerrainAttackCancelString;
+				gBattleStringLoader = gText_PsychicTerrainAttackCancelString;
 				gBattleCommunication[MULTISTRING_CHOOSER] = 5; //Protected by Psychic Terrain
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
 			}

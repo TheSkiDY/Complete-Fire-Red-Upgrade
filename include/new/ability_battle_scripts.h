@@ -147,10 +147,21 @@ extern const u8 GrassyTerrainSetString[];
 extern const u8 MistyTerrainSetString[];
 extern const u8 PsychicTerrainSetString[];
 extern const u8 gText_SlowStartEnd[];
-extern const u8 PrimalRainEndString[];
-extern const u8 PrimalSunEndString[];
-extern const u8 PrimalAirCurrentEndString[];
 
 extern const u8 gText_BlazeLikeActivate[];
 
 extern const u8 gText_AuraActivate[];
+
+extern const u8 gText_AdrenalineOrbString[];
+extern const u8 gText_HurtByAbilityString[];
+extern const u8 gText_BadDreamsHurtString[];
+extern const u8 gText_HarvestString[];
+extern const u8 gText_DestinyKnotString[];
+extern const u8 gText_MummyString[];
+extern const u8 gText_AngerPointString[];
+extern const u8 gText_IllusionWoreOffString[];
+extern const u8 gText_SynchronizeNoEffectString[];
+extern const u8 gText_MimikyuDisguisedTookDamageString[];
+extern const u8 gText_DisguiseBustedString[];
+extern const u8 gText_ReceiverString[];
+extern const u8 gText_DefiantString[];

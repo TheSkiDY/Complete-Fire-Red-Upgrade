@@ -159,3 +159,21 @@ Torment Foes
 
 #org @gText_MaxMoveLowerSpeed2
 -- Speed Foes
+
+#org @gText_EncoreMoveMenu
+[CURRENT_MOVE] must be selected\nafter the ENCORE!
+
+#org @gText_AssualtVestMoveMenu
+The [LAST_ITEM] prevents the\nuse of status moves!
+
+#org @gText_SkyBattleMoveMenu
+[CURRENT_MOVE] can't be used\nin a SKY BATTLE!
+
+#org @gText_GravityMoveMenu
+[CURRENT_MOVE] can't be used\nwhile GRAVITY is in effect!
+
+#org @gText_ThroatChopMoveMenu
+[SCRIPTING_BANK] can't use sound moves\nafter the THROAT CHOP!
+
+#org @gText_HealBlockMoveMenu
+[SCRIPTING_BANK] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!

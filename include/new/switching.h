@@ -33,3 +33,9 @@ void atk4D_switchindataupdate(void);
 void atk4F_jumpifcantswitch(void);
 void atk8F_forcerandomswitch(void);
 void PartyMenuSwitchingUpdate(void);
+
+extern const u8 gText_HealingWishHeal[];
+extern const u8 gText_LunarDanceHeal[];
+extern const u8 gText_PrimalRainEnd[];
+extern const u8 gText_PrimalSunEnd[];
+extern const u8 gText_PrimalAirCurrentEnd[];

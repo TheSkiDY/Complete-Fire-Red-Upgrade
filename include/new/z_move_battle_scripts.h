@@ -15,3 +15,11 @@ extern u8 BattleScript_RecoverHPZMove[];
 extern u8 BattleScript_StatUpZMove[];
 extern u8 BattleScript_SetUpHealReplacementZMove[];
 extern u8 BattleScript_HealReplacementZMove[];
+
+extern const u8 gText_StatsResetZMove[];
+extern const u8 gText_StatRaisedZMove[];
+extern const u8 gText_StatsRaisedZMove[];
+extern const u8 gText_CritBoostedZMove[];
+extern const u8 gText_HPRestoredZMove[];
+extern const u8 gText_HPWillRestoreZMove[];
+extern const u8 gText_HPSwitchInRestoredZMove[];

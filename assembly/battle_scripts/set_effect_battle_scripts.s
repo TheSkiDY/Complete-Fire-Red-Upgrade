@@ -49,7 +49,7 @@ set_effect_battle_scripts.s
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_TargetSleepHeal:
-	setword BATTLE_STRING_LOADER SlappedAwakeString
+	setword BATTLE_STRING_LOADER gText_SlappedAwake
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_TARGET
@@ -58,7 +58,7 @@ BattleScript_TargetSleepHeal:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_TargetBurnHeal:
-	setword BATTLE_STRING_LOADER BurnCuredString
+	setword BATTLE_STRING_LOADER gText_BurnCured
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_TARGET
@@ -69,7 +69,7 @@ BattleScript_TargetBurnHeal:
 BattleScript_StickyHoldActivatesRet:
 	pause 0x10
 	call BattleScript_AbilityPopUp
-	setword BATTLE_STRING_LOADER ItemCantBeRemovedString
+	setword BATTLE_STRING_LOADER gText_ItemCantBeRemoved
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
@@ -86,7 +86,7 @@ BattleScript_WasFrozen:
 	formchange 0x2 SPECIES_SHAYMIN_SKY SPECIES_SHAYMIN TRUE TRUE TRUE TargetFrozenReturn
 	playanimation 0x2 ANIM_TRANSFORM 0x0
 	copyarray BATTLE_SCRIPTING_BANK EFFECT_BANK 0x1
-	setword BATTLE_STRING_LOADER TransformedString
+	setword BATTLE_STRING_LOADER gText_Transformed
 	printstring 0x184
 	waitmessage DELAY_1SECOND	
 
@@ -411,7 +411,7 @@ BS_MaxMoveInfatuation_ActivateDestinyKnot:
 	playanimation BANK_TARGET ANIM_ITEM_USE 0x0
 	status2animation BANK_ATTACKER STATUS2_INLOVE
 	copyarray BATTLE_SCRIPTING_BANK USER_BANK 0x1
-	setword BATTLE_STRING_LOADER DestinyKnotString
+	setword BATTLE_STRING_LOADER gText_DestinyKnotString
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	return
@@ -625,8 +625,3 @@ BattleScript_MaxMoveLowerSpeed2Foes_CheckPartner:
 	seteffectprimary
 	callasm SetTargetFoePartner
 	return
-
-.align 2
-SlappedAwakeString: .byte 0xFD, 0x10, 0x00, 0xEB, 0xD5, 0xE7, 0x00, 0xE7, 0xE0, 0xD5, 0xE4, 0xE4, 0xD9, 0xD8, 0xFE, 0xD5, 0xEB, 0xD5, 0xDF, 0xD9, 0xAB, 0xFF
-BurnCuredString: .byte 0xFD, 0x10, 0xB4, 0xE7, 0x00, 0xD6, 0xE9, 0xE6, 0xE2, 0xFE, 0xEB, 0xD5, 0xE7, 0x00, 0xDC, 0xD9, 0xD5, 0xE0, 0xD9, 0xD8, 0xAB, 0xFF
-ItemCantBeRemovedString: .byte 0xFD, 0x10, 0xB4, 0xE7, 0x00, 0xDD, 0xE8, 0xD9, 0xE1, 0xFE, 0xD7, 0xD5, 0xE2, 0xB4, 0xE8, 0x00, 0xD6, 0xD9, 0x00, 0xE6, 0xD9, 0xE1, 0xE3, 0xEA, 0xD9, 0xD8, 0xAB, 0xFF

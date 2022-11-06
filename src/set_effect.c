@@ -7,6 +7,7 @@
 #include "../include/new/ability_battle_scripts.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/battle_script_util.h"
+#include "../include/new/end_turn_battle_scripts.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/item.h"
 #include "../include/new/move_battle_scripts.h"
@@ -841,7 +842,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
 					gTerrainType = 0;
 					gNewBS->TerrainTimer = 0;
 					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattleStringLoader = TerrainEndString;
+					gBattleStringLoader = gText_TerrainEnd;
 					gBattlescriptCurrInstr = BattleScript_PrintCustomString;
 
 					gActiveBattler = GetFirstAliveActiveBattler();

@@ -115,3 +115,25 @@ extern const u8 gText_PickUpItemToBag[];
 extern const u8 gText_PickUpItemToCube[];
 
 extern const u8 gText_ToxicOrbGutsString[];
+extern const u8 gText_FogEnded[];
+extern const u8 gText_FogContinues[];
+extern const u8 gText_GrassyTerrainHeal[];
+extern const u8 gText_AquaRingHeal[];
+extern const u8 gText_MagnetRiseEnd[];
+extern const u8 gText_TelekinesisStringEnd[];
+extern const u8 gText_HealBlockEnd[];
+extern const u8 gText_EmbargoEnd[];
+extern const u8 gText_TrickRoomEnd[];
+extern const u8 gText_WaterSportEnd[];
+extern const u8 gText_MudSportEnd[];
+extern const u8 gText_WonderRoomEnd[];
+extern const u8 gText_MagicRoomEnd[];
+extern const u8 gText_GravityEnd[];
+extern const u8 gText_TerrainEnd[];
+extern const u8 gText_AbilityActivated[];
+extern const u8 gText_PresenceOfMany[];
+extern const u8 gText_PowerConstructComplete[];
+extern const u8 gText_ToCore[];
+extern const u8 gText_ToMeteor[];
+extern const u8 gText_Transformed[];
+

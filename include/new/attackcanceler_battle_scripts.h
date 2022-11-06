@@ -63,4 +63,17 @@ extern const u8 BattleScript_RaidBattleStatNullification[];
 #define BattleScript_IgnoresAndHitsItself (u8*) 0x81D951B
 
 //Strings
-extern const u8 PsychicTerrainAttackCancelString[];
+extern const u8 gText_PsychicTerrainAttackCancelString[];
+extern const u8 gText_AbilityRaisedStatString[];
+extern const u8 gText_GravityAttackCancelString[];
+extern const u8 gText_HealBlockAttackCancelString[];
+extern const u8 gText_ThroatChopAttackCancelString[];
+extern const u8 gText_MoveEvaporatedInHarshSunString[];
+extern const u8 gText_MoveFizzledInHeavyRainString[];
+extern const u8 gText_PowderExplosionString[];
+extern const u8 gText_SwitchedToBladeForm[];
+extern const u8 gText_SwitchedToShieldForm[];
+extern const u8 gText_ZPowerSurroundsString[];
+extern const u8 gText_ZMoveUnleashedString[];
+extern const u8 gText_IllusionWoreOffString[];
+extern const u8 gText_SkyBattleAttackCancelString[];

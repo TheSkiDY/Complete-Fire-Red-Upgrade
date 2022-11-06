@@ -59,3 +59,17 @@ extern const u8 BattleScript_EjectPackRet[];
 extern const u8 BattleScript_EjectPackCMD49[];
 
 extern const u8 gText_NotAffectedBecauseOfItem[];
+extern const u8 gText_CheekPouch[];
+extern const u8 gText_AirBalloonPop[];
+extern const u8 gText_WeaknessPolicy[];
+extern const u8 gText_RockyHelmet[];
+extern const u8 gText_BlackSludgeHurt[];
+extern const u8 gText_MicleBerry[];
+extern const u8 gText_StickyBarb[];
+extern const u8 gText_EjectButton[];
+extern const u8 gText_RedCard[];
+extern const u8 gText_RedCardIngrain[];
+extern const u8 gText_RedCardSuctionCups[];
+extern const u8 gText_TypeResistBerry[];
+extern const u8 gText_Gem[];
+extern const u8 gText_WeaknessBerry[];

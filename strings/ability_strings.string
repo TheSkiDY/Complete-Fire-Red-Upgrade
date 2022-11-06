@@ -127,3 +127,45 @@ But [SCRIPTING_BANK] evaporates\nrain!
 #org @gText_AuraActivate
 [SCRIPTING_BANK] is radiating\na [BUFFER][00] aura!
 
+#org @gText_AdrenalineOrbString
+[TARGET]'s ADRENALINE ORB\nraised its SPEED!
+
+#org @gText_HurtByAbilityString
+[TARGET]'s was hurt!
+
+#org @gText_BadDreamsHurtString
+[TARGET] is tormented!
+
+#org @gText_HarvestString
+[SCRIPTING_BANK] harvested\none [LAST_ITEM]!
+
+#org @gText_PickupString
+[SCRIPTING_BANK] found one\n[LAST_ITEM]!
+
+#org @gText_DestinyKnotString
+[SCRIPTING_BANK] fell in love\nfrom the [LAST_ITEM]!
+
+#org @gText_MummyString
+[ATTACKER]'s ability\nbecame [TARGET_ABILITY]!
+
+#org @gText_AngerPointString
+[TARGET]'s [TARGET_ABILITY]\nmaxed its [BUFFER][00]!
+
+#org @gText_IllusionWoreOffString
+[SCRIPTING_BANK]'s illusion\nwore off!
+
+#org @gText_SynchronizeNoEffectString
+It had no effect on\n[TARGET][.]
+
+#org @gText_MimikyuDisguisedTookDamageString
+[TARGET]'s disguise\nserved as its decoy!
+
+#org @gText_DisguiseBustedString
+[TARGET]'s disguise\nwas busted!
+
+#org @gText_ReceiverString
+[SCRIPTING_BANK] took over [EFFECT_BANK]'s\n[EFFECT_BANK_ABILITY]!
+
+#org @gText_DefiantString
+[SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY]\nsharply raised its [BUFFER][00]!
+
