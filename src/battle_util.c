@@ -285,6 +285,9 @@ bool8 CanHitSemiInvulnerableTarget(u8 bankAtk, u8 bankDef, u16 move)
 	if (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
 		return TRUE;
 
+	if (ABILITY(bankAtk) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
+		return TRUE;
+
 	return gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk;
 }
 
@@ -1520,11 +1523,7 @@ bool8 BypassesScreens(u8 ability)
 
 bool8 BypassesFog(unusedArg u8 ability, unusedArg u8 itemEffect)
 {
-	#ifdef UNBOUND
 	return BypassesScreens(ability) || ability == ABILITY_KEENEYE || ItemEffectIgnoresSunAndRain(itemEffect);
-	#else
-	return FALSE;
-	#endif
 }
 
 bool8 IsAuraBoss(u8 bank)
@@ -2071,7 +2070,7 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 	&& !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD))
 		return FALSE;
 
-	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef))
+	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
 	if (gBattleMons[bankDef].status1 != STATUS1_NONE)
@@ -2103,7 +2102,7 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		}
 	}
 
-	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef))
+	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_SWEETVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_SWEETVEIL, atkAbility, SPECIES(bankDef)))
@@ -2120,7 +2119,7 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 {
-	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef))
+	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
 	if (gBattleMons[bankDef].status1 != STATUS1_NONE)
@@ -2186,10 +2185,10 @@ bool8 CanRest(u8 bank)
 	if (BATTLER_MAX_HP(bank))
 		return FALSE;
 
-	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank))
+	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
-	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bank))
+	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
 	if (gBattleMons[bank].status1 & STATUS1_SLEEP)
@@ -2357,7 +2356,7 @@ bool8 CanBeConfused(u8 bankDef, u8 bankAtk, u8 checkSafeguard)
 	if (IsOfType(bankDef, TYPE_BUG))
 		return FALSE;
 
-	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef))
+	if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 		return FALSE;
 
 	u8 atkAbility = ABILITY(bankAtk);
@@ -2378,7 +2377,7 @@ bool8 CanBeConfused(u8 bankDef, u8 bankAtk, u8 checkSafeguard)
 
 bool8 CanBeTormented(u8 bank)
 {
-	return !(gBattleMons[bank].status2 & STATUS2_TORMENT) && !IsDynamaxed(bank);
+	return !(gBattleMons[bank].status2 & STATUS2_TORMENT) && !IsDynamaxed(bank) && ABILITY(bank) != ABILITY_OBLIVIOUS;
 }
 
 bool8 CanBeInfatuated(u8 bankDef, u8 bankAtk)
@@ -2692,4 +2691,34 @@ u16 TryFixDynamaxTransformSpecies(u8 bank, u16 species)
 		species = gBattleSpritesDataPtr->bankData[bank].transformSpecies;
 
 	return species;
+}
+
+bool8 CanMoveDuringLoafingTurn(u8 bank)
+{
+	bool8 hasValidStatusMove = FALSE;
+	u16 move;
+	
+	if (ABILITY(bank) != ABILITY_TRUANT)
+		return FALSE;
+
+	if (IsTaunted(bank))
+		return FALSE;
+
+	if (ITEM_EFFECT(bank) == ITEM_EFFECT_ASSAULT_VEST)
+		return FALSE;
+
+	//TO DO: choice items and imprison logic
+
+	for (u8 i = 0; i < MAX_MON_MOVES; ++i)
+	{
+		move = gBattleMons[bank].moves[i];
+		if(gBattleMons[bank].pp[i] > 0
+			&& SPLIT(move) == SPLIT_STATUS 
+			&& !gSpecialMoveFlags[move].gTruantLoafingBannedMoves 
+			&& !(IsHealBlocked(bank) && CheckHealingMove(move))
+			&& !(IsTormented(bank) && move == gLastUsedMoves[gActiveBattler]))
+			hasValidStatusMove = TRUE;
+	}
+
+	return hasValidStatusMove;
 }

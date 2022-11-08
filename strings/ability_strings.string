@@ -22,6 +22,9 @@ The effects of weather\ndisappeared.
 #org @gText_AuraBreakActivate
 [SCRIPTING_BANK] reversed all\nother POK\eMON's auras!
 
+#org @gText_TerrainEndedByAuraBreak
+[SCRIPTING_BANK] cleared\nthe terrain on the field!
+
 #org @gText_ComatoseActivate
 [SCRIPTING_BANK] is drowsing!
 
@@ -75,6 +78,12 @@ The power of [SCRIPTING_BANK]'s\nFIRE-type moves rose!
 
 #org @gText_HealerCuredStatusProblem
 [EFFECT_BANK] was cured of\nits [BUFFER][00] problem!
+
+#org @gText_HealerRestoredHP
+[EFFECT_BANK] had its HP\nrestored!
+
+#org @gText_HealerRestoredHPSelf
+[SCRIPTING_BANK] restored\nits HP!
 
 #org @gText_MagicBounce
 [SCRIPTING_BANK] bounced the\n[CURRENT_MOVE] back!
@@ -169,3 +178,8 @@ It had no effect on\n[TARGET][.]
 #org @gText_DefiantString
 [SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY]\nsharply raised its [BUFFER][00]!
 
+#org @gText_VictoryStarMultiplier
+The battle's prize money\nwas quadrupled!
+
+#org @gText_SlowStartInfo
+[SCRIPTING_BANK] is now\nat [BUFFER][00]% power!

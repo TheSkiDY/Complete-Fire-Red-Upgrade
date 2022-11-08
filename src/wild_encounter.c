@@ -82,9 +82,34 @@ static void CreateScriptedWildMon(u16 species, u8 level, u16 item, u16* specialM
 static const struct WildPokemonInfo* LoadProperMonsPointer(const struct WildPokemonHeader* header, const u8 type);
 static void StartRoamerBattle(void);
 
+static bool8 InfluenceWildMonByAbilities(const struct WildPokemonInfo* wildMonInfo, u8* wildMonIndex, u8 monsCount);
+
+
 #ifdef FLAG_SCALE_WILD_POKEMON_LEVELS
 static u8 GetLowestMonLevel(const struct Pokemon* const party);
 #endif
+
+static const u8 sWildMonTypeAbilities[] =
+{
+	[TYPE_NORMAL] = ABILITY_KLUTZ,
+	[TYPE_FIGHTING] = ABILITY_NOGUARD,
+	[TYPE_FLYING] = ABILITY_CLOUDNINE,
+	[TYPE_POISON] = ABILITY_LIQUIDOOZE,
+	[TYPE_GROUND] = ABILITY_SANDFORCE,
+	[TYPE_ROCK] = ABILITY_ROCKHEAD,
+	[TYPE_BUG] = ABILITY_ILLUMINATE,
+	[TYPE_GHOST] = ABILITY_CURSEDBODY,
+	[TYPE_STEEL] = ABILITY_MAGNETPULL,
+	[TYPE_FIRE] = ABILITY_FLASHFIRE,
+	[TYPE_WATER] = ABILITY_STORMDRAIN,
+	[TYPE_GRASS] = ABILITY_HARVEST,
+	[TYPE_ELECTRIC] = ABILITY_LIGHTNINGROD,
+	[TYPE_PSYCHIC] = ABILITY_TELEPATHY,
+	[TYPE_ICE] = ABILITY_ICEBODY,
+	[TYPE_DRAGON] = ABILITY_MARVELSCALE,
+	[TYPE_DARK] = ABILITY_BERSERK,
+	[TYPE_FAIRY] = ABILITY_PASTELVEIL
+};
 
 static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 {
@@ -301,6 +326,7 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 {
 	u8 enemyMonIndex = 0;
 	bool8 checkCuteCharm = TRUE;
+	u8 ability = GetMonAbility(&gPlayerParty[0]);
 
 	if (purgeParty)
 		ZeroEnemyPartyMons();
@@ -317,19 +343,23 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 
 	if (checkCuteCharm
 	&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)
-	&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM
+	&& (ability == ABILITY_CUTECHARM || ability == ABILITY_RIVALRY)
 	&& (Random() % 3) > 0) //2/3 of the time
 	{
 		u16 leadingMonSpecies = gPlayerParty[0].species;
 		u32 leadingMonPersonality = gPlayerParty[0].personality;
 		u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
 
-		if (gender == MON_FEMALE)
-			gender = MON_MALE;
-		else if (gender == MON_MALE)
-			gender = MON_FEMALE;
-		else //Genderless
+		if(gender == MON_GENDERLESS)
 			goto REGULAR_NATURE_CREATION;
+
+		if(ability == ABILITY_CUTECHARM)
+		{
+			if (gender == MON_FEMALE)
+				gender = MON_MALE;
+			else if (gender == MON_MALE)
+				gender = MON_FEMALE;
+		}
 
 		CreateMonWithGenderNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, gender, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));
 	}
@@ -622,6 +652,19 @@ static bool8 TryGenerateSwarmMon(u8 level, u8 wildMonIndex, bool8 purgeParty)
 	return FALSE;
 }
 
+static bool8 InfluenceWildMonByAbilities(const struct WildPokemonInfo* wildMonInfo, u8* wildMonIndex, u8 monsCount)
+{
+	if(monsCount == 0)
+		return FALSE;
+
+	for (u8 type = 0; type <= TYPE_FAIRY; type++)
+	{
+		if(sWildMonTypeAbilities[type] != ABILITY_NONE && TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, type, sWildMonTypeAbilities[type], wildMonIndex, monsCount))
+			return TRUE;
+	}
+	return FALSE;
+}
+
 static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 area, u8 flags)
 {
 	u8 level;
@@ -633,21 +676,8 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	else if (area == WILD_AREA_WATER)
 		monsCount = WATER_WILD_COUNT;
 	
-	if (monsCount != 0)
-	{
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_STEEL, ABILITY_MAGNETPULL, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ELECTRIC, ABILITY_STATIC, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ELECTRIC, ABILITY_LIGHTNINGROD, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FIRE, ABILITY_FLASHFIRE, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GRASS, ABILITY_HARVEST, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-		if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORMDRAIN, &wildMonIndex, monsCount))
-			goto SKIP_INDEX_SEARCH;
-	}
+	if(InfluenceWildMonByAbilities(wildMonInfo, &wildMonIndex, monsCount))
+		goto SKIP_INDEX_SEARCH;
 
 	switch (area) {
 		case WILD_AREA_LAND:
@@ -679,21 +709,8 @@ SKIP_INDEX_SEARCH:
 	{
 		wildMonIndex = 0;
 
-		if (monsCount != 0)
-		{
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_STEEL, ABILITY_MAGNETPULL, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ELECTRIC, ABILITY_STATIC, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_ELECTRIC, ABILITY_LIGHTNINGROD, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_FIRE, ABILITY_FLASHFIRE, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_GRASS, ABILITY_HARVEST, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-			if (TryGetAbilityInfluencedWildMonIndex(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORMDRAIN, &wildMonIndex, monsCount))
-				goto SKIP_INDEX_SEARCH_2;
-		}
+		if(InfluenceWildMonByAbilities(wildMonInfo, &wildMonIndex, monsCount))
+			goto SKIP_INDEX_SEARCH_2;
 
 		switch (area) {
 			case WILD_AREA_LAND:

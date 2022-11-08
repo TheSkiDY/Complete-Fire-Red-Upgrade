@@ -2080,11 +2080,7 @@ s8 PriorityCalc(u8 bank, u8 action, u16 move)
 						if (gSpecialMoveFlags[move].gTailMoves)
 							++priority;
 					}
-					else if (GetMoveTypeSpecial(bank, move) == TYPE_FLYING
-					#ifndef OLD_GALE_WINGS
-					&& BATTLER_MAX_HP(bank)
-					#endif
-					) //Gale Wings
+					else if (GetMoveTypeSpecial(bank, move) == TYPE_FLYING)
 					{
 						++priority;
 					}
@@ -2199,7 +2195,12 @@ s32 BracketCalc(u8 bank, u8 action, u16 move)
 		}
 
 		if (ability == ABILITY_STALL)
-			return -1;
+		{
+			if(IsTrickRoomActive())
+				return 1;
+			else
+				return -1;
+		}
 	}
 
 	return 0;
@@ -2283,10 +2284,14 @@ u32 SpeedCalc(u8 bank)
 			break;
 		case ABILITY_SLOWSTART:
 			if (gNewBS->SlowStartTimers[bank])
-				speed /= 2;
+				speed = (speed * (10 - gNewBS->SlowStartTimers[bank])) / 10;
 			break;
 		case ABILITY_SURGESURFER:
 			if (gTerrainType == ELECTRIC_TERRAIN)
+				speed *= 2;
+			break;
+		case ABILITY_TANGLEDFEET:
+			if (IsConfused(bank))
 				speed *= 2;
 			break;
 	}

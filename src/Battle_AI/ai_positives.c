@@ -75,6 +75,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_YAWN:
 		AI_SLEEP_CHECKS:
 			IncreaseSleepViability(&viability, class, bankAtk, bankDef, move);
+			if(atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(bankAtk)))
+				INCREASE_VIABILITY(2);
 			break;
 
 		case EFFECT_ABSORB:
@@ -807,6 +809,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				|| (IS_DOUBLE_BATTLE && DoubleDamageWithStatusMoveInMovesetThatAffects(data->bankAtkPartner, bankDef))
 				|| FlinchingMoveInMoveset(bankAtk)
 				|| data->defStatus2 & STATUS2_INFATUATION
+				|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(bankAtk)))
 				|| IsConfused(bankDef))
 					INCREASE_STATUS_VIABILITY(2);
 				else
@@ -1616,6 +1619,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			 || atkAbility == ABILITY_HYDRATION
 			 || atkAbility == ABILITY_RAINDISH
 			 || atkAbility == ABILITY_DRYSKIN
+			 || atkAbility == ABILITY_WATERVEIL
 			 || MoveEffectInMoveset(EFFECT_THUNDER, bankAtk) //Includes Hurricane
 			 || MoveEffectInMoveset(EFFECT_MORNING_SUN, bankDef)
 			 || MoveInMoveset(MOVE_WEATHERBALL, bankAtk)
@@ -1649,6 +1653,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			 || atkAbility == ABILITY_LEAFGUARD
 			 || atkAbility == ABILITY_SOLARPOWER
 			 || atkAbility == ABILITY_HARVEST
+			 || atkAbility == ABILITY_MAGMAARMOR
 			 || MoveEffectInMoveset(EFFECT_SOLARBEAM, bankAtk)
 			 || MoveEffectInMoveset(EFFECT_MORNING_SUN, bankAtk)
 			 || MoveEffectInMoveset(EFFECT_THUNDER, bankDef)
@@ -1837,6 +1842,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				else if (DoubleDamageWithStatusMoveInMovesetThatAffects(bankAtk, bankDef)
 				|| (IS_DOUBLE_BATTLE && DoubleDamageWithStatusMoveInMovesetThatAffects(data->bankAtkPartner, bankDef))
 				|| MoveInMoveset(MOVE_INFERNALPARADE, bankAtk)
+				|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(bankAtk)))
 				|| PhysicalMoveInMoveset(bankDef))
 					INCREASE_STATUS_VIABILITY(2);
 				else
@@ -2510,6 +2516,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 							else if (DoubleDamageWithStatusMoveInMovesetThatAffects(bankAtk, bankDef)
 							|| (IS_DOUBLE_BATTLE && DoubleDamageWithStatusMoveInMovesetThatAffects(data->bankAtkPartner, bankDef))
 							|| MoveInMoveset(MOVE_BITTERMALICE, bankAtk)
+							|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(bankAtk)))
 							|| SpecialMoveInMoveset(bankDef))
 								INCREASE_STATUS_VIABILITY(2);
 							else

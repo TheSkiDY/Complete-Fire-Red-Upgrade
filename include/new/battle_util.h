@@ -227,3 +227,5 @@ enum ItemBattleEffectCases
 #define MOVE_LIMITATION_IMPRISION   (1 << 5)
 #define MOVE_LIMITATION_CHOICE		(1 << 6)
 #define MOVE_LIMITATION_ENCORE		(1 << 7)
+
+bool8 CanMoveDuringLoafingTurn(u8 bank);;

@@ -432,6 +432,15 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
+			case ABILITY_LIMBER:
+				if (moveEffect == EFFECT_SPEED_DOWN
+				||  moveEffect == EFFECT_SPEED_DOWN_2)
+				{
+					DECREASE_VIABILITY(10);
+					return viability;
+				}
+				break;
+
 			case ABILITY_DEFIANT:
 				if (moveSplit == SPLIT_STATUS && CheckTableForMovesEffect(move, gStatLoweringMoveEffects))
 				{
@@ -483,7 +492,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case ABILITY_LEAFGUARD:
 				if (gBattleWeather & WEATHER_SUN_ANY
 				&& !ItemEffectIgnoresSunAndRain(data->defItemEffect)
-				&& CheckTableForMovesEffect(move, gSetStatusMoveEffects)
+				&& (CheckTableForMovesEffect(move, gSetStatusMoveEffects) || CheckTableForMovesEffect(move, gStatLoweringMoveEffects))
 				&& WEATHER_HAS_EFFECT)
 				{
 					DECREASE_VIABILITY(10);
@@ -1808,6 +1817,8 @@ SKIP_CHECK_TARGET:
 					|| data->defAbility == ABILITY_NOGUARD
 					|| PARTNER_MOVE_EFFECT_IS_SAME)
 						DECREASE_VIABILITY(10);
+					else if (data->atkAbility == ABILITY_COMPOUNDEYES)
+						DECREASE_VIABILITY(2);
 					else
 						goto AI_SUBSTITUTE_CHECK;
 			}

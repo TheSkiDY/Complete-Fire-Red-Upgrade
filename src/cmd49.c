@@ -975,7 +975,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					if (!IsConfused(gBankAttacker)
 					&& ABILITY(gBankAttacker) != ABILITY_OWNTEMPO
 					&& !IsOfType(gBankAttacker, TYPE_BUG)
-					&& !(CheckGrounding(gBankAttacker) && gTerrainType == MISTY_TERRAIN))
+					&& !(CheckGrounding(gBankAttacker) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK)))
 					{
 						gBattleMons[gBankAttacker].status2 |= (umodsi(Random(), 4)) + 2;
 						BattleScriptPushCursor();

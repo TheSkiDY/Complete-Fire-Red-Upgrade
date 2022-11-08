@@ -932,3 +932,6 @@ The mysterious air current has\ndissipated!
 
 #org @gText_HPSwitchInRestoredZMove
 [SCRIPTING_BANK]'s HP was\nrestored by the Z-POWER!
+
+#org @gText_BellyDrumMagicGuard
+[ATTACKER] maximized ATTACK\nwhile staying healthy!

@@ -530,7 +530,7 @@ u8 TurnBasedEffects(void)
 						break;
 
 					case ET_Grassy_Terrain:
-						if (gTerrainType == GRASSY_TERRAIN && CheckGrounding(gActiveBattler)
+						if (gTerrainType == GRASSY_TERRAIN && CheckGrounding(gActiveBattler) && !ABILITY_ON_FIELD(ABILITY_AURABREAK)
 						&&  BATTLER_ALIVE(gActiveBattler)
 						&&  !BATTLER_MAX_HP(gActiveBattler)
 						&& !IsHealBlocked(gActiveBattler))
@@ -972,13 +972,13 @@ u8 TurnBasedEffects(void)
 							BattleScriptExecute(BattleScript_YawnMakesAsleep);
 							effect++;
 						}
-						else if (CheckGrounding(gActiveBattler) && gTerrainType == MISTY_TERRAIN)
+						else if (CheckGrounding(gActiveBattler) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 						{
 							gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 							BattleScriptExecute(BattleScript_PrintCustomStringEnd2);
 							effect++;
 						}
-						else if (CheckGrounding(gActiveBattler) && gTerrainType == ELECTRIC_TERRAIN)
+						else if (CheckGrounding(gActiveBattler) && gTerrainType == ELECTRIC_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 						{
 							gBattleStringLoader = gText_TargetWrappedInElectricTerrain;
 							BattleScriptExecute(BattleScript_PrintCustomStringEnd2);

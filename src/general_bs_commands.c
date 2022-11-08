@@ -2633,12 +2633,12 @@ void atk81_trysetrest(void)
 	gActiveBattler = gBankTarget = gBankAttacker;
 	gBattleMoveDamage = gBattleMons[gBankTarget].maxHP * (-1);
 
-	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(gActiveBattler))
+	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(gActiveBattler) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattlescriptCurrInstr = BattleScript_ButItFailed;
 		fail = TRUE;
 	}
-	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(gActiveBattler))
+	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(gActiveBattler) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattlescriptCurrInstr = BattleScript_ButItFailed;
 		fail = TRUE;
@@ -2777,11 +2777,11 @@ void atk84_jumpifcantmakeasleep(void)
 		gBattlescriptCurrInstr = jump_loc;
 		RecordAbilityBattle(defPartner, gLastUsedAbility);
 	}
-	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef))
+	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattlescriptCurrInstr = jump_loc;
 	}
-	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef))
+	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bankDef) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattlescriptCurrInstr = jump_loc;
 	}
@@ -3346,6 +3346,8 @@ void atk97_tryinfatuating(void)
 
 void atk99_setmist(void)
 {
+	bool8 hasSnowCloak = FALSE;
+
 	if (BankSideHasMist(gBankAttacker))
 	{
 		gMoveResultFlags |= MOVE_RESULT_FAILED;
@@ -3353,8 +3355,11 @@ void atk99_setmist(void)
 	}
 	else
 	{
+		if(ABILITY(gBankAttacker) == ABILITY_SNOWCLOAK)
+			hasSnowCloak = TRUE;
+
 		gSideStatuses[SIDE(gBankAttacker)] |= SIDE_STATUS_MIST;
-		gSideTimers[SIDE(gBankAttacker)].mistTimer = 5;
+		gSideTimers[SIDE(gBankAttacker)].mistTimer = hasSnowCloak ? 8 : 5;
 		gSideTimers[SIDE(gBankAttacker)].mistBank = gBankAttacker;
 		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 	}
@@ -3582,12 +3587,16 @@ s32 GetPsywaveDamage(u8 level, u8 randDamage)
 }
 
 void atkA1_counterdamagecalculator(void) {
+	bool8 hasAnalytic = FALSE;
 	u8 atkSide = SIDE(gBankAttacker);
 	u8 defSide = SIDE(gProtectStructs[gBankAttacker].physicalBank);
 
+	if(ABILITY(gBankAttacker) == ABILITY_ANALYTIC)
+		hasAnalytic = TRUE;
+
 	if (gProtectStructs[gBankAttacker].physicalDmg && atkSide != defSide && gBattleMons[gProtectStructs[gBankAttacker].physicalBank].hp)
 	{
-		gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * 2;
+		gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * (hasAnalytic ? 3 : 2);
 
 		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defSide))
 			gBankTarget = gSideTimers[defSide].followmeTarget;
@@ -3603,12 +3612,16 @@ void atkA1_counterdamagecalculator(void) {
 }
 
 void atkA2_mirrorcoatdamagecalculator(void) {
+	bool8 hasAnalytic = FALSE;
 	u8 atkSide = SIDE(gBankAttacker);
 	u8 defSide = SIDE(gProtectStructs[gBankAttacker].specialBank);
 
+	if(ABILITY(gBankAttacker) == ABILITY_ANALYTIC)
+		hasAnalytic = TRUE;
+
 	if (gProtectStructs[gBankAttacker].specialDmg && atkSide != defSide && gBattleMons[gProtectStructs[gBankAttacker].specialBank].hp)
 	{
-		gBattleMoveDamage = gProtectStructs[gBankAttacker].specialDmg * 2;
+		gBattleMoveDamage = gProtectStructs[gBankAttacker].specialDmg * (hasAnalytic ? 3 : 2);
 
 		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defSide))
 			gBankTarget = gSideTimers[defSide].followmeTarget;
@@ -4294,6 +4307,8 @@ const u16 gSafeguardStringIds[] =
 
 void atkB8_setsafeguard(void)
 {
+	bool8 hasVeil = FALSE;
+
 	if (BankSideHasSafeguard(gBankAttacker))
 	{
 		gMoveResultFlags |= MOVE_RESULT_MISSED;
@@ -4310,8 +4325,12 @@ void atkB8_setsafeguard(void)
 		else
 		{
 			u8 side = SIDE(gBankAttacker);
+
+			if(ABILITY(gBankAttacker) == ABILITY_SWEETVEIL || ABILITY(gBankAttacker) == ABILITY_PASTELVEIL)
+				hasVeil = TRUE;
+
 			gSideStatuses[side] |= SIDE_STATUS_SAFEGUARD;
-			gSideTimers[side].safeguardTimer = 5;
+			gSideTimers[side].safeguardTimer = hasVeil ? 8 : 5;
 			gSideTimers[side].safeguardBank = gBankAttacker;
 			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
 		}
@@ -4459,12 +4478,16 @@ void atkBB_setsunny(void)
 
 void atkBC_maxattackhalvehp(void)
 {
+	bool8 hasMagicGuard = FALSE;
 	u32 halfHp = gBattleMons[gBankAttacker].maxHP / 2;
 
 	if (gBattleMons[gBankAttacker].maxHP / 2 == 0)
 	{
 		halfHp = 1;
 	}
+
+	if (ABILITY(gBankAttacker) == ABILITY_MAGICGUARD)
+		hasMagicGuard = TRUE;
 
 	gBattleScripting.statChanger = INCREASE_2 | STAT_STAGE_ATK;
 	gBattleScripting.animArg1 = 0xE + STAT_STAGE_ATK;
@@ -4483,10 +4506,10 @@ void atkBC_maxattackhalvehp(void)
 			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	}
 	else if (STAT_STAGE(gBankAttacker, STAT_STAGE_ATK) < STAT_STAGE_MAX
-	&& gBattleMons[gBankAttacker].hp > halfHp)
+	&& (gBattleMons[gBankAttacker].hp > halfHp || hasMagicGuard))
 	{
 		gBattleMons[gBankAttacker].statStages[STAT_STAGE_ATK - 1] = STAT_STAGE_MAX;
-		gBattleMoveDamage = MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
+		gBattleMoveDamage = hasMagicGuard ? 0 : MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
 		gBattlescriptCurrInstr += 5;
 	}
 	else

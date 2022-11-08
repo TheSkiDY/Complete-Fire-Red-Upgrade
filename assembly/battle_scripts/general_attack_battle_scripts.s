@@ -1144,6 +1144,12 @@ BS_049_SetConfusion:
 .global BS_050_RaiseUserAtk2
 BS_050_RaiseUserAtk2:
 	setstatchanger STAT_ATK | INCREASE_2
+	jumpifability BANK_ATTACKER ABILITY_HYPERCUTTER HyperCutterBS
+	goto BS_BUFF_ATK_STATS
+
+HyperCutterBS:
+	jumpifnotmove MOVE_SWORDSDANCE BS_BUFF_ATK_STATS
+	setstatchanger STAT_ATK | INCREASE_3
 	goto BS_BUFF_ATK_STATS
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -2953,6 +2959,7 @@ BS_142_BellyDrum:
 	datahpupdate BANK_ATTACKER
 	playanimation BANK_ATTACKER ANIM_STAT_BUFF ANIM_ARG_1
 	jumpifability BANK_ATTACKER ABILITY_CONTRARY BattleScript_PrintContraryBellyDrumLoweredAttack
+	jumpifability BANK_ATTACKER ABILITY_MAGICGUARD BattleScript_PrintMagicGuardBellyDrum
 	printstring 0x9B
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END
@@ -2962,6 +2969,15 @@ BattleScript_PrintContraryBellyDrumLoweredAttack:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END
+
+BattleScript_PrintMagicGuardBellyDrum:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_BellyDrumMagicGuard
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto BS_MOVE_END
+
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -3394,6 +3410,7 @@ BS_165_Torment:
 	accuracycheck FAILED_PRE 0x0
 	attackstringnoprotean
 	ppreduce
+	jumpifability BANK_TARGET ABILITY_OBLIVIOUS BattleScript_ObliviousPrevents
 	jumpifabilitypresenttargetfield ABILITY_AROMAVEIL BattleScript_ProtectedByAromaVeil
 	callasm FailMoveIfAura
 	settorment FAILED

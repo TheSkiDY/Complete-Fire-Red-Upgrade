@@ -396,6 +396,7 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			 || atkPartnerAbility == ABILITY_HYDRATION
 			 || atkPartnerAbility == ABILITY_RAINDISH
 			 || atkPartnerAbility == ABILITY_DRYSKIN
+			 || atkPartnerAbility == ABILITY_WATERVEIL
 			 || MoveEffectInMoveset(EFFECT_THUNDER, bankAtkPartner) //Includes Hurricane
 			 || MoveInMoveset(MOVE_WEATHERBALL, bankAtkPartner)
 			 || DamagingMoveTypeInMoveset(bankAtkPartner, TYPE_WATER)))
@@ -415,6 +416,7 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			 || atkPartnerAbility == ABILITY_LEAFGUARD
 			 || atkPartnerAbility == ABILITY_SOLARPOWER
 			 || atkPartnerAbility == ABILITY_HARVEST
+			 || atkPartnerAbility == ABILITY_MAGMAARMOR
 			 || MoveEffectInMoveset(EFFECT_SOLARBEAM, bankAtkPartner)
 			 || MoveEffectInMoveset(EFFECT_MORNING_SUN, bankAtkPartner)
 			 || MoveInMoveset(MOVE_WEATHERBALL, bankAtkPartner)

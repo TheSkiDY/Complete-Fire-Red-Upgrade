@@ -42,7 +42,9 @@ ability_battle_scripts.s
 .global BattleScript_RainDishActivates
 .global BattleScript_DrySkinDamage
 .global BattleScript_SolarPowerDamage
-.global BattleScript_Healer
+.global BattleScript_HealerStatus
+.global BattleScript_HealerHP
+.global BattleScript_HealerHPSelf
 .global BattleScript_MoodySingleStat
 .global BattleScript_MoodyRegular
 .global BattleScript_BadDreams
@@ -72,6 +74,7 @@ ability_battle_scripts.s
 .global BattleScript_IllusionBrokenFaint
 .global BattleScript_AngerPointActivates
 .global BattleScript_SynchronizeActivates
+.global BattleScript_IlluminateActivates
 
 .global BattleScript_AbilityChangedType
 .global BattleScript_AbilityChangedTypeContact
@@ -110,6 +113,7 @@ ability_battle_scripts.s
 .global BattleScript_AbilityPopUp_BankEffectRevert
 
 .global BattleScript_BlazeLikeActivates
+.global BattleScript_AuraBreakActivate
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -499,12 +503,36 @@ BattleScript_SolarPowerDamage:
 	
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-BattleScript_Healer:
+BattleScript_HealerStatus:
 	call BattleScript_AbilityPopUp
 	setword BATTLE_STRING_LOADER, gText_HealerCuredStatusProblem
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_EFFECT
+	call BattleScript_AbilityPopUpRevert
+	end3
+
+BattleScript_HealerHP:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER, gText_HealerRestoredHP
+	playanimation BANK_EFFECT ANIM_HEALING_SPARKLES 0x0
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_EFFECT
+	datahpupdate BANK_EFFECT
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	end3
+
+BattleScript_HealerHPSelf:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER, gText_HealerRestoredHPSelf
+	playanimation BANK_SCRIPTING ANIM_HEALING_SPARKLES 0x0
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_SCRIPTING
+	datahpupdate BANK_SCRIPTING
+	printstring 0x184
+	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
 	end3
 
@@ -710,6 +738,7 @@ BattleScript_AbilityApplySecondaryEffect:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_RoughSkinActivates:
+	jumpifability BANK_SCRIPTING ABILITY_AFTERMATH AftermathBS
 	call BattleScript_AbilityPopUp
 	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG
 	healthbarupdate BANK_ATTACKER
@@ -719,6 +748,39 @@ BattleScript_RoughSkinActivates:
 	call BattleScript_AbilityPopUpRevert
 	faintpokemon BANK_ATTACKER 0x0 0x0
 	return
+
+AftermathBS:
+	call BattleScript_AbilityPopUp
+	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG
+	healthbarupdate BANK_ATTACKER
+	datahpupdate BANK_ATTACKER
+	printstring 0xCF
+	waitmessage DELAY_1SECOND
+	jumpifstatcanbelowered BANK_ATTACKER STAT_ATK Aftermath_LowerAtk
+	jumpifstatcanbelowered BANK_ATTACKER STAT_SPATK Aftermath_LowerAtk
+	pause 0x10
+	goto Aftermath_End
+
+Aftermath_End:
+	call BattleScript_AbilityPopUpRevert
+	faintpokemon BANK_ATTACKER 0x0 0x0
+	return
+
+Aftermath_LowerAtk:
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_ATK | STAT_ANIM_SPATK, STAT_ANIM_DOWN | STAT_ANIM_ONLY_MULTIPLE
+	setstatchanger STAT_ATK | DECREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR Aftermath_LowerSpAtk
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 Aftermath_LowerSpAtk
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+Aftermath_LowerSpAtk:
+	setstatchanger STAT_SPATK | DECREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR Aftermath_End
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 Aftermath_End
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	goto Aftermath_End
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -1414,3 +1476,37 @@ BattleScript_BlazeLikeActivates:
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_IlluminateActivates:
+	call BattleScript_AbilityPopUp
+	swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_TARGET STAT_ANIM_ACC STAT_ANIM_DOWN
+	setstatchanger STAT_ACC | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_BS_PTR IlluminateReturn
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 IlluminateReturn
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+
+IlluminateReturn:
+	swapattackerwithtarget
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_AuraBreakActivate:	
+	call BattleScript_AbilityPopUp
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	setbyte TERRAIN_BYTE 0x0
+	callasm TransferTerrainData
+	waitstateatk
+	playanimation 0x0 ANIM_LOAD_DEFAULT_BG 0x0
+	setword BATTLE_STRING_LOADER gText_TerrainEndedByAuraBreak
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	callasm TryActivateMimicry
+	call BattleScript_AbilityPopUpRevert
+	end3
+
+	

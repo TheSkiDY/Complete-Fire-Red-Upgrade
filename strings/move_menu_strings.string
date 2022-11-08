@@ -161,19 +161,22 @@ Torment Foes
 -- Speed Foes
 
 #org @gText_EncoreMoveMenu
-[CURRENT_MOVE] must be selected\nafter the ENCORE!
+[CURRENT_MOVE] must be selected\nafter the ENCORE!\p
 
 #org @gText_AssualtVestMoveMenu
-The [LAST_ITEM] prevents the\nuse of status moves!
+The [LAST_ITEM] prevents the\nuse of status moves!\p
 
 #org @gText_SkyBattleMoveMenu
-[CURRENT_MOVE] can't be used\nin a SKY BATTLE!
+[CURRENT_MOVE] can't be used\nin a SKY BATTLE!\p
 
 #org @gText_GravityMoveMenu
-[CURRENT_MOVE] can't be used\nwhile GRAVITY is in effect!
+[CURRENT_MOVE] can't be used\nwhile GRAVITY is in effect!\p
 
 #org @gText_ThroatChopMoveMenu
-[SCRIPTING_BANK] can't use sound moves\nafter the THROAT CHOP!
+[SCRIPTING_BANK] can't use sound moves\nafter the THROAT CHOP!\p
 
 #org @gText_HealBlockMoveMenu
-[SCRIPTING_BANK] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!
+[SCRIPTING_BANK] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!\p
+
+#org @gText_LoafingAroundMoveMenu
+[SCRIPTING_BANK] is loafing around and unable\nto use attacking moves this turn!\p

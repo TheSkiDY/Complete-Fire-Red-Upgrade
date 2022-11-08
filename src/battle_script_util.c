@@ -1309,13 +1309,23 @@ void TrySetMagnetRise(void)
 
 void TailwindLuckyChantFunc(void)
 {
+	bool8 hasGaleWings = FALSE;
+	u16 species = GetProperAbilityPopUpSpecies(gBankAttacker);
+
+	if (ABILITY(gBankAttacker) == ABILITY_GALEWINGS
+		&& !SpeciesHasGrassDash(species)
+		&& !SpeciesHasDrillBeak(species))
+	{
+		hasGaleWings = TRUE;
+	}
+
 	switch (gCurrentMove) {
 		case MOVE_TAILWIND:
 			if (BankSideHasTailwind(gBankAttacker))
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
-				gNewBS->TailwindTimers[SIDE(gBankAttacker)] = 4;
+				gNewBS->TailwindTimers[SIDE(gBankAttacker)] = hasGaleWings ? 8 : 4;
 				gBattleStringLoader = TailwindSetString;
 			}
 			break;

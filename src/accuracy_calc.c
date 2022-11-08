@@ -358,6 +358,7 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS) && gDisableStructs[bankDef].bankWithSureHit == gBankAttacker)
 	||   (ABILITY(gBankAttacker) == ABILITY_NOGUARD) || (ABILITY(bankDef) == ABILITY_NOGUARD)
 	||   (move == MOVE_TOXIC && IsOfType(gBankAttacker, TYPE_POISON))
+	|| 	 (ABILITY(gBankAttacker) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 	||   (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
 	||	 gBattleMoves[move].accuracy == 0)
@@ -453,42 +454,46 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 			break;
 
 		case ABILITY_VICTORYSTAR:
-			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			calc = udivsi((calc * 120), 100); // 1.2 Victory Star boost
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
-		calc = udivsi((calc * 110), 100); // 1.1 Victory Star partner boost
+		calc = udivsi((calc * 120), 100); // 1.2 Victory Star partner boost
 
 	if (WEATHER_HAS_EFFECT)
 	{
 		switch (defAbility) {
 			case ABILITY_SANDVEIL:
-				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+				if (gBattleWeather & WEATHER_SANDSTORM_ANY && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
 					calc = udivsi((calc * 80), 100); // 0.8 Sand Veil loss
 				break;
 
 			case ABILITY_SNOWCLOAK:
-				if (gBattleWeather & WEATHER_HAIL_ANY)
+				if (gBattleWeather & WEATHER_HAIL_ANY && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
 					calc = udivsi((calc * 80), 100); // 0.8 Snow Cloak loss
+				break;
+
+			case ABILITY_MAGMAARMOR:
+				if (gBattleWeather & WEATHER_SUN_ANY && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
+					calc = udivsi((calc * 80), 100); // 0.8 Magma Armor loss
+				break;
+
+			case ABILITY_WATERVEIL:
+				if (gBattleWeather & WEATHER_RAIN_ANY && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
+					calc = udivsi((calc * 80), 100); // 0.8 Water Veil loss
+				break;
 		}
 
 		if (gBattleWeather & WEATHER_FOG_ANY)
 		{
 			if (!BypassesFog(atkAbility, atkEffect))
 			{
-				#ifdef VAR_GAME_DIFFICULTY
-				if (VarGet(VAR_GAME_DIFFICULTY) == OPTIONS_EASY_DIFFICULTY
-				&& !FlagGet(FLAG_SYS_GAME_CLEAR)
-				&& !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER))
-					calc = (calc * 8) / 10; // 0.8 Fog loss
-				else
-				#endif
-					calc = (calc * 6) / 10; // 0.6 Fog loss
+				calc = (calc * 8) / 10; // 0.8 Fog loss
 			}
 		}
 	}
 
-	if (defAbility == ABILITY_TANGLEDFEET && IsConfused(bankDef))
+	if (defAbility == ABILITY_TANGLEDFEET && IsConfused(bankDef) && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
 		calc /= 2; // 0.5 Tangled Feet loss
 
 	switch (atkEffect) {
@@ -504,7 +509,7 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	if (IsGravityActive())
 		calc = udivsi((calc * 5), 3); // 5/3 Gravity boost
 
-	if (defEffect == ITEM_EFFECT_EVASION_UP)
+	if (defEffect == ITEM_EFFECT_EVASION_UP && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
 		calc = udivsi((calc * (100 - defQuality)), 100); // 0.9 Bright Powder/Lax Incense loss
 
 	if (gNewBS->MicleBerryBits & gBitTable[bankAtk])
@@ -530,6 +535,7 @@ u32 VisualAccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || defAbility == ABILITY_NOGUARD
 	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk)
 	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
+	|| (ABILITY(bankAtk) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 	|| (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	|| ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO))
 		acc = 0xFFFF; //No Miss
@@ -567,9 +573,9 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 	calc = udivsi(calc, gAccuracyStageRatios[acc].divisor);
 
 	switch (atkAbility) {
-		case ABILITY_COMPOUNDEYES:
-			calc = udivsi((calc * 130), 100); // 1.3 Compound Eyes boost
-			break;
+		// case ABILITY_COMPOUNDEYES:
+		// 	calc = udivsi((calc * 130), 100); // 1.3 Compound Eyes boost
+		// 	break;
 
 		case ABILITY_HUSTLE:
 			if (moveSplit == SPLIT_PHYSICAL)
@@ -577,24 +583,17 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 			break;
 
 		case ABILITY_VICTORYSTAR:
-			calc = udivsi((calc * 110), 100); // 1.1 Victory Star boost
+			calc = udivsi((calc * 120), 100); // 1.2 Victory Star boost
 	}
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
-		calc = udivsi((calc * 110), 100); // 1.1 Victory Star partner boost
+		calc = udivsi((calc * 120), 100); // 1.2 Victory Star partner boost
 
 	if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_FOG_ANY)
 	{
 		if (!BypassesFog(atkAbility, atkEffect))
 		{
-			#ifdef VAR_GAME_DIFFICULTY
-			if (VarGet(VAR_GAME_DIFFICULTY) == OPTIONS_EASY_DIFFICULTY
-			&& !FlagGet(FLAG_SYS_GAME_CLEAR)
-			&& !(gBattleTypeFlags & BATTLE_TYPE_FRONTIER))
-				calc = (calc * 8) / 10; // 0.8 Fog loss
-			else
-			#endif
-				calc = (calc * 6) / 10; // 0.6 Fog loss
+			calc = (calc * 8) / 10; // 0.8 Fog loss
 		}
 	}
 
@@ -613,7 +612,8 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 	}
 
 	if (atkAbility == ABILITY_NOGUARD
-	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON)))
+	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
+	|| (atkAbility == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS))
 		calc = 0xFFFF; //No Miss
 	else if (WEATHER_HAS_EFFECT)
 	{

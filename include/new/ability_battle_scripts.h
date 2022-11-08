@@ -36,7 +36,9 @@ extern const u8 BattleScript_TerrainFromAbility[];
 extern const u8 BattleScript_RainDishActivates[];
 extern const u8 BattleScript_DrySkinDamage[];
 extern const u8 BattleScript_SolarPowerDamage[];
-extern const u8 BattleScript_Healer[];
+extern const u8 BattleScript_HealerStatus[];
+extern const u8 BattleScript_HealerHP[];
+extern const u8 BattleScript_HealerHPSelf[];
 extern const u8 BattleScript_MoodySingleStat[];
 extern const u8 BattleScript_MoodyRegular[];
 extern const u8 BattleScript_BadDreams[];
@@ -72,6 +74,7 @@ extern const u8 BattleScript_CastformChange[];
 extern const u8 BattleScript_CottonDownActivates[];
 extern const u8 BattleScript_PerishBody[];
 extern const u8 BattleScript_PerishBodyReturn[];
+extern const u8 BattleScript_IlluminateActivates[];
 
 extern const u8 BattleScript_AbilityChangedType[];
 extern const u8 BattleScript_DisguiseTookDamage[];
@@ -116,7 +119,7 @@ extern const u8 BattleScript_AbilityPopUp_BankEffect[];
 extern const u8 BattleScript_AbilityPopUp_BankEffectRevert[];
 
 extern const u8 BattleScript_BlazeLikeActivates[];
-
+extern const u8 BattleScript_AuraBreakActivate[];
 
 //Strings
 extern const u8 gText_ItIsHailing[];
@@ -165,3 +168,7 @@ extern const u8 gText_MimikyuDisguisedTookDamageString[];
 extern const u8 gText_DisguiseBustedString[];
 extern const u8 gText_ReceiverString[];
 extern const u8 gText_DefiantString[];
+
+extern const u8 gText_VictoryStarMultiplier[];
+extern const u8 gText_SlowStartInfo[];
+extern const u8 gText_TerrainEndedByAuraBreak[];

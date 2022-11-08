@@ -931,7 +931,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 		case ABILITY_AURABREAK:
 			gBattleStringLoader = gText_AuraBreakActivate;
-			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+			BattleScriptPushCursorAndCallback(BattleScript_AuraBreakActivate);
 			effect++;
 			break;
 
@@ -1408,26 +1408,38 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			break;
 
-		case ABILITY_EVAPORATE:
-			if (BankHasEvaporate(bank) && AffectedByRain(bank))
+		case ABILITY_VICTORYSTAR:
+			if (gNewBS->isTrainerBattle && !gBattleStruct->victoryStarMultiplierApplied && SIDE(bank) == B_SIDE_PLAYER)
 			{
-				if (RainCanBeEvaporated())
-				{
-					//Remove weather
-					gBankAttacker = bank;
-					gBattleWeather = 0;
-					gWishFutureKnock.weatherDuration = 0;
-					BattleScriptPushCursorAndCallback(BattleScript_EvaporateOnSwitchIn);
-					effect++;
-				}
-				else if (gBattleWeather & WEATHER_PRIMAL_ANY)
-				{
-					BattleScriptPushCursorAndCallback(BattleScript_WeatherAbilityBlockedByPrimalWeather);
-					effect++;
-				}
+				gBattleStruct->victoryStarMultiplierApplied = TRUE;
+				gBattleStruct->moneyMultiplier *= 4;
+
+				gBattleStringLoader = gText_VictoryStarMultiplier;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
 			}
 			break;
 		}
+
+		// case ABILITY_EVAPORATE:
+		// 	if (BankHasEvaporate(bank) && AffectedByRain(bank))
+		// 	{
+		// 		if (RainCanBeEvaporated())
+		// 		{
+		// 			//Remove weather
+		// 			gBankAttacker = bank;
+		// 			gBattleWeather = 0;
+		// 			gWishFutureKnock.weatherDuration = 0;
+		// 			BattleScriptPushCursorAndCallback(BattleScript_EvaporateOnSwitchIn);
+		// 			effect++;
+		// 		}
+		// 		else if (gBattleWeather & WEATHER_PRIMAL_ANY)
+		// 		{
+		// 			BattleScriptPushCursorAndCallback(BattleScript_WeatherAbilityBlockedByPrimalWeather);
+		// 			effect++;
+		// 		}
+		// 	}
+		// 	break;
 
 		switch (gLastUsedAbility) { //These abilities should always activate if they can
 			case ABILITY_NONE: //So Unnerve activates the first time when Neutralizing Gas leaves the field
@@ -1482,7 +1494,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_ICEBODY:
 					if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_HAIL_ANY) && !BATTLER_MAX_HP(bank))
 					{
-						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 16);
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 6);
 						gBattleMoveDamage *= -1;
 						BattleScriptExecute(BattleScript_RainDishActivates);
 						effect++;
@@ -1522,12 +1534,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_HEALER:
 					if (IS_DOUBLE_BATTLE
 					&& BATTLER_ALIVE(PARTNER(bank))
-					&& gBattleMons[PARTNER(bank)].status1
-					&& Random() % 100 < 30)
+					&& (gBattleMons[PARTNER(bank)].status1 || !BATTLER_MAX_HP(PARTNER(bank)) || !BATTLER_MAX_HP(bank)))
 					{
 						gEffectBank = PARTNER(bank);
-						ClearBankStatus(gEffectBank);
-						BattleScriptPushCursorAndCallback(BattleScript_Healer);
+						if(!BATTLER_MAX_HP(gEffectBank))
+						{
+							gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gEffectBank) / 16);
+							gBattleMoveDamage *= -1;
+							BattleScriptPushCursorAndCallback(BattleScript_HealerHP);
+						}
+						else if(!BATTLER_MAX_HP(bank))
+						{
+							gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gEffectBank) / 16);
+							gBattleMoveDamage *= -1;
+							BattleScriptPushCursorAndCallback(BattleScript_HealerHPSelf);	
+						}
+						if(gBattleMons[gEffectBank].status1)
+						{
+							ClearBankStatus(gEffectBank);
+							BattleScriptPushCursorAndCallback(BattleScript_HealerStatus);
+						}
+						effect++;
+					}
+					else if (IS_SINGLE_BATTLE
+					&& BATTLER_ALIVE(bank)
+					&& !BATTLER_MAX_HP(bank))
+					{
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gEffectBank) / 16);
+						gBattleMoveDamage *= -1;
+						BattleScriptPushCursorAndCallback(BattleScript_HealerHPSelf);	
 						effect++;
 					}
 					break;
@@ -1651,12 +1686,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 
-				case ABILITY_SLOWSTART:
-					if (gNewBS->SlowStartTimers[bank] > 0 && --gNewBS->SlowStartTimers[bank] == 0)
+				case ABILITY_SLOWSTART: ;
+					if(gNewBS->SlowStartTimers[bank] > 0)
 					{
-						gBattleStringLoader = gText_SlowStartEnd;
-						BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-						++effect;
+						u8 ssTimer = --gNewBS->SlowStartTimers[bank];
+						if(ssTimer == 0)
+						{
+							gBattleStringLoader = gText_SlowStartEnd;
+							BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+							++effect;
+						}
+						else
+						{
+							u8 powerPercent = 100 - (ssTimer * 10);
+							PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 2, powerPercent);
+							gBattleStringLoader = gText_SlowStartInfo;
+							BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+							++effect;
+						}
 					}
 					break;
 
@@ -2055,7 +2102,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& moveType == TYPE_DARK
 				&& gBattleMons[bank].statStages[STAT_ATK - 1] < 12)
 				{
-					gBattleScripting.statChanger = STAT_ATK | INCREASE_1;
+					gBattleScripting.statChanger = STAT_ATK | INCREASE_2;
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
 					effect++;
@@ -2359,6 +2406,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				{
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_PerishBody;
+					effect++;
+				}
+				break;
+
+			case ABILITY_ILLUMINATE:
+				if (umodsi(Random(), 3) == 0
+				&& MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& CheckContact(move, gBankAttacker, bank)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& (STAT_CAN_FALL(gBankAttacker, STAT_ACC) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR))
+				{
+					gBattleScripting.statChanger = STAT_ACC | DECREASE_1;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_IlluminateActivates;
 					effect++;
 				}
 				break;

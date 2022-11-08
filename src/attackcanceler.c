@@ -286,7 +286,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			break;
 
 		case CANCELLER_TRUANT: // truant
-			if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter)
+			if (ABILITY(gBankAttacker) == ABILITY_TRUANT && gDisableStructs[gBankAttacker].truantCounter && !CanMoveDuringLoafingTurn(gBankAttacker))
 			{
 				CancelMultiTurnMoves(gBankAttacker);
 				gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -589,7 +589,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			break;
 
 		case CANCELLER_PARALYSED: // paralysis
-			if ((gBattleMons[gBankAttacker].status1 & STATUS1_PARALYSIS) && Random() % 4 == 0)
+			if ((gBattleMons[gBankAttacker].status1 & STATUS1_PARALYSIS) && ABILITY(gBankAttacker) != ABILITY_INNERFOCUS && Random() % 4 == 0)
 			{
 				gProtectStructs[gBankAttacker].prlzImmobility = 1;
 				CancelMultiTurnMoves(gBankAttacker);
@@ -894,6 +894,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 		case CANCELLER_PSYCHIC_TERRAIN:
 			if (gTerrainType == PSYCHIC_TERRAIN
 			&& CheckGrounding(gBankTarget)
+			&& !ABILITY_ON_FIELD(ABILITY_AURABREAK)
 			&& gBankAttacker != gBankTarget
 			&& (IS_SINGLE_BATTLE || gBankTarget != PARTNER(gBankAttacker)) //Can still hit partner
 			&& PriorityCalc(gBankAttacker, ACTION_USE_MOVE, gCurrentMove) > 0
@@ -956,10 +957,6 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				{
 					gMultiHitCounter = 3;
 				}
-				else if (ability == ABILITY_SKILLLINK)
-				{
-					gMultiHitCounter = 5;
-				}
 				#ifdef SPECIES_ASHGRENINJA
 				else if (ability == ABILITY_FORM_CHANGE
 				&& SpeciesHasBattleBond(SPECIES(gBankAttacker))
@@ -968,8 +965,16 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				{
 					gMultiHitCounter = 3;
 				}
-				else
 				#endif
+				else if(ABILITY(gBankTarget) == ABILITY_PRESSURE)
+				{
+					gMultiHitCounter = 2;
+				}
+				else if (ability == ABILITY_SKILLLINK)
+				{
+					gMultiHitCounter = 5;
+				}
+				else
 				{
 					gMultiHitCounter = Random() % 3; //Split into groups of 3
 					switch (gMultiHitCounter)
@@ -1055,7 +1060,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 						{
 							if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, i, 0, 0, 0)
 							||  AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK_PARTNER, PARTNER(i), 0, 0, 0)
-							|| (gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(i) && priority > 0))
+							|| (gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(i) && priority > 0 && !ABILITY_ON_FIELD(ABILITY_AURABREAK)))
 							{
 								gNewBS->ResultFlags[i] = 0;
 								gNewBS->noResultString[i] = TRUE;

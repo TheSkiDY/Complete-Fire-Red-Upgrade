@@ -1814,6 +1814,7 @@ static bool8 MoveAlwaysHitsTarget(u16 move, u8 bankDef)
 bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 {
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD
+	|| (ABILITY(bankAtk) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk))
 		return TRUE;
 
@@ -1827,6 +1828,9 @@ bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 bool8 MonMoveWillHit(u16 move, struct Pokemon* monAtk, u8 bankDef)
 {
 	if (GetMonAbility(monAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD)
+		return TRUE;
+
+	if (GetMonAbility(monAtk) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 		return TRUE;
 
 	if (MoveCantHitTarget(move, bankDef))
@@ -3310,6 +3314,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 		&& !IsClearBodyAbility(defAbility)
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ATK)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
 }
 
@@ -3325,6 +3330,7 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 		&& !IsClearBodyAbility(defAbility)
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_DEF)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
 }
 
@@ -3339,6 +3345,7 @@ bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
 		&& !IsClearBodyAbility(defAbility)
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPATK)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
 }
 
@@ -3353,6 +3360,7 @@ bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
 		&& !IsClearBodyAbility(defAbility)
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPDEF)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
 }
 
@@ -3367,6 +3375,7 @@ bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move, u8 reduceBy)
 		&& defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPEED)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& (!IS_DOUBLE_BATTLE || WillBeFasterAfterSpeedDrop(bankAtk, bankDef, reduceBy));
 }
 
@@ -3379,6 +3388,7 @@ bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
 
 	return defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
+		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ACC);
 }
 
@@ -3388,6 +3398,7 @@ bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
 
 	if (!IsClearBodyAbility(defAbility)
 	&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_EVASION)
+	&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 	&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 	&& defAbility != ABILITY_CONTRARY)
 	{

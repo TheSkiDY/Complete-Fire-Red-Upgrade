@@ -109,12 +109,13 @@ void atk04_critcalc(void)
 			#endif
 		||  CantScoreACrit(gBankAttacker, NULL)
 		||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL | BATTLE_TYPE_POKE_DUDE)
+		||  (WEATHER_HAS_EFFECT && defAbility == ABILITY_MAGMAARMOR && (gBattleWeather & WEATHER_SUN_ANY && atkEffect != ITEM_EFFECT_UTILITY_UMBRELLA))
 		||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
 		{
 			confirmedCrit = FALSE;
 		}
 		else if (IsLaserFocused(gBankAttacker)
-		|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(gBankAttacker)) && (gBattleMons[bankDef].status1 & STATUS_PSN_ANY))
+		|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(gBankAttacker)) && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| (atkAbility == ABILITY_DRILLBEAK && SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(gBankAttacker)) && gSpecialMoveFlags[gCurrentMove].gDrillMoves) //Drill moves always crit
 		|| gSpecialMoveFlags[gCurrentMove].gAlwaysCriticalMoves)
 		{
@@ -209,12 +210,13 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 		#endif
 	||  CantScoreACrit(bankAtk, monAtk)
 	||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL)
+	||  (defAbility == ABILITY_MAGMAARMOR && gBattleWeather & WEATHER_SUN_ANY) 
 	||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
 	{
 		return FALSE;
 	}
 	else if ((IsLaserFocused(bankAtk) && monAtk == NULL)
-	|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(atkAbilitySpecies) && (defStatus1 & STATUS_PSN_ANY))
+	|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(atkAbilitySpecies) && (defStatus1 & STATUS_ANY))
 	|| (atkAbility == ABILITY_DRILLBEAK && SpeciesHasDrillBeak(atkAbilitySpecies) && gSpecialMoveFlags[move].gDrillMoves) //Drill moves always crit
 	|| gSpecialMoveFlags[move].gAlwaysCriticalMoves)
 	{
@@ -397,7 +399,7 @@ u32 SplintersDamageCalc(u8 bankAtk, u8 bankDef, u16 move)
 	return gBattleMoveDamage;
 }
 
-static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, unusedArg u16 atkSpecies)
+static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, u8 defAbility, unusedArg u16 atkSpecies)
 {
 	u8 numHits = 1;
 
@@ -407,6 +409,10 @@ static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, unusedArg u16 atkSpecie
 	#endif
 	)
 		numHits = 3;
+	else if (defAbility == ABILITY_PRESSURE)
+	{
+		numHits = 2;
+	}
 	else if (gSpecialMoveFlags[move].gTwoToFiveStrikesMoves)
 	{
 		if (atkAbility == ABILITY_SKILLLINK)
@@ -539,7 +545,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 
 	damage = (damage * 93) / 100; //Roll 93% damage - about halfway between min & max damage
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -648,7 +654,7 @@ u32 AI_CalcPartyDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, st
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -761,7 +767,7 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -1526,12 +1532,18 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
 			return; //Miracle Eye causes normal damage hits
+
+		if (atkAbility == ABILITY_CORROSION && defType == TYPE_STEEL && moveType == TYPE_POISON)
+			return; //Corrosion can hit Steel-types with poison attacks
 	}
 	else if (checkMonDef)
 	{
 		if (atkAbility == ABILITY_SCRAPPY
 		&& (defType == TYPE_GHOST && (moveType == TYPE_NORMAL || moveType == TYPE_FIGHTING)))
 			return; //Scrappy breaks Ghost immunity
+
+		if (atkAbility == ABILITY_CORROSION && defType == TYPE_STEEL && moveType == TYPE_POISON)
+			return;
 	}
 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
@@ -2663,7 +2675,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//1.5x Boost
 			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
 			&& !ItemEffectIgnoresSunAndRain(data->atkItemEffect))
+			{
 				attack = (attack * 15) / 10;
+				spAttack = (spAttack * 15) / 10;
+			}
 			break;
 
 		case ABILITY_PLUS:
@@ -2702,12 +2717,19 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			if (useMonAtk)
 				attack /= 2; //Pokemon in the party would start with half atk
 			else if (gNewBS->SlowStartTimers[bankAtk])
-				attack /= 2;
+			{
+				attack = (attack * (10 - gNewBS->SlowStartTimers[bankAtk])) / 10;
+			}
 			break;
 
 		case ABILITY_DEFEATIST:
 		//0.5x Boost
-			if (data->atkHP <= (data->atkMaxHP / 2))
+			if (data->atkHP >= (data->atkMaxHP / 4) && data->atkHP <= (data->atkMaxHP / 2))
+			{
+				attack = (attack * 10) / 15;
+				spAttack = (spAttack * 10) / 15;
+			}
+			else if (data->atkHP <= (data->atkMaxHP / 4))
 			{
 				attack /= 2;
 				spAttack /= 2;
@@ -2768,13 +2790,21 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			if (!IsDynamaxed(bankAtk))
 				attack = (attack * 15) / 10;
 			break;
+
+		case ABILITY_LEAFGUARD:
+			if(gTerrainType == GRASSY_TERRAIN)
+				attack *= 2;
+			break;
 	}
 
 	switch (data->atkPartnerAbility) {
 		case ABILITY_FLOWERGIFT:
 			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
 			&& !ItemEffectIgnoresSunAndRain(ITEM_EFFECT(PARTNER(bankAtk))))
+			{
 				attack = (attack * 15) / 10;
+				spAttack = (spAttack * 15) / 10;
+			}
 			break;
 	}
 
@@ -2806,6 +2836,21 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			defense *= 2;
 			break;
 
+		case ABILITY_FLOWERGIFT:
+			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
+			&& !ItemEffectIgnoresSunAndRain(data->atkItemEffect))
+			{
+				spDefense = (spDefense * 15) / 10;
+			}
+			break;
+
+		case ABILITY_FLOWERVEIL:
+			if(IsOfType(bankDef, TYPE_GRASS))
+			{
+				attack /= 2;
+				spAttack /= 2;
+			}
+
 		// case ABILITY_PORTALPOWER:
 		// //0.75x Decrement
 		// #ifdef PORTAL_POWER
@@ -2817,6 +2862,22 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		// 	}
 		// #endif
 		// 	break;
+	}
+
+	switch (data->defPartnerAbility) {
+		case ABILITY_FLOWERGIFT:
+			if (WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)
+			&& !ItemEffectIgnoresSunAndRain(ITEM_EFFECT(PARTNER(bankDef))))
+			{
+				spDefense = (spDefense * 15) / 10;
+			}
+			break;
+		case ABILITY_FLOWERVEIL:
+			if(IsOfType(PARTNER(bankDef), TYPE_GRASS))
+			{
+				attack /= 2;
+				spAttack /= 2;
+			}
 	}
 
 //Attacker Item Checks
@@ -3180,7 +3241,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			break;
 
 		case ABILITY_HEATPROOF:
+		//0.5x Decrement
+			if (data->moveType == TYPE_FIRE || gSpecialMoveFlags[move].gNoFireHeatMoves)
+				damage /= 2;
+			break;
+
 		case ABILITY_WATERBUBBLE:
+		case ABILITY_DAMP:
 		//0.5x Decrement
 			if (data->moveType == TYPE_FIRE)
 				damage /= 2;
@@ -4061,6 +4128,18 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 15) / 10;
 			break;
 		#endif
+
+		case ABILITY_BIGPECKS:
+		//1.5x Boost
+			if (gSpecialMoveFlags[move].gPeckingMoves)
+				power = (power * 15) / 10;
+			break;
+
+		case ABILITY_HYPERCUTTER:
+		//1.2x Boost
+			if (gSpecialMoveFlags[move].gCuttingMoves)
+				power = (power * 12) / 10;
+			break;
 	}
 
 	//Check attacker partner ability boost

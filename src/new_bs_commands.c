@@ -850,7 +850,12 @@ void atkFF1F_flowershieldlooper(void)
 				gBattleCommunication[MULTISTRING_CHOOSER] = 0; //Avoided attack
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
 			}
-			else if (priority && gBankAttacker != bank && gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(bank))
+			else if(BATTLER_SEMI_INVULNERABLE(bank) && ABILITY(gBankAttacker) != ABILITY_COMPOUNDEYES && SPLIT(gCurrentMove) != SPLIT_STATUS)
+			{
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0; //Avoided attack
+				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
+			}
+			else if (priority && gBankAttacker != bank && gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 			{
 				gBattleStringLoader = gText_PsychicTerrainAttackCancelString;
 				gBattleCommunication[MULTISTRING_CHOOSER] = 5; //Protected by Psychic Terrain
@@ -1227,8 +1232,11 @@ void atkFF24_jumpifattackeralreadydiddamage(void)
 //jumpifterrainandgrounded TERRAIN_ID BANK ROM_ADDRESS
 void atkFF25_jumpifterrainandgrounded(void)
 {
+	u8 bank = GetBankForBattleScript(gBattlescriptCurrInstr[2]);
+
 	if (gTerrainType == gBattlescriptCurrInstr[1]
-	&&  CheckGrounding(GetBankForBattleScript(gBattlescriptCurrInstr[2])))
+	&&  CheckGrounding(bank)
+	&&  ABILITY(bank) != ABILITY_AURABREAK)
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
 	else
 		gBattlescriptCurrInstr += 7;
@@ -1394,12 +1402,12 @@ void atkFF29_trysetsleep(void)
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;
 		fail = TRUE;
 	}
-	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bank))
+	else if (gTerrainType == MISTY_TERRAIN && CheckGrounding(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;
 	}
-	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank))
+	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInElectricTerrain;
 		fail = TRUE;
@@ -1510,7 +1518,7 @@ void atkD7_setyawn(void)
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;
 	}*/
-	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank))
+	else if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bank) && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInElectricTerrain;
 		fail = TRUE;
@@ -1645,7 +1653,7 @@ void atkFF2A_trysetparalysis(void)
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;
 		fail = TRUE;
 	}
-	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN)
+	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;
@@ -1737,7 +1745,7 @@ void atkFF2B_trysetburn(void)
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;
 		fail = TRUE;
 	}
-	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN)
+	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;
@@ -1835,7 +1843,7 @@ void atkFF2C_trysetpoison(void)
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;
 		fail = TRUE;
 	}
-	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN)
+	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;
@@ -1990,7 +1998,7 @@ void atkFF34_canconfuse(void)
 		gBattleStringLoader = gText_TeamProtectedBySafeguard;
 		fail = TRUE;
 	}
-	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN)
+	else if (CheckGrounding(bank) && gTerrainType == MISTY_TERRAIN && !ABILITY_ON_FIELD(ABILITY_AURABREAK))
 	{
 		gBattleStringLoader = gText_TargetWrappedInMistyTerrain;
 		fail = TRUE;

@@ -333,6 +333,7 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 		}
 
 		else if ((IsClearBodyAbility(ability)
+			  || (ability == ABILITY_LEAFGUARD && WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(gActiveBattler)))
 			  || (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		&& !certain && gCurrentMove != MOVE_CURSE)
 		{

@@ -1721,6 +1721,8 @@ bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId)
 			return statId == STAT_STAGE_DEF;
 		case ABILITY_KEENEYE:
 			return statId == STAT_STAGE_ACC;
+        case ABILITY_LIMBER:
+            return statId == STAT_STAGE_SPEED;
 		default:
 			return FALSE;
 	}

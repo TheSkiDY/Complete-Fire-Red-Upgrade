@@ -1808,6 +1808,11 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingMoveWithNoPP;
 		++limitations;
 	}
+	else if (ability == ABILITY_TRUANT && gDisableStructs[gActiveBattler].truantCounter && CanMoveDuringLoafingTurn(gActiveBattler) && (SPLIT(move) != SPLIT_STATUS || gSpecialMoveFlags[move].gTruantLoafingBannedMoves))
+	{
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingInvalidMoveDuringLoafingTurn;
+		++limitations;
+	}
 
 	if (limitations != 0)
 	{

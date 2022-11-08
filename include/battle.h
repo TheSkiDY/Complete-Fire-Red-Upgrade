@@ -655,7 +655,15 @@ struct BattleStruct
 	u8 castformToChangeInto;
 	u8 chosenMovePositions[BATTLE_BANKS_COUNT]; //0x2000090
 	u8 stateIdAfterSelScript[BATTLE_BANKS_COUNT];
-	u8 field_88;
+	bool8 victoryStarMultiplierApplied : 1;
+    bool8 field_88_1 : 1;
+    bool8 field_88_2 : 1;
+    bool8 field_88_3 : 1;
+    bool8 field_88_4 : 1;
+    bool8 field_88_5 : 1;
+    bool8 field_88_6 : 1;
+    bool8 field_88_7 : 1;
+
 	u8 field_89;
 	u8 field_8A;
 	u8 field_8B;

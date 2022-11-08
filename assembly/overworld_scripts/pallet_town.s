@@ -28,10 +28,11 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 50
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_AEGISLASH 5 0 0 0 0
-	givepokemon SPECIES_DRIFBLIM 5 ITEM_TOXIC_ORB 0 0 0
-	givepokemon SPECIES_QUILAVA_S 5 ITEM_TOXIC_ORB 0 0 0
+	givepokemon SPECIES_SLAKOTH 3 0 0 0 0
+	givepokemon SPECIES_UMBREON 5 0 0 0 0
+	givepokemon SPECIES_LUNATONE 5 0 0 0 0
 	givepokemon SPECIES_PINCURCHIN 5 0 0 0 0
+	givepokemon SPECIES_REGIGIGAS 5 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
