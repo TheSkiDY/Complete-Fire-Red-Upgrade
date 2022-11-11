@@ -229,3 +229,4 @@ enum ItemBattleEffectCases
 #define MOVE_LIMITATION_ENCORE		(1 << 7)
 
 bool8 CanMoveDuringLoafingTurn(u8 bank);;
+void WishPearlRecoveryIncrease(u8 bank, s32* hp);

@@ -2246,7 +2246,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_SEMI_INVULNERABLE: ;
-			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB)
+			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT)
 				goto AI_STANDARD_DAMAGE;
 
 			if (predictedMove != MOVE_NONE
@@ -2265,7 +2265,7 @@ SKIP_CHECK_TARGET:
 		case EFFECT_SKULL_BASH:
 		case EFFECT_SKY_ATTACK:
 		TWO_TURN_ATTACK_CHECK:
-			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB)
+			if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB || data->atkAbility == ABILITY_IMPATIENT)
 				goto AI_STANDARD_DAMAGE;
 
 			if (WillFaintFromSecondaryDamage(bankAtk))

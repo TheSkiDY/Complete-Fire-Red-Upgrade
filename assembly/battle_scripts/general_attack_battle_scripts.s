@@ -21,6 +21,7 @@ general_attack_battle_scripts.s
 .global CantUseHyperspaceFuryString
 .global gText_CantUseMove
 .global gText_WrongHoopaForm
+.global gText_ImpatientString
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -1543,6 +1544,7 @@ PrintMeteorBeamString:
 
 BattleScript_CheckPowerHerb:
 	waitmessage DELAY_1SECOND
+	jumpifability BANK_ATTACKER ABILITY_IMPATIENT ImpatientBS
 	jumpifhelditemeffect BANK_ATTACKER ITEM_EFFECT_POWER_HERB PowerHerbChargeBS
 	jumpifraidboss BANK_ATTACKER TwoTurnMovesRaidBossSkipCharge
 	orword HIT_MARKER HITMARKER_CHARGING
@@ -1556,6 +1558,14 @@ PowerHerbChargeBS:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	removeitem BANK_ATTACKER
+
+ImpatientBS:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_ImpatientString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto TwoTurnMovesRaidBossSkipCharge
 
 TwoTurnMovesRaidBossSkipCharge:
 	setbyte ANIM_TARGETS_HIT 0x0

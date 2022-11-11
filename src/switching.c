@@ -41,6 +41,7 @@ enum SwitchInStates
 	SwitchIn_NeutralizingGasRemoveAbility,
 	SwitchIn_HealingWish,
 	SwitchIn_ZHealingWish,
+	SwitchIn_Compression,
 	SwitchIn_Spikes,
 	SwitchIn_StealthRock,
 	SwitchIn_Steelsurge,
@@ -566,8 +567,8 @@ void atk52_switchineffects(void)
 				if (!(gNewBS->ai.sideSwitchedThisRound & gBitTable[SIDE(FOE(gActiveBattler))])) //There was no change on the other side of the field
 				{
 					++gNewBS->ai.switchesInARow[gActiveBattler];
-					if (ABILITY(gActiveBattler) == ABILITY_INTIMIDATE) //Don't allow Intimidate cheesing
-						++gNewBS->ai.switchesInARow[gActiveBattler];
+					// if (ABILITY(gActiveBattler) == ABILITY_INTIMIDATE) //Don't allow Intimidate cheesing
+					// 	++gNewBS->ai.switchesInARow[gActiveBattler];
 				}
 			}
 			else //A foe just switched in
@@ -702,6 +703,49 @@ void atk52_switchineffects(void)
 				gNewBS->zMoveData.healReplacement = FALSE;
 
 			gNewBS->DamageTaken[gActiveBattler] = 0;
+			++gNewBS->switchInEffectsState;
+		__attribute__ ((fallthrough));
+
+		case SwitchIn_Compression:
+			if(ability == ABILITY_COMPRESSION && IsAffectedByHazards(gActiveBattler))
+			{
+				bool8 compressionActivated = FALSE;
+
+				if (gSideTimers[SIDE(gActiveBattler)].steelsurge > 0)
+				{
+					gSideTimers[SIDE(gActiveBattler)].steelsurge = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SteelsurgeAbsorb;
+					compressionActivated = TRUE;
+				}
+
+				if (gSideTimers[SIDE(gActiveBattler)].spikesAmount > 0 && CheckGrounding(gActiveBattler))
+				{
+					gSideTimers[SIDE(gActiveBattler)].spikesAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SpikesAbsorb;
+					compressionActivated = TRUE;
+				}
+
+				if (gSideTimers[SIDE(gActiveBattler)].srAmount > 0)
+				{
+					gSideTimers[SIDE(gActiveBattler)].srAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SRAbsorb;
+					compressionActivated = TRUE;
+				}
+
+				if(gSideTimers[SIDE(gActiveBattler)].stickyWeb == 0 && gSideTimers[SIDE(gActiveBattler)].tspikesAmount == 0 && gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
+					gSideStatuses[SIDE(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES);
+
+				if(compressionActivated)
+				{
+					gBattleScripting.bank = gActiveBattler;
+					gBankTarget = gActiveBattler;
+					++gNewBS->switchInEffectsState;
+					return;	
+				}
+			}
 			++gNewBS->switchInEffectsState;
 		__attribute__ ((fallthrough));
 

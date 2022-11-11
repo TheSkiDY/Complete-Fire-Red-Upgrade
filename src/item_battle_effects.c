@@ -239,6 +239,8 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 					if (ABILITY(bank) == ABILITY_RIPEN && IsBerry(gLastUsedItem))
 						gBattleMoveDamage *= 2;
 
+					WishPearlRecoveryIncrease(bank, &gBattleMoveDamage);
+
 					if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
 						gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
 
@@ -355,6 +357,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 				&&  !gNewBS->leftoverHealingDone[bank])
 				{
 					gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 16);
+					WishPearlRecoveryIncrease(bank, &gBattleMoveDamage);
 					if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
 						gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
 					gBattleMoveDamage *= -1;
@@ -819,6 +822,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 					if (ABILITY(bank) == ABILITY_RIPEN)
 						gBattleMoveDamage *= 2;
 
+					WishPearlRecoveryIncrease(bank, &gBattleMoveDamage);
 					if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
 						gBattleMoveDamage = gBattleMons[bank].maxHP - gBattleMons[bank].hp;
 					gBattleMoveDamage *= -1;
@@ -1024,6 +1028,8 @@ static u8 ConfusionBerries(u8 bank, u8 flavour, bool8 moveTurn, bool8 doPluck) {
 		if (ABILITY(bank) == ABILITY_RIPEN)
 			gBattleMoveDamage *= 2;
 
+		WishPearlRecoveryIncrease(bank, &gBattleMoveDamage);
+
 		if (gBattleMoveDamage == 0)
 			gBattleMoveDamage = 1;
 		if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)
@@ -1068,6 +1074,7 @@ static u8 ConfusionBerries(u8 bank, u8 flavour, bool8 moveTurn, bool8 doPluck) {
 		if (ABILITY(bank) == ABILITY_RIPEN)
 			gBattleMoveDamage *= 2;
 
+		WishPearlRecoveryIncrease(bank, &gBattleMoveDamage);
 		if (gBattleMoveDamage == 0)
 			gBattleMoveDamage = 1;
 		if (gBattleMons[bank].hp + gBattleMoveDamage > gBattleMons[bank].maxHP)

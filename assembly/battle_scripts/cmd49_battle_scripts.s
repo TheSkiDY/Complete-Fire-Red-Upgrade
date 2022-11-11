@@ -34,6 +34,7 @@ cmd49_battle_scripts.s
 .global BattleScript_BrokenRaidBarrier
 .global BattleScript_RaidBattleStatIncrease
 .global BattleScript_MistProtected
+.global BattleScript_FlashFireBurnSetup
 
 .global gText_ToxicOrb
 .global gText_FlameOrb
@@ -269,6 +270,7 @@ BattleScript_BurnedBy:
 	statusanimation 0x2
 	jumpifbyte EQUALS POISONED_BY 0x1 BeakBlastBurnBS
 	jumpifbyte EQUALS POISONED_BY 0x3 FlameOrbBurnBS
+	jumpifbyte EQUALS POISONED_BY 0x4 FlashFireBurnBS
 	printfromtable 0x83FE5C8
 	waitmessage DELAY_1SECOND
 	goto 0x81D91C3
@@ -287,6 +289,15 @@ FlameOrbBurnBS:
 	waitmessage DELAY_1SECOND
 	goto 0x81D91C3
 	
+FlashFireBurnBS:
+	setbyte POISONED_BY 0x0
+	call BattleScript_AbilityPopUp
+	statusanimation 0x2
+	printfromtable 0x83FE5BC
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto 0x81D91C3
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_ItemSteal:
@@ -420,3 +431,12 @@ BattleScript_MistProtected:
 	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_FlashFireBurnSetup:
+	setbyte POISONED_BY 0x1
+	setbyte EFFECT_BYTE 0x4
+	seteffectsecondary @;Affected by Safeguard
+	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+

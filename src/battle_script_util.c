@@ -500,6 +500,7 @@ void BelchFunction(void)
 void StrengthSapFunc(void)
 {
 	gBattleMoveDamage = CalcStrengthSapHealAmount(gBankAttacker, gBankTarget);
+	WishPearlRecoveryIncrease(gBankAttacker, &gBattleMoveDamage);
 }
 
 s32 CalcStrengthSapHealAmount(u8 bankAtk, u8 bankDef)
@@ -1061,6 +1062,8 @@ void HealTargetFunc(void)
 
 	gBattleMoveDamage = MathMax(gBattleMoveDamage, 1);
 
+	WishPearlRecoveryIncrease(gBankTarget, &gBattleMoveDamage);
+
 	gBattleMoveDamage *= -1;
 }
 
@@ -1313,8 +1316,8 @@ void TailwindLuckyChantFunc(void)
 	u16 species = GetProperAbilityPopUpSpecies(gBankAttacker);
 
 	if (ABILITY(gBankAttacker) == ABILITY_GALEWINGS
-		&& !SpeciesHasGrassDash(species)
-		&& !SpeciesHasDrillBeak(species))
+		&& !SpeciesHasTempestuousSea(species)
+		&& !SpeciesHasShadowBoost(species))
 	{
 		hasGaleWings = TRUE;
 	}
@@ -1765,6 +1768,8 @@ void TryManipulateDamageForLeechSeedBigRoot(void)
 {
 	if (ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_BIG_ROOT)
 		gBattleMoveDamage = (gBattleMoveDamage * 130) / 100;
+
+	WishPearlRecoveryIncrease(gBankTarget, &gBattleMoveDamage);
 }
 
 #define gText_BattleYesNoChoice (u8*) 0x83FE791

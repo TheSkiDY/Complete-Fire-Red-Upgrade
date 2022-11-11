@@ -1580,6 +1580,12 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 bankAtk)
 
 u8 CalcMoveSplit(u16 move, u8 bankAtk, u8 bankDef)
 {
+	if (ABILITY(bankAtk) == ABILITY_BRUTEFORCE && SPLIT(move) != SPLIT_STATUS)
+		return SPLIT_PHYSICAL;
+
+	if (ABILITY(bankAtk) == ABILITY_OVERTHINKING && SPLIT(move) != SPLIT_STATUS)
+		return SPLIT_SPECIAL;
+
 	if (gSpecialMoveFlags[move].gMovesThatChangePhysicality
 	&&  SPLIT(move) != SPLIT_STATUS)
 	{
@@ -1612,6 +1618,12 @@ u8 CalcMoveSplit(u16 move, u8 bankAtk, u8 bankDef)
 
 u8 CalcMoveSplitFromParty(u16 move, struct Pokemon* mon)
 {
+	if (GetMonAbility(mon) == ABILITY_BRUTEFORCE && SPLIT(move) != SPLIT_STATUS)
+		return SPLIT_PHYSICAL;
+
+	if (GetMonAbility(mon) == ABILITY_OVERTHINKING && SPLIT(move) != SPLIT_STATUS)
+		return SPLIT_SPECIAL;
+
 	if (gSpecialMoveFlags[move].gMovesThatChangePhysicality)
 	{
 		if (mon->spAttack >= mon->attack)
@@ -1646,6 +1658,9 @@ u8 AttacksThisTurn(u8 bank, u16 move) // Note: returns 1 if it's a charging turn
 	u8 moveEffect = gBattleMoves[move].effect;
 
 	if (ITEM_EFFECT(bank) == ITEM_EFFECT_POWER_HERB)
+		return 2;
+
+	if (ABILITY(bank) == ABILITY_IMPATIENT)
 		return 2;
 
 	if (moveEffect == EFFECT_SOLARBEAM && (gBattleWeather & WEATHER_SUN_ANY) && WEATHER_HAS_EFFECT)
@@ -2251,6 +2266,7 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	{
 		switch (defAbility) {
 			case ABILITY_IMMUNITY:
+			case ABILITY_PURIFIEDPOLLEN:
 			case ABILITY_PASTELVEIL:
 				return FALSE;
 		}
@@ -2721,4 +2737,16 @@ bool8 CanMoveDuringLoafingTurn(u8 bank)
 	}
 
 	return hasValidStatusMove;
+}
+
+void WishPearlRecoveryIncrease(u8 bank, s32* hp)
+{
+	s32 newHP = *hp;
+
+	//TO DO: hook Task_PartyMenuModifyHP and PartyMenuModifyHP to use this function
+
+	if (ABILITY(bank) == ABILITY_WISHPEARL)
+		newHP = (newHP * 15) / 10;
+
+	*hp = newHP;
 }

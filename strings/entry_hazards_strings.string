@@ -36,3 +36,12 @@ The TOXIC SPIKES disappeared from\naround [TARGET]'s feet!
 
 #org @gText_HazardsBlownAway
 The hazards were blown away from\naround [ATTACKER]!
+
+#org @gText_AbsorbedStealthRocks
+Pointed stones disappeared from\naround [TARGET]'s feet!
+
+#org @gText_AbsorbedSpikes
+SPIKES disappeared from around\n[TARGET]'s feet!
+
+#org @gText_AbsorbedSteelsurge
+Sharp pieces of steel disappeared\nfrom around [TARGET]'s feet!

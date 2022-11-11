@@ -28,6 +28,10 @@ switch_battle_scripts.s
 .global BattleScript_StickyWebSpeedDrop
 .global BattleScript_SuccessForceOut
 
+.global BattleScript_SRAbsorb
+.global BattleScript_SpikesAbsorb
+.global BattleScript_SteelsurgeAbsorb
+
 .global BattleScript_HandleFaintedMonSingles
 .global BattleScript_HandleFaintedMonDoublesInitial
 .global BattleScript_HandleFaintedMonDoublesPart2
@@ -448,3 +452,30 @@ BattleScript_DoPlayerAndFoeSwitchInEffects:
 	end2
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_SRAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedStealthRocks
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_SpikesAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedSpikes
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_SteelsurgeAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedSteelsurge
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+

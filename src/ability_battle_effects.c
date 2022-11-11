@@ -511,6 +511,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				#ifdef ABILITY_ASONE_CHILLING
 				case ABILITY_ASONE_CHILLING:
 				#endif
+				case ABILITY_TERRORIZE:
 					return FALSE;
 			}
 		}
@@ -527,6 +528,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			case ABILITY_IMPOSTER:
 			case ABILITY_ANTICIPATION:
 			case ABILITY_FRISK:
+			case ABILITY_TERRORIZE:
 				gStatuses3[bank] |= STATUS3_SWITCH_IN_ABILITY_DONE;
 				break;
 			case ABILITY_TRACE: //Trace is the only ability that activates after a U-Turn + faint switch-in
@@ -767,6 +769,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_INTIMIDATE:
+		case ABILITY_TERRORIZE:
 			if (CanBeAffectedByIntimidate(FOE(bank)) || (IS_DOUBLE_BATTLE && CanBeAffectedByIntimidate(PARTNER(FOE(bank)))))
 			{
 				BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
@@ -1102,6 +1105,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITY_IMMUNITY:
+		case ABILITY_PURIFIEDPOLLEN:
 			effect = ImmunityAbilityCheck(bank, STATUS1_PSN_ANY, gStatusConditionString_Poison);
 			break;
 
@@ -1419,8 +1423,72 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				effect++;
 			}
 			break;
-		}
+		
+		case ABILITY_CLOCKWORK: ;
+			u16 species = GetProperAbilityPopUpSpecies(bank);
+			if (SpeciesHasWizardry(species) && !IsMagicRoomActive())
+			{
+				#ifdef ITEM_EFFECT_ROOM_EXTENDER
+				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->MagicRoomTimer = 8;
+				else
+				#endif
 
+				gNewBS->MagicRoomTimer = 5;
+				gBattleStringLoader = MagicRoomSetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (SpeciesHasMiraculous(species) && !IsWonderRoomActive())
+			{
+				#ifdef ITEM_EFFECT_ROOM_EXTENDER
+				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->WonderRoomTimer = 8;
+				else
+				#endif
+
+				gNewBS->WonderRoomTimer = 5;
+				gBattleStringLoader = WonderRoomSetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (SpeciesHasWormhole(species) && !IsGravityActive())
+			{
+				#ifdef ITEM_EFFECT_ROOM_EXTENDER
+				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->GravityTimer = 8;
+				else
+				#endif
+
+				gNewBS->GravityTimer = 5;
+				gBattleStringLoader = GravitySetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (SpeciesHasPlasmaBurst(species) && !IsIonDelugeActive())
+			{
+				gNewBS->IonDelugeTimer = 1;
+				gBattleStringLoader = IonDelugeShowerString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (!IsTrickRoomActive())
+			{
+				#ifdef ITEM_EFFECT_ROOM_EXTENDER
+				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+					gNewBS->TrickRoomTimer = 8;
+				else
+				#endif
+
+				gNewBS->TrickRoomTimer = 5;
+				gBattleStringLoader = TrickRoomSetString;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
+
+
+		}
 		// case ABILITY_EVAPORATE:
 		// 	if (BankHasEvaporate(bank) && AffectedByRain(bank))
 		// 	{
@@ -1540,6 +1608,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						if(!BATTLER_MAX_HP(gEffectBank))
 						{
 							gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gEffectBank) / 16);
+							WishPearlRecoveryIncrease(gEffectBank, &gBattleMoveDamage);
 							gBattleMoveDamage *= -1;
 							BattleScriptPushCursorAndCallback(BattleScript_HealerHP);
 						}
@@ -2411,17 +2480,63 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			case ABILITY_ILLUMINATE:
-				if (umodsi(Random(), 3) == 0
-				&& MOVE_HAD_EFFECT
+				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
 				&& CheckContact(move, gBankAttacker, bank)
 				&& BATTLER_ALIVE(gBankAttacker)
 				&& gBankAttacker != bank
-				&& (STAT_CAN_FALL(gBankAttacker, STAT_ACC) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR))
+				&& (STAT_CAN_FALL(gBankAttacker, STAT_ACC) || ABILITY(gBankAttacker) == ABILITY_MIRRORARMOR)
+				&& umodsi(Random(), 3) == 0)
 				{
 					gBattleScripting.statChanger = STAT_ACC | DECREASE_1;
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_IlluminateActivates;
+					effect++;
+				}
+				break;
+
+			case ABILITY_BEWILDER:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& CheckContact(move, gBankAttacker, bank)
+				&& CanBeConfused(gBankAttacker, bank, TRUE)
+				&& umodsi(Random(), 3) == 0)
+				{
+					gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CONFUSION;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
+					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					effect++;
+				}
+				break;
+
+			case ABILITY_DEFLECTOR:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(gBankAttacker)
+				&& gBankAttacker != bank
+				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
+				&& gSpecialMoveFlags[move].gPulseBeamMoves)
+				{
+					gBattleMoveDamage = MathMax(1, gHpDealt / 2);
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+					effect++;
+				}
+				break;
+
+			case ABILITY_SANITY:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank
+				&& gBattleMons[bank].statStages[STAT_SPDEF - 1] < 12)
+				{
+					gBattleScripting.statChanger = STAT_SPDEF | INCREASE_1;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
 					effect++;
 				}
 				break;
@@ -2464,6 +2579,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				switch (ABILITY(bank))
 				{
 				case ABILITY_IMMUNITY:
+				case ABILITY_PURIFIEDPOLLEN:
 					if (gBattleMons[bank].status1 & (STATUS1_PSN_ANY))
 					{
 						StringCopy(gBattleTextBuff1, gStatusConditionString_Poison);

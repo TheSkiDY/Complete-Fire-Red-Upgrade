@@ -181,6 +181,9 @@ INGROWN
 #org @NAME_TEMPESTUOUS_SEA
 TEMPESTUOUS SEA
 
+#org @NAME_SHADOW_BOOST
+SHADOW BOOST
+
 #org @NAME_COSMOFORCE
 COSMOFORCE
 
@@ -400,6 +403,27 @@ MISTY SURGE
 #org @NAME_PSYCHIC_SURGE
 PSYCHIC SURGE
 
+#org @NAME_MODULATOR
+MODULATOR
+
+#org @NAME_PLACEBO
+PLACEBO
+
+#org @NAME_WIZARDRY
+WIZARDRY
+
+#org @NAME_MIRACULOUS
+MIRACULOUS
+
+#org @NAME_WORMHOLE
+WORMHOLE
+
+#org @NAME_ARMOR_TAIL
+ARMOR TAIL
+
+#org @NAME_PLASMA_BURST
+PLASMA BURST
+
 //Descriptions
 
 #org @DESC_EVAPORATE
@@ -415,7 +439,10 @@ Tail moves hit first.
 Drill moves land critical hits.
 
 #org @DESC_TEMPESTUOUS_SEA
-Raises SPEED every turn.
+Gains priority in rain.
+
+#org @DESC_SHADOW_BOOST
+GHOST-type moves hit first.
 
 #org @DESC_BLAZE
 Ups FIRE moves if below 33% HP.
@@ -587,3 +614,18 @@ Creates a misty terrain.
 
 #org @DESC_PSYCHIC_SURGE
 Creates a psychic terrain.
+
+#org @DESC_MODULATOR
+Sound moves become STEEL-type.
+
+#org @DESC_WIZARDRY
+Summons MAGIC ROOM on switch-in.
+
+#org @DESC_MIRACULOUS
+Summons WONDER ROOM on switch-in.
+
+#org @DESC_WORMHOLE
+Summons GRAVITY on switch-in.
+
+#org @DESC_PLASMA_BURST
+Disperses charged ions on switch-in.

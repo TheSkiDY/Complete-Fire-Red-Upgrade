@@ -998,6 +998,19 @@ void atkFE_prefaintmoveendeffects(void)
 							gBattlescriptCurrInstr = BattleScript_PoisonTouch;
 							effect = TRUE;
 						}
+						break;
+
+					case ABILITY_FLASHFIRE:
+						if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+						&& CanBeBurned(gBankTarget, gBankAttacker, TRUE)
+						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE))
+						{
+							BattleScriptPushCursor();
+							gBattlescriptCurrInstr = BattleScript_FlashFireBurnSetup;
+							effect = TRUE;
+						}
+						break;
+
 				}
 			}
 			gNewBS->preFaintEffectsState++;
@@ -1884,6 +1897,7 @@ void atkFF2C_trysetpoison(void)
 				}
 				break;
 			case ABILITY_IMMUNITY:
+			case ABILITY_PURIFIEDPOLLEN:
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;

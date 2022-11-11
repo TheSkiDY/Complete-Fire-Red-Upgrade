@@ -209,6 +209,12 @@ extern const u8 BattleScript_TSAbsorb[];
 extern const u8 BattleScript_StickyWebSpeedDrop[];
 extern const u8 BattleScript_SuccessForceOut[];
 extern const u8 BattleScript_TrainerSlideMsgRet[];
+
+extern const u8 BattleScript_SRAbsorb[];
+extern const u8 BattleScript_SpikesAbsorb[];
+extern const u8 BattleScript_SteelsurgeAbsorb[];
+
+
 #define BattleScript_CaughtPokemonSkipNicknameFullParty (u8*) 0x81D9A72
 #define BattleScript_CaughtPokemonSkipNickname (u8*) 0x81D9A80
 

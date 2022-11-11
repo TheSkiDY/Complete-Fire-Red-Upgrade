@@ -199,6 +199,18 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 							gBattlescriptCurrInstr = BattleScript_PoisonTouch;
 							effect = TRUE;
 						}
+						break;
+
+					case ABILITY_FLASHFIRE:
+						if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+						&& CanBeBurned(gBankTarget, gBankAttacker, TRUE)
+						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE))
+						{
+							BattleScriptPushCursor();
+							gBattlescriptCurrInstr = BattleScript_FlashFireBurnSetup;
+							effect = TRUE;
+						}
+						break;
 				}
 			}
 			gBattleScripting.atk49_state++;

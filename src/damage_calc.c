@@ -128,6 +128,7 @@ void atk04_critcalc(void)
 						+ (gSpecialMoveFlags[gCurrentMove].gHighCriticalChanceMoves)
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
+						+ 2 * (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[gBankAttacker].status1 & STATUS_ANY)
 						#ifdef NATIONAL_DEX_CHANSEY
 						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && SpeciesToNationalPokedexNum(SPECIES(gBankAttacker)) == NATIONAL_DEX_CHANSEY)
 						#endif
@@ -229,6 +230,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 					+ (gSpecialMoveFlags[move].gHighCriticalChanceMoves)
 					+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 					+ (atkAbility == ABILITY_SUPERLUCK)
+					+ 2 * (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[gBankAttacker].status1 & STATUS_ANY)
 					#ifdef NATIONAL_DEX_CHANSEY
 					+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && SpeciesToNationalPokedexNum(atkSpecies) == NATIONAL_DEX_CHANSEY)
 					#endif
@@ -1728,7 +1730,12 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive, u16
 				return TYPE_NORMAL;
 			case ABILITY_LIQUIDVOICE:
 				if (CheckSoundMove(move)) //Change Sound Moves
-					return TYPE_WATER;
+				{
+					if (SpeciesHasModulator(species))
+						return TYPE_STEEL;
+					else
+						return TYPE_WATER;
+				} 
 				break;
 		}
 	}
@@ -2792,8 +2799,14 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			break;
 
 		case ABILITY_LEAFGUARD:
-			if(gTerrainType == GRASSY_TERRAIN)
+			if (gTerrainType == GRASSY_TERRAIN)
 				attack *= 2;
+			break;
+
+		case ABILITY_PUREAURA:
+			if (!IsScaleMonsBattle() 
+			|| !IsSpeciesAffectedByScalemons(data->atkSpecies)) 
+				spAttack *= 2;
 			break;
 	}
 
@@ -3282,6 +3295,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		//0.5x Decrement
 			if (data->moveSplit == SPLIT_SPECIAL)
 				damage /= 2;
+			break;
+
+		case ABILITY_PURIFIEDPOLLEN:
+			if (data->moveType == TYPE_POISON)
+				damage /= 4;
 			break;
 	}
 
@@ -4139,6 +4157,18 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//1.2x Boost
 			if (gSpecialMoveFlags[move].gCuttingMoves)
 				power = (power * 12) / 10;
+			break;
+
+		case ABILITY_HEAVYBULLET:
+		//1.5x Boost
+			if (gSpecialMoveFlags[move].gBallBombMoves)
+				power = (power * 15) / 10;
+			break;
+
+		case ABILITY_RAPIDKICKS:
+		//1.1x Boost
+			if (gSpecialMoveFlags[move].gKickingMoves)
+				power = (power * 11) / 10;
 			break;
 	}
 

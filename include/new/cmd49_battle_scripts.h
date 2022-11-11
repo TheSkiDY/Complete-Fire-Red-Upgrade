@@ -37,6 +37,7 @@ extern const u8 BattleScript_AbilityTransformed[];
 extern const u8 BattleScript_RaidShields[];
 extern const u8 BattleScript_BrokenRaidBarrier[];
 extern const u8 BattleScript_RaidBattleStatIncrease[];
+extern const u8 BattleScript_FlashFireBurnSetup[];
 
 extern const u8 gText_PoisonTouch[];
 extern const u8 gText_SpikyShield[];

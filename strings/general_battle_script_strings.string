@@ -935,3 +935,6 @@ The mysterious air current has\ndissipated!
 
 #org @gText_BellyDrumMagicGuard
 [ATTACKER] maximized ATTACK\nwhile staying healthy!
+
+#org @gText_ImpatientString
+[ATTACKER] became fully charged!

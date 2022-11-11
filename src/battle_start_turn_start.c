@@ -623,16 +623,16 @@ void BattleBeginFirstTurn(void)
 						gNewBS->ai.previousMonIn[i] = 0xFF;
 						gNewBS->ai.secondPreviousMonIn[i] = 0xFF;
 
-						if (IsPlayerInControl(i))
-						{
-							switch (ABILITY(i))
-							{
-								//These Abilities are commonly switched out of on the first turn
-								case ABILITY_INTIMIDATE:
-									gNewBS->ai.switchesInARow[i] = 2; //So the AI gets smart if the player immediately switches out
-									break;
-							}
-						}
+						// if (IsPlayerInControl(i))
+						// {
+						// 	switch (ABILITY(i))
+						// 	{
+						// 		//These Abilities are commonly switched out of on the first turn
+						// 		case ABILITY_INTIMIDATE:
+						// 			gNewBS->ai.switchesInARow[i] = 2; //So the AI gets smart if the player immediately switches out
+						// 			break;
+						// 	}
+						// }
 					}
 				}
 
@@ -2070,20 +2070,25 @@ s8 PriorityCalc(u8 bank, u8 action, u16 move)
 
 				case ABILITY_GALEWINGS: ;
 					u16 species = GetProperAbilityPopUpSpecies(bank);
-					if (SpeciesHasGrassDash(species))
+					if (SpeciesHasShadowBoost(species))
 					{
-						if (GetMoveTypeSpecial(bank, move) == TYPE_GRASS)
+						if (GetMoveTypeSpecial(bank, move) == TYPE_GHOST)
 							++priority;
 					}
-					else if (SpeciesHasSlipperyTail(species))
+					else if (SpeciesHasTempestuousSea(species))
 					{
-						if (gSpecialMoveFlags[move].gTailMoves)
+						if (gBattleWeather & WEATHER_RAIN_ANY && AffectedByRain(bank))
 							++priority;
 					}
 					else if (GetMoveTypeSpecial(bank, move) == TYPE_FLYING)
 					{
 						++priority;
 					}
+					break;
+
+				case ABILITY_RAPIDKICKS:
+					if (gSpecialMoveFlags[move].gKickingMoves)
+						++priority;
 					break;
 
 				case ABILITY_TRIAGE:
@@ -2115,24 +2120,23 @@ s8 PriorityCalcMon(struct Pokemon* mon, u16 move)
 				break;
 
 			case ABILITY_GALEWINGS:
-				if (SpeciesHasGrassDash(mon->species))
-				{
-					if (GetMonMoveTypeSpecial(mon, move) == TYPE_GRASS)
-						++priority;
-				}
-				else if (SpeciesHasSlipperyTail(mon->species))
-				{
-					if (gSpecialMoveFlags[move].gTailMoves)
-						++priority;
-				}
-				else if (GetMonMoveTypeSpecial(mon, move) == TYPE_FLYING
-				#ifndef OLD_GALE_WINGS
-				&& GetMonData(mon, MON_DATA_HP, NULL) == GetMonData(mon, MON_DATA_MAX_HP, NULL)
-				#endif
-				)
+				if (SpeciesHasShadowBoost(mon->species) && GetMonMoveTypeSpecial(mon, move) == TYPE_GHOST)
 				{
 					++priority;
 				}
+				else if (SpeciesHasTempestuousSea(mon->species) && (gBattleWeather & WEATHER_RAIN_ANY))
+				{
+					++priority;
+				}
+				else if (GetMonMoveTypeSpecial(mon, move) == TYPE_FLYING)
+				{
+					++priority;
+				}
+				break;
+
+			case ABILITY_RAPIDKICKS:
+				if (gSpecialMoveFlags[move].gKickingMoves)
+					++priority;
 				break;
 
 			case ABILITY_TRIAGE:
@@ -2293,6 +2297,9 @@ u32 SpeedCalc(u8 bank)
 		case ABILITY_TANGLEDFEET:
 			if (IsConfused(bank))
 				speed *= 2;
+			break;
+		case ABILITY_HEAVYBULLET:
+			speed = (speed * 10) / 15;
 			break;
 	}
 

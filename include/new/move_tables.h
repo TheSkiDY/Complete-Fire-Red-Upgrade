@@ -65,6 +65,8 @@ struct SpecialMoveFlags
 	bool8 gNoFireHeatMoves: 1;
 	bool8 gCuttingMoves : 1;
 	bool8 gTruantLoafingBannedMoves : 1;
+	bool8 gPulseBeamMoves : 1;
+	bool8 gKickingMoves : 1;
 };
 
 extern const struct SpecialMoveFlags gSpecialMoveFlags[];

@@ -61,6 +61,8 @@ extern const u8 NAME_ADEQUATE[];
 extern const u8 NAME_SOAKAGE[];
 extern const u8 NAME_INSTANT_FLASH[];
 extern const u8 NAME_WILL_OF_FIRE[];
+extern const u8 NAME_PLACEBO[];
+extern const u8 NAME_ARMOR_TAIL[];
 
 extern const u8 NAME_SHIELDS_DOWN[];
 extern const u8 NAME_ZEN_MODE[];
@@ -88,6 +90,8 @@ extern const u8 DESC_POWER_CONSTRUCT[];
 //Custom Abilities
 extern const u8 NAME_TEMPESTUOUS_SEA[];
 extern const u8 DESC_TEMPESTUOUS_SEA[];
+extern const u8 NAME_SHADOW_BOOST[];
+extern const u8 DESC_SHADOW_BOOST[];
 
 extern const u8 NAME_VIRTUE[];
 extern const u8 NAME_RAMPAGE[];
@@ -211,6 +215,18 @@ extern const u8 DESC_GRASSY_SURGE[];
 extern const u8 DESC_MISTY_SURGE[];
 extern const u8 DESC_PSYCHIC_SURGE[];
 
+extern const u8 NAME_MODULATOR[];
+extern const u8 NAME_WIZARDRY[];
+extern const u8 NAME_MIRACULOUS[];
+extern const u8 NAME_WORMHOLE[];
+extern const u8 NAME_PLASMA_BURST[];
+
+extern const u8 DESC_WIZARDRY[];
+extern const u8 DESC_MODULATOR[];
+extern const u8 DESC_MIRACULOUS[];
+extern const u8 DESC_WORMHOLE[];
+extern const u8 DESC_PLASMA_BURST[];
+
 //Unbound Custom Abilities
 extern const u8 NAME_NINE_LIVES[];
 extern const u8 NAME_FOCUS_BELT[];
@@ -273,21 +289,21 @@ static struct DuplicateAbility sDuplicateNames[] =
     },
 
     //Huge Power -> Pure Power
-    {
-        .species = SPECIES_MEDITITE,
-        .currAbility = ABILITY_HUGEPOWER,
-        .replaceAbilityName = NAME_PURE_POWER,  
-    },
-    {
-        .species = SPECIES_MEDICHAM,
-        .currAbility = ABILITY_HUGEPOWER,
-        .replaceAbilityName = NAME_PURE_POWER,
-    },
-    {
-        .species = SPECIES_MEDICHAM_MEGA,
-        .currAbility = ABILITY_HUGEPOWER,
-        .replaceAbilityName = NAME_PURE_POWER,
-    },
+    // {
+    //     .species = SPECIES_MEDITITE,
+    //     .currAbility = ABILITY_HUGEPOWER,
+    //     .replaceAbilityName = NAME_PURE_POWER,  
+    // },
+    // {
+    //     .species = SPECIES_MEDICHAM,
+    //     .currAbility = ABILITY_HUGEPOWER,
+    //     .replaceAbilityName = NAME_PURE_POWER,
+    // },
+    // {
+    //     .species = SPECIES_MEDICHAM_MEGA,
+    //     .currAbility = ABILITY_HUGEPOWER,
+    //     .replaceAbilityName = NAME_PURE_POWER,
+    // },
 
 
     //Rough Skin -> Iron Barbs
@@ -1174,6 +1190,23 @@ static struct DuplicateAbility sDuplicateNames[] =
         .replaceAbilityName = NAME_WILL_OF_FIRE,
     },
 
+    //Focused Warrior -> Placebo
+    {
+        .species = SPECIES_VULPIX_A,
+        .currAbility = ABILITY_FOCUSEDWARRIOR,
+        .replaceAbilityName = NAME_PLACEBO,
+    },
+    {
+        .species = SPECIES_NINETALES_A,
+        .currAbility = ABILITY_FOCUSEDWARRIOR,
+        .replaceAbilityName = NAME_PLACEBO,
+    },
+    {
+        .species = SPECIES_STUNFISK,
+        .currAbility = ABILITY_FOCUSEDWARRIOR,
+        .replaceAbilityName = NAME_PLACEBO,
+    },
+
 };
 
 static const u8* sBlazeLikeNames[] =
@@ -1350,10 +1383,26 @@ const u8* GetAbilityNameOverride(const u8 ability, const u16 species) //Bypasses
 			if(SpeciesHasMagician(species))
 				return NAME_MAGICIAN;
 			break;
-		case ABILITY_SPEEDBOOST:
-			if(SpeciesHasTempestuousSea(species))
+		case ABILITY_GALEWINGS:
+			if (SpeciesHasTempestuousSea(species))
 				return NAME_TEMPESTUOUS_SEA;
+            else if (SpeciesHasShadowBoost(species))
+                return NAME_SHADOW_BOOST;
 			break;
+        case ABILITY_LIQUIDVOICE:
+            if (SpeciesHasModulator(species))
+                return NAME_MODULATOR;
+            break;
+        case ABILITY_CLOCKWORK:
+            if (SpeciesHasWizardry(species))
+                return NAME_WIZARDRY;
+            else if (SpeciesHasMiraculous(species))
+                return NAME_MIRACULOUS;
+            else if (SpeciesHasWormhole(species))
+                return NAME_WORMHOLE;
+            else if (SpeciesHasPlasmaBurst(species))
+                return NAME_PLASMA_BURST;
+            break;
 		case ABILITY_FORM_CHANGE:
 			return GetAbilityNameOverrideForFormChange(ability, species);
         case ABILITY_BLAZE_LIKE:
@@ -1399,12 +1448,6 @@ const u8* GetAbilityDescriptionOverride(const u8 ability, const u16 species) //B
 			if (SpeciesHasEvaporate(species))
 				return DESC_EVAPORATE;
 			break;
-		case ABILITY_GALEWINGS:
-			if (SpeciesHasGrassDash(species))
-				return DESC_GRASS_DASH;
-			else if (SpeciesHasSlipperyTail(species))
-				return DESC_SLIPPERY_TAIL;
-			break;
 		case ABILITY_MERCILESS:
 			if (SpeciesHasDrillBeak(species))
 				return DESC_DRILL_BEAK;
@@ -1413,10 +1456,26 @@ const u8* GetAbilityDescriptionOverride(const u8 ability, const u16 species) //B
 			if (SpeciesHasMagician(species))
 				return DESC_MAGICIAN;
 			break;
-		case ABILITY_SPEEDBOOST:
-			if(SpeciesHasTempestuousSea(species))
+		case ABILITY_GALEWINGS:
+			if (SpeciesHasTempestuousSea(species))
 				return DESC_TEMPESTUOUS_SEA;
+            else if (SpeciesHasShadowBoost(species))
+                return DESC_SHADOW_BOOST;
 			break;
+        case ABILITY_LIQUIDVOICE:
+            if (SpeciesHasModulator(species))
+                return DESC_MODULATOR;
+            break;
+        case ABILITY_CLOCKWORK:
+            if (SpeciesHasWizardry(species))
+                return DESC_WIZARDRY;
+            else if (SpeciesHasMiraculous(species))
+                return DESC_MIRACULOUS;
+            else if (SpeciesHasWormhole(species))
+                return DESC_WORMHOLE;
+            else if (SpeciesHasPlasmaBurst(species))
+                return DESC_PLASMA_BURST;
+            break;
 		case ABILITY_FORM_CHANGE:
 			return GetAbilityDescriptionOverrideForFormChange(ability, species);
         case ABILITY_BLAZE_LIKE:
@@ -1509,38 +1568,54 @@ bool8 SpeciesHasTeravolt(unusedArg u16 species)
 
 bool8 SpeciesHasDrillBeak(unusedArg u16 species) //Custom Unbound Ability
 {
+    #ifdef UNBOUND
 	#if (defined SPECIES_SPEAROW && defined SPECIES_FEAROW)
 	return species == SPECIES_SPEAROW || species == SPECIES_FEAROW;
 	#else
 	return FALSE;
 	#endif
+    #else
+    return FALSE;
+    #endif
 }
 
 bool8 SpeciesHasGrassDash(unusedArg u16 species) //Custom Unbound Ability
 {
+    #ifdef UNBOUND
 	#ifdef SPECIES_SUNFLORA
 	return species == SPECIES_SUNFLORA;
 	#else
 	return FALSE;
 	#endif
+    #else
+    return FALSE;
+    #endif
 }
 
 bool8 SpeciesHasEvaporate(unusedArg u16 species) //Custom Unbound Ability
 {
+    #ifdef UNBOUND
 	#ifdef SPECIES_MAGCARGO
 	return species == SPECIES_MAGCARGO;
 	#else
 	return FALSE;
 	#endif
+    #else
+    return FALSE;
+    #endif
 }
 
 bool8 SpeciesHasSlipperyTail(unusedArg u16 species) //Custom Unbound Ability
 {
+    #ifdef UNBOUND
 	#ifdef SPECIES_SEVIPER
 	return species == SPECIES_SEVIPER;
 	#else
 	return FALSE;
 	#endif
+    #else
+    return FALSE;
+    #endif
 }
 
 bool8 IsClearBodyAbility(u8 ability)
@@ -1711,6 +1786,13 @@ bool8 AbilityPreventsLoweringAtk(u8 ability)
 		|| IsClearBodyAbility(ability);
 }
 
+bool8 AbilityPreventsLoweringSpeed(u8 ability)
+{
+    return AbilityPreventsLoweringStat(ability, STAT_STAGE_SPEED)
+        || ability == ABILITY_MIRRORARMOR
+        || IsClearBodyAbility(ability);
+}
+
 bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId)
 {
 	switch (ability)
@@ -1825,6 +1907,11 @@ bool8 SpeciesHasMagician(u16 species)
 bool8 SpeciesHasTempestuousSea(u16 species)
 {
 	return gSpecialSpeciesFlags[species].hasTempestuousSea;
+}
+
+bool8 SpeciesHasShadowBoost(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasShadowBoost;
 }
 
 bool8 SpeciesHasStanceChange(u16 species)
@@ -2433,4 +2520,29 @@ const u8* GetSurgeNameFromSpecies(u16 species)
 const u8* GetSurgeDescriptionFromSpecies(u16 species)
 {
     return sTerrainSurgeDescriptions[GetSurgeTerrainFromSpecies(species)];
+}
+
+bool8 SpeciesHasModulator(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasModulator;
+}
+
+bool8 SpeciesHasWizardry(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasWizardry;
+}
+
+bool8 SpeciesHasMiraculous(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasMiraculous;
+}
+
+bool8 SpeciesHasWormhole(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasWormhole;
+}
+
+bool8 SpeciesHasPlasmaBurst(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasPlasmaBurst;
 }

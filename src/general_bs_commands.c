@@ -2491,6 +2491,7 @@ void atk7B_tryhealhalfhealth(void)
 		else
 			gBattleMoveDamage = MathMax(1, GetBaseMaxHP(gBankTarget) / 2); //50 %
 
+		WishPearlRecoveryIncrease(gBankTarget, &gBattleMoveDamage);
 		gBattleMoveDamage *= -1;
 		gBattlescriptCurrInstr += 6;
 	}
@@ -2823,6 +2824,7 @@ void atk87_stockpiletohpheal(void)
 	else
 	{
 		gBattleMoveDamage = MathMax(1, udivsi(GetBaseMaxHP(gBankAttacker), (1 << (3 - gDisableStructs[gBankAttacker].stockpileCounter))));
+		WishPearlRecoveryIncrease(gBankAttacker, &gBattleMoveDamage);
 		gBattleMoveDamage *= -1;
 
 		gBattleScripting.animTurn = gDisableStructs[gBankAttacker].stockpileCounter;
@@ -2840,6 +2842,7 @@ void atk88_negativedamage(void) {
 	if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_BIG_ROOT)
 		gBattleMoveDamage = (13 * gBattleMoveDamage) / 10;
 
+	WishPearlRecoveryIncrease(gBankAttacker, &gBattleMoveDamage);
 	gBattleMoveDamage *= -1;
 
 	if (gBattleMoveDamage == 0)
@@ -4281,6 +4284,7 @@ void atkB7_presentdamagecalculation(void)
 	else
 	{
 		gBattleMoveDamage = MathMax(GetBaseMaxHP(gBankTarget) / 4, 1);
+		WishPearlRecoveryIncrease(gBankTarget, &gBattleMoveDamage);
 		gBattleMoveDamage *= -1;
 	}
 
@@ -4688,6 +4692,8 @@ void atkC0_recoverbasedonsunlight(void)
 		}
 
 		gBattleMoveDamage = MathMax(1, gBattleMoveDamage);
+		
+		WishPearlRecoveryIncrease(gBankAttacker, &gBattleMoveDamage);
 		gBattleMoveDamage *= -1;
 		gBattlescriptCurrInstr += 5;
 	}
@@ -5105,6 +5111,7 @@ void atkD4_trywish(void)
 			if (!BATTLER_MAX_HP(gBankTarget))
 			{
 				gBattleMoveDamage = GetWishHPRecovery(gBankTarget, TRUE);
+				WishPearlRecoveryIncrease(gBankTarget, &gBattleMoveDamage);
 				gBattleMoveDamage *= -1;
 				gBattlescriptCurrInstr += 6;
 			}

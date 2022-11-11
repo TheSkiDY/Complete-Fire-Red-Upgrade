@@ -39,6 +39,7 @@ struct SpecialSpeciesFlags
 	bool8 hasTurboblaze : 1;
 	bool8 hasMagician : 1;
 	bool8 hasTempestuousSea : 1;
+	bool8 hasShadowBoost : 1;
 	
 	bool8 hasStanceChange : 1;
 	bool8 hasShieldsDown : 1;
@@ -112,6 +113,12 @@ struct SpecialSpeciesFlags
 	bool8 hasGrassySurge : 1;
 	bool8 hasMistySurge : 1;
 	bool8 hasPsychicSurge : 1;
+
+	bool8 hasModulator : 1;
+	bool8 hasWizardry : 1;
+	bool8 hasMiraculous : 1;
+	bool8 hasWormhole : 1;
+	bool8 hasPlasmaBurst : 1;
 
 	/*
 

@@ -556,3 +556,57 @@ Resets ally's stat changes.
 
 #org @DESC_UNUSED
 Unused ability.
+
+#org @DESC_BEWILDER
+May confuse on contact.
+
+#org @DESC_BRUTE_FORCE
+SPECIAL moves become PHYSICAL.
+
+#org @DESC_OVERTHINKING
+PHYSICAL moves become SPECIAL.
+
+#org @DESC_CLOCKWORK
+Summons TRICK ROOM on switch-in.
+
+#org @DESC_COMPRESSION
+Absorbs entry hazards.
+
+#org @DESC_COMPLETIONIST
+Reverses encounter tables.
+
+#org @DESC_DEFLECTOR
+Reflects beam and pulse moves.
+
+#org @DESC_FABULOUS_DREAMS
+Restores HP if asleep.
+
+#org @DESC_FOCUSED_WARRIOR
+Ups crit ratio if suffering.
+
+#org @DESC_HEAVY_BULLET
+Powers up bomb moves but reduces SPEED.
+
+#org @DESC_IMPATIENT
+Hits two-turn moves in one turn.
+
+#org @DESC_LURE
+Raises catch rate of a wild encounter.
+
+#org @DESC_PURE_AURA
+Doubles SPECIAL ATTACK.
+
+#org @DESC_PURIFIED_POLLEN
+Lowers POISON-type damage by 75%.
+
+#org @DESC_RAPID_KICKS
+Kicking moves hit first.
+
+#org @DESC_SANITY
+Taking a hit raises SP.DEF.
+
+#org @DESC_TERRORIZE
+Lowers the foe's SPEED.
+
+#org @DESC_WISH_PEARL
+Restores 50% more HP.

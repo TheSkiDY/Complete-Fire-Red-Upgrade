@@ -170,6 +170,9 @@ void atkEF_handleballthrow(void)
 			odds /= 10;
 		#endif
 
+		if (ABILITY(gActiveBattler) == ABILITY_LURE)
+			odds *= 2;
+
 		//Raid Modifier
 		if (IsRaidBattle()) //Dynamax Raid Pokemon can be caught easier
 			odds *= 4;

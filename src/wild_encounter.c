@@ -670,6 +670,10 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	u8 level;
 	u8 wildMonIndex = 0;
 	u8 monsCount = 0;
+	u8 ability = ABILITY_NONE;
+
+	if(MON_CAN_BATTLE(&gPlayerParty[0]))
+		ability = GetMonAbility(&gPlayerParty[0]);
 
 	if (area == WILD_AREA_LAND)
 		monsCount = LAND_WILD_COUNT;
@@ -682,12 +686,18 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	switch (area) {
 		case WILD_AREA_LAND:
 			wildMonIndex = ChooseWildMonIndex_Land();
+			if (ability == ABILITY_COMPLETIONIST)
+				wildMonIndex = LAND_WILD_COUNT - wildMonIndex - 1;
 			break;
 		case WILD_AREA_WATER:
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
+			if (ability == ABILITY_COMPLETIONIST)
+				wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
 			break;
 		case WILD_AREA_ROCKS:
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
+			if (ability == ABILITY_COMPLETIONIST)
+				wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
 			break;
 	}
 
@@ -715,12 +725,18 @@ SKIP_INDEX_SEARCH:
 		switch (area) {
 			case WILD_AREA_LAND:
 				wildMonIndex = ChooseWildMonIndex_Land();
+				if (ability == ABILITY_COMPLETIONIST)
+					wildMonIndex = LAND_WILD_COUNT - wildMonIndex - 1;
 				break;
 			case WILD_AREA_WATER:
 				wildMonIndex = ChooseWildMonIndex_WaterRock();
+				if (ability == ABILITY_COMPLETIONIST)
+					wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
 				break;
 			case WILD_AREA_ROCKS:
 				wildMonIndex = ChooseWildMonIndex_WaterRock();
+				if (ability == ABILITY_COMPLETIONIST)
+					wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
 				break;
 		}
 
@@ -1203,7 +1219,7 @@ static bool8 IsAbilityAllowingEncounter(u8 level)
 		return TRUE;
 
 	ability = GetMonAbility(&gPlayerParty[0]);
-	if (ability == ABILITY_KEENEYE || ability == ABILITY_INTIMIDATE)
+	if (ability == ABILITY_KEENEYE || ability == ABILITY_INTIMIDATE || ability == ABILITY_TERRORIZE)
 	{
 		u8 playerMonLevel = gPlayerParty[0].level;
 		if (playerMonLevel > 5 && level <= playerMonLevel - 5 && !umodsi(Random(), 2))

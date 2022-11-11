@@ -358,6 +358,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				case MOVE_GEOMANCY:
 					if (data->atkItemEffect == ITEM_EFFECT_POWER_HERB
+					|| data->atkAbility == ABILITY_IMPATIENT
 					|| (IsTypeZCrystal(data->atkItem, gBattleMoves[move].type) && !IsMegaZMoveBannedBattle() && !gNewBS->zMoveData.used[bankAtk]) //Z-Geomancy
 					|| IsBankIncapacitated(bankDef) //Not a bad idea to use both turns
 					|| (!CanKnockOut(bankDef, bankAtk) && HighChanceOfBeingImmobilized(bankDef))) //Most likely will be done setting up and still be alive
@@ -746,6 +747,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_FOCUS_ENERGY:
 			if (atkAbility == ABILITY_SUPERLUCK
 			|| atkAbility == ABILITY_SNIPER
+			|| (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[bankAtk].status1 & STATUS_ANY)
 			|| data->atkItemEffect == ITEM_EFFECT_SCOPE_LENS)
 				INCREASE_STATUS_VIABILITY(2);
 			else

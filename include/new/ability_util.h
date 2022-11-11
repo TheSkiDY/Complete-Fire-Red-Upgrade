@@ -40,6 +40,7 @@ bool8 UnnerveOnOpposingField(u8 bank);
 bool8 AbilityIncreasesWildItemChance(u8 ability);
 bool8 AbilityBlocksIntimidate(u8 ability);
 bool8 AbilityPreventsLoweringAtk(u8 ability);
+bool8 AbilityPreventsLoweringSpeed(u8 ability);
 bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId);
 bool8 AbilityRaisesOneStatWhenSomeStatIsLowered(u8 ability);
 bool8 IsAffectedBySturdy(u8 defAbility, u8 bankDef);
@@ -53,6 +54,7 @@ bool8 IsVitalSpiritAbility(u8 ability, u16 species);
 
 bool8 SpeciesHasMagician(u16 species);
 bool8 SpeciesHasTempestuousSea(u16 species);
+bool8 SpeciesHasShadowBoost(u16 species);
 
 //Merging most form change abilities into one
 bool8 SpeciesHasStanceChange(u16 species);
@@ -111,3 +113,9 @@ const u8* GetAteDescriptionFromSpecies(u16 species);
 u8 GetSurgeTerrainFromSpecies(u16 species);
 const u8* GetSurgeNameFromSpecies(u16 species);
 const u8* GetSurgeDescriptionFromSpecies(u16 species);
+
+bool8 SpeciesHasModulator(u16 species);
+bool8 SpeciesHasWizardry(u16 species);
+bool8 SpeciesHasMiraculous(u16 species);
+bool8 SpeciesHasWormhole(u16 species);
+bool8 SpeciesHasPlasmaBurst(u16 species);
