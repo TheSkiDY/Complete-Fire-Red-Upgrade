@@ -1849,8 +1849,6 @@ u8 TurnBasedEffects(void)
 u32 GetLeechSeedDamage(u8 bank)
 {
 	u32 damage = 0;
-	s32 s_damage = 0;
-
 	if (gStatuses3[bank] & STATUS3_LEECHSEED
 	&& ABILITY(bank) != ABILITY_MAGICGUARD)
 		damage = MathMax(1, GetBaseMaxHP(bank) / 8);

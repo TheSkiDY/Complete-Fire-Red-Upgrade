@@ -11,6 +11,7 @@
 EventScript_PalletTown_TechnologyGuy:
 	checkflag 0x200
 	if 0x1 _goto TechnologyGuy_Battle
+	callasm DebugFunc
 	lock 
 	loadpointer 0x0 gText_TechnologyGuyName
 	setvar 0x8000 0x1
@@ -28,12 +29,10 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 50
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_BULBASAUR 9 0 0 0 0
-	givepokemon SPECIES_KECLEON 5 0 0 0 0
-	givepokemon SPECIES_WYNAUT_S 5 0 0 0 0
-	givepokemon SPECIES_CLOCKOG 5 0 0 0 0
-	givepokemon SPECIES_MISDREAVUS 5 0 0 0 0
+	givepokemon SPECIES_MEWTWO 10 0 0 0 0
+	givepokemon SPECIES_ENTEI 10 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
+	@callasm DebugFunc
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
 		@setflag 0x940 @randomizer
@@ -43,7 +42,6 @@ EventScript_PalletTown_TechnologyGuy:
 		@setflag 0x90E @trainer scale
 	setvar 0x408C 0x1
 		@setflag 0x200
-		@callasm PrintTest
 	callasm 0x8727DCD
 	end
 

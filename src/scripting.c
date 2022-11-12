@@ -2920,6 +2920,19 @@ void ConvertCoinInt(u32 coinAmount)
 	ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, MAX_COINS_DIGITS);
 }
 
+void DebugFunc(void)
+{
+	for (u16 i = 1; i < 1046; i++)
+	{
+		if(i == 980 || i == 987)
+			continue;
+
+		GetSetPokedexFlag(i, FLAG_SET_SEEN);
+		if (i >= 906 && i <= 1010)
+			GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
+	}
+}
+
 #ifdef SCROLLING_MULTICHOICE
 
 //////////////////////////////////
