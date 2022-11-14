@@ -175,8 +175,12 @@ enum
 	ELECTRIC_TERRAIN,
 	GRASSY_TERRAIN,
 	MISTY_TERRAIN,
-	PSYCHIC_TERRAIN
+	PSYCHIC_TERRAIN,
+    SHADOW_TERRAIN,
+    DRACO_TERRAIN
 };
+#define TERRAIN_COUNT 6
+
 
 // array entries for battle communication
 #define MULTIUSE_STATE          0x0
@@ -458,6 +462,7 @@ struct SideTimer
 			 u8 srAmount : 1;
 			 u8 stickyWeb : 1;
 			 u8 steelsurge: 1;
+             u8 livecoalsAmount : 1;
 	/*0x0B*/ u8 stickyWebBank;
 };
 
@@ -1260,6 +1265,8 @@ struct FlingStruct
 #define B_ANIM_AI_ITEM_HEAL 0x4E
 #define B_ANIM_HOOPA_RING_SPAWN 0x4F
 #define B_ANIM_SPLINTER_DAMAGE 0x50
+#define B_ANIM_SHADOWY_SURGE 0x51
+#define B_ANIM_DRACO_SURGE 0x52
 
 #define B_ANIM_TRANSFORM_MOVE 0xFF
 

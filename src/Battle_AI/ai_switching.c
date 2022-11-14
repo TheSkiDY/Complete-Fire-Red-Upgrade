@@ -661,6 +661,19 @@ static bool8 ShouldSwitchIfNaturalCureOrRegenerator(struct Pokemon* party)
 					return FALSE;
 			}
 
+			if (gSideTimers[SIDE(gActiveBattler)].livecoalsAmount > 0
+			&& gBattleMons[gActiveBattler].status1 & STATUS_BURN
+			&& IsMonAffectedByHazards(GetBankPartyData(gActiveBattler))
+			&& !IsOfType(gActiveBattler, TYPE_FIRE)
+			&& CheckGrounding(gActiveBattler))
+			{
+				u8 bestMonId;
+				bestMonId = GetMostSuitableMonToSwitchIntoByParty(party);
+
+				if ((GetMonAbility(&party[bestMonId]) == ABILITY_COMPRESSION) || !CheckMonGrounding(&party[bestMonId]))
+					return FALSE;
+			}
+
 			if (gBattleMons[gActiveBattler].status1 & (STATUS1_SLEEP
 			#ifndef FROSTBITE
 			| STATUS1_FREEZE
@@ -1425,6 +1438,11 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 									return FALSE;
 								break;
 
+							case MOVE_LIVECOALS:
+								if (gSideTimers[SIDE(bankDef)].livecoalsAmount == 0)
+									return FALSE;
+								break;
+
 							default: //Spikes
 								if (gSideTimers[SIDE(bankDef)].spikesAmount < 3)
 									return FALSE;
@@ -2155,7 +2173,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 							{
 								move = moves[k];
 
-								if (gBattleMoves[move].effect == EFFECT_RAPID_SPIN //Includes Defog
+								if ((gBattleMoves[move].effect == EFFECT_RAPID_SPIN || GetMonAbility(consideredMon) == ABILITY_COMPRESSION) //Includes Defog
 								&&  gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
 								{
 									if (IS_SINGLE_BATTLE) //Single Battle
@@ -2209,7 +2227,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 
 							hasUsableMove = TRUE;
 
-							if (gBattleMoves[move].effect == EFFECT_RAPID_SPIN //Includes Defog
+							if ((gBattleMoves[move].effect == EFFECT_RAPID_SPIN || GetMonAbility(consideredMon) == ABILITY_COMPRESSION) //Includes Defog
 							&&  gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
 							{
 								if (!IS_DOUBLE_BATTLE) //Single Battle

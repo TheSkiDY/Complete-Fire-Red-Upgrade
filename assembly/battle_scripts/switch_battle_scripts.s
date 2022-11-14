@@ -31,6 +31,8 @@ switch_battle_scripts.s
 .global BattleScript_SRAbsorb
 .global BattleScript_SpikesAbsorb
 .global BattleScript_SteelsurgeAbsorb
+.global BattleScript_LiveCoalsBurn
+.global BattleScript_LiveCoalsAbsorb
 
 .global BattleScript_HandleFaintedMonSingles
 .global BattleScript_HandleFaintedMonDoublesInitial
@@ -475,6 +477,25 @@ BattleScript_SteelsurgeAbsorb:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_LiveCoalsAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedLiveCoals
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_LiveCoalsBurn:
+	setbyte POISONED_BY 0x2 @To-Do, modify PSN set script
+	orword HIT_MARKER HITMARKER_IGNORE_SAFEGUARD | HITMARKER_IGNORE_SUBSTITUTE @;Ignore Shield Dust
+	setmoveeffect MOVE_EFFECT_BURN
+	seteffectprimary
+	bicword HIT_MARKER HITMARKER_IGNORE_SAFEGUARD | HITMARKER_IGNORE_SUBSTITUTE
+	setbyte POISONED_BY 0x0
 	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

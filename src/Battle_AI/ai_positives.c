@@ -196,11 +196,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		//Increased stat effects
 		case EFFECT_ATTACK_UP:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 1))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 1))
 				goto AI_ATTACK_PLUS;
 			break;
 		case EFFECT_ATTACK_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 2))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 2))
 			{
 				AI_ATTACK_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_ATK, 8, 2);
@@ -210,11 +210,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_DEFENSE_UP:
 		AI_DEFENSE_PLUS_FULL: ;
 			u8 defRet;
-			if (atkAbility != ABILITY_CONTRARY && (defRet = GoodIdeaToRaiseDefenseAgainst(bankAtk, bankDef, 1)))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && (defRet = GoodIdeaToRaiseDefenseAgainst(bankAtk, bankDef, 1)))
 				goto AI_DEFENSE_PLUS;
 			break;
 		case EFFECT_DEFENSE_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && (defRet = GoodIdeaToRaiseDefenseAgainst(bankAtk, bankDef, 2)))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && (defRet = GoodIdeaToRaiseDefenseAgainst(bankAtk, bankDef, 2)))
 			{
 				AI_DEFENSE_PLUS:
 				if (defRet == 1) //Foe likely to use physical move
@@ -225,11 +225,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_SPECIAL_ATTACK_UP:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpAttackAgainst(bankAtk, bankDef, 1))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpAttackAgainst(bankAtk, bankDef, 1))
 				goto AI_SP_ATTACK_PLUS;
 			break;
 		case EFFECT_SPECIAL_ATTACK_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpAttackAgainst(bankAtk, bankDef, 2))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpAttackAgainst(bankAtk, bankDef, 2))
 			{
 				AI_SP_ATTACK_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPATK, 8, 2);
@@ -238,11 +238,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_SPECIAL_DEFENSE_UP:
 		AI_SP_DEFENSE_PLUS_FULL:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpDefenseAgainst(bankAtk, bankDef, 1))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpDefenseAgainst(bankAtk, bankDef, 1))
 				goto AI_SP_DEFENSE_PLUS;
 			break;
 		case EFFECT_SPECIAL_DEFENSE_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpDefenseAgainst(bankAtk, bankDef, 2))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpDefenseAgainst(bankAtk, bankDef, 2))
 			{
 				AI_SP_DEFENSE_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPDEF, 10, 1); //Foe likely to use special move
@@ -251,11 +251,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_SPEED_UP:
 		AI_SPEED_PLUS_FULL:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 1, data->atkSpeed, data->defSpeed))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 1, data->atkSpeed, data->defSpeed))
 				goto AI_SPEED_PLUS;
 			break;
 		case EFFECT_SPEED_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 2, data->atkSpeed, data->defSpeed))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 2, data->atkSpeed, data->defSpeed))
 			{
 				AI_SPEED_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_SPEED, 8, 3);
@@ -263,11 +263,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_ACCURACY_UP:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseAccuracyAgainst(bankAtk, bankDef, 1))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseAccuracyAgainst(bankAtk, bankDef, 1))
 				goto AI_ACCURACY_PLUS;
 			break;
 		case EFFECT_ACCURACY_UP_2:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseAccuracyAgainst(bankAtk, bankDef, 2))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseAccuracyAgainst(bankAtk, bankDef, 2))
 			{
 				AI_ACCURACY_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_ACC, STAT_STAGE_MAX, 2);
@@ -279,17 +279,17 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				if (!TARGETING_PARTNER)
 				{
-					if (atkAbility != ABILITY_CONTRARY && !BadIdeaToRaiseStatAgainst(bankAtk, bankDef, TRUE))
+					if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && !BadIdeaToRaiseStatAgainst(bankAtk, bankDef, TRUE))
 						INCREASE_STAT_VIABILITY(0xFE, STAT_STAGE_MAX, 2); //All stats
 				}
 				break;
 			}
-			else if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseEvasionAgainst(bankAtk, bankDef, 1))
+			else if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseEvasionAgainst(bankAtk, bankDef, 1))
 				goto AI_EVASION_PLUS;
 			break;
 		case EFFECT_EVASION_UP_2:
 		case EFFECT_MINIMIZE:
-			if (atkAbility != ABILITY_CONTRARY && GoodIdeaToRaiseEvasionAgainst(bankAtk, bankDef, 2))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && GoodIdeaToRaiseEvasionAgainst(bankAtk, bankDef, 2))
 			{
 				AI_EVASION_PLUS:
 				INCREASE_STAT_VIABILITY(STAT_STAGE_EVASION, STAT_STAGE_MAX, 4); //Best to go until maxed
@@ -297,7 +297,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_ATK_SPATK_UP:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				AI_WORK_UP:
 				if (RealPhysicalMoveInMoveset(bankAtk) && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 1))
@@ -308,7 +308,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_ATK_ACC_UP:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				if (RealPhysicalMoveInMoveset(bankAtk) && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 1))
 					goto AI_ATTACK_PLUS;
@@ -318,7 +318,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_DEF_SPD_UP:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				if (GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 2, data->atkSpeed, data->defSpeed))
 					goto AI_EVASION_PLUS;
@@ -328,7 +328,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_COSMIC_POWER:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				AI_COSMIC_POWER:
 				if ((defRet = GoodIdeaToRaiseDefenseAgainst(bankAtk, bankDef, 1)))
@@ -339,7 +339,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_BULK_UP:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				u8 atkBoostAmount = (move == MOVE_VICTORYDANCE) ? 2 : 1;
 
@@ -351,7 +351,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (atkAbility == ABILITY_CONTRARY)
+			if (atkAbility == ABILITY_CONTRARY || gTerrainType == SHADOW_TERRAIN )
 				break;
 
 			switch (move)
@@ -394,6 +394,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_DRAGON_DANCE:
+			if (gTerrainType == SHADOW_TERRAIN)
+				break;
+
 			switch (move)
 			{
 				case MOVE_SHELLSMASH:
@@ -412,7 +415,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 					break;
 				default:
-					if (atkAbility == ABILITY_CONTRARY)
+					if (atkAbility == ABILITY_CONTRARY && gTerrainType == SHADOW_TERRAIN )
 						break;
 
 					if (GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 1, data->atkSpeed, data->defSpeed))
@@ -427,6 +430,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			u8 oldViability = viability;
 
 			if (IsMovePredictionPhazingMove(bankDef, bankAtk))
+				break;
+
+			if (gTerrainType == SHADOW_TERRAIN )
 				break;
 
 			switch (move) {
@@ -487,7 +493,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			if (MoveEffectInMoveset(EFFECT_SWALLOW, bankAtk)
 			||  MoveEffectInMoveset(EFFECT_SPIT_UP, bankAtk))
 				INCREASE_STATUS_VIABILITY(2);
-			else if (atkAbility != ABILITY_CONTRARY)
+			else if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 				goto AI_COSMIC_POWER;
 			break;
 
@@ -851,6 +857,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				{
 					if (!IsClearBodyAbility(defAbility)
 					&& defAbility != ABILITY_CONTRARY
+					&& gTerrainType != SHADOW_TERRAIN 
 					&& AI_STAT_CAN_FALL(bankDef, STAT_STAGE_SPEED))
 						IncreaseViabilityForSpeedControl(&viability, class, bankAtk, bankDef);
 				}
@@ -1116,7 +1123,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			}
 			else
 			{
-				if (atkAbility == ABILITY_CONTRARY || defAbility == ABILITY_MAGICGUARD)
+				if (atkAbility == ABILITY_CONTRARY || defAbility == ABILITY_MAGICGUARD || gTerrainType == SHADOW_TERRAIN)
 					break;
 				else if (IsMovePredictionPhazingMove(bankDef, bankAtk))
 					break;
@@ -1673,7 +1680,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_ATTACK_UP_HIT:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN )
 			{
 				if (move == MOVE_FELLSTINGER)
 				{
@@ -1699,7 +1706,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_HIGHER_OFFENSES_DEFENSES_UP_HIT:
-			if (atkAbility != ABILITY_CONTRARY && CalcSecondaryEffectChance(bankAtk, move, atkAbility) >= 75)
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && CalcSecondaryEffectChance(bankAtk, move, atkAbility) >= 75)
 			{
 				if (AreDefensesHigherThanOffenses(bankAtk))
 					goto AI_COSMIC_POWER;
@@ -1709,7 +1716,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_BELLY_DRUM:
-			if (atkAbility != ABILITY_CONTRARY && RealPhysicalMoveInMoveset(bankAtk))
+			if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN && RealPhysicalMoveInMoveset(bankAtk))
 			{
 				if (BadIdeaToRaiseStatAgainst(bankAtk, bankDef, TRUE))
 					break;
@@ -1726,7 +1733,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				IncreasePsychUpViability(&viability, class, bankAtk, bankDef);
 			}
-			else if (atkAbility != ABILITY_CONTRARY) //Spectral Thief
+			else if (atkAbility != ABILITY_CONTRARY && gTerrainType != SHADOW_TERRAIN) //Spectral Thief
 			{
 				bool8 hasHigherStat = FALSE;
 
@@ -2035,7 +2042,9 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_SUPERPOWER:
-			if (atkAbility != ABILITY_CONTRARY)
+			if (gTerrainType == SHADOW_TERRAIN)
+				break;
+			else if (atkAbility != ABILITY_CONTRARY)
 			{
 				if (data->atkItemEffect == ITEM_EFFECT_EJECT_PACK)
 					goto PIVOT_CHECK;
@@ -2211,7 +2220,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					goto AI_EVASION_MINUS;
 				case MOVE_EFFECT_ALL_STATS_UP:
 				AI_OMNIBOOST:
-					if (atkAbility == ABILITY_CONTRARY)
+					if (atkAbility == ABILITY_CONTRARY || gTerrainType == SHADOW_TERRAIN )
 						break;
 
 					//Try to boost either Attack, Sp. Attack, or Speed

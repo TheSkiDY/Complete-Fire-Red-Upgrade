@@ -109,6 +109,10 @@ extern const u8 BattleScript_MaxMoveConfuseFoes[];
 extern const u8 BattleScript_MaxMoveTormentFoes[];
 extern const u8 BattleScript_MaxMoveLowerSpeed2Foes[];
 
+extern const u8 BattleScript_PsyshieldBash[];
+extern const u8 BattleScript_MetalArrows[];
+extern const u8 BattleScript_AdditionalEffect[];
+
 //Strings
 extern const u8 gText_SuperEffectiveTarget[];
 extern const u8 gText_SuperEffectiveTwoFoes[];
@@ -213,7 +217,11 @@ extern const u8 BattleScript_TrainerSlideMsgRet[];
 extern const u8 BattleScript_SRAbsorb[];
 extern const u8 BattleScript_SpikesAbsorb[];
 extern const u8 BattleScript_SteelsurgeAbsorb[];
+extern const u8 BattleScript_LiveCoalsBurn[];
+extern const u8 BattleScript_LiveCoalsAbsorb[];
 
+extern const u8 ShadowTerrainSetString[];
+extern const u8 DracoTerrainSetString[];
 
 #define BattleScript_CaughtPokemonSkipNicknameFullParty (u8*) 0x81D9A72
 #define BattleScript_CaughtPokemonSkipNickname (u8*) 0x81D9A80
@@ -228,3 +236,5 @@ extern const u8 gText_ScriptingBankFainted[];
 extern const u8 gText_SlappedAwake[];
 extern const u8 gText_BurnCured[];
 extern const u8 gText_ItemCantBeRemoved[];
+
+extern const u8 gText_LiveCoalsLay[];

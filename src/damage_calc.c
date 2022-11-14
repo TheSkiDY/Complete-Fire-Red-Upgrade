@@ -117,6 +117,8 @@ void atk04_critcalc(void)
 		else if (IsLaserFocused(gBankAttacker)
 		|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(gBankAttacker)) && (gBattleMons[bankDef].status1 & STATUS_ANY))
 		|| (atkAbility == ABILITY_DRILLBEAK && SpeciesHasDrillBeak(GetProperAbilityPopUpSpecies(gBankAttacker)) && gSpecialMoveFlags[gCurrentMove].gDrillMoves) //Drill moves always crit
+		|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
+		|| (gTerrainType == DRACO_TERRAIN)
 		|| gSpecialMoveFlags[gCurrentMove].gAlwaysCriticalMoves)
 		{
 			confirmedCrit = TRUE;
@@ -219,6 +221,8 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 	else if ((IsLaserFocused(bankAtk) && monAtk == NULL)
 	|| (atkAbility == ABILITY_MERCILESS && !SpeciesHasDrillBeak(atkAbilitySpecies) && (defStatus1 & STATUS_ANY))
 	|| (atkAbility == ABILITY_DRILLBEAK && SpeciesHasDrillBeak(atkAbilitySpecies) && gSpecialMoveFlags[move].gDrillMoves) //Drill moves always crit
+	|| (gCurrentMove == MOVE_ROCKSMASH && IsOfType(bankDef, TYPE_ROCK))
+	|| (gTerrainType == DRACO_TERRAIN)
 	|| gSpecialMoveFlags[move].gAlwaysCriticalMoves)
 	{
 		return TRUE;
@@ -1368,8 +1372,7 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	{
 		flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
 	}
-	else if ((moveEffect == EFFECT_POISON || moveEffect == EFFECT_TOXIC)
-	&& atkAbility != ABILITY_CORROSION
+	else if (atkAbility != ABILITY_CORROSION
 	&& (defType1 == TYPE_POISON || defType2 == TYPE_POISON || defType3 == TYPE_POISON
 	 || defType1 == TYPE_STEEL || defType2 == TYPE_STEEL || defType3 == TYPE_STEEL))
 	{
@@ -1537,6 +1540,9 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (atkAbility == ABILITY_CORROSION && defType == TYPE_STEEL && moveType == TYPE_POISON)
 			return; //Corrosion can hit Steel-types with poison attacks
+
+		if (move == MOVE_SOULFOCUS && defType == TYPE_DARK)
+			return;
 	}
 	else if (checkMonDef)
 	{
@@ -1546,9 +1552,27 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (atkAbility == ABILITY_CORROSION && defType == TYPE_STEEL && moveType == TYPE_POISON)
 			return;
+
+		if (move == MOVE_SOULFOCUS && defType == TYPE_DARK)
+			return;
 	}
 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (gSpecialMoveFlags[move].gNoFireHeatMoves && defType == TYPE_ICE)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_ACID && defType == TYPE_POISON)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_CUT && defType == TYPE_GRASS)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_STRENGTH && defType == TYPE_ROCK)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+	
+	if (move == MOVE_RUSTYWATER && defType == TYPE_STEEL)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
 	if (moveType == TYPE_FIRE && gNewBS->tarShotBits & gBitTable[bankDef]) //Fire always Super-Effective if covered in tar
@@ -1576,6 +1600,21 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 					multiplier = TYPE_MUL_NORMAL;
 			}
 		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		{
+			if (gTerrainType == DRACO_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		{
+			if (gTerrainType == ELECTRIC_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
+
 	}
 	else
 	{
@@ -1607,6 +1646,20 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 					}
 				}
 			}
+		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		{
+			if (gTerrainType == DRACO_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
+		}
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		{
+			if (gTerrainType == ELECTRIC_TERRAIN)
+				multiplier = TYPE_MUL_NORMAL;
+			else
+				multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
 	}
 
@@ -1893,6 +1946,12 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 					case PSYCHIC_TERRAIN:
 						moveType = TYPE_PSYCHIC;
 						break;
+					case SHADOW_TERRAIN:
+						moveType = TYPE_GHOST;
+						break;
+					case DRACO_TERRAIN:
+						moveType = TYPE_DRAGON;
+						break;
 					default:
 						moveType = TYPE_NORMAL;
 						break;
@@ -1993,6 +2052,12 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 						break;
 					case PSYCHIC_TERRAIN:
 						moveType = TYPE_PSYCHIC;
+						break;
+					case SHADOW_TERRAIN:
+						moveType = TYPE_GHOST;
+						break;
+					case DRACO_TERRAIN:
+						moveType = TYPE_DRAGON;
 						break;
 					default:
 						moveType = TYPE_NORMAL;
@@ -2267,6 +2332,14 @@ void PopulateDamageCalcStructWithBaseAttackerData(struct DamageCalc* data)
 				data->atkStatus1 = STATUS1_POISON; //Will be poisoned - relevant for Facade
 			//else //TO-DO Flame Orb when switching in
 			//	data->atkStatus1 = GetMonPotentialStatus1(monAtk, data->atkItemEffect);
+
+			if (gSideTimers[side].livecoalsAmount > 0
+			&& data->atkIsGrounded
+			&& !IsMonOfType(monAtk, TYPE_FIRE)
+			&& IsMonAffectedByHazardsByItemEffect(monAtk, data->atkItemEffect)
+			&& !BankSideHasSafeguard(bankAtk)
+			&& CanPartyMonBeBurned(monAtk))
+				data->atkStatus1 = STATUS1_BURN;
 		}
 	}
 	else //Load from bank
@@ -2385,6 +2458,14 @@ void PopulateDamageCalcStructWithBaseDefenderData(struct DamageCalc* data)
 		&& !BankSideHasSafeguard(bankDef)
 		&& CanPartyMonBePoisoned(monDef))
 			data->defStatus1 = STATUS1_POISON; //Will be poisoned - relevant for things like Marvel Scale
+		else if (monDef->condition == 0
+		&& gSideTimers[side].livecoalsAmount > 0
+		&& data->defIsGrounded
+		&& !IsMonOfType(monDef, TYPE_FIRE) //Hazards damage before Imposter activates
+		&& IsMonAffectedByHazardsByItemEffect(monDef, data->defItemEffect) //Affected by hazards
+		&& !BankSideHasSafeguard(bankDef)
+		&& CanPartyMonBeBurned(monDef))
+			data->defStatus1 = STATUS1_BURN;
 		else
 			data->defStatus1 = monDef->condition;
 	}
@@ -3025,6 +3106,14 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		else if (gBattleWeather & WEATHER_SANDSTORM_PRIMAL
 		&& ((!useMonDef && IsOfType(bankDef, TYPE_GROUND)) || (useMonDef && IsMonOfType(data->monDef, TYPE_GROUND))))
 			spDefense = (15 * spDefense) / 10; //Ground types get a Sp. Def boost in a "Vicious Sandstorm"
+	}
+
+	if(gTerrainType == SHADOW_TERRAIN 
+	&& ((!useMonDef && IsOfType(bankDef, TYPE_GHOST)) || (useMonDef && IsMonOfType(data->monDef, TYPE_GHOST)))
+	&& ((useMonAtk && CheckContactByMon(move, data->monAtk)) || (!useMonAtk && CheckContact(move, bankAtk, bankDef))))
+	{
+		attack = (attack * 50) / 100;
+		spAttack = (spAttack * 50) / 100;
 	}
 
 //Old Exploding Check
@@ -4340,6 +4429,16 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				if (data->atkIsGrounded && data->moveType == TYPE_PSYCHIC)
 					power = (power * TERRAIN_BOOST) / 10;
 				break;
+
+			case SHADOW_TERRAIN:
+				if (data->atkIsGrounded && data->moveType == TYPE_GHOST)
+					power = (power * TERRAIN_BOOST) / 10;
+				break;
+
+			case DRACO_TERRAIN:
+				if (data->atkIsGrounded && data->moveType == TYPE_DRAGON)
+					power = (power * TERRAIN_BOOST) / 10;
+				break; 
 		}
 	}
 

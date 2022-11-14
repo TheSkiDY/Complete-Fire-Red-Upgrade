@@ -121,6 +121,9 @@ extern const u8 BattleScript_AbilityPopUp_BankEffectRevert[];
 extern const u8 BattleScript_BlazeLikeActivates[];
 extern const u8 BattleScript_AuraBreakActivate[];
 
+extern const u8 ShadowTerrainSetString[];
+extern const u8 DracoTerrainSetString[];
+
 //Strings
 extern const u8 gText_ItIsHailing[];
 extern const u8 gText_FogIsDeep[];

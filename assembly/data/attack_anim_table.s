@@ -811,6 +811,257 @@ gMoveAnimations:
 .word ANIM_LUNAR_BLESSING
 .word ANIM_TAKE_HEART
 
+.word ANIM_FLAMEBULLET
+.word ANIM_PHANTOMBOLT
+.word ANIM_PIXIESPREE
+.word ANIM_VAMPIRICBITE
+.word ANIM_RUSTYWATER
+.word ANIM_TWIRLINGDANCE
+.word ANIM_NATUREBREAK
+.word ANIM_METALARROWS
+.word ANIM_TOXINECLENCH
+.word ANIM_SOULFOCUS
+.word ANIM_HITANDRUN
+.word ANIM_STEELYSPIKES
+.word ANIM_LIVECOALS
+.word ANIM_SHADOWTERRAIN
+.word ANIM_DRACOTERRAIN
+.word ANIM_EMPTYSLOT_16X
+.word ANIM_EMPTYSLOT_17X
+.word ANIM_EMPTYSLOT_18X
+.word ANIM_EMPTYSLOT_19X
+.word ANIM_EMPTYSLOT_20X
+.word ANIM_EMPTYSLOT_21X
+.word ANIM_EMPTYSLOT_22X
+.word ANIM_EMPTYSLOT_23X
+.word ANIM_EMPTYSLOT_24X
+.word ANIM_EMPTYSLOT_25X
+.word ANIM_EMPTYSLOT_26X
+.word ANIM_EMPTYSLOT_27X
+.word ANIM_EMPTYSLOT_28X
+.word ANIM_EMPTYSLOT_29X
+.word ANIM_EMPTYSLOT_30X
+.word ANIM_EMPTYSLOT_31X
+.word ANIM_EMPTYSLOT_32X
+.word ANIM_EMPTYSLOT_33X
+.word ANIM_EMPTYSLOT_34X
+.word ANIM_EMPTYSLOT_35X
+.word ANIM_EMPTYSLOT_36X
+.word ANIM_EMPTYSLOT_37X
+.word ANIM_EMPTYSLOT_38X
+.word ANIM_EMPTYSLOT_39X
+.word ANIM_EMPTYSLOT_40X
+.word ANIM_EMPTYSLOT_41X
+.word ANIM_EMPTYSLOT_42X
+.word ANIM_EMPTYSLOT_43X
+.word ANIM_EMPTYSLOT_44X
+.word ANIM_EMPTYSLOT_45X
+.word ANIM_EMPTYSLOT_46X
+.word ANIM_EMPTYSLOT_47X
+.word ANIM_EMPTYSLOT_48X
+.word ANIM_EMPTYSLOT_49X
+.word ANIM_EMPTYSLOT_50X
+.word ANIM_EMPTYSLOT_51X
+.word ANIM_EMPTYSLOT_52X
+.word ANIM_EMPTYSLOT_53X
+.word ANIM_EMPTYSLOT_54X
+.word ANIM_EMPTYSLOT_55X
+.word ANIM_EMPTYSLOT_56X
+.word ANIM_EMPTYSLOT_57X
+.word ANIM_EMPTYSLOT_58X
+.word ANIM_EMPTYSLOT_59X
+.word ANIM_EMPTYSLOT_60X
+.word ANIM_EMPTYSLOT_61X
+.word ANIM_EMPTYSLOT_62X
+.word ANIM_EMPTYSLOT_63X
+.word ANIM_EMPTYSLOT_64X
+.word ANIM_EMPTYSLOT_65X
+.word ANIM_EMPTYSLOT_66X
+.word ANIM_EMPTYSLOT_67X
+.word ANIM_EMPTYSLOT_68X
+.word ANIM_EMPTYSLOT_69X
+.word ANIM_EMPTYSLOT_70X
+.word ANIM_EMPTYSLOT_71X
+.word ANIM_EMPTYSLOT_72X
+.word ANIM_EMPTYSLOT_73X
+.word ANIM_EMPTYSLOT_74X
+.word ANIM_EMPTYSLOT_75X
+.word ANIM_EMPTYSLOT_76X
+.word ANIM_EMPTYSLOT_77X
+.word ANIM_EMPTYSLOT_78X
+.word ANIM_EMPTYSLOT_79X
+.word ANIM_EMPTYSLOT_80X
+.word ANIM_EMPTYSLOT_81X
+.word ANIM_EMPTYSLOT_82X
+.word ANIM_EMPTYSLOT_83X
+.word ANIM_EMPTYSLOT_84X
+.word ANIM_EMPTYSLOT_85X
+.word ANIM_EMPTYSLOT_86X
+.word ANIM_EMPTYSLOT_87X
+.word ANIM_EMPTYSLOT_88X
+.word ANIM_EMPTYSLOT_89X
+.word ANIM_EMPTYSLOT_90X
+.word ANIM_EMPTYSLOT_91X
+.word ANIM_EMPTYSLOT_92X
+.word ANIM_EMPTYSLOT_93X
+.word ANIM_EMPTYSLOT_94X
+.word ANIM_EMPTYSLOT_95X
+.word ANIM_EMPTYSLOT_96X
+.word ANIM_EMPTYSLOT_97X
+.word ANIM_EMPTYSLOT_98X
+.word ANIM_EMPTYSLOT_99X
+.word ANIM_EMPTYSLOT_100X
+.word ANIM_EMPTYSLOT_101X
+.word ANIM_EMPTYSLOT_102X
+.word ANIM_EMPTYSLOT_103X
+.word ANIM_EMPTYSLOT_104X
+.word ANIM_EMPTYSLOT_105X
+.word ANIM_EMPTYSLOT_106X
+.word ANIM_EMPTYSLOT_107X
+.word ANIM_EMPTYSLOT_108X
+.word ANIM_EMPTYSLOT_109X
+.word ANIM_EMPTYSLOT_110X
+.word ANIM_EMPTYSLOT_111X
+.word ANIM_EMPTYSLOT_112X
+.word ANIM_EMPTYSLOT_113X
+.word ANIM_EMPTYSLOT_114X
+.word ANIM_EMPTYSLOT_115X
+.word ANIM_EMPTYSLOT_116X
+.word ANIM_EMPTYSLOT_117X
+.word ANIM_EMPTYSLOT_118X
+.word ANIM_EMPTYSLOT_119X
+.word ANIM_EMPTYSLOT_120X
+.word ANIM_EMPTYSLOT_121X
+.word ANIM_EMPTYSLOT_122X
+.word ANIM_EMPTYSLOT_123X
+.word ANIM_EMPTYSLOT_124X
+.word ANIM_EMPTYSLOT_125X
+.word ANIM_EMPTYSLOT_126X
+.word ANIM_EMPTYSLOT_127X
+.word ANIM_EMPTYSLOT_128X
+.word ANIM_EMPTYSLOT_129X
+.word ANIM_EMPTYSLOT_130X
+.word ANIM_EMPTYSLOT_131X
+.word ANIM_EMPTYSLOT_132X
+.word ANIM_EMPTYSLOT_133X
+.word ANIM_EMPTYSLOT_134X
+.word ANIM_EMPTYSLOT_135X
+.word ANIM_EMPTYSLOT_136X
+.word ANIM_EMPTYSLOT_137X
+.word ANIM_EMPTYSLOT_138X
+.word ANIM_EMPTYSLOT_139X
+.word ANIM_EMPTYSLOT_140X
+.word ANIM_EMPTYSLOT_141X
+.word ANIM_EMPTYSLOT_142X
+.word ANIM_EMPTYSLOT_143X
+.word ANIM_EMPTYSLOT_144X
+.word ANIM_EMPTYSLOT_145X
+.word ANIM_EMPTYSLOT_146X
+.word ANIM_EMPTYSLOT_147X
+.word ANIM_EMPTYSLOT_148X
+.word ANIM_EMPTYSLOT_149X
+.word ANIM_EMPTYSLOT_150X
+.word ANIM_EMPTYSLOT_151X
+.word ANIM_EMPTYSLOT_152X
+.word ANIM_EMPTYSLOT_153X
+.word ANIM_EMPTYSLOT_154X
+.word ANIM_EMPTYSLOT_155X
+.word ANIM_EMPTYSLOT_156X
+.word ANIM_EMPTYSLOT_157X
+.word ANIM_EMPTYSLOT_158X
+.word ANIM_EMPTYSLOT_159X
+.word ANIM_EMPTYSLOT_160X
+.word ANIM_EMPTYSLOT_161X
+.word ANIM_EMPTYSLOT_162X
+.word ANIM_EMPTYSLOT_163X
+.word ANIM_EMPTYSLOT_164X
+.word ANIM_EMPTYSLOT_165X
+.word ANIM_EMPTYSLOT_166X
+.word ANIM_EMPTYSLOT_167X
+.word ANIM_EMPTYSLOT_168X
+.word ANIM_EMPTYSLOT_169X
+.word ANIM_EMPTYSLOT_170X
+.word ANIM_EMPTYSLOT_171X
+.word ANIM_EMPTYSLOT_172X
+.word ANIM_EMPTYSLOT_173X
+.word ANIM_EMPTYSLOT_174X
+.word ANIM_EMPTYSLOT_175X
+.word ANIM_EMPTYSLOT_176X
+.word ANIM_EMPTYSLOT_177X
+.word ANIM_EMPTYSLOT_178X
+.word ANIM_EMPTYSLOT_179X
+.word ANIM_EMPTYSLOT_180X
+.word ANIM_EMPTYSLOT_181X
+.word ANIM_EMPTYSLOT_182X
+.word ANIM_EMPTYSLOT_183X
+.word ANIM_EMPTYSLOT_184X
+.word ANIM_EMPTYSLOT_185X
+.word ANIM_EMPTYSLOT_186X
+.word ANIM_EMPTYSLOT_187X
+.word ANIM_EMPTYSLOT_188X
+.word ANIM_EMPTYSLOT_189X
+.word ANIM_EMPTYSLOT_190X
+.word ANIM_EMPTYSLOT_191X
+.word ANIM_EMPTYSLOT_192X
+.word ANIM_EMPTYSLOT_193X
+.word ANIM_EMPTYSLOT_194X
+.word ANIM_EMPTYSLOT_195X
+.word ANIM_EMPTYSLOT_196X
+.word ANIM_EMPTYSLOT_197X
+.word ANIM_EMPTYSLOT_198X
+.word ANIM_EMPTYSLOT_199X
+.word ANIM_EMPTYSLOT_200X
+.word ANIM_EMPTYSLOT_201X
+.word ANIM_EMPTYSLOT_202X
+.word ANIM_EMPTYSLOT_203X
+.word ANIM_EMPTYSLOT_204X
+.word ANIM_EMPTYSLOT_205X
+.word ANIM_EMPTYSLOT_206X
+.word ANIM_EMPTYSLOT_207X
+.word ANIM_EMPTYSLOT_208X
+.word ANIM_EMPTYSLOT_209X
+.word ANIM_EMPTYSLOT_210X
+.word ANIM_EMPTYSLOT_211X
+.word ANIM_EMPTYSLOT_212X
+.word ANIM_EMPTYSLOT_213X
+.word ANIM_EMPTYSLOT_214X
+.word ANIM_EMPTYSLOT_215X
+.word ANIM_EMPTYSLOT_216X
+.word ANIM_EMPTYSLOT_217X
+.word ANIM_EMPTYSLOT_218X
+.word ANIM_EMPTYSLOT_219X
+.word ANIM_EMPTYSLOT_220X
+.word ANIM_EMPTYSLOT_221X
+.word ANIM_EMPTYSLOT_222X
+.word ANIM_EMPTYSLOT_223X
+.word ANIM_EMPTYSLOT_224X
+.word ANIM_EMPTYSLOT_225X
+.word ANIM_EMPTYSLOT_226X
+.word ANIM_EMPTYSLOT_227X
+.word ANIM_EMPTYSLOT_228X
+.word ANIM_EMPTYSLOT_229X
+.word ANIM_EMPTYSLOT_230X
+.word ANIM_EMPTYSLOT_231X
+.word ANIM_EMPTYSLOT_232X
+.word ANIM_EMPTYSLOT_233X
+.word ANIM_EMPTYSLOT_234X
+.word ANIM_EMPTYSLOT_235X
+.word ANIM_EMPTYSLOT_236X
+.word ANIM_EMPTYSLOT_237X
+.word ANIM_EMPTYSLOT_238X
+.word ANIM_EMPTYSLOT_239X
+.word ANIM_EMPTYSLOT_240X
+.word ANIM_EMPTYSLOT_241X
+.word ANIM_EMPTYSLOT_242X
+.word ANIM_EMPTYSLOT_243X
+.word ANIM_EMPTYSLOT_244X
+.word ANIM_EMPTYSLOT_245X
+.word ANIM_EMPTYSLOT_246X
+.word ANIM_EMPTYSLOT_247X
+.word ANIM_EMPTYSLOT_248X
+.word ANIM_EMPTYSLOT_249X
+.word ANIM_EMPTYSLOT_250X
+
 @;New attacks go above!
 .word ANIM_BREAKNECK_BLITZ
 .word ANIM_BREAKNECK_BLITZ
@@ -18833,8 +19084,28 @@ SIDEWAYS_ENERGY_SHOT: objtemplate ANIM_TAG_HYDRO_PUMP ANIM_TAG_HYDRO_PUMP OAM_DO
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
+@Credits to greenphx9
 ANIM_ASTRAL_BARRAGE:
-	goto 0x81d129d	@MOVE_SHADOWBALL
+	loadparticle ANIM_TAG_SHADOW_BALL
+	loadBG1 BG_GHOST 
+	waitbgfadein
+	pause 0xf 
+	launchsoundtask 0x80dcf39 0x7 0xa8 0xffc0 0x3f 0x5 0x5 0x0 0x5  
+	launchtemplate 0x83e7608 0x82 0x3 0x10 0x10 0x8  
+	pause 0x6
+	launchtemplate 0x83e7608 0x82 0x3 0x10 0x10 0x8  
+	pause 0x6
+	launchtemplate 0x83e7608 0x82 0x3 0x10 0x10 0x8  
+	pause 0x6
+	launchtemplate 0x83e7608 0x82 0x3 0x10 0x10 0x8  
+	pause 0x6
+	launchtemplate 0x83e7608 0x82 0x3 0x10 0x10 0x8  
+	pause 0x6
+	playsound2 0x98 0x3f 
+	launchtask 0x8098b1d 0x2 0x5 0x1 0x4 0x0 0x8 0x1  
+	waitanimation 
+	loaddefaultBG 
+	waitbgfadein
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -28791,3 +29062,1603 @@ SetAverageBattlerPositionsHook:
 	bl SetAverageBattlerPositions
 	ldr r0, =0x8076E26 | 1
 	bx r0
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_FLAMEBULLET:
+	goto 0x872C870
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_PHANTOMBOLT:
+	goto 0x872D3B8
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_PIXIESPREE:
+	goto 0x872CAD8
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_VAMPIRICBITE:
+	goto 0x872CBF0
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_RUSTYWATER:
+	goto 0x872D930
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_TWIRLINGDANCE:
+	goto 0x872CD2C
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_NATUREBREAK:
+	goto 0x872CDE0
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_METALARROWS:
+	goto 0x872D0EC
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_TOXINECLENCH:
+	goto 0x872D1B4
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SOULFOCUS:
+	goto 0x872D7B8
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_HITANDRUN:
+	goto 0x872DA88
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_STEELYSPIKES:
+	loadparticle ANIM_TAG_SPIKES @Spikes
+	loadparticle ANIM_TAG_IMPACT
+	launchtask AnimTask_GrayscaleParticle 0x5 0x1 ANIM_TAG_SPIKES
+	launchtask AnimTask_GrayscaleParticle 0x5 0x1 ANIM_TAG_IMPACT
+	soundcomplex 0x71 SOUND_PAN_ATTACKER 0x1c 0x2
+	launchtask AnimTask_steel_sprite 0x5 0x3 0x0 0x0 0x0
+	waitanimation
+	pokespritetoBG side_target
+	playsound2 0x88 SOUND_PAN_ATTACKER
+	playsoundwait 0x9f SOUND_PAN_TARGET 0x1c
+	launchtemplate SSPIKES TEMPLATE_TARGET | 2, 0x5 0x14 0x0 0x0 0x18 0x1e
+	pause 0xa
+	playsound2 0x88 SOUND_PAN_ATTACKER
+	playsoundwait 0x9f SOUND_PAN_TARGET 0x1c
+	launchtemplate SSPIKES TEMPLATE_TARGET | 2, 0x5 0x14 0x0 0xffe8 0x18 0x1e
+	pause 0xa
+	playsoundwait 0x9f SOUND_PAN_TARGET 0x1c
+	launchtemplate SSPIKES TEMPLATE_TARGET | 2, 0x5 0x14 0x0 0x18 0x18 0x1e
+	waitanimation
+	pokespritefromBG side_target
+	endanimation
+
+.align 2
+SSPIKES: objtemplate ANIM_TAG_SPIKES ANIM_TAG_SPIKES OAM_OFF_16x16 gDummySpriteAnimTable 0x0 gDummySpriteAffineAnimTable 0x80DE8B1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_LIVECOALS:
+	loadparticle ANIM_TAG_STEALTH_ROCK
+	loadparticle ANIM_TAG_SMALL_EMBER
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_STEALTH_ROCK 0x1 0x0 0xA 0x1F
+	playsound2 0x7C SOUND_PAN_TARGET
+	launchtemplate STEALTH_ROCKS TEMPLATE_TARGET | 2, 0x6 0xf 0x0 0x0 0x18 0x23 0xffe0
+	pause 0x8
+	launchtemplate STEALTH_ROCKS TEMPLATE_TARGET | 2, 0x6 0xf 0x0 0xfff0 0x18 0x23 0xffd8
+	pause 0x8
+	launchtemplate STEALTH_ROCKS TEMPLATE_TARGET | 2, 0x6 0xf 0x0 0x10 0x18 0x23 0xffdb
+	pause 0xc
+	soundcomplex 0xa0 SOUND_PAN_TARGET 0xa 0x8
+	call EMBER_FIRE_HIT
+	pause 0x2
+	call EMBER_FIRE_HIT
+	pause 0x2
+	call EMBER_FIRE_HIT
+	pause 0x7
+	call EMBER_FIRE_HIT
+	pause 0x2
+	call EMBER_FIRE_HIT
+	pause 0x2
+	call EMBER_FIRE_HIT
+	pause 0x2
+	call EMBER_FIRE_HIT
+	pause 0x2
+	waitanimation
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SHADOWTERRAIN:
+	loadparticle ANIM_TAG_ORBS @Recover Ball
+	loadparticle ANIM_TAG_GREEN_SPARKLE @Green Star
+	loadparticle ANIM_TAG_POISON_BUBBLE @Purple Colour
+	playsound2 0xBC SOUND_PAN_ATTACKER
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x0
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x2a
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x54
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0x7e
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0xa8
+	launchtemplate PSY_TERRAIN_BALL 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xDB SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x20
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x40
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x60
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0x80
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0xa0
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 SOUND_PAN_ATTACKER
+	launchtemplate PSY_TERRAIN_PURPLESTAR 0x82 0x1 0xe0
+	waitanimation
+	loaddefaultBG
+	waitbgfadein
+	soundcomplex 0xb1 SOUND_PAN_TARGET 0xa 0x3
+	waitforsound
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_DRACOTERRAIN:
+	loadparticle ANIM_TAG_ORBS @Recover Ball
+	loadparticle ANIM_TAG_GREEN_SPARKLE @Green Star
+	loadparticle ANIM_TAG_WATER_GUN @Light Blue Colour
+	playsound2 0xBC SOUND_PAN_ATTACKER
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x0
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x2a
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x54
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0x7e
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0xa8
+	launchtemplate MISTY_TERRAIN_BALL 0x2 0x2 0x1a 0xd2
+	pause 0x34
+	setarg 0x7 0xffff
+	playsound2 0xDB SOUND_PAN_ATTACKER
+	launchtask AnimTask_ScaleMonAndRestore 0x5 0x5 0xfff9 0xfff9 0xb 0x0 0x0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x20
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x40
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x60
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0x80
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0xa0
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 SOUND_PAN_ATTACKER
+	launchtemplate MISTY_TERRAIN_BLUESTAR 0x82 0x1 0xe0
+	waitanimation
+	loaddefaultBG
+	waitbgfadein
+	playsound2 0xEC SOUND_PAN_ATTACKER
+	pause 0x40
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_16X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_17X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_18X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_19X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_20X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_21X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_22X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_23X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_24X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_25X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_26X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_27X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_28X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_29X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_30X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_31X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_32X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_33X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_34X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_35X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_36X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_37X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_38X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_39X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_40X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_41X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_42X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_43X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_44X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_45X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_46X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_47X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_48X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_49X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_50X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_51X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_52X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_53X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_54X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_55X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_56X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_57X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_58X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_59X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_60X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_61X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_62X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_63X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_64X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_65X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_66X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_67X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_68X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_69X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_70X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_71X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_72X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_73X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_74X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_75X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_76X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_77X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_78X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_79X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_80X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_81X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_82X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_83X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_84X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_85X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_86X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_87X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_88X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_89X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_90X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_91X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_92X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_93X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_94X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_95X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_96X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_97X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_98X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_99X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_100X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_101X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_102X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_103X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_104X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_105X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_106X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_107X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_108X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_109X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_110X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_111X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_112X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_113X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_114X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_115X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_116X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_117X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_118X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_119X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_120X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_121X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_122X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_123X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_124X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_125X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_126X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_127X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_128X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_129X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_130X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_131X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_132X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_133X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_134X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_135X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_136X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_137X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_138X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_139X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_140X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_141X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_142X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_143X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_144X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_145X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_146X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_147X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_148X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_149X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_150X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_151X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_152X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_153X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_154X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_155X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_156X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_157X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_158X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_159X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_160X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_161X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_162X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_163X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_164X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_165X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_166X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_167X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_168X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_169X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_170X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_171X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_172X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_173X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_174X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_175X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_176X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_177X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_178X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_179X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_180X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_181X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_182X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_183X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_184X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_185X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_186X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_187X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_188X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_189X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_190X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_191X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_192X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_193X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_194X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_195X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_196X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_197X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_198X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_199X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_200X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_201X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_202X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_203X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_204X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_205X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_206X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_207X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_208X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_209X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_210X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_211X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_212X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_213X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_214X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_215X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_216X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_217X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_218X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_219X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_220X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_221X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_222X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_223X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_224X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_225X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_226X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_227X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_228X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_229X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_230X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_231X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_232X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_233X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_234X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_235X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_236X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_237X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_238X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_239X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_240X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_241X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_242X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_243X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_244X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_245X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_246X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_247X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_248X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_249X:
+	goto 0x81c6f34
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_EMPTYSLOT_250X:
+	goto 0x81c6f34
+	endanimation
+

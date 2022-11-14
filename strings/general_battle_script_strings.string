@@ -726,7 +726,7 @@ You sense the presence of many!
 [ATTACKER] burned itself out!
 
 #org @gText_UTurn
-[ATTACKER] went back to [TRAINER_NAME]!
+[ATTACKER] went back\nto [TRAINER_NAME]!
 
 #org @gText_RemoveFog
 [ATTACKER] blew away the deep fog\nwith [CURRENT_MOVE]!
@@ -938,3 +938,22 @@ The mysterious air current has\ndissipated!
 
 #org @gText_ImpatientString
 [ATTACKER] became fully charged!
+
+#org @gText_LiveCoalsBRN
+[EFFECT_BANK] was burned\nby the LIVE COALS!
+
+#org @ShadowTerrainSetString
+The battlefield got shady!\nStat changes are blocked!
+
+#org @DracoTerrainSetString
+The battlefield got harsh!\nEvery move will hit critically!
+
+#org @gText_ShadowTerrainBattleBeginString
+The battlefield is shady.
+
+#org @gText_DracoTerrainBattleBeginString
+The battlefield is harsh.
+
+#org @gText_ShadowTerrainPrevents
+The SHADOW TERRAIN prevents any\nstat changes!
+

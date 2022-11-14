@@ -39,6 +39,9 @@ battle_start_turn_start_battle_scripts.s
 .global BattleScript_RaidBattleStorm
 .global BattleScript_RaidShieldsBattleStart
 
+.global BattleScript_ShadowTerrainBattleBegin
+.global BattleScript_DracoTerrainBattleBegin
+
 .global StringNull
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -297,6 +300,20 @@ BattleScript_RaidShieldsBattleStart:
 	setword BATTLE_STRING_LOADER gText_RaidShield
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	end3
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ShadowTerrainBattleBegin:
+	setword BATTLE_STRING_LOADER gText_ShadowTerrainBattleBeginString
+	printstring 0x184
+	playanimation 0x0 SHADOW_TERRAIN_ACTIVE_ANIM 0x0
+	end3
+
+BattleScript_DracoTerrainBattleBegin:
+	setword BATTLE_STRING_LOADER gText_DracoTerrainBattleBeginString
+	printstring 0x184
+	playanimation 0x0 DRACO_TERRAIN_ACTIVE_ANIM 0x0
 	end3
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -230,6 +230,18 @@ void atkFF06_setterrain(void)
 				gBattleScripting.animArg1 = B_ANIM_PSYCHIC_SURGE;
 				gBattleStringLoader = PsychicTerrainSetString;
 				break;
+				
+			case MOVE_SHADOWTERRAIN:
+				type = SHADOW_TERRAIN;
+				gBattleScripting.animArg1 = B_ANIM_SHADOWY_SURGE;
+				gBattleStringLoader = ShadowTerrainSetString;
+				break;
+			case MOVE_DRACOTERRAIN:
+				type = DRACO_TERRAIN;
+				gBattleScripting.animArg1 = B_ANIM_DRACO_SURGE;
+				gBattleStringLoader = DracoTerrainSetString;
+				break;
+
 			case MOVE_SPLINTERED_STORMSHARDS:
 			case MOVE_DEFOG:
 			case MOVE_STEELROLLER:

@@ -710,6 +710,13 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 							gBattlescriptCurrInstr = BattleScript_ScaleShotBuff;
 						}
 					}
+					else if (gCurrentMove == MOVE_TWIRLINGDANCE && !SheerForceCheck() && umodsi(Random(), 3) == 0)
+					{
+						gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_CONFUSION;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_AdditionalEffect;
+						gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+					}
 
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_MultiHitPrintStrings;
@@ -1106,7 +1113,8 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 				if (gSpecialMoveFlags[gCurrentMove].gHalfMaxHealthRecoilMoves //Eg. Mind Blown, Steel Beam
 				&& ABILITY(gBankAttacker) != ABILITY_MAGICGUARD
 				&& BATTLER_ALIVE(gBankAttacker)
-				&& !(gMoveResultFlags & MOVE_RESULT_FAILED)) //From no targets
+				&& !(gMoveResultFlags & MOVE_RESULT_FAILED) //From no targets
+				&& !(gCurrentMove == MOVE_CHLOROBLAST && (gBattleWeather & WEATHER_SUN_ANY) && AffectedBySun(gBankAttacker))) 
 				{
 					gBattleMoveDamage = MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
 

@@ -94,6 +94,8 @@
 .equ BG_DYNAMAX_CANNON, 0x4A
 .equ BG_AURA_SPHERE, 0x4B
 .equ BG_CHLOROBLAST, 0x4C
+.equ BG_SHADOW_TERRAIN, 0x4D
+.equ BG_SHADOW_TERRAIN, 0x4E
 
 @pals for pal fading tasks
 .equ PAL_BG, 0x1

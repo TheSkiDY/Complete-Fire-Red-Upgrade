@@ -36,6 +36,8 @@ extern const u8 BattleScript_TookAttack[];
 extern const u8 BattleScript_EvaporatedAttack[];
 extern const u8 BattleScript_RaidBattleStatNullification[];
 
+extern const u8 BattleScript_ShadowTerrainNoStatChange[];
+
 #define BattleScript_NoPPForMove (u8*) 0x81D8EA8
 #define BattleScript_MagicCoatBounce (u8*) 0x81D8FAA
 #define BattleScript_SnatchedMove (u8*) 0x81D8FC2

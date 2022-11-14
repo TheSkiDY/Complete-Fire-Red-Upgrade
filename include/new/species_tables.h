@@ -113,6 +113,8 @@ struct SpecialSpeciesFlags
 	bool8 hasGrassySurge : 1;
 	bool8 hasMistySurge : 1;
 	bool8 hasPsychicSurge : 1;
+	bool8 hasShadowySurge : 1;
+	bool8 hasDracoSurge : 1;
 
 	bool8 hasModulator : 1;
 	bool8 hasWizardry : 1;

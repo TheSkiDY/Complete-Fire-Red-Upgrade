@@ -424,6 +424,12 @@ ARMOR TAIL
 #org @NAME_PLASMA_BURST
 PLASMA BURST
 
+#org @NAME_SHADOWY_SURGE
+SHADOWY SURGE
+
+#org @NAME_DRACO_SURGE
+DRACO SURGE
+
 //Descriptions
 
 #org @DESC_EVAPORATE
@@ -629,3 +635,9 @@ Summons GRAVITY on switch-in.
 
 #org @DESC_PLASMA_BURST
 Disperses charged ions on switch-in.
+
+#org @DESC_SHADOWY_SURGE
+Creates a SHADOW TERRAIN.
+
+#org @DESC_DRACO_SURGE
+Creates a DRACO TERRAIN.

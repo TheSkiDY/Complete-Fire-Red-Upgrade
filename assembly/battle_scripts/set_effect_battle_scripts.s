@@ -45,8 +45,11 @@ set_effect_battle_scripts.s
 .global BattleScript_MaxMoveConfuseFoes
 .global BattleScript_MaxMoveTormentFoes
 .global BattleScript_MaxMoveLowerSpeed2Foes
+.global BattleScript_PsyshieldBash
+.global BattleScript_AdditionalEffect
 
-@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
 
 BattleScript_TargetSleepHeal:
 	setword BATTLE_STRING_LOADER gText_SlappedAwake
@@ -625,3 +628,37 @@ BattleScript_MaxMoveLowerSpeed2Foes_CheckPartner:
 	seteffectprimary
 	callasm SetTargetFoePartner
 	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_PsyshieldBash:
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_DEF STAT_MAX PsyshieldBash_Def
+	jumpifstat BANK_ATTACKER EQUALS STAT_SPDEF STAT_MAX BS_MOVE_END
+
+PsyshieldBash_Def:
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_DEF | STAT_ANIM_SPDEF, STAT_ANIM_UP | STAT_ANIM_IGNORE_ABILITIES
+	setstatchanger STAT_DEF | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN PsyshieldBash_SpDef
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 PsyshieldBash_SpDef
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+PsyshieldBash_SpDef:
+	setstatchanger STAT_SPDEF | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_END
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_AdditionalEffect:
+	waitstateatk
+	copybyte FORM_COUNTER BATTLE_SCRIPTING_BANK
+	waitstateatk
+	seteffectsecondary
+	copybyte BATTLE_SCRIPTING_BANK FORM_COUNTER
+	return
+
+	

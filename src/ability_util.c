@@ -209,11 +209,15 @@ extern const u8 NAME_ELECTRIC_SURGE[];
 extern const u8 NAME_GRASSY_SURGE[];
 extern const u8 NAME_MISTY_SURGE[];
 extern const u8 NAME_PSYCHIC_SURGE[];
+extern const u8 NAME_SHADOWY_SURGE[];
+extern const u8 NAME_DRACO_SURGE[];
 
 extern const u8 DESC_ELECTRIC_SURGE[];
 extern const u8 DESC_GRASSY_SURGE[];
 extern const u8 DESC_MISTY_SURGE[];
 extern const u8 DESC_PSYCHIC_SURGE[];
+extern const u8 DESC_SHADOWY_SURGE[];
+extern const u8 DESC_DRACO_SURGE[];
 
 extern const u8 NAME_MODULATOR[];
 extern const u8 NAME_WIZARDRY[];
@@ -1348,6 +1352,8 @@ static const u8* sTerrainSurgeNames[] =
     [GRASSY_TERRAIN] = NAME_GRASSY_SURGE,
     [MISTY_TERRAIN] = NAME_MISTY_SURGE,
     [PSYCHIC_TERRAIN] = NAME_PSYCHIC_SURGE,
+    [SHADOW_TERRAIN] = NAME_SHADOWY_SURGE,
+    [DRACO_TERRAIN] = NAME_DRACO_SURGE,
 };
 
 static const u8* sTerrainSurgeDescriptions[] = 
@@ -1357,6 +1363,8 @@ static const u8* sTerrainSurgeDescriptions[] =
     [GRASSY_TERRAIN] = DESC_GRASSY_SURGE,
     [MISTY_TERRAIN] = DESC_MISTY_SURGE,
     [PSYCHIC_TERRAIN] = DESC_PSYCHIC_SURGE,
+    [SHADOW_TERRAIN] = DESC_SHADOWY_SURGE,
+    [DRACO_TERRAIN] = DESC_DRACO_SURGE,
 };
 
 
@@ -2502,11 +2510,15 @@ u8 GetSurgeTerrainFromSpecies(u16 species)
         return MISTY_TERRAIN;
     else if(gSpecialSpeciesFlags[species].hasPsychicSurge || IsSpeciesOfType(species, TYPE_PSYCHIC))
         return PSYCHIC_TERRAIN;
+    else if(gSpecialSpeciesFlags[species].hasShadowySurge || IsSpeciesOfType(species, TYPE_GHOST))
+        return SHADOW_TERRAIN;
+    else if(gSpecialSpeciesFlags[species].hasDracoSurge || IsSpeciesOfType(species, TYPE_DRAGON))
+        return DRACO_TERRAIN;
     else
     {
         //probably relevant only in ability randomizer
         u32 mod = (u32)species * (u32)gSaveBlock2->playerTrainerId;
-        u8 terrain = mod % 4;
+        u8 terrain = mod % TERRAIN_COUNT;
 
         return ELECTRIC_TERRAIN + terrain;
     }

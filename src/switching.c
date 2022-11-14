@@ -46,6 +46,7 @@ enum SwitchInStates
 	SwitchIn_StealthRock,
 	SwitchIn_Steelsurge,
 	SwitchIn_ToxicSpikes,
+	SwitchIn_LiveCoals,
 	SwitchIn_StickyWeb,
 	SwitchIn_EmergencyExit,
 	SwitchIn_PrimalReversion,
@@ -735,6 +736,14 @@ void atk52_switchineffects(void)
 					compressionActivated = TRUE;
 				}
 
+				if (gSideTimers[SIDE(gActiveBattler)].livecoalsAmount > 0)
+				{
+					gSideTimers[SIDE(gActiveBattler)].livecoalsAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_LiveCoalsAbsorb;
+					compressionActivated = TRUE;
+				}
+
 				if(gSideTimers[SIDE(gActiveBattler)].stickyWeb == 0 && gSideTimers[SIDE(gActiveBattler)].tspikesAmount == 0 && gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
 					gSideStatuses[SIDE(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES);
 
@@ -840,6 +849,33 @@ void atk52_switchineffects(void)
 				gBattleScripting.bank = gActiveBattler;
 				gBankTarget = gActiveBattler;
 				//gBankAttacker = FOE(gActiveBattler); //For EXP
+				++gNewBS->switchInEffectsState;
+				return;
+			}
+			++gNewBS->switchInEffectsState;
+		__attribute__ ((fallthrough));
+
+		case SwitchIn_LiveCoals:
+			if (gSideTimers[SIDE(gActiveBattler)].livecoalsAmount > 0
+			&& CheckGrounding(gActiveBattler))
+			{
+				if (IsOfType(gActiveBattler, TYPE_POISON))
+				{
+					gSideTimers[SIDE(gActiveBattler)].livecoalsAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_LiveCoalsAbsorb;
+				}
+				else if (IsAffectedByHazards(gActiveBattler)
+				&& CanBeBurned(gActiveBattler, 0xFF, TRUE)
+				&& !BankSideHasSafeguard(gActiveBattler))
+				{
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_LiveCoalsBurn;
+					gSideStatuses[SIDE(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+				}
+
+				gBattleScripting.bank = gActiveBattler;
+				gBankTarget = gActiveBattler;
 				++gNewBS->switchInEffectsState;
 				return;
 			}

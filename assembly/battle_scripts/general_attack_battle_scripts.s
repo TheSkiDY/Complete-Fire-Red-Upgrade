@@ -3870,7 +3870,7 @@ AquaRingBS:
 BS_182_Superpower:
 	jumpifmove MOVE_CLOSECOMBAT CloseCombatBS
 	jumpifmove MOVE_DRAGONASCENT CloseCombatBS
-	jumpifmove MOVE_HEADLONGRUSH CloseCombatBS
+	jumpifmove MOVE_NATUREBREAK CloseCombatBS
 	jumpifmove MOVE_HAMMERARM HammerArmBS
 	jumpifmove MOVE_ICEHAMMER HammerArmBS
 	jumpifmove MOVE_CLANGINGSCALES ClangingScalesBS
@@ -4342,21 +4342,29 @@ BS_200_RaiseUserDefSpeed:
 	attackstring
 	ppreduce
 	jumpifstat BANK_TARGET LESSTHAN STAT_DEF STAT_MAX RaiseUserDefSpeed_Def
+	jumpifstat BANK_TARGET LESSTHAN STAT_SPDEF STAT_MAX RaiseUserDefSpeed_SpDef
 	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MAX BattleScript_CantRaiseMultipleStats
 
 RaiseUserDefSpeed_Def:
 	attackanimation
 	waitanimation
 	setbyte STAT_ANIM_PLAYED 0x0
-	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_DEF | STAT_ANIM_SPD, STAT_ANIM_UP | STAT_ANIM_IGNORE_ABILITIES
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_DEF | STAT_ANIM_SPDEF | STAT_ANIM_EVSN, STAT_ANIM_UP | STAT_ANIM_IGNORE_ABILITIES
 	setstatchanger STAT_DEF | INCREASE_1
 	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN RaiseUserDefSpeed_Evasion
 	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 RaiseUserDefSpeed_Evasion
 	printfromtable gStatUpStringIds
 	waitmessage DELAY_1SECOND
 
+RaiseUserDefSpeed_SpDef:
+	setstatchanger STAT_SPDEF | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_END
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
 RaiseUserDefSpeed_Evasion:
-	setstatchanger STAT_SPD | INCREASE_1
+	setstatchanger STAT_EVASION | INCREASE_1
 	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_END
 	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
 	printfromtable gStatUpStringIds
@@ -4944,15 +4952,62 @@ CalmMind_SpDef:
 TakeHeartBS: @;Also heals status conditions
 	attackstring
 	ppreduce
-	cureifburnedparalysedorpoisoned CalmMindBS_CheckStats
+	cureifburnedparalysedorpoisoned TakeHeart_CheckStats
 	attackanimation
 	waitanimation
 	printstring 0xA7 @;STRINGID_PKMNSTATUSNORMAL
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_ATTACKER
-	jumpifstat BANK_TARGET LESSTHAN STAT_SPATK STAT_MAX CalmMind_SpAtk_SkipAttackAnim
-	jumpifstat BANK_TARGET LESSTHAN STAT_SPDEF STAT_MAX CalmMind_SpAtk_SkipAttackAnim
-	goto BattleScript_CantRaiseMultipleStats
+	goto TakeHeart_Boosts
+
+TakeHeart_CheckStats:
+	attackanimation
+	waitanimation
+
+TakeHeart_Boosts:
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_ATK STAT_MAX TakeHeart_Atk
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_DEF STAT_MAX TakeHeart_Atk
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_SPATK STAT_MAX TakeHeart_Atk
+	jumpifstat BANK_ATTACKER LESSTHAN STAT_SPDEF STAT_MAX TakeHeart_Atk
+	jumpifstat BANK_ATTACKER EQUALS STAT_SPD STAT_MAX BattleScript_CantRaiseMultipleStats
+
+TakeHeart_Atk:
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_ATK | STAT_ANIM_DEF | STAT_ANIM_SPD | STAT_ANIM_SPATK | STAT_ANIM_SPDEF, STAT_ANIM_UP | STAT_ANIM_IGNORE_ABILITIES
+	setstatchanger STAT_ATK | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN TakeHeart_Def
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 TakeHeart_Def
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+TakeHeart_Def:
+	setstatchanger STAT_DEF | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN TakeHeart_SpAtk
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 TakeHeart_SpAtk
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+TakeHeart_SpAtk:
+	setstatchanger STAT_SPATK | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN TakeHeart_SpDef
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 TakeHeart_SpDef
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+TakeHeart_SpDef:
+	setstatchanger STAT_SPDEF | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN TakeHeart_Spd
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 TakeHeart_Spd
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+
+TakeHeart_Spd:
+	setstatchanger STAT_SPD | INCREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_END
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_END
+	printfromtable 0x83FE57C
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

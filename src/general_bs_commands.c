@@ -91,6 +91,7 @@ static const u8* const sEntryHazardsStrings[] =
 	ToxicSpikesLayString,
 	StickyWebLayString,
 	gText_SteelsurgeLay,
+	gText_LiveCoalsLay,
 };
 
 
@@ -4098,6 +4099,7 @@ void atkB0_trysetspikes(void)
 
 	switch (gCurrentMove) {
 		case MOVE_STEALTHROCK:
+		case MOVE_STONEAXE:
 		case MOVE_G_MAX_STONESURGE_P:
 		case MOVE_G_MAX_STONESURGE_S:
 			if (gSideTimers[defSide].srAmount)
@@ -4145,10 +4147,12 @@ void atkB0_trysetspikes(void)
 			}
 			break;
 
+		case MOVE_STEELYSPIKES:
 		case MOVE_G_MAX_STEELSURGE_P:
 		case MOVE_G_MAX_STEELSURGE_S:
 			if (gSideTimers[defSide].steelsurge)
 			{
+				gSpecialStatuses[gBankAttacker].ppNotAffectedByPressure = 1;
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 			}
 			else
@@ -4159,6 +4163,21 @@ void atkB0_trysetspikes(void)
 				stringcase = 4;
 			}
 			break;
+
+		case MOVE_LIVECOALS:
+			if (gSideTimers[defSide].livecoalsAmount)
+			{
+				gSpecialStatuses[gBankAttacker].ppNotAffectedByPressure = 1;
+				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+			}
+			else
+			{
+				gSideStatuses[defSide] |= SIDE_STATUS_SPIKES;
+				gSideTimers[defSide].livecoalsAmount = 1;
+				gBattlescriptCurrInstr += 5;
+				stringcase = 5;
+ 			}
+ 			break;
 
 		default:
 			if (gSideTimers[defSide].spikesAmount >= 3)
@@ -4580,6 +4599,7 @@ void atkBE_rapidspinfree(void)
 			gSideTimers[sideAtk].srAmount = 0;
 			gSideTimers[sideAtk].stickyWeb = 0;
 			gSideTimers[sideAtk].steelsurge = 0;
+			gSideTimers[sideAtk].livecoalsAmount = 0;
 			BattleScriptPushCursor();
 			gBattlescriptCurrInstr = BattleScript_SpikesFree;
 		}
@@ -4606,6 +4626,7 @@ void atkBE_rapidspinfree(void)
 			gSideTimers[sideAtk].srAmount = 0;
 			gSideTimers[sideAtk].stickyWeb = 0;
 			gSideTimers[sideAtk].steelsurge = 0;
+			gSideTimers[sideAtk].livecoalsAmount = 0;
 			BattleScriptPushCursor();
 			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
 			gBattleStringLoader = RemovedEntryHazardsString;
@@ -4618,6 +4639,7 @@ void atkBE_rapidspinfree(void)
 			gSideTimers[sideDef].srAmount = 0;
 			gSideTimers[sideDef].stickyWeb = 0;
 			gSideTimers[sideDef].steelsurge = 0;
+			gSideTimers[sideAtk].livecoalsAmount = 0;
 			BattleScriptPushCursor();
 			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
 			gBattleStringLoader = RemovedEntryHazardsTargetSideString;
@@ -4909,11 +4931,19 @@ u16 GetNaturePowerMove(void)
 			move = gTerrainTable[3].naturePowerMove;
 			break;
 
+		case SHADOW_TERRAIN:
+			move = gTerrainTable[4].naturePowerMove;
+			break;
+
+		case DRACO_TERRAIN:
+			move = gTerrainTable[5].naturePowerMove;
+			break;
+
 		default:
 			if (IsTerrainMoveIndoors())
-				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].naturePowerMove;
+				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + TERRAIN_COUNT].naturePowerMove;
 			else
-				move = gTerrainTable[GetBattleTerrainOverride() + 4].naturePowerMove;
+				move = gTerrainTable[GetBattleTerrainOverride() + TERRAIN_COUNT].naturePowerMove;
 	}
 
 	return move;
@@ -5273,11 +5303,19 @@ u8 GetSecretPowerEffect(void)
 			effect = gTerrainTable[3].secretPowerEffect;
 			break;
 
+		case SHADOW_TERRAIN:
+			effect = gTerrainTable[4].secretPowerEffect;
+			break;
+
+		case DRACO_TERRAIN:
+			effect = gTerrainTable[5].secretPowerEffect;
+			break;
+
 		default:
 			if (IsTerrainMoveIndoors())
-				effect = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].secretPowerEffect;
+				effect = gTerrainTable[BATTLE_TERRAIN_INSIDE + TERRAIN_COUNT].secretPowerEffect;
 			else
-				effect = gTerrainTable[GetBattleTerrainOverride() + 4].secretPowerEffect;
+				effect = gTerrainTable[GetBattleTerrainOverride() + TERRAIN_COUNT].secretPowerEffect;
 	}
 
 	return effect;
@@ -5589,11 +5627,19 @@ u8 GetCamouflageType(void)
 			type = gTerrainTable[3].camouflageType;
 			break;
 
+		case SHADOW_TERRAIN:
+			type = gTerrainTable[4].camouflageType;
+			break;
+
+		case DRACO_TERRAIN:
+			type = gTerrainTable[5].camouflageType;
+			break;
+
 		default:
 			if (IsTerrainMoveIndoors())
-				type = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].camouflageType;
+				type = gTerrainTable[BATTLE_TERRAIN_INSIDE + TERRAIN_COUNT].camouflageType;
 			else
-				type = gTerrainTable[GetBattleTerrainOverride() + 4].camouflageType;
+				type = gTerrainTable[GetBattleTerrainOverride() + TERRAIN_COUNT].camouflageType;
 	}
 
 	return type;

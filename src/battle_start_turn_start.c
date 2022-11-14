@@ -720,6 +720,15 @@ bool8 TryActivateOWTerrain(void)
 			case PSYCHIC_TERRAIN:
 				BattleScriptPushCursorAndCallback(BattleScript_PsychicTerrainBattleBegin);
 				effect = TRUE;
+				break;
+			case SHADOW_TERRAIN:
+				BattleScriptPushCursorAndCallback(BattleScript_ShadowTerrainBattleBegin);
+				effect = TRUE;
+				break;
+			case DRACO_TERRAIN:
+				BattleScriptPushCursorAndCallback(BattleScript_DracoTerrainBattleBegin);
+				effect = TRUE;
+				break;
 		}
 
 		if (effect)

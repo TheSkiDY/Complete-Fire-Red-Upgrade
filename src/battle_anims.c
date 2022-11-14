@@ -228,14 +228,20 @@ void AnimTask_SetCamouflageBlend(u8 taskId)
 		case PSYCHIC_TERRAIN:
 			entry = 3;
 			break;
+		case SHADOW_TERRAIN:
+			entry = 4;
+			break;
+		case DRACO_TERRAIN:
+			entry = 5;
+			break;
 	}
 
 	if (entry)
 		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[entry].camouflageType];
 	else if (IsTerrainMoveIndoors())
-		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].camouflageType];
+		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[BATTLE_TERRAIN_INSIDE + TERRAIN_COUNT].camouflageType];
 	else
-		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[GetBattleTerrainOverride() + 4].camouflageType];
+		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[GetBattleTerrainOverride() + TERRAIN_COUNT].camouflageType];
 
 	StartBlendAnimSpriteColor(taskId, selectedPalettes);
 }
@@ -377,11 +383,17 @@ void AnimTask_GetSecretPowerAnimation(u8 taskId)
 		case PSYCHIC_TERRAIN:
 			move = gTerrainTable[3].secretPowerAnim;
 			break;
+		case SHADOW_TERRAIN:
+			move = gTerrainTable[4].secretPowerAnim;
+			break;
+		case DRACO_TERRAIN:
+			move = gTerrainTable[5].secretPowerAnim;
+			break;
 		default:
 			if (IsTerrainMoveIndoors())
-				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].secretPowerAnim;
+				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + TERRAIN_COUNT].secretPowerAnim;
 			else
-				move = gTerrainTable[GetBattleTerrainOverride() + 4].secretPowerAnim;
+				move = gTerrainTable[GetBattleTerrainOverride() + TERRAIN_COUNT].secretPowerAnim;
 	}
 
 	sBattleAnimScriptPtr = gMoveAnimations[move];
@@ -6879,6 +6891,8 @@ static bool8 ShouldAnimBeDoneRegardlessOfSubsitute(u8 animId)
 		case B_ANIM_DYNAMAX_START:
 		case B_ANIM_RAID_BATTLE_STORM:
 		case B_ANIM_DYNAMAX_ENERGY_SWIRL:
+		case B_ANIM_SHADOWY_SURGE:
+		case B_ANIM_DRACO_SURGE:
 			return TRUE;
 		default:
 			return FALSE;

@@ -790,6 +790,8 @@ SKIP_CHECK_TARGET:
 			{
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
+				else if(gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(2);
 				else if (!AI_STAT_CAN_FALL(bankDef, STAT_STAGE_ATK))
 					DECREASE_VIABILITY(10);
 				break;
@@ -920,6 +922,7 @@ SKIP_CHECK_TARGET:
 
 					default:
 						if (data->atkAbility == ABILITY_CONTRARY
+						|| gTerrainType == SHADOW_TERRAIN
 						|| !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_ATK)
 						|| !RealPhysicalMoveInMoveset(bankAtk))
 							DECREASE_VIABILITY(10);
@@ -957,7 +960,7 @@ SKIP_CHECK_TARGET:
 
 					default:
 					AI_DEFENSE_UP:
-						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_DEF))
+						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_DEF) || gTerrainType == SHADOW_TERRAIN)
 							DECREASE_VIABILITY(10);
 						break;
 				}
@@ -967,6 +970,7 @@ SKIP_CHECK_TARGET:
 		case EFFECT_SPEED_UP:
 		case EFFECT_SPEED_UP_2:
 			if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED)
+			|| gTerrainType == SHADOW_TERRAIN
 			|| GOOD_AI_MOVE_LOCKED
 			|| (IsTrickRoomActive() && !IsTrickRoomOnLastTurn())) //Trick Room not about to end
 				DECREASE_VIABILITY(10);
@@ -975,6 +979,7 @@ SKIP_CHECK_TARGET:
 		case EFFECT_SPECIAL_ATTACK_UP:
 		case EFFECT_SPECIAL_ATTACK_UP_2:
 			if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK)
+			|| gTerrainType == SHADOW_TERRAIN
 			|| GOOD_AI_MOVE_LOCKED
 			|| !SpecialMoveInMoveset(bankAtk))
 				DECREASE_VIABILITY(10);
@@ -995,7 +1000,7 @@ SKIP_CHECK_TARGET:
 
 					default:
 					AI_SPDEF_UP:
-						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPDEF))
+						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPDEF) || gTerrainType == SHADOW_TERRAIN)
 							DECREASE_VIABILITY(10);
 						break;
 				}
@@ -1024,12 +1029,12 @@ SKIP_CHECK_TARGET:
 			{
 				switch (move) {
 					case MOVE_ACUPRESSURE:
-						if (data->defAbility == ABILITY_CONTRARY || StatsMaxed(bankDef))
+						if (data->defAbility == ABILITY_CONTRARY || StatsMaxed(bankDef) || gTerrainType == SHADOW_TERRAIN)
 							DECREASE_VIABILITY(10);
 						break;
 
 					default:
-						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_EVASION))
+						if (data->atkAbility == ABILITY_CONTRARY || !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_EVASION) || gTerrainType == SHADOW_TERRAIN)
 							DECREASE_VIABILITY(10);
 				}
 			}
@@ -1063,6 +1068,7 @@ SKIP_CHECK_TARGET:
 					default:
 					AI_ATK_SPATK_UP:
 						if (data->atkAbility == ABILITY_CONTRARY
+						|| gTerrainType == SHADOW_TERRAIN
 						|| ((!AI_STAT_CAN_RISE(bankAtk,STAT_STAGE_ATK) || !RealPhysicalMoveInMoveset(bankAtk))
 						 && (!AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPATK) || !SpecialMoveInMoveset(bankAtk))))
 							DECREASE_VIABILITY(10);
@@ -1072,7 +1078,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_ATK_ACC_UP: //Hone Claws
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else if (!AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_ATK) || !RealPhysicalMoveInMoveset(bankAtk)) //Can't boost Attack anymore
 			{
@@ -1084,14 +1090,14 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_DEF_SPD_UP: //Shelter
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else if (!AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_DEF) && !AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED))
 				DECREASE_VIABILITY(10);
 			break;
 
 		case EFFECT_COSMIC_POWER:
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -1114,7 +1120,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_BULK_UP:
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -1135,7 +1141,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_CALM_MIND:
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -1164,7 +1170,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_DRAGON_DANCE:
-			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED)
+			if (data->atkAbility == ABILITY_CONTRARY || GOOD_AI_MOVE_LOCKED || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else
 			{
@@ -1510,7 +1516,8 @@ SKIP_CHECK_TARGET:
 		case EFFECT_TOXIC:
 			if (move == MOVE_TOXICTHREAD
 			&& CanStatBeLowered(STAT_STAGE_SPEED, bankDef, bankAtk, data->defAbility)
-			&& data->defAbility != ABILITY_CONTRARY)
+			&& data->defAbility != ABILITY_CONTRARY 
+			&& gTerrainType != SHADOW_TERRAIN)
 				break;
 
 			if (AI_SpecialTypeCalc(move, bankAtk, bankDef) & MOVE_RESULT_NO_EFFECT)
@@ -1886,6 +1893,9 @@ SKIP_CHECK_TARGET:
 			}
 			else //Regular Curse
 			{
+				if (gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(10);
+
 				if (data->atkAbility == ABILITY_CONTRARY)
 				{
 					if (!AI_STAT_CAN_FALL(bankAtk, STAT_STAGE_ATK)
@@ -2029,6 +2039,12 @@ SKIP_CHECK_TARGET:
 						DECREASE_VIABILITY(10); //Only one mon needs to set up Sticky Web
 					break;
 
+				case MOVE_LIVECOALS:
+					if (gSideTimers[SIDE(bankDef)].livecoalsAmount > 0
+					|| PARTNER_MOVE_IS_SAME_NO_TARGET)
+						DECREASE_VIABILITY(10);
+					break;
+
 				default: //Spikes
 					if (gSideTimers[SIDE(bankDef)].spikesAmount >= 3)
 						DECREASE_VIABILITY(10);
@@ -2106,6 +2122,9 @@ SKIP_CHECK_TARGET:
 			{
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
+
+				if (gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(2);
 			}
 			else
 				goto AI_CONFUSE;
@@ -2144,7 +2163,7 @@ SKIP_CHECK_TARGET:
 			}
 			else if (move == MOVE_PARTINGSHOT)
 			{
-				if (data->defAbility == ABILITY_CONTRARY)
+				if (data->defAbility == ABILITY_CONTRARY || gTerrainType == SHADOW_TERRAIN)
 				{
 					if (!AI_STAT_CAN_RISE(bankDef, STAT_STAGE_ATK) && !AI_STAT_CAN_RISE(bankDef, STAT_STAGE_SPATK))
 					{
@@ -2225,7 +2244,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_BELLY_DRUM:
-			if (data->atkAbility == ABILITY_CONTRARY)
+			if (data->atkAbility == ABILITY_CONTRARY || gTerrainType == SHADOW_TERRAIN)
 				DECREASE_VIABILITY(10);
 			else if (GetHealthPercentage(bankAtk) <= 50)
 				DECREASE_VIABILITY(10);
@@ -2360,6 +2379,9 @@ SKIP_CHECK_TARGET:
 		case EFFECT_FLATTER:
 			if (bankDef == bankAtkPartner)
 			{
+				if (gTerrainType == SHADOW_TERRAIN)
+					DECREASE_VIABILITY(2);
+
 				if (data->defAbility == ABILITY_CONTRARY)
 					DECREASE_VIABILITY(10);
 			}

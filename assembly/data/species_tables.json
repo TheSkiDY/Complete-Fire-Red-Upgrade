@@ -2382,6 +2382,19 @@
 		"SPECIES_INDEEDEE_F"	
 	],
 
+	"hasShadowySurge": [
+		"SPECIES_DIANCIE_SHADOW"
+	],
+
+	"hasDracoSurge": [
+		"SPECIES_MILOTIC",
+		"SPECIES_LATIAS",
+		"SPECIES_LATIOS",
+		"SPECIES_KYUREM",
+		"SPECIES_KYUREM_WHITE",
+		"SPECIES_KYUREM_BLACK"
+	],
+
 	"hasModulator": [
 		"SPECIES_VOLTORB_S",
 		"SPECIES_ELECTRODE_S",

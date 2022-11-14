@@ -496,10 +496,19 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				}
 				else
 				{
-					gBattleScripting.animArg1 = gBattleCommunication[MOVE_EFFECT_BYTE] & ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
-					gBattleScripting.animArg2 = 0;
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattlescriptCurrInstr = BattleScript_StatUp;
+					switch(gCurrentMove)
+					{
+						case MOVE_PSYSHIELDBASH:
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = BattleScript_PsyshieldBash;
+							break;
+						default:
+							gBattleScripting.animArg1 = gBattleCommunication[MOVE_EFFECT_BYTE] & ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
+							gBattleScripting.animArg2 = 0;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = BattleScript_StatUp;
+							break;
+					}
 				}
 				break;
 
@@ -854,18 +863,37 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				break;
 
 			case MOVE_EFFECT_SPLINTERS:
-				if (gNewBS->splinterTimer[gEffectBank] == 0)
+				switch(gCurrentMove)
 				{
-					gNewBS->splinterTimer[gEffectBank] = 4; //3 turns of splinters
-					gNewBS->splinterAttackerBank[gEffectBank] = gBankAttacker;
-					gNewBS->splinterAttackerMonId[gEffectBank] = gBattlerPartyIndexes[gBankAttacker];
-					gNewBS->splinterMove[gEffectBank] = gCurrentMove;
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattleStringLoader = gText_EffectBankAfflictedBySplinters;
-					gBattlescriptCurrInstr = BattleScript_PrintCustomString;	
+					case MOVE_STONEAXE:
+						if (gSideTimers[SIDE(gBankTarget)].srAmount == 0)
+						{
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = BattleScript_MaxMoveSetStealthRock;
+						}
+						break;
+					case MOVE_CEASELESSEDGE:
+						if (gSideTimers[SIDE(gBankTarget)].spikesAmount < 3)
+						{
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattlescriptCurrInstr = BattleScript_MaxMoveSetStealthRock;
+						}
+						break;
+					default:
+					if (gNewBS->splinterTimer[gEffectBank] == 0)
+					{
+						gNewBS->splinterTimer[gEffectBank] = 4; //3 turns of splinters
+						gNewBS->splinterAttackerBank[gEffectBank] = gBankAttacker;
+						gNewBS->splinterAttackerMonId[gEffectBank] = gBattlerPartyIndexes[gBankAttacker];
+						gNewBS->splinterMove[gEffectBank] = gCurrentMove;
+						BattleScriptPush(gBattlescriptCurrInstr + 1);
+						gBattleStringLoader = gText_EffectBankAfflictedBySplinters;
+						gBattlescriptCurrInstr = BattleScript_PrintCustomString;	
+					}
+					else
+						gBattlescriptCurrInstr++;
+					break;
 				}
-				else
-					gBattlescriptCurrInstr++;
 				break;
 
 			default:
@@ -1086,6 +1114,7 @@ bool8 SetMoveEffect2(void)
 			break;
 
 		case MOVE_EFFECT_BRING_DOWN:
+
 			if (gStatuses3[gEffectBank] & STATUS3_IN_AIR)
 				goto SMACK_TGT_DOWN;
 
@@ -1106,7 +1135,11 @@ bool8 SetMoveEffect2(void)
 				gStatuses3[gEffectBank] |= STATUS3_SMACKED_DOWN;
 				gNewBS->targetsToBringDown |= gBitTable[gEffectBank];
 				BringDownMons();
-				gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+
+				if (gCurrentMove == MOVE_METALARROWS && umodsi(Random(), 2) == 0)
+					gBattlescriptCurrInstr = BattleScript_MetalArrows;
+				else
+					gBattlescriptCurrInstr = BattleScript_PrintCustomString;
 				effect = TRUE;
 			}
 			break;

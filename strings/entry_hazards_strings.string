@@ -45,3 +45,9 @@ SPIKES disappeared from around\n[TARGET]'s feet!
 
 #org @gText_AbsorbedSteelsurge
 Sharp pieces of steel disappeared\nfrom around [TARGET]'s feet!
+
+#org @gText_LiveCoalsLay
+Burning rocks were scattered all\naround [FD][35] team!
+
+#org @gText_AbsorbedLiveCoals
+Burning coals disappeared from\naround [TARGET]'s feet!

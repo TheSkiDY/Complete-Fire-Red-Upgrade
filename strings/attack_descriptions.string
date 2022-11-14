@@ -397,7 +397,7 @@ The user lets out\na charming cry\nthat cannot be\nevaded.
 Levitating rocks\nare laid around the\nfoe's party to hurt\nfoes switching in.
 
 #org @DESC_TOXICSPIKES
-POISONed spikes\nare laid around the\nfoe's party to hurt\nfoes switching in.
+Poisoned spikes\nare laid around the\nfoe's party to hurt\nfoes switching in.
 
 #org @DESC_HEALINGWISH
 The user faints,\nbut will fully\nheal the POK\eMON\ntaking its place.
@@ -1230,13 +1230,13 @@ The user attacks by\nhurling a blizzard-\ncloaked icicle lance\nat opposing POK\
 A slash that may\npoison, paralyze, or\nsleep the foe. It\nhas a high crit ratio.
 
 #org @DESC_PSYSHIELD_BASH
-The user slams into\nthe foe with psychic\nenergy. It raises the\nuser's DEFENSE too.
+The user slams into\nthe foe with psychic\nenergy. It raises the\nuser's defensive stats.
 
 #org @DESC_POWER_SHIFT
 The user swaps its\noffensive and\ndefensive stats.
 
 #org @DESC_STONE_AXE
-The foe is hit with\nan axe that leaves\nbehind splinters. It\nhas a high crit ratio.
+The foe is hit with\nan axe that leaves\nbehind pointed stones.\nIt has a high crit\nratio.
 
 #org @DESC_MYSTICAL_POWER
 After dealing damage,\nthe user raises the\nhigher stats of its\noffenses or defenses.
@@ -1248,7 +1248,7 @@ The user rampages\nand spews vicious\nflames for two to\nthree turns.
 The user slams into\nthe target, hurting\nitself a little. This\nmove strikes first.
 
 #org @DESC_CHLOROBLAST
-The user launches its\namassed chlorophyll\nat the foe. This also\nhurts the user.
+The user launches its\namassed chlorophyll\nat the foe. This also\nhurts the user if not in\nharsh sunlight.
 
 #org @DESC_MOUNTAIN_GALE
 The user hurls giant\nchunks of ice at\nthe foe that may\ncause it to flinch.
@@ -1257,7 +1257,7 @@ The user hurls giant\nchunks of ice at\nthe foe that may\ncause it to flinch.
 The user dances to\nusher in victory.\nThis raises ATTACK,\nDEFENSE, and SPEED.
 
 #org @DESC_HEADLONG_RUSH
-The user smashes into\nthe foe. This cuts\nthe user's DEFENSE\nand SP. DEF stats.
+The user smashes into\nthe foe. This cuts\nthe user's ATTACK\nand DEFENSE stats.
 
 #org @DESC_BARB_BARRAGE
 Barbs that may poison\nare shot at the foe.\nIts power doubles if\nthe foe is poisoned.
@@ -1274,7 +1274,7 @@ Resentment that may\nfreeze hits the foe.\nIts power doubles if\nthe foe is froz
 #endif
 
 #org @DESC_SHELTER
-The user makes its\nskin iron-hard to\nraise its DEFENSE\nand its SPEED.
+The user makes its\nskin iron-hard to\nraise its DEFENSE,\nSP.DEF and evasiveness.
 
 #org @DESC_TRIPLE_ARROWS
 The foe is shot with\narrows that raise the\ncrit ratio and lower\nthe foe's DEFENSE.
@@ -1283,7 +1283,7 @@ The foe is shot with\narrows that raise the\ncrit ratio and lower\nthe foe's DEF
 Myriad fireballs that\nmay burn hit the foe.\nIts power doubles if\nthe foe is burned.
 
 #org @DESC_CEASELESS_EDGE
-The foe is slashed.\nThis leaves behind\nsplinters. It has a\nhigh crit ratio.
+The foe is slashed.\nThis leaves behind\nspikes. It has a\nhigh crit ratio.
 
 #org @DESC_BLEAKWIND_STORM
 #ifdef FROSTBITE
@@ -1305,7 +1305,7 @@ The user attacks\nwith love and hate.\nThe effects depend\non the user's form.
 The user heals its\nown statuses and\nrestores HP. It also\nraises evasiveness.
 
 #org @DESC_TAKE_HEART
-The user heals its\nown statuses and\nraises its SP. ATK\nand SP. DEF.
+The user heals its\nown statuses and\nraises all its\nstats.
 
 #org @DESC_MAX_GUARD
 Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
@@ -1462,3 +1462,753 @@ G-MAX SINGLE STRIKE\nURSHIFU's signature move.\nIt bypasses the\nuse of MAX GUAR
 
 #org @DESC_G_MAX_RAPID_FLOW
 G-MAX RAPID STRIKE\nURSHIFU's signature move.\nIt bypasses the\nuse of MAX GUARD.
+
+#org @DESC_FLAMEBULLET
+The user rapidly\nstrikes while covered\nin flames. This move\nis guaranteed to go\nfirst.
+
+#org @DESC_PHANTOMBOLT
+The user crashes\nan electric blast\nfrom the shadows at\nthe foe. It may leave\nthe foe paralyzed.
+
+#org @DESC_PIXIESPREE
+The user sparkles\nmultiple pixies at\nthe fore. Can land a\nhit two to five\ntimes in a row.
+
+#org @DESC_VAMPIRICBITE
+The user bites the\nfoe with sharp fangs\nthat absorb half the\ndamage inflicted.
+
+#org @DESC_RUSTYWATER
+The user attacks by\nshooting out rusty\nwater. It's super\neffective against STEEL\ntype POK\eMON.
+
+#org @DESC_TWIRLINGDANCE
+The user dizzyingly\ndances then attacks\ntwo to five times in\nusccession. It may\nleave the foe with\nconfusion.
+
+#org @DESC_NATUREBREAK
+The user calls to\nmother nature for a\ndevastating attack.\nIt also cuts the\nuser's DEFENSE and\nSP. DEF stats.
+
+#org @DESC_METALARROWS
+The user shoots out\nbarrows made out of\nsteel. Can knock down\nPOK\eMON to the\nground and lower its\nSPEED.
+
+#org @DESC_TOXINECLENCH
+The user launches\npoisonous tentacles\nat the foe. Its\nguaranteed to leave\nthe foe badly\npoisoned.
+
+#org @DESC_SOULFOCUS
+The user focuses its\nmind to defeat the\nfear of the dark.\nThis move can hit\nDARK-type POK\eMON.
+
+#org @DESC_HITANDRUN
+After a quick punch,\nthe user rushes back\nto switch places with\na party member. Hits\nwith priority. 
+
+#org @DESC_STEELYSPIKES
+Steely spikes\nare scattered around\nthe foe's party to\nhurt foes switching\nin.
+
+#org @DESC_LIVECOALS
+Burning coals\nare laid around the\nfoe's party to burn\nfoes switching in.
+
+#org @DESC_SHADOWTERRAIN
+The user overshadows\nthe ground for five\nturns, powering up\nGHOST moves and\nblocking stat changes.
+
+#org @DESC_DRACOTERRAIN
+The user covers the\nground in harsh mist\nfive turns, powering up\nDRAGON moves and\nforcing critical hits.
+
+#org @DESC_EMPTYSLOT_16X
+Empty move.
+
+#org @DESC_EMPTYSLOT_17X
+Empty move.
+
+#org @DESC_EMPTYSLOT_18X
+Empty move.
+
+#org @DESC_EMPTYSLOT_19X
+Empty move.
+
+#org @DESC_EMPTYSLOT_20X
+Empty move.
+
+#org @DESC_EMPTYSLOT_21X
+Empty move.
+
+#org @DESC_EMPTYSLOT_22X
+Empty move.
+
+#org @DESC_EMPTYSLOT_23X
+Empty move.
+
+#org @DESC_EMPTYSLOT_24X
+Empty move.
+
+#org @DESC_EMPTYSLOT_25X
+Empty move.
+
+#org @DESC_EMPTYSLOT_26X
+Empty move.
+
+#org @DESC_EMPTYSLOT_27X
+Empty move.
+
+#org @DESC_EMPTYSLOT_28X
+Empty move.
+
+#org @DESC_EMPTYSLOT_29X
+Empty move.
+
+#org @DESC_EMPTYSLOT_30X
+Empty move.
+
+#org @DESC_EMPTYSLOT_31X
+Empty move.
+
+#org @DESC_EMPTYSLOT_32X
+Empty move.
+
+#org @DESC_EMPTYSLOT_33X
+Empty move.
+
+#org @DESC_EMPTYSLOT_34X
+Empty move.
+
+#org @DESC_EMPTYSLOT_35X
+Empty move.
+
+#org @DESC_EMPTYSLOT_36X
+Empty move.
+
+#org @DESC_EMPTYSLOT_37X
+Empty move.
+
+#org @DESC_EMPTYSLOT_38X
+Empty move.
+
+#org @DESC_EMPTYSLOT_39X
+Empty move.
+
+#org @DESC_EMPTYSLOT_40X
+Empty move.
+
+#org @DESC_EMPTYSLOT_41X
+Empty move.
+
+#org @DESC_EMPTYSLOT_42X
+Empty move.
+
+#org @DESC_EMPTYSLOT_43X
+Empty move.
+
+#org @DESC_EMPTYSLOT_44X
+Empty move.
+
+#org @DESC_EMPTYSLOT_45X
+Empty move.
+
+#org @DESC_EMPTYSLOT_46X
+Empty move.
+
+#org @DESC_EMPTYSLOT_47X
+Empty move.
+
+#org @DESC_EMPTYSLOT_48X
+Empty move.
+
+#org @DESC_EMPTYSLOT_49X
+Empty move.
+
+#org @DESC_EMPTYSLOT_50X
+Empty move.
+
+#org @DESC_EMPTYSLOT_51X
+Empty move.
+
+#org @DESC_EMPTYSLOT_52X
+Empty move.
+
+#org @DESC_EMPTYSLOT_53X
+Empty move.
+
+#org @DESC_EMPTYSLOT_54X
+Empty move.
+
+#org @DESC_EMPTYSLOT_55X
+Empty move.
+
+#org @DESC_EMPTYSLOT_56X
+Empty move.
+
+#org @DESC_EMPTYSLOT_57X
+Empty move.
+
+#org @DESC_EMPTYSLOT_58X
+Empty move.
+
+#org @DESC_EMPTYSLOT_59X
+Empty move.
+
+#org @DESC_EMPTYSLOT_60X
+Empty move.
+
+#org @DESC_EMPTYSLOT_61X
+Empty move.
+
+#org @DESC_EMPTYSLOT_62X
+Empty move.
+
+#org @DESC_EMPTYSLOT_63X
+Empty move.
+
+#org @DESC_EMPTYSLOT_64X
+Empty move.
+
+#org @DESC_EMPTYSLOT_65X
+Empty move.
+
+#org @DESC_EMPTYSLOT_66X
+Empty move.
+
+#org @DESC_EMPTYSLOT_67X
+Empty move.
+
+#org @DESC_EMPTYSLOT_68X
+Empty move.
+
+#org @DESC_EMPTYSLOT_69X
+Empty move.
+
+#org @DESC_EMPTYSLOT_70X
+Empty move.
+
+#org @DESC_EMPTYSLOT_71X
+Empty move.
+
+#org @DESC_EMPTYSLOT_72X
+Empty move.
+
+#org @DESC_EMPTYSLOT_73X
+Empty move.
+
+#org @DESC_EMPTYSLOT_74X
+Empty move.
+
+#org @DESC_EMPTYSLOT_75X
+Empty move.
+
+#org @DESC_EMPTYSLOT_76X
+Empty move.
+
+#org @DESC_EMPTYSLOT_77X
+Empty move.
+
+#org @DESC_EMPTYSLOT_78X
+Empty move.
+
+#org @DESC_EMPTYSLOT_79X
+Empty move.
+
+#org @DESC_EMPTYSLOT_80X
+Empty move.
+
+#org @DESC_EMPTYSLOT_81X
+Empty move.
+
+#org @DESC_EMPTYSLOT_82X
+Empty move.
+
+#org @DESC_EMPTYSLOT_83X
+Empty move.
+
+#org @DESC_EMPTYSLOT_84X
+Empty move.
+
+#org @DESC_EMPTYSLOT_85X
+Empty move.
+
+#org @DESC_EMPTYSLOT_86X
+Empty move.
+
+#org @DESC_EMPTYSLOT_87X
+Empty move.
+
+#org @DESC_EMPTYSLOT_88X
+Empty move.
+
+#org @DESC_EMPTYSLOT_89X
+Empty move.
+
+#org @DESC_EMPTYSLOT_90X
+Empty move.
+
+#org @DESC_EMPTYSLOT_91X
+Empty move.
+
+#org @DESC_EMPTYSLOT_92X
+Empty move.
+
+#org @DESC_EMPTYSLOT_93X
+Empty move.
+
+#org @DESC_EMPTYSLOT_94X
+Empty move.
+
+#org @DESC_EMPTYSLOT_95X
+Empty move.
+
+#org @DESC_EMPTYSLOT_96X
+Empty move.
+
+#org @DESC_EMPTYSLOT_97X
+Empty move.
+
+#org @DESC_EMPTYSLOT_98X
+Empty move.
+
+#org @DESC_EMPTYSLOT_99X
+Empty move.
+
+#org @DESC_EMPTYSLOT_100X
+Empty move.
+
+#org @DESC_EMPTYSLOT_101X
+Empty move.
+
+#org @DESC_EMPTYSLOT_102X
+Empty move.
+
+#org @DESC_EMPTYSLOT_103X
+Empty move.
+
+#org @DESC_EMPTYSLOT_104X
+Empty move.
+
+#org @DESC_EMPTYSLOT_105X
+Empty move.
+
+#org @DESC_EMPTYSLOT_106X
+Empty move.
+
+#org @DESC_EMPTYSLOT_107X
+Empty move.
+
+#org @DESC_EMPTYSLOT_108X
+Empty move.
+
+#org @DESC_EMPTYSLOT_109X
+Empty move.
+
+#org @DESC_EMPTYSLOT_110X
+Empty move.
+
+#org @DESC_EMPTYSLOT_111X
+Empty move.
+
+#org @DESC_EMPTYSLOT_112X
+Empty move.
+
+#org @DESC_EMPTYSLOT_113X
+Empty move.
+
+#org @DESC_EMPTYSLOT_114X
+Empty move.
+
+#org @DESC_EMPTYSLOT_115X
+Empty move.
+
+#org @DESC_EMPTYSLOT_116X
+Empty move.
+
+#org @DESC_EMPTYSLOT_117X
+Empty move.
+
+#org @DESC_EMPTYSLOT_118X
+Empty move.
+
+#org @DESC_EMPTYSLOT_119X
+Empty move.
+
+#org @DESC_EMPTYSLOT_120X
+Empty move.
+
+#org @DESC_EMPTYSLOT_121X
+Empty move.
+
+#org @DESC_EMPTYSLOT_122X
+Empty move.
+
+#org @DESC_EMPTYSLOT_123X
+Empty move.
+
+#org @DESC_EMPTYSLOT_124X
+Empty move.
+
+#org @DESC_EMPTYSLOT_125X
+Empty move.
+
+#org @DESC_EMPTYSLOT_126X
+Empty move.
+
+#org @DESC_EMPTYSLOT_127X
+Empty move.
+
+#org @DESC_EMPTYSLOT_128X
+Empty move.
+
+#org @DESC_EMPTYSLOT_129X
+Empty move.
+
+#org @DESC_EMPTYSLOT_130X
+Empty move.
+
+#org @DESC_EMPTYSLOT_131X
+Empty move.
+
+#org @DESC_EMPTYSLOT_132X
+Empty move.
+
+#org @DESC_EMPTYSLOT_133X
+Empty move.
+
+#org @DESC_EMPTYSLOT_134X
+Empty move.
+
+#org @DESC_EMPTYSLOT_135X
+Empty move.
+
+#org @DESC_EMPTYSLOT_136X
+Empty move.
+
+#org @DESC_EMPTYSLOT_137X
+Empty move.
+
+#org @DESC_EMPTYSLOT_138X
+Empty move.
+
+#org @DESC_EMPTYSLOT_139X
+Empty move.
+
+#org @DESC_EMPTYSLOT_140X
+Empty move.
+
+#org @DESC_EMPTYSLOT_141X
+Empty move.
+
+#org @DESC_EMPTYSLOT_142X
+Empty move.
+
+#org @DESC_EMPTYSLOT_143X
+Empty move.
+
+#org @DESC_EMPTYSLOT_144X
+Empty move.
+
+#org @DESC_EMPTYSLOT_145X
+Empty move.
+
+#org @DESC_EMPTYSLOT_146X
+Empty move.
+
+#org @DESC_EMPTYSLOT_147X
+Empty move.
+
+#org @DESC_EMPTYSLOT_148X
+Empty move.
+
+#org @DESC_EMPTYSLOT_149X
+Empty move.
+
+#org @DESC_EMPTYSLOT_150X
+Empty move.
+
+#org @DESC_EMPTYSLOT_151X
+Empty move.
+
+#org @DESC_EMPTYSLOT_152X
+Empty move.
+
+#org @DESC_EMPTYSLOT_153X
+Empty move.
+
+#org @DESC_EMPTYSLOT_154X
+Empty move.
+
+#org @DESC_EMPTYSLOT_155X
+Empty move.
+
+#org @DESC_EMPTYSLOT_156X
+Empty move.
+
+#org @DESC_EMPTYSLOT_157X
+Empty move.
+
+#org @DESC_EMPTYSLOT_158X
+Empty move.
+
+#org @DESC_EMPTYSLOT_159X
+Empty move.
+
+#org @DESC_EMPTYSLOT_160X
+Empty move.
+
+#org @DESC_EMPTYSLOT_161X
+Empty move.
+
+#org @DESC_EMPTYSLOT_162X
+Empty move.
+
+#org @DESC_EMPTYSLOT_163X
+Empty move.
+
+#org @DESC_EMPTYSLOT_164X
+Empty move.
+
+#org @DESC_EMPTYSLOT_165X
+Empty move.
+
+#org @DESC_EMPTYSLOT_166X
+Empty move.
+
+#org @DESC_EMPTYSLOT_167X
+Empty move.
+
+#org @DESC_EMPTYSLOT_168X
+Empty move.
+
+#org @DESC_EMPTYSLOT_169X
+Empty move.
+
+#org @DESC_EMPTYSLOT_170X
+Empty move.
+
+#org @DESC_EMPTYSLOT_171X
+Empty move.
+
+#org @DESC_EMPTYSLOT_172X
+Empty move.
+
+#org @DESC_EMPTYSLOT_173X
+Empty move.
+
+#org @DESC_EMPTYSLOT_174X
+Empty move.
+
+#org @DESC_EMPTYSLOT_175X
+Empty move.
+
+#org @DESC_EMPTYSLOT_176X
+Empty move.
+
+#org @DESC_EMPTYSLOT_177X
+Empty move.
+
+#org @DESC_EMPTYSLOT_178X
+Empty move.
+
+#org @DESC_EMPTYSLOT_179X
+Empty move.
+
+#org @DESC_EMPTYSLOT_180X
+Empty move.
+
+#org @DESC_EMPTYSLOT_181X
+Empty move.
+
+#org @DESC_EMPTYSLOT_182X
+Empty move.
+
+#org @DESC_EMPTYSLOT_183X
+Empty move.
+
+#org @DESC_EMPTYSLOT_184X
+Empty move.
+
+#org @DESC_EMPTYSLOT_185X
+Empty move.
+
+#org @DESC_EMPTYSLOT_186X
+Empty move.
+
+#org @DESC_EMPTYSLOT_187X
+Empty move.
+
+#org @DESC_EMPTYSLOT_188X
+Empty move.
+
+#org @DESC_EMPTYSLOT_189X
+Empty move.
+
+#org @DESC_EMPTYSLOT_190X
+Empty move.
+
+#org @DESC_EMPTYSLOT_191X
+Empty move.
+
+#org @DESC_EMPTYSLOT_192X
+Empty move.
+
+#org @DESC_EMPTYSLOT_193X
+Empty move.
+
+#org @DESC_EMPTYSLOT_194X
+Empty move.
+
+#org @DESC_EMPTYSLOT_195X
+Empty move.
+
+#org @DESC_EMPTYSLOT_196X
+Empty move.
+
+#org @DESC_EMPTYSLOT_197X
+Empty move.
+
+#org @DESC_EMPTYSLOT_198X
+Empty move.
+
+#org @DESC_EMPTYSLOT_199X
+Empty move.
+
+#org @DESC_EMPTYSLOT_200X
+Empty move.
+
+#org @DESC_EMPTYSLOT_201X
+Empty move.
+
+#org @DESC_EMPTYSLOT_202X
+Empty move.
+
+#org @DESC_EMPTYSLOT_203X
+Empty move.
+
+#org @DESC_EMPTYSLOT_204X
+Empty move.
+
+#org @DESC_EMPTYSLOT_205X
+Empty move.
+
+#org @DESC_EMPTYSLOT_206X
+Empty move.
+
+#org @DESC_EMPTYSLOT_207X
+Empty move.
+
+#org @DESC_EMPTYSLOT_208X
+Empty move.
+
+#org @DESC_EMPTYSLOT_209X
+Empty move.
+
+#org @DESC_EMPTYSLOT_210X
+Empty move.
+
+#org @DESC_EMPTYSLOT_211X
+Empty move.
+
+#org @DESC_EMPTYSLOT_212X
+Empty move.
+
+#org @DESC_EMPTYSLOT_213X
+Empty move.
+
+#org @DESC_EMPTYSLOT_214X
+Empty move.
+
+#org @DESC_EMPTYSLOT_215X
+Empty move.
+
+#org @DESC_EMPTYSLOT_216X
+Empty move.
+
+#org @DESC_EMPTYSLOT_217X
+Empty move.
+
+#org @DESC_EMPTYSLOT_218X
+Empty move.
+
+#org @DESC_EMPTYSLOT_219X
+Empty move.
+
+#org @DESC_EMPTYSLOT_220X
+Empty move.
+
+#org @DESC_EMPTYSLOT_221X
+Empty move.
+
+#org @DESC_EMPTYSLOT_222X
+Empty move.
+
+#org @DESC_EMPTYSLOT_223X
+Empty move.
+
+#org @DESC_EMPTYSLOT_224X
+Empty move.
+
+#org @DESC_EMPTYSLOT_225X
+Empty move.
+
+#org @DESC_EMPTYSLOT_226X
+Empty move.
+
+#org @DESC_EMPTYSLOT_227X
+Empty move.
+
+#org @DESC_EMPTYSLOT_228X
+Empty move.
+
+#org @DESC_EMPTYSLOT_229X
+Empty move.
+
+#org @DESC_EMPTYSLOT_230X
+Empty move.
+
+#org @DESC_EMPTYSLOT_231X
+Empty move.
+
+#org @DESC_EMPTYSLOT_232X
+Empty move.
+
+#org @DESC_EMPTYSLOT_233X
+Empty move.
+
+#org @DESC_EMPTYSLOT_234X
+Empty move.
+
+#org @DESC_EMPTYSLOT_235X
+Empty move.
+
+#org @DESC_EMPTYSLOT_236X
+Empty move.
+
+#org @DESC_EMPTYSLOT_237X
+Empty move.
+
+#org @DESC_EMPTYSLOT_238X
+Empty move.
+
+#org @DESC_EMPTYSLOT_239X
+Empty move.
+
+#org @DESC_EMPTYSLOT_240X
+Empty move.
+
+#org @DESC_EMPTYSLOT_241X
+Empty move.
+
+#org @DESC_EMPTYSLOT_242X
+Empty move.
+
+#org @DESC_EMPTYSLOT_243X
+Empty move.
+
+#org @DESC_EMPTYSLOT_244X
+Empty move.
+
+#org @DESC_EMPTYSLOT_245X
+Empty move.
+
+#org @DESC_EMPTYSLOT_246X
+Empty move.
+
+#org @DESC_EMPTYSLOT_247X
+Empty move.
+
+#org @DESC_EMPTYSLOT_248X
+Empty move.
+
+#org @DESC_EMPTYSLOT_249X
+Empty move.
+
+#org @DESC_EMPTYSLOT_250X
+Empty move.

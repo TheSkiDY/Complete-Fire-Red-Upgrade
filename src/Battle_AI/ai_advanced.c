@@ -519,6 +519,10 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 							if (!gSideTimers[SIDE(FOE(bank))].stickyWeb)
 								++entryHazardNum;
 							break;
+						case MOVE_LIVECOALS:
+							if (!gSideTimers[SIDE(FOE(bank))].livecoalsAmount)
+								++entryHazardNum;
+							break;
 						default: //Spikes
 							if (gSideTimers[SIDE(FOE(bank))].spikesAmount < 3)
 								++entryHazardNum;
@@ -1230,7 +1234,8 @@ bool8 ShouldPhaze(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 					if (gSideTimers[SIDE(bankDef)].srAmount > 0 //Has some hurtful hazard
 					||  gSideTimers[SIDE(bankDef)].tspikesAmount >= 1
 					||  gSideTimers[SIDE(bankDef)].spikesAmount >= 1
-					||  gSideTimers[SIDE(bankDef)].steelsurge > 0)
+					||  gSideTimers[SIDE(bankDef)].steelsurge > 0
+					|| 	gSideTimers[SIDE(bankDef)].livecoalsAmount > 0)
 						return TRUE;
 				}
 				//Fallthrough
@@ -1250,6 +1255,7 @@ bool8 ShouldPhaze(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 					if (gSideTimers[SIDE(bankDef)].srAmount > 0 //Has some hurtful hazard
 					||  gSideTimers[SIDE(bankDef)].tspikesAmount >= 1
 					||  gSideTimers[SIDE(bankDef)].spikesAmount >= 1
+					|| 	gSideTimers[SIDE(bankDef)].livecoalsAmount > 0
 					||  AnyUsefulStatIsRaised(bankDef))
 						return TRUE;
 				}

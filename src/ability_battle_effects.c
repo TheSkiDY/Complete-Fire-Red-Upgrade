@@ -1312,6 +1312,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case PSYCHIC_TERRAIN:
 					effect = TryActivateTerrainAbility(PSYCHIC_TERRAIN, B_ANIM_PSYCHIC_SURGE, bank);
 					break;
+				case SHADOW_TERRAIN:
+					effect = TryActivateTerrainAbility(SHADOW_TERRAIN, B_ANIM_SHADOWY_SURGE, bank);
+					break;
+				case DRACO_TERRAIN:
+					effect = TryActivateTerrainAbility(DRACO_TERRAIN, B_ANIM_DRACO_SURGE, bank);
+					break;
 			}
 			break;
 
@@ -2923,6 +2929,12 @@ static u8 TryActivateTerrainAbility(u8 terrain, u8 anim, u8 bank)
 				break;
 			case PSYCHIC_TERRAIN:
 				gBattleStringLoader = PsychicTerrainSetString;
+				break;
+			case SHADOW_TERRAIN:
+				gBattleStringLoader = ShadowTerrainSetString;
+				break;
+			case DRACO_TERRAIN:
+				gBattleStringLoader = DracoTerrainSetString;
 				break;
 		}
 

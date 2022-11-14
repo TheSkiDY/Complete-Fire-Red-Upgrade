@@ -35,6 +35,9 @@ extern const u8 BattleScript_RaidShieldsBattleStart[];
 extern const u8 BattleScript_RaidBattleStorm[];
 extern const u8 BattleScript_DynamaxEnergySwirl[];
 
+extern const u8 BattleScript_ShadowTerrainBattleBegin[];
+extern const u8 BattleScript_DracoTerrainBattleBegin[];
+
 extern const u8 gText_CamomonsTypeReveal[];
 extern const u8 gText_CamomonsTypeRevealDualType[];
 extern const u8 gText_RaidBattleReveal[];

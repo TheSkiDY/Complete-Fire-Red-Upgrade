@@ -35,6 +35,8 @@ attackcanceler_battle_scripts.s
 .global BattleScript_MoveUsedRaidBattlePrevents
 .global BattleScript_MoveUsedRaidShieldPrevents
 .global BattleScript_RaidBattleStatNullification
+.global BattleScript_MetalArrows
+.global BattleScript_ShadowTerrainNoStatChange
 
 .global BattleScript_TryRemoveIllusion
 .global gText_AbilityRaisedStatString
@@ -366,3 +368,27 @@ BattleScript_RaidBattleStatNullification:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_MetalArrows:
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	jumpifability BANK_ATTACKER ABILITY_SHEERFORCE BS_MOVE_END
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_SPD, STAT_ANIM_DOWN
+	setstatchanger STAT_SPD | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_BS_PTR BS_MOVE_END
+	jumpifbyte GREATERTHAN MULTISTRING_CHOOSER 0x2 BS_MOVE_END
+	printfromtable 0x83FE588
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ShadowTerrainNoStatChange:
+	pause 0x10
+	copybyte BATTLE_SCRIPTING_BANK BATTLE_COMMUNICATION
+	setword BATTLE_STRING_LOADER gText_ShadowTerrainPrevents
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	setbyte MULTISTRING_CHOOSER 0x4
+	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

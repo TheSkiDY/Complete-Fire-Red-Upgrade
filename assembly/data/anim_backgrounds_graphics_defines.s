@@ -143,3 +143,9 @@ definitions for battle backgrounds
 .equ BG_CHLOROBLAST_IMG, Hydro_CannonTiles
 .equ BG_CHLOROBLAST_PAL, ChloroblastPal
 .equ BG_CHLOROBLAST_RAW, Hydro_CannonMap
+.equ BG_SHADOW_TERRAIN_IMG, BG_Shadow_TerrainTiles
+.equ BG_SHADOW_TERRAIN_PAL, BG_Shadow_TerrainPal
+.equ BG_SHADOW_TERRAIN_RAW, BG_Shadow_TerrainMap
+.equ BG_DRACO_TERRAIN_IMG, BG_Draco_TerrainTiles
+.equ BG_DRACO_TERRAIN_PAL, BG_Draco_TerrainPal
+.equ BG_DRACO_TERRAIN_RAW, BG_Draco_TerrainMap

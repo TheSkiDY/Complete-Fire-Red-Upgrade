@@ -271,6 +271,7 @@ BattleScript_BurnedBy:
 	jumpifbyte EQUALS POISONED_BY 0x1 BeakBlastBurnBS
 	jumpifbyte EQUALS POISONED_BY 0x3 FlameOrbBurnBS
 	jumpifbyte EQUALS POISONED_BY 0x4 FlashFireBurnBS
+	jumpifbyte EQUALS POISONED_BY 0x5 LiveCoalsBS
 	printfromtable 0x83FE5C8
 	waitmessage DELAY_1SECOND
 	goto 0x81D91C3
@@ -298,6 +299,13 @@ FlashFireBurnBS:
 	call BattleScript_AbilityPopUpRevert
 	goto 0x81D91C3
 
+LiveCoalsBS:
+	setbyte POISONED_BY 0x0
+	setword BATTLE_STRING_LOADER gText_LiveCoalsBRN
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto 0x81D91C3
+	
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_ItemSteal:

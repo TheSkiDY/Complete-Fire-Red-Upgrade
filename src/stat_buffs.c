@@ -6,6 +6,7 @@
 #include "../include/constants/items.h"
 
 #include "../include/new/ability_battle_scripts.h"
+#include "../include/new/attackcanceler_battle_scripts.h"
 #include "../include/new/accuracy_calc.h"
 #include "../include/new/battle_strings.h"
 #include "../include/new/battle_util.h"
@@ -295,6 +296,16 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 	flags &= ~(STAT_CHANGE_NOT_PROTECT_AFFECTED);
 
 	PREPARE_STAT_BUFFER(gBattleTextBuff1, statId)
+
+	if(gTerrainType == SHADOW_TERRAIN)
+	{
+		BattleScriptPush(BS_ptr);
+		gBattleScripting.bank = gActiveBattler;
+		gBattleCommunication[0] = gActiveBattler;
+		gBattlescriptCurrInstr = BattleScript_ShadowTerrainNoStatChange;
+		gSpecialStatuses[gActiveBattler].statLowered = 1;
+		return STAT_CHANGE_DIDNT_WORK;
+	}
 
 	if ((statValue << 0x18) < 0) // stat decrease
 	{

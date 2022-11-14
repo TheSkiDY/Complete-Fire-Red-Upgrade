@@ -159,6 +159,19 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 								effect = ITEM_STATS_CHANGE;
 							}
 							break;
+						case SHADOW_TERRAIN:
+							if (STAT_CAN_RISE(bank, STAT_STAGE_EVASION))
+							{
+								stat = STAT_STAGE_EVASION;
+								effect = ITEM_STATS_CHANGE;
+							}
+							break;
+						case DRACO_TERRAIN:
+							if (STAT_CAN_RISE(bank, STAT_STAGE_ATK))
+							{
+								stat = STAT_STAGE_ATK;
+								effect = ITEM_STATS_CHANGE;
+							}
 					}
 
 					if (effect)
