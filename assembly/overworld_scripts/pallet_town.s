@@ -11,7 +11,7 @@
 EventScript_PalletTown_TechnologyGuy:
 	checkflag 0x200
 	if 0x1 _goto TechnologyGuy_Battle
-		@callasm DebugFunc
+	callasm DebugFunc
 	lock 
 	loadpointer 0x0 gText_TechnologyGuyName
 	setvar 0x8000 0x1

@@ -622,6 +622,7 @@ enum EvolutionMethods
 	EVO_MOVE_MALE, // Knows a given move and is male
 	EVO_MOVE_FEMALE, // Knows a given move and is female
 	EVO_ITEM_NIGHT, // Item is used on it at night
+    EVO_COINS, // Level up while player has more than the specified amount of coins (for Gimmighoul evolution)
 };
 #define EVO_GIGANTAMAX 0xFD
 #define EVO_MEGA 0xFE

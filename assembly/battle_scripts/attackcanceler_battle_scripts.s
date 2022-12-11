@@ -383,7 +383,7 @@ BattleScript_MetalArrows:
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_ShadowTerrainNoStatChange:
-	pause 0x10
+	pause DELAY_HALFSECOND
 	copybyte BATTLE_SCRIPTING_BANK BATTLE_COMMUNICATION
 	setword BATTLE_STRING_LOADER gText_ShadowTerrainPrevents
 	printstring 0x184
@@ -392,3 +392,4 @@ BattleScript_ShadowTerrainNoStatChange:
 	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+

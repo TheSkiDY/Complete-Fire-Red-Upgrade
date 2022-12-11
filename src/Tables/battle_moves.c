@@ -5506,7 +5506,7 @@ const struct BattleMove gBattleMoves[] =
 	{
 		.effect = EFFECT_THIEF,
 		.power = 60,
-		.type = TYPE_NORMAL,
+		.type = TYPE_FAIRY,
 		.accuracy = 100,
 		.pp = 25,
 		.secondaryEffectChance = 100,
@@ -12276,7 +12276,7 @@ const struct BattleMove gBattleMoves[] =
 		.power = 0,
 		.type = TYPE_PSYCHIC,
 		.accuracy = 0,
-		.pp = 3,
+		.pp = 2,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_USER,
 		.priority = 0,

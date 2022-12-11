@@ -309,6 +309,15 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 						#endif
 					}
 					break;
+
+				case EVO_COINS:
+					if (gSaveBlock1->coins >= gEvolutionTable[species][i].param)
+					{
+						targetSpecies = gEvolutionTable[species][i].targetSpecies;
+						gSaveBlock1->coins -= gEvolutionTable[species][i].param;
+						break;
+					}
+					break;
 			}
 		}
 
@@ -477,6 +486,7 @@ bool8 IsOtherEvolutionMethod(u8 method)
 		case EVO_FLAG_SET:
 		case EVO_CRITICAL_HIT:
 		case EVO_DAMAGE_LOCATION:
+		case EVO_COINS:
 			return TRUE;
 		default:
 			return FALSE;
@@ -494,6 +504,7 @@ bool8 EvolutionMethodRequiresLevelUp(u8 method)
 		|| method == EVO_MOVE_MALE
 		|| method == EVO_MOVE_FEMALE
 		|| method == EVO_OTHER_PARTY_MON
+		|| method == EVO_COINS
 		|| method == EVO_FLAG_SET;
 }
 

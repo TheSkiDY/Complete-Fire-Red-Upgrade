@@ -53,7 +53,7 @@ extern const u8 DESC_MAGICIAN[];
 extern const u8 NAME_CACOPHONY[];
 extern const u8 NAME_VOLT_BARRIER[];
 extern const u8 NAME_GLUEY_FIELD[];
-extern const u8 NAME_OPPORTUNIST[];
+extern const u8 NAME_COMPLIANCE[];
 extern const u8 NAME_TIGHT_MASK[];
 extern const u8 NAME_INGROWN[];
 extern const u8 NAME_COSMOFORCE[];
@@ -560,6 +560,17 @@ static struct DuplicateAbility sDuplicateNames[] =
         .currAbility = ABILITY_STUNTOUCH,
         .replaceAbilityName = NAME_GOOEY,
     },
+    {
+        .species = SPECIES_WIGLETT,
+        .currAbility = ABILITY_STUNTOUCH,
+        .replaceAbilityName = NAME_GOOEY,
+    },
+    {
+        .species = SPECIES_WUGTRIO,
+        .currAbility = ABILITY_STUNTOUCH,
+        .replaceAbilityName = NAME_GOOEY,
+    },
+
 
     //Parental Bond -> Brains Synergy
     {
@@ -608,6 +619,13 @@ static struct DuplicateAbility sDuplicateNames[] =
         .species = SPECIES_SUNFLORA_S,
         .currAbility = ABILITY_MAJESTIC,
         .replaceAbilityName = NAME_QUEENLY_MAJESTY,
+    },
+
+    //Majestic -> Armor Tail
+    {
+        .species = SPECIES_FARIGIRAF,
+        .currAbility = ABILITY_MAJESTIC,
+        .replaceAbilityName = NAME_ARMOR_TAIL,
     },
     
     
@@ -903,6 +921,11 @@ static struct DuplicateAbility sDuplicateNames[] =
         .currAbility = ABILITY_BATTLEARMOR,
         .replaceAbilityName = NAME_SHELL_ARMOR,
     },
+    {
+        .species = SPECIES_KLAWF,
+        .currAbility = ABILITY_BATTLEARMOR,
+        .replaceAbilityName = NAME_SHELL_ARMOR,
+    },
 
 
     //Soundproof -> Cacophony
@@ -991,66 +1014,66 @@ static struct DuplicateAbility sDuplicateNames[] =
         .replaceAbilityName = NAME_GLUEY_FIELD,
     },
 
-    //Beast Boost -> Opportunist
+    //Beast Boost -> Compliance
     {
         .species = SPECIES_SPINDA,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_VESPIQUEN,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_BURMY,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_BURMY_SANDY,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_BURMY_TRASH,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_WORMADAM,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_WORMADAM_SANDY,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_WORMADAM_TRASH,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_TYNAMO,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_EELEKTRIK,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_EELEKTROSS,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
     {
         .species = SPECIES_VESPIKING,
         .currAbility = ABILITY_BEASTBOOST,
-        .replaceAbilityName = NAME_OPPORTUNIST,
+        .replaceAbilityName = NAME_COMPLIANCE,
     },
 
     //Fluffy -> Honey Armor
