@@ -27,14 +27,17 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_MEGA_RING 1
 	additem ITEM_ABILITY_CAPSULE 50
 	additem ITEM_ABILITY_PATCH 50
+	additem ITEM_NATURE_PILL_NAUGHTY 5
+	additem ITEM_NATURE_PILL_BOLD 5
+	additem ITEM_NATURE_PILL_BRAVE 5
+	additem ITEM_NATURE_PILL_SASSY 5
 	additem ITEM_BLACK_AUGURITE 1
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_ALAKAZAM_S 10 0 0 0 0
+	givepokemon SPECIES_MUSHARNA 61 ITEM_ROOM_EXTENDER 0 0 0
+	givepokemon SPECIES_HOOPA_UNBOUND 84 ITEM_ROOM_EXTENDER 0 0 0
+	givepokemon SPECIES_DUSKULL 20 ITEM_ROOM_EXTENDER 0 0 0
 	givepokemon SPECIES_FLETCHLING 31 0 0 0 0
-	givepokemon SPECIES_BASTIODON 50 0 0 0 0
-	givepokemon SPECIES_TYRANITAR 40 0 0 0 0
-	givepokemon SPECIES_MEWTWO 10 0 0 0 0
 	givepokemon SPECIES_WYRDEER 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	@callasm DebugFunc

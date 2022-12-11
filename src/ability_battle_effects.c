@@ -1432,41 +1432,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 		
 		case ABILITY_CLOCKWORK: ;
 			u16 species = GetProperAbilityPopUpSpecies(bank);
+			u8 roomTimer = GetRoomTurnCount(bank);
 			if (SpeciesHasWizardry(species) && !IsMagicRoomActive())
 			{
-				#ifdef ITEM_EFFECT_ROOM_EXTENDER
-				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
-					gNewBS->MagicRoomTimer = 8;
-				else
-				#endif
-
-				gNewBS->MagicRoomTimer = 5;
+				gNewBS->MagicRoomTimer = roomTimer;
 				gBattleStringLoader = MagicRoomSetString;
 				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 				effect++;
 			}
 			else if (SpeciesHasMiraculous(species) && !IsWonderRoomActive())
 			{
-				#ifdef ITEM_EFFECT_ROOM_EXTENDER
-				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
-					gNewBS->WonderRoomTimer = 8;
-				else
-				#endif
-
-				gNewBS->WonderRoomTimer = 5;
+				gNewBS->WonderRoomTimer = roomTimer;
 				gBattleStringLoader = WonderRoomSetString;
 				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 				effect++;
 			}
 			else if (SpeciesHasWormhole(species) && !IsGravityActive())
 			{
-				#ifdef ITEM_EFFECT_ROOM_EXTENDER
-				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
-					gNewBS->GravityTimer = 8;
-				else
-				#endif
-
-				gNewBS->GravityTimer = 5;
+				gNewBS->GravityTimer = roomTimer;
 				gBattleStringLoader = GravitySetString;
 				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 				effect++;
@@ -1480,13 +1463,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			else if (!IsTrickRoomActive())
 			{
-				#ifdef ITEM_EFFECT_ROOM_EXTENDER
-				if (ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
-					gNewBS->TrickRoomTimer = 8;
-				else
-				#endif
-
-				gNewBS->TrickRoomTimer = 5;
+				gNewBS->TrickRoomTimer = roomTimer;
 				gBattleStringLoader = TrickRoomSetString;
 				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 				effect++;

@@ -779,6 +779,7 @@ static void SwapVanillaSideTimers(void)
 void DoBattleFieldEffect(void)
 {
 	u32 i;
+	u8 timer = GetRoomTurnCount(gBankAttacker);
 
 	if (IsAnyMaxMove(gCurrentMove)
 	&& gBattleMoves[gCurrentMove].z_move_effect == MAX_EFFECT_GRAVITY)
@@ -791,7 +792,7 @@ void DoBattleFieldEffect(void)
 					gNewBS->targetsToBringDown |= gBitTable[i];
 			}
 
-			gNewBS->GravityTimer = 5;
+			gNewBS->GravityTimer = timer;
 			gBattleStringLoader = GravitySetString;
 		}
 		return;
@@ -806,7 +807,7 @@ void DoBattleFieldEffect(void)
 			}
 			else if (!IsTrickRoomActive())
 			{
-				gNewBS->TrickRoomTimer = 5;
+				gNewBS->TrickRoomTimer = timer;
 				gBattleStringLoader = TrickRoomSetString;
 			}
 			else
@@ -821,7 +822,7 @@ void DoBattleFieldEffect(void)
 			}
 			else if (!IsWonderRoomActive())
 			{
-				gNewBS->WonderRoomTimer = 5;
+				gNewBS->WonderRoomTimer = timer;
 				gBattleStringLoader = WonderRoomSetString;
 			}
 			else
@@ -836,7 +837,7 @@ void DoBattleFieldEffect(void)
 			}
 			else if (!IsMagicRoomActive())
 			{
-				gNewBS->MagicRoomTimer = 5;
+				gNewBS->MagicRoomTimer = timer;
 				gBattleStringLoader = MagicRoomSetString;
 			}
 			else
@@ -857,7 +858,7 @@ void DoBattleFieldEffect(void)
 						gNewBS->targetsToBringDown |= gBitTable[i];
 				}
 
-				gNewBS->GravityTimer = 5;
+				gNewBS->GravityTimer = timer;
 				gBattleStringLoader = GravitySetString;
 			}
 			else

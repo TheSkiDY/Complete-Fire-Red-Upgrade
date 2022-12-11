@@ -132,7 +132,7 @@ void atk04_critcalc(void)
 						+ (atkAbility == ABILITY_SUPERLUCK)
 						+ 2 * (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[gBankAttacker].status1 & STATUS_ANY)
 						#ifdef NATIONAL_DEX_CHANSEY
-						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && SpeciesToNationalPokedexNum(SPECIES(gBankAttacker)) == NATIONAL_DEX_CHANSEY)
+						+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && IsOfType(gBankAttacker, TYPE_NORMAL))
 						#endif
 						#if (defined NATIONAL_DEX_FARFETCHD && defined NATIONAL_DEX_SIRFETCHD)
 						+ 2 * (atkEffect == ITEM_EFFECT_STICK && (SpeciesToNationalPokedexNum(SPECIES(gBankAttacker)) == NATIONAL_DEX_FARFETCHD
@@ -236,7 +236,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 					+ (atkAbility == ABILITY_SUPERLUCK)
 					+ 2 * (atkAbility == ABILITY_FOCUSEDWARRIOR && gBattleMons[gBankAttacker].status1 & STATUS_ANY)
 					#ifdef NATIONAL_DEX_CHANSEY
-					+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && SpeciesToNationalPokedexNum(atkSpecies) == NATIONAL_DEX_CHANSEY)
+					+ 2 * (atkEffect == ITEM_EFFECT_LUCKY_PUNCH && IsOfType(gBankAttacker, TYPE_NORMAL))
 					#endif
 					#ifdef NATIONAL_DEX_FARFETCHD
 					+ 2 * (atkEffect == ITEM_EFFECT_STICK && SpeciesToNationalPokedexNum(atkSpecies) == NATIONAL_DEX_FARFETCHD)

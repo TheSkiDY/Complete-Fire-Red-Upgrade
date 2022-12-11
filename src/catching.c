@@ -562,7 +562,7 @@ static bool8 CriticalCapture(unusedArg u32 odds)
 
 	#ifdef ITEM_CATCHING_CHARM
 	if (CheckBagHasItem(ITEM_CATCHING_CHARM, 1))
-		catchingCharmModifier = 2;
+		catchingCharmModifier = 3;
 	#endif
 
 	//Final Calculation

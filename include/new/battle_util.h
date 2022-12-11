@@ -230,3 +230,4 @@ enum ItemBattleEffectCases
 
 bool8 CanMoveDuringLoafingTurn(u8 bank);;
 void WishPearlRecoveryIncrease(u8 bank, s32* hp);
+u8 GetRoomTurnCount(u8 bank);

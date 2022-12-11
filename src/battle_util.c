@@ -2,6 +2,7 @@
 #include "defines_battle.h"
 #include "../include/random.h"
 #include "../include/string_util.h"
+#include "../include/constants/hold_effects.h"
 #include "../include/constants/items.h"
 #include "../include/constants/pokedex.h"
 
@@ -2749,4 +2750,14 @@ void WishPearlRecoveryIncrease(u8 bank, s32* hp)
 		newHP = (newHP * 15) / 10;
 
 	*hp = newHP;
+}
+
+u8 GetRoomTurnCount(u8 bank)
+{
+	u8 turns = 5;
+
+	if(ITEM_EFFECT(bank) == ITEM_EFFECT_ROOM_EXTENDER)
+		turns = 8;
+
+	return turns;	
 }
