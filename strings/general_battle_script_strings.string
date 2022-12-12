@@ -957,3 +957,11 @@ The battlefield is harsh.
 #org @gText_ShadowTerrainPrevents
 The SHADOW TERRAIN prevents any\nstat changes!
 
+#org @gText_ParalyzeOrb
+[EFFECT_BANK] was paralyzed\nby the [LAST_ITEM]!
+
+#org @gText_SleepOrb
+[EFFECT_BANK] was put to sleep\nby the [LAST_ITEM]!
+
+#org @gText_FrostOrb
+[EFFECT_BANK] was frostbitten\nby the [LAST_ITEM]!

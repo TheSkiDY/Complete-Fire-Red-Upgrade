@@ -9,6 +9,7 @@
 #include "../include/overworld.h"
 #include "../include/random.h"
 #include "../include/string_util.h"
+#include "../include/wild_encounter.h"
 #include "../include/constants/game_stat.h"
 #include "../include/constants/items.h"
 #include "../include/constants/songs.h"
@@ -59,6 +60,7 @@ extern species_t gUltraBeastList[];
 //This file's functions:
 static u8 GetCatchingBattler(void);
 static bool8 CriticalCapture(u32 odds);
+void ForceShinyByShinyBall(struct Pokemon* mon);
 
 void atkEF_handleballthrow(void)
 {
@@ -485,6 +487,39 @@ u32 GetBaseBallCatchOdds(u8 ballType, u8 bankAtk, u8 bankDef)
 				else
 					ballMultiplier = 1;
 				break;
+
+			case BALL_TYPE_SOLAR_BALL:
+				if (gBattleWeather & WEATHER_SUN_ANY)
+					ballMultiplier = WEATHER_BALL_MULTIPLIER;
+				else
+					ballMultiplier = 10;
+				break;
+
+			case BALL_TYPE_FLOOD_BALL:
+				if (gBattleWeather & WEATHER_RAIN_ANY)
+					ballMultiplier = WEATHER_BALL_MULTIPLIER;
+				else
+					ballMultiplier = 10;
+				break;
+
+			case BALL_TYPE_HAIL_BALL:
+				if (gBattleWeather & WEATHER_HAIL_ANY)
+					ballMultiplier = WEATHER_BALL_MULTIPLIER;
+				else
+					ballMultiplier = 10;
+				break;
+
+			case BALL_TYPE_EARTH_BALL:
+				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+					ballMultiplier = WEATHER_BALL_MULTIPLIER;
+				else
+					ballMultiplier = 10;
+				break;
+
+			case BALL_TYPE_SHINY_BALL:
+				ballMultiplier = SHINY_BALL_MULTIPLIER;
+				break;
+
 		}
 	}
 	else
@@ -631,10 +666,46 @@ void ApplyBallSpecialEffect(void)
 		HealMon(mon);
 	else if (ballType == BALL_TYPE_FRIEND_BALL)
 		mon->friendship = 200;
-	#ifdef UNBOUND
 	else if (ballType == BALL_TYPE_DREAM_BALL)
 		mon->hiddenAbility = TRUE;
+	else if (ballType == BALL_TYPE_SHINY_BALL)
+		ForceShinyByShinyBall(mon);
+}
+
+void ForceShinyByShinyBall(struct Pokemon* mon)
+{
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+
+	u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+	u16 sid = HIHALF(otId);
+	u16 tid = LOHALF(otId);
+
+	u8 shinyRange = RandRange(0,8);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 ability = personality & 1;
+	u8 nature = GetNatureFromPersonality(personality);
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+	u8 letter = GetUnownLetterFromPersonality(personality);
+	bool8 abilityMatters = !mon->hiddenAbility;
+	mon->friendship = 200;
+
+	do
+	{
+		personality = Random32();
+		personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+
+		if (abilityMatters)
+		{
+			personality &= ~(1);
+			personality |= ability; //Either 0 or 1
+		}
+	} while (GetNatureFromPersonality(personality) != nature || GetGenderFromSpeciesAndPersonality(species, personality) != gender
+	#ifdef SPECIES_UNOWN
+	|| (species == SPECIES_UNOWN && GetUnownLetterFromPersonality(personality) != letter)
 	#endif
+	);
+
+	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
 }
 
 #ifdef UNBOUND

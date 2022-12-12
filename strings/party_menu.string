@@ -66,3 +66,34 @@ Change [BUFFER1]'s nature\nto [BUFFER2]?
 
 #org @gText_NaturePillChangedNature
 [BUFFER1]'s nature has been\nchanged to [BUFFER2].[PAUSE_UNTIL_PRESS]
+
+#org @gText_ToxicOrbOffer
+Poison [BUFFER1]?
+
+#org @gText_ToxicOrbToxiced
+[BUFFER1] has been\npoisoned.[PAUSE_UNTIL_PRESS]
+
+#org @gText_FlameOrbOffer
+Burn [BUFFER1]?
+
+#org @gText_FlameOrbBurned
+[BUFFER1] has been\nburned.[PAUSE_UNTIL_PRESS]
+
+#org @gText_ParalyzeOrbOffer
+Paralyze [BUFFER1]?
+
+#org @gText_ParalyzeOrbParalyzed
+[BUFFER1] has been\nparalyzed.[PAUSE_UNTIL_PRESS]
+
+#org @gText_SleepOrbOffer
+Put [BUFFER1] to sleep?
+
+#org @gText_SleepOrbPutToSleep
+[BUFFER1] has fallen\nasleep.[PAUSE_UNTIL_PRESS]
+
+#org @gText_FrostOrbOffer
+Frostbite [BUFFER1]?
+
+#org @gText_FrostOrbFrostbitten
+[BUFFER1] has been\nfrostbitten.[PAUSE_UNTIL_PRESS]
+

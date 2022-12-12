@@ -1477,6 +1477,48 @@ u8 TurnBasedEffects(void)
 										++effect;
 									}
 									break;
+								case ITEM_EFFECT_PARALYZE_ORB:
+									if (CanBeParalyzed(gActiveBattler, gActiveBattler, FALSE))
+									{
+										gLastUsedItem = ITEM(gActiveBattler);
+										RecordItemEffectBattle(gActiveBattler, itemEffect);
+										gBattleMons[gActiveBattler].status1 |= STATUS1_PARALYSIS;
+										EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+										MarkBufferBankForExecution(gActiveBattler);
+
+										gEffectBank = gActiveBattler;
+										BattleScriptExecute(BattleScript_ParalyzeOrb);
+										++effect;
+									}
+									break;
+								case ITEM_EFFECT_SLEEP_ORB:
+									if (CanBeParalyzed(gActiveBattler, gActiveBattler, FALSE))
+									{
+										gLastUsedItem = ITEM(gActiveBattler);
+										RecordItemEffectBattle(gActiveBattler, itemEffect);
+										gBattleMons[gActiveBattler].status1 |= STATUS1_SLEEP;
+										EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+										MarkBufferBankForExecution(gActiveBattler);
+
+										gEffectBank = gActiveBattler;
+										BattleScriptExecute(BattleScript_SleepOrb);
+										++effect;
+									}
+									break;
+								case ITEM_EFFECT_FROST_ORB:
+									if (CanBeParalyzed(gActiveBattler, gActiveBattler, FALSE))
+									{
+										gLastUsedItem = ITEM(gActiveBattler);
+										RecordItemEffectBattle(gActiveBattler, itemEffect);
+										gBattleMons[gActiveBattler].status1 |= STATUS1_FREEZE;
+										EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
+										MarkBufferBankForExecution(gActiveBattler);
+
+										gEffectBank = gActiveBattler;
+										BattleScriptExecute(BattleScript_FrostOrb);
+										++effect;
+									}
+									break;
 								case ITEM_EFFECT_STICKY_BARB:
 									if (ABILITY(gActiveBattler) != ABILITY_MAGICGUARD)
 									{

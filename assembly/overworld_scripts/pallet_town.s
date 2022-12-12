@@ -29,14 +29,17 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 50
 	additem ITEM_NATURE_PILL_NAUGHTY 5
 	additem ITEM_NATURE_PILL_BOLD 5
-	additem ITEM_NATURE_PILL_BRAVE 5
-	additem ITEM_NATURE_PILL_SASSY 5
+	additem ITEM_SHINY_BALL 20
+	additem ITEM_SOLAR_BALL 2
+	additem ITEM_FLOOD_BALL 2
+	additem ITEM_HAIL_BALL 2
+	additem ITEM_EARTH_BALL 2
 	additem ITEM_BLACK_AUGURITE 1
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_MUSHARNA 61 ITEM_ROOM_EXTENDER 0 0 0
-	givepokemon SPECIES_HOOPA_UNBOUND 84 ITEM_ROOM_EXTENDER 0 0 0
-	givepokemon SPECIES_DUSKULL 20 ITEM_ROOM_EXTENDER 0 0 0
+	givepokemon SPECIES_SEVIPER 20 0 0 0 0
+	givepokemon SPECIES_BRAIXEN 20 0 0 0 0
+	givepokemon SPECIES_DUSKULL 20 0 0 0 0
 	givepokemon SPECIES_FLETCHLING 31 0 0 0 0
 	givepokemon SPECIES_WYRDEER 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL

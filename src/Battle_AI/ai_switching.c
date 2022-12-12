@@ -1381,6 +1381,7 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 				switch (gBattleMoves[move].effect) {
 					case EFFECT_SLEEP:
 					case EFFECT_YAWN:
+					SLP_CHECK:
 						if (CanBePutToSleep(bankDef, bankAtk, TRUE)) //Don't use CanBeYawned since we want the sleep to actually stick
 							return FALSE;
 						break;
@@ -1406,6 +1407,7 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 							return FALSE;
 						break;
 					case EFFECT_PARALYZE:
+					PARA_CHECK:
 						if (CanBeParalyzed(bankDef, bankAtk, TRUE))
 							return FALSE;
 						break;
@@ -1486,6 +1488,10 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 										goto PSN_CHECK;
 									case ITEM_EFFECT_FLAME_ORB:
 										goto BRN_CHECK;
+									case ITEM_EFFECT_PARALYZE_ORB:
+										goto PARA_CHECK;
+									case ITEM_EFFECT_SLEEP_ORB:
+										goto SLP_CHECK;
 									case ITEM_EFFECT_BLACK_SLUDGE:
 										if (!IsOfType(bankDef, TYPE_POISON))
 											return FALSE;

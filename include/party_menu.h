@@ -143,6 +143,7 @@ struct PartyMenuInternal
 	s16 data[16];
 };
 
+
 extern struct PartyMenuInternal* sPartyMenuInternal;
 
 extern struct PartyMenu gPartyMenu;
@@ -169,3 +170,4 @@ u8 __attribute__((long_call)) GetItemEffectType(u16 item);
 void __attribute__((long_call)) PartyMenuModifyHP(u8 taskId, u8 slot, s8 hpIncrement, s16 hpDifference, TaskFunc task);
 
 void __attribute__((long_call)) Task_ClosePartyMenu(u8 taskId);
+void __attribute__((long_call)) DisplayPartyPokemonBarDetail(u8 windowId, const u8 *str, u8 color, const u8 *align);

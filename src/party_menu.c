@@ -24,6 +24,7 @@
 #include "../include/wild_encounter.h"
 #include "../include/window.h"
 #include "../include/constants/abilities.h"
+#include "../include/constants/battle.h"
 #include "../include/constants/hold_effects.h"
 #include "../include/constants/items.h"
 #include "../include/constants/item_effects.h"
@@ -114,6 +115,7 @@ void __attribute__((long_call)) FreePartyPointers(void);
 void __attribute__((long_call)) PartyMenuDisplayYesNoMenu(void);
 void __attribute__((long_call)) ItemUseCB_RareCandyStep(u8 taskId, UNUSED TaskFunc func);
 void __attribute__((long_call)) sub_8124DC0(u8 taskId);
+void __attribute__((long_call)) CreatePartyMonStatusSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox);
 
 //This file's functions:
 static void OpenSummary(u8 taskId);
@@ -1567,6 +1569,11 @@ static void Task_OfferNatureChange(u8 taskId);
 static void Task_HandleNatureChangeYesNoInput(u8 taskId);
 static void Task_ChangeNature(u8 taskId);
 
+static void ItemUseCB_StatusOrb(u8 taskId, TaskFunc func);
+static u32 GetConditionFromOrbType(u8 param, struct Pokemon* mon);
+static void Task_OfferStatusAssignment(u8 taskId);
+static void Task_HandleStatusAssignmentYesNoInput(u8 taskId);
+static void Task_AssignStatus(u8 taskId);
 
 void Task_ClosePartyMenuAfterText(u8 taskId)
 {
@@ -2872,4 +2879,163 @@ static void Task_ChangeNature(u8 taskId)
 	ScheduleBgCopyTilemapToVram(2);
 	gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 	RemoveBagItem(item, 1);
+}
+
+extern const u8 gText_ToxicOrbOffer[];
+extern const u8 gText_ToxicOrbToxiced[];
+extern const u8 gText_FlameOrbOffer[];
+extern const u8 gText_FlameOrbBurned[];
+extern const u8 gText_ParalyzeOrbOffer[];
+extern const u8 gText_ParalyzeOrbParalyzed[];
+extern const u8 gText_SleepOrbOffer[];
+extern const u8 gText_SleepOrbPutToSleep[];
+extern const u8 gText_FrostOrbOffer[];
+extern const u8 gText_FrostOrbFrostbitten[];
+
+static u32 OrbParamToConditionTable[] = 
+{
+	STATUS1_TOXIC_POISON,
+	STATUS1_BURN,
+	STATUS1_PARALYSIS,
+	STATUS1_SLEEP,
+	STATUS1_FREEZE,
+};
+
+static const u8* OrbParamToOfferStringTable[] = 
+{
+	gText_ToxicOrbOffer,
+	gText_FlameOrbOffer,
+	gText_ParalyzeOrbOffer,
+	gText_SleepOrbOffer,
+	gText_FrostOrbOffer,
+};
+
+static const u8* OrbParamToStatusInducedStringTable[] = 
+{
+	gText_ToxicOrbToxiced,
+	gText_FlameOrbBurned,
+	gText_ParalyzeOrbParalyzed,
+	gText_SleepOrbPutToSleep,
+	gText_FrostOrbFrostbitten,
+};
+
+
+void FieldUseFunc_StatusOrb(u8 taskId)
+{
+	gItemUseCB = ItemUseCB_StatusOrb;
+	SetUpItemUseCallback(taskId);
+}
+
+static void ItemUseCB_StatusOrb(u8 taskId, TaskFunc func)
+{
+	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+	u16 item = Var800E;
+	u8 param = ItemId_GetHoldEffectParam(item);
+	u32 condition = GetConditionFromOrbType(param, mon);
+
+	PlaySE(SE_SELECT);
+
+	if(condition != STATUS1_NONE)
+	{
+		GetMonNickname(mon, gStringVar1);
+		StringExpandPlaceholders(gStringVar4, OrbParamToOfferStringTable[param]);
+		DisplayPartyMenuMessage(gStringVar4, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = Task_OfferStatusAssignment;
+	}
+	else
+	{
+		gPartyMenuUseExitCallback = FALSE;
+		DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = func;
+	}
+}
+
+static u32 GetConditionFromOrbType(u8 param, struct Pokemon* mon)
+{
+	u32 condition = STATUS1_NONE;
+
+	if(param < NELEMS(OrbParamToConditionTable))
+		condition = OrbParamToConditionTable[param];
+
+	bool8 inflict = FALSE;
+
+	switch(condition)
+	{
+		case STATUS1_TOXIC_POISON:
+			inflict = CanPartyMonBePoisoned(mon);
+			break; 
+		case STATUS1_BURN:
+			inflict = CanPartyMonBeBurned(mon);
+			break; 
+		case STATUS1_PARALYSIS:
+			inflict = CanPartyMonBeParalyzed(mon);
+			break; 
+		case STATUS1_SLEEP:
+			inflict = CanPartyMonBePutToSleep(mon);
+			break; 
+		case STATUS1_FREEZE:
+			inflict = CanPartyMonBeFrozen(mon);
+			break; 
+	}
+
+	if(!inflict || mon->condition & STATUS1_ANY)
+		return STATUS1_NONE;
+	else
+		return condition;
+}
+
+static void Task_OfferStatusAssignment(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        PartyMenuDisplayYesNoMenu();
+        gTasks[taskId].func = Task_HandleStatusAssignmentYesNoInput;
+    }
+}
+
+static void Task_HandleStatusAssignmentYesNoInput(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+		case 0:
+			gTasks[taskId].func = Task_AssignStatus;
+			break;
+		case MENU_B_PRESSED:
+			PlaySE(SE_SELECT);
+			// Fallthrough
+		case 1:
+			gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+			break;
+    }
+}
+
+const u8 EmptyStr[] = {CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, EOS};
+static void Task_AssignStatus(u8 taskId)
+{
+	u16 item = Var800E;
+	u8 param = ItemId_GetHoldEffectParam(item);
+	u8 id = gPartyMenu.slotId;
+	struct Pokemon* mon = &gPlayerParty[id];
+	struct PartyMenuBox* menuBox = &sPartyMenuBoxes[id];
+	u32 condition = GetConditionFromOrbType(param, mon);
+
+	if(condition == STATUS1_TOXIC_POISON && (GetMonAbility(mon) == ABILITY_GUTS || GetMonAbility(mon) == ABILITY_VALOUR))
+		condition = STATUS1_POISON;
+
+	PlaySE(SE_USE_ITEM);
+	mon->condition = condition;
+	
+	//this should clear the "Lv" text, but it doesn't work :( 
+	StringCopy(gStringVar2, EmptyStr);
+	DisplayPartyPokemonBarDetail(menuBox->windowId, gStringVar2, 0, &menuBox->infoRects->dimensions[4]);
+
+	GetMonNickname(mon, gStringVar1);
+	StringExpandPlaceholders(gStringVar4, OrbParamToStatusInducedStringTable[param]);
+	DisplayPartyMenuMessage(gStringVar4, TRUE);
+	CreatePartyMonStatusSprite(mon, menuBox);
+
+	ScheduleBgCopyTilemapToVram(2);
+	gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 }

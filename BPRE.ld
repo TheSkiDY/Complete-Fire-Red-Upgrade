@@ -2068,5 +2068,11 @@ DMA0_DST = 0x40000B4;
 DMA0_CNT_L = 0x40000B8;
 DMA0_CNT_H = 0x40000BA;
 
-/* NEW STUFF */
+/* ============== NEW STUFF ==============*/
+
+/* Party Menu */
 gNatureNamePointers = 0x8463E60;
+CreatePartyMonStatusSprite = 0x8122884 | 1;
+DisplayPartyPokemonBarDetail = 0x8121704 | 1;
+SetPartyMonAilmentGfx = 0x8122904 | 1;
+AddTextPrinterParameterized3 = 0x812E51C | 1;

@@ -350,3 +350,7 @@ enum //These vars need to be one after the other (hence the enum)
 
 /* DexNav Options */
 //See "include/new/dexnav_config.h"
+
+/*======== NEW STUFF =======*/
+#define WEATHER_BALL_MULTIPLIER 40
+#define SHINY_BALL_MULTIPLIER 50

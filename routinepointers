@@ -282,6 +282,11 @@ FieldUseFunc_NaturePill 8908524
 FieldUseFunc_NaturePill 8908550
 FieldUseFunc_NaturePill 890857C
 FieldUseFunc_NaturePill 89085A8
+FieldUseFunc_StatusOrb 89074FC
+FieldUseFunc_StatusOrb 8907528
+FieldUseFunc_StatusOrb 8908684
+FieldUseFunc_StatusOrb 89086B0
+FieldUseFunc_StatusOrb 89086DC
 
 ##Battle VBlank
 VBlankCB_Battle 800FF6C

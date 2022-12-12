@@ -38,6 +38,9 @@ cmd49_battle_scripts.s
 
 .global gText_ToxicOrb
 .global gText_FlameOrb
+.global gText_ParalyzeOrb
+.global gText_SleepOrb
+.global gText_FrostOrb
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

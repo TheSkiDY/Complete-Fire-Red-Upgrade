@@ -47,6 +47,9 @@ et_battle_scripts.s
 .global BattleScript_TerrainEnd
 .global BattleScript_ToxicOrb
 .global BattleScript_FlameOrb
+.global BattleScript_ParalyzeOrb
+.global BattleScript_SleepOrb
+.global BattleScript_FrostOrb
 .global BattleScript_PowerConstruct
 .global BattleScript_StartedSchooling
 .global BattleScript_StoppedSchooling
@@ -425,6 +428,33 @@ ToxicOrbRest:
 BattleScript_FlameOrb:
 	statusanimation BANK_EFFECT
 	setword BATTLE_STRING_LOADER gText_FlameOrb
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	end2
+
+BattleScript_ParalyzeOrb:
+	statusanimation BANK_EFFECT
+	setword BATTLE_STRING_LOADER gText_ParalyzeOrb
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	end2
+
+BattleScript_SleepOrb:
+	statusanimation BANK_EFFECT
+	setword BATTLE_STRING_LOADER gText_SleepOrb
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	end2
+
+BattleScript_FrostOrb:
+	statusanimation BANK_EFFECT
+	setword BATTLE_STRING_LOADER gText_FrostOrb
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_EFFECT

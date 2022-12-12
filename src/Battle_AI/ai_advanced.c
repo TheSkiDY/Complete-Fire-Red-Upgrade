@@ -1089,6 +1089,27 @@ static bool8 BankHoldingUsefulItemToProtectFor(u8 bank)
 	 || MoveInMoveset(MOVE_FACADE, bank)))
 		return TRUE;
 
+	if (itemEffect == ITEM_EFFECT_FROST_ORB
+	&& CanBeFrozen(bank, bank, FALSE)
+	&& (ability == ABILITY_GUTS
+  /* || ability == ABILITY_FLAREBOOST */
+ 	 || ability == ABILITY_MAGICGUARD
+ 	 || ability == ABILITY_VALOUR
+	 || MoveInMoveset(MOVE_FACADE, bank)))
+		return TRUE;
+
+	if (itemEffect == ITEM_EFFECT_PARALYZE_ORB
+	&& CanBeParalyzed(bank, bank, FALSE)
+	&& (gNewBS->TrickRoomTimer >= 3)
+	&& ability == ABILITY_INNERFOCUS)
+		return TRUE;
+
+	if (itemEffect == ITEM_EFFECT_SLEEP_ORB
+	&& CanBePutToSleep(bank, bank, FALSE)
+	&& ability == ABILITY_FABULOUSDREAMS
+	&& MoveInMoveset(MOVE_SLEEPTALK, bank))
+		return TRUE;
+	
 	return FALSE;
 }
 

@@ -70,6 +70,12 @@ extern const u8 gInterfaceGfx_SportBallTiles[];
 extern const u8 gInterfaceGfx_BeastBallTiles[];
 extern const u8 gInterfaceGfx_DreamBallTiles[];
 extern const u8 gInterfaceGfx_DynamaxBallTiles[];
+extern const u8 gInterfaceGfx_ShinyBallTiles[];
+extern const u8 gInterfaceGfx_SolarBallTiles[];
+extern const u8 gInterfaceGfx_FloodBallTiles[];
+extern const u8 gInterfaceGfx_HailBallTiles[];
+extern const u8 gInterfaceGfx_EarthBallTiles[];
+
 
 /*#define gInterfacePal_PokeBall (const u8*) 0x8D017E0
 #define gInterfacePal_GreatBall (const u8*) 0x8D018BC
@@ -111,6 +117,11 @@ extern const u8 gInterfaceGfx_SportBallPal[];
 extern const u8 gInterfaceGfx_BeastBallPal[];
 extern const u8 gInterfaceGfx_DreamBallPal[];
 extern const u8 gInterfaceGfx_DynamaxBallPal[];
+extern const u8 gInterfaceGfx_ShinyBallPal[];
+extern const u8 gInterfaceGfx_SolarBallPal[];
+extern const u8 gInterfaceGfx_FloodBallPal[];
+extern const u8 gInterfaceGfx_HailBallPal[];
+extern const u8 gInterfaceGfx_EarthBallPal[];
 
 #define sBallOamData (const struct OamData*) 0x826062C
 #define sBallAnimSequences (const union AnimCmd* const*) 0x8260674
@@ -175,6 +186,11 @@ enum BallTags
 	GFX_TAG_SPORTBALL,
 	GFX_TAG_BEASTBALL,
 	GFX_TAG_DREAMBALL,
+	GFX_TAG_SHINYBALL,
+	GFX_TAG_SOLARBALL,
+	GFX_TAG_FLOODBALL,
+	GFX_TAG_HAILBALL,
+	GFX_TAG_EARTHBALL,
 	GFX_TAG_DYNAMAXBALL,
 };
 
@@ -195,6 +211,11 @@ enum BallOpenParticleTags
 	TAG_BALL_OPEN_SPORT,
 	TAG_BALL_OPEN_BEAST,
 	TAG_BALL_OPEN_DREAM,
+	TAG_BALL_OPEN_SHINY,
+	TAG_BALL_OPEN_SOLAR,
+	TAG_BALL_OPEN_FLOOD,
+	TAG_BALL_OPEN_HAIL,
+	TAG_BALL_OPEN_EARTH,
 	TAG_BALL_OPEN_DYNAMAX,
 };
 
@@ -227,6 +248,11 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT + 1] =
 	[BALL_TYPE_SPORT_BALL] = 	{gInterfaceGfx_SportBallTiles, 		(16 * 48) / 2, GFX_TAG_SPORTBALL},
 	[BALL_TYPE_BEAST_BALL] = 	{gInterfaceGfx_BeastBallTiles, 		(16 * 48) / 2, GFX_TAG_BEASTBALL},
 	[BALL_TYPE_DREAM_BALL] = 	{gInterfaceGfx_DreamBallTiles, 		(16 * 48) / 2, GFX_TAG_DREAMBALL},
+	[BALL_TYPE_SHINY_BALL] = 	{gInterfaceGfx_ShinyBallTiles, 		(16 * 48) / 2, GFX_TAG_SHINYBALL},
+	[BALL_TYPE_SOLAR_BALL] = 	{gInterfaceGfx_SolarBallTiles, 		(16 * 48) / 2, GFX_TAG_SOLARBALL},
+	[BALL_TYPE_FLOOD_BALL] = 	{gInterfaceGfx_FloodBallTiles, 		(16 * 48) / 2, GFX_TAG_FLOODBALL},
+	[BALL_TYPE_HAIL_BALL] = 	{gInterfaceGfx_HailBallTiles, 		(16 * 48) / 2, GFX_TAG_HAILBALL},
+	[BALL_TYPE_EARTH_BALL] = 	{gInterfaceGfx_EarthBallTiles, 		(16 * 48) / 2, GFX_TAG_EARTHBALL},
 	[POKEBALL_COUNT] =		 	{gInterfaceGfx_DynamaxBallTiles, 	(16 * 48) / 2, GFX_TAG_DYNAMAXBALL},
 };
 
@@ -259,6 +285,11 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT + 1] =
 	[BALL_TYPE_SPORT_BALL] = 	{gInterfaceGfx_SportBallPal, 	GFX_TAG_SPORTBALL},
 	[BALL_TYPE_BEAST_BALL] = 	{gInterfaceGfx_BeastBallPal, 	GFX_TAG_BEASTBALL},
 	[BALL_TYPE_DREAM_BALL] = 	{gInterfaceGfx_DreamBallPal, 	GFX_TAG_DREAMBALL},
+	[BALL_TYPE_SHINY_BALL] = 	{gInterfaceGfx_ShinyBallPal, 	GFX_TAG_SHINYBALL},
+	[BALL_TYPE_SOLAR_BALL] = 	{gInterfaceGfx_SolarBallPal, 	GFX_TAG_SOLARBALL},
+	[BALL_TYPE_FLOOD_BALL] = 	{gInterfaceGfx_FloodBallPal, 	GFX_TAG_FLOODBALL},
+	[BALL_TYPE_HAIL_BALL] = 	{gInterfaceGfx_HailBallPal, 	GFX_TAG_HAILBALL},
+	[BALL_TYPE_EARTH_BALL] = 	{gInterfaceGfx_EarthBallPal, 	GFX_TAG_EARTHBALL},
 	[POKEBALL_COUNT] =		 	{gInterfaceGfx_DynamaxBallPal,	GFX_TAG_DYNAMAXBALL},
 };
 
@@ -534,6 +565,56 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT + 1] =
 		.affineAnims = sBallAffineAnimSequences,
 		.callback = SpriteCB_TestBallThrow,
 	},
+	[BALL_TYPE_SHINY_BALL] =
+	{
+		.tileTag = GFX_TAG_SHINYBALL,
+		.paletteTag = GFX_TAG_SHINYBALL,
+		.oam = sBallOamData,
+		.anims = sBallAnimSequences,
+		.images = NULL,
+		.affineAnims = sBallAffineAnimSequences,
+		.callback = SpriteCB_TestBallThrow,
+	},
+	[BALL_TYPE_SOLAR_BALL] =
+	{
+		.tileTag = GFX_TAG_SOLARBALL,
+		.paletteTag = GFX_TAG_SOLARBALL,
+		.oam = sBallOamData,
+		.anims = sBallAnimSequences,
+		.images = NULL,
+		.affineAnims = sBallAffineAnimSequences,
+		.callback = SpriteCB_TestBallThrow,
+	},
+	[BALL_TYPE_FLOOD_BALL] =
+	{
+		.tileTag = GFX_TAG_FLOODBALL,
+		.paletteTag = GFX_TAG_FLOODBALL,
+		.oam = sBallOamData,
+		.anims = sBallAnimSequences,
+		.images = NULL,
+		.affineAnims = sBallAffineAnimSequences,
+		.callback = SpriteCB_TestBallThrow,
+	},
+	[BALL_TYPE_HAIL_BALL] =
+	{
+		.tileTag = GFX_TAG_HAILBALL,
+		.paletteTag = GFX_TAG_HAILBALL,
+		.oam = sBallOamData,
+		.anims = sBallAnimSequences,
+		.images = NULL,
+		.affineAnims = sBallAffineAnimSequences,
+		.callback = SpriteCB_TestBallThrow,
+	},
+	[BALL_TYPE_EARTH_BALL] =
+	{
+		.tileTag = GFX_TAG_EARTHBALL,
+		.paletteTag = GFX_TAG_EARTHBALL,
+		.oam = sBallOamData,
+		.anims = sBallAnimSequences,
+		.images = NULL,
+		.affineAnims = sBallAffineAnimSequences,
+		.callback = SpriteCB_TestBallThrow,
+	},
 	[POKEBALL_COUNT] =
 	{
 		.tileTag = GFX_TAG_DYNAMAXBALL,
@@ -575,6 +656,11 @@ const struct CompressedSpriteSheet gBallParticleSpritesheets[POKEBALL_COUNT + 1]
 	[BALL_TYPE_SPORT_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_SPORT},
 	[BALL_TYPE_BEAST_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_BEAST},
 	[BALL_TYPE_DREAM_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_DREAM},
+	[BALL_TYPE_SHINY_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_SHINY},
+	[BALL_TYPE_SOLAR_BALL] =	{gBattleAnimSpriteSheet_ParticlesQuickCherishBallTiles,		(8 * 64) / 2, TAG_BALL_OPEN_SOLAR},
+	[BALL_TYPE_FLOOD_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_FLOOD},
+	[BALL_TYPE_HAIL_BALL] =		{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_HAIL},
+	[BALL_TYPE_EARTH_BALL] =	{gBattleAnimSpriteSheet_Particles, 							(8 * 64) / 2, TAG_BALL_OPEN_EARTH},
 	[POKEBALL_COUNT] =			{gBattleAnimSpriteSheet_ParticlesDynamaxBallTiles, 			(8 * 64) / 2, TAG_BALL_OPEN_DYNAMAX},
 };
 
@@ -607,6 +693,11 @@ const struct CompressedSpritePalette gBallParticlePalettes[POKEBALL_COUNT + 1] =
 	[BALL_TYPE_SPORT_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_SPORT},
 	[BALL_TYPE_BEAST_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_BEAST},
 	[BALL_TYPE_DREAM_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_DREAM},
+	[BALL_TYPE_SHINY_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_SHINY},
+	[BALL_TYPE_SOLAR_BALL] = 	{gBattleAnimSpriteSheet_ParticlesQuickCherishBallPal, 	TAG_BALL_OPEN_SOLAR},
+	[BALL_TYPE_FLOOD_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_FLOOD},
+	[BALL_TYPE_HAIL_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_HAIL},
+	[BALL_TYPE_EARTH_BALL] = 	{gBattleAnimSpritePalette_136, 							TAG_BALL_OPEN_EARTH},
 	[POKEBALL_COUNT] =			{gBattleAnimSpriteSheet_ParticlesDynamaxBallPal,		TAG_BALL_OPEN_DYNAMAX},
 };
 
@@ -639,6 +730,11 @@ const u8 gBallOpenParticleAnimNums[POKEBALL_COUNT + 1] =
 	[BALL_TYPE_SPORT_BALL] = 	BALL_OPEN_STICKS, 			//Sport Ball
 	[BALL_TYPE_BEAST_BALL] = 	BALL_OPEN_BLUE_BUBBLES, 	//Beast Ball
 	[BALL_TYPE_DREAM_BALL] = 	BALL_OPEN_HEARTS, 			//Dream Ball
+	[BALL_TYPE_SHINY_BALL] = 	BALL_OPEN_YELLOW_STARS, 	//Shiny Ball
+	[BALL_TYPE_SOLAR_BALL] = 	BALL_OPEN_RAINBOW_CIRCLES,	//Solar Ball
+	[BALL_TYPE_FLOOD_BALL] = 	BALL_OPEN_BLUE_BUBBLES, 	//Flood Ball
+	[BALL_TYPE_HAIL_BALL] = 	BALL_OPEN_WHITE_STARS, 		//Hail Ball
+	[BALL_TYPE_EARTH_BALL] = 	BALL_OPEN_GREEN_BUBBLES, 	//Earth Ball
 	[POKEBALL_COUNT] =			BALL_OPEN_RAINBOW_CIRCLES,	//Dynamax Ball
 };
 
@@ -671,6 +767,11 @@ const TaskFunc gBallOpenParticleAnimationFuncs[POKEBALL_COUNT + 1] =
 	[BALL_TYPE_SPORT_BALL] = 	PokeBallOpenParticleAnimation, //Sport Ball
 	[BALL_TYPE_BEAST_BALL] = 	MasterBallOpenParticleAnimation, //Beast Ball
 	[BALL_TYPE_DREAM_BALL] = 	RepeatBallOpenParticleAnimation, //Dream Ball
+	[BALL_TYPE_SHINY_BALL] = 	MasterBallOpenParticleAnimation, //Shiny Ball
+	[BALL_TYPE_SOLAR_BALL] = 	TimerBallOpenParticleAnimation, //Solar Ball
+	[BALL_TYPE_FLOOD_BALL] = 	DiveBallOpenParticleAnimation, //Flood Ball
+	[BALL_TYPE_HAIL_BALL] = 	SafariBallOpenParticleAnimation, //Hail Ball
+	[BALL_TYPE_EARTH_BALL] = 	SafariBallOpenParticleAnimation, //Earth Ball
 	[POKEBALL_COUNT] =			MasterBallOpenParticleAnimation, //Dynamax Ball
 };
 
@@ -703,6 +804,11 @@ const u16 gBallOpenMonFadePal[] = //gUnknown_085E5310 in Emerald
 	[BALL_TYPE_SPORT_BALL] = 	RGB(30, 17, 17), //Sport Ball - Pinkish Red
 	[BALL_TYPE_BEAST_BALL] = 	RGB(7, 12, 31), //Beast Ball - Royal Blue
 	[BALL_TYPE_DREAM_BALL] = 	RGB(31, 12, 20), //Dream Ball - Deep Pink
+	[BALL_TYPE_SHINY_BALL] = 	RGB(29, 21, 1), //Shiny Ball
+	[BALL_TYPE_SOLAR_BALL] = 	RGB(18, 5, 1), //Solar Ball
+	[BALL_TYPE_FLOOD_BALL] = 	RGB(1, 16, 24), //Flood Ball
+	[BALL_TYPE_HAIL_BALL] = 	RGB(16, 29, 28), //Hail Ball
+	[BALL_TYPE_EARTH_BALL] = 	RGB(16, 12, 6), //Earth Ball
 	[POKEBALL_COUNT] =			RGB(27, 12, 23), //Dynamax Ball - Shiny Pink
 
 	RGB(0, 0, 0), //No idea what these lower values are for
@@ -954,6 +1060,51 @@ const struct SpriteTemplate gBallParticleSpriteTemplates[POKEBALL_COUNT + 1] =
 	{ //GFX_TAG_DREAMBALL
 		.tileTag = TAG_BALL_OPEN_DREAM,
 		.paletteTag = TAG_BALL_OPEN_DREAM,
+		.oam = gOamData_AffineOff_ObjNormal_8x8,
+		.anims = sAnims_BallParticles,
+		.images = NULL,
+		.affineAnims = gDummySpriteAffineAnimTable,
+		.callback = SpriteCallbackDummy,
+	},
+	{ //GFX_TAG_SHINYBALL
+		.tileTag = TAG_BALL_OPEN_SHINY,
+		.paletteTag = TAG_BALL_OPEN_SHINY,
+		.oam = gOamData_AffineOff_ObjNormal_8x8,
+		.anims = sAnims_BallParticles,
+		.images = NULL,
+		.affineAnims = gDummySpriteAffineAnimTable,
+		.callback = SpriteCallbackDummy,
+	},
+	{ //GFX_TAG_SOLARBALL
+		.tileTag = TAG_BALL_OPEN_SOLAR,
+		.paletteTag = TAG_BALL_OPEN_SOLAR,
+		.oam = gOamData_AffineOff_ObjNormal_8x8,
+		.anims = sAnims_BallParticles,
+		.images = NULL,
+		.affineAnims = gDummySpriteAffineAnimTable,
+		.callback = SpriteCallbackDummy,
+	},
+	{ //GFX_TAG_FLOODBALL
+		.tileTag = TAG_BALL_OPEN_FLOOD,
+		.paletteTag = TAG_BALL_OPEN_FLOOD,
+		.oam = gOamData_AffineOff_ObjNormal_8x8,
+		.anims = sAnims_BallParticles,
+		.images = NULL,
+		.affineAnims = gDummySpriteAffineAnimTable,
+		.callback = SpriteCallbackDummy,
+	},
+	{ //GFX_TAG_HAILBALL
+		.tileTag = TAG_BALL_OPEN_HAIL,
+		.paletteTag = TAG_BALL_OPEN_HAIL,
+		.oam = gOamData_AffineOff_ObjNormal_8x8,
+		.anims = sAnims_BallParticles,
+		.images = NULL,
+		.affineAnims = gDummySpriteAffineAnimTable,
+		.callback = SpriteCallbackDummy,
+	},
+	{ //GFX_TAG_EARTHBALL
+		.tileTag = TAG_BALL_OPEN_EARTH,
+		.paletteTag = TAG_BALL_OPEN_EARTH,
 		.oam = gOamData_AffineOff_ObjNormal_8x8,
 		.anims = sAnims_BallParticles,
 		.images = NULL,
