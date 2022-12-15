@@ -519,12 +519,14 @@ bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 	{
 		for (k = 0; k < EVOS_PER_MON; ++k)
 		{
+			if (gEvolutionTable[j][k].method == EVO_NONE) //Most likely end of entries
+				break; //Break now to save time
 			if(gEvolutionTable[j][k].targetSpecies == species)
 			{
 				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
 					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < FRIENDSHIP_EVOLUTION_LEVEL)
 					|| (IsItemEvolutionMethod(gEvolutionTable[j][k].method) && level < ITEM_EVOLUTION_LEVEL)
-					|| (IsOtherEvolutionMethod(gEvolutionTable[j][k].method && level < OTHER_EVOLUTION_LEVEL)))
+					|| (IsOtherEvolutionMethod(gEvolutionTable[j][k].method) && level < OTHER_EVOLUTION_LEVEL))
 				{
 					species = j;
 					goto START; //devolve until it can't

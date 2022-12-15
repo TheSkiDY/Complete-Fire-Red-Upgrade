@@ -164,7 +164,6 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 
 	if(FlagGet(FLAG_HARD_LEVEL_CAP))
 	{
-		mgba_printf(3, "Randomized species: %d", newSpecies);
 		DevolveSpeciesByLevel(&newSpecies, GetCurrentLevelCap());
 		EvolveSpeciesByLevel(&newSpecies, GetCurrentLevelCap());
 	}

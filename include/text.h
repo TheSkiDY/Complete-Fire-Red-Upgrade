@@ -98,6 +98,12 @@
 #define CHAR_NEWLINE        0xFE
 #define EOS                 0xFF // end of string
 
+#define CHAR_LESS_THAN         0x85
+#define CHAR_GREATER_THAN      0x86
+#define CHAR_PERCENT           0x5B
+#define CHAR_LEFT_PAREN        0x5C
+#define CHAR_RIGHT_PAREN       0x5D
+
 // Special F9 chars
 #define CHAR_UP_ARROW_2    0x00
 #define CHAR_DOWN_ARROW_2  0x01
