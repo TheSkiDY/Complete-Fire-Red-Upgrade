@@ -76,6 +76,7 @@ void __attribute__((long_call)) CopyToBgTilemapBuffer(u8 bg, const void *src, u1
 void __attribute__((long_call)) FillBgTilemapBufferRect_Palette0(u8 bg, u16 tileNum, u8 x, u8 y, u8 width, u8 height);
 void __attribute__((long_call)) ResetTempTileDataBuffers(void);
 u16 __attribute__((long_call)) LoadBgTilemap(u8 bg, const void *src, u16 size, u16 destOffset);
+void __attribute__((long_call)) WriteSequenceToBgTilemapBuffer(u8 bg, u16 firstTileNum, u8 x, u8 y, u8 width, u8 height, u8 paletteSlot, s16 tileNumDelta);
 
 /*
 void ResetBgs(void);

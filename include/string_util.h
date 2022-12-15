@@ -37,6 +37,7 @@ s32 __attribute__((long_call)) StringCompare(const u8 *str1, const u8 *str2);
 s32 __attribute__((long_call)) StringCompareN(const u8 *str1, const u8 *str2, u32 n);
 u8* __attribute__((long_call)) StringAppendN(u8 *dest, const u8 *src, u8 n);
 u8* __attribute__((long_call)) StringCopyPadded(u8 *dest, const u8 *src, u8 c, u16 n);
+void __attribute__((long_call)) ConvertInternationalString(u8 *s, u8 language);
 
 /*
 u8 *StringGetEnd10(u8 *str);

@@ -3,6 +3,7 @@
 #include "../include/menu.h"
 #include "../include/menu_helpers.h"
 #include "../include/new_menu_helpers.h"
+#include "../include/palette.h"
 #include "../include/rtc.h"
 #include "../include/safari_zone.h"
 #include "../include/script.h"
@@ -84,7 +85,6 @@ void __attribute__((long_call)) HideStartMenu(void);
 bool8 __attribute__((long_call)) StartMenuPokedexCallback(void);
 bool8 __attribute__((long_call)) StartMenuPokemonCallback(void);
 bool8 __attribute__((long_call)) StartMenuBagCallback(void);
-bool8 __attribute__((long_call)) StartMenuPlayerCallback(void);
 bool8 __attribute__((long_call)) StartMenuSaveCallback(void);
 bool8 __attribute__((long_call)) StartMenuOptionCallback(void);
 bool8 __attribute__((long_call)) StartMenuExitCallback(void);
@@ -99,6 +99,11 @@ bool8 __attribute__((long_call)) StartMenuPokedexSanityCheck(void);
 void __attribute__((long_call)) CloseStartMenu(void);
 void __attribute__((long_call)) PrintTextOnHelpMessageWindow(const u8 * text, u8 mode);
 
+void __attribute__((long_call)) UpdateTrainerCardPhotoIcons(void);
+void __attribute__((long_call)) CB2_ReturnToFieldWithOpenMenu(void);
+void __attribute__((long_call)) ShowPlayerTrainerCard(void (*callback)(void));
+void __attribute__((long_call)) PlayRainStoppingSoundEffect(void);
+
 //Exported functions:
 void BuildStartMenuActions(void);
 
@@ -109,6 +114,7 @@ static void BuildPokeToolsMenu(void);
 static bool8 CloseAndReloadStartMenu(void);
 static bool8 ReloadStartMenu(void);
 static bool8 ReloadStartMenuItems(void);
+static bool8 StartMenuPlayerCallback(void);
 
 const struct MenuAction sStartMenuActionTable[] =
 {
@@ -350,4 +356,21 @@ static bool8 ReloadStartMenuItems(void)
 
 	return FALSE;
 }
+
+static bool8 StartMenuPlayerCallback(void)
+{
+    if (!gPaletteFade->active)
+    {
+        PlayRainStoppingSoundEffect();
+        DestroySafariZoneStatsWindow();
+        CleanupOverworldWindowsAndTilemaps();
+        UpdateTrainerCardPhotoIcons();
+        ShowPlayerTrainerCard(CB2_ReturnToFieldWithOpenMenu);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
 #endif
+

@@ -2088,6 +2088,16 @@ sListItemTextColor_RegularItem = 0x8452F60;
 sListItemTextColor_TmCase_BerryPouch = 0x8452F66;
 SetPartyHPBarSprite = 0x8097414 | 1;
 
+/* Trainer card */
+gTrainerCards = 0x2039624;
+sTrainerCardDataPtr = 0x20397A4;
+WriteSequenceToBgTilemapBuffer = 0x08002590 | 1;
+UpdateTrainerCardPhotoIcons = 0x80CC2BC | 1;
+CB2_ReturnToFieldWithOpenMenu = 0x80568A8 | 1;
+ShowPlayerTrainerCard = 0x808B698 | 1;
+ConvertInternationalString = 0x80093BC | 1;
+
 /* New RAM */
 gLastWildIndex = 0x203E0C7;
 gPartyIndexLoaded = 0x203E0C8;
+

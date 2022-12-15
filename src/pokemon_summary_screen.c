@@ -49,7 +49,7 @@ void PokeSum_PrintAbilityNameAndDesc(void)
     AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[4], 2, 4, 2, sLevelNickTextColors[abilityNameColorIndex], TEXT_SPEED_FF, 
     	sMonSummaryScreen->summary.abilityNameStrBuf);
 
-    AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[5], 2, 4, 0, sLevelNickTextColors[0], TEXT_SPEED_FF,
+    AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[5], 2, 4, 0, 0, -2, sLevelNickTextColors[0], TEXT_SPEED_FF,
 		sMonSummaryScreen->summary.abilityDescStrBuf);
 
 }

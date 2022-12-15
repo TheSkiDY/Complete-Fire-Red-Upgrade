@@ -773,3 +773,11 @@ TMCaseMonIconPalChangeHook 8131E5C 0
 
 ## Pokemon Summary Screen
 PokeSum_PrintAbilityNameAndDesc 8137C18 0
+
+## Trainer card
+PrintPokedexOnCard 808A100 0
+PrintMoneyOnCard 8089FEC 0
+PrintTimeOnCard 808A22C 0
+PrintNameOnCardFront 8089EEC 0
+StartMenuPlayerCallback 806F4B4 0
+
