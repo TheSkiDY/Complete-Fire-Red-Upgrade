@@ -770,3 +770,6 @@ NullFunc 08133810 1
 PrintStringTMCaseOnWindow3 081333c4 0
 CreateTMCaseSpriteHook 8131B94 0
 TMCaseMonIconPalChangeHook 8131E5C 0 
+
+## Pokemon Summary Screen
+PokeSum_PrintAbilityNameAndDesc 8137C18 0
