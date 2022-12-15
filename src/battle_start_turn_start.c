@@ -25,6 +25,7 @@
 #include "../include/new/dexnav.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/exp.h"
 #include "../include/new/form_change.h"
 #include "../include/new/frontier.h"
 #include "../include/new/general_bs_commands.h"
@@ -186,8 +187,6 @@ static void TryClearLevelCapKeptOn(void)
 	&& FlagGet(FLAG_KEPT_LEVEL_CAP_ON)) //And it hasn't ever been turned off
 	{
 		u32 i, levelCap;
-		
-		extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 		for (i = 0, levelCap = GetCurrentLevelCap(); i < PARTY_SIZE; ++i)
 		{
 			u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL);

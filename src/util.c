@@ -7,15 +7,13 @@
 #include "../include/new/evolution.h"
 #include "../include/new/frontier.h"
 #include "../include/new/mega.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/util.h"
 
 /*
 util.c
 	general utility functions
 */
-
-//This file's functions:
-static u8 TryRandomizeAbility(u8 ability, u16 species);
 
 u32 MathMax(u32 num1, u32 num2)
 {
@@ -248,9 +246,9 @@ bool8 EvolveSpeciesByLevel(u16* species, u8 level)
 		if (evolutions[i].method == EVO_NONE) //Most likely end of entries
 			break; //Break now to save time
 		else if ((IsLevelUpEvolutionMethod(evolutions[i].method) && level >= evolutions[i].param)
-		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 40)
-		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 45)
-		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 55))
+		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= OTHER_EVOLUTION_LEVEL)
+		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= ITEM_EVOLUTION_LEVEL)
+		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= FRIENDSHIP_EVOLUTION_LEVEL))
 		{
 			*species = evolutions[i].targetSpecies;
 			evolved = TRUE;
@@ -270,46 +268,6 @@ u32 GetBaseStatsTotal(const u16 species)
 		sum += ptr[i];
 
 	return sum;
-}
-
-static u8 TryRandomizeAbility(u8 originalAbility, unusedArg u16 species)
-{
-	u32 newAbility = originalAbility;
-
-	#ifdef FLAG_ABILITY_RANDOMIZER
-	if (FlagGet(FLAG_ABILITY_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY)
-	&& !IsOriginalAbilityBannedInRandomizer(originalAbility, species)) //This Ability can be changed
-	{
-		u32 id = T1_READ_32(gSaveBlock2->playerTrainerId);
-		u16 startAt = (id & 0xFFFF) % (u32) ABILITIES_COUNT + species;
-		u16 xorVal = (id >> 16) % (u32) 0xFF; //Only set the bits likely to be in the ability
-		u32 numAttempts = 0;
-
-		newAbility = originalAbility + startAt;
-		if (newAbility >= ABILITIES_COUNT)
-		{
-			u16 overflow = newAbility - (ABILITIES_COUNT - 2);
-			newAbility = overflow;
-		}
-
-		newAbility ^= xorVal;
-		newAbility %= (u32) ABILITIES_COUNT; //Prevent overflow
-
-		while (IsNewAbilityBannedInRandomizer(newAbility, species) && numAttempts < 100)
-		{
-			newAbility *= xorVal; //Multiply this time
-			newAbility %= (u32) ABILITIES_COUNT;
-			++numAttempts;
-		}
-
-		if (numAttempts >= 100 && IsNewAbilityBannedInRandomizer(newAbility, species)) //If the Ability is still banned
-			newAbility = originalAbility; //Just use the original ability
-		else if (newAbility == ABILITY_NONE) //Somehow wound up with no Ability
-			newAbility = originalAbility; //Just use the original ability
-	}
-	#endif
-
-	return newAbility;
 }
 
 u8 GetAbility1(const u16 species)
@@ -547,4 +505,39 @@ bool8 CanPartyMonBeFrozen(struct Pokemon* mon)
 		return FALSE;
 
 	return TRUE;
+}
+
+bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
+{
+	int j, k;
+	//bool8 found;
+	u16 species = *originalSpecies;
+
+	START:
+	//found = FALSE;
+	for (j = 1; j < NUM_SPECIES; ++j)
+	{
+		for (k = 0; k < EVOS_PER_MON; ++k)
+		{
+			if(gEvolutionTable[j][k].targetSpecies == species)
+			{
+				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
+					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < FRIENDSHIP_EVOLUTION_LEVEL)
+					|| (IsItemEvolutionMethod(gEvolutionTable[j][k].method) && level < ITEM_EVOLUTION_LEVEL)
+					|| (IsOtherEvolutionMethod(gEvolutionTable[j][k].method && level < OTHER_EVOLUTION_LEVEL)))
+				{
+					species = j;
+					goto START; //devolve until it can't
+				}
+			}
+		}
+	}
+	
+	if (species != *originalSpecies)
+	{
+		*originalSpecies = species;
+		return TRUE;
+	}
+	else
+		return FALSE;
 }

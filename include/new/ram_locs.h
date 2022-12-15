@@ -202,7 +202,9 @@ extern u16 gLastDexNavSpecies; //0x203E086
 //extern struct ListMenuItem[7] gMultiChoice; //0x203E088 - up to 7 pointers, 8 bytes each
 //extern u8 gPartyPresetTeamIndices[PARTY_SIZE]; //0x203E0C0
 extern u8 gScored3CritsInBattle; //0x203E0C6
-//FREE: 0x203E0C7
+extern u8 gLastWildIndex; //0x203E0C7
+extern u8 gPartyIndexLoaded; //0x203E0C8
+//FREE: 0x203E0C9
 
 //DON'T GO PAST 0x203E0D4 for BTS!
 //extern struct CompressedPokemon gTempTeamBackup[6] //0x203E1A4

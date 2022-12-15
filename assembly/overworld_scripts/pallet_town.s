@@ -11,7 +11,6 @@
 EventScript_PalletTown_TechnologyGuy:
 	checkflag 0x200
 	if 0x1 _goto TechnologyGuy_Battle
-	callasm DebugFunc
 	lock 
 	loadpointer 0x0 gText_TechnologyGuyName
 	setvar 0x8000 0x1
@@ -30,30 +29,23 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_NATURE_PILL_NAUGHTY 5
 	additem ITEM_NATURE_PILL_BOLD 5
 	additem ITEM_SHINY_BALL 20
-	additem ITEM_SOLAR_BALL 2
-	additem ITEM_FLOOD_BALL 2
-	additem ITEM_HAIL_BALL 2
-	additem ITEM_EARTH_BALL 2
-	additem ITEM_BLACK_AUGURITE 1
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_SEVIPER 20 0 0 0 0
-	givepokemon SPECIES_BRAIXEN 20 0 0 0 0
-	givepokemon SPECIES_DUSKULL 20 0 0 0 0
-	givepokemon SPECIES_FLETCHLING 31 0 0 0 0
+	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
 	givepokemon SPECIES_WYRDEER 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
-	@callasm DebugFunc
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
-		@setflag 0x940 @randomizer
+	setflag 0x940 @randomizer
 		@setflag 0x974 @scale wild bosses
-		@setflag 0x972
+	setflag 0x973 @hard level cap
+	setflag 0x975 @team preview
 	setflag 0x91F @bike turbo
 		@setflag 0x90E @trainer scale
 	setvar 0x408C 0x1
 		@setflag 0x200
 	callasm 0x8727DCD
+		@callasm DebugFunc
 	end
 
 TechnologyGuy_Battle:

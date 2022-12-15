@@ -44,6 +44,7 @@
 #include "../include/new/overworld.h"
 #include "../include/new/pokemon_storage_system.h"
 #include "../include/new/ram_locs_battle.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/read_keys.h"
 #include "../include/new/roamer.h"
 #include "../include/new/text.h"
@@ -2928,8 +2929,7 @@ void DebugFunc(void)
 			continue;
 
 		GetSetPokedexFlag(i, FLAG_SET_SEEN);
-		if (i >= 906 && i <= 1010)
-			GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
+		GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
 	}
 }
 

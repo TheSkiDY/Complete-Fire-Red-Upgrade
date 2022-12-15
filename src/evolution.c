@@ -14,6 +14,7 @@
 #include "../include/new/catching.h"
 #include "../include/new/dns.h"
 #include "../include/new/evolution.h"
+#include "../include/new/exp.h"
 #include "../include/new/form_change.h"
 #include "../include/new/util.h"
 

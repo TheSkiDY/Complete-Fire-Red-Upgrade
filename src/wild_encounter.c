@@ -26,6 +26,7 @@
 #include "../include/new/daycare.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/exp.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
 #include "../include/new/species_tables.h"
@@ -168,7 +169,6 @@ static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 	}
 
 	#ifdef FLAG_HARD_LEVEL_CAP
-	extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 	if (FlagGet(FLAG_HARD_LEVEL_CAP))
 	{
 		u8 levelCap = GetCurrentLevelCap();
@@ -670,6 +670,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	u8 level;
 	u8 wildMonIndex = 0;
 	u8 monsCount = 0;
+	u8 areaMultiplier = 0;
 	u8 ability = ABILITY_NONE;
 
 	if(MON_CAN_BATTLE(&gPlayerParty[0]))
@@ -693,16 +694,20 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
 			if (ability == ABILITY_COMPLETIONIST)
 				wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+			areaMultiplier = RANDOMIZER_WATER_WILD_MULTIPLIER; 
 			break;
 		case WILD_AREA_ROCKS:
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
 			if (ability == ABILITY_COMPLETIONIST)
 				wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+			areaMultiplier = RANDOMIZER_ROCK_WILD_MULTIPLIER;
 			break;
 	}
 
+
 SKIP_INDEX_SEARCH:
 
+	gLastWildIndex = wildMonIndex + areaMultiplier;
 	level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 
 	if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
@@ -732,15 +737,19 @@ SKIP_INDEX_SEARCH:
 				wildMonIndex = ChooseWildMonIndex_WaterRock();
 				if (ability == ABILITY_COMPLETIONIST)
 					wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+				areaMultiplier = RANDOMIZER_WATER_WILD_MULTIPLIER;
 				break;
 			case WILD_AREA_ROCKS:
 				wildMonIndex = ChooseWildMonIndex_WaterRock();
 				if (ability == ABILITY_COMPLETIONIST)
 					wildMonIndex = WATER_WILD_COUNT - wildMonIndex - 1;
+				areaMultiplier = RANDOMIZER_ROCK_WILD_MULTIPLIER;
 				break;
 		}
 
 		SKIP_INDEX_SEARCH_2:
+		
+		gLastWildIndex = wildMonIndex + areaMultiplier;
 		level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 		if (area != WILD_AREA_LAND || !TryGenerateSwarmMon(level, wildMonIndex, FALSE))
 			CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, FALSE);
@@ -753,6 +762,7 @@ SKIP_INDEX_SEARCH:
 static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInfo, u8 rod)
 {
 	u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+	gLastWildIndex = wildMonIndex + RANDOMIZER_FISH_WILD_MULTIPLIER;
 	u8 level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 
 	CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
@@ -761,6 +771,7 @@ static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInf
 	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))
 	{
 		u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+		gLastWildIndex = wildMonIndex + RANDOMIZER_FISH_WILD_MULTIPLIER;
 		u8 level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 		CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, FALSE);
 	}

@@ -52,9 +52,11 @@
 #include "../include/new/dexnav.h"
 #include "../include/new/dexnav_config.h"
 #include "../include/new/dns.h"
+#include "../include/new/exp.h"
 #include "../include/new/item.h"
 #include "../include/new/learn_move.h"
 #include "../include/new/overworld.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/wild_encounter.h"
 #include "../include/new/util.h"
 
@@ -247,11 +249,12 @@ static void DexNavGetMon(u16 species, u8 potential, u8 level, u8 ability, u16* m
 
 	//Create standard wild Pokemon
 	species = TryRandomizePumpkabooForm(species);
+	FlagSet(FLAG_TEMP_DISABLE_RANDOMIZER);
 	CreateWildMon(species, level, FindHeaderIndexWithLetter(species, sDexNavHudPtr->unownLetter - 1), TRUE);
 	GiveMonXPerfectIVs(mon, potential);
 
 	//Set Ability
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	if (GetHiddenAbility(species) == ability)
 		mon->hiddenAbility = TRUE;
 	else if (gBaseStats[species].ability2 != ABILITY_NONE) //Helps fix a bug where Unown would crash the game in the below function
@@ -709,7 +712,7 @@ extern const u8 SystemScript_DisplayDexnavMsg[];
 static void DexNavShowFieldMessage(u8 id)
 {
 	u16 species = sDexNavHudPtr->species;
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 
 	ScriptContext2_Enable();
 	DismissMapNamePopup();
@@ -1046,6 +1049,8 @@ static void Task_ManageDexNavHUD(u8 taskId)
 		DestroyTask(taskId);
 		DexNavFreeHUD();
 		DexNavShowFieldMessage(FIELD_MSG_GOT_AWAY);
+		if(FLAG_POKEMON_RANDOMIZER)
+			FlagClear(FLAG_TEMP_DISABLE_RANDOMIZER);
 		return;
 	}
 
@@ -1054,6 +1059,8 @@ static void Task_ManageDexNavHUD(u8 taskId)
 		gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
 		DexNavFreeHUD();
 		DexNavShowFieldMessage(FIELD_MSG_SNEAK_NEXT_TIME);
+		if(FLAG_POKEMON_RANDOMIZER)
+			FlagClear(FLAG_TEMP_DISABLE_RANDOMIZER);
 		DestroyTask(taskId);
 		return;
 	}
@@ -1071,6 +1078,8 @@ static void Task_ManageDexNavHUD(u8 taskId)
 	{
 		PlaySE(SE_POKENAV_OFF);
 		gCurrentDexNavChain = 0; //A Pokemon running like this resets the chain
+		if(FLAG_POKEMON_RANDOMIZER)
+			FlagClear(FLAG_TEMP_DISABLE_RANDOMIZER);
 		DexNavFreeHUD();
 		DestroyTask(taskId);
 		return;
@@ -1100,7 +1109,7 @@ static void Task_ManageDexNavHUD(u8 taskId)
 					sDexNavHudPtr->ability, sDexNavHudPtr->moveId, sDexNavHudPtr->searchLevel, gCurrentDexNavChain);
 		DestroyTask(taskId);
 
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 
 		//Increment the search level
 		u16 dexNum = SpeciesToNationalPokedexNum(species);
@@ -1138,6 +1147,7 @@ static u8 GetTotalEncounterChance(u16 species, u8 environment)
 	const struct WildPokemonInfo* waterMonsInfo = LoadProperMonsData(WATER_MONS_HEADER);
 	const struct WildPokemonInfo* fishingMonsInfo = LoadProperMonsData(FISHING_MONS_HEADER);
 	u8 chance = 0;
+	u16 randSpecies;
 
 	switch (environment)
 	{
@@ -1160,7 +1170,10 @@ static u8 GetTotalEncounterChance(u16 species, u8 environment)
 			for (i = 0; i < MAX_TOTAL_LAND_MONS; ++i)
 			{
 				const struct WildPokemon* monData = &landMonsInfo->wildPokemon[i];
-				if (monData->species == species)
+				gLastWildIndex = i;
+				randSpecies = monData->species;
+				TryRandomizeSpecies(&randSpecies);
+				if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 					chance += sLandEncounterRates[i];
 			}
 			break;
@@ -1171,7 +1184,10 @@ static u8 GetTotalEncounterChance(u16 species, u8 environment)
 				for (i = 0; i < NUM_WATER_MONS; ++i)
 				{
 					const struct WildPokemon* monData = &waterMonsInfo->wildPokemon[i];
-					if (monData->species == species)
+					gLastWildIndex = i + RANDOMIZER_WATER_WILD_MULTIPLIER;
+					randSpecies = monData->species;
+					TryRandomizeSpecies(&randSpecies);
+					if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 						chance += sWaterEncounterRates[i];
 				}
 			}
@@ -1181,7 +1197,10 @@ static u8 GetTotalEncounterChance(u16 species, u8 environment)
 				for (i = 0; i < NUM_FISHING_MONS; ++i)
 				{
 					const struct WildPokemon* monData = &fishingMonsInfo->wildPokemon[i];
-					if (monData->species == species)
+					gLastWildIndex = i + RANDOMIZER_FISH_WILD_MULTIPLIER;
+					randSpecies = monData->species;
+					TryRandomizeSpecies(&randSpecies);
+					if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 						chance += sFishingEncounterRates[i];
 				}
 			}
@@ -1201,6 +1220,7 @@ static u8 GetEncounterLevel(u16 species, u8 environment, bool8 detectorMode)
 
 	u8 min = 100;
 	u8 max = 0;
+	u16 randSpecies;
 
 	switch (environment)
 	{
@@ -1211,7 +1231,10 @@ static u8 GetEncounterLevel(u16 species, u8 environment, bool8 detectorMode)
 			for (i = 0; i < MAX_TOTAL_LAND_MONS; ++i)
 			{
 				monData = &landMonsInfo->wildPokemon[i];
-				if (monData->species == species)
+				gLastWildIndex = i;
+				randSpecies = monData->species;
+				TryRandomizeSpecies(&randSpecies);
+				if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 				{
 					min = (min < monData->minLevel) ? min : monData->minLevel;
 					max = (max > monData->maxLevel) ? max : monData->maxLevel;
@@ -1252,7 +1275,10 @@ static u8 GetEncounterLevel(u16 species, u8 environment, bool8 detectorMode)
 				for (i = 0; i < NUM_WATER_MONS; ++i)
 				{
 					monData = &waterMonsInfo->wildPokemon[i];
-					if (monData->species == species)
+					gLastWildIndex = i + RANDOMIZER_WATER_WILD_MULTIPLIER;
+					randSpecies = monData->species;
+					TryRandomizeSpecies(&species);
+					if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 					{
 						min = (min < monData->minLevel) ? min : monData->minLevel;
 						max = (max > monData->maxLevel) ? max : monData->maxLevel;
@@ -1278,7 +1304,10 @@ static u8 GetEncounterLevel(u16 species, u8 environment, bool8 detectorMode)
 				for (i = 0; i < NUM_FISHING_MONS; ++i)
 				{
 					monData = &fishingMonsInfo->wildPokemon[i];
-					if (monData->species == species)
+					gLastWildIndex = i + RANDOMIZER_FISH_WILD_MULTIPLIER;
+					randSpecies = monData->species;
+					TryRandomizeSpecies(&species);
+					if (monData->species == species || (FlagGet(FLAG_POKEMON_RANDOMIZER) && randSpecies == species))
 					{
 						min = (min < monData->minLevel) ? min : monData->minLevel;
 						max = (max > monData->maxLevel) ? max : monData->maxLevel;
@@ -1316,7 +1345,6 @@ static u8 GetEncounterLevel(u16 species, u8 environment, bool8 detectorMode)
 }
 
 
-extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 static u8 DexNavGenerateMonLevel(u16 species, u8 chainLevel, u8 environment, bool8 detectorMode)
 {
 	u8 levelBase, levelBonus;
@@ -1560,7 +1588,9 @@ static void DexNavGenerateMoveset(u16 species, u8 searchLevel, u8 encounterLevel
 	}
 
 	//Generate a wild mon and copy moveset
+	FlagSet(FLAG_TEMP_DISABLE_RANDOMIZER);
 	CreateWildMon(species, encounterLevel, FindHeaderIndexWithLetter(species, sDexNavHudPtr->unownLetter - 1), TRUE);
+	FlagClear(FLAG_TEMP_DISABLE_RANDOMIZER);
 
 	//Set first move slot to a random Egg Move if search level is good enough
 	if (genMove == TRUE)
@@ -1777,7 +1807,7 @@ void DexNavHudDrawSpeciesIcon(u16 species, u8* spriteIdAddr)
 		pid = GenerateUnownPersonalityByLetter(sDexNavHudPtr->unownLetter - 1);
 
 	//Load which palette the species icon uses
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	LoadMonIconPalette(species);
 
 	//Create the icon
@@ -1835,7 +1865,7 @@ bool8 InitDexNavHUD(u16 species, u8 environment, bool8 detectorMode)
 	sDexNavHudPtr = Calloc(sizeof(struct DexnavHudData));
 	// assign non-objects to struct
 	sDexNavHudPtr->species = species;
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	//Species now refers to the potentially randomized species,
 	//while sDexNavHudPtr->species refers to the original species
 
@@ -2062,7 +2092,7 @@ static bool8 CapturedAllWaterBasedPokemon(void)
 static bool8 TryAddSpeciesToArray(u16 species, u8 encounterMethod, u8 indexCount, u8 unownLetter)
 {
 	u32 i;
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	u16 dexNum = SpeciesToNationalPokedexNum(species);
 
 	//Disallow species not seen
@@ -2119,7 +2149,7 @@ static bool8 TryAddSpeciesToArray(u16 species, u8 encounterMethod, u8 indexCount
 			#endif
 			{
 				u16 wildSpecies = sDexNavGUIPtr->grassSpecies[i];
-				TryRandomizeSpecies(&wildSpecies);
+				//TryRandomizeSpecies(&wildSpecies);
 				if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 					return FALSE;
 			}
@@ -2127,7 +2157,7 @@ static bool8 TryAddSpeciesToArray(u16 species, u8 encounterMethod, u8 indexCount
 		else
 		{
 			u16 wildSpecies = sDexNavGUIPtr->waterSpecies[i];
-			TryRandomizeSpecies(&wildSpecies);
+			//TryRandomizeSpecies(&wildSpecies);
 			if (SpeciesToNationalPokedexNum(wildSpecies) == dexNum)
 				return FALSE;
 		}
@@ -2163,6 +2193,11 @@ static void DexNavPopulateEncounterList(void)
 		for (i = 0; i < MAX_TOTAL_LAND_MONS; ++i)
 		{
 			species = landMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i;
+				TryRandomizeSpecies(&species);
+			}
 			if (species != SPECIES_NONE && TryAddSpeciesToArray(species, ENCOUNTER_METHOD_GRASS, MAX_TOTAL_LAND_MONS, PickUnownLetter(species, i)))
 			{
 				if (InTanobyRuins())
@@ -2170,8 +2205,7 @@ static void DexNavPopulateEncounterList(void)
 					sDexNavGUIPtr->unownForms[i] = PickUnownLetter(species, i);
 					sDexNavGUIPtr->unownFormsByDNavIndices[grassIndex] = PickUnownLetter(species, i);
 				}
-
-				sDexNavGUIPtr->grassSpecies[grassIndex++] = landMonsInfo->wildPokemon[i].species;
+				sDexNavGUIPtr->grassSpecies[grassIndex++] = species;
 			}
 		}
 
@@ -2197,10 +2231,16 @@ static void DexNavPopulateEncounterList(void)
 		for (i = 0; i < NUM_WATER_MONS; ++i)
 		{
 			species = waterMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i + RANDOMIZER_WATER_WILD_MULTIPLIER;
+				TryRandomizeSpecies(&species);
+			}
+
 			if (species != SPECIES_NONE && TryAddSpeciesToArray(species, ENCOUNTER_METHOD_WATER, MAX_TOTAL_WATER_MONS, PickUnownLetter(species, i)))
 			{
 				sDexNavGUIPtr->waterEncounterMethod[waterIndex] = ENCOUNTER_METHOD_WATER;
-				sDexNavGUIPtr->waterSpecies[waterIndex++] = waterMonsInfo->wildPokemon[i].species;
+				sDexNavGUIPtr->waterSpecies[waterIndex++] = species;
 			}
 		}
 	}
@@ -2210,19 +2250,26 @@ static void DexNavPopulateEncounterList(void)
 		for (i = 0; i < NUM_OLD_ROD_MONS; ++i)
 		{
 			species = fishingMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i + RANDOMIZER_FISH_WILD_MULTIPLIER;
+				TryRandomizeSpecies(&species); 
+			}
+
 			if (species != SPECIES_NONE)
 			{
 				if (TryAddSpeciesToArray(species, ENCOUNTER_METHOD_OLD_ROD, MAX_TOTAL_WATER_MONS, PickUnownLetter(species, i)))
 				{
 					sDexNavGUIPtr->waterEncounterMethod[waterIndex] = ENCOUNTER_METHOD_OLD_ROD;
 					sDexNavGUIPtr->waterItemRequired[waterIndex] = ITEM_OLD_ROD; //Can only be searched if player has an Old Rod
-					sDexNavGUIPtr->waterSpecies[waterIndex++] = fishingMonsInfo->wildPokemon[i].species;
+
+					sDexNavGUIPtr->waterSpecies[waterIndex++] = species;
 				}
 				else
 				{
 					for (j = 0; j < waterIndex; ++j)
 					{
-						if (sDexNavGUIPtr->waterSpecies[j] == fishingMonsInfo->wildPokemon[i].species
+						if (sDexNavGUIPtr->waterSpecies[j] == species
 						&& sDexNavGUIPtr->waterEncounterMethod[j] == ENCOUNTER_METHOD_WATER)
 						{
 							sDexNavGUIPtr->waterEncounterMethod[j] = ENCOUNTER_METHOD_SURF_OLD_ROD; //Can be found both ways
@@ -2236,19 +2283,25 @@ static void DexNavPopulateEncounterList(void)
 		for (i = NUM_OLD_ROD_MONS; i < NUM_OLD_ROD_MONS + NUM_GOOD_ROD_MONS; ++i)
 		{
 			species = fishingMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i + RANDOMIZER_FISH_WILD_MULTIPLIER;
+				TryRandomizeSpecies(&species);
+			}
 			if (species != SPECIES_NONE)
 			{
 				if (TryAddSpeciesToArray(species, ENCOUNTER_METHOD_GOOD_ROD, MAX_TOTAL_WATER_MONS, PickUnownLetter(species, i)))
 				{
 					sDexNavGUIPtr->waterEncounterMethod[waterIndex] = ENCOUNTER_METHOD_GOOD_ROD;
 					sDexNavGUIPtr->waterItemRequired[waterIndex] = ITEM_GOOD_ROD; //Can only be searched if player has a Good Rod
-					sDexNavGUIPtr->waterSpecies[waterIndex++] = fishingMonsInfo->wildPokemon[i].species;
+					sDexNavGUIPtr->waterSpecies[waterIndex++] = species;
+
 				}
 				else
 				{
 					for (j = 0; j < waterIndex; ++j)
 					{
-						if (sDexNavGUIPtr->waterSpecies[j] == fishingMonsInfo->wildPokemon[i].species
+						if (sDexNavGUIPtr->waterSpecies[j] == species
 						&& sDexNavGUIPtr->waterEncounterMethod[j] == ENCOUNTER_METHOD_WATER)
 						{
 							sDexNavGUIPtr->waterEncounterMethod[j] = ENCOUNTER_METHOD_SURF_GOOD_ROD; //Can be found both ways
@@ -2262,19 +2315,24 @@ static void DexNavPopulateEncounterList(void)
 		for (i = NUM_OLD_ROD_MONS + NUM_GOOD_ROD_MONS; i < NUM_FISHING_MONS; ++i)
 		{
 			species = fishingMonsInfo->wildPokemon[i].species;
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				gLastWildIndex = i + RANDOMIZER_FISH_WILD_MULTIPLIER;
+				TryRandomizeSpecies(&species);
+			}
 			if (species != SPECIES_NONE)
 			{
 				if (TryAddSpeciesToArray(species, ENCOUNTER_METHOD_SUPER_ROD, MAX_TOTAL_WATER_MONS, PickUnownLetter(species, i)))
 				{
 					sDexNavGUIPtr->waterEncounterMethod[waterIndex] = ENCOUNTER_METHOD_SUPER_ROD;
 					sDexNavGUIPtr->waterItemRequired[waterIndex] = ITEM_SUPER_ROD; //Can only be searched if player has an Super Rod
-					sDexNavGUIPtr->waterSpecies[waterIndex++] = fishingMonsInfo->wildPokemon[i].species;
+					sDexNavGUIPtr->waterSpecies[waterIndex++] = species;
 				}
 				else
 				{
 					for (j = 0; j < waterIndex; ++j)
 					{
-						if (sDexNavGUIPtr->waterSpecies[j] == fishingMonsInfo->wildPokemon[i].species
+						if (sDexNavGUIPtr->waterSpecies[j] == species
 						&& sDexNavGUIPtr->waterEncounterMethod[j] == ENCOUNTER_METHOD_WATER)
 						{
 							sDexNavGUIPtr->waterEncounterMethod[j] = ENCOUNTER_METHOD_SURF_SUPER_ROD; //Can be found both ways
@@ -2331,7 +2389,7 @@ static void RegisterSpecies(u16 species, u8 taskId)
 	sDexNavGUIPtr->registeredArea = sDexNavGUIPtr->selectedArea;
 	sDexNavGUIPtr->registeredIconVisible = TRUE;
 
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 	StringCopy(gStringVar1, gSpeciesNames[species]);
 	PrintDexNavMessage(MESSAGE_REGISTERED);
 	PlaySE(SE_POKENAV_SEARCHING);
@@ -2345,7 +2403,7 @@ static bool8 CanWaterMonBeSearched(void)
 	&& !CheckBagHasItem(sDexNavGUIPtr->waterItemRequired[GetWaterSlotSelected()], 1)) //Don't have Rod required to find this mon normally
 	{
 		u16 species = GetSpeciesAtCursorPos();
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 		StringCopy(gStringVar1, gSpeciesNames[species]);
 		StringCopy(gStringVar2, ItemId_GetName(sDexNavGUIPtr->waterItemRequired[GetWaterSlotSelected()]));
 		return FALSE;
@@ -2842,7 +2900,7 @@ static void DexNavDisplaySpeciesData(void)
 		}
 	}
 
-	TryRandomizeSpecies(&species);
+	//TryRandomizeSpecies(&species);
 
 	//Then print the data
 	PrintGUISpeciesName(species);
@@ -2887,7 +2945,7 @@ static u16 GetSpeciesAtCursorPos(void)
 static u16 TryAdjustUnownSpeciesAtCursorPos(u16 species)
 {
 	u16 randomizedSpecies = species;
-	TryRandomizeSpecies(&randomizedSpecies);
+	//TryRandomizeSpecies(&randomizedSpecies);
 
 	if (randomizedSpecies == SPECIES_UNOWN)
 	{
@@ -3246,7 +3304,7 @@ static void Task_DexNavWaitForKeyPress(u8 taskId)
 			//Species was valid, open context menu to confirm user action
 			PlaySE(SE_SELECT);
 			gTasks[taskId].data[1] = species;
-			TryRandomizeSpecies(&species);
+			//TryRandomizeSpecies(&species);
 			StringCopy(gStringVar1, gSpeciesNames[species]);
 			PrintDexNavMessage(MESSAGE_POKEMON_SELECTED);
 			gTasks[taskId].func = Task_WaitForContextMenuPreMessage;
@@ -3464,7 +3522,7 @@ static void DexNavLoadMonIcons(void)
 		if (letter > 0)
 			pid = GenerateUnownPersonalityByLetter(letter - 1);
 
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 		u8 spriteId = CreateMonIcon(species, SpriteCB_LandMonIcon, 0, 0, (MAX_TOTAL_LAND_MONS - i) + 1, pid, 0);
 		if (spriteId < MAX_SPRITES)
 		{
@@ -3515,7 +3573,7 @@ static void DexNavLoadMonIcons(void)
 		if (letter > 0)
 			pid = GenerateUnownPersonalityByLetter(letter - 1);
 
-		TryRandomizeSpecies(&species);
+		//TryRandomizeSpecies(&species);
 		u8 spriteId = CreateMonIcon(species, SpriteCB_WaterMonIcon, 0, 0, (GetTotalWaterMonSlots() - i) + 1, pid, 0);
 		if (spriteId < MAX_SPRITES)
 		{

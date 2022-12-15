@@ -28,6 +28,7 @@
 #include "../include/new/damage_calc.h"
 #include "../include/new/dexnav.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/exp.h"
 #include "../include/new/form_change.h"
 #include "../include/new/frontier.h"
 #include "../include/new/item.h"
@@ -36,6 +37,7 @@
 #include "../include/new/move_tables.h"
 #include "../include/new/multi.h"
 #include "../include/new/pokemon_storage_system.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/species_tables.h"
 #include "../include/new/util.h"
 
@@ -127,7 +129,6 @@ static struct Immunity sImmunities[] =
 };
 
 extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
-extern const species_t gRandomizerSpeciesBanList[];
 extern const species_t gSetPerfectXIvList[];
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -202,7 +203,6 @@ static void CheckShinyMon(struct Pokemon* mon);
 extern u8 GetEVSpreadNumForUnboundRivalChallenge(struct Pokemon* mon, u32 aiFlags, u8 trainerClass);
 extern void TryGiveSpecialTrainerHiddenPower(u16 trainerId, struct Pokemon* mon);
 extern void TryGiveSpecialTrainerStatusCondition(u16 trainerId, struct Pokemon* mon);
-extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 #endif
 
 #ifdef OPEN_WORLD_TRAINERS
@@ -888,6 +888,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 		{
 			u32 personalityValue;
 			u8 genderOffset = 0x80;
+			gPartyIndexLoaded = i;
 			struct Pokemon* mon = &party[i];
 
 			if (setMonGender == 1)
@@ -4146,64 +4147,6 @@ void ForceMonShiny(struct Pokemon* mon)
 
 	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
 	CalculateMonStats(mon);
-}
-
-void TryRandomizeSpecies(unusedArg u16* species)
-{
-	#ifdef FLAG_POKEMON_RANDOMIZER
-	u32 speciesCount = NUM_SPECIES_RANDOMIZER;
-
-	#ifdef FLAG_GEN_8_PLACED_IN_GAME
-	if (FlagGet(FLAG_GEN_8_PLACED_IN_GAME))
-		speciesCount = NUM_SPECIES_GEN_8;
-	#endif
-
-	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY)
-	#ifdef FLAG_TEMP_DISABLE_RANDOMIZER
-	&& !FlagGet(FLAG_TEMP_DISABLE_RANDOMIZER)
-	#endif
-	&& *species != SPECIES_NONE && *species != SPECIES_ZYGARDE_CELL && *species < NUM_SPECIES)
-	{
-		u16 newSpecies;
-		u32 id = T1_READ_32(gSaveBlock2->playerTrainerId);
-		u16 startAt = (id & 0xFFFF) % (u32) speciesCount;
-		u16 xorVal = (id >> 16) % (u32) 0x400; //Only set the bits likely to be in the species
-		u32 numAttempts = 0;
-
-		newSpecies = *species + startAt;
-		if (newSpecies >= speciesCount)
-		{
-			u16 overflow = newSpecies - (speciesCount - 2);
-			newSpecies = overflow;
-		}
-
-		newSpecies ^= xorVal;
-		newSpecies %= (u32) speciesCount; //Prevent overflow
-		
-		while (gSpecialSpeciesFlags[newSpecies].randomizerBan && numAttempts < 100)
-		{
-			newSpecies *= xorVal;
-			newSpecies %= (u32) speciesCount;
-			++numAttempts;
-		}
-
-		if (numAttempts >= 100)
-			newSpecies = SPECIES_DITTO;
-
-		*species = newSpecies;
-	}
-	#endif
-}
-
-u16 IsSpeciesBannedFromRandomizer(u16 species) //Exported
-{
-	return gSpecialSpeciesFlags[species].randomizerBan;
-}
-
-u16 GetRandomizedSpecies(u16 species)
-{
-	TryRandomizeSpecies(&species);
-	return species;
 }
 
 void CreateBoxMon(struct BoxPokemon* boxMon, u16 species, u8 level, u8 fixedIV, bool8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)

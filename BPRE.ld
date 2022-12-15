@@ -2076,3 +2076,7 @@ CreatePartyMonStatusSprite = 0x8122884 | 1;
 DisplayPartyPokemonBarDetail = 0x8121704 | 1;
 SetPartyMonAilmentGfx = 0x8122904 | 1;
 AddTextPrinterParameterized3 = 0x812E51C | 1;
+
+/* New RAM */
+gLastWildIndex = 0x203E0C7;
+gPartyIndexLoaded = 0x203E0C8;

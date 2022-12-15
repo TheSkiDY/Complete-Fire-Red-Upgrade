@@ -25,7 +25,6 @@ void ForceMonShiny(struct Pokemon* mon);
 void CalculateMonStatsNew(struct Pokemon *mon);
 u8 GetOpenWorldBadgeCount(void);
 u8 GetScaledWildBossLevel(u8 level);
-void TryRandomizeSpecies(u16* species);
 u16 GenerateWildMonHeldItem(u16 species, u8 bonus);
 void SetWildMonHeldItem(void);
 
@@ -38,7 +37,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 void CreateMonWithNatureLetter(struct Pokemon* mon, u16 species, u8 level, u8 fixedIV, u8 nature, u8 unownLetter);
 void SetMonExpWithMaxLevelCheck(struct Pokemon *mon, u16 species, u8 unused, u32 data);
 void UpdatePartyPokerusTime(u16 days);
-u16 GetRandomizedSpecies(u16 species);
 
 //Exported Constants
 enum TierBanCheckingType

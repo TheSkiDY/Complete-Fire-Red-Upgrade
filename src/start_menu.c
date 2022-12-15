@@ -138,7 +138,6 @@ const u8* const sStartMenuDescPointers[] =
 	gText_RetireDescription,
 	gText_PlayerDescription,
 	gText_DexNavDescription,
-	NULL,
 	gText_ExitDescription,
 	gText_ExitDescription,
 };
@@ -214,10 +213,7 @@ static void SetUpStartMenu_SafariZone(void)
 
 	AppendToStartMenuItems(STARTMENU_OPTION);
 
-	if  (sStartMenuOpen == START_MENU_NORMAL && CanSetUpSecondaryStartMenu())
-		AppendToStartMenuItems(STARTMENU_EXIT_RIGHT);
-	else
-		AppendToStartMenuItems(STARTMENU_EXIT);
+	AppendToStartMenuItems(STARTMENU_EXIT);
 }
 
 static void BuildPokeToolsMenu(void)

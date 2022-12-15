@@ -10,6 +10,7 @@
 
 #include "../include/new/battle_strings.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/exp.h"
@@ -36,6 +37,20 @@ enum
 {
 	GiveExpBattlePariticpants,
 	GiveExpViaExpShare,
+};
+
+u8 GymLevelCaps[] =
+{
+    [0] = 16,
+    [1] = 27,
+    [2] = 35,
+    [3] = 44,
+    [4] = 53,
+    [5] = 60,
+    [6] = 65,
+    [7] = 74,
+    [8] = 88,
+    [9] = 100,
 };
 
 #define BattleScript_LevelUp (u8*) 0x81D89F5
@@ -577,7 +592,6 @@ static bool8 MonGetsAffectionBoost(struct Pokemon* mon)
 static bool8 IsAffectedByHardLevelCap(unusedArg struct Pokemon* mon)
 {
 	#ifdef FLAG_HARD_LEVEL_CAP
-	extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 	if (FlagGet(FLAG_HARD_LEVEL_CAP))
 	{
 		if (GetMonData(mon, MON_DATA_LEVEL, NULL) >= GetCurrentLevelCap())
@@ -871,4 +885,11 @@ bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 	}
 
 	return FALSE; //No EVs were added
+}
+
+u8 GetCurrentLevelCap(void)
+{
+	u8 gymCount = GetOpenWorldBadgeCount();
+	u8 cap = GymLevelCaps[gymCount];
+	return cap;
 }

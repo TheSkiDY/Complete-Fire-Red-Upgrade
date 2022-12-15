@@ -1633,6 +1633,8 @@ void RunOnTransitionMapScript(void)
 	gCurrentDexNavChain = 0;
 	gFishingStreak = 0;
 	gLastFishingSpecies = 0;
+	gLastWildIndex = 0;
+	gPartyIndexLoaded = 0;
 	gDontFadeWhite = FALSE;
 	ResetMiningSpots();
 	ForceClockUpdate();

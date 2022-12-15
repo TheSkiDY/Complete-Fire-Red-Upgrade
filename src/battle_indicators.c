@@ -1644,7 +1644,7 @@ bool8 DidPlayerUseLastBallAndTryUpdateControllerFunc(void)
 
 bool8 CantLoadTeamPreviewTrigger(void)
 {
-	if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) //Wild Battle
+	if (!(gNewBS->isTrainerBattle)) //Wild Battle
 		return TRUE; //No enemy team
 
 	if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER

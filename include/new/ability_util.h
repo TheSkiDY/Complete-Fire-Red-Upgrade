@@ -73,10 +73,6 @@ const u8* GetAbilityDescriptionOverrideForFormChange(const u8 ability, const u16
 
 bool8 IsFormChangeAbilityIgnoredByMoldBreaker(u8 ability, u16 species);
 bool8 IsAbilityIgnoredByMoldBreaker(u8 ability, u16 species);
-bool8 IsOriginalFormChangeAbilityBannedInRandomizer(u8 ability, u16 species);
-bool8 IsOriginalAbilityBannedInRandomizer(u8 ability, u16 species);
-bool8 IsNewFormChangeAbilityBannedInRandomizer(u8 ability, u16 species);
-bool8 IsNewAbilityBannedInRandomizer(u8 ability, u16 species);
 bool8 IsFormChangeAbilityRolePlayBanned(u8 ability, u16 species);
 bool8 IsAbilityRolePlayBanned(u8 ability, u16 species);
 bool8 IsFormChangeAbilityRolePlayAttackerBanned(u8 ability, u16 species);

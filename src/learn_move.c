@@ -12,6 +12,7 @@
 #include "../include/new/learn_move.h"
 #include "../include/new/move_reminder_data.h"
 #include "../include/new/move_tables.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/util.h"
 
 /*
@@ -261,40 +262,6 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon* mon)
 		return 0;
 
 	return GetMoveRelearnerMoves(mon, moves); //Returns the number of moves
-}
-
-move_t RandomizeMove(u16 move)
-{
-	if (move == MOVE_NONE)
-		return move;
-
-	u16 newMove;
-	u32 id = T1_READ_32(gSaveBlock2->playerTrainerId);
-	u16 startAt = (id & 0xFFFF) % (u32) NON_Z_MOVE_COUNT;
-	u16 xorVal = (id >> 16) % (u32) 0x300; //Only set the bits likely to be in the move
-	u32 numAttempts = 0;
-
-	newMove = move + startAt;
-	if (newMove >= NON_Z_MOVE_COUNT)
-	{
-		u16 overflow = newMove - (NON_Z_MOVE_COUNT - 2);
-		newMove = overflow;
-	}
-
-	newMove ^= xorVal;
-	newMove %= (u32) NON_Z_MOVE_COUNT; //Prevent overflow
-
-	while (gSpecialMoveFlags[newMove].gRandomizerBanTable && numAttempts < 100)
-	{
-		newMove *= xorVal; //Multiply this time
-		newMove %= (u32) NON_Z_MOVE_COUNT;
-		++numAttempts;
-	}
-
-	if (numAttempts >= 100 && gSpecialMoveFlags[newMove].gRandomizerBanTable) //Tried 100 times to change move but can't find a legal one
-		newMove = MOVE_TACKLE; //Just replace the move with tackle
-
-	return newMove;
 }
 
 u16 BuildLearnableMoveset(struct Pokemon* mon, u16* moves)

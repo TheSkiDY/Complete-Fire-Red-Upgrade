@@ -1018,7 +1018,6 @@ u32 GetExperienceAfterDaycareSteps(struct BoxPokemon* mon, u32 steps)
 	struct BoxPokemon tempMon = *mon;
 	SetBoxMonData(&tempMon, MON_DATA_EXP, &experience);
 	u8 level = GetLevelFromBoxMonExp(&tempMon);
-	extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 	if (FlagGet(FLAG_HARD_LEVEL_CAP) && level >= GetCurrentLevelCap())
 	{
 		SetBoxMonData(&tempMon, MON_DATA_EXP, &originalExp); //Prepare to get the original level

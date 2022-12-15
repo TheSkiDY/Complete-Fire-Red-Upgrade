@@ -38,6 +38,7 @@
 #include "../include/new/build_pokemon.h"
 #include "../include/new/dns.h"
 #include "../include/new/evolution.h"
+#include "../include/new/exp.h"
 #include "../include/new/follow_me.h"
 #include "../include/new/form_change.h"
 #include "../include/new/item.h"
@@ -2694,7 +2695,6 @@ void FieldUseFunc_Honey(u8 taskId)
 	SetUpItemUseOnFieldCallback(taskId);
 }
 
-extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 {
 	bool8 noEffect;

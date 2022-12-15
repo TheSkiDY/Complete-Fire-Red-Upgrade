@@ -30,7 +30,11 @@ struct SpecialSpeciesFlags
 	bool8 badForUbers : 1;
 	bool8 setPerfectXIVs : 1;
 	bool8 smartWild : 1;
-	bool8 randomizerBan : 1;
+
+	//randomizer:
+	bool8 randomizerFullBan : 1;
+	bool8 randomizerGettableBan : 1;
+
 
 	//for new abilities:
 	bool8 hasVitalSpirit : 1;
@@ -122,14 +126,6 @@ struct SpecialSpeciesFlags
 	bool8 hasWormhole : 1;
 	bool8 hasPlasmaBurst : 1;
 
-	/*
-
-	Electric
-	Grassy
-	Misty
-	Psychic
-
-	*/
 };
 
 extern const struct SpecialSpeciesFlags gSpecialSpeciesFlags[];

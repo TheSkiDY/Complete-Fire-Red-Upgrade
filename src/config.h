@@ -6,7 +6,7 @@
  */
 
 /*===== Debugging Options =====*/
-//#define DEBUG_QUICK_BATTLES //Battles will end after choosing the first attack
+#define DEBUG_QUICK_BATTLES //Battles will end after choosing the first attack
 //#define DEBUG_MEGA //Mega Evolution can always be used
 //#define DEBUG_HMS //HMs can always be used from the party screen, Surf, Waterfall, and Rock Climb can always be used
 //#define DEBUG_OBEDIENCE //Traded Pokemon never have obedience issues
@@ -197,17 +197,6 @@ enum //These vars need to be one after the other (hence the enum)
 //#define FLAG_ABILITY_RANDOMIZER 0x942 //Setting randomizes Pokemon abilities.
 #define NUM_SPECIES_RANDOMIZER NUM_VIABLE_SPECIES //The final number of Pokemon (+ 1) of species that can appear in the randomizer. Change to NUM_SPECIES for Gen 8
 
-//custom flags
-#define FLAG_GEN_3_EXP_SHARE 0x970
-#define FLAG_SCRIPT_LVL_CAP_ENABLED 0x971
-#define FLAG_NO_EVS 0x972
-#define FLAG_GYM_LVL_CAP_ENABLED 0x973
-#define FLAG_SCALE_WILD_BOSS_LEVEL 0x974
-
-//custom vars
-#define VAR_LEVEL_CAP 0x50A0
-#define VAR_RANDOMIZER_DEXNAV_BATTLE_SPECIES 0x50A1
-
 /*===== Pre-existing Offsets =====*/
 //#define EXISTING_FOSSIL_IMAGE_TABLE_ADDRESS 0x81a4600 //Uncomment this if you've already inserted a fossil image table
 //#define EXISTING_OW_TABLE_ADDRESS 0x81a2000 //Uncomment if you don't want new overworld NPC tables to be generated. DON'T TOUCH IF YOU DON'T KNOW EXACTLY WHAT THIS IS FOR!
@@ -327,7 +316,7 @@ enum //These vars need to be one after the other (hence the enum)
 /*===== Other Battle Options =====*/
 //#define NO_GHOST_BATTLES //Uncomment this line to disable the Ghost battle feature from Pokemon Tower in Lavender town
 #define GEN4_PLUS_SELECTION_SCREEN //Uncommenting this line does not give you the Gen 4+ selection screen, it only adds features that supports it
-//#define OBEDIENCE_CHECK_FOR_PLAYER_ORIGINAL_POKEMON //Uncommenting line line will open up the possibility that the Player's Pokemon can disobey them (not just traded mons)
+#define OBEDIENCE_CHECK_FOR_PLAYER_ORIGINAL_POKEMON //Uncommenting line line will open up the possibility that the Player's Pokemon can disobey them (not just traded mons)
 //#define WILD_ALWAYS_SMART //Uncomment this line if you want all Wild Pokemon to act smartly
 #define HAIL_IN_BATTLE //Uncommenting this line enables the Hail weather effect in battle when the OW weather is set to WEATHER_STEADY_SNOW (0x7)
 #define FOG_IN_BATTLE //Uncommenting this line enables the Fog weather effect in battle. Don't uncomment this line without uncommenting one of the lines below!
@@ -354,3 +343,21 @@ enum //These vars need to be one after the other (hence the enum)
 /*======== NEW STUFF =======*/
 #define WEATHER_BALL_MULTIPLIER 40
 #define SHINY_BALL_MULTIPLIER 50
+
+#define RANDOMIZER_WATER_WILD_MULTIPLIER 13
+#define RANDOMIZER_ROCK_WILD_MULTIPLIER 26
+#define RANDOMIZER_FISH_WILD_MULTIPLIER 39
+
+#define FLAG_GEN_3_EXP_SHARE 0x970
+#define FLAG_TEMP_DISABLE_RANDOMIZER 0x971
+#define FLAG_NO_EVS 0x972
+#define FLAG_HARD_LEVEL_CAP 0x973
+#define FLAG_SCALE_WILD_BOSS_LEVEL 0x974
+#define FLAG_IN_BATTLE_TEAM_PREVIEW 0x975
+
+#define FRIENDSHIP_EVOLUTION_LEVEL 25
+#define ITEM_EVOLUTION_LEVEL 40
+#define OTHER_EVOLUTION_LEVEL 45
+
+
+#define TEAM_PREVIEW_TRIGGER

@@ -2076,48 +2076,6 @@ bool8 IsAbilityIgnoredByMoldBreaker(u8 ability, u16 species)
 	return gSpecialAbilityFlags[ability].gMoldBreakerIgnoredAbilities || IsFormChangeAbilityIgnoredByMoldBreaker(ability, species);
 }
 
-bool8 IsOriginalFormChangeAbilityBannedInRandomizer(u8 ability, u16 species)
-{
-	if(ability != ABILITY_FORM_CHANGE)
-		return FALSE;
-
-	return SpeciesHasStanceChange(species) ||
-		SpeciesHasSchooling(species) ||
-		SpeciesHasShieldsDown(species) ||
-		SpeciesHasDisguise(species) ||
-		SpeciesHasIceFace(species) ||
-		SpeciesHasRockyShelter(species) ||
-		SpeciesHasHungerSwitch(species);
-}
-
-bool8 IsOriginalAbilityBannedInRandomizer(u8 ability, u16 species)
-{
-	return gSpecialAbilityFlags[ability].gRandomizerBannedOriginalAbilities || IsOriginalFormChangeAbilityBannedInRandomizer(ability, species);
-}
-
-bool8 IsNewFormChangeAbilityBannedInRandomizer(u8 ability, u16 species)
-{
-	if(ability != ABILITY_FORM_CHANGE)
-		return FALSE;
-
-	return SpeciesHasZenMode(species) ||
-		SpeciesHasStanceChange(species) ||
-		SpeciesHasSchooling(species) ||
-		SpeciesHasShieldsDown(species) ||
-		SpeciesHasDisguise(species) ||
-		SpeciesHasBattleBond(species) ||
-		SpeciesHasPowerConstruct(species) ||
-		SpeciesHasIceFace(species) ||
-		SpeciesHasHungerSwitch(species) ||
-		SpeciesHasRockyShelter(species) ||
-		SpeciesHasGulpMissile(species);
-}
-
-bool8 IsNewAbilityBannedInRandomizer(u8 ability, u16 species)
-{
-	return gSpecialAbilityFlags[ability].gRandomizerBannedNewAbilities || IsNewFormChangeAbilityBannedInRandomizer(ability, species);
-}
-
 bool8 IsFormChangeAbilityRolePlayBanned(u8 ability, u16 species)
 {
 	if(ability != ABILITY_FORM_CHANGE)

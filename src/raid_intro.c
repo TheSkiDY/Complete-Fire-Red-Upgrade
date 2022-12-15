@@ -21,6 +21,7 @@
 #include "../include/new/build_pokemon.h"
 #include "../include/new/frontier.h"
 #include "../include/new/mega.h"
+#include "../include/new/randomizer.h"
 
 extern const u8 RaidBattleIntroBGTiles[];
 extern const u8 RaidBattleIntroBGPal[];
