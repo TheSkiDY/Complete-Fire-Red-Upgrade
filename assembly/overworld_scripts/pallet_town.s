@@ -33,6 +33,10 @@ EventScript_PalletTown_TechnologyGuy:
 	special 0x62
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
 	givepokemon SPECIES_WYRDEER 4 0 0 0 0
+	givepokemon SPECIES_BRIONNE 4 0 0 0 0
+	givepokemon SPECIES_STARAVIA 4 0 0 0 0
+	givepokemon SPECIES_FORRETRESS 4 0 0 0 0
+	givepokemon SPECIES_YAMPER 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

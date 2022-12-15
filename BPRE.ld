@@ -2078,6 +2078,16 @@ DisplayPartyPokemonBarDetail = 0x8121704 | 1;
 SetPartyMonAilmentGfx = 0x8122904 | 1;
 AddTextPrinterParameterized3 = 0x812E51C | 1;
 
+/* TM case */
+sItemIconTilesBuffer = 0x2039884;
+sItemIconTilesBufferPadded = 0x2039888;
+sSpriteTemplate_ItemIcon = 0x83d427C;
+CopyItemIconPicTo4x4Buffer = 0x809872C | 1;
+TryAllocItemIconTilesBuffers = 0x80986EC | 1;
+sListItemTextColor_RegularItem = 0x8452F60;
+sListItemTextColor_TmCase_BerryPouch = 0x8452F66;
+SetPartyHPBarSprite = 0x8097414 | 1;
+
 /* New RAM */
 gLastWildIndex = 0x203E0C7;
 gPartyIndexLoaded = 0x203E0C8;
