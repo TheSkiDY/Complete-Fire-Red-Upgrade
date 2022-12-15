@@ -51,3 +51,7 @@ bool8 CanPartyMonBeBurned(struct Pokemon* mon);
 bool8 CanPartyMonBeFrozen(struct Pokemon* mon);
 
 bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level);
+bool8 IsMorePhysical(u16 species);
+bool8 IsMorePhysicallyDefensive(u16 species);
+bool8 IsReasonablyFast(u16 species);
+u16 FindReplacementSpecies(u16 species);

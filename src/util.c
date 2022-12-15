@@ -8,6 +8,7 @@
 #include "../include/new/frontier.h"
 #include "../include/new/mega.h"
 #include "../include/new/randomizer.h"
+#include "../include/new/species_tables.h"
 #include "../include/new/util.h"
 
 /*
@@ -542,4 +543,66 @@ bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 	}
 	else
 		return FALSE;
+}
+
+bool8 IsMorePhysical(u16 species)
+{
+	return (gBaseStats[species].baseAttack > gBaseStats[species].baseSpAttack);
+}
+
+bool8 IsMorePhysicallyDefensive(u16 species)
+{
+	return (gBaseStats[species].baseDefense > gBaseStats[species].baseSpDefense);
+}
+
+bool8 IsReasonablyFast(u16 species)
+{
+	return (gBaseStats[species].baseSpeed > 70);
+}
+
+u16 FindReplacementSpecies(u16 species)
+{
+	if(!FlagGet(FLAG_NO_FAKEMONS))
+		return species;
+
+	if(!gSpecialSpeciesFlags[species].isFakemon)
+		return species;
+
+	u8 type1 = gBaseStats[species].type1;
+	u8 type2 = gBaseStats[species].type2;
+	bool8 isPureType = (type1 == type2) ? TRUE : FALSE;
+	bool8 morePhyiscal = IsMorePhysical(species);
+	bool8 morePhyiscallyDefensive = IsMorePhysicallyDefensive(species);
+	bool8 reasonablyFast = IsReasonablyFast(species);
+	bool8 canEvolve = CanSpeciesEvolve(species) ? TRUE : FALSE;
+	u8 score = 0;
+	u8 maxScore = 0;
+	u16 consideredSpecies = SPECIES_DITTO;
+
+	for (u16 i = 0; i < NUM_SPECIES; ++i)
+	{
+		if(IsSpeciesBannedFromRandomizer(i) || gSpecialSpeciesFlags[i].isFakemon)
+			continue;
+
+		score = 0;
+		if(canEvolve == CanSpeciesEvolve(i))
+			score+=3;
+		if(IsSpeciesOfType(i, type1))
+			score+=2;
+		if((!isPureType && IsSpeciesOfType(i, type2)) || (isPureType && gBaseStats[i].type1 == gBaseStats[i].type2))
+			score+=2;
+		if(IsMorePhysical(i) == morePhyiscal)
+			score++;
+		if(IsMorePhysicallyDefensive(i) == morePhyiscallyDefensive)
+			score++;
+		if(IsReasonablyFast(i) == reasonablyFast)
+			score++;
+
+		if(score > maxScore)
+		{
+			consideredSpecies = i;
+			maxScore = score;
+		}
+	}
+	return consideredSpecies;
 }

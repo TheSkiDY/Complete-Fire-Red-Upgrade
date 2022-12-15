@@ -67,13 +67,16 @@
 
 #define SET_EVS(structure)							\
 {													\
-    party[i].hpEv = structure->hpEv;				\
-	party[i].atkEv = structure->atkEv;				\
-	party[i].defEv = structure->defEv;				\
-	party[i].spdEv = structure->spdEv;				\
-	party[i].spAtkEv = structure->spAtkEv;			\
-	party[i].spDefEv = structure->spDefEv;			\
-}
+	if(!FlagGet(FLAG_NO_EVS))						\
+	{												\
+	    party[i].hpEv = structure->hpEv;			\
+		party[i].atkEv = structure->atkEv;			\
+		party[i].defEv = structure->defEv;			\
+		party[i].spdEv = structure->spdEv;			\
+		party[i].spAtkEv = structure->spAtkEv;		\
+		party[i].spDefEv = structure->spDefEv;		\
+	}												\
+}	
 
 struct TrainersWithEvs
 {

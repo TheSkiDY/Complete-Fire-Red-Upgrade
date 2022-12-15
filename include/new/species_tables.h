@@ -35,6 +35,7 @@ struct SpecialSpeciesFlags
 	bool8 randomizerFullBan : 1;
 	bool8 randomizerGettableBan : 1;
 
+	bool8 isFakemon : 1;
 
 	//for new abilities:
 	bool8 hasVitalSpirit : 1;

@@ -354,6 +354,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_HARD_LEVEL_CAP 0x973
 #define FLAG_SCALE_WILD_BOSS_LEVEL 0x974
 #define FLAG_IN_BATTLE_TEAM_PREVIEW 0x975
+#define FLAG_NO_FAKEMONS 0x976
 
 #define FRIENDSHIP_EVOLUTION_LEVEL 25
 #define ITEM_EVOLUTION_LEVEL 40

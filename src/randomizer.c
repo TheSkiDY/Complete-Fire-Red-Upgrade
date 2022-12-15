@@ -198,6 +198,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
 			*species = newSpecies;
 		}
 	}
+	*species = FindReplacementSpecies(*species);
 	#endif
 }
 
