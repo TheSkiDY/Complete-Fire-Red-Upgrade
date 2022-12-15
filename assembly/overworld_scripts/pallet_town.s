@@ -29,6 +29,7 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_NATURE_PILL_NAUGHTY 5
 	additem ITEM_NATURE_PILL_BOLD 5
 	additem ITEM_SHINY_BALL 20
+	additem ITEM_EXP_SHARE 1
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
