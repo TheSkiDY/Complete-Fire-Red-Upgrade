@@ -19,7 +19,7 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8003 0x2
 	callasm 0x8727CF9
 	faceplayer
-	setflag 0x976 @no fakemons
+		@setflag 0x976 @no fakemons
 	additem ITEM_RARE_CANDY 1
 	additem ITEM_MEGA_RING 1
 	additem ITEM_ABILITY_CAPSULE 50
@@ -33,7 +33,7 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
 	givepokemon SPECIES_WYRDEER 4 0 0 0 0
 	givepokemon SPECIES_BRIONNE 4 0 0 0 0
-	givepokemon SPECIES_CEBOGRE 4 0 0 0 0
+	givepokemon SPECIES_SNOVER 4 0 0 0 0
 	givepokemon SPECIES_SANDSLASH_S 4 0 0 0 0
 	givepokemon SPECIES_DELCATTY_S 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL

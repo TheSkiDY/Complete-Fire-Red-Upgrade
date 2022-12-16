@@ -3108,6 +3108,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			spDefense = (15 * spDefense) / 10; //Ground types get a Sp. Def boost in a "Vicious Sandstorm"
 	}
 
+//Snowstorm Def Increase
+	if (gBattleWeather & WEATHER_HAIL_ANY && WEATHER_HAS_EFFECT)
+	{
+		if((!useMonDef && IsOfType(bankDef, TYPE_ICE)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE)))
+			defense = (15 * defense) / 10;
+	}
+
 	if(gTerrainType == SHADOW_TERRAIN 
 	&& ((!useMonDef && IsOfType(bankDef, TYPE_GHOST)) || (useMonDef && IsMonOfType(data->monDef, TYPE_GHOST)))
 	&& ((useMonAtk && CheckContactByMon(move, data->monAtk)) || (!useMonAtk && CheckContact(move, bankAtk, bankDef))))

@@ -965,3 +965,15 @@ The SHADOW TERRAIN prevents any\nstat changes!
 
 #org @gText_FrostOrb
 [EFFECT_BANK] was frostbitten\nby the [LAST_ITEM]!
+
+#org @sText_PkmnPeltedByHail
+[ATTACKER] is pelted\nby the snowstorm!
+
+#org @sText_StartedHail
+It started to snow!
+
+#org @sText_HailContinues
+A snowstorm is raging!
+
+#org @sText_HailStopped
+The snowstorm stopped.

@@ -485,6 +485,9 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 				break;
 		}
 
+		if(gBattleWeather & WEATHER_SANDSTORM_ANY && GetExceptionMoveType(bankAtk, move) == TYPE_ROCK)
+			calc = udivsi((calc * 130), 100); //1.3x boost for rock moves in Sandstorm
+
 		if (gBattleWeather & WEATHER_FOG_ANY)
 		{
 			if (!BypassesFog(atkAbility, atkEffect))
@@ -590,6 +593,9 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 
 	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankAtk)) == ABILITY_VICTORYSTAR)
 		calc = udivsi((calc * 120), 100); // 1.2 Victory Star partner boost
+
+	if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY && GetExceptionMoveType(bankAtk, move) == TYPE_ROCK)
+		calc = udivsi((calc * 130), 100); // 1.3x boost for Rock moves in Sandstorm
 
 	if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_FOG_ANY)
 	{

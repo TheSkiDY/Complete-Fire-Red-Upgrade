@@ -92,7 +92,7 @@ Adjusts power from foe's stats.
 Restores HP if poisoned.
 
 #org @DESC_ICEBODY
-Slight HP recovery in hail.
+Slight HP recovery in snowstorm.
 
 #org @DESC_MOODY
 Ups one stat and downs another.
@@ -104,13 +104,13 @@ Heals status problems in rain.
 May heal ally's status problems.
 
 #org @DESC_SNOWCLOAK
-Ups evasion in hail.
+Ups evasion in snowstorm.
 
 #org @DESC_TANGLEDFEET
 Ups evasion if confused.
 
 #org @DESC_SNOWWARNING
-Summons a hailstorm in battle.
+Summons a snowstorm in battle.
 
 #org @DESC_QUICKFEET
 Ups SPEED if suffering.
@@ -265,7 +265,7 @@ Reduces damage at full HP.
 Lowers shields below half HP.
 
 #org @DESC_SLUSHRUSH
-Boosts speed in Hail.
+Boosts speed in snowstorm.
 
 #org @DESC_SOULHEART
 Knockouts boost SP. ATK.
@@ -482,7 +482,7 @@ Halves special damage.
 Doubles berry effects.
 
 #org @DESC_ICE_FACE
-Free physical hit. Hail renews.
+Free physical hit that renews\nduring snowstorm.
 
 #org @DESC_POWERSPOT
 Powers up ally moves.

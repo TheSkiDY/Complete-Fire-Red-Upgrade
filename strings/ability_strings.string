@@ -38,7 +38,7 @@ It was alerted to\n[EFFECT_BANK]'s\l[BUFFER][00]!
 [SCRIPTING_BANK] frisked\n[EFFECT_BANK] and found\lits [LAST_ITEM]!
 
 #org @gText_ItIsHailing
-It is hailing.
+A snowstorm is raging!
 
 #org @gText_FogIsDeep
 The fog is deep[.]
