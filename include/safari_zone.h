@@ -3,6 +3,7 @@
 #include "global.h"
 
 extern u8 gNumSafariBalls;
+extern u16 gSafariZoneStepCounter;
 
 bool8 __attribute__((long_call)) GetSafariZoneFlag(void);
 void __attribute__((long_call)) SetSafariZoneFlag(void);

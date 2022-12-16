@@ -15,3 +15,4 @@ enum
 u8* __attribute__((long_call)) GetMapName(u8* dest, u16 regionMapId, u16 padLength);
 u8 __attribute__((long_call)) GetSelectedRegionMap(void);
 void __attribute__((long_call)) InitRegionMapWithExitCB(u8 a0, void (*a1)(void));
+u8* __attribute__((long_call)) GetMapNameGeneric(u8 *dest, u16 mapsec);

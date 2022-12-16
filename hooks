@@ -781,3 +781,7 @@ PrintTimeOnCard 808A22C 0
 PrintNameOnCardFront 8089EEC 0
 StartMenuPlayerCallback 806F4B4 0
 
+## Location window
+DrawSafariZoneStatsWindow 806EE7C 0
+DestroySafariZoneStatsWindow 806EF18 0
+DoDrawStartMenu 806F01C 0

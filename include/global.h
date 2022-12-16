@@ -840,4 +840,8 @@ struct Clock
 
 extern struct Clock gClock; //0x3005EA0 - Was 0x300553C - new one doesn't conflict with linking
 
+#define OPTIONS_BUTTON_MODE_HELP         0
+#define OPTIONS_BUTTON_MODE_LR           1
+#define OPTIONS_BUTTON_MODE_L_EQUALS_A   2
+
 #endif // GUARD_GLOBAL_H

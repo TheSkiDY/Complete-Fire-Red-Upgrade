@@ -1643,7 +1643,7 @@ IsUpdateLinkStateCBActive = 0x805642C | 1;
 AppendToStartMenuItems = 0x806ED94 | 1;
 SetUpStartMenu_Link = 0x806EE34 | 1;
 SetUpStartMenu_UnionRoom = 0x806EE58 | 1;
-DestroySafariZoneStatsWindow = 0x806EF18 | 1;
+//DestroySafariZoneStatsWindow = 0x806EF18 | 1;
 PrintStartMenuItems = 0x806EF44 | 1;
 //DrawStartMenuInOneGo = 0x806F14C | 1;
 task50_startmenu = 0x806F168 | 1;
@@ -2096,6 +2096,12 @@ UpdateTrainerCardPhotoIcons = 0x80CC2BC | 1;
 CB2_ReturnToFieldWithOpenMenu = 0x80568A8 | 1;
 ShowPlayerTrainerCard = 0x808B698 | 1;
 ConvertInternationalString = 0x80093BC | 1;
+
+/* Location window */
+gSafariZoneStepCounter = 0x2039996;
+gNumSafariBalls = 0x2039994;
+GetMapNameGeneric = 0x80C4DF8 | 1;
+sSafariZoneStatsWindowTemplate = 0x83A738C;
 
 /* New RAM */
 gLastWildIndex = 0x203E0C7;
