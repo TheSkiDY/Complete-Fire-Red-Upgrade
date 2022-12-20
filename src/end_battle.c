@@ -171,7 +171,7 @@ const u16 gEndBattleFlagClearTable[] =
 };
 
 //This file's functions:
-static void NaturalCureHeal(void);
+static void EndBattleStatusHeal(void);
 static void RestoreNonConsumableItems(void);
 static void RevertDynamax(void);
 static void RecalcAllStats(void);
@@ -633,7 +633,7 @@ void EndOfBattleThings(void)
 {
 	if (gNewBS != NULL) //Hasn't been cleared yet
 	{
-		NaturalCureHeal();
+		EndBattleStatusHeal();
 		RestoreNonConsumableItems();
 		RevertDynamax();
 		FormsRevert(gPlayerParty);
@@ -667,11 +667,11 @@ void EndOfBattleThings(void)
 	}
 }
 
-static void NaturalCureHeal(void)
+static void EndBattleStatusHeal(void)
 {
 	for (int bank = 0; bank < gBattlersCount; ++bank)
 	{
-		if (ABILITY(bank) == ABILITY_NATURALCURE && gBattleMons[bank].status1)
+		if ((gBattleMons[bank].friendship >= MAX_FRIENDSHIP || ABILITY(bank) == ABILITY_NATURALCURE) && gBattleMons[bank].status1)
 			GetBankPartyData(bank)->condition = 0;
 	}
 }
