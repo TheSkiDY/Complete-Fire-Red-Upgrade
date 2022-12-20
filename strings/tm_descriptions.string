@@ -1,0 +1,384 @@
+#org @sText_TM01_Description
+An attack that is\nexecuted last.\nThe user flinches\nif hit beforehand.
+
+#org @sText_TM02_Description
+Sharp, huge claws\nhook and slash the\nfoe quickly and\nwith great power.
+
+#org @sText_TM03_Description
+An attack with a\npulsing blast of\nwater. It may also\nconfuse the foe.
+
+#org @sText_TM04_Description
+The user focuses\nits mind to raise\nthe SP. ATK and\nSP. DEF stats.
+
+#org @sText_TM05_Description
+A sweet kiss that\nabsorbs half the\ndamage inflicted\nto restore HP.
+
+#org @sText_TM06_Description
+A move that badly\npoisons the foe.\nIts poison damage\nworsens every turn.
+
+#org @sText_TM07_Description
+A snowstorm lasting\nfive turns damages\nall POKéMON except\nthe ICE-type.
+
+#org @sText_TM08_Description
+The user bulks up\nits body to boost\nboth its ATTACK and\nDEFENSE stats.
+
+#org @sText_TM09_Description
+The user shoots\nseeds at the foe.\nTwo to five seeds\nare shot at once.
+
+#org @sText_TM10_Description
+An attack that\nvaries in type\ndepending on\nthe user.
+
+#org @sText_TM11_Description
+The sun blazes for\nfive turns, powering\nup FIRE-type\nmoves.
+
+#org @sText_TM12_Description
+The foe is taunted\ninto a rage that\nallows it to use\nonly attack moves.
+
+#org @sText_TM13_Description
+The foe is struck\nwith an icy beam.\nIt may leave the foe\nwith frostbite.
+
+#org @sText_TM14_Description
+Sharp pins are shot\nat the foe and hit\ntwo to five times\nat once.
+
+#org @sText_TM15_Description
+The foe is charmed\nby the user's cute\nappeals, sharply\ncutting its ATTACK.
+
+#org @sText_TM16_Description
+A wall of light\ncuts damage from\nSP. ATK attacks\nfor five turns.
+
+#org @sText_TM17_Description
+Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
+
+#org @sText_TM18_Description
+A heavy rain falls\nfor five turns,\npowering up WATER-\ntype moves.
+
+#org @sText_TM19_Description
+A harsh attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.
+
+#org @sText_TM20_Description
+It protects the\nuser's party from\nall status problems\nfor five turns.
+
+#org @sText_TM21_Description
+A cutely executed\nattack that also\nsteals the foe's\nhold item.
+
+#org @sText_TM22_Description
+A 2-turn move that\nblasts the foe with\nabsorbed energy in\nthe 2nd turn.
+
+#org @sText_TM23_Description
+The user drops its\nfull body on the\nfoe. It may leave\nthe foe paralyzed.
+
+#org @sText_TM24_Description
+A strong electrical\nattack that may\nalso leave the foe\nparalyzed.
+
+#org @sText_TM25_Description
+The user shoots an\nodd psychic wave that\ninflicts physical\ndamage.
+
+#org @sText_TM26_Description
+An earthquake that\nstrikes all POK\eMON\nin battle excluding\nthe user.
+
+#org @sText_TM27_Description
+This attack move\ngrows more powerful\nthe more the user\nlikes its TRAINER.
+
+#org @sText_TM28_Description
+An attack that hits\non the 2nd turn.\nCan also be used\nto exit dungeons.
+
+#org @sText_TM29_Description
+A strong telekinetic\nattack. It may also\nlower the foe's\nSP. DEF stat.
+
+#org @sText_TM30_Description
+A shadowy blob is\nhurled at the foe.\nMay also lower the\nfoe's SP. DEF.
+
+#org @sText_TM31_Description
+An attack that also\nbreaks any barrier\nlike LIGHT SCREEN\nand REFLECT.
+
+#org @sText_TM32_Description
+Star-shaped rays\nthat never miss are\nfired at all foes\nin battle.
+
+#org @sText_TM33_Description
+A wall of light\ncuts damage from\nphysical attacks\nfor five turns.
+
+#org @sText_TM34_Description
+A rapid jolt of\nelectricity strikes\nthe foe. It can't\nbe evaded.
+
+#org @sText_TM35_Description
+The foe is scorched\nwith intense flames.\nThe foe may suffer\na burn.
+
+#org @sText_TM36_Description
+Filthy sludge is\nhurled at the foe.\nIt may poison the\ntarget.
+
+#org @sText_TM37_Description
+A 5-turn sandstorm\nthat damages all\ntypes except ROCK,\nGROUND, and STEEL.
+
+#org @sText_TM38_Description
+The user switches\nout, passing along\nany stat changes\nto the new battler.
+
+#org @sText_TM39_Description
+Boulders are hurled\nat the foe. It also\nlowers the foe's\nSPEED if it hits.
+
+#org @sText_TM40_Description
+An extremely fast\nattack against one\ntarget. It can't be\nevaded.
+
+#org @sText_TM41_Description
+The user thrashes\nabout for two to\nthree turns, then\nbecomes confused.
+
+#org @sText_TM42_Description
+An attack that is\nboosted if user is\nburned, poisoned,\nor paralyzed.
+
+#org @sText_TM43_Description
+The user cloaks\nitself with flame and\nattacks. It raises the\nuser's SPEED stat.
+
+#org @sText_TM44_Description
+The user sleeps for\ntwo turns to fully\nrestore HP and heal\nany status problem.
+
+#org @sText_TM45_Description
+An attack that varies\nin power and type\ndepending on the\nweather.
+
+#org @sText_TM46_Description
+An attack that may\ntake the foe's held\nitem if the user\nisn't holding one.
+
+#org @sText_TM47_Description
+The foe is hit with\nwings of steel.\nIt may also raise\nthe user's DEFENSE.
+
+#org @sText_TM48_Description
+The user attacks\nwith a song. Others\ncan join and make\nthe attack stronger.
+
+#org @sText_TM49_Description
+The user shoots\nboiling water at its\ntarget. It may also\nleave the foe burned.
+
+#org @sText_TM50_Description
+An intense attack\nthat also sharply\nreduces the user's\nSP. ATK stat.
+
+#org @sText_TM51_Description
+A self-healing move\nthat restores up to\nhalf of the user's\nmaximum HP.
+
+#org @sText_TM52_Description
+The user unleashes\nits power. Can lower\nfoe's SP.DEF.
+
+#org @sText_TM53_Description
+The foe is blasted\nwith natural energy.\nMay lower the foe's\nSP.DEF.
+
+#org @sText_TM54_Description
+A restrained attack\nthat always leaves\nthe foe with at\nleast 1 HP.
+
+#org @sText_TM55_Description
+The user cloaks\nitself in fire. It\nleaves the user with\nrecoil.
+
+#org @sText_TM56_Description
+The user flings its\nheld item at the foe.\nIts power and effects\ndepend on the item.
+
+#org @sText_TM57_Description
+The user fires a\nload of electricity\nthat raises the\nuser's SP.ATK. 
+
+#org @sText_TM58_Description
+The user attacks by\nhurling mud. It also\nreduces the foe's\nSPEED.
+
+#org @sText_TM59_Description
+The user focuses\nits willpower to its\nhead and attacks\nthe target.
+
+#org @sText_TM60_Description
+The user vibrates its\nwings to generate a\nsound wave. It may\nlower the SP. DEF.
+
+#org @sText_TM61_Description
+A sinister, bluish\nwhite flame is shot\nat the foe to\ninflict a burn.
+
+#org @sText_TM62_Description
+The user strikes\nthe target stronger\nif the user is not\nholding an item.
+
+#org @sText_TM63_Description
+A chilling wind is\nused to attack. It\nalso lowers the\nSPEED stat.
+
+#org @sText_TM64_Description
+The user explodes\nto inflict terrible\ndamage even while\nfainting itself.
+
+#org @sText_TM65_Description
+Claws made of\nshadows rake the\nfoe. It has a high\ncritical-hit ratio.
+
+#org @sText_TM66_Description
+If the user moves\nafter the target,\nthis attack's power\nwill be doubled.
+
+#org @sText_TM67_Description
+The user makes the\nground erupt with\npower. It may lower\nthe foe's SP. DEF.
+
+#org @sText_TM68_Description
+The user attacks with\nblades formed by\npsychic power. It has\na high crit ratio.
+
+#org @sText_TM69_Description
+The user polishes\nits body to sharply\nboost its SPEED.
+
+#org @sText_TM70_Description
+The user gathers all\nits light energy and\nreleases it at once.\nIt may lower SP. DEF.
+
+#org @sText_TM71_Description
+The user slams a\nbarrage of hard\nshelled seeds down\non the foe.
+
+#org @sText_TM72_Description
+After the attack,\nthe user rushes back\nto switch places with\na party POK\eMON.
+
+#org @sText_TM73_Description
+A weak electric\nshock that is sure\nto cause paralysis\nif it hits.
+
+#org @sText_TM74_Description
+The user drenches the\ntarget in a poisonous\nliquid. Doubles power\non a poisoned foe.
+
+#org @sText_TM75_Description
+A move that inflicts\ndouble the damage if\nthe user has been\nhurt in the same turn.
+
+#org @sText_TM76_Description
+Levitating rocks\nare laid around the\nfoe's party to hurt\nfoes switching in.
+
+#org @sText_TM77_Description
+This relentless move\ndoes massive damage\nto a target affected\nby status problems.
+
+#org @sText_TM78_Description
+The user plays rough\nwith the target. It\nmay lower the foe's\nATTACK.
+
+#org @sText_TM79_Description
+The user releases\na horrible aura that\nmay also make the\nfoe flinch.
+
+#org @sText_TM80_Description
+Large boulders are\nhurled at the foe.\nIt may make the\nfoe flinch.
+
+#org @sText_TM81_Description
+The user slams the\ntarget with its\nsteel-hard head. It\nmay flinch the foe.
+
+#org @sText_TM82_Description
+The user attacks the\ntarget's throat, and\nprevents from using\nsound moves.
+
+#org @sText_TM83_Description
+The user is roused,\nand its ATTACK and\nSP. ATK stats\nincrease.
+
+#org @sText_TM84_Description
+The foe is stabbed\nwith a limb steeped\nin poison. It may\nalso poison the foe.
+
+#org @sText_TM85_Description
+The user yells as if\nit's ranting, making\nthe target's SP.ATK\nstat decrease.
+
+#org @sText_TM86_Description
+The user vanishes\nsomewhere, then\nstrikes the target\non the next turn.
+
+#org @sText_TM87_Description
+A move that makes\nthe foe confused,\nbut also sharply\nraises its ATTACK.
+
+#org @sText_TM88_Description
+While asleep, the\nuser randomly uses\none of the moves\nit knows.
+
+#org @sText_TM89_Description
+After the attack,\nthe user rushes back\nto switch places with\na party POK\eMON.
+
+#org @sText_TM90_Description
+A trap of spikes\nis laid around the\nfoe's party to hurt\nfoes switching in.
+
+#org @sText_TM91_Description
+The user lays a trap\nof poison spikes.\nThey poison foes that\nswitch into battle.
+
+#org @sText_TM92_Description
+The user creates\na bizarre area in\nwhich slower POK\eMON\nget to move first.
+
+#org @sText_TM93_Description
+The user smashes\ninto its target. It\nalso damages the\nuser a little.
+
+#org @sText_TM94_Description
+An attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.
+
+#org @sText_TM95_Description
+The user attacks with\na blade that slices\neven the sky. It may\nalso cause flinching.
+
+#org @sText_TM96_Description
+The user attacks 2 to\n5 times in a row. This\nboosts the user's\nSPEED but lowers DEF.
+
+#org @sText_TM97_Description
+It reduces the foe's\nevasion stat. It\nalso removes spikes,\nlight screens, etc.
+
+#org @sText_TM98_Description
+Knocks down the foe's\nheld item to prevent\nits use during\nthe battle.
+
+#org @sText_TM99_Description
+The user damages\nopposing POK\eMON by\nemitting a powerful\nflash.
+
+#org @sText_TM100_Description
+The user covers its\nfeet in thin ice and\ntwirls around. Also\ndestroys terrains.
+
+#org @sText_TM101_Description
+The user attacks with\na ray of light that\nsparkles as if it were\nmade of gemstones.
+
+#org @sText_TM102_Description
+The user shoots filthy\ngarbage at the foe\nto attack. It may\nalso poison the foe.
+
+#org @sText_TM103_Description
+Restores the user's\nHP. The amount of HP\nregained varies with\nthe weather.
+
+#org @sText_TM104_Description
+The user hardens its\nbody's surface to\nsharply raise its\nDEFENSE stat.
+
+#org @sText_TM105_Description
+The user electrifies\nthe ground under\neveryone's feet for\nfive turns.
+
+#org @sText_TM106_Description
+The user turns the\nground under\neveryone's feet to\ngrass for 5 turns.
+
+#org @sText_TM107_Description
+The user covers the\nground under\neveryone's feet with\nmist for five turns.
+
+#org @sText_TM108_Description
+This protects POK\eMON\non the ground from\npriority moves and\nboosts PSYCHIC moves.
+
+#org @sText_TM109_Description
+This move's type\nand power changes\ndepending on the\nterrain when used.
+
+#org @sText_TM110_Description
+The user fills a\nblade with the light's\nenergy, attacking the\nfoe on the next turn.
+
+#org @sText_TM111_Description
+The user attacks the\ntarget by showering\nit with water. This\nlowers the foe's ATK.
+
+#org @sText_TM112_Description
+User looses a blast\nof aura power from\ndeep within its body.\nBypasses accuracy.
+
+#org @sText_TM113_Description
+The user attacks by\nswinging its tail as\nif it were a vicious\nwave in a raging storm.
+
+#org @sText_TM114_Description
+The user fires a\nbeam of steel.\nThis also damages\nthe user.
+
+#org @sText_TM115_Description
+The foe is attacked\nwith a shock wave\ngenerated by the\nuser's gaping mouth.
+
+#org @sText_TM116_Description
+The foe is hit with\na flashing beam that\nmay also cause\nconfusion.
+
+#org @sText_TM117_Description
+The user lets loose\na horribly echoing\nshout with the power\nto inflict damage.
+
+#org @sText_TM118_Description
+User gathers space\npower and boosts its\nSP.ATK stat, then\nattacks the next turn.
+
+#org @sText_TM119_Description
+This move reduces\ndamage for five turns.\nOnly usable during\na snowstorm.
+
+#org @sText_TM120_Description
+After the attack,\nthe user rushes back\nto switch places with\na party POK\eMON.
+
+#org @sText_HM01_Description
+Cuts using claws,\nscythes, etc. Works\nsuper-effectively\nagainst GRASS types.
+
+#org @sText_HM02_Description
+A 2-turn move that\nhits on the 2nd turn.\nUse it to fly to\nany known town.
+
+#org @sText_HM03_Description
+A big wave crashes\ndown on the foe. Can\nalso be used for\ncrossing water.
+
+#org @sText_HM04_Description
+A powerful physical\nattack. Super-effective\non ROCK. Can be used\nto move boulders.
+
+#org @sText_HM05_Description
+Blinds the foe to\nreduce accuracy.\nIt's guaranteed\nto go first.
+
+#org @sText_HM06_Description
+A rock-crushing attack\nthat may lower DEFENSE.\nAlways crits against\nROCK types.
+
+#org @sText_HM07_Description
+A powerful charge\nattack. It can also\nbe used to climb\na waterfall.
+
+#org @sText_HM08_Description
+An attack that may\nleave the foe confused.\nCan be used to scale\nrocky walls.
+

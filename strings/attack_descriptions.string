@@ -731,7 +731,7 @@ The user smashes into\nthe target at high\nspeed. This move\nalways goes first.
 The user entangles\nthe target with its\nanchor chain while\nattacking. The target\ncannot flee.
 
 #org @DESC_AURORAVEIL
-This move reduces\ndamage from physical\nand special moves for\nfive turns during a\nhailstorm.
+This move reduces\ndamage from physical\nand special moves for\nfive turns during a\nsnowstorm.
 
 #org @DESC_BANEFULBUNKER
 Aside from protecting\nthe user from attacks,\nthis also poisons\nattackers who make\ncontact.
@@ -1329,7 +1329,7 @@ FIGHTING dynamax\nmove. It raises\nally POK\eMON's\nATTACK stats.
 GHOST-Type dynamax\nmove. It lowers\nthe target's\nDEFENSE stat.
 
 #org @DESC_MAX_HAILSTORM
-ICE-Type dynamax\nmove. It summons\na hailstorm for\nfive turns.
+ICE-Type dynamax\nmove. It summons\na snowstorm for\nfive turns.
 
 #org @DESC_MAX_OOZE
 POISON-Type dynamax\nmove. It raises\nally POK\eMON's\nSP. ATK stats.
