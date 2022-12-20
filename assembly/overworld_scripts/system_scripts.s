@@ -1154,3 +1154,118 @@ SystemScript_DebugMenu_MaxCoinage:
 SystemScript_DebugMenu_ShinyTeam:
 	callasm DebugMenu_ShinyTeam
 	goto SystemScript_DebugMenu
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.global EventScript_FastPokeCenterHeal
+EventScript_FastPokeCenterHeal:
+	lock
+	faceplayer
+	special 0x187
+	compare LASTRESULT 0x2
+	if equal _goto 0x81A7AE0
+	goto EventScript_HealingAnim
+	end
+
+EventScript_HealingAnim:
+	incrementgamestat 0xF
+	preparemsg 0x81A54E1
+	waitmsg
+	applymovement LASTTALKED 0x81A75E7
+	waitmovement 0x0
+	doanimation 0x19
+	waitfieldeffect 0x19
+	applymovement LASTTALKED 0x81A75ED
+	waitmovement 0x0
+	special 0x0
+	special 0x169
+	preparemsg 0x81A552B
+	waitmsg
+	applymovement LASTTALKED 0x81A666C
+	waitmovement 0x0
+	msgbox 0x81A5511 MSG_KEEPOPEN
+	closeonkeypress
+	applymovement PLAYER Movement_FaceDownAfterHealing
+	waitmovement 0x0
+	release
+	end
+
+Movement_FaceDownAfterHealing:
+	.byte look_down, end_m
+
+
+@;@@@@@@@@@@@@@@@@@@@@@@ Custom HMs @@@@@@@@@@@@@@@@
+
+.global EventScript_CutTree
+EventScript_CutTree:
+	lockall
+	special 0x10A
+	compare 0x8004 0x6
+	if 0x1 _goto EventScript_CutTree_Description
+	setanimation 0x0 0x8004
+	doanimation 0x2
+	waitstate
+	sound 0x79
+	applymovement LASTTALKED CutTree_Movement
+	waitmovement 0x0
+	checksound
+	hidesprite LASTTALKED
+	releaseall
+	end
+
+EventScript_CutTree_Description:
+	textcolor 0x2
+	msgbox gText_CantCutTree 0x6
+	releaseall
+	end
+
+CutTree_Movement:
+	.byte 0x69
+	.byte 0xFE
+
+.global EventScript_RockSmash
+EventScript_RockSmash:
+	lockall
+	special 0x10B
+	compare 0x8004 0x6
+	if 0x1 _goto EventScript_RockSmash_Description
+	setanimation 0x0 0x8004
+	doanimation 0x25
+	waitstate
+	sound 0x7C
+	applymovement LASTTALKED RockSmash_Movement
+	waitmovement 0x0
+	checksound
+	hidesprite LASTTALKED
+	releaseall
+	end
+
+EventScript_RockSmash_Description:
+	textcolor 0x2
+	msgbox gText_CantSmashRock 0x6
+	releaseall
+	end
+
+RockSmash_Movement:
+	.byte 0x68
+	.byte 0xFE
+
+.global EventScript_Strength
+EventScript_Strength:
+	lockall
+	checkflag 0x805
+	if 0x1 _goto EventScript_Strength_AlreadyPushed
+	special 0x10C
+	compare 0x8004 0x6
+	if 0x1 _goto EventScript_Strength_Description
+	setflag 0x805
+	msgbox gText_StrengthStartPushing 0x3
+	end
+
+EventScript_Strength_AlreadyPushed:
+	msgbox gText_StrengthBoulderAlreadyPushed 0x3
+	end
+
+EventScript_Strength_Description:
+	msgbox gText_CantPushStrengthBoulder 0x3
+	end
