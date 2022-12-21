@@ -7,6 +7,12 @@
 #org @gMenuText_Move
 MOVE
 
+#org @gMenuText_Nickname
+NICKNAME
+
+#org @gMenuText_Relearn
+RELEARN
+
 #org @gText_MoveItemWhere
 Move to where?
 

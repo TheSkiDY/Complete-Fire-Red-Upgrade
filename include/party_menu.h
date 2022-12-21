@@ -108,9 +108,11 @@ enum
 #define MENU_TRADE1 16
 #define MENU_TRADE2 17
 #define MENU_MOVE_ITEM 18
-#define MENU_FIELD_MOVES 19
+#define MENU_NICKNAME 19
+#define MENU_RELEARN 20
+#define MENU_FIELD_MOVES 21
 
-#define MENU_FIELD_MOVES_MINUS_1 18
+#define MENU_FIELD_MOVES_MINUS_1 20
 
 struct PartyMenu
 {
@@ -171,3 +173,7 @@ void __attribute__((long_call)) PartyMenuModifyHP(u8 taskId, u8 slot, s8 hpIncre
 
 void __attribute__((long_call)) Task_ClosePartyMenu(u8 taskId);
 void __attribute__((long_call)) DisplayPartyPokemonBarDetail(u8 windowId, const u8 *str, u8 color, const u8 *align);
+
+void __attribute__((long_call)) CB2_ReturnToPartyMenuFromSummaryScreen(void);
+void __attribute__((long_call)) Task_InitMoveRelearnerMenu(u8 taskId);
+void __attribute__((long_call)) DisplayMoveTutorMenu(void);
