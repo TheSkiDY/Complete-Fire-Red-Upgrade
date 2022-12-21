@@ -23,6 +23,10 @@ npc 36 0 0 EventScript_FastPokeCenterHeal
 npc 37 0 0 EventScript_FastPokeCenterHeal
 npc 31 3 0 EventScript_FastPokeCenterHeal
 
+## Lorelei check fix for Indigo Plateau
+npc 13 0 3 EventScript_IndigoPlateau_FromHereOnGirl_Start
+map 13 0 MapScript_IndigoPlateau_Start
+
 ##New HMs
 npc 3 20 2 EventScript_CutTree
 npc 3 20 3 EventScript_CutTree
