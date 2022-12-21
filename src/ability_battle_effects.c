@@ -629,6 +629,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			#endif
 			}
 
+			#ifdef TECH_DEMO
+			if(gSaveBlock1->location.mapGroup == 12 && gSaveBlock1->location.mapNum == 0) //Blaine gym
+			{
+				gBattleWeather = (WEATHER_SUN_PERMANENT | WEATHER_SUN_TEMPORARY);
+				gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+				effect++;
+			}
+			#endif
+
 			if (IsDeltaStreamBattle())
 			{
 				gBattleWeather = WEATHER_AIR_CURRENT_PRIMAL;

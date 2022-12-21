@@ -9,30 +9,33 @@
  *		  several macros and constants for building Pokemon.
  */
 
-#define MAKE_POKEMON(structure)																																\
-{																																							\
-	u16 speciesToCreate = TryReplaceNormalTrainerSpecies(structure[i].species, trainerId);																	\
-	for (j = 0; gSpeciesNames[speciesToCreate][j] != EOS; ++j)																								\
-		nameHash += gSpeciesNames[speciesToCreate][j];																										\
-																																							\
-	personalityValue += nameHash << 8;																														\
-																																							\
-	u8 lvl = structure[i].lvl;																																\
-	if (FlagGet(FLAG_SCALE_TRAINER_LEVELS)																													\
-	|| (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER))																										\
-		lvl = GetHighestMonLevel(gPlayerParty);																												\
-																																							\
-	if (levelScaling && (side == B_SIDE_OPPONENT || !firstTrainer))																							\
-	{																																						\
-		if (IsBossTrainerClassForLevelScaling(trainerId))																									\
-			ModifySpeciesAndLevelForBossBattle(&speciesToCreate, &lvl, maxPartyLevel, highestPlayerLevel, canEvolveMon);									\
-		else																																				\
-			ModifySpeciesAndLevelForGenericBattle(&speciesToCreate, &lvl, minPartyLevel, highestPlayerLevel, modifiedAveragePlayerLevel, trainer->partyFlags, trainer->partySize, canEvolveMon);	\
-	}																																						\
-																																							\
-	CreateMon(&party[i], speciesToCreate, lvl, baseIV, TRUE, personalityValue, otIdType, otid);																\
-	TryFixMiniorForm(&party[i]);																															\
-	party[i].metLevel = structure[i].lvl;																													\
+#define MAKE_POKEMON(structure)																									\
+{																																\
+	u16 speciesToCreate = TryReplaceNormalTrainerSpecies(structure[i].species, trainerId);										\
+	for (j = 0; gSpeciesNames[speciesToCreate][j] != EOS; ++j)																	\
+		nameHash += gSpeciesNames[speciesToCreate][j];																			\
+																																\
+	personalityValue += nameHash << 8;																							\
+																																\
+	u8 lvl = structure[i].lvl;																									\
+	if (FlagGet(FLAG_SCALE_TRAINER_LEVELS)																						\
+	|| (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER))																			\
+		lvl = GetHighestMonLevel(gPlayerParty);																					\
+																																\
+	if (levelScaling && (side == B_SIDE_OPPONENT || !firstTrainer))																\
+	{																															\
+		if (IsBossTrainerClassForLevelScaling(trainerId))																		\
+			ModifySpeciesAndLevelForBossBattle(&speciesToCreate, &lvl, maxPartyLevel, highestPlayerLevel, canEvolveMon);		\
+		else																													\
+		{																														\
+			lvl = GetAveragePartyLevel(gPlayerParty) - 1;																		\
+			ModifySpeciesAndLevelForGenericBattle(&speciesToCreate, &lvl, minPartyLevel, highestPlayerLevel, modifiedAveragePlayerLevel, trainer->partyFlags, trainer->partySize, canEvolveMon); \
+		}																														\
+	}																															\
+																																\
+	CreateMon(&party[i], speciesToCreate, lvl, baseIV, TRUE, personalityValue, otIdType, otid);									\
+	TryFixMiniorForm(&party[i]);																								\
+	party[i].metLevel = structure[i].lvl;																						\
 }
 
 #define SET_MOVES(structure)													\

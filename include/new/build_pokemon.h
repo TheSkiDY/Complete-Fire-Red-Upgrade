@@ -27,6 +27,7 @@ u8 GetOpenWorldBadgeCount(void);
 u8 GetScaledWildBossLevel(u8 level);
 u16 GenerateWildMonHeldItem(u16 species, u8 bonus);
 void SetWildMonHeldItem(void);
+u8 GetAveragePartyLevel(const struct Pokemon* const party);
 
 //Functions Hooked In
 void BuildTrainerPartySetup(void);
