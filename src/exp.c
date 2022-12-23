@@ -509,7 +509,7 @@ static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f
 
 	#ifdef FLAT_EXP_FORMULA
 		++Lp; //So the variable doesn't remain unused
-		calculatedExp = udivsi(a * t * b * e * L * p * v * x, 10 * 10 * 10 * 10); //Did the calcs, shouldn't overflow (unless Base Exp > 1060)
+		calculatedExp = udivsi(a * t * b * e * L * p * v * x, 10 * 10 * 10 * 10 * 10); //Did the calcs, shouldn't overflow (unless Base Exp > 1060)
 		calculatedExp = (calculatedExp * f) / 10; //Affection boost
 		calculatedExp = udivsi(calculatedExp, 7 * s);
 
@@ -527,7 +527,7 @@ static u32 ExpCalculator(u32 a, u32 t, u32 b, u32 e, u32 L, u32 Lp, u32 p, u32 f
 
 		calculatedExp += 1;
 
-		calculatedExp = (udivsi(calculatedExp * t * e * v * x, 10 * 10 * 10) * p * f) / 10;
+		calculatedExp = (udivsi(calculatedExp * t * e * v * x, 10 * 10 * 10 * 10) * p * f) / 10;
 	#endif
 
 	if (IsRaidBattle())
