@@ -2075,6 +2075,9 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 					return FALSE;
 				break;
 			#endif
+
+			case ABILITY_PURIFYINGSALT:
+				return FALSE;
 		}
 	}
 
@@ -2173,6 +2176,8 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 					return FALSE;
 				break;
 			#endif
+			case ABILITY_PURIFYINGSALT:
+				return FALSE;
 		}
 	}
 
@@ -2250,6 +2255,8 @@ bool8 CanRest(u8 bank)
 				return FALSE;
 			break;
 		#endif
+		case ABILITY_PURIFYINGSALT:
+			return FALSE;
 	}
 
 	return TRUE;
@@ -2760,4 +2767,15 @@ u8 GetRoomTurnCount(u8 bank)
 		turns = 8;
 
 	return turns;	
+}
+
+u8 CountFaintedMonsInParty(struct Pokemon* party)
+{
+	u8 count = 0;
+	for (u8 i = 0; i < PARTY_SIZE; ++i)
+	{
+		if (party[i].species != SPECIES_NONE && party[i].hp == 0 && !party[i].isEgg)
+			count++;
+	}
+	return count;
 }

@@ -227,6 +227,17 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
+			case ABILITY_EARTHEATER:
+				if (moveType == TYPE_GROUND)
+				{
+					if (!TARGETING_PARTNER) //Good idea to attack partner
+					{
+						DECREASE_VIABILITY(20);
+						return viability;
+					}
+				}
+				break;
+
 			//case ABILITY_WATERCOMPACTION: //Still affects this target
 			//	if (moveType == TYPE_WATER)
 			//		return viability - 10;
@@ -407,7 +418,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_HYPERCUTTER:
-				if (moveEffect == EFFECT_ATTACK_DOWN || moveEffect == EFFECT_ATTACK_DOWN_2)
+				if (!SpeciesHasSharpness(GetProperAbilityPopUpSpecies(bankDef)) && (moveEffect == EFFECT_ATTACK_DOWN || moveEffect == EFFECT_ATTACK_DOWN_2))
 				{
 					DECREASE_VIABILITY(10);
 					return viability;
@@ -496,6 +507,14 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				&& WEATHER_HAS_EFFECT)
 				{
 					DECREASE_VIABILITY(10);
+					return viability;
+				}
+				break;
+
+			case ABILITY_WINDRIDER:
+				if (specialMoveFlags->gWindMoves)
+				{
+					DECREASE_VIABILITY(20);
 					return viability;
 				}
 				break;

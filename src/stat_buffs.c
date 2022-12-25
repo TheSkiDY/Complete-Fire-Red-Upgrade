@@ -41,6 +41,14 @@ void atk13_printfromtable(void)
 	gBattlescriptCurrInstr += 5;
 	gBattleCommunication[MSG_DISPLAY] = 1;
 
+	if (stringId == STRINGID_PKMNSSTATCHANGED || (stringId == STRINGID_PKMNSSTATCHANGED2 && SIDE(gBankAttacker) == SIDE(gBankTarget)))
+	{
+		u8 bank = gBankAttacker;
+		u8 bankToCopyStats = FOE(gBankAttacker);
+
+		OpportunistActivation(bank, bankToCopyStats);
+	}
+
 	if (stringId == STRINGID_PKMNSSTATCHANGED4)
 	{
 		u8 atkSide = SIDE(gBankAttacker);
@@ -52,6 +60,20 @@ void atk13_printfromtable(void)
 		|| defSide != atkSide)
 			DefiantActivation(); //Stat fell from enemy
 	}
+}
+
+
+bool8 OpportunistActivation(u8 bankToCopyFrom, u8 bankToCopyTo)
+{
+	if(ABILITY(bankToCopyTo) == ABILITY_OPPORTUNIST && ABILITY(bankToCopyFrom) != ABILITY_OPPORTUNIST)
+	{
+		gFormCounter = bankToCopyTo;
+		BattleScriptPushCursor();
+		gBattlescriptCurrInstr = BattleScript_Opportunist;
+		return TRUE;
+	}
+	else
+		return FALSE;
 }
 
 bool8 DefiantActivation(void)
@@ -392,7 +414,7 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 		}
 
 		else if (!certain
-		&& (AbilityPreventsLoweringStat(ability, statId) || (IsIntimidateActive() && AbilityBlocksIntimidate(ability))))
+		&& (AbilityPreventsLoweringStat(ability, statId, GetProperAbilityPopUpSpecies(gActiveBattler)) || (IsIntimidateActive() && AbilityBlocksIntimidate(ability))))
 		{
 			if (flags == STAT_CHANGE_BS_PTR)
 			{
@@ -553,7 +575,7 @@ u8 CanStatNotBeLowered(u8 statId, u8 bankDef, u8 bankAtk, u8 defAbility)
 		return STAT_PROTECTED_BY_GENERAL_ABILITY;
 	else if (ABILITY(PARTNER(bankDef)) == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS))
 		return STAT_PROTECTED_BY_PARTNER_ABILITY;
-	else if (AbilityPreventsLoweringStat(defAbility, statId))
+	else if (AbilityPreventsLoweringStat(defAbility, statId, GetProperAbilityPopUpSpecies(bankDef)))
 		return STAT_PROTECTED_BY_SPECIFIC_ABILITY;
 
 	return STAT_CAN_BE_LOWERED;

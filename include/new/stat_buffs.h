@@ -26,6 +26,8 @@ bool8 DefiantActivation(void);
 u8 CanStatNotBeLowered(u8 statId, u8 bankDef, u8 bankAtk, u8 defAbility);
 bool8 CanStatBeLowered(u8 statId, u8 bankDef, u8 bankAtk, u8 defAbility);
 
+bool8 OpportunistActivation(u8 bankToCopyFrom, u8 bankToCopyTo);
+
 //Functions Hooked In
 void atk13_printfromtable(void);
 void atk20_jumpifstat(void);

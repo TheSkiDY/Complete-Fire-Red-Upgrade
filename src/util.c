@@ -395,6 +395,7 @@ bool8 CanPartyMonBeGeneralStatused(struct Pokemon* mon)
 
 	switch (GetMonAbility(mon)) {
 		case ABILITY_COMATOSE:
+		case ABILITY_PURIFYINGSALT:
 			return FALSE;
 
 		case ABILITY_FLOWERVEIL:

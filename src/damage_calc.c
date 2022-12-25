@@ -1359,7 +1359,7 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	&& move != MOVE_THOUSANDARROWS)
 	{
 		flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-	}
+	}	
 	else if (gSpecialMoveFlags[move].gPowderMoves && !IsAffectedByPowderByDetails(defType1, defType2, defType3, defAbility, defEffect))
 	{
 		flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
@@ -1372,7 +1372,8 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	{
 		flags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
 	}
-	else if (atkAbility != ABILITY_CORROSION
+	else if ((moveEffect == EFFECT_POISON || moveEffect == EFFECT_TOXIC)
+	&& atkAbility != ABILITY_CORROSION
 	&& (defType1 == TYPE_POISON || defType2 == TYPE_POISON || defType3 == TYPE_POISON
 	 || defType1 == TYPE_STEEL || defType2 == TYPE_STEEL || defType3 == TYPE_STEEL))
 	{
@@ -1600,14 +1601,14 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 					multiplier = TYPE_MUL_NORMAL;
 			}
 		}
-		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && BankHasDragonsMaw(gBankAttacker))
 		{
 			if (gTerrainType == DRACO_TERRAIN)
 				multiplier = TYPE_MUL_NORMAL;
 			else
 				multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
-		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && BankHasTransistor(gBankAttacker))
 		{
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				multiplier = TYPE_MUL_NORMAL;
@@ -1647,14 +1648,14 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 				}
 			}
 		}
-		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && atkAbility == ABILITY_DRAGONSMAW)
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_DRAGON && BankHasDragonsMaw(gBankAttacker))
 		{
 			if (gTerrainType == DRACO_TERRAIN)
 				multiplier = TYPE_MUL_NORMAL;
 			else
 				multiplier = TYPE_MUL_NOT_EFFECTIVE;
 		}
-		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && atkAbility == ABILITY_TRANSISTOR)
+		else if (multiplier == TYPE_MUL_NO_EFFECT && moveType == TYPE_ELECTRIC && BankHasTransistor(gBankAttacker))
 		{
 			if (gTerrainType == ELECTRIC_TERRAIN)
 				multiplier = TYPE_MUL_NORMAL;
@@ -2672,7 +2673,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		if (defAbility == ABILITY_INTIMIDATE) //Goes before Foul Play
 		{
-			if (!AbilityPreventsLoweringAtk(data->atkAbility)
+			if (!AbilityPreventsLoweringAtk(data->atkAbility, GetProperAbilityPopUpSpecies(bankAtk))
 			&& !AbilityBlocksIntimidate(data->atkAbility)
 			&& !BankSideHasMist(bankAtk))
 			{
@@ -2769,12 +2770,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			}
 			break;
 
-		case ABILITY_PLUS:
-		case ABILITY_MINUS:
-		//1.5x Boost
-			if (IsPlusMinusAbility(data->atkPartnerAbility)) //Double battle check prior
-				spAttack = (spAttack * 15) / 10;
-			break;
+		// case ABILITY_PLUS:
+		// case ABILITY_MINUS:
+		// //1.5x Boost
+		// 	if (IsPlusMinusAbility(data->atkPartnerAbility)) //Double battle check prior
+		// 		spAttack = (spAttack * 15) / 10;
+		// 	break;
 
 		case ABILITY_HUSTLE:
 		//1.5x Boost
@@ -2827,7 +2828,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		case ABILITY_FLASHFIRE:
 		//1.5x Boost
 			if (!useMonAtk && data->moveType == TYPE_FIRE
-			&& (gBattleResources->flags->flags[bankAtk] & RESOURCE_FLAG_FLASH_FIRE))
+			&& (gBattleResources->flags->flags[bankAtk] & RESOURCE_FLAG_FLASH_FIRE)
+			&& !(BankHasWellBakedBody(bankAtk)))
 				spAttack = (spAttack * 15) / 10;
 			break;
 
@@ -2889,7 +2891,14 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			|| !IsSpeciesAffectedByScalemons(data->atkSpecies)) 
 				spAttack *= 2;
 			break;
+
 	}
+
+	if (BankHasHadronEngine(bankAtk) && gTerrainType == ELECTRIC_TERRAIN)
+		spAttack = (spAttack * 4) / 3;
+
+	if (BankHasOrichalcumPulse(bankAtk) && gBattleWeather & WEATHER_SUN_ANY)
+		attack = (attack * 4) / 3; 
 
 	switch (data->atkPartnerAbility) {
 		case ABILITY_FLOWERGIFT:
@@ -3130,6 +3139,52 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		else if (move == MOVE_MISTYEXPLOSION)
 			spDefense /= 2;
 	#endif
+
+// Treasures of Ruin
+	if (IsBeadsOfRuinOnTheField() && !BankHasBeadsOfRuin(bankDef))
+		spDefense = (spDefense * 75) / 100;
+	if (IsSwordOfRuinOnTheField() && !BankHasSwordOfRuin(bankDef))
+		defense = (defense * 75) / 100;
+	if (IsTabletsOfRuinOnTheField() && !BankHasTabletsOfRuin(bankAtk))
+		attack = (attack * 75) / 100;
+	if (IsVesselOfRuinOnTheField() && !BankHasVesselOfRuin(bankAtk))
+		spAttack = (spAttack * 75) / 100;
+
+
+	if ((ABILITY(bankAtk) == ABILITY_PROTOSYNTHESIS && gBattleWeather & WEATHER_SUN_ANY)
+	 || (ABILITY(bankAtk) == ABILITY_QUARKDRIVE && gTerrainType == ELECTRIC_TERRAIN))
+	{
+		switch (GetMostProficientStat(bankAtk))
+		{
+			case STAT_STAGE_ATK:
+				attack = (attack * 13) / 10;
+				break;
+			case STAT_STAGE_SPATK:
+				spAttack = (spAttack * 13) / 10;
+				break; 
+		}
+	}
+
+	if ((ABILITY(bankDef) == ABILITY_PROTOSYNTHESIS && gBattleWeather & WEATHER_SUN_ANY)
+	 || (ABILITY(bankDef) == ABILITY_QUARKDRIVE && gTerrainType == ELECTRIC_TERRAIN))
+	{
+		switch (GetMostProficientStat(bankDef))
+		{
+			case STAT_STAGE_DEF:
+				defense = (defense * 13) / 10;
+				break;
+			case STAT_STAGE_SPDEF:
+				spDefense = (spDefense * 13) / 10;
+				break; 
+		}
+	}
+
+	if (ABILITY(bankAtk) == ABILITY_SUPREMEOVERLORD)
+	{
+		u8 faintedMonsCount = (SIDE(bankAtk) == B_SIDE_PLAYER) ? CountFaintedMonsInParty(gPlayerParty) : CountFaintedMonsInParty(gEnemyParty);
+		attack = (attack * (10 + faintedMonsCount)) / 10;
+		spAttack = (spAttack * (10 + faintedMonsCount)) / 10;
+	}
 
 //Stat Buffs - Attacker
 	if (data->defAbility != ABILITY_UNAWARE
@@ -3396,6 +3451,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		case ABILITY_PURIFIEDPOLLEN:
 			if (data->moveType == TYPE_POISON)
 				damage /= 4;
+			break;
+
+		case ABILITY_PURIFYINGSALT:
+			if (data->moveType == TYPE_GHOST)
+				damage /= 2;
 			break;
 	}
 
@@ -4202,7 +4262,6 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power *= 2;
 			break;
 
-		case ABILITY_STEELWORKER:
 		case ABILITY_STEELYSPIRIT:
 		//1.5x Boost
 			if (data->moveType == TYPE_STEEL)
@@ -4227,22 +4286,13 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 13) / 10;
 			break;
 
-		#ifdef ABILITY_TRANSISTOR
-		case ABILITY_TRANSISTOR:
-		//1.5x Boost
-			if (data->moveType == TYPE_ELECTRIC)
+		//Transistor, Dragon's Maw etc
+		case ABILITY_TYPE_BOOST: ;
+			u8 type = GetTypeBoostTypeFromSpecies(GetProperAbilityPopUpSpecies(bankAtk));
+			if (data->moveType == type)
 				power = (power * 15) / 10;
 			break;
-		#endif
-
-		#ifdef ABILITY_DRAGONSMAW
-		case ABILITY_DRAGONSMAW:
-		//1.5x Boost
-			if (data->moveType == TYPE_DRAGON)
-				power = (power * 15) / 10;
-			break;
-		#endif
-
+			
 		case ABILITY_BIGPECKS:
 		//1.5x Boost
 			if (gSpecialMoveFlags[move].gPeckingMoves)
@@ -4250,9 +4300,9 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			break;
 
 		case ABILITY_HYPERCUTTER:
-		//1.2x Boost
-			if (gSpecialMoveFlags[move].gCuttingMoves)
-				power = (power * 12) / 10;
+		//1.5x Boost for Sharpness and 1.2x Boost for Hyper Cutter
+			if (gSpecialMoveFlags[move].gSlicingMoves)
+				power = SpeciesHasSharpness(GetProperAbilityPopUpSpecies(bankAtk)) ? ((power * 15) / 10) : ((power * 12) / 10);
 			break;
 
 		case ABILITY_HEAVYBULLET:

@@ -1113,7 +1113,7 @@ static void Task_ManageDexNavHUD(u8 taskId)
 
 		//Increment the search level
 		u16 dexNum = SpeciesToNationalPokedexNum(species);
-		if (gDexNavSearchLevels[dexNum] < 255)
+		if (dexNum < 1000 && gDexNavSearchLevels[dexNum] < 255  /* temporary fix for the indices out of range */)
 			gDexNavSearchLevels[dexNum] += 1;
 
 		//Freeing only the state, objects and hblank cleared on battle start.

@@ -2220,6 +2220,13 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 					return TRUE;
 				break;
 
+			//Ground
+			case ABILITY_EARTHEATER:
+				if (GetMoveTypeSpecial(bankAtk, move) == TYPE_GROUND)
+					return TRUE;
+				break;
+
+
 			//Move category checks
 			case ABILITY_SOUNDPROOF:
 				if (CheckSoundMove(move))
@@ -2334,6 +2341,12 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 			//Grass
 			case ABILITY_SAPSIPPER:
 				if (GetMonMoveTypeSpecial(monAtk, move) == TYPE_GRASS)
+					return TRUE;
+				break;
+
+			//Ground
+			case ABILITY_EARTHEATER:
+				if (GetMonMoveTypeSpecial(monAtk, move) == TYPE_GROUND)
 					return TRUE;
 				break;
 
@@ -3312,7 +3325,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_ATK) > 4 && RealPhysicalMoveInMoveset(bankDef)
 		&& !IsClearBodyAbility(defAbility)
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ATK)
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ATK, GetProperAbilityPopUpSpecies(bankDef))
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
@@ -3328,7 +3341,7 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 	return STAT_STAGE(bankDef, STAT_STAGE_DEF) > 4
 		&& PhysicalMoveInMoveset(bankAtk)
 		&& !IsClearBodyAbility(defAbility)
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_DEF)
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_DEF, GetProperAbilityPopUpSpecies(bankDef))
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
@@ -3343,7 +3356,7 @@ bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPATK) > 4 && SpecialMoveInMoveset(bankDef)
 		&& !IsClearBodyAbility(defAbility)
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPATK)
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPATK, GetProperAbilityPopUpSpecies(bankDef))
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
@@ -3358,7 +3371,7 @@ bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPDEF) > 4 && SpecialMoveInMoveset(bankAtk)
 		&& !IsClearBodyAbility(defAbility)
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPDEF)
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPDEF, GetProperAbilityPopUpSpecies(bankDef))
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& defAbility != ABILITY_CONTRARY;
@@ -3374,7 +3387,7 @@ bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move, u8 reduceBy)
 	return SpeedCalc(bankAtk) <= SpeedCalc(bankDef)
 		&& defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPEED)
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPEED, GetProperAbilityPopUpSpecies(bankDef))
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 		&& (!IS_DOUBLE_BATTLE || WillBeFasterAfterSpeedDrop(bankAtk, bankDef, reduceBy));
 }
@@ -3389,7 +3402,7 @@ bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
 	return defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
 		&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
-		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ACC);
+		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ACC, GetProperAbilityPopUpSpecies(bankDef));
 }
 
 bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
@@ -3397,7 +3410,7 @@ bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
 	u8 defAbility = ABILITY(bankDef);
 
 	if (!IsClearBodyAbility(defAbility)
-	&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_EVASION)
+	&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_EVASION, GetProperAbilityPopUpSpecies(bankDef))
 	&& !(defAbility == ABILITY_LEAFGUARD && (gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bankDef)))
 	&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 	&& defAbility != ABILITY_CONTRARY)

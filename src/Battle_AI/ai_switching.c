@@ -524,6 +524,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 			absorbingTypeAbility2 = ABILITY_SAPSIPPER;
 			absorbingTypeAbility3 = ABILITY_SAPSIPPER;
 			break;
+		case TYPE_GROUND:
+			absorbingTypeAbility1 = ABILITY_EARTHEATER;
+			absorbingTypeAbility2 = ABILITY_EARTHEATER;
+			absorbingTypeAbility3 = ABILITY_EARTHEATER;
+			break;
 		default:
 			return FALSE;
 	}

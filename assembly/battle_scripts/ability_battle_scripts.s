@@ -115,6 +115,11 @@ ability_battle_scripts.s
 .global BattleScript_BlazeLikeActivates
 .global BattleScript_AuraBreakActivate
 
+.global BattleScript_AngerShellActivates
+.global BattleScript_ElectromorphosisActivates
+.global BattleScript_Opportunist
+.global BattleScript_ToxicDebris
+
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_OverworldWeatherStarts:
@@ -218,12 +223,23 @@ BattleScript_IntimidateActivatesRet:
 	setbyte TARGET_BANK 0x0
 
 BS_IntimidateActivatesLoop:
+	callasm GuardDogInitialFunc
 	jumpifability BANK_ATTACKER ABILITY_TERRORIZE BS_TerrorizeActivatesLoop
+	jumpifbyte EQUALS FORM_COUNTER 0x1 BS_GuardDogStatSwitchIntimidate
 	setstatchanger STAT_ATK | DECREASE_1
 	goto BS_IntimidateMain
 
 BS_TerrorizeActivatesLoop:
+	jumpifbyte EQUALS FORM_COUNTER 0x1 BS_GuardDogStatSwitchTerrorize
 	setstatchanger STAT_SPD | DECREASE_1
+	goto BS_IntimidateMain
+
+BS_GuardDogStatSwitchIntimidate:
+	setstatchanger STAT_ATK | INCREASE_1
+	goto BS_IntimidateMain
+
+BS_GuardDogStatSwitchTerrorize:
+	setstatchanger STAT_SPD | INCREASE_1
 	goto BS_IntimidateMain
 
 BS_IntimidateMain:
@@ -233,11 +249,20 @@ BS_IntimidateMain:
 	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BattleScript_IntimidatePrevented
 	setgraphicalstatchangevalues
 	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	jumpifbyte EQUALS FORM_COUNTER 0x1 BS_GuardDogString
 	printfromtable gStatDownStringIds
 	waitmessage DELAY_1SECOND
+BS_IntimidateRest:
 	jumpifhelditemeffect BANK_TARGET ITEM_EFFECT_ADRENALINE_ORB BattleScript_AdrenalineOrb
 	goto IntimidateActivatesLoopIncrement
-	
+
+BS_GuardDogString:
+	setbyte FORM_COUNTER 0x0
+	setword BATTLE_STRING_LOADER gText_AttackRoseCauseOfGuardDog
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BS_IntimidateRest
+
 BattleScript_AdrenalineOrb:
 	call BattleScript_AdrenalineOrbCall
 	goto IntimidateActivatesLoopIncrement
@@ -877,6 +902,7 @@ BattleScript_MummyActivates:
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert
 	setability BANK_ATTACKER ABILITY_MUMMY
+	callasm MummyWanderingSpiritSetCorrectTookAbilityFrom
 	call BattleScript_AbilityPopUp
 	setword BATTLE_STRING_LOADER gText_MummyString
 	printstring 0x184
@@ -897,6 +923,7 @@ BattleScript_WanderingSpiritActivates:
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert
 	copyarray BATTLE_SCRIPTING_BANK TARGET_BANK 0x1
+	callasm MummyWanderingSpiritSetCorrectTookAbilityFrom
 	call BattleScript_AbilityPopUp
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert
@@ -1517,4 +1544,116 @@ BattleScript_AuraBreakActivate:
 	call BattleScript_AbilityPopUpRevert
 	end3
 
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
+BattleScript_AngerShellActivates:
+	jumpifstat BANK_TARGET GREATERTHAN STAT_DEF STAT_MIN AngerShell_DropDef
+	jumpifstat BANK_TARGET EQUALS STAT_SPDEF STAT_MIN AngerShell_BoostStats
+
+AngerShell_DropDef:
+	call BattleScript_AbilityPopUp
+	jumpifstat BANK_TARGET EQUALS STAT_DEF STAT_MIN AngerShell_DropSpDef
+	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE @;Ignored Sheer Force
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_DEF | STAT_ANIM_SPDEF, STAT_ANIM_DOWN
+	setstatchanger STAT_DEF | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_DropSpDef
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_DropSpDef
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_DropSpDef:
+	setstatchanger STAT_SPDEF | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_BoostStats
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_BoostStats
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_BoostStats:
+	jumpifstat BANK_TARGET LESSTHAN STAT_ATK STAT_MAX AngerShell_UpAtk
+	jumpifstat BANK_TARGET LESSTHAN STAT_SPATK STAT_MAX AngerShell_UpAtk
+	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MAX AngerShell_Return
+
+AngerShell_UpAtk:
+	jumpifstat BANK_TARGET EQUALS STAT_ATK STAT_MAX AngerShell_UpSpAtk
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_ATK | STAT_ANIM_SPATK | STAT_ANIM_SPD, STAT_ANIM_UP
+	setstatchanger STAT_ATK | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_UpSpAtk
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_UpSpAtk
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_UpSpAtk:
+	jumpifstat BANK_TARGET EQUALS STAT_SPATK STAT_MAX AngerShell_UpSpeed
+	setstatchanger STAT_SPATK | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_UpSpeed
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_UpSpeed
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_UpSpeed:
+	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MAX AngerShell_RevertPopUp
+	setstatchanger STAT_SPD | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_RevertPopUp
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_RevertPopUp
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_RevertPopUp:
+	bicword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE
+	call BattleScript_AbilityPopUpRevert
+
+AngerShell_Return:
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ElectromorphosisActivates:
+	call BattleScript_AbilityPopUp
+	callasm ElectromorphosisFunc
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+BattleScript_Opportunist:
+	copybyte BATTLE_SCRIPTING_BANK FORM_COUNTER
+	statbuffchange BANK_SCRIPTING | STAT_BS_PTR OpportunistReturn
+	
+BattleScript_OpportunistCall:
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 OpportunistReturn
+	pause DELAY_HALFSECOND
+	setbyte STAT_ANIM_PLAYED 0x0
+	callasm TryHideActiveAbilityPopUps
+	copybyte FORM_COUNTER USER_BANK
+	copybyte MAGICIAN_HELPER TARGET_BANK
+	copybyte USER_BANK BATTLE_SCRIPTING_BANK
+	copybyte TARGET_BANK BATTLE_SCRIPTING_BANK
+	callasm TryHideActiveAbilityPopUps
+	call BattleScript_AbilityPopUp
+	playanimation BANK_SCRIPTING ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	copybyte USER_BANK FORM_COUNTER
+	copybyte TARGET_BANK MAGICIAN_HELPER
+	setbyte FORM_COUNTER 0x0
+	setbyte MAGICIAN_HELPER 0x0
+	call BattleScript_AbilityPopUpRevert
+
+OpportunistReturn:
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+BattleScript_ToxicDebris:
+	setspikes ToxicDebris_Return
+	call BattleScript_AbilityPopUp
+	playanimation BANK_ATTACKER ANIM_TSPIKES_TOXIC_DEBRIS 0x0
+	copybyte USER_BANK TARGET_BANK
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	jumpiffainted BANK_ATTACKER ToxicDebris_Return
+
+ToxicDebris_Return:
+	return
+

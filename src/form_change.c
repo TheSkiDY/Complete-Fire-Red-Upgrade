@@ -192,6 +192,14 @@ void SwitchOutFormsRevert(u8 bank)
 			else
 				DoFormChange(bank, SPECIES_CRAMORANT, FALSE, TRUE, FALSE);
 			break;
+
+		#if (defined SPECIES_PALAFIN && defined SPECIES_PALAFIN_HERO)
+		case SPECIES_PALAFIN:
+			if (ABILITY(bank) == ABILITY_FORM_CHANGE)
+				DoFormChange(bank, SPECIES_PALAFIN_HERO, FALSE, TRUE, FALSE);
+			break;
+		#endif
+
 		#endif
 	}
 }
@@ -347,6 +355,14 @@ bool8 TryFormRevert(struct Pokemon* mon)
 	else if (mon->species == SPECIES_SHADOW_WARRIOR) //If it was hacked in
 	{
 		ZeroMonData(mon);
+	}
+	#endif
+	#if (defined SPECIES_PALAFIN && defined SPECIES_PALAFIN_HERO)
+	else if (mon->species == SPECIES_PALAFIN_HERO)
+	{
+		mon->species = SPECIES_PALAFIN;
+		CalculateMonStats(mon);
+		return TRUE;
 	}
 	#endif
 

@@ -2334,6 +2334,14 @@ u32 SpeedCalc(u8 bank)
 		case ABILITY_HEAVYBULLET:
 			speed = (speed * 10) / 15;
 			break;
+		case ABILITY_PROTOSYNTHESIS:
+			if (gBattleWeather & WEATHER_SUN_ANY && GetMostProficientStat(bank) == STAT_STAGE_SPEED)
+				speed = (speed * 15) / 10;
+			break;
+		case ABILITY_QUARKDRIVE:
+			if (gTerrainType == ELECTRIC_TERRAIN && GetMostProficientStat(bank) == STAT_STAGE_SPEED)
+				speed = (speed * 15) / 10;
+			break;
 	}
 
 	speed = BoostSpeedByItemEffect(itemEffect, itemQuality, SPECIES(bank), speed, IsDynamaxed(bank));

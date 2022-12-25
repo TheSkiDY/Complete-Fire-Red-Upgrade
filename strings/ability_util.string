@@ -430,6 +430,63 @@ SHADOWY SURGE
 #org @NAME_DRACO_SURGE
 DRACO SURGE
 
+#org @NAME_SHARPNESS
+SHARPNESS
+
+#org @NAME_ANGER_SHELL
+ANGER SHELL
+
+#org @NAME_BEADS_OF_RUIN
+BEADS OF RUIN
+
+#org @NAME_SWORD_OF_RUIN
+SWORD OF RUIN
+
+#org @NAME_TABLETS_OF_RUIN
+TABLETS OF RUIN
+
+#org @NAME_VESSEL_OF_RUIN
+VESSEL OF RUIN
+
+#org @NAME_GUARD_DOG
+GUARD DOG
+
+#org @NAME_HADRON_ENGINE
+HADRON ENGINE
+
+#org @NAME_LINGERING_AROMA
+LINGERING AROMA
+
+#org @NAME_ORICHALCUM_PULSE
+ORICHALCUMPULSE
+
+#org @NAME_DRAGONS_MAW
+DRAGON'S MAW
+
+#org @NAME_TRANSISTOR
+TRANSISTOR
+
+#org @NAME_STEELWORKER
+STEELWORKER
+
+#org @NAME_ROCKY_PAYLOAD
+ROCKY PAYLOAD
+
+#org @NAME_SEED_SOWER
+SEED SOWER
+
+#org @NAME_THERMAL_EXCHANGE
+THERM EXCHANGE
+
+#org @NAME_WELL_BAKED_BODY
+WELL-BAKED BODY
+
+#org @NAME_WIND_POWER
+WIND POWER
+
+#org @NAME_ZERO_TO_HERO
+ZERO TO HERO
+
 //Descriptions
 
 #org @DESC_EVAPORATE
@@ -641,3 +698,57 @@ Creates a SHADOW TERRAIN.
 
 #org @DESC_DRACO_SURGE
 Creates a DRACO TERRAIN.
+
+#org @DESC_SHARPNESS
+Powers up slicing moves.
+
+#org @DESC_ANGER_SHELL
+Ups offensive and lowers defensive\nbelow half HP.
+
+#org @DESC_BEADS_OF_RUIN
+Lowers SP. DEF on the field.
+
+#org @DESC_SWORD_OF_RUIN
+Lowers DEFENSE on the field.
+
+#org @DESC_TABLETS_OF_RUIN
+Lowers ATTACK on the field.
+
+#org @DESC_VESSEL_OF_RUIN
+Lowers SP. ATK on the field.
+
+#org @DESC_GUARD_DOG
+Boosts ATTACK if intimidated.
+
+#org @DESC_HADRON_ENGINE
+Summons ELECTRIC TERRAIN and\nboosts SP.ATK in it.
+
+#org @DESC_ORICHALCUM_PULSE
+Summons sunlight in battle and\nboosts ATTACK in it.
+
+#org @DESC_TRANSISTOR
+Powers up ELECTRIC-type moves.
+
+#org @DESC_DRAGONS_MAW
+Powers up DRAGON-type moves.
+
+#org @DESC_STEELWORKER
+Powers up STEEL-type moves.
+
+#org @DESC_ROCKY_PAYLOAD
+Powers up ROCK-type moves.
+
+#org @DESC_SEED_SOWER
+Summons GRASSY TERRAIN when hit.
+
+#org @DESC_THERMAL_EXCHANGE
+FIRE hits boosts ATTACK.\nCan't be burned.
+
+#org @DESC_WELL_BAKED_BODY
+Turns FIRE moves into DEFENSE\nboost.
+
+#org @DESC_WIND_POWER
+Becomes charged when hit by\na wind move.
+
+#org @DESC_ZERO_TO_HERO
+Transforms after switching out.

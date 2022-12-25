@@ -2713,6 +2713,10 @@ void atk81_trysetrest(void)
 				}
 				break;
 			#endif
+			case ABILITY_PURIFYINGSALT:
+				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
+				fail = TRUE;
+				break;
 		}
 	}
 
@@ -2765,7 +2769,8 @@ void atk84_jumpifcantmakeasleep(void)
 	|| defAbility == ABILITY_COMATOSE
 	|| defAbility == ABILITY_SWEETVEIL
 	|| (defAbility == ABILITY_LEAFGUARD && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
-	|| (defAbility == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS) && gCurrentMove != MOVE_REST))
+	|| (defAbility == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS) && gCurrentMove != MOVE_REST)
+	|| defAbility == ABILITY_PURIFYINGSALT)
 	{
 		gLastUsedAbility = defAbility;
 		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
@@ -4097,6 +4102,22 @@ void atkB0_trysetspikes(void)
 	u8 defSide = atkSide ^ BIT_SIDE;
 	u8 stringcase = 0xFF;
 
+	if (ABILITY(gBankTarget) == ABILITY_TOXICDEBRIS && gBattleMoves[gCurrentMove].effect != EFFECT_SPIKES)
+	{
+		if (gSideTimers[atkSide].tspikesAmount >= 2)
+		{
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+		}
+		else
+		{
+			gSideStatuses[atkSide] |= SIDE_STATUS_SPIKES;
+			gSideTimers[atkSide].tspikesAmount++;
+			gBattlescriptCurrInstr += 5;
+			stringcase = 2;
+		}
+		goto SPIKES_END;
+	}
+
 	switch (gCurrentMove) {
 		case MOVE_STEALTHROCK:
 		case MOVE_STONEAXE:
@@ -4193,6 +4214,7 @@ void atkB0_trysetspikes(void)
 			}
 	}
 
+	SPIKES_END:
 	if (stringcase != 0xFF)
 		gBattleStringLoader = (u8*) sEntryHazardsStrings[stringcase];
 }

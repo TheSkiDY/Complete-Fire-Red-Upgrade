@@ -100,6 +100,7 @@ gBattleAnims_General:
 .word ANIM_SPLINTER_DAMAGE
 .word SHADOW_TERRAIN_ACTIVE_ANIM
 .word DRACO_TERRAIN_ACTIVE_ANIM
+.word ANIM_TSPIKES_TOXIC_DEBRIS
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -1258,6 +1259,33 @@ DRACO_TERRAIN_ACTIVE_ANIM:
 .align 2
 DRACO_TERRAIN_1: objtemplate ANIM_TAG_GREEN_SPARKLE ANIM_TAG_GREEN_SPARKLE 0x83AC9D0 0x83E3760 0x0 gDummySpriteAffineAnimTable 0x80AA2B1
 DRACO_TERRAIN_2: objtemplate ANIM_TAG_ORBS ANIM_TAG_ORBS 0x83ACB50 0x83E2A40 0x0 0x83E2A54 0x80AA175
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_TSPIKES_TOXIC_DEBRIS:
+	loadparticle ANIM_TAG_POISON_BUBBLE @Poison Bubbles
+	loadparticle ANIM_TAG_SPIKES @Spikes
+	loadparticle ANIM_TAG_SHADOW_BALL @Purple Colour
+	pokespritetoBG side_attacker
+	playsound2 0x88 SOUND_PAN_TARGET
+	playsoundwait 0x9f SOUND_PAN_ATTACKER 0x1c
+	launchtemplate TSPIKES TEMPLATE_ATTACKER | 2, 0x5 0x14 0x0 0x0 0x18 0x1e
+	pause 0xa
+	playsound2 0x88 SOUND_PAN_TARGET
+	playsoundwait 0x9f SOUND_PAN_ATTACKER 0x1c
+	launchtemplate TSPIKES TEMPLATE_ATTACKER | 2, 0x5 0x14 0x0 0xffe8 0x18 0x1e
+	pause 0xa
+	playsoundwait 0x9f SOUND_PAN_ATTACKER 0x1c
+	launchtemplate TSPIKES TEMPLATE_ATTACKER | 2, 0x5 0x14 0x0 0x18 0x18 0x1e
+	waitanimation
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 PAL_DEF | PAL_DEF_PARTNER 0x0 0x4 0x0 0xc 0x681a
+	call POISON_BUBBLES
+	pokespritefromBG side_attacker
+	endanimation
+
+.align 2
+TSPIKES: objtemplate ANIM_TAG_SPIKES ANIM_TAG_SHADOW_BALL OAM_OFF_16x16 gDummySpriteAnimTable 0x0 gDummySpriteAffineAnimTable 0x80DE8B1
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

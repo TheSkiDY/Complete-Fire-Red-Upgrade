@@ -2762,6 +2762,96 @@
 	"hasPlasmaBurst": [
 		"SPECIES_BLITZLE",
 		"SPECIES_ZEBSTRIKA"
-	]
+	],
 
+	"hasSharpness": [
+		"SPECIES_GALLADE",
+		"SPECIES_KLEAVOR",
+		"SPECIES_SAMUROTT_H",
+		"SPECIES_VELUZA"	
+	],
+
+	"hasAngerShell": [
+		"SPECIES_KLAWF"
+	],
+
+	"hasBeadsOfRuin": [
+		"SPECIES_CHI_YU"
+	],
+
+	"hasSwordOfRuin": [
+		"SPECIES_CHIEN_PAO"
+	],
+
+	"hasTabletsOfRuin": [
+		"SPECIES_WO_CHIEN"	
+	],
+
+	"hasVesselOfRuin": [
+		"SPECIES_TING_LU"
+	],
+
+	"hasGuardDog": [
+		"SPECIES_MABOSSTIFF"	
+	],
+
+	"hasHadronEngine": [
+		"SPECIES_MIRAIDON"	
+	],
+
+	"hasOrichalcumPulse": [
+		"SPECIES_KORAIDON"	
+	],
+
+	"hasDragonsMaw": [
+		"SPECIES_GYARADOS_S",
+		"SPECIES_TROPIUS",
+		"SPECIES_LATIAS_MEGA",	
+		"SPECIES_LATIOS_MEGA",
+		"SPECIES_REGIDRAGO"	
+	],
+
+	"hasTransistor": [
+		"SPECIES_RAICHU_A",
+		"SPECIES_LICKITUNG_S",
+		"SPECIES_PLUSLE",	
+		"SPECIES_MINUN",	
+		"SPECIES_REGIELEKI"
+	],
+
+	"hasSteelworker": [
+		"SPECIES_KLINK",	
+		"SPECIES_KLANG",	
+		"SPECIES_KLINKLANG",	
+		"SPECIES_DHELMISE",	
+		"SPECIES_SHARKANO"	
+	],
+
+	"hasRockyPayload": [
+		"SPECIES_BOMBIRDIER"	
+	],
+
+	"hasSeedSower": [
+		"SPECIES_ARBOLIVA"	
+	],
+
+	"hasThermalExchange": [
+		"SPECIES_FRIGIBAX",
+		"SPECIES_ARCTIBAX",
+		"SPECIES_BAXCALIBUR"
+	],
+
+	"hasWellBakedBody": [
+		"SPECIES_DACHSBUN"	
+	],
+
+	"hasWindPower": [
+		"SPECIES_WATTREL",
+		"SPECIES_KILOWATTREL"
+	],
+
+	"hasZeroToHero": [
+		"SPECIES_PALAFIN",	
+		"SPECIES_PALAFIN_HERO"	
+	]
 }

@@ -5783,6 +5783,9 @@ BS_239_TeamEffectsAndMagnetRise:
 	waitanimation
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	jumpifmove MOVE_TAILWIND WindRiderTailwindBoostBS
+
+TeamEffectsRest:
 	goto BS_MOVE_END
 	
 MagnetRiseBS:
@@ -5796,6 +5799,31 @@ MagnetRiseBS:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	goto BS_MOVE_END
+
+WindRiderTailwindBoostBS:
+	setbyte TARGET_BANK 0x0
+	
+BS_WindRiderLoop:
+	setstatchanger STAT_ATK | INCREASE_1
+	trygetwindriderduringtailwind BS_WindRiderReturn
+	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR BS_WindRiderLoopIncrement
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_WindRiderLoopIncrement
+	copybyte BATTLE_SCRIPTING_BANK TARGET_BANK
+	call BattleScript_AbilityPopUp
+	setgraphicalstatchangevalues
+	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto BS_WindRiderLoopIncrement
+
+BS_WindRiderLoopIncrement:
+	jumpifword NOTANDS BATTLE_TYPE BATTLE_DOUBLE BS_WindRiderReturn
+	addbyte TARGET_BANK 0x1
+	goto BS_WindRiderLoop
+
+BS_WindRiderReturn:
+	goto TeamEffectsRest
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

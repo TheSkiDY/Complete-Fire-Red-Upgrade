@@ -1715,6 +1715,10 @@ static bool8 CanShowEnemyMonIcon(u8 monId)
 	return TRUE;
 	#endif
 
+	#ifdef TECH_DEMO
+	return TRUE;
+	#endif
+
 	if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
 	{
 		if (!IsRandomBattleTowerBattle()

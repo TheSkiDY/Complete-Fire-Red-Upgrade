@@ -1015,7 +1015,8 @@ void atkFE_prefaintmoveendeffects(void)
 					case ABILITY_FLASHFIRE:
 						if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
 						&& CanBeBurned(gBankTarget, gBankAttacker, TRUE)
-						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE))
+						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE)
+						&& !(BankHasWellBakedBody(gBankAttacker)))
 						{
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_FlashFireBurnSetup;
@@ -1485,6 +1486,7 @@ void atkFF29_trysetsleep(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITY_FORM_CHANGE:
@@ -1596,6 +1598,7 @@ void atkD7_setyawn(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITY_FORM_CHANGE:
@@ -1708,6 +1711,7 @@ void atkFF2A_trysetparalysis(void)
 				break;
 			case ABILITY_LIMBER:
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITY_FORM_CHANGE:
@@ -1801,6 +1805,7 @@ void atkFF2B_trysetburn(void)
 			case ABILITY_WATERVEIL:
 			case ABILITY_WATERBUBBLE:
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITY_FORM_CHANGE:
@@ -1911,6 +1916,7 @@ void atkFF2C_trysetpoison(void)
 			case ABILITY_IMMUNITY:
 			case ABILITY_PURIFIEDPOLLEN:
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITY_FORM_CHANGE:
@@ -2067,6 +2073,21 @@ void atkFF36_trygetcottondowntarget(void)
 		if (gBankTarget == gBankAttacker)
 			continue;
 		if (!(gAbsentBattlerFlags & gBitTable[gBankTarget]) && BATTLER_ALIVE(gBankTarget))
+			break;
+	}
+
+	if (gBankTarget >= gBattlersCount)
+		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+	else
+		gBattlescriptCurrInstr += 5;
+}
+
+//atkFF37_trygetwindriderduringtailwind FAIL_ADDRESS
+void atkFF37_trygetwindriderduringtailwind(void)
+{
+	for(; gBankTarget < gBattlersCount; ++gBankTarget)
+	{
+		if (ABILITY(gBankTarget) == ABILITY_WINDRIDER && (!(gAbsentBattlerFlags & gBitTable[gBankTarget]) && BATTLER_ALIVE(gBankTarget)))
 			break;
 	}
 

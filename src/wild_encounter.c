@@ -1265,7 +1265,9 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon* wildM
 {
 	if (GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL))
 		return FALSE;
-	else if (GetMonAbility(&gPlayerParty[0]) != ability)
+	else if (GetMonAbility(&gPlayerParty[0]) != ability
+	 || (ability == ABILITY_BERSERK && SpeciesHasAngerShell(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2, NULL)))
+	 || (ability == ABILITY_FLASHFIRE && SpeciesHasWellBakedBody(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2, NULL))))
 		return FALSE;
 	else if (umodsi(Random(), 2) != 0)
 		return FALSE;

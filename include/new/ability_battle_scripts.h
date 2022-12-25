@@ -121,6 +121,11 @@ extern const u8 BattleScript_AbilityPopUp_BankEffectRevert[];
 extern const u8 BattleScript_BlazeLikeActivates[];
 extern const u8 BattleScript_AuraBreakActivate[];
 
+extern const u8 BattleScript_AngerShellActivates[];
+extern const u8 BattleScript_ElectromorphosisActivates[];
+extern const u8 BattleScript_Opportunist[];
+extern const u8 BattleScript_ToxicDebris[];
+
 extern const u8 ShadowTerrainSetString[];
 extern const u8 DracoTerrainSetString[];
 
@@ -175,3 +180,10 @@ extern const u8 gText_DefiantString[];
 extern const u8 gText_VictoryStarMultiplier[];
 extern const u8 gText_SlowStartInfo[];
 extern const u8 gText_TerrainEndedByAuraBreak[];
+
+extern const u8 gText_BeadsOfRuinActivates[];
+extern const u8 gText_SwordOfRuinActivates[];
+extern const u8 gText_TabletsOfRuinActivates[];
+extern const u8 gText_VesselOfRuinActivates[];
+extern const u8 gText_CostarActivates[];
+extern const u8 gText_ElectromorphosisActivates[];

@@ -27,22 +27,24 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_NATURE_PILL_NAUGHTY 5
 	additem ITEM_NATURE_PILL_BOLD 5
 	additem ITEM_SHINY_BALL 20
+	additem ITEM_MASTER_BALL 20
 	additem ITEM_ZINC 10
+	additem ITEM_FROST_ORB 1
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
-	givepokemon SPECIES_WYRDEER 4 0 0 0 0
-	givepokemon SPECIES_BRIONNE 4 0 0 0 0
-	givepokemon SPECIES_SNOVER 4 0 0 0 0
-	givepokemon SPECIES_SANDSLASH_S 4 0 0 0 0
-	givepokemon SPECIES_DELCATTY_S 4 0 0 0 0
+	givepokemon SPECIES_PALAFIN 5 0 0 0 0
+	givepokemon SPECIES_KILOWATTREL 5 0 0 0 0
+	givepokemon SPECIES_ARTICUNO 20 0 0 0 0
+	givepokemon SPECIES_PIDGEY 6 0 0 0 0
+	givepokemon SPECIES_ARBOLIVA 4 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
-	setflag 0x940 @randomizer
+	@setflag 0x940 @randomizer
 		@setflag 0x974 @scale wild bosses
 	setflag 0x972 @no evs
-	setflag 0x973 @hard level cap
+		@setflag 0x973 @hard level cap
 	setflag 0x975 @team preview
 	setflag 0x91F @bike turbo
 		@setflag 0x90E @trainer scale

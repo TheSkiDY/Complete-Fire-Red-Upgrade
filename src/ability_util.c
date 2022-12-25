@@ -62,7 +62,6 @@ extern const u8 NAME_SOAKAGE[];
 extern const u8 NAME_INSTANT_FLASH[];
 extern const u8 NAME_WILL_OF_FIRE[];
 extern const u8 NAME_PLACEBO[];
-extern const u8 NAME_ARMOR_TAIL[];
 
 extern const u8 NAME_SHIELDS_DOWN[];
 extern const u8 NAME_ZEN_MODE[];
@@ -230,6 +229,47 @@ extern const u8 DESC_MODULATOR[];
 extern const u8 DESC_MIRACULOUS[];
 extern const u8 DESC_WORMHOLE[];
 extern const u8 DESC_PLASMA_BURST[];
+
+extern const u8 NAME_STEELWORKER[];
+extern const u8 NAME_TRANSISTOR[];
+extern const u8 NAME_DRAGONS_MAW[];
+extern const u8 DESC_STEELWORKER[];
+extern const u8 DESC_TRANSISTOR[];
+extern const u8 DESC_DRAGONS_MAW[];
+
+//Gen 9
+extern const u8 NAME_SHARPNESS[];
+extern const u8 NAME_ANGER_SHELL[];
+extern const u8 NAME_BEADS_OF_RUIN[];
+extern const u8 NAME_SWORD_OF_RUIN[];
+extern const u8 NAME_TABLETS_OF_RUIN[];
+extern const u8 NAME_VESSEL_OF_RUIN[];
+extern const u8 NAME_GUARD_DOG[];
+extern const u8 NAME_HADRON_ENGINE[];
+extern const u8 NAME_ORICHALCUM_PULSE[];
+extern const u8 NAME_ROCKY_PAYLOAD[];
+extern const u8 NAME_SEED_SOWER[];
+extern const u8 NAME_THERMAL_EXCHANGE[];
+extern const u8 NAME_WELL_BAKED_BODY[];
+extern const u8 NAME_WIND_POWER[];
+extern const u8 NAME_ZERO_TO_HERO[];
+extern const u8 NAME_ARMOR_TAIL[];
+extern const u8 NAME_LINGERING_AROMA[];
+extern const u8 DESC_SHARPNESS[];
+extern const u8 DESC_ANGER_SHELL[];
+extern const u8 DESC_BEADS_OF_RUIN[];
+extern const u8 DESC_SWORD_OF_RUIN[];
+extern const u8 DESC_TABLETS_OF_RUIN[];
+extern const u8 DESC_VESSEL_OF_RUIN[];
+extern const u8 DESC_GUARD_DOG[];
+extern const u8 DESC_HADRON_ENGINE[];
+extern const u8 DESC_ORICHALCUM_PULSE[];
+extern const u8 DESC_ROCKY_PAYLOAD[];
+extern const u8 DESC_SEED_SOWER[];
+extern const u8 DESC_THERMAL_EXCHANGE[];
+extern const u8 DESC_WELL_BAKED_BODY[];
+extern const u8 DESC_WIND_POWER[];
+extern const u8 DESC_ZERO_TO_HERO[];
 
 //Unbound Custom Abilities
 extern const u8 NAME_NINE_LIVES[];
@@ -1234,6 +1274,13 @@ static struct DuplicateAbility sDuplicateNames[] =
         .replaceAbilityName = NAME_PLACEBO,
     },
 
+
+    //Mummy -> Lingering Aroma
+    {
+        .species = SPECIES_OINKOLOGNE,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
 };
 
 static const u8* sBlazeLikeNames[] =
@@ -1390,71 +1437,158 @@ static const u8* sTerrainSurgeDescriptions[] =
     [DRACO_TERRAIN] = DESC_DRACO_SURGE,
 };
 
+static const u8* sTypeBoostNames[] =
+{
+    [TYPE_NORMAL] = NULL,
+    [TYPE_FIGHTING] = NULL,
+    [TYPE_FLYING] = NULL,
+    [TYPE_POISON] = NULL,
+    [TYPE_GROUND] = NULL,
+    [TYPE_ROCK] = NAME_ROCKY_PAYLOAD,
+    [TYPE_BUG] = NULL,
+    [TYPE_GHOST] = NULL,
+    [TYPE_STEEL] = NAME_STEELWORKER,
+    [TYPE_FIRE] = NULL,
+    [TYPE_WATER] = NULL,
+    [TYPE_GRASS] = NULL,
+    [TYPE_ELECTRIC] = NAME_TRANSISTOR,
+    [TYPE_PSYCHIC] = NULL,
+    [TYPE_ICE] = NULL,
+    [TYPE_DRAGON] = NAME_DRAGONS_MAW,
+    [TYPE_DARK] = NULL,
+    [TYPE_FAIRY] = NULL,
+};
 
+static const u8* sTypeBoostDescriptions[] =
+{
+    [TYPE_NORMAL] = NULL,
+    [TYPE_FIGHTING] = NULL,
+    [TYPE_FLYING] = NULL,
+    [TYPE_POISON] = NULL,
+    [TYPE_GROUND] = NULL,
+    [TYPE_ROCK] = DESC_ROCKY_PAYLOAD,
+    [TYPE_BUG] = NULL,
+    [TYPE_GHOST] = NULL,
+    [TYPE_STEEL] = DESC_STEELWORKER,
+    [TYPE_FIRE] = NULL,
+    [TYPE_WATER] = NULL,
+    [TYPE_GRASS] = NULL,
+    [TYPE_ELECTRIC] = DESC_TRANSISTOR,
+    [TYPE_PSYCHIC] = NULL,
+    [TYPE_ICE] = NULL,
+    [TYPE_DRAGON] = DESC_DRAGONS_MAW,
+    [TYPE_DARK] = NULL,
+    [TYPE_FAIRY] = NULL,
+};
 
 const u8* GetAbilityNameOverride(const u8 ability, const u16 species) //Bypasses the 255 Ability limitation and implements clone Abilities
 {
+    const u8* nameStr = NULL;
 	switch (ability)
 	{
 		case ABILITY_INSOMNIA:
 			if(IsVitalSpiritAbility(ability, species))
-				return NAME_VITAL_SPIRIT;
+				nameStr = NAME_VITAL_SPIRIT;
 			break;
 		case ABILITY_CLEARBODY:
 			if(IsWhiteSmokeAbility(ability, species))
-				return NAME_WHITE_SMOKE;
+				nameStr = NAME_WHITE_SMOKE;
 			break;
 		case ABILITY_MOLDBREAKER:
 			if(SpeciesHasTurboblaze(species))
-				return NAME_TURBOBLAZE;
+				nameStr = NAME_TURBOBLAZE;
 			else if(SpeciesHasTeravolt(species))
-				return NAME_TERAVOLT;
+				nameStr = NAME_TERAVOLT;
 			break;
 		case ABILITY_PICKPOCKET:
 			if(SpeciesHasMagician(species))
-				return NAME_MAGICIAN;
+				nameStr = NAME_MAGICIAN;
 			break;
 		case ABILITY_GALEWINGS:
 			if (SpeciesHasTempestuousSea(species))
-				return NAME_TEMPESTUOUS_SEA;
+				nameStr = NAME_TEMPESTUOUS_SEA;
             else if (SpeciesHasShadowBoost(species))
-                return NAME_SHADOW_BOOST;
+                nameStr = NAME_SHADOW_BOOST;
 			break;
         case ABILITY_LIQUIDVOICE:
             if (SpeciesHasModulator(species))
-                return NAME_MODULATOR;
+                nameStr = NAME_MODULATOR;
             break;
         case ABILITY_CLOCKWORK:
             if (SpeciesHasWizardry(species))
-                return NAME_WIZARDRY;
+                nameStr = NAME_WIZARDRY;
             else if (SpeciesHasMiraculous(species))
-                return NAME_MIRACULOUS;
+                nameStr = NAME_MIRACULOUS;
             else if (SpeciesHasWormhole(species))
-                return NAME_WORMHOLE;
+                nameStr = NAME_WORMHOLE;
             else if (SpeciesHasPlasmaBurst(species))
-                return NAME_PLASMA_BURST;
+                nameStr = NAME_PLASMA_BURST;
+            break;
+        case ABILITY_HYPERCUTTER:
+            if (SpeciesHasSharpness(species))
+                nameStr = NAME_SHARPNESS;
+            break;
+        case ABILITY_BERSERK:
+            if (SpeciesHasAngerShell(species))
+                nameStr = NAME_ANGER_SHELL;
+            break;
+        case ABILITY_SUCTIONCUPS:
+            if (SpeciesHasGuardDog(species))
+                nameStr = NAME_GUARD_DOG;
+            break;
+        case ABILITY_DROUGHT:
+            if (SpeciesHasOrichalcumPulse(species))
+                nameStr = NAME_ORICHALCUM_PULSE;
+            break;
+        case ABILITY_SANDSPIT:
+            if (SpeciesHasSeedSower(species))
+                nameStr = NAME_SEED_SOWER;
+            break;
+        case ABILITY_WATERVEIL:
+            if (SpeciesHasThermalExchange(species))
+                nameStr = NAME_THERMAL_EXCHANGE;
+            break;
+        case ABILITY_FLASHFIRE:
+            if (SpeciesHasWellBakedBody(species))
+                nameStr = NAME_WELL_BAKED_BODY;
+            break;
+        case ABILITY_ELECTROMORPHOSIS:
+            if (SpeciesHasWindPower(species))
+                nameStr = NAME_WIND_POWER;
+            break;
+        case ABILITY_TREASURES_OF_RUIN:
+            nameStr = GetTreasureOfRuinAbilityName(species);
             break;
 		case ABILITY_FORM_CHANGE:
-			return GetAbilityNameOverrideForFormChange(ability, species);
+			nameStr = GetAbilityNameOverrideForFormChange(ability, species);
+            break;
         case ABILITY_BLAZE_LIKE:
-            return GetBlazeLikeNameFromSpecies(species);
+            nameStr = GetBlazeLikeNameFromSpecies(species);
+            break;
         case ABILITY_AURA:
-            return GetAuraNameFromSpecies(species);
+            nameStr = GetAuraNameFromSpecies(species);
+            break;
         case ABILITY_ATE:
-            return GetAteNameFromSpecies(species);
+            nameStr = GetAteNameFromSpecies(species);
+            break;
         case ABILITY_TERRAIN_SURGE:
-            return GetSurgeNameFromSpecies(species);
+            nameStr = GetSurgeNameFromSpecies(species);
+            break;
+        case ABILITY_TYPE_BOOST:
+            nameStr = GetTypeBoostNameFromSpecies(species);
+            break;
 	}
 
 	for(u16 i = 0; i < ARRAY_COUNT(sDuplicateNames); ++i)
 	{
 		if(ability == sDuplicateNames[i].currAbility && species == sDuplicateNames[i].species)
 		{
-			return sDuplicateNames[i].replaceAbilityName;
+			nameStr = sDuplicateNames[i].replaceAbilityName;
+            break;
 		}
 	}
 
-	return NULL;
+	return nameStr;
 }
 
 const u8* GetAbilityName(const u8 ability, const u16 species)
@@ -1473,53 +1607,97 @@ const u8* GetAbilityName(const u8 ability, const u16 species)
 
 const u8* GetAbilityDescriptionOverride(const u8 ability, const u16 species) //Bypasses the 255 Ability limitation and implements new Abilities
 {
+    const u8* descStr = NULL;
 	switch (ability)
 	{
 		case ABILITY_STORMDRAIN:
 			if (SpeciesHasEvaporate(species))
-				return DESC_EVAPORATE;
+				descStr = DESC_EVAPORATE;
 			break;
 		case ABILITY_MERCILESS:
 			if (SpeciesHasDrillBeak(species))
-				return DESC_DRILL_BEAK;
+				descStr = DESC_DRILL_BEAK;
 			break;
 		case ABILITY_PICKPOCKET:
 			if (SpeciesHasMagician(species))
-				return DESC_MAGICIAN;
+				descStr = DESC_MAGICIAN;
 			break;
 		case ABILITY_GALEWINGS:
 			if (SpeciesHasTempestuousSea(species))
-				return DESC_TEMPESTUOUS_SEA;
+				descStr = DESC_TEMPESTUOUS_SEA;
             else if (SpeciesHasShadowBoost(species))
-                return DESC_SHADOW_BOOST;
+                descStr = DESC_SHADOW_BOOST;
 			break;
         case ABILITY_LIQUIDVOICE:
             if (SpeciesHasModulator(species))
-                return DESC_MODULATOR;
+                descStr = DESC_MODULATOR;
             break;
         case ABILITY_CLOCKWORK:
             if (SpeciesHasWizardry(species))
-                return DESC_WIZARDRY;
+                descStr = DESC_WIZARDRY;
             else if (SpeciesHasMiraculous(species))
-                return DESC_MIRACULOUS;
+                descStr = DESC_MIRACULOUS;
             else if (SpeciesHasWormhole(species))
-                return DESC_WORMHOLE;
+                descStr = DESC_WORMHOLE;
             else if (SpeciesHasPlasmaBurst(species))
-                return DESC_PLASMA_BURST;
+                descStr = DESC_PLASMA_BURST;
+            break;
+        case ABILITY_HYPERCUTTER:
+            if (SpeciesHasSharpness(species))
+                descStr = DESC_SHARPNESS;
+            break;
+        case ABILITY_BERSERK:
+            if (SpeciesHasAngerShell(species))
+                descStr = DESC_ANGER_SHELL;
+            break;
+         case ABILITY_SUCTIONCUPS:
+            if (SpeciesHasGuardDog(species))
+                descStr = DESC_GUARD_DOG;
+            break;
+        case ABILITY_DROUGHT:
+            if (SpeciesHasOrichalcumPulse(species))
+                descStr = DESC_ORICHALCUM_PULSE;
+            break;
+        case ABILITY_SANDSPIT:
+            if (SpeciesHasSeedSower(species))
+                descStr = DESC_SEED_SOWER;
+            break;
+        case ABILITY_WATERVEIL:
+            if (SpeciesHasThermalExchange(species))
+                descStr = DESC_THERMAL_EXCHANGE;
+            break;
+        case ABILITY_FLASHFIRE:
+            if (SpeciesHasWellBakedBody(species))
+                descStr = DESC_WELL_BAKED_BODY;
+            break;
+        case ABILITY_ELECTROMORPHOSIS:
+            if (SpeciesHasWindPower(species))
+                descStr = DESC_WIND_POWER;
+            break;
+        case ABILITY_TREASURES_OF_RUIN:
+            descStr = GetTreasureOfRuinAbilityDescription(species);
             break;
 		case ABILITY_FORM_CHANGE:
-			return GetAbilityDescriptionOverrideForFormChange(ability, species);
+			descStr = GetAbilityDescriptionOverrideForFormChange(ability, species);
+            break;
         case ABILITY_BLAZE_LIKE:
-            return GetBlazeLikeDescriptionFromSpecies(species);
+            descStr = GetBlazeLikeDescriptionFromSpecies(species);
+            break;
         case ABILITY_AURA:
-            return GetAuraDescriptionFromSpecies(species);
+            descStr = GetAuraDescriptionFromSpecies(species);
+            break;
         case ABILITY_ATE:
-            return GetAteDescriptionFromSpecies(species);
+            descStr = GetAteDescriptionFromSpecies(species);
+            break;
         case ABILITY_TERRAIN_SURGE:
-            return GetSurgeDescriptionFromSpecies(species);
+            descStr = GetSurgeDescriptionFromSpecies(species);
+            break;
+        case ABILITY_TYPE_BOOST:
+            descStr = GetTypeBoostDescriptionFromSpecies(species);
+            break;
 	}
 
-	return NULL;
+	return descStr;
 }
 
 const u8* GetAbilityDescription(const u8 ability, unusedArg const u16 species)
@@ -1710,6 +1888,7 @@ bool8 IsHPAbsorptionAbility(u8 ability)
 	{
 		case ABILITY_WATERABSORB:
 		case ABILITY_VOLTABSORB:
+        case ABILITY_EARTHEATER:
 			return TRUE;
 		default:
 			return FALSE;
@@ -1729,16 +1908,17 @@ bool8 IsElectricAbsorptionAblity(u8 ability)
 	}
 }
 
-bool8 IsPlusMinusAbility(u8 ability)
+bool8 IsPlusMinusAbility(unusedArg u8 ability)
 {
-	switch (ability)
-	{
-		case ABILITY_PLUS:
-		case ABILITY_MINUS:
-			return TRUE;
-		default:
-			return FALSE;
-	}
+	// switch (ability)
+	// {
+	// 	case ABILITY_PLUS:
+	// 	case ABILITY_MINUS:
+	// 		return TRUE;
+	// 	default:
+	// 		return FALSE;
+	// }
+    return FALSE;
 }
 
 bool8 IsMultiscaleAbility(u8 ability)
@@ -1810,26 +1990,28 @@ bool8 AbilityBlocksIntimidate(u8 ability)
 		|| ability == ABILITY_SCRAPPY;
 }
 
-bool8 AbilityPreventsLoweringAtk(u8 ability)
+bool8 AbilityPreventsLoweringAtk(u8 ability, u16 species)
 {
-	return ability == ABILITY_HYPERCUTTER
+	return (ability == ABILITY_HYPERCUTTER && !SpeciesHasSharpness(species))
 		|| ability == ABILITY_MIRRORARMOR
 		|| IsClearBodyAbility(ability);
 }
 
-bool8 AbilityPreventsLoweringSpeed(u8 ability)
+bool8 AbilityPreventsLoweringSpeed(u8 ability, u16 species)
 {
-    return AbilityPreventsLoweringStat(ability, STAT_STAGE_SPEED)
+    return AbilityPreventsLoweringStat(ability, STAT_STAGE_SPEED, species)
         || ability == ABILITY_MIRRORARMOR
         || IsClearBodyAbility(ability);
 }
 
-bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId)
+bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId, u16 species)
 {
 	switch (ability)
 	{
 		case ABILITY_HYPERCUTTER:
-			return statId == STAT_STAGE_ATK;
+            if(!SpeciesHasSharpness(species))
+			     return statId == STAT_STAGE_ATK;
+             return FALSE;
 		case ABILITY_BIGPECKS:
 			return statId == STAT_STAGE_DEF;
 		case ABILITY_KEENEYE:
@@ -2000,6 +2182,11 @@ bool8 SpeciesHasPowerConstruct(u16 species)
 	return gSpecialSpeciesFlags[species].hasPowerConstruct;
 }
 
+bool8 SpeciesHasZeroToHero(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasZeroToHero;
+}
+
 const u8* GetAbilityNameOverrideForFormChange(const u8 ability, const u16 species)
 {
 	if(ability != ABILITY_FORM_CHANGE)
@@ -2027,6 +2214,8 @@ const u8* GetAbilityNameOverrideForFormChange(const u8 ability, const u16 specie
 		return NAME_BATTLE_BOND;
 	else if(SpeciesHasPowerConstruct(species))
 		return NAME_POWER_CONSTRUCT;
+    else if(SpeciesHasZeroToHero(species))
+        return NAME_ZERO_TO_HERO;
 	else
 		return gAbilityNames[ability];
 }
@@ -2058,6 +2247,8 @@ const u8* GetAbilityDescriptionOverrideForFormChange(const u8 ability, const u16
 		return DESC_BATTLE_BOND;
 	else if(SpeciesHasPowerConstruct(species))
 		return DESC_POWER_CONSTRUCT;
+    else if(SpeciesHasZeroToHero(species))
+        return DESC_ZERO_TO_HERO;
 	else
 		return gAbilityDescriptions[ability];
 }
@@ -2091,6 +2282,7 @@ bool8 IsFormChangeAbilityRolePlayBanned(u8 ability, u16 species)
 		SpeciesHasIceFace(species) ||
 		SpeciesHasRockyShelter(species) ||
 		SpeciesHasHungerSwitch(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);	
 }
 
@@ -2112,6 +2304,7 @@ bool8 IsFormChangeAbilityRolePlayAttackerBanned(u8 ability, u16 species)
 		SpeciesHasBattleBond(species) ||
 		SpeciesHasPowerConstruct(species) ||
 		SpeciesHasIceFace(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2134,6 +2327,7 @@ bool8 IsFormChangeAbilitySkillSwapBanned(u8 ability, u16 species)
 		SpeciesHasIceFace(species) ||
 		SpeciesHasRockyShelter(species) ||
 		SpeciesHasHungerSwitch(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2193,6 +2387,7 @@ bool8 IsFormChangeAbilityEntrainmentAttackerBanned(u8 ability, u16 species)
 		SpeciesHasIceFace(species) ||
 		SpeciesHasRockyShelter(species) ||
 		SpeciesHasHungerSwitch(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2212,6 +2407,7 @@ bool8 IsFormChangeAbilityEntrainmentTargetBanned(u8 ability, u16 species)
 		SpeciesHasDisguise(species) ||
 		SpeciesHasBattleBond(species) ||
 		SpeciesHasIceFace(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2253,6 +2449,7 @@ bool8 IsFormChangeAbilityReceiverBanned(u8 ability, u16 species)
 		SpeciesHasIceFace(species) ||
 		SpeciesHasRockyShelter(species) ||
 		SpeciesHasHungerSwitch(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2276,6 +2473,7 @@ bool8 IsFormChangeAbilityTraceBanned(u8 ability, u16 species)
 		SpeciesHasIceFace(species) ||
 		SpeciesHasHungerSwitch(species) ||
 		SpeciesHasRockyShelter(species) ||
+        SpeciesHasZeroToHero(species) ||
 		SpeciesHasGulpMissile(species);
 }
 
@@ -2483,7 +2681,7 @@ const u8* GetAteDescriptionFromSpecies(u16 species)
 
 u8 GetSurgeTerrainFromSpecies(u16 species)
 {
-    if(gSpecialSpeciesFlags[species].hasElectricSurge || IsSpeciesOfType(species, TYPE_ELECTRIC))
+    if(gSpecialSpeciesFlags[species].hasElectricSurge || SpeciesHasHadronEngine(species) || IsSpeciesOfType(species, TYPE_ELECTRIC))
         return ELECTRIC_TERRAIN;
     else if(gSpecialSpeciesFlags[species].hasGrassySurge || IsSpeciesOfType(species, TYPE_GRASS))
         return GRASSY_TERRAIN;
@@ -2507,11 +2705,17 @@ u8 GetSurgeTerrainFromSpecies(u16 species)
 
 const u8* GetSurgeNameFromSpecies(u16 species)
 {
+    if (SpeciesHasHadronEngine(species))
+        return NAME_HADRON_ENGINE;
+
     return sTerrainSurgeNames[GetSurgeTerrainFromSpecies(species)];
 }
 
 const u8* GetSurgeDescriptionFromSpecies(u16 species)
 {
+    if (SpeciesHasHadronEngine(species))
+        return DESC_HADRON_ENGINE;
+
     return sTerrainSurgeDescriptions[GetSurgeTerrainFromSpecies(species)];
 }
 
@@ -2538,4 +2742,260 @@ bool8 SpeciesHasWormhole(u16 species)
 bool8 SpeciesHasPlasmaBurst(u16 species)
 {
     return gSpecialSpeciesFlags[species].hasPlasmaBurst;
+}
+
+bool8 SpeciesHasSharpness(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasSharpness;
+}
+
+bool8 SpeciesHasAngerShell(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasAngerShell;
+}
+
+bool8 SpeciesHasBeadsOfRuin(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasBeadsOfRuin;
+}
+
+bool8 SpeciesHasSwordOfRuin(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasSwordOfRuin;
+}
+
+bool8 SpeciesHasTabletsOfRuin(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasTabletsOfRuin;
+}
+
+bool8 SpeciesHasVesselOfRuin(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasVesselOfRuin;
+}
+
+bool8 BankHasBeadsOfRuin(u8 bank)
+{
+    if(ABILITY(bank) != ABILITY_TREASURES_OF_RUIN)
+        return FALSE;
+
+    return SpeciesHasBeadsOfRuin(GetProperAbilityPopUpSpecies(bank));
+}
+
+bool8 BankHasSwordOfRuin(u8 bank)
+{
+    if(ABILITY(bank) != ABILITY_TREASURES_OF_RUIN)
+        return FALSE;
+
+    return SpeciesHasSwordOfRuin(GetProperAbilityPopUpSpecies(bank));
+}
+
+bool8 BankHasTabletsOfRuin(u8 bank)
+{
+    if(ABILITY(bank) != ABILITY_TREASURES_OF_RUIN)
+        return FALSE;
+
+    return SpeciesHasTabletsOfRuin(GetProperAbilityPopUpSpecies(bank));
+}
+
+bool8 BankHasVesselOfRuin(u8 bank)
+{
+    if(ABILITY(bank) != ABILITY_TREASURES_OF_RUIN)
+        return FALSE;
+
+    return SpeciesHasVesselOfRuin(GetProperAbilityPopUpSpecies(bank));
+}
+
+const u8* GetTreasureOfRuinAbilityName(u16 species)
+{
+    if (SpeciesHasBeadsOfRuin(species))
+        return NAME_BEADS_OF_RUIN;
+    if (SpeciesHasSwordOfRuin(species))
+        return NAME_SWORD_OF_RUIN;
+    if (SpeciesHasTabletsOfRuin(species))
+        return NAME_TABLETS_OF_RUIN;
+    if (SpeciesHasVesselOfRuin(species))
+        return NAME_VESSEL_OF_RUIN;
+
+    return NAME_SWORD_OF_RUIN;
+}
+
+const u8* GetTreasureOfRuinAbilityDescription(u16 species)
+{
+    if (SpeciesHasBeadsOfRuin(species))
+        return DESC_BEADS_OF_RUIN;
+    if (SpeciesHasSwordOfRuin(species))
+        return DESC_SWORD_OF_RUIN;
+    if (SpeciesHasTabletsOfRuin(species))
+        return DESC_TABLETS_OF_RUIN;
+    if (SpeciesHasVesselOfRuin(species))
+        return DESC_VESSEL_OF_RUIN;
+
+    return DESC_SWORD_OF_RUIN;
+}
+
+bool8 IsBeadsOfRuinOnTheField()
+{
+    for (u8 i = 0; i < gBattlersCount; i++)
+    {
+        if (BankHasBeadsOfRuin(i) && BATTLER_ALIVE(i))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+bool8 IsSwordOfRuinOnTheField()
+{
+    for (u8 i = 0; i < gBattlersCount; i++)
+    {
+        if (BankHasSwordOfRuin(i) && BATTLER_ALIVE(i))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+bool8 IsTabletsOfRuinOnTheField()
+{
+    for (u8 i = 0; i < gBattlersCount; i++)
+    {
+        if (BankHasTabletsOfRuin(i) && BATTLER_ALIVE(i))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+bool8 IsVesselOfRuinOnTheField()
+{
+    for (u8 i = 0; i < gBattlersCount; i++)
+    {
+        if (BankHasVesselOfRuin(i) && BATTLER_ALIVE(i))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+bool8 SpeciesHasGuardDog(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasGuardDog;
+}
+
+bool8 BankHasGuardDog(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_SUCTIONCUPS && SpeciesHasGuardDog(GetProperAbilityPopUpSpecies(bank)));
+}
+
+bool8 SpeciesHasHadronEngine(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasHadronEngine;
+}
+
+bool8 BankHasHadronEngine(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_TERRAIN_SURGE && SpeciesHasHadronEngine(GetProperAbilityPopUpSpecies(bank)));
+}
+
+bool8 SpeciesHasOrichalcumPulse(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasOrichalcumPulse;
+}
+
+bool8 BankHasOrichalcumPulse(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_DROUGHT && SpeciesHasOrichalcumPulse(GetProperAbilityPopUpSpecies(bank)));
+}
+
+u8 GetMostProficientStat(u8 bank) //for Protosynthesis and Quark Drive
+{
+    u8 maxStatId = STAT_STAGE_ATK;
+    u16 stats[STAT_STAGE_SPDEF + 1];
+    stats[STAT_STAGE_ATK] = gBattleMons[bank].attack;
+    stats[STAT_STAGE_DEF] = gBattleMons[bank].defense;
+    stats[STAT_STAGE_SPATK] = gBattleMons[bank].spAttack;
+    stats[STAT_STAGE_SPDEF] = gBattleMons[bank].spDefense;
+    stats[STAT_STAGE_SPEED] = gBattleMons[bank].speed;
+
+    for(u8 i = STAT_STAGE_DEF; i < NELEMS(stats); ++i)
+    {
+        if(stats[i] > maxStatId)
+            maxStatId = i;
+    }
+
+    return maxStatId;
+}
+
+u8 GetTypeBoostTypeFromSpecies(u16 species)
+{
+    if(gSpecialSpeciesFlags[species].hasSteelworker)
+        return TYPE_STEEL;
+    else if(gSpecialSpeciesFlags[species].hasRockyPayload)
+        return TYPE_ROCK;
+    else if(gSpecialSpeciesFlags[species].hasDragonsMaw)
+        return TYPE_DRAGON;
+    else if(gSpecialSpeciesFlags[species].hasTransistor)
+        return TYPE_ELECTRIC;
+    else
+        return gBaseStats[species].type1;
+}
+
+const u8* GetTypeBoostNameFromSpecies(u16 species)
+{
+    return sTypeBoostNames[GetTypeBoostTypeFromSpecies(species)];
+}
+
+const u8* GetTypeBoostDescriptionFromSpecies(u16 species)
+{
+    return sTypeBoostDescriptions[GetTypeBoostTypeFromSpecies(species)];
+}
+
+bool8 BankHasTransistor(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_TYPE_BOOST && GetTypeBoostTypeFromSpecies(GetProperAbilityPopUpSpecies(bank)) == TYPE_ELECTRIC);
+}
+
+bool8 BankHasDragonsMaw(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_TYPE_BOOST && GetTypeBoostTypeFromSpecies(GetProperAbilityPopUpSpecies(bank)) == TYPE_DRAGON);
+}
+
+bool8 SpeciesHasSeedSower(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasSeedSower;
+}
+
+bool8 SpeciesHasThermalExchange(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasThermalExchange;
+}
+
+bool8 BankHasThermalExchange(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_WATERVEIL && SpeciesHasThermalExchange(GetProperAbilityPopUpSpecies(bank)));
+}
+
+bool8 SpeciesHasWellBakedBody(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasWellBakedBody;
+}
+
+bool8 BankHasWellBakedBody(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_FLASHFIRE && SpeciesHasWellBakedBody(GetProperAbilityPopUpSpecies(bank)));
+}
+
+bool8 SpeciesHasWindPower(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasWindPower;
+}
+
+bool8 BankHasWindPower(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_ELECTROMORPHOSIS && SpeciesHasWindPower(GetProperAbilityPopUpSpecies(bank)));
 }

@@ -3101,6 +3101,10 @@ static void UpdateBuilderAfterSpread(struct TeamBuilder* builder, const struct B
 				builder->partyIndex[GRASS_IMMUNITY] = partyId;
 				break;
 
+			case ABILITY_EARTHEATER:
+				builder->partyIndex[GROUND_IMMUNITY] = partyId;
+				break;
+
 			case ABILITY_LEVITATE:
 				if (itemEffect != ITEM_EFFECT_IRON_BALL)
 					builder->partyIndex[GROUND_IMMUNITY] = partyId;
@@ -3157,6 +3161,7 @@ static bool8 IsSpreadWeakToType(u8 moveType, u8 defType1, u8 defType2, u8 abilit
 	switch (ability)
 	{
 		case ABILITY_LEVITATE:
+		case ABILITY_EARTHEATER:
 			if (moveType == TYPE_GROUND)
 				typeDmg = 0; //This assumes there's no Iron Ball on the spread
 			break;

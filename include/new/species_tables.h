@@ -127,6 +127,25 @@ struct SpecialSpeciesFlags
 	bool8 hasWormhole : 1;
 	bool8 hasPlasmaBurst : 1;
 
+	bool8 hasDragonsMaw : 1;
+	bool8 hasTransistor : 1;
+	bool8 hasSteelworker : 1;
+	bool8 hasRockyPayload : 1;
+
+	bool8 hasSharpness : 1;
+	bool8 hasAngerShell : 1;
+	bool8 hasBeadsOfRuin : 1;
+	bool8 hasSwordOfRuin : 1;
+	bool8 hasTabletsOfRuin : 1;
+	bool8 hasVesselOfRuin : 1;
+	bool8 hasGuardDog : 1;
+	bool8 hasHadronEngine : 1;
+	bool8 hasOrichalcumPulse : 1;
+	bool8 hasSeedSower : 1;
+	bool8 hasThermalExchange : 1;
+	bool8 hasWellBakedBody : 1;
+	bool8 hasWindPower : 1;
+	bool8 hasZeroToHero : 1;
 };
 
 extern const struct SpecialSpeciesFlags gSpecialSpeciesFlags[];

@@ -183,3 +183,24 @@ The battle's prize money\nwas quadrupled!
 
 #org @gText_SlowStartInfo
 [SCRIPTING_BANK] is now\nat [BUFFER][00]% power!
+
+#org @gText_BeadsOfRuinActivates
+[SCRIPTING_BANK]'s\nBEADS OF RUIN weakened the SP. DEF\lof all surrounding POK\eMON!
+
+#org @gText_SwordOfRuinActivates
+[SCRIPTING_BANK]'s\nSWORD OF RUIN weakened the DEFENSE\lof all surrounding POK\eMON!
+
+#org @gText_TabletsOfRuinActivates
+[SCRIPTING_BANK]'s\nTABLETS OF RUIN weakened the ATTACK\lof all surrounding POK\eMON!
+
+#org @gText_VesselOfRuinActivates
+[SCRIPTING_BANK]'s\nVESSEL OF RUIN weakened the SP. ATK\lof all surrounding POK\eMON!
+
+#org @gText_CostarActivates
+[SCRIPTING_BANK] copied\n[TARGET]'s stat changes!
+
+#org @gText_ElectromorphosisActivates
+Being hit by [CURRENT_MOVE] charged\n[TARGET] with power!
+
+#org @gText_AttackRoseCauseOfGuardDog
+[TARGET]'s ATTACK rose\ncause of GUARD DOG ability! 

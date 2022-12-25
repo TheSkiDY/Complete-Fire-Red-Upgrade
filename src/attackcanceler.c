@@ -927,6 +927,22 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			gBattleStruct->atkCancellerTracker++;
 			break;
 
+		case CANCELLER_GOODASGOLD: ;
+			if (ABILITY(gBankTarget) == ABILITY_GOODASGOLD
+			&& gBattleMoves[gCurrentMove].split == SPLIT_STATUS
+			&& !gSpecialMoveFlags[gCurrentMove].gSpecialWholeFieldMoves
+			&& !(gBattleMoves[gCurrentMove].target & MOVE_TARGET_OPPONENTS_FIELD))
+			{
+				if (IS_SINGLE_BATTLE || !(GetBaseMoveTarget(gCurrentMove, gBankAttacker) & (MOVE_TARGET_BOTH | MOVE_TARGET_ALL))) //Don't cancel moves that can hit two targets b/c one target might not be protected
+					CancelMultiTurnMoves(gBankAttacker);
+
+				gBattleScripting.bank = gBankTarget;
+				gBattlescriptCurrInstr = BattleScript_MoveUsedGoodAsGoldPrevents;
+				effect = 1;
+			}
+			gBattleStruct->atkCancellerTracker++;
+			break;
+
 		case CANCELLER_EXPLODING_DAMP:
 			if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION || gCurrentMove == MOVE_MINDBLOWN)
 			{
@@ -1246,7 +1262,10 @@ static u8 IsMonDisobedient(void)
 			else
 				obedienceLevel = BASE_OBEDIENCE_LEVEL;
 		#endif
+
 	}
+	else
+		obedienceLevel = 100;
 
 	if (gBattleMons[gBankAttacker].level <= obedienceLevel)
 		return 0;

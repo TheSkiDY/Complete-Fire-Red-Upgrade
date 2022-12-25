@@ -480,7 +480,7 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 				break;
 
 			case ABILITY_WATERVEIL:
-				if (gBattleWeather & WEATHER_RAIN_ANY && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
+				if (!BankHasThermalExchange(bankDef) && (gBattleWeather & WEATHER_RAIN_ANY) && atkAbility != ABILITY_INFILTRATOR && atkAbility != ABILITY_KEENEYE)
 					calc = udivsi((calc * 80), 100); // 0.8 Water Veil loss
 				break;
 		}

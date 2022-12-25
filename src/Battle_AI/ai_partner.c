@@ -92,6 +92,10 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 				if (moveType == TYPE_WATER)
 					IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
 				break;
+			case ABILITY_EARTHEATER:
+				if (moveType == TYPE_GROUND)
+					IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
+				break;
 			case ABILITY_STORMDRAIN:
 				if (moveType == TYPE_WATER
 				&&  !IsClassDoublesTotalTeamSupport(partnerClass)
@@ -173,6 +177,16 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			case ABILITY_CONTRARY:
 				if (!IsClassDoublesTotalTeamSupport(partnerClass)
 				&& CheckTableForMovesEffect(move, gStatLoweringMoveEffects))
+				{
+					IncreaseHelpingHandViability(&viability, class);
+				}
+				break;
+
+			case ABILITY_WINDRIDER:
+				if (gSpecialMoveFlags[move].gWindMoves
+				&&  !IsClassDoublesTotalTeamSupport(partnerClass)
+				&&  RealPhysicalMoveInMoveset(bankAtkPartner)
+				&&  AI_STAT_CAN_RISE(bankAtkPartner, STAT_STAGE_ATK))
 				{
 					IncreaseHelpingHandViability(&viability, class);
 				}

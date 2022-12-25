@@ -2656,3 +2656,25 @@ void ChooseMoveEffectForSpringtideStorm(void)
 
 	gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[moveEffect] - 5;
 }
+
+void ElectromorphosisFunc(void)
+{
+	gStatuses3[gBankTarget] |= STATUS3_CHARGED_UP;
+    gDisableStructs[gBankTarget].chargeTimer = 2;
+    gDisableStructs[gBankTarget].chargeTimerStartValue = 2;
+    ++gBattlescriptCurrInstr;
+}
+
+void GuardDogInitialFunc(void)
+{
+	u8 bank = gBankTarget;
+	if(BankHasGuardDog(bank))
+		gFormCounter = TRUE;
+	else
+		gFormCounter = FALSE;
+}
+
+void MummyWanderingSpiritSetCorrectTookAbilityFrom(void)
+{
+	SetTookAbilityFrom(gBankAttacker, gBankTarget);
+}

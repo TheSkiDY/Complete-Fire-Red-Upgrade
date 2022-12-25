@@ -204,7 +204,8 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					case ABILITY_FLASHFIRE:
 						if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
 						&& CanBeBurned(gBankTarget, gBankAttacker, TRUE)
-						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE))
+						&& (gBattleResources->flags->flags[gBankAttacker] & RESOURCE_FLAG_FLASH_FIRE)
+						&& !(BankHasWellBakedBody(gBankAttacker)))
 						{
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_FlashFireBurnSetup;

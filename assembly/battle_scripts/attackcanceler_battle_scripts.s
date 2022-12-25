@@ -37,6 +37,7 @@ attackcanceler_battle_scripts.s
 .global BattleScript_RaidBattleStatNullification
 .global BattleScript_MetalArrows
 .global BattleScript_ShadowTerrainNoStatChange
+.global BattleScript_MoveUsedGoodAsGoldPrevents
 
 .global BattleScript_TryRemoveIllusion
 .global gText_AbilityRaisedStatString
@@ -393,3 +394,16 @@ BattleScript_ShadowTerrainNoStatChange:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_MoveUsedGoodAsGoldPrevents:
+	orbyte OUTCOME OUTCOME_FAILED
+	attackstring
+	ppreduce
+	pause DELAY_HALFSECOND
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_GoodAsGoldAttackCancelString
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto BS_MOVE_END
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

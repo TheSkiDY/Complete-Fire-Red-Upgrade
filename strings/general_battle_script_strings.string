@@ -977,3 +977,6 @@ A snowstorm is raging!
 
 #org @sText_HailStopped
 The snowstorm stopped.
+
+#org @gText_GoodAsGoldAttackCancelString
+[TARGET]'s GOOD AS GOLD\nprevents using status moves!

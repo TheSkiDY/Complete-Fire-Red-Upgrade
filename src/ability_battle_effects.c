@@ -191,7 +191,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_MARVELSCALE] = 5,
 	[ABILITY_MEGALAUNCHER] = 7,
 	[ABILITY_MERCILESS] = 4,
+	#ifdef ABILITY_MINUS
 	[ABILITY_MINUS] = 0,
+	#endif
 	#ifdef ABILITY_MISTYSURGE
 	[ABILITY_MISTYSURGE] = 8,
 	#endif
@@ -225,7 +227,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	#ifdef ABILITY_PIXILATE
 	[ABILITY_PIXILATE] = 8,
 	#endif
+	#ifdef ABILITY_PLUS
 	[ABILITY_PLUS] = 0,
+	#endif
 	[ABILITY_POISONHEAL] = 8,
 	[ABILITY_POISONPOINT] = 4,
 	[ABILITY_POISONTOUCH] = 4,
@@ -315,7 +319,9 @@ const s8 gAbilityRatings[ABILITIES_COUNT] =
 	[ABILITY_FORM_CHANGE] = 9,
 	[ABILITY_STATIC] = 4,
 	[ABILITY_STEADFAST] = 2,
+	#ifdef ABILITY_STEELWORKER
 	[ABILITY_STEELWORKER] = 6,
+	#endif
 	[ABILITY_STENCH] = 1,
 	[ABILITY_STICKYHOLD] = 3,
 	[ABILITY_STORMDRAIN] = 7,
@@ -1479,8 +1485,52 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			}
 			break;
 
+		case ABILITY_TREASURES_OF_RUIN: ;
+			if (BankHasBeadsOfRuin(bank))
+			{
+				gBattleStringLoader = gText_BeadsOfRuinActivates;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasSwordOfRuin(bank))
+			{
+				gBattleStringLoader = gText_SwordOfRuinActivates;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasTabletsOfRuin(bank))
+			{
+				gBattleStringLoader = gText_TabletsOfRuinActivates;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasVesselOfRuin(bank))
+			{
+				gBattleStringLoader = gText_VesselOfRuinActivates;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
 
+		case ABILITY_COSTAR: ;
+			if(IS_DOUBLE_BATTLE)
+			{
+				u8 partner = PARTNER(bank);
+				if(BATTLER_ALIVE(partner))
+				{		
+					for (i = 0; i < BATTLE_STATS_NO - 1; ++i)
+					{
+						gBattleMons[bank].statStages[i] = gBattleMons[partner].statStages[i];
+					}
+					gBankTarget = partner;
+					gBattleStringLoader = gText_CostarActivates;
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
+			}
+			break;
 		}
+
 		// case ABILITY_EVAPORATE:
 		// 	if (BankHasEvaporate(bank) && AffectedByRain(bank))
 		// 	{
@@ -1905,6 +1955,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			if (move == MOVE_NONE) break;
 
 			u8 statId = 0;
+			u8 statChange = 0;
 			gBattleScripting.bank = bank;
 			switch (gLastUsedAbility) {
 				case ABILITY_VOLTABSORB:
@@ -1920,27 +1971,42 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 				case ABILITY_MOTORDRIVE:
 					if (moveType == TYPE_ELECTRIC)
-						effect = 2, statId = STAT_SPEED;
+						effect = 2, statId = STAT_SPEED, statChange = INCREASE_1;
 					break;
 
 				case ABILITY_LIGHTNINGROD:
 					if (moveType == TYPE_ELECTRIC)
-						effect = 2, statId = STAT_SPATK;
+						effect = 2, statId = STAT_SPATK, statChange = INCREASE_1;
 					break;
 
 				case ABILITY_STORMDRAIN:
 					if (moveType == TYPE_WATER)
-						effect = 2, statId = STAT_SPATK;
+						effect = 2, statId = STAT_SPATK, statChange = INCREASE_1;
 					break;
 
 				case ABILITY_SAPSIPPER:
 					if (moveType == TYPE_GRASS)
-						effect = 2, statId = STAT_ATK;
+						effect = 2, statId = STAT_ATK, statChange = INCREASE_1;
 					break;
 
 				case ABILITY_FLASHFIRE:
 					if (moveType == TYPE_FIRE)
-						effect = 3;
+					{
+						if (BankHasWellBakedBody(bank))
+							effect = 2, statId = STAT_DEF, statChange = INCREASE_2;
+						else
+							effect = 3;
+					}
+					break;
+
+				case ABILITY_EARTHEATER:
+					if (moveType == TYPE_GROUND)
+						effect = 1;
+					break;
+
+				case ABILITY_WINDRIDER:
+					if (gSpecialMoveFlags[move].gWindMoves)
+						effect = 2, statId = STAT_ATK, statChange = INCREASE_1;
 					break;
 			}
 
@@ -1980,7 +2046,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						else
 							gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
 
-						gBattleScripting.statChanger = statId | INCREASE_1;
+						gBattleScripting.statChanger = statId | statChange;
 					}
 					break;
 
@@ -2318,13 +2384,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				&& BATTLER_ALIVE(bank)
 				&& gBattleMons[bank].hp < gBattleMons[bank].maxHP / 2
 				&& gBattleMons[bank].hp + gHpDealt > gBattleMons[bank].maxHP / 2 //Hp fell below half
-				&& STAT_STAGE(bank, STAT_SPATK) < 12
 				&& !SheerForceCheck())
 				{
-					gBattleScripting.statChanger = STAT_SPATK | INCREASE_1;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
-					effect++;
+					if(SpeciesHasAngerShell(GetProperAbilityPopUpSpecies(bank)) 
+						&& (STAT_STAGE(bank,STAT_ATK) < STAT_STAGE_MAX || STAT_STAGE(bank,STAT_SPATK) < STAT_STAGE_MAX || STAT_STAGE(bank, STAT_SPEED) < STAT_STAGE_MAX) 
+						&& (STAT_STAGE(bank,STAT_DEF) > STAT_STAGE_MIN || STAT_STAGE(bank, STAT_SPDEF) > STAT_STAGE_MIN))
+					{
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_AngerShellActivates;
+						effect++;
+					}
+					else if (STAT_STAGE(bank, STAT_SPATK) < STAT_STAGE_MAX)
+					{
+						gBattleScripting.statChanger = STAT_SPATK | INCREASE_1;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+						effect++;
+					}
 				}
 				break;
 
@@ -2445,17 +2521,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			case ABILITY_SANDSPIT:
 				if (MOVE_HAD_EFFECT
 				&& TOOK_DAMAGE(bank)
-				&& gBankAttacker != bank
-				&& !(gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+				&& gBankAttacker != bank)
 				{
-					effect = ActivateWeatherAbility(WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY,
-													ITEM_EFFECT_SMOOTH_ROCK, bank, B_ANIM_SANDSTORM_CONTINUES, 1, TRUE);
-				}
-				else if (gBattleWeather & WEATHER_PRIMAL_ANY && !(gBattleWeather & WEATHER_SANDSTORM_ANY))
-				{
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_WeatherAbilityBlockedByPrimalWeatherRet;
-					effect++;
+					if (SpeciesHasSeedSower(GetProperAbilityPopUpSpecies(bank)))
+					{
+						effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);	
+					}
+					else
+					{
+						if (!(gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
+						{
+							effect = ActivateWeatherAbility(WEATHER_SANDSTORM_PERMANENT | WEATHER_SANDSTORM_TEMPORARY,
+															ITEM_EFFECT_SMOOTH_ROCK, bank, B_ANIM_SANDSTORM_CONTINUES, 1, TRUE);
+						}
+						else if (gBattleWeather & WEATHER_PRIMAL_ANY && !(gBattleWeather & WEATHER_SANDSTORM_ANY))
+						{
+							BattleScriptPushCursor();
+							gBattlescriptCurrInstr = BattleScript_WeatherAbilityBlockedByPrimalWeatherRet;
+							effect++;
+						}
+					}
 				}
 				break;
 
@@ -2561,7 +2646,52 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						gBattlescriptCurrInstr = BattleScript_CramorantSpitPrey;
 					}
 				}
+				break;
 			#endif
+
+			case ABILITY_ELECTROMORPHOSIS:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank
+				&& !(gStatuses3[bank] & STATUS3_CHARGED_UP)
+				&& (!BankHasWindPower(bank) || (BankHasWindPower(bank) && gSpecialMoveFlags[move].gWindMoves)))
+				{
+					gBattleStringLoader = gText_ElectromorphosisActivates;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_ElectromorphosisActivates;
+					effect++;
+				}
+				break;
+
+			case ABILITY_WATERVEIL: //Thermal Exchange
+				if (SpeciesHasThermalExchange(GetProperAbilityPopUpSpecies(bank))
+				&& MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank
+				&& moveType == TYPE_FIRE
+				&& STAT_STAGE(bank, STAT_ATK) < STAT_STAGE_MAX)
+				{
+					gBattleScripting.statChanger = STAT_ATK | INCREASE_1;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+					effect++;
+				}
+				break;
+
+			case ABILITY_TOXICDEBRIS:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& gBankAttacker != bank
+				&& SPLIT(move) == SPLIT_PHYSICAL)
+				{
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_ToxicDebris;
+					effect++;
+				}
+				break;
+
 			}
 			break;
 

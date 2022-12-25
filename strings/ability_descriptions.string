@@ -273,9 +273,6 @@ Knockouts boost SP. ATK.
 #org @DESC_STAMINA
 Taking a hit raises DEFENSE.
 
-#org @DESC_STEELWORKER
-Powers up STEEL-type moves.
-
 #org @DESC_TRIAGE
 Gives priority to healing moves.
 
@@ -518,12 +515,6 @@ Changes form each turn.
 #org @DESC_UNSEENFIST
 Contact moves bypass protection.
 
-#org @DESC_DRAGONSMAW
-Powers up DRAGON-type moves.
-
-#org @DESC_TRANSISTOR
-Powers up ELECTRIC-type moves.
-
 #org @DESC_CONFIDENCE
 Knockouts boost SP. ATK.
 
@@ -597,7 +588,7 @@ Raises catch rate of a wild encounter.
 Doubles SPECIAL ATTACK.
 
 #org @DESC_PURIFIED_POLLEN
-Lowers POISON-type damage by 75%.
+Lowers poison damage.
 
 #org @DESC_RAPID_KICKS
 Kicking moves hit first.
@@ -610,3 +601,45 @@ Lowers the foe's SPEED.
 
 #org @DESC_WISH_PEARL
 Restores 50% more HP.
+
+#org @DESC_HYPERCUTTER
+Prevents ATTACK reduction.\nPowers up slicing moves.
+
+#org @DESC_TREASURES_OF_RUIN
+(ToR)Probably a bug if you see this.
+
+#org @DESC_COSTAR
+Copies ally's stat changes on\nswitch in.
+
+#org @DESC_EARTHEATER
+Absorbs GROUND moves.
+
+#org @DESC_ELECTROMORPHOSIS
+Becomes charged when it takes\ndamage.
+
+#org @DESC_GOODASGOLD
+Blocks status moves.
+
+#org @DESC_OPPORTUNIST
+Copies foe's stat boosts.
+
+#org @DESC_PROTOSYNTHESIS
+Ups highest stat if in sun\nor with BOOSTER ENERGY.
+
+#org @DESC_QUARKDRIVE
+Ups max stat in EL. TERRAIN\nor with BOOSTER ENERGY.
+
+#org @DESC_PURIFYINGSALT
+Halves GHOST-type damage.\nCan't be statused.
+
+#org @DESC_TYPE_BOOST
+(TB)Probably a bug if you see this.
+
+#org @DESC_SUPREMEOVERLORD
+Ups ATK and SP.ATK slightly\nfor each fainted ally.
+
+#org @DESC_TOXICDEBRIS
+Scatters poison spikes if hit\nphysically.
+
+#org @DESC_WINDRIDER
+Boosts the ATTACK on wind moves.
