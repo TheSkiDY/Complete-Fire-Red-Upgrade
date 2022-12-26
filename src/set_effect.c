@@ -745,8 +745,17 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				break;
 
 			case MOVE_EFFECT_SP_ATK_TWO_DOWN: // Overheat
-				BattleScriptPush(gBattlescriptCurrInstr + 1);
-				gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+				if (gCurrentMove == MOVE_MAKEITRAIN && SIDE(gBankAttacker) == B_SIDE_PLAYER)
+				{
+					gBattleStruct->makeitrainMoney += (5 * gBattleMons[gBankAttacker].level);
+					BattleScriptPush(gBattlescriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_MakeItRain;
+				}
+				else
+				{
+					BattleScriptPush(gBattlescriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+				}
 				break;
 
 			case MOVE_EFFECT_BURN_BERRY:
@@ -877,6 +886,16 @@ void SetMoveEffect(bool8 primary, u8 certain)
 						{
 							BattleScriptPush(gBattlescriptCurrInstr + 1);
 							gBattlescriptCurrInstr = BattleScript_MaxMoveSetStealthRock;
+						}
+						break;
+					case MOVE_SALTCURE:
+						if (!gBattleStruct->saltCured[gBankTarget])
+						{
+							gBattleStruct->saltCured[gBankTarget] = TRUE;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattleStringLoader = gText_SaltCure;
+							gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+
 						}
 						break;
 					default:

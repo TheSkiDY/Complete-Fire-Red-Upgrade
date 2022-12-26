@@ -33,11 +33,14 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
-	givepokemon SPECIES_PALAFIN 5 0 0 0 0
-	givepokemon SPECIES_KILOWATTREL 5 0 0 0 0
-	givepokemon SPECIES_ARTICUNO 20 0 0 0 0
-	givepokemon SPECIES_PIDGEY 6 0 0 0 0
-	givepokemon SPECIES_ARBOLIVA 4 0 0 0 0
+	givepokemon SPECIES_SLOWKING_G 5 0 0 0 0
+	givepokemon SPECIES_GHOLDENGO 60 0 0 0 0
+	givepokemon SPECIES_GLIMMORA 5 0 0 0 0
+	givepokemon SPECIES_CYCLIZAR 33 0 0 0 0
+	setvar 0x8000 MOVE_SHEDTAIL
+	setvar 0x8001 MOVE_TIDYUP
+	setvar 0x8002 MOVE_SPINOUT
+	givepokemon SPECIES_NACLSTACK 3 0 0 1 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

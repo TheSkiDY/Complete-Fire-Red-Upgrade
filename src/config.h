@@ -341,6 +341,8 @@ enum //These vars need to be one after the other (hence the enum)
 //See "include/new/dexnav_config.h"
 
 /*======== NEW STUFF =======*/
+#define USE_HIDDEN_POWER_TYPE_FOR_TERASTALLIZE
+
 #define WEATHER_BALL_MULTIPLIER 40
 #define SHINY_BALL_MULTIPLIER 50
 

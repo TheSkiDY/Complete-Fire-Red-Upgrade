@@ -2923,14 +2923,12 @@ void ConvertCoinInt(u32 coinAmount)
 
 void DebugFunc(void)
 {
-	for (u16 i = 1; i < 1046; i++)
-	{
-		if(i == 980 || i == 987)
-			continue;
+	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered BS_079_Substitute");
+}
 
-		GetSetPokedexFlag(i, FLAG_SET_SEEN);
-		GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
-	}
+void DebugFunc2(void)
+{
+	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered ShedTailBS");
 }
 
 #ifdef SCROLLING_MULTICHOICE

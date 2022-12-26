@@ -34,8 +34,8 @@ extern const u8* gBattleScriptsForMoveEffects[];
 #define BattleScript_TargetPRLZHeal (u8*) 0x81D9177
 #define BattleScript_AtkDefDown (u8*) 0x81D8F35
 #define BattleScript_StatUp (u8*) 0x81D6BD1
-#define BattleScript_StatDown (u8*) 0x81D6C62
 #define BattleScript_SAtkDown2 (u8*) 0x81D8FEB
+#define BattleScript_StatDown (u8*) 0x81D6C62
 #define ScreensShatteredString (u8*) 0x83FC646
 
 extern const u8 BattleScript_PauseResultMessage[];
@@ -112,6 +112,9 @@ extern const u8 BattleScript_MaxMoveLowerSpeed2Foes[];
 extern const u8 BattleScript_PsyshieldBash[];
 extern const u8 BattleScript_MetalArrows[];
 extern const u8 BattleScript_AdditionalEffect[];
+extern const u8 BattleScript_TidyUpRemoveHazards[];
+extern const u8 BattleScript_TidyUpBoostStats[];
+extern const u8 BattleScript_TidyUpBoostStatsAnim[];
 
 //Strings
 extern const u8 gText_SuperEffectiveTarget[];
@@ -219,6 +222,7 @@ extern const u8 BattleScript_SpikesAbsorb[];
 extern const u8 BattleScript_SteelsurgeAbsorb[];
 extern const u8 BattleScript_LiveCoalsBurn[];
 extern const u8 BattleScript_LiveCoalsAbsorb[];
+extern const u8 BattleScript_MakeItRain[];
 
 extern const u8 ShadowTerrainSetString[];
 extern const u8 DracoTerrainSetString[];
@@ -238,3 +242,5 @@ extern const u8 gText_BurnCured[];
 extern const u8 gText_ItemCantBeRemoved[];
 
 extern const u8 gText_LiveCoalsLay[];
+extern const u8 gText_MakeItRainScatteredCoins[];
+extern const u8 gText_SaltCure[];

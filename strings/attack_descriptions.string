@@ -1508,146 +1508,146 @@ The user overshadows\nthe ground for five\nturns, powering up\nGHOST moves and\n
 #org @DESC_DRACOTERRAIN
 The user covers the\nground in harsh mist\nfive turns, powering up\nDRAGON moves and\nforcing critical hits.
 
-#org @DESC_EMPTYSLOT_16X
-Empty move.
+#org @DESC_AQUACUTTER
+The user expels\npressurized water to\ncut at the target\nlike a blade. This\nmove has a high\ncritical ratio.
 
-#org @DESC_EMPTYSLOT_17X
-Empty move.
+#org @DESC_AQUASTEP
+The user attacks\nusing light and fluid\ndance steps. This\nalso boosts the\nuser's SPEED.
 
-#org @DESC_EMPTYSLOT_18X
-Empty move.
+#org @DESC_ARMORCANNON
+The user shoots its\nown armor out as\nblazing projectiles.\nThis also lowers the\nuser’s DEF and SP.DEF.
 
-#org @DESC_EMPTYSLOT_19X
-Empty move.
+#org @DESC_AXEKICK
+The user slams its\nheel down upon the\ntarget that can cause\nconfusion. If it\nmisses, the user's\nhurt.
 
-#org @DESC_EMPTYSLOT_20X
-Empty move.
+#org @DESC_BITTERBLADE
+The user delivers a\nslashing atttack that\nrestores half the\ndamage taken by the\ntarget.
 
-#org @DESC_EMPTYSLOT_21X
-Empty move.
+#org @DESC_BLAZINGTORQUE
+A powerful move that\nhas a 30% chance of\nburning the target.
 
-#org @DESC_EMPTYSLOT_22X
-Empty move.
+#org @DESC_CHILLINGWATER
+The user attacks by\nshowering with water\nso cold it saps the\ntarget's power and\nlowers its ATTACK.
 
-#org @DESC_EMPTYSLOT_23X
-Empty move.
+#org @DESC_CHILLYRECEPTION
+The user tells a\nchillingly bad joke\nbefore switching with\na party POK\eMON. This\nsummons a snowstorm.
 
-#org @DESC_EMPTYSLOT_24X
-Empty move.
+#org @DESC_COLLISIONCOURSE
+The user crashes to\nthe ground, causing a\nmassive prehistoric\nexplosion. Gains more\npower if it’s a\nsupereffective hit.
 
-#org @DESC_EMPTYSLOT_25X
-Empty move.
+#org @DESC_COMBATTORQUE
+A powerful move that\nhas a 30% chance of\nparalyzing the foe.
 
-#org @DESC_EMPTYSLOT_26X
-Empty move.
+#org @DESC_COMEUPPANCE
+The user retaliates\nwith much greater\nforce against the\nopponent that last\ndamaged it.
 
-#org @DESC_EMPTYSLOT_27X
-Empty move.
+#org @DESC_DOODLE
+The user captures the\nessence of the foe in\na sketch. This changes\nthe abilities of the\nuser and its ally to\nthat of the target.
 
-#org @DESC_EMPTYSLOT_28X
-Empty move.
+#org @DESC_DOUBLESHOCK
+The user discharges\nall the electricity\nfrom its body. After\nusing this move, the\nuser will no longer\nbe ELECTRIC type.
 
-#org @DESC_EMPTYSLOT_29X
-Empty move.
+#org @DESC_ELECTRODRIFT
+The user races forward,\npiercing its target\nwith electricity.\nGains more power if\nit’s a supereffective\nhit.
 
-#org @DESC_EMPTYSLOT_30X
-Empty move.
+#org @DESC_FILLETAWAY
+The user sharply\nboosts its ATTACK,\nSP. ATK, and SPEED\nstats by using its\nown HP.
 
-#org @DESC_EMPTYSLOT_31X
-Empty move.
+#org @DESC_FLOWERTRICK
+The user throws a\nrigged bouquet of\nflowers. This attack\nnever misses and\nalways lands a\ncritical hit.
 
-#org @DESC_EMPTYSLOT_32X
-Empty move.
+#org @DESC_GIGATONHAMMER
+The user swings its\nwhole body to attack\nwith its huge hammer.\nThis move can't be\nused twice in a row.
 
-#org @DESC_EMPTYSLOT_33X
-Empty move.
+#org @DESC_GLAIVERUSH
+After use, attacks\nfrom opposing POK\eMON\nduring the next turn\ncannot miss and will\ninflict double damage.
 
-#org @DESC_EMPTYSLOT_34X
-Empty move.
+#org @DESC_HYPERDRILL
+The user spins the\npointed part of its\nbody at high speed to\npierce the target.\nThis attack goes\nthrough protection.
 
-#org @DESC_EMPTYSLOT_35X
-Empty move.
+#org @DESC_ICESPINNER
+The user covers its\nfeet in thin ice and\ntwirls around, slamming\ninto the target. This\nmove also destroys\nthe terrain.
 
-#org @DESC_EMPTYSLOT_36X
-Empty move.
+#org @DESC_JETPUNCH
+The user summons a\ntorrent around its\nfist and punches at\nblinding speed. This\nmove always goes first.
 
-#org @DESC_EMPTYSLOT_37X
-Empty move.
+#org @DESC_KOWTOWCLEAVE
+The user slashes at\nthe target after\nkowtowing to make the\ntarget let down its\nguard. This attack\nnever misses.
 
-#org @DESC_EMPTYSLOT_38X
-Empty move.
+#org @DESC_LASTRESPECTS
+The user attacks to\navenge its allies.\nThe more defeated\nallies, the greater\nthe move's power.
 
-#org @DESC_EMPTYSLOT_39X
-Empty move.
+#org @DESC_LUMINACRASH
+The user attacks with\na peculiar light that\naffects the mind.\nThis also harshly\nlowers the foe's\nSP. DEF.
 
-#org @DESC_EMPTYSLOT_40X
-Empty move.
+#org @DESC_MAGICALTORQUE
+A powerful move that\nhas a 30% chance of\nconfusing the foe.
 
-#org @DESC_EMPTYSLOT_41X
-Empty move.
+#org @DESC_MAKEITRAIN
+The user throws out\na mass of coins. This\nalso lowers the user's\nSP.ATK stat. Money is\nearned after the\nbattle.
 
-#org @DESC_EMPTYSLOT_42X
-Empty move.
+#org @DESC_MORTALSPIN
+The user performs a\nspin attack that frees\nit from traps and\nhazards. This also\npoisons opposing\nPOK\eMON.
 
-#org @DESC_EMPTYSLOT_43X
-Empty move.
+#org @DESC_NOXIOUSTORQUE
+A powerful move that\nhas a 30% chance of\npoisoning the foe.
 
-#org @DESC_EMPTYSLOT_44X
-Empty move.
+#org @DESC_ORDERUP
+The user attacks with\nelegant poise. If the\nuser has a TATSUGIRI\nin its mouth, this\nmove boosts one stats\nbased on the form.
 
-#org @DESC_EMPTYSLOT_45X
-Empty move.
+#org @DESC_POPULATIONBOMB
+The user's fellows\ngather in droves to\nperform a combo attack\nthat hits the target\none to ten times in a\nrow.
 
-#org @DESC_EMPTYSLOT_46X
-Empty move.
+#org @DESC_POUNCE
+The user attacks by\npouncing on the target.\nThis also lowers the\ntarget's SPEED stat.
 
-#org @DESC_EMPTYSLOT_47X
-Empty move.
+#org @DESC_RAGEFIST
+The user converts its\nrage into energy to\nattack. The more times\nthe user has been hit,\nthe greater the\nmove's power.
 
-#org @DESC_EMPTYSLOT_48X
-Empty move.
+#org @DESC_RAGINGBULL
+The user performs a\ntackle that shatters\nscreens and barriers.\nThis move's type\ndepends on the user's\nform.
 
-#org @DESC_EMPTYSLOT_49X
-Empty move.
+#org @DESC_REVIVALBLESSING
+The user bestows a\nloving blessing,\nreviving a party\nPOK\eMON and restoring\nhalf of max HP.
 
-#org @DESC_EMPTYSLOT_50X
-Empty move.
+#org @DESC_RUINATION
+The user summons a\nruinous disaster.\nThis cuts the target’s\nHP in half.
 
-#org @DESC_EMPTYSLOT_51X
-Empty move.
+#org @DESC_SALTCURE
+The user salt cures\nthe target, damaging\nevery turn. STEEL and\nWATER types are more\nstrongly affected.
 
-#org @DESC_EMPTYSLOT_52X
-Empty move.
+#org @DESC_SHEDTAIL
+The user creates a\nsubstitute for itself\nbefore switching\nplaces with a party\nPOK\eMON.
 
-#org @DESC_EMPTYSLOT_53X
-Empty move.
+#org @DESC_SILKTRAP
+The user protects\nitself from damage,\nand lowers the foe's\nSPEED if it makes\ncontact.
 
-#org @DESC_EMPTYSLOT_54X
-Empty move.
+#org @DESC_SPICYEXTRACT
+The user emits an\nincredibly spicy\nextract, sharply\nboosting foe's ATK and\nharshly lowering DEF.
 
-#org @DESC_EMPTYSLOT_55X
-Empty move.
+#org @DESC_SPINOUT
+The user spins\nfuriously by straining\nits legs. This also\nharshly lowers the\nuser's SPEED stat.
 
-#org @DESC_EMPTYSLOT_56X
-Empty move.
+#org @DESC_TERABLAST
+The user unleashes\nenergy of its TERA\nTYPE. This move does\ndamage using the ATK\nor SP.ATK whichever\nis higher.
 
-#org @DESC_EMPTYSLOT_57X
-Empty move.
+#org @DESC_TIDYUP
+The user tidies up\nand removes effects\nof hazards. This also\nboosts the user’s\nATTACK and SPEED.
 
-#org @DESC_EMPTYSLOT_58X
-Empty move.
+#org @DESC_TORCHSONG
+The user blows out\nraging flames as if\nsinging a song. This\nalso boosts the user's\nSP. ATK.
 
-#org @DESC_EMPTYSLOT_59X
-Empty move.
+#org @DESC_TRAILBLAZE
+The user attacks\nsuddenly as if leaping\nout from tall grass.\nThe user's nimble\nfootwork boosts its\nSPEED.
 
-#org @DESC_EMPTYSLOT_60X
-Empty move.
+#org @DESC_TRIPLEDIVE
+The user performs a\nperfectly timed triple\ndive, hitting the\ntarget with splashes\nof water three times\nin a row.
 
-#org @DESC_EMPTYSLOT_61X
-Empty move.
+#org @DESC_TWINBEAM
+The user shoots\nmystical beams from\nits eyes to inflict\ndamage. The target is\nhit twice in a row.
 
-#org @DESC_EMPTYSLOT_62X
-Empty move.
+#org @DESC_WICKEDTORQUE
+A powerful move that\nhas a 10% chance of\nputting the target to\nsleep.
 
 #org @DESC_EMPTYSLOT_63X
 Empty move.

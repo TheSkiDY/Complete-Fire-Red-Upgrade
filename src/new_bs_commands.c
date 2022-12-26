@@ -245,6 +245,7 @@ void atkFF06_setterrain(void)
 			case MOVE_SPLINTERED_STORMSHARDS:
 			case MOVE_DEFOG:
 			case MOVE_STEELROLLER:
+			case MOVE_ICESPINNER:
 			REMOVE_TERRAIN:
 				//if (gCurrentMove != MOVE_DEFOG)
 				//	gNewBS->terrainForcefullyRemoved = TRUE; //Screw this lol
@@ -399,6 +400,12 @@ void atkFF08_counterclear(void)
 		case Counters_TarShot:
 			if (gNewBS->tarShotBits & gBitTable[bank])
 				gNewBS->tarShotBits &= ~(gBitTable[bank]);
+			else
+				failed = TRUE;
+			break;
+		case Counters_GlaiveRush:
+			if (gBattleStruct->GlaiveRushTimers[bank])
+				gBattleStruct->GlaiveRushTimers[bank] = 0;
 			else
 				failed = TRUE;
 			break;
@@ -592,6 +599,9 @@ void atkFF0E_setcounter(void)
 			break;
 		case Counters_TarShot:
 			gNewBS->tarShotBits |= gBitTable[bank];
+			break;
+		case Counters_GlaiveRush:
+			gBattleStruct->GlaiveRushTimers[bank] = amount;
 			break;
 	}
 
@@ -1083,6 +1093,19 @@ void atkFE_prefaintmoveendeffects(void)
 				{
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_ObstructStatDecrement;
+					effect = TRUE;
+					break;
+				}
+			}
+
+			if (gProtectStructs[gBankTarget].silktrap_damage)
+			{
+				gProtectStructs[gBankTarget].silktrap_damage = 0;
+
+				if (BATTLER_ALIVE(gBankAttacker) && STAT_CAN_FALL(gBankAttacker, STAT_SPEED))
+				{
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SilkTrap;
 					effect = TRUE;
 					break;
 				}

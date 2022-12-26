@@ -2678,3 +2678,66 @@ void MummyWanderingSpiritSetCorrectTookAbilityFrom(void)
 {
 	SetTookAbilityFrom(gBankAttacker, gBankTarget);
 }
+
+void ChooseCorrectScriptForComeuppance(void)
+{
+	if (gProtectStructs[gBankAttacker].specialDmg)
+		gFormCounter = TRUE;
+	else
+		gFormCounter = FALSE;
+}
+
+void DoubleShockFunc(void)
+{
+	if (gBattleMons[gBankAttacker].type1 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type1 = TYPE_MYSTERY;
+
+	if (gBattleMons[gBankAttacker].type2 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type2 = TYPE_MYSTERY;
+
+	if (gBattleMons[gBankAttacker].type3 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type3 = TYPE_BLANK;
+}
+
+void SetGlaiveRushTimer(void)
+{
+	gBattleStruct->GlaiveRushTimers[gBankAttacker] = 2;
+}
+
+void IncreaseFaintedMonsCounterAttacker(void)
+{
+	gBattleStruct->faintedMonsCounter[SIDE(gBankAttacker)]++;
+}
+
+void IncreaseFaintedMonsCounterTarget(void)
+{
+	gBattleStruct->faintedMonsCounter[SIDE(gBankTarget)]++;
+	
+}
+
+void IncreaseFaintedMonsCounterScriptingBank(void)
+{
+	gBattleStruct->faintedMonsCounter[SIDE(gBattleScripting.bank)]++;
+}
+
+void IncreaseHitCounter(void)
+{
+	u8 side = SIDE(gBankTarget);
+	u8 index = gBattlerPartyIndexes[gBankTarget];
+	u8 counter = gBattleStruct->hitCounter[side][index];
+
+	gBattleStruct->hitCounter[side][index] = MathMax(254, counter + 1);
+}
+
+void TidyUpHelperFunc(void)
+{
+	if (gSideStatuses[SIDE(gBankAttacker)] & SIDE_STATUS_SPIKES
+	|| gSideStatuses[SIDE(gBankTarget)] & (SIDE_STATUS_SPIKES))
+	{
+		gBattlescriptCurrInstr = BattleScript_TidyUpRemoveHazards - 5;
+	}
+	else
+	{
+		gBattlescriptCurrInstr = BattleScript_TidyUpBoostStatsAnim - 5;
+	}
+}	

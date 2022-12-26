@@ -55,6 +55,7 @@ void __attribute__((long_call)) ScriptContext1_Stop(void);
 void __attribute__((long_call)) SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void));
 
 void DebugFunc(void);
+void DebugFunc2(void);
 
 /*
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);

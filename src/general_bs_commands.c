@@ -2334,6 +2334,7 @@ void atk77_setprotect(void)
 		case MOVE_QUICKGUARD:
 		case MOVE_WIDEGUARD:
 		case MOVE_OBSTRUCT:
+		case MOVE_SILKTRAP:
 		case MOVE_MAX_GUARD:
 			break;
 		default:
@@ -2405,6 +2406,11 @@ void atk77_setprotect(void)
 			case MOVE_ENDURE:
 				gProtectStructs[gBankAttacker].endured = 1;
 				gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+				break;
+
+			case MOVE_SILKTRAP:
+				gProtectStructs[gBankAttacker].SilkTrap = 1;
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 				break;
 
 			default:
@@ -2982,6 +2988,7 @@ void atk91_givepaydaymoney(void)
 			money += (gPlayerParty[i].level * 5) * gNewBS->PayDayByPartyIndices[i];
 		money *= gBattleStruct->moneyMultiplier;
 		money += gNewBS->maxGoldrushMoney * gBattleStruct->moneyMultiplier;
+		money += gBattleStruct->makeitrainMoney * gBattleStruct->moneyMultiplier;
 		#ifdef PAYDAY_MONEY_CAP
 		money = MathMin(money, 99999); //Pay Day and Gold Rush cap at $99999
 		#endif
@@ -3602,7 +3609,6 @@ void atkA1_counterdamagecalculator(void) {
 
 	if(ABILITY(gBankAttacker) == ABILITY_ANALYTIC)
 		hasAnalytic = TRUE;
-
 	if (gProtectStructs[gBankAttacker].physicalDmg && atkSide != defSide && gBattleMons[gProtectStructs[gBankAttacker].physicalBank].hp)
 	{
 		gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * (hasAnalytic ? 3 : 2);
@@ -4534,6 +4540,22 @@ void atkBC_maxattackhalvehp(void)
 	if (ABILITY(gBankAttacker) == ABILITY_MAGICGUARD)
 		hasMagicGuard = TRUE;
 
+	if (gCurrentMove == MOVE_FILLETAWAY)
+	{
+
+		if ((STAT_STAGE(gBankAttacker, STAT_STAGE_ATK) < STAT_STAGE_MAX || STAT_STAGE(gBankAttacker, STAT_STAGE_SPATK) < STAT_STAGE_MAX || STAT_STAGE(gBankAttacker, STAT_STAGE_SPEED) < STAT_STAGE_MAX)
+			|| (ABILITY(gBankAttacker) == ABILITY_CONTRARY && (STAT_STAGE(gBankAttacker, STAT_STAGE_ATK) > STAT_STAGE_MIN || STAT_STAGE(gBankAttacker, STAT_STAGE_SPATK) > STAT_STAGE_MIN || STAT_STAGE(gBankAttacker, STAT_STAGE_SPEED) > STAT_STAGE_MIN)))
+		{
+			gBattleMoveDamage = hasMagicGuard ? 0 : MathMax(1, gBattleMons[gBankAttacker].maxHP / 2);
+			gBattlescriptCurrInstr += 5;
+		}
+		else
+		{
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+		}
+		return;
+	}
+
 	gBattleScripting.statChanger = INCREASE_2 | STAT_STAGE_ATK;
 	gBattleScripting.animArg1 = 0xE + STAT_STAGE_ATK;
 	gBattleScripting.animArg2 = 0;
@@ -4592,7 +4614,7 @@ void atkBE_rapidspinfree(void)
 	u8 sideAtk = SIDE(bankAtk);
 	u8 sideDef = SIDE(gBankTarget);
 
-	if (gCurrentMove == MOVE_RAPIDSPIN)
+	if (gCurrentMove == MOVE_RAPIDSPIN || gCurrentMove == MOVE_MORTALSPIN)
 	{
 		if (gBattleMons[bankAtk].status2 & STATUS2_WRAPPED)
 		{
@@ -4634,8 +4656,47 @@ void atkBE_rapidspinfree(void)
 				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER;
 				SetMoveEffect(TRUE, TRUE); //Automatically increments gBattlescriptCurrInstr
 			}
+			else if (gCurrentMove == MOVE_MORTALSPIN)
+			{
+				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON;
+				SetMoveEffect(TRUE, TRUE);
+			}
 			else
 				gBattlescriptCurrInstr++;
+		}
+	}
+	else if (gCurrentMove == MOVE_TIDYUP)
+	{
+		sideDef = SIDE(FOE(bankAtk)); //because Tidy Up affects user
+		if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES)
+		{
+			gSideStatuses[sideAtk] &= ~(SIDE_STATUS_SPIKES);
+			gSideTimers[sideAtk].spikesAmount = 0;
+			gSideTimers[sideAtk].tspikesAmount = 0;
+			gSideTimers[sideAtk].srAmount = 0;
+			gSideTimers[sideAtk].stickyWeb = 0;
+			gSideTimers[sideAtk].steelsurge = 0;
+			gSideTimers[sideAtk].livecoalsAmount = 0;
+			BattleScriptPushCursor();
+			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+			gBattleStringLoader = RemovedEntryHazardsString;
+		}
+		else if (gSideStatuses[sideDef] & SIDE_STATUS_SPIKES)
+		{
+			gSideStatuses[sideDef] &= ~(SIDE_STATUS_SPIKES);
+			gSideTimers[sideDef].spikesAmount = 0;
+			gSideTimers[sideDef].tspikesAmount = 0;
+			gSideTimers[sideDef].srAmount = 0;
+			gSideTimers[sideDef].stickyWeb = 0;
+			gSideTimers[sideDef].steelsurge = 0;
+			gSideTimers[sideAtk].livecoalsAmount = 0;
+			BattleScriptPushCursor();
+			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+			gBattleStringLoader = RemovedEntryHazardsTargetSideString;
+		}
+		else
+		{
+			gBattlescriptCurrInstr++;
 		}
 	}
 	else //Defog + G-Max Windrage

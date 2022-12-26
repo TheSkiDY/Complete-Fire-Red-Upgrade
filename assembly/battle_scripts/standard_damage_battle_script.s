@@ -21,6 +21,7 @@ STANDARD_DAMAGE:
 	waitstateatk
 	graphicalhpupdate BANK_TARGET
 	datahpupdate BANK_TARGET
+	callasm IncreaseHitCounter
 	critmessage
 	waitmessage DELAY_1SECOND
 	resultmessage

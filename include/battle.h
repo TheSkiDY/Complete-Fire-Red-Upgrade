@@ -397,11 +397,11 @@ struct ProtectStruct
     u32 usedDisabledMove:1;
     /* field_2 */
     u32 usedTauntedMove:1;      	// 0x1
-    u32 flag2Unknown:1;         	// 0x2
+    u32 SilkTrap:1;         	// 0x2
     u32 flinchImmobility:1;     	// 0x4
     u32 notFirstStrike:1;       	// 0x8
     u32 palaceUnableToUseMove : 1;	// 0x10 //May be implemented...
-    u32 flag_x20 : 1;           	// 0x20
+    u32 silktrap_damage : 1;           	// 0x20
     u32 obstruct : 1;           	// 0x40
     u32 obstructDamage : 1;         // 0x80
     /* field_3 */
@@ -684,14 +684,8 @@ struct BattleStruct
 	u8 wallyWaitFrames;
 	u8 wallyMoveFrames;
 	u16 lastTakenMove[MAX_BATTLERS_COUNT]; //Used by mirror move
-	u8 field_A0;
-	u8 field_A1;
-	u8 field_A2;
-	u8 field_A3;
-	u8 field_A4;
-	u8 field_A5;
-	u8 field_A6;
-	u8 field_A7;
+	u32 makeitrainMoney;
+	u8 saltCured[MAX_BATTLERS_COUNT];
 	u16 hpOnSwitchout[2];
 	u8 abilityPreventingSwitchout;
 	u8 hpScale;
@@ -717,14 +711,11 @@ struct BattleStruct
 	u16 castformPalette[MAX_BATTLERS_COUNT][16];
 	u8 wishPerishSongState;
 	u8 wishPerishSongBattlerId;
-	u8 field_182;
-	u8 field_183;
-	u8 field_184;
-	u8 field_185;
-	u8 field_186;
-	u8 field_187;
+	u8 GlaiveRushTimers[MAX_BATTLERS_COUNT];
+	u8 faintedMonsCounter[NUM_BATTLE_SIDES]; //for Last Respects
 	struct BattleEnigmaBerry battleEnigmaBerry;
-	u8 field_1A4[0x5C]; // currently unknown
+    u8 hitCounter[NUM_BATTLE_SIDES][PARTY_SIZE]; //for Rage Fist
+	u8 field_1A4[0x50]; // currently unknown
 }; //size == 0x200 bytes
 
 extern struct BattleStruct* gBattleStruct;

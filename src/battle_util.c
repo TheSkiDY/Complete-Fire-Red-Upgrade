@@ -595,6 +595,7 @@ bool8 LiftProtect(u8 bank)
 	|| gProtectStructs[bank].SpikyShield
 	|| gProtectStructs[bank].BanefulBunker
 	|| gProtectStructs[bank].obstruct
+	|| gProtectStructs[bank].SilkTrap
 	|| gSideStatuses[SIDE(bank)] & (SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK | SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD))
 	{
 		if (!IsDynamaxed(bank))
@@ -604,6 +605,7 @@ bool8 LiftProtect(u8 bank)
 		gProtectStructs[bank].SpikyShield = 0;
 		gProtectStructs[bank].BanefulBunker = 0;
 		gProtectStructs[bank].obstruct = 0;
+		gProtectStructs[bank].SilkTrap = 0;
 		gSideStatuses[SIDE(bank)] &= ~(SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK | SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD);
 		return TRUE;
 	}
@@ -620,7 +622,7 @@ bool8 ProtectsAgainstZMoves(u16 move, u8 bankAtk, u8 bankDef)
 	{
 		return TRUE;
 	}
-	else if ((gProtectStructs[bankDef].KingsShield || (gSideStatuses[SIDE(bankDef)] & SIDE_STATUS_MAT_BLOCK))
+	else if ((gProtectStructs[bankDef].KingsShield || gProtectStructs[bankDef].SilkTrap || (gSideStatuses[SIDE(bankDef)] & SIDE_STATUS_MAT_BLOCK))
 		 && SPLIT(move) != SPLIT_STATUS)
 	{
 		return TRUE;
@@ -753,7 +755,7 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 		return TRUE;
 	else if (!isMaxMove && move == gDisableStructs[bank].disabledMove && check & MOVE_LIMITATION_DISABLED)
 		return TRUE;
-	else if (!isMaxMove && move == gLastUsedMoves[bank] && check & MOVE_LIMITATION_TORMENTED && IsTormented(bank))
+	else if (!isMaxMove && move == gLastUsedMoves[bank] && check & MOVE_LIMITATION_TORMENTED && IsTormented(bank, move))
 		return TRUE;
 	else if (IsTaunted(bank) && check & MOVE_LIMITATION_TAUNT && SPLIT(move) == SPLIT_STATUS)
 		return TRUE;
@@ -2653,8 +2655,11 @@ bool8 IsTaunted(u8 bank)
 		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TAUNT && ABILITY(bank) != ABILITY_OBLIVIOUS);
 }
 
-bool8 IsTormented(u8 bank)
+bool8 IsTormented(u8 bank, u16 move)
 {
+	if (move == MOVE_GIGATONHAMMER)
+		return TRUE;
+
 	return (gBattleMons[bank].status2 & STATUS2_TORMENT) != 0
 		|| (IS_BATTLE_CIRCUS && gBattleCircusFlags & BATTLE_CIRCUS_TORMENT);
 }
@@ -2740,7 +2745,7 @@ bool8 CanMoveDuringLoafingTurn(u8 bank)
 			&& SPLIT(move) == SPLIT_STATUS 
 			&& !gSpecialMoveFlags[move].gTruantLoafingBannedMoves 
 			&& !(IsHealBlocked(bank) && CheckHealingMove(move))
-			&& !(IsTormented(bank) && move == gLastUsedMoves[gActiveBattler]))
+			&& !(IsTormented(bank, move) && move == gLastUsedMoves[gActiveBattler]))
 			hasValidStatusMove = TRUE;
 	}
 

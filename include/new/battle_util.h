@@ -192,7 +192,7 @@ bool8 BankSideHasGMaxCannonade(u8 bank);
 bool8 BankSideHasGMaxVolcalith(u8 bank);
 bool8 IsConfused(u8 bank);
 bool8 IsTaunted(u8 bank);
-bool8 IsTormented(u8 bank);
+bool8 IsTormented(u8 bank, u16 move);
 bool8 IsHealBlocked(u8 bank);
 bool8 CantUseSoundMoves(u8 bank);
 bool8 IsLaserFocused(u8 bank);

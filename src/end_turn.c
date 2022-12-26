@@ -75,6 +75,7 @@ enum EndTurnEffects
 	ET_Perish_Song,
 	ET_Roost,
 	ET_Sleep,
+	ET_SaltCure,
 	ET_Reflect,
 	ET_Light_Screen,
 	ET_Safeguard,
@@ -196,6 +197,9 @@ u8 TurnBasedEffects(void)
 
 					if (gNewBS->ai.typeAbsorbSwitchingCooldown[i])
 						--gNewBS->ai.typeAbsorbSwitchingCooldown[i];
+
+					if (gBattleStruct->GlaiveRushTimers[i])
+						--gBattleStruct->GlaiveRushTimers[i];
 
 					gNewBS->synchronizeTarget[i] = 0;
 					gBattleMons[i].status2 &= ~(STATUS2_FLINCHED);
@@ -1051,6 +1055,18 @@ u8 TurnBasedEffects(void)
 					gBattleMoveDamage *= -1;
 					gBattleScripting.bank = gActiveBattler;
 					BattleScriptExecute(BattleScript_PoisonHeal);
+					++effect;
+				}
+				break;
+
+			case ET_SaltCure:
+				if (BATTLER_ALIVE(gActiveBattler)
+				&& gBattleStruct->saltCured[gActiveBattler]
+				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD)
+				{
+					gBattleMoveDamage = GetSaltCureDamage(gActiveBattler);
+					gBattleScripting.bank = gActiveBattler;
+					BattleScriptExecute(BattleScript_SaltCureDamage);
 					++effect;
 				}
 				break;
@@ -2156,6 +2172,19 @@ u32 GetGMaxVolcalithDamage(u8 bank)
 	&& ABILITY(bank) != ABILITY_MAGICGUARD)
 	{
 		damage = MathMax(1, GetBaseMaxHP(bank) / 6);
+	}
+
+	return damage;
+}
+
+u32 GetSaltCureDamage(u8 bank)
+{
+	u32 damage = 0;
+	u8 divisor = (IsOfType(bank, TYPE_WATER) || IsOfType(bank, TYPE_STEEL)) ? 4 : 8;
+
+	if (gBattleStruct->saltCured[bank] && ABILITY(bank) != ABILITY_MAGICGUARD)
+	{
+		damage = MathMax(1, GetBaseMaxHP(bank) / divisor);
 	}
 
 	return damage;

@@ -25,6 +25,7 @@ extern const u8 BattleScript_SelectingNotAllowedThroatChop[];
 extern const u8 BattleScript_SelectingNotAllowedHealBlock[];
 extern const u8 BattleScript_SelectingNotAllowedMinimize[];
 extern const u8 BattleScript_SelectingInvalidMoveDuringLoafingTurn[];
+extern const u8 BattleScript_SelectingGigatonHammerSecondTime[];
 
 //Strings
 extern const u8 StringNull[];
@@ -103,3 +104,4 @@ extern const u8 gText_SkyBattleMoveMenu[];
 extern const u8 gText_GravityMoveMenu[];
 extern const u8 gText_ThroatChopMoveMenu[];
 extern const u8 gText_HealBlockMoveMenu[];
+extern const u8 gText_GigatonHammerMenu[];

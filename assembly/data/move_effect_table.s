@@ -229,7 +229,7 @@ gBattleScriptsForMoveEffects:
 .word BS_211_CalmMind
 .word BS_212_DragonDance
 .word BS_213_StatSwapSplitters
-.word BS_214_Blank
+.word BS_214_SetSleepChance
 .word BS_215_Blank
 .word BS_216_Blank
 .word BS_217_Blank
@@ -262,8 +262,8 @@ gBattleScriptsForMoveEffects:
 .word BS_244_Teatime
 .word BS_245_Poltergeist
 .word BS_246_SkyDrop
-.word BS_247_Blank
-.word BS_248_Blank
+.word BS_247_GlaiveRush
+.word BS_248_RevivalBlessing
 .word BS_249_Blank
 .word BS_250_Blank
 .word BS_251_Blank

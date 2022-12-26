@@ -381,7 +381,7 @@ void atk4D_switchindataupdate(void)
 	if (gNewBS->corrodedItems[SIDE(gActiveBattler)] & gBitTable[gBattlerPartyIndexes[gActiveBattler]])
 		gBattleMons[gActiveBattler].item = 0;
 
-	if (gCurrentMove == MOVE_BATONPASS)
+	if (gCurrentMove == MOVE_BATONPASS || gCurrentMove == MOVE_SHEDTAIL)
 	{
 		for (i = 0; i < BATTLE_STATS_NO-1; ++i)
 			gBattleMons[gActiveBattler].statStages[i] = oldData.statStages[i];
@@ -1360,13 +1360,16 @@ void ClearSwitchBytes(u8 bank)
 	gNewBS->splinterAttackerMonId[bank] = 0;
 	gNewBS->splinterMove[bank] = 0;
 	gNewBS->tookAbilityFrom[bank] = 0;
+	gBattleStruct->GlaiveRushTimers[bank] = 0;
+	gBattleStruct->saltCured[bank] = FALSE;
 
 	gProtectStructs[bank].KingsShield = 0;	//Necessary because could be sent away with Roar
 	gProtectStructs[bank].SpikyShield = 0;
 	gProtectStructs[bank].BanefulBunker = 0;
 	gProtectStructs[bank].obstruct = 0;
 	gProtectStructs[bank].enduredSturdy = 0;
-	
+	gProtectStructs[bank].SilkTrap = 0;
+
 	DestroyMegaIndicator(bank);
 	WipeOldDeperateAttemptRecord(bank);
 	ClearBattlerAbilityHistory(bank);

@@ -965,6 +965,10 @@ void UpdateBestDoubleKillingMoveScore(u8 bankAtk, u8 bankDef, u8 bankAtkPartner,
 									if (CALC && !BadIdeaToPoison(currTarget, bankAtk))
 										break;
 									goto DEFAULT_CHECK;
+								case EFFECT_SLEEP_HIT:
+									if (CALC && !BadIdeaToPutToSleep(currTarget, bankAtk))
+										break;
+									goto DEFAULT_CHECK;
 								case EFFECT_ATTACK_DOWN_HIT:
 									if (CALC && GoodIdeaToLowerAttack(currTarget, bankAtk, move))
 										break;
@@ -2617,7 +2621,8 @@ static u32 CalcSecondaryEffectDamage(u8 bank)
 			+ GetGMaxVineLashDamage(bank)
 			+ GetGMaxWildfireDamage(bank)
 			+ GetGMaxCannonadeDamage(bank)
-			+ GetGMaxVolcalithDamage(bank);
+			+ GetGMaxVolcalithDamage(bank)
+			+ GetSaltCureDamage(bank);
 	}
 
 	return damage;
@@ -2801,6 +2806,7 @@ bool8 ShouldAIDelayMegaEvolution(u8 bankAtk, u8 bankDef, u16 move, bool8 optimiz
 				case MOVE_SPIKYSHIELD:
 				case MOVE_KINGSSHIELD:
 				case MOVE_BANEFULBUNKER:
+				case MOVE_SILKTRAP:
 				case MOVE_OBSTRUCT:
 					return TRUE; //Delay Mega Evolution if using Protect for Speed Boost benefits
 			}
@@ -3186,6 +3192,10 @@ bool8 BadIdeaToRaiseSpeedAgainst(u8 bankAtk, u8 bankDef, u8 amount, bool8 checkP
 	bool8 checkingOriginalTarget = checkPartner;
 
 	if (IsTrickRoomActive() && !IsTrickRoomOnLastTurn())
+		return TRUE;
+
+	if (checkingOriginalTarget
+	&& MoveInMoveset(MOVE_SILKTRAP, bankDef) && CheckContact(GetStrongestMove(bankAtk, bankDef), bankAtk, bankDef))
 		return TRUE;
 
 	if (BadIdeaToRaiseStatAgainst(bankAtk, bankDef, checkingOriginalTarget)
@@ -3834,6 +3844,7 @@ bool8 HasProtectionMoveInMoveset(u8 bank, u8 checkType)
 					case MOVE_SPIKYSHIELD:
 					case MOVE_KINGSSHIELD:
 					case MOVE_BANEFULBUNKER:
+					case MOVE_SILKTRAP:
 					case MOVE_OBSTRUCT:
 						if (checkType & CHECK_REGULAR_PROTECTION)
 							return TRUE;
@@ -3884,6 +3895,7 @@ bool8 HasContactProtectionMoveInMoveset(u8 bank)
 				case MOVE_SPIKYSHIELD:
 				case MOVE_KINGSSHIELD:
 				case MOVE_BANEFULBUNKER:
+				case MOVE_SILKTRAP:
 				case MOVE_OBSTRUCT:
 					return TRUE;
 			}
@@ -5352,7 +5364,7 @@ static bool8 CalcShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 			if (IsAffectedByDisguse(defAbility, defSpecies, CalcMoveSplit(zMove, bankAtk, bankDef)))
 				return FALSE; //Don't waste a Z-Move breaking a disguise
 
-			if (defMovePrediction == MOVE_PROTECT || defMovePrediction == MOVE_KINGSSHIELD || defMovePrediction == MOVE_SPIKYSHIELD || defMovePrediction == MOVE_OBSTRUCT
+			if (defMovePrediction == MOVE_PROTECT || defMovePrediction == MOVE_KINGSSHIELD || defMovePrediction == MOVE_SPIKYSHIELD || defMovePrediction == MOVE_OBSTRUCT || defMovePrediction == MOVE_SILKTRAP
 			|| (IsDynamaxed(bankDef) && SPLIT(defMovePrediction) == SPLIT_STATUS))
 				return FALSE; //Don't waste a Z-Move on a Protect
 

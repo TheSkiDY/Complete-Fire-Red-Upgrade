@@ -62,6 +62,7 @@ et_battle_scripts.s
 .global BattleScript_OctolockTurnDmg
 .global BattleScript_DynamaxEnd
 .global BattleScript_HoopaSOS
+.global BattleScript_SaltCureDamage
 .global BattleScript_PrintCustomStringEnd2
 .global BattleScript_PrintCustomStringEnd3
 
@@ -705,6 +706,14 @@ BattleScript_HoopaSOS:
 	waitmessage DELAY_1SECOND
 	switchineffects BANK_SWITCHING
 	end2
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_SaltCureDamage:
+	setword BATTLE_STRING_LOADER gText_SaltCureDmg
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BattleScript_DoTurnDmg
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

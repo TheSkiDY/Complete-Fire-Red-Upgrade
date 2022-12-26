@@ -245,6 +245,16 @@ bool8 ProtectAffects(u16 move, u8 bankAtk, u8 bankDef, bool8 set)
 			gBattleCommunication[6] = 1;
 		}
 	}
+	else if (gProtectStructs[bankDef].SilkTrap && protectFlag && split != SPLIT_STATUS)
+	{
+		effect = 1;
+		gNewBS->missStringId[bankDef] = 1;
+		if (contact && set)
+		{
+			gProtectStructs[bankDef].silktrap_damage = 1;
+			gBattleCommunication[6] = 1;
+		}
+	}
 	else if (gSideStatuses[defSide] & SIDE_STATUS_CRAFTY_SHIELD && !(target & (MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD)) && split == SPLIT_STATUS)
 	{
 		effect = 1;
@@ -302,6 +312,7 @@ bool8 DoesProtectionMoveBlockMove(u8 bankAtk, u8 bankDef, u16 atkMove, u16 prote
 
 			case MOVE_KINGSSHIELD:
 			case MOVE_OBSTRUCT:
+			case MOVE_SILKTRAP:
 				return protectFlag && split != SPLIT_STATUS;
 
 			case MOVE_MATBLOCK:
@@ -361,6 +372,7 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	|| 	 (ABILITY(gBankAttacker) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 	||   (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
+	||   (gBattleStruct->GlaiveRushTimers[bankDef])
 	||	 gBattleMoves[move].accuracy == 0)
 	{
 		//JumpIfMoveFailed(7, move);
@@ -541,6 +553,7 @@ u32 VisualAccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
 	|| (ABILITY(bankAtk) == ABILITY_COMPOUNDEYES && SPLIT(move) == SPLIT_STATUS)
 	|| (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
+	|| (gBattleStruct->GlaiveRushTimers[bankDef])
 	|| ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO))
 		acc = 0xFFFF; //No Miss
 	else if (WEATHER_HAS_EFFECT)

@@ -157,7 +157,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					gNewBS->turnDamageTaken[gBankTarget] += gHpDealt; //Total up damage taken
 				else
 				{
-					if (gCurrentMove == MOVE_BATONPASS)
+					if (gCurrentMove == MOVE_BATONPASS || gCurrentMove == MOVE_SHEDTAIL)
 						gNewBS->turnDamageTaken[gBankAttacker] = gHpDealt; //Target could be set to foe due to Intimidate
 					else
 						gNewBS->turnDamageTaken[gBankTarget] = gHpDealt;
@@ -271,6 +271,19 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 				{
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_ObstructStatDecrement;
+					effect = TRUE;
+					break;
+				}
+			}
+
+			if (gProtectStructs[gBankTarget].silktrap_damage)
+			{
+				gProtectStructs[gBankTarget].silktrap_damage = 0;
+
+				if (BATTLER_ALIVE(gBankAttacker) && STAT_CAN_FALL(gBankAttacker, STAT_SPEED))
+				{
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SilkTrap;
 					effect = TRUE;
 					break;
 				}
@@ -450,7 +463,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						{
 							if (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF)
 							{
-								if ((moveToChoice == MOVE_BATONPASS && !(gMoveResultFlags & MOVE_RESULT_FAILED))
+								if (((moveToChoice == MOVE_BATONPASS || moveToChoice == MOVE_SHEDTAIL) && !(gMoveResultFlags & MOVE_RESULT_FAILED))
 								|| (gBattleMoves[moveToChoice].effect == EFFECT_TRICK
 								 && MOVE_HAD_EFFECT && !IsChoiceAbility(ABILITY(gBankAttacker)))) //Used Trick to obtain a Choice item - don't lock into move
 								{
@@ -586,7 +599,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 			if (!(gAbsentBattlerFlags & gBitTable[gBankAttacker])
 			&& !(gBattleStruct->field_91 & gBitTable[gBankAttacker])
-			&& gBattleMoves[originallyUsedMove].effect != EFFECT_BATON_PASS)
+			&& (gBattleMoves[originallyUsedMove].effect != EFFECT_BATON_PASS && originallyUsedMove != MOVE_SHEDTAIL))
 			{
 				if (gHitMarker & HITMARKER_OBEYS)
 				{
@@ -1203,7 +1216,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					&&  ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) || SIDE(i) == B_SIDE_PLAYER) //Wild's can't activate
 					&&  HasMonToSwitchTo(banks[i]))
 					{
-						if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
+						if ((gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS) || (gCurrentMove == MOVE_SHEDTAIL))
 							gBattlescriptCurrInstr = BattleScript_Atk49; //Cancel switchout for U-Turn & Volt Switch
 
 						gNewBS->NoSymbiosisByte = TRUE;
@@ -1298,7 +1311,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						&&  gBattleMons[bank].hp + gNewBS->turnDamageTaken[bank] > gBattleMons[bank].maxHP / 2 //Fell this turn
 						&&  (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) || HasMonToSwitchTo(bank))) //Should always flee in a wild battle
 						{
-							if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
+							if ((gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS) || (gCurrentMove == MOVE_SHEDTAIL))
 								gBattlescriptCurrInstr = BattleScript_Atk49; //Cancel switchout for U-Turn & Volt Switch
 
 							gActiveBattler = gBattleScripting.bank = gBankSwitching = bank;
@@ -1317,7 +1330,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						&&  gBattleMons[bank].hp + gNewBS->selfInflictedDamage > gBattleMons[bank].maxHP / 2 //Fell this turn
 						&&  (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) || HasMonToSwitchTo(bank))) //Should always flee in a wild battle
 						{
-							if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
+							if ((gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS) || (gCurrentMove == MOVE_SHEDTAIL))
 								gBattlescriptCurrInstr = BattleScript_Atk49; //Cancel switchout for U-Turn & Volt Switch
 
 							gActiveBattler = gBattleScripting.bank = gBankSwitching = bank;

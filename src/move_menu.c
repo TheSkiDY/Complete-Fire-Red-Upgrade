@@ -1719,10 +1719,13 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingDisabledMove;
 		++limitations;
 	}
-	else if (IsTormented(gActiveBattler) && !isAnyMaxMove && move == gLastUsedMoves[gActiveBattler] && move != MOVE_STRUGGLE)
+	else if (IsTormented(gActiveBattler, move) && !isAnyMaxMove && move == gLastUsedMoves[gActiveBattler] && move != MOVE_STRUGGLE)
 	{
 		CancelMultiTurnMoves(gActiveBattler);
-		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingTormentedMove;
+		if (move == MOVE_GIGATONHAMMER)
+			gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingGigatonHammerSecondTime;
+		else
+			gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingTormentedMove;
 		++limitations;
 	}
 	else if (IsTaunted(gActiveBattler) != 0 && SPLIT(move) == SPLIT_STATUS)

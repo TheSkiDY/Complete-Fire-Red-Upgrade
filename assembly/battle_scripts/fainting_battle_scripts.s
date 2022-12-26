@@ -25,6 +25,7 @@ BattleScript_FaintAttacker:
 	pause 0x30
 	dofaintanimation BANK_ATTACKER
 	printstring 0x1C @;STRINGID_ATTACKERFAINTED
+	callasm IncreaseFaintedMonsCounterAttacker
 	cleareffectsonfaint BANK_ATTACKER
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_ATTACKER
@@ -46,6 +47,7 @@ BattleScript_FaintTarget:
 	pause 0x30
 	dofaintanimation BANK_TARGET
 	printstring 0x1D @;STRINGID_TARGETFAINTED
+	callasm IncreaseFaintedMonsCounterTarget
 	cleareffectsonfaint BANK_TARGET
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_TARGET
@@ -64,6 +66,7 @@ BattleScript_FaintScriptingBank:
 	dofaintanimation BANK_FAINTED
 	setword BATTLE_STRING_LOADER gText_ScriptingBankFainted
 	printstring 0x184
+	callasm IncreaseFaintedMonsCounterScriptingBank
 	cleareffectsonfaint BANK_FAINTED
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_FAINTED

@@ -826,53 +826,53 @@ gMoveAnimations:
 .word ANIM_LIVECOALS
 .word ANIM_SHADOWTERRAIN
 .word ANIM_DRACOTERRAIN
-.word ANIM_EMPTYSLOT_16X
-.word ANIM_EMPTYSLOT_17X
-.word ANIM_EMPTYSLOT_18X
-.word ANIM_EMPTYSLOT_19X
-.word ANIM_EMPTYSLOT_20X
-.word ANIM_EMPTYSLOT_21X
-.word ANIM_EMPTYSLOT_22X
-.word ANIM_EMPTYSLOT_23X
-.word ANIM_EMPTYSLOT_24X
-.word ANIM_EMPTYSLOT_25X
-.word ANIM_EMPTYSLOT_26X
-.word ANIM_EMPTYSLOT_27X
-.word ANIM_EMPTYSLOT_28X
-.word ANIM_EMPTYSLOT_29X
-.word ANIM_EMPTYSLOT_30X
-.word ANIM_EMPTYSLOT_31X
-.word ANIM_EMPTYSLOT_32X
-.word ANIM_EMPTYSLOT_33X
-.word ANIM_EMPTYSLOT_34X
-.word ANIM_EMPTYSLOT_35X
-.word ANIM_EMPTYSLOT_36X
-.word ANIM_EMPTYSLOT_37X
-.word ANIM_EMPTYSLOT_38X
-.word ANIM_EMPTYSLOT_39X
-.word ANIM_EMPTYSLOT_40X
-.word ANIM_EMPTYSLOT_41X
-.word ANIM_EMPTYSLOT_42X
-.word ANIM_EMPTYSLOT_43X
-.word ANIM_EMPTYSLOT_44X
-.word ANIM_EMPTYSLOT_45X
-.word ANIM_EMPTYSLOT_46X
-.word ANIM_EMPTYSLOT_47X
-.word ANIM_EMPTYSLOT_48X
-.word ANIM_EMPTYSLOT_49X
-.word ANIM_EMPTYSLOT_50X
-.word ANIM_EMPTYSLOT_51X
-.word ANIM_EMPTYSLOT_52X
-.word ANIM_EMPTYSLOT_53X
-.word ANIM_EMPTYSLOT_54X
-.word ANIM_EMPTYSLOT_55X
-.word ANIM_EMPTYSLOT_56X
-.word ANIM_EMPTYSLOT_57X
-.word ANIM_EMPTYSLOT_58X
-.word ANIM_EMPTYSLOT_59X
-.word ANIM_EMPTYSLOT_60X
-.word ANIM_EMPTYSLOT_61X
-.word ANIM_EMPTYSLOT_62X
+.word ANIM_AQUACUTTER
+.word ANIM_AQUASTEP
+.word ANIM_ARMORCANNON
+.word ANIM_AXEKICK
+.word ANIM_BITTERBLADE
+.word ANIM_BLAZINGTORQUE
+.word ANIM_CHILLINGWATER
+.word ANIM_CHILLYRECEPTION
+.word ANIM_COLLISIONCOURSE
+.word ANIM_COMBATTORQUE
+.word ANIM_COMEUPPANCE
+.word ANIM_DOODLE
+.word ANIM_DOUBLESHOCK
+.word ANIM_ELECTRODRIFT
+.word ANIM_FILLETAWAY
+.word ANIM_FLOWERTRICK
+.word ANIM_GIGATONHAMMER
+.word ANIM_GLAIVERUSH
+.word ANIM_HYPERDRILL
+.word ANIM_ICESPINNER
+.word ANIM_JETPUNCH
+.word ANIM_KOWTOWCLEAVE
+.word ANIM_LASTRESPECTS
+.word ANIM_LUMINACRASH
+.word ANIM_MAGICALTORQUE
+.word ANIM_MAKEITRAIN
+.word ANIM_MORTALSPIN
+.word ANIM_NOXIOUSTORQUE
+.word ANIM_ORDERUP
+.word ANIM_POPULATIONBOMB
+.word ANIM_POUNCE
+.word ANIM_RAGEFIST
+.word ANIM_RAGINGBULL
+.word ANIM_REVIVALBLESSING
+.word ANIM_RUINATION
+.word ANIM_SALTCURE
+.word ANIM_SHEDTAIL
+.word ANIM_SILKTRAP
+.word ANIM_SPICYEXTRACT
+.word ANIM_SPINOUT
+.word ANIM_TERABLAST
+.word ANIM_TIDYUP
+.word ANIM_TORCHSONG
+.word ANIM_TRAILBLAZE
+.word ANIM_TRIPLEDIVE
+.word ANIM_TWINBEAM
+.word ANIM_WICKEDTORQUE
 .word ANIM_EMPTYSLOT_63X
 .word ANIM_EMPTYSLOT_64X
 .word ANIM_EMPTYSLOT_65X
@@ -29253,285 +29253,568 @@ ANIM_DRACOTERRAIN:
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@Credits to Matteo
 .pool
-ANIM_EMPTYSLOT_16X:
-	goto 0x81c6f34
+ANIM_AQUACUTTER:
+    loadparticle 0x27AB
+    loadparticle 0x2830
+    loadparticle 0x279A
+    setblends 0x080C
+    pokespritetoBG bank_target 
+    leftbankBG_over_partnerBG bank_target
+    playsound2 0x77 0xC0
+    launchtemplate Template_Pal_Fade 0x2 0x5 bank_target 0x0 0x0 0x7 0x7320
+    pause 0x0a
+    launchtemplate Template_Temp27AB_G 0x42 0x7 0x64 0x64 0x8 0x1 0x14 0x28 0x0
+    launchtemplate Template_Temp27AB_G 0x42 0x7 0x14 0x64 0x10 0x2 0xA 0x23 0x1
+    launchtemplate Template_Temp27AB_G 0x42 0x7 0xC8 0x50 0x8 0x1 0x28 0x14 0x0
+    launchtemplate Template_Temp27AB_G 0x42 0x7 0x50 0x3c 0xa 0x3 0x14 0x32 0x0
+    launchtemplate Template_Temp27AB_G 0x42 0x7 0x8C 0x64 0x10 0x1 0x14 0x1E 0x1
+    playsound2 0x77 0x3F
+    waitanimation
+    playsound2 0x79 0x3F
+    launchtemplate Template_CuttingSlice 0x2 0x3 0x28 0xFFE0 0x0
+    pause 0x5
+    launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0 0x3 0xa 0x1
+    waitanimation
+    launchtemplate Template_Pal_Fade 0x2 0x5 bank_target 0x1 0x7 0x0 0x7320
+    pokespritefromBG bank_target
+    resetblends
+    endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_AQUASTEP: @Surging Strikes 
+	loadparticle ANIM_TAG_UNUSED_IMPACT_2
+	loadparticle ANIM_TAG_WATER_IMPACT
+	playsound2 0xC0 SOUND_PAN_TARGET
+	launchtemplate SURGING_STRIKE TEMPLATE_TARGET | 2, 0x6, -40, -20, 0, 0, 10, -20 @Top left
+	pause 5
+	playsound2 0xC0 SOUND_PAN_TARGET
+	launchtemplate SURGING_STRIKE TEMPLATE_TARGET | 2, 0x6, 40, 20, 0, 0, 10, 20 @Bottom right
+	launchtemplate Template_WaterHit TEMPLATE_TARGET | 1, 0x4, -5, -5, bank_target 0x1
+	launchtask AnimTask_move_bank_2 0x2 0x5 0x1 0x4 0x0 0x8 0x1
+	pause 5
+	launchtemplate Template_WaterHit TEMPLATE_TARGET | 1, 0x4, 5, 5, bank_target 0x1
+	waitanimation
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_17X:
-	goto 0x81c6f34
+ANIM_ARMORCANNON:
+	goto ANIM_SEARINGSHOT
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_18X:
-	goto 0x81c6f34
+ANIM_AXEKICK:
+	loadparticle ANIM_TAG_HUMANOID_FOOT @punch
+    setblends 0x80c
+    playsound2 0x91 0xC0
+    launchtemplate Template_VerticalDip 0x2 0x3 0x6 0x1 bank_attacker
+    pause 0xc
+    playsound2 0x80 SOUND_PAN_TARGET
+    launchtemplate HAMMERARM_FOOT TEMPLATE_TARGET | 4, 0x3 0x0 0xffe0 0xf
+    pause 0x13
+    playsound2 0x86 SOUND_PAN_TARGET
+    launchtask AnimTask_SquishTarget 0x2 0x0
+    waitanimation
+    resetblends
+    endanimation
+
+.align 2
+HAMMERARM_FOOT: objtemplate ANIM_TAG_HUMANOID_FOOT ANIM_TAG_HUMANOID_FOOT OAM_OFF_32x32 0x83E66CC 0x0 gDummySpriteAffineAnimTable 0x80B0D59
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_BITTERBLADE:
+	goto ANIM_SUNSTEELSTRIKE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_19X:
-	goto 0x81c6f34
+ANIM_BLAZINGTORQUE:
+	goto 0x81d42c0 @MOVE_OVERHEAT
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_20X:
-	goto 0x81c6f34
+ANIM_CHILLINGWATER:
+	goto ANIM_WATERPLEDGE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_21X:
-	goto 0x81c6f34
+ANIM_CHILLYRECEPTION:
+	goto 0x81cb816 @MOVE_HAIL
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_22X:
-	goto 0x81c6f34
+ANIM_COLLISIONCOURSE:
+	goto ANIM_HEATCRASH
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_23X:
-	goto 0x81c6f34
+ANIM_COMBATTORQUE:
+	goto 0x81cbb43 @MOVE_SUPERPOWER
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_24X:
-	goto 0x81c6f34
+ANIM_COMEUPPANCE:
+	goto 0x81d005a @MOVE_COUNTER
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_25X:
-	goto 0x81c6f34
+ANIM_DOODLE:
+	goto 0x81cb01b @MOVE_SKETCH
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_26X:
-	goto 0x81c6f34
+ANIM_DOUBLESHOCK:
+	goto 0x81ccd79 @MOVE_VOLTTACKLE 
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_27X:
-	goto 0x81c6f34
+ANIM_ELECTRODRIFT:
+	goto ANIM_OVERDRIVE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_28X:
-	goto 0x81c6f34
+ANIM_FILLETAWAY:
+	goto 0x81cd0c0 @MOVE_BELLYDRUM
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_29X:
-	goto 0x81c6f34
+ANIM_FLOWERTRICK:
+	goto ANIM_PETALBLIZZARD
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_30X:
-	goto 0x81c6f34
+ANIM_GIGATONHAMMER:
+	goto ANIM_STEEL_ROLLER
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_31X:
-	goto 0x81c6f34
+ANIM_GLAIVERUSH:
+	goto ANIM_DRAGONRUSH
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_32X:
-	goto 0x81c6f34
+ANIM_HYPERDRILL:
+	goto ANIM_DRILLRUN
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_33X:
-	goto 0x81c6f34
+@Credits to Matteo
+ANIM_ICESPINNER:
+	loadparticle ANIM_TAG_ICE_CHUNK
+    loadparticle ANIM_TAG_SMALL_EMBER
+    loadparticle ANIM_TAG_FIRE_PLUME
+    loadparticle ANIM_TAG_IMPACT
+    loadBG1 BG_ICE
+    playsound2 0xEB SOUND_PAN_TARGET
+    waitbgfadein
+    soundcomplex 0xCF SOUND_PAN_ATTACKER 0xC 0x3
+    launchtask AnimTask_TranslateMonEllipticalRespectSide 0x2 0x5 bank_attacker 0xc 0x6 0x6 0x5
+    pause 0xC
+
+    launchtemplate Template_Hit 0x2 0x4 0x0 0x9 bank_target 0x2
+    launchtask AnimTask_move_bank_2 0x5 0x5 bank_target 0x2 0x0 0x10 0x1 
+
+    pause 0xA
+    launchtemplate Template_Hit 0x2 0x4 0xfff8 0xfff8 bank_target 0x2
+    launchtask AnimTask_move_bank_2 0x5 0x5 bank_target 0x2 0x0 0x10 0x1 
+
+    pause 0xA
+    launchtemplate Template_Hit 0x2 0x4 0x6 0x6 bank_target 0x2
+    launchtask AnimTask_move_bank_2 0x5 0x5 bank_target 0x2 0x0 0x10 0x1 
+
+    pause 0x7
+    playsound2 0x82 SOUND_PAN_TARGET
+    launchtemplate BLUERAGE 0xc2 0x3 0x1 0x5 0x0
+    pause 0x1
+    launchtemplate BLUERAGE 0xc2 0x3 0x1 0xfff6 0xfff1
+    pause 0x1
+    playsound2 0x82 SOUND_PAN_TARGET
+    launchtemplate BLUERAGE TEMPLATE_TARGET | 2, 0x3, 0x1 0x0 0x19
+    pause 0x1
+    launchtemplate BLUERAGE 0xc2 0x3 0x1 0xf 0x5
+    pause 0x1
+    launchtemplate BLUERAGE 0xc2 0x3 0x1 0xffe7 0x0
+    pause 0x1
+    launchtemplate BLUERAGE TEMPLATE_TARGET | 2, 0x3, 0x1 0x1e 0x1e
+    pause 0x1
+    launchtemplate BLUERAGE TEMPLATE_TARGET | 2, 0x3, 0x1 0xffe5 0x19
+    pause 0x1
+    launchtemplate BLUERAGE 0xc2 0x3 0x1 0x0 0x8
+    waitanimation
+    loaddefaultBG
+    waitbgfadein
+    endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to Matteo
+ANIM_JETPUNCH:
+	loadparticle ANIM_TAG_IMPACT
+    loadparticle ANIM_TAG_HANDS_AND_FEET
+    loadparticle ANIM_TAG_WATER_IMPACT
+    loadparticle ANIM_TAG_SMALL_BUBBLES
+    pokespritetoBG side_attacker
+    setblends 0x0809
+    launchtask AnimTask_AttackerPunchWithTrace 0x2 0x2 0x7128 0xa
+    playsound2 0x88 0xC0
+    pause 0x06
+    launchtemplate Template_Hit 0x83 0x4 0x0 0x0 bank_target 0x1
+    launchtemplate Template_Fist 0x84 0x5 0x0 0x0 0x8 bank_target 0x0
+    playsound2 0x84 0x3F
+    launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x3 0x0 0x6 0x1
+    pause 0x3
+    call WATER_DIVE_ATTACK
+    waitanimation
+    pokespritefromBG side_attacker
+    resetblends
+    endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_KOWTOWCLEAVE:
+	goto ANIM_SMARTSTRIKE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_34X:
-	goto 0x81c6f34
+ANIM_LASTRESPECTS: @Phantom Force
+	loadparticle ANIM_TAG_POISON_BUBBLE
+	loadparticle ANIM_TAG_IMPACT
+	loadBG1 BG_GHOST
+	waitbgfadein
+	pokespritetoBG bank_target
+	setblends 0x80c
+	soundcomplex 0x86 SOUND_PAN_ATTACKER 0x1 0x5
+	pause 0x10
+	launchtemplate SHADOWFORCE_PURPLEHIT TEMPLATE_TARGET | 2, 0x3, 0xfff6 0xfff6 0x0
+	call SHADOWSNEAK_MOVE
+	launchtemplate SHADOWFORCE_PURPLEHIT TEMPLATE_TARGET | 2, 0x3, 0xa 0x14 0x0
+	call SHADOWSNEAK_MOVE
+	launchtemplate SHADOWFORCE_PURPLEHIT TEMPLATE_TARGET | 2, 0x3, 0xfffb 0xa 0x0
+	call SHADOWSNEAK_MOVE
+	launchtemplate SHADOWFORCE_PURPLEHIT TEMPLATE_TARGET | 2, 0x3, 0x11 0xfff4 0x0
+	call SHADOWSNEAK_MOVE
+	pause 0x10
+	makebankvisible 0x0
+	launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0003 0x0000 0x0006 0x0001
+	waitanimation
+	pokespritefromBG bank_target
+	resetblends
+	loaddefaultBG
+	waitbgfadein
+	waitanimation
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_35X:
-	goto 0x81c6f34
+ANIM_LUMINACRASH:
+	goto ANIM_PSYSTRIKE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_36X:
-	goto 0x81c6f34
+ANIM_MAGICALTORQUE:
+	goto ANIM_SPIRIT_BREAK
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_37X:
-	goto 0x81c6f34
+@Credits To Matteo
+ANIM_MAKEITRAIN:
+	loadparticle ANIM_TAG_COIN
+	pokespritetoBG side_target
+	launchtemplate Template_ShakeMonOrTerrain 0x2 0x4 0x7 0x1 0xB 0x1
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFFB 0x0 0xFFFB 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x5 0x0 0x6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFE9 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	launchtask AnimTask_move_bank 0x2 0x5 bank_target 0x0 0x5 0x32 0x1
+	launchtask AnimTask_move_bank 0x2 0x5 target_partner 0x0 0x5 0x32 0x1
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFEC 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x1C 0x0 0xA 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x18 0x0 0xA 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x1E 0x0 0xA 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFEC 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFE0 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x18 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xA 0x0 0x6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFEC 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x1C 0x0 0xA 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xFFF6 0x0 0xFFFB 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0xA 0x0 0x6 0x1
+	playsound2 0xA7 0x3F
+	pause 0x2 
+	launchtemplate COIN_SLIDE 0x82 0x4 0x18 0x0 0xFFF6 0x1
+	playsound2 0xA7 0x3F
+	waitanimation
+	pokespritefrombg side_target
+	endanimation
+	
+.align 2
+COIN_SLIDE: objtemplate ANIM_TAG_COIN ANIM_TAG_COIN OAM_OFF_32x32 0x83E69DC 0x0 0x8231cfc 0x80B4635
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_MORTALSPIN:
+	goto 0x81cb4e1 @MOVE_RAPIDSPIN
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_38X:
-	goto 0x81c6f34
+ANIM_NOXIOUSTORQUE:
+	goto ANIM_GUNKSHOT
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_39X:
-	goto 0x81c6f34
+ANIM_ORDERUP:
+	goto ANIM_BREAKING_SWIPE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_40X:
-	goto 0x81c6f34
+ANIM_POPULATIONBOMB:
+	goto ANIM_MAGNETBOMB
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_41X:
-	goto 0x81c6f34
+@Credit to Matteo
+ANIM_POUNCE:
+	loadparticle ANIM_TAG_IMPACT
+    pokespritetoBG side_target
+    setblends 0x080C
+    playsound2 0x80 0x00
+    launchtemplate Template_VerticalDip 0x2 0x3 0x6 0x1 bank_attacker
+    waitanimation
+    pause 0x3
+    playsound2 0x80 0x00
+    launchtemplate Template_VerticalDip 0x2 0x3 0x6 0x1 bank_attacker
+    waitanimation
+    pause 0x3
+    playsound2 0x84 0x3F
+    launchtemplate Template_Hit 0x2 0x4 0xFFF6 0xFFFC bank_target 0x2
+    launchtask AnimTask_move_bank_2 0x2 0x5 bank_target 0x3 0x0 0x6 0x1
+    waitanimation
+    pokespritefromBG side_target
+    resetblends
+    endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_RAGEFIST:
+	goto 0x81ccb76 @MOVE_SHADOWPUNCH
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_42X:
-	goto 0x81c6f34
+ANIM_RAGINGBULL:
+	goto 0x81c94a8 @MOVE_OUTRAGE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_43X:
-	goto 0x81c6f34
+ANIM_REVIVALBLESSING:
+	goto ANIM_HEALINGWISH
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_44X:
-	goto 0x81c6f34
+ANIM_RUINATION:
+	goto ANIM_NIGHTDAZE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_45X:
-	goto 0x81c6f34
+ANIM_SALTCURE:
+	goto ANIM_ICESHARD
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_46X:
-	goto 0x81c6f34
+ANIM_SHEDTAIL:
+	@goto 0x81d3433 @MOVE_SUBSTITUTE
+	goto 0x81d1f1f @MOVE_BATONPASS
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_47X:
-	goto 0x81c6f34
+ANIM_SILKTRAP:
+	goto ANIM_OBSTRUCT
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_48X:
-	goto 0x81c6f34
+ANIM_SPICYEXTRACT:
+	goto ANIM_GASTROACID
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_49X:
-	goto 0x81c6f34
+ANIM_SPINOUT:
+	goto ANIM_WRINGOUT
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_50X:
-	goto 0x81c6f34
+ANIM_TERABLAST:
+	goto ANIM_STEEL_BEAM
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_51X:
-	goto 0x81c6f34
+ANIM_TIDYUP:
+	goto ANIM_DRAGONDANCE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_52X:
-	goto 0x81c6f34
+ANIM_TORCHSONG:
+	goto ANIM_FIERYDANCE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_53X:
-	goto 0x81c6f34
+@Credits to Matteo
+ANIM_TRAILBLAZE:
+	loadparticle ANIM_TAG_LEAF @leaves
+	loadparticle ANIM_TAG_WATER_IMPACT @hits
+	pokespritetoBG bank_target
+	launchtask AnimTask_TranslateMonEllipticalRespectSide 0x2 0x5 0x0 0xc 0x6 0x6 0x4
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0xffea 0x14
+	launchtemplate GP_LEAVES 0x4 0x2 0xffea 0x14
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0xffea 0xf
+	launchtemplate GP_LEAVES 0x4 0x2 0xffea 0xf
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0x15 0xfff6
+	launchtemplate GP_LEAVES 0x4 0x2 0x15 0xfff6
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x0
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x0
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x21 0x1d0 0x1e 0xf 0xffce 0x1
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x21 0x1d0 0x1e 0xf 0xffce 0x1
+	PlaySound2 0x80 0xC0
+	pause 0xA
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xffec
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x21 0x1d0 0x1e 0xf 0xffce 0x1
+
+	soundcomplex 0xa2 SOUND_PAN_ATTACKER 0xa 0x5
+	launchtask AnimTask_move_bank_2 0x5 0x5 0x1 0x4 0x0 0x11 0x1
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0x14 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x14
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x14
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x1f 0x190 0x19 0xb 0xffd6 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0xf 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xf
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xf
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x1c 0x200 0x19 0x10 0x2e 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0xa 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xa
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xa
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x21 0x1d0 0x1e 0xf 0xffce 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0x5 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x5
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x5
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x1c 0x210 0x1e 0xd 0x32 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0x0 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x0
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0x0
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x20 0x1e0 0x14 0x10 0xffd2 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0xfffb 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xfffb
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xfffb
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x21 0x240 0x14 0x8 0x2a 0x1
+	pause 0x2
+	launchtemplate GP_GREENHIT 0x3 0x4 0x0 0xfff6 0x1 0x1
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xfff6
+	launchtemplate GP_LEAVES 0x4 0x2 0x0 0xfff6
+	launchtemplate GP_LEAVES2 0x82 0x7 0x0 0x1f 0x190 0x19 0xb 0xffd6 0x1
+	waitanimation
+	pokespritefromBG bank_target
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_54X:
-	goto 0x81c6f34
+ANIM_TRIPLEDIVE:
+	goto ANIM_SURGING_STRIKES
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_55X:
-	goto 0x81c6f34
+ANIM_TWINBEAM:
+	goto 0x81ceaed @MOVE_SIGNALBEAM
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_56X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_57X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_58X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_59X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_60X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_61X:
-	goto 0x81c6f34
-	endanimation
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.pool
-ANIM_EMPTYSLOT_62X:
-	goto 0x81c6f34
+ANIM_WICKEDTORQUE:
+	goto ANIM_WICKED_BLOW
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

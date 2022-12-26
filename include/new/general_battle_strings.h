@@ -81,7 +81,7 @@ extern const u8 gText_Quash[];
 extern const u8 gText_MagnetRiseSet[];
 extern const u8 gText_FlameBurst[];
 extern const u8 gText_ImpatientString[];
-
+extern const u8 gText_DoubleShock[];
 
 
 

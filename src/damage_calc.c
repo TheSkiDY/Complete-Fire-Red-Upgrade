@@ -1846,6 +1846,9 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 
 	switch (move) {
 		case MOVE_HIDDENPOWER:
+		#ifdef USE_HIDDEN_POWER_TYPE_FOR_TERASTALLIZE
+		case MOVE_TERABLAST:
+		#endif	
 			moveType = ((gBattleMons[bankAtk].hpIV & 1))
 					 | ((gBattleMons[bankAtk].attackIV & 1) << 1)
 					 | ((gBattleMons[bankAtk].defenseIV & 1) << 2)
@@ -1959,6 +1962,15 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 				}
 			}
 			break;
+
+		case MOVE_RAGINGBULL:
+			if (SPECIES(bankAtk) == SPECIES_TAUROS_P_BLAZE)
+				moveType = TYPE_FIRE;
+			else if (SPECIES(bankAtk) == SPECIES_TAUROS_P_AQUA)
+				moveType = TYPE_WATER;
+			else
+				moveType = TYPE_NORMAL;
+			break;
 	}
 
 	if (moveType == TYPE_NORMAL && IsIonDelugeActive())
@@ -1980,6 +1992,9 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 
 	switch (move) {
 		case MOVE_HIDDENPOWER:
+		#ifdef USE_HIDDEN_POWER_TYPE_FOR_TERASTALLIZE
+		case MOVE_TERABLAST:
+		#endif
 			moveType = CalcMonHiddenPowerType(mon);
 			break;
 
@@ -2065,6 +2080,15 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 						break;
 				}
 			}
+			break;
+
+		case MOVE_RAGINGBULL:
+			if (mon->species == SPECIES_TAUROS_P_BLAZE)
+				moveType = TYPE_FIRE;
+			else if (mon->species == SPECIES_TAUROS_P_AQUA)
+				moveType = TYPE_WATER;
+			else
+				moveType = TYPE_NORMAL;
 			break;
 	}
 
@@ -3313,6 +3337,10 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (IsOfType(bankAtk, TYPE_FIGHTING) && IsTaunted(bankAtk))
 		damage = (damage * 15) / 10;
 
+	//Target used Glaive Rush in previous turn
+	if (gBattleStruct->GlaiveRushTimers[bankDef])
+		damage *= 2;
+
 	//Weather Boost
 	if (WEATHER_HAS_EFFECT && !ItemEffectIgnoresSunAndRain(data->defItemEffect))
 	{
@@ -4105,13 +4133,25 @@ static u16 GetBasePower(struct DamageCalc* data)
 			#endif
 			break;
 
+		case MOVE_LASTRESPECTS: ;
+			u8 faints = gBattleStruct->faintedMonsCounter[SIDE(bankAtk)];
+			power = MathMax(5050, (faints * 50) + power); 
+			break;
+
+		case MOVE_RAGEFIST: ;
+			u8 hits = MathMax(6, gBattleStruct->hitCounter[SIDE(bankAtk)][gBattlerPartyIndexes[bankAtk]]);
+			power = (hits * 50) + power;
+			break;
+
 		default:
 			if (gBattleMoves[move].effect == EFFECT_TRIPLE_KICK)
 			{
 				if (data->specialFlags & FLAG_AI_CALC) //Pretend as if it'll hit three times
 				{
 					//Generalized base power considering accuracy and missing
-					if (move == MOVE_TRIPLEAXEL)
+					if (move == MOVE_POPULATIONBOMB)
+						power = 125;
+					else if (move == MOVE_TRIPLEAXEL)
 						power = 100;
 					else
 						power = 50;
@@ -4509,6 +4549,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (IsMudSportActive())
 				power /= 3;
 			break;
+	}
+
+	// Collision Course / Electro Drift
+	if (gSpecialMoveFlags[move].gBoostedIfSupereffectiveMoves && data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+	{
+		power = (power * 4) / 3;
 	}
 
 	return power;

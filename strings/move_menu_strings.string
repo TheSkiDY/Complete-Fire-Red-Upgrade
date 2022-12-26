@@ -180,3 +180,6 @@ The [LAST_ITEM] prevents the\nuse of status moves!\p
 
 #org @gText_LoafingAroundMoveMenu
 [SCRIPTING_BANK] is loafing around and unable\nto use attacking moves this turn!\p
+
+#org @gText_GigatonHammerMenu
+[SCRIPTING_BANK] can't use [CURRENT_MOVE]\ntwice in a row!\p

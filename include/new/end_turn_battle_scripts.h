@@ -94,6 +94,7 @@ extern const u8 BattleScript_MonTookFutureAttack[];
 extern const u8 BattleScript_OctolockTurnDmg[];
 extern const u8 BattleScript_DynamaxEnd[];
 extern const u8 BattleScript_LoseRaidBattle[];
+extern const u8 BattleScript_SaltCureDamage[];
 
 //Strings
 extern const u8 gText_SideStatusWoreOff[];
@@ -140,3 +141,4 @@ extern const u8 gText_ToCore[];
 extern const u8 gText_ToMeteor[];
 extern const u8 gText_Transformed[];
 
+extern const u8 gText_SaltCureDmg[];

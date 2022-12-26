@@ -47,6 +47,7 @@ set_effect_battle_scripts.s
 .global BattleScript_MaxMoveLowerSpeed2Foes
 .global BattleScript_PsyshieldBash
 .global BattleScript_AdditionalEffect
+.global BattleScript_MakeItRain
 
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
@@ -661,4 +662,23 @@ BattleScript_AdditionalEffect:
 	copybyte BATTLE_SCRIPTING_BANK FORM_COUNTER
 	return
 
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_MakeItRain:
+	setword BATTLE_STRING_LOADER gText_MakeItRainScatteredCoins
+	printstring 0x184
+	waitmessage DELAY_HALFSECOND
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_SPATK, STAT_ANIM_DOWN | STAT_ANIM_BY_TWO
+	setstatchanger STAT_SPATK | DECREASE_2
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN MakeItRainEnd
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 MakeItRainEnd
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+	goto MakeItRainEnd
+
+MakeItRainEnd:
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	

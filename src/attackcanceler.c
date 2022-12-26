@@ -931,6 +931,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			if (ABILITY(gBankTarget) == ABILITY_GOODASGOLD
 			&& gBattleMoves[gCurrentMove].split == SPLIT_STATUS
 			&& !gSpecialMoveFlags[gCurrentMove].gSpecialWholeFieldMoves
+			&& gBankAttacker != gBankTarget
 			&& !(gBattleMoves[gCurrentMove].target & MOVE_TARGET_OPPONENTS_FIELD))
 			{
 				if (IS_SINGLE_BATTLE || !(GetBaseMoveTarget(gCurrentMove, gBankAttacker) & (MOVE_TARGET_BOTH | MOVE_TARGET_ALL))) //Don't cancel moves that can hit two targets b/c one target might not be protected
@@ -970,7 +971,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			{
 				u8 ability = ABILITY(gBankAttacker);
 
-				if (gCurrentMove == MOVE_SURGINGSTRIKES)
+				if (gCurrentMove == MOVE_SURGINGSTRIKES || gCurrentMove == MOVE_TRIPLEDIVE)
 				{
 					gMultiHitCounter = 3;
 				}
@@ -1028,8 +1029,11 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			}
 			else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK)
 			{
-				gMultiHitCounter = 3;
-				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+				if (gCurrentMove == MOVE_POPULATIONBOMB)
+					gMultiHitCounter = 10;
+				else
+					gMultiHitCounter = 3;
+				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 2, 0)
 			}
 			else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
 			{

@@ -1983,7 +1983,7 @@ SKIP_CHECK_TARGET:
 				{
 					DECREASE_VIABILITY(10);
 				}
-				else if (move == MOVE_KINGSSHIELD && gDisableStructs[bankAtk].protectUses > 0)
+				else if ((move == MOVE_KINGSSHIELD || move == MOVE_SILKTRAP) && gDisableStructs[bankAtk].protectUses > 0)
 				{
 					DECREASE_VIABILITY(9); //Pretty much never use King's Shield more than once in a row
 				}
@@ -3331,6 +3331,7 @@ static bool8 PartnerMoveEffectIsStatusSameTarget(struct AIScript* data, u16 move
 			case EFFECT_POISON_HIT:
 			case EFFECT_BAD_POISON_HIT:
 			case EFFECT_FREEZE_HIT:
+			case EFFECT_SLEEP_HIT:
 				if (CalcSecondaryEffectChance(bankAtkPartner, partnerMove, data->atkPartnerAbility) >= 75 && !MoveBlockedBySubstitute(move, bankAtkPartner, bankDef))
 					return TRUE;
 		}

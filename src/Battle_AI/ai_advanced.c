@@ -687,7 +687,7 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 						break;
 
 					case EFFECT_BATON_PASS:
-						if (move != MOVE_BATONPASS) //U-Turn & Volt Switch
+						if (move != MOVE_BATONPASS && move != MOVE_SHEDTAIL) //U-Turn & Volt Switch
 							hasPivot = TRUE;
 						break;
 

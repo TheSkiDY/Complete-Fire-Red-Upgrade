@@ -68,6 +68,7 @@ struct SpecialMoveFlags
 	bool8 gPulseBeamMoves : 1;
 	bool8 gKickingMoves : 1;
 	bool8 gWindMoves : 1;
+	bool8 gBoostedIfSupereffectiveMoves : 1;
 };
 
 extern const struct SpecialMoveFlags gSpecialMoveFlags[];

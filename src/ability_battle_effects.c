@@ -973,7 +973,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 
 					moveType = gBattleMoves[move].type;
-					if (move == MOVE_HIDDENPOWER)
+					if (move == MOVE_HIDDENPOWER
+						#ifdef USE_HIDDEN_POWER_TYPE_FOR_TERASTALLIZE
+						|| move == MOVE_TERABLAST
+						#endif 
+						)
 						moveType = GetExceptionMoveType(FOE(bank), move);
 
 					if (MOVE_RESULT_SUPER_EFFECTIVE &
@@ -996,7 +1000,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 
 					moveType = gBattleMoves[move].type;
-					if (move == MOVE_HIDDENPOWER)
+					if (move == MOVE_HIDDENPOWER
+						#ifdef USE_HIDDEN_POWER_TYPE_FOR_TERASTALLIZE
+						|| move == MOVE_TERABLAST
+						#endif
+						)
 						moveType = GetExceptionMoveType(PARTNER(FOE(bank)), move);
 
 					if (MOVE_RESULT_SUPER_EFFECTIVE &
@@ -2940,7 +2948,16 @@ static u8 CalcMovePowerForForewarn(u16 move)
 	else
 	{
 		switch (move) {
+			case MOVE_RAGEFIST:
+				power = 200;
+				break;
+
+			case MOVE_LASTRESPECTS:
+				power = 150;
+				break;
+
 			case MOVE_COUNTER:
+			case MOVE_COMEUPPANCE:
 			case MOVE_METALBURST:
 			case MOVE_MIRRORCOAT:
 				power = 120;

@@ -980,3 +980,18 @@ The snowstorm stopped.
 
 #org @gText_GoodAsGoldAttackCancelString
 [TARGET]'s GOOD AS GOLD\nprevents using status moves!
+
+#org @gText_PrepaingToTellBadJoke
+[ATTACKER] is preparing\nto tell a chillingly bad joke!
+
+#org @gText_DoubleShock
+[ATTACKER] used up\nall of its electricity!
+
+#org @gText_MakeItRainScatteredCoins
+Coins were scattered everywhere!
+
+#org @gText_SaltCure
+[TARGET] is being\nsalt cured!
+
+#org @gText_SaltCureDmg
+[SCRIPTING_BANK] is hurt\nby SALT CURE! 

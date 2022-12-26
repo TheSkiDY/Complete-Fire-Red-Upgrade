@@ -35,6 +35,7 @@ cmd49_battle_scripts.s
 .global BattleScript_RaidBattleStatIncrease
 .global BattleScript_MistProtected
 .global BattleScript_FlashFireBurnSetup
+.global BattleScript_SilkTrap
 
 .global gText_ToxicOrb
 .global gText_FlameOrb
@@ -451,3 +452,18 @@ BattleScript_FlashFireBurnSetup:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_SilkTrap:
+	setstatchanger STAT_SPD | DECREASE_1
+	
+BattleScript_SilkTrapPostDecrementSet:
+	swapattackerwithtarget @;Allows for abilities like Defiant and Mirror Armor to have their proper effect
+	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR SilkTrapReturn
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 SilkTrapReturn
+	setgraphicalstatchangevalues
+	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+SilkTrapReturn:
+	swapattackerwithtarget
+	return
