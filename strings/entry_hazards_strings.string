@@ -51,3 +51,6 @@ Burning rocks were scattered all\naround [FD][35] team!
 
 #org @gText_AbsorbedLiveCoals
 Burning coals disappeared from\naround [TARGET]'s feet!
+
+#org @gText_AbsorbedStickyWeb
+Sticky web disappeared from\naround [TARGET]'s feet!

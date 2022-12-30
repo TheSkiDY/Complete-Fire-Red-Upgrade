@@ -147,6 +147,14 @@ void HandleNewBattleRamClearBeforeBattle(void)
 
 	gNewBS->isTrainerBattle = (gBattleTypeFlags & BATTLE_TYPE_TRAINER) != 0; //Used as part of the anti-catch-Trainer-Pokemon cheat
 	FormsRevert(gPlayerParty); //Try to reset all forms before battle
+
+
+	#ifdef TECH_DEMO
+	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_COOLTRAINER || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_COOL_COUPLE || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION)
+	{
+		gBattleTypeFlags |= BATTLE_TYPE_DYNAMAX;
+	}
+	#endif
 }
 
 void VBlankCB_Battle(void)

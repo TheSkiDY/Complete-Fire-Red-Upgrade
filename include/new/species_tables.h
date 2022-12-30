@@ -146,6 +146,8 @@ struct SpecialSpeciesFlags
 	bool8 hasWellBakedBody : 1;
 	bool8 hasWindPower : 1;
 	bool8 hasZeroToHero : 1;
+
+	bool8 hasSurfersEntry : 1;
 };
 
 extern const struct SpecialSpeciesFlags gSpecialSpeciesFlags[];

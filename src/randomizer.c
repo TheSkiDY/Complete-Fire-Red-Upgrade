@@ -154,9 +154,8 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 	u32 trainerId = T1_READ_32(gSaveBlock2->playerTrainerId);
 	u8 locationGroup = gSaveBlock1->location.mapGroup;
 	u8 locationId = gSaveBlock1->location.mapNum;
-	u16 opponentId = gTrainerBattleOpponent_A;
 	u8 index = gPartyIndexLoaded;
-	u32 hashVal = SetInitialHashValueForTrainerRandomizer(opponentId);
+	u32 hashVal = gTrainerHashVal;
 	
 	newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId * hashVal, locationGroup, locationId, index, TRUE);
 	if(newSpecies == SPECIES_NONE)
@@ -180,7 +179,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
 	#endif
 	&& *species != SPECIES_NONE && *species != SPECIES_ZYGARDE_CELL && *species < NUM_SPECIES)
 	{
-		if(gNewBS->isTrainerBattle)
+		if(gNewBS->isTrainerBattle && gSaveBlock1->location.mapGroup != 4 && gSaveBlock1->location.mapNum != 3)
 			TryRandomizeForTrainers(species);
 		else
 		{

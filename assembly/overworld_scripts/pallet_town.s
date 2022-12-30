@@ -37,10 +37,11 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_GHOLDENGO 60 0 0 0 0
 	givepokemon SPECIES_GLIMMORA 5 0 0 0 0
 	givepokemon SPECIES_CYCLIZAR 33 0 0 0 0
-	setvar 0x8000 MOVE_SHEDTAIL
-	setvar 0x8001 MOVE_TIDYUP
-	setvar 0x8002 MOVE_SPINOUT
-	givepokemon SPECIES_NACLSTACK 3 0 0 1 0
+	setvar 0x8000 MOVE_DISCHARGE
+	setvar 0x8001 MOVE_AGILITY
+	setvar 0x8002 MOVE_DRAGONBREATH
+	setvar 0x8002 MOVE_TRAILBLAZE
+	givepokemon SPECIES_MIRAIDON 35 0 0 1 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

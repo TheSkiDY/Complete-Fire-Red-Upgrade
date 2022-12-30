@@ -440,6 +440,13 @@ static item_t FindTrainerDynamaxBand(u16 trainerId)
 	if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK) || IsFrontierTrainerId(trainerId))
 		return ITEM_DYNAMAX_BAND;
 
+	#ifdef TECH_DEMO
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER))
+	{
+		return ITEM_DYNAMAX_BAND;
+	}
+	#endif
+
 	for (u8 i = 0; i < TRAINER_ITEM_COUNT; ++i)
 	{
 		if (IsItemDynamaxBand(gTrainers[trainerId].items[i]))

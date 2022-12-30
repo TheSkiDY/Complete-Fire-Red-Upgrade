@@ -2111,3 +2111,5 @@ DisplayMoveTutorMenu = 0x80e4634 | 1;
 /* New RAM */
 gLastWildIndex = 0x203E0C7;
 gPartyIndexLoaded = 0x203E0C8;
+gTrainerHashVal = 0x203E0C9;
+

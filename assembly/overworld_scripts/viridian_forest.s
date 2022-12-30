@@ -594,6 +594,7 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 0x2E5 1
 	additem 0x2E6 1
 	additem 0x2E7 1
+	additem 0x2E8 10
 	additem 0x2EE 0x1
 	additem 0x2EF 0x1
 	additem 753 20
@@ -621,7 +622,15 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 775 20
 	additem 776 20
 	additem 777 20
+	additem 782 1
+	additem 783 1
+	additem 784 1
+	additem 0x311 20
+	additem 0x312 30
+	additem 0x313 30
+	additem 0x314 30
 	setflag 0x201
+	addmoney 100000
 	setflag 0x906
 	goto AllItemsGuy_Enjoy 
 	end

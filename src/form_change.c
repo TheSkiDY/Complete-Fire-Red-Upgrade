@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "defines_battle.h"
 #include "../include/constants/items.h"
+#include "../include/constants/pokedex.h"
 #include "../include/constants/region_map_sections.h"
 
 #include "../include/new/battle_terrain.h"
@@ -22,6 +23,27 @@ tables to edit:
 	sBannedBackupSpecies
 
 */
+
+extern const u8 gClassPokeBalls[NUM_TRAINER_CLASSES];
+extern const species_t gSetPerfectXIvList[];
+extern const species_t gDeerlingForms[];
+extern const species_t gSawsbuckForms[];
+extern const species_t gVivillonForms[];
+extern const species_t gFurfrouForms[];
+extern const species_t gFlabebeForms[];
+extern const species_t gFloetteForms[];
+extern const species_t gFlorgesForms[];
+extern const species_t gPikachuCapForms[];
+extern const species_t gAlcremieForms[];
+extern const u8 gNumDeerlingForms;
+extern const u8 gNumSawsbuckForms;
+extern const u8 gNumVivillonForms;
+extern const u8 gNumFlabebeForms;
+extern const u8 gNumFloetteForms;
+extern const u8 gNumFlorgesForms;
+extern const u8 gNumFurfrouForms;
+extern const u8 gNumPikachuCapForms;
+extern const u8 gNumAlcremieForms;
 
 const species_t gMiniorCores[] =
 {
@@ -551,6 +573,186 @@ void TrySetCorrectToxtricityForm(struct BoxPokemon* mon)
 	if (species != SPECIES_NONE)
 		SetBoxMonData(mon, MON_DATA_SPECIES, &species); //Set the correct form
 }
+
+u16 GetVivillonFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumVivillonForms;
+	u16 species = gVivillonForms[form];
+
+	return species;
+}
+
+void TrySetCorrectVivillonForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_VIVILLON)
+	{
+		species = GetVivillonFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetPikachuFormFromPersonality(u32 personality)
+{
+	u8 form = personality % 16;
+	u16 species = SPECIES_PIKACHU;
+	if (form == 0)
+		species = SPECIES_PIKACHU;
+	else
+		species = SPECIES_PIKACHU_SURFING - 1 + form;
+
+	return species;
+}
+
+void TrySetCorrectPikachuForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_PIKACHU)
+	{
+		species = GetPikachuFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetFurfrouFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumFurfrouForms;
+	u16 species = gFurfrouForms[form];
+
+	return species;
+}
+
+void TrySetCorrectFurfrouForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_FURFROU)
+	{
+		species = GetFurfrouFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetFlabebeFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumFlabebeForms;
+	u16 species = gFlabebeForms[form];
+
+	return species;
+}
+
+void TrySetCorrectFlabebeForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_FLABEBE && species != SPECIES_FLOETTE_ETERNAL)
+	{
+		species = GetFlabebeFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetFloetteFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumFloetteForms;
+	u16 species = gFloetteForms[form];
+
+	return species;
+}
+
+void TrySetCorrectFloetteForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_FLOETTE)
+	{
+		species = GetFloetteFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetFlorgesFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumFlorgesForms;
+	u16 species = gFlorgesForms[form];
+
+	return species;
+}
+
+void TrySetCorrectFlorgesForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_FLORGES)
+	{
+		species = GetFlorgesFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
+u16 GetAlcremieFormFromPersonality(u32 personality)
+{
+	u8 form = personality % gNumAlcremieForms;
+	u16 species = gAlcremieForms[form];
+
+	return species;
+}
+
+void TrySetCorrectAlcremieForm(struct BoxPokemon* mon)
+{
+	u16 species = GetBoxMonData(mon, MON_DATA_SPECIES2, NULL);
+	u32 personality = GetBoxMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+
+	if (dexNum == NATIONAL_DEX_FURFROU)
+	{
+		species = GetAlcremieFormFromPersonality(personality);
+	}
+	else
+		species = SPECIES_NONE;
+
+	if (species != SPECIES_NONE)
+		SetBoxMonData(mon, MON_DATA_SPECIES, &species);
+}
+
 
 //Overworld Form Change Functions////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

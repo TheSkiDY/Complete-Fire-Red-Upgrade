@@ -222,6 +222,9 @@ extern const u8 BattleScript_SpikesAbsorb[];
 extern const u8 BattleScript_SteelsurgeAbsorb[];
 extern const u8 BattleScript_LiveCoalsBurn[];
 extern const u8 BattleScript_LiveCoalsAbsorb[];
+extern const u8 BattleScript_TSAbsorbByAbility[];
+extern const u8 BattleScript_StickyWebAbsorb[];
+
 extern const u8 BattleScript_MakeItRain[];
 
 extern const u8 ShadowTerrainSetString[];

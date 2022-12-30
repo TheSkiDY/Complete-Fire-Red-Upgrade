@@ -39,6 +39,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 	if (holdEffect == ITEM_EFFECT_PREVENT_EVOLVE && type != 3)
 		return SPECIES_NONE;
 
+	if (SpeciesToNationalPokedexNum(species) == NATIONAL_DEX_PIKACHU)
+	{
+		species = SPECIES_PIKACHU;
+	}
+
 	switch (type)
 	{
 	case EVO_MODE_NORMAL:
@@ -365,6 +370,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 			if ((gEvolutionTable[species][i].method == EVO_ITEM
 			 || gEvolutionTable[species][i].method == EVO_ITEM_LOCATION
 			 || gEvolutionTable[species][i].method == EVO_ITEM_HOLD_ITEM
+			 || gEvolutionTable[species][i].method == EVO_ITEM_DAY
 			 || gEvolutionTable[species][i].method == EVO_ITEM_NIGHT)
 			 && gEvolutionTable[species][i].param == evolutionItem)
 			{
@@ -389,6 +395,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 					FlagSet(FLAG_REMOVE_EVO_ITEM);
 					#endif
 				}
+				else if (gEvolutionTable[species][i].method == EVO_ITEM_DAY)
+				{
+					if (IsNightTime())
+						continue;
+				}
+
 				else if (gEvolutionTable[species][i].method == EVO_ITEM_NIGHT)
 				{
 					if (!IsNightTime())
@@ -401,7 +413,25 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 		break;
 	}
 
+	targetSpecies = ModifyTargetSpeciesForDifferentForms(targetSpecies, personality);
 	return targetSpecies;
+}
+
+
+u16 ModifyTargetSpeciesForDifferentForms(u16 species, u32 personality)
+{
+	u16 dexNum = SpeciesToNationalPokedexNum(species);
+	u16 newSpecies = species;
+	switch(dexNum)
+	{
+		case NATIONAL_DEX_VIVILLON:
+			newSpecies = GetVivillonFormFromPersonality(personality);
+			break;
+		case NATIONAL_DEX_PIKACHU:
+			newSpecies = GetPikachuFormFromPersonality(personality);
+			break;
+	}
+	return newSpecies;
 }
 
 void ItemEvolutionRemoval(pokemon_t* mon)
@@ -454,6 +484,7 @@ bool8 IsItemEvolutionMethod(u8 method)
 		case EVO_TRADE_ITEM:
 		case EVO_HOLD_ITEM_NIGHT:
 		case EVO_HOLD_ITEM_DAY:
+		case EVO_ITEM_DAY:
 		case EVO_ITEM_NIGHT:
 			return TRUE;
 		default:

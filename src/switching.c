@@ -708,9 +708,36 @@ void atk52_switchineffects(void)
 		__attribute__ ((fallthrough));
 
 		case SwitchIn_Compression:
-			if(ability == ABILITY_COMPRESSION && IsAffectedByHazards(gActiveBattler))
+			if((ability == ABILITY_COMPRESSION && IsAffectedByHazards(gActiveBattler)) || (BankHasSurfersEntry(gActiveBattler)))
 			{
 				bool8 compressionActivated = FALSE;
+
+				if (BankHasSurfersEntry(gActiveBattler))
+				{
+					if (gSideTimers[SIDE(gActiveBattler)].tspikesAmount > 0)
+					{
+						gSideTimers[SIDE(gActiveBattler)].tspikesAmount = 0;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_TSAbsorbByAbility;
+						compressionActivated = TRUE;
+					}
+
+					if (gSideTimers[SIDE(gActiveBattler)].stickyWeb > 0)
+					{
+						gSideTimers[SIDE(gActiveBattler)].stickyWeb = 0;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_StickyWebAbsorb;
+						compressionActivated = TRUE;
+					}
+				}
+
+				if (gSideTimers[SIDE(gActiveBattler)].livecoalsAmount > 0)
+				{
+					gSideTimers[SIDE(gActiveBattler)].livecoalsAmount = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_LiveCoalsAbsorb;
+					compressionActivated = TRUE;
+				}
 
 				if (gSideTimers[SIDE(gActiveBattler)].steelsurge > 0)
 				{
@@ -736,16 +763,17 @@ void atk52_switchineffects(void)
 					compressionActivated = TRUE;
 				}
 
-				if (gSideTimers[SIDE(gActiveBattler)].livecoalsAmount > 0)
+				if (BankHasSurfersEntry(gActiveBattler))
 				{
-					gSideTimers[SIDE(gActiveBattler)].livecoalsAmount = 0;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_LiveCoalsAbsorb;
-					compressionActivated = TRUE;
+					if(gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
+						gSideStatuses[SIDE(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES);
+				}
+				else
+				{
+					if(gSideTimers[SIDE(gActiveBattler)].stickyWeb == 0 && gSideTimers[SIDE(gActiveBattler)].tspikesAmount == 0 && gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
+						gSideStatuses[SIDE(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES);
 				}
 
-				if(gSideTimers[SIDE(gActiveBattler)].stickyWeb == 0 && gSideTimers[SIDE(gActiveBattler)].tspikesAmount == 0 && gSideStatuses[SIDE(gActiveBattler)] & SIDE_STATUS_SPIKES)
-					gSideStatuses[SIDE(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES);
 
 				if(compressionActivated)
 				{

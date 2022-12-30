@@ -1675,7 +1675,7 @@ SubstituteAnim:
 SubstituteString:
 	printfromtable 0x83FE5B8
 	waitmessage DELAY_1SECOND
-	jumpifmove MOVE_SHEDTAIL ShedTailBS @doesn't work for some reason
+	@jumpifmove MOVE_SHEDTAIL ShedTailBS
 	goto BS_MOVE_END
 
 ShedTailBS:

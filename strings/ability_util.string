@@ -487,6 +487,12 @@ WIND POWER
 #org @NAME_ZERO_TO_HERO
 ZERO TO HERO
 
+#org @NAME_SURFERS_ENTRY
+SURFER'S ENTRY
+
+#org @NAME_FALSETTO
+FALSETTO
+
 //Descriptions
 
 #org @DESC_EVAPORATE
@@ -752,3 +758,6 @@ Becomes charged when hit by\na wind move.
 
 #org @DESC_ZERO_TO_HERO
 Transforms after switching out.
+
+#org @DESC_SURFERS_ENTRY
+Washes out all entry hazards.

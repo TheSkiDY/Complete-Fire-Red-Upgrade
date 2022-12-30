@@ -2173,6 +2173,13 @@ bool8 IsBagDisabled(void)
 	itemRestrictions = VarGet(VAR_ITEM_RESTRICTIONS);
 	#endif
 
+	#ifdef TECH_DEMO
+	if(gNewBS->isTrainerBattle && IsBossTrainerClassForLevelScaling(gTrainerBattleOpponent_A))
+	{
+		return TRUE;
+	}
+	#endif
+
 	if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 	{
 		//Determine based on player-set restrictions

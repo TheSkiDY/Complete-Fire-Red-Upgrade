@@ -26,6 +26,21 @@ void HoopaShayminPCRevertCheck(struct Pokemon* mon, bool8 recalcStats);
 //Hooked In Functions
 void HandleFormChange(void);
 
+u16 GetVivillonFormFromPersonality(u32 personality);
+void TrySetCorrectVivillonForm(struct BoxPokemon* mon);
+u16 GetPikachuFormFromPersonality(u32 personality);
+void TrySetCorrectPikachuForm(struct BoxPokemon* mon);
+u16 GetFurfrouFormFromPersonality(u32 personality);
+void TrySetCorrectFurfrouForm(struct BoxPokemon* mon);
+u16 GetFlabebeFormFromPersonality(u32 personality);
+void TrySetCorrectFlabebeForm(struct BoxPokemon* mon);
+u16 GetFloetteFormFromPersonality(u32 personality);
+void TrySetCorrectFloetteForm(struct BoxPokemon* mon);
+u16 GetFlorgesFormFromPersonality(u32 personality);
+void TrySetCorrectFlorgesForm(struct BoxPokemon* mon);
+u16 GetAlcremieFormFromPersonality(u32 personality);
+void TrySetCorrectAlcremieForm(struct BoxPokemon* mon);
+
 //Exported Structs
 extern const species_t gMiniorCores[];
 extern const u16 gTypeToSilvallyForm[];

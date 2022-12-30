@@ -268,6 +268,11 @@ static item_t FindTrainerKeystone(u16 trainerId)
 	if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK) || IsFrontierTrainerId(trainerId))
 		return ITEM_MEGA_RING;
 
+	#ifdef TECH_DEMO
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER))
+		return ITEM_MEGA_RING;
+	#endif
+
 	for (u8 i = 0; i < TRAINER_ITEM_COUNT; ++i)
 	{
 		if (IsItemKeystone(gTrainers[trainerId].items[i]))

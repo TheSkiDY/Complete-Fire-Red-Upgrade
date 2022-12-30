@@ -145,7 +145,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define DUSK_BALL_MULTIPLIER 30 //Change this line to 35 to make the catch rate for the Dusk Ball 3.5x like before Gen 7
 #define STANDARD_IV 10 //Change this to be the number of IVs Pokemon owned by random trainers should have (all stats will have this number)
 #define SWARM_CHANCE 50 //Change this to the percentage that swarming Pokemon will appear if they can be found on the current route.
-#define WILD_DOUBLE_RANDOM_CHANCE 5 //Change this to the percentage that a wild double battle will be initiated if the player is in special grass.
+#define WILD_DOUBLE_RANDOM_CHANCE 1 //Change this to the percentage that a wild double battle will be initiated if the player is in special grass.
 #define CREATE_WITH_X_PERFECT_IVS 3 //Change this to the number of set 31 IVs you'd like Pokemon defined in gSetPerfectXIvList to have.
 #define CREATE_ROAMER_WITH_X_PERFECT_IVS 3 //Change this to the number of set 31 IVs you'd like roaming pokemon to have.
 #define EGG_HATCH_LEVEL 1 //The level eggs hatch at
@@ -346,7 +346,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define WEATHER_BALL_MULTIPLIER 40
 #define SHINY_BALL_MULTIPLIER 50
 
-#define RANDOMIZER_WATER_WILD_MULTIPLIER 13
+#define RANDOMIZER_WATER_WILD_MULTIPLIER 13 //should move this to randomizer.h
 #define RANDOMIZER_ROCK_WILD_MULTIPLIER 26
 #define RANDOMIZER_FISH_WILD_MULTIPLIER 39
 

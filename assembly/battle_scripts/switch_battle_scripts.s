@@ -33,6 +33,8 @@ switch_battle_scripts.s
 .global BattleScript_SteelsurgeAbsorb
 .global BattleScript_LiveCoalsBurn
 .global BattleScript_LiveCoalsAbsorb
+.global BattleScript_TSAbsorbByAbility
+.global BattleScript_StickyWebAbsorb
 
 .global BattleScript_HandleFaintedMonSingles
 .global BattleScript_HandleFaintedMonDoublesInitial
@@ -482,6 +484,22 @@ BattleScript_SteelsurgeAbsorb:
 BattleScript_LiveCoalsAbsorb:
 	call BattleScript_AbilityPopUp
 	setword BATTLE_STRING_LOADER gText_AbsorbedLiveCoals
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_TSAbsorbByAbility:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedToxicSpikes
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	return
+
+BattleScript_StickyWebAbsorb:
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_AbsorbedStickyWeb
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert

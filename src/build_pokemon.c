@@ -743,6 +743,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 	else if (IsFrontierTrainerId(trainerId))
 		return BuildFrontierParty(party, trainerId, VarGet(VAR_BATTLE_FACILITY_TIER), firstTrainer, FALSE, side);
 
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER))
+	{
+		gTrainerHashVal = SetInitialHashValueForTrainerRandomizer(trainerId);
+	}
+
 	//Check if can build team
 	if (((gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)) == BATTLE_TYPE_TRAINER)
 	||   (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER))
@@ -983,6 +988,36 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 						break;
 				}
 			}
+
+			#ifdef TECH_DEMO
+			//Assign mega evolutions to randomized mons
+			if(FlagGet(FLAG_POKEMON_RANDOMIZER) && IsBossTrainerClassForLevelScaling(trainerId))
+			{
+				u16 itemId = GetMegaEvolutionStone(mon->species);
+				if(itemId != ITEM_NONE)
+					SetMonData(mon, MON_DATA_HELD_ITEM, &itemId);
+			}
+			mon->gigantamax = TRUE;
+
+			//Assign random ability including hidden
+			if (FlagGet(FLAG_POKEMON_RANDOMIZER))
+			{
+				u8 randAb = gTrainerHashVal % 3;
+				switch(randAb)
+				{
+					case 1:
+						GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 1, FALSE, TRUE, FALSE);
+						break;
+					case 2:
+						GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 0xFF, FALSE, TRUE, FALSE);
+						break;
+					case 0:
+					default:
+						GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 0, FALSE, TRUE, FALSE);
+						break;
+				} 
+			}
+			#endif
 
 			//Assign Trainer information to mon
 			u8 otGender = trainer->gender;
@@ -4321,6 +4356,14 @@ void CreateBoxMon(struct BoxPokemon* boxMon, u16 species, u8 level, u8 fixedIV, 
 
 	GiveBoxMonInitialMoveset(boxMon);
 	TrySetCorrectToxtricityForm(boxMon);
+	TrySetCorrectVivillonForm(boxMon);
+	TrySetCorrectPikachuForm(boxMon);
+	TrySetCorrectFurfrouForm(boxMon);
+	TrySetCorrectFlabebeForm(boxMon);
+	TrySetCorrectFloetteForm(boxMon);
+	TrySetCorrectFlorgesForm(boxMon);
+	TrySetCorrectAlcremieForm(boxMon);
+
 }
 
 void CreateMonWithNatureLetter(struct Pokemon* mon, u16 species, u8 level, u8 fixedIV, u8 nature, u8 letter)

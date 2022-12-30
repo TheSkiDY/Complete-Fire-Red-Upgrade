@@ -20,3 +20,5 @@ u8 GetMinimumLevel(u16 species);
 //Functions Hooked In
 u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem);
 void ItemEvolutionRemoval(pokemon_t* mon);
+u16 ModifyTargetSpeciesForDifferentForms(u16 species, u32 personality);
+

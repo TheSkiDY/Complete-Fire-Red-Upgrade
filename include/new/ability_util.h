@@ -153,3 +153,6 @@ bool8 BankHasWellBakedBody(u8 bank);
 bool8 SpeciesHasWindPower(u16 species);
 bool8 BankHasWindPower(u8 bank);
 bool8 SpeciesHasZeroToHero(u16 species);
+
+bool8 SpeciesHasSurfersEntry(u16 species);
+bool8 BankHasSurfersEntry(u8 bank);

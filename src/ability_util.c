@@ -237,6 +237,10 @@ extern const u8 DESC_STEELWORKER[];
 extern const u8 DESC_TRANSISTOR[];
 extern const u8 DESC_DRAGONS_MAW[];
 
+extern const u8 NAME_SURFERS_ENTRY[];
+extern const u8 DESC_SURFERS_ENTRY[];
+extern const u8 NAME_FALSETTO[];
+
 //Gen 9
 extern const u8 NAME_SHARPNESS[];
 extern const u8 NAME_ANGER_SHELL[];
@@ -618,6 +622,11 @@ static struct DuplicateAbility sDuplicateNames[] =
         .currAbility = ABILITY_PARENTALBOND,
         .replaceAbilityName = NAME_BRAINS_SYNERGY,
     },
+    {
+        .species = SPECIES_FARIGIRAF,
+        .currAbility = ABILITY_PARENTALBOND,
+        .replaceAbilityName = NAME_BRAINS_SYNERGY,
+    },
 
 
     //Emergency Exit -> Wimp Out
@@ -692,6 +701,12 @@ static struct DuplicateAbility sDuplicateNames[] =
         .currAbility = ABILITY_STALWART,
         .replaceAbilityName = NAME_PROPELLER_TAIL,
     },
+    {
+        .species = SPECIES_VELUZA,
+        .currAbility = ABILITY_STALWART,
+        .replaceAbilityName = NAME_PROPELLER_TAIL,
+    },
+
 
     //Punk Rock -> Screeching Buzz
     {
@@ -742,6 +757,23 @@ static struct DuplicateAbility sDuplicateNames[] =
         .species = SPECIES_RILLABOOM_GIGA,
         .currAbility = ABILITY_PUNKROCK,
         .replaceAbilityName = NAME_VIOLENT_DRUMS,
+    },
+
+    //Punk Rock -> Falsetto
+    {
+        .species = SPECIES_FUECOCO,
+        .currAbility = ABILITY_PUNKROCK,
+        .replaceAbilityName = NAME_FALSETTO,
+    },
+    {
+        .species = SPECIES_CROCALOR,
+        .currAbility = ABILITY_PUNKROCK,
+        .replaceAbilityName = NAME_FALSETTO,
+    },
+    {
+        .species = SPECIES_SKELEDIRGE,
+        .currAbility = ABILITY_PUNKROCK,
+        .replaceAbilityName = NAME_FALSETTO,
     },
 
     //Ice Scales -> Icy Skin
@@ -1281,6 +1313,36 @@ static struct DuplicateAbility sDuplicateNames[] =
         .currAbility = ABILITY_MUMMY,
         .replaceAbilityName = NAME_LINGERING_AROMA,
     },
+    {
+        .species = SPECIES_SINISTEA,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
+    {
+        .species = SPECIES_POLTEAGEIST,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
+    {
+        .species = SPECIES_SINISTEA_CHIPPED,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
+    {
+        .species = SPECIES_POLTEAGEIST_CHIPPED,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
+    {
+        .species = SPECIES_SWIRLIX,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
+    {
+        .species = SPECIES_SLURPUFF,
+        .currAbility = ABILITY_MUMMY,
+        .replaceAbilityName = NAME_LINGERING_AROMA,
+    },
 };
 
 static const u8* sBlazeLikeNames[] =
@@ -1556,6 +1618,10 @@ const u8* GetAbilityNameOverride(const u8 ability, const u16 species) //Bypasses
             if (SpeciesHasWindPower(species))
                 nameStr = NAME_WIND_POWER;
             break;
+        case ABILITY_COMPRESSION:
+            if (SpeciesHasSurfersEntry(species))
+                nameStr = NAME_SURFERS_ENTRY;
+            break;
         case ABILITY_TREASURES_OF_RUIN:
             nameStr = GetTreasureOfRuinAbilityName(species);
             break;
@@ -1673,6 +1739,10 @@ const u8* GetAbilityDescriptionOverride(const u8 ability, const u16 species) //B
         case ABILITY_ELECTROMORPHOSIS:
             if (SpeciesHasWindPower(species))
                 descStr = DESC_WIND_POWER;
+            break;
+        case ABILITY_COMPRESSION:
+            if (SpeciesHasSurfersEntry(species))
+                descStr = DESC_SURFERS_ENTRY;
             break;
         case ABILITY_TREASURES_OF_RUIN:
             descStr = GetTreasureOfRuinAbilityDescription(species);
@@ -2998,4 +3068,14 @@ bool8 SpeciesHasWindPower(u16 species)
 bool8 BankHasWindPower(u8 bank)
 {
     return (ABILITY(bank) == ABILITY_ELECTROMORPHOSIS && SpeciesHasWindPower(GetProperAbilityPopUpSpecies(bank)));
+}
+
+bool8 SpeciesHasSurfersEntry(u16 species)
+{
+    return gSpecialSpeciesFlags[species].hasSurfersEntry;
+}
+
+bool8 BankHasSurfersEntry(u8 bank)
+{
+    return (ABILITY(bank) == ABILITY_COMPRESSION && SpeciesHasSurfersEntry(GetProperAbilityPopUpSpecies(bank)));
 }
