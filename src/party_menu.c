@@ -2799,7 +2799,9 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 			noEffect = TRUE;
 		else
 		{
-			//RemoveBagItem(item, 1);
+			#ifndef TECH_DEMO
+			RemoveBagItem(item, 1);
+			#endif
 			PartyMenuTryEvolution(taskId);
 			return;
 		}
@@ -2816,7 +2818,9 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 	}
 	else
 	{
-		AddBagItem(item, 1); //temporary
+		#ifdef TECH_DEMO
+		AddBagItem(item, 1);
+		#endif
 		ItemUseCB_RareCandyStep(taskId, func);
 	}
 }

@@ -24,7 +24,7 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_MEGA_RING 1
 	additem ITEM_ABILITY_CAPSULE 50
 	additem ITEM_ABILITY_PATCH 50
-	additem ITEM_NATURE_PILL_NAUGHTY 5
+	additem ITEM_ENERGY_POWDER 5
 	additem ITEM_NATURE_PILL_BOLD 5
 	additem ITEM_SHINY_BALL 20
 	additem ITEM_MASTER_BALL 20
