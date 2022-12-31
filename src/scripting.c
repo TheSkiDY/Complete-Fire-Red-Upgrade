@@ -2931,6 +2931,18 @@ void DebugFunc2(void)
 	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered ShedTailBS");
 }
 
+void IsPortablePCBanned(void)
+{
+	u8 locGroup = gSaveBlock1->location.mapGroup;
+	u8 locNum = gSaveBlock1->location.mapNum;
+
+	if (locGroup == 1 && (locNum >= 75 && locNum <= 79)) //can't use Porta-PC in the E4
+		VarSet(0x800D, 0x1);
+	else
+		VarSet(0x800D, 0x0);
+}
+
+
 #ifdef SCROLLING_MULTICHOICE
 
 //////////////////////////////////

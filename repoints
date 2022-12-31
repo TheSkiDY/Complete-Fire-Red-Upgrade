@@ -512,3 +512,7 @@ sItemName_RoomExtender 08907da4
 sItemName_BlackAugurite 08907dfc
 sItemName_CatchingCharm 08908114
 sItemName_ThunderStone 08901080
+sItemName_InfiniteRepel 08908090
+
+ItemScript_PortablePC 087e0a40
+ItemScript_InfiniteRepel 087e0a90

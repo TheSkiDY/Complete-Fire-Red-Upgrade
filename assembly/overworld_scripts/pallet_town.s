@@ -30,6 +30,8 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_MASTER_BALL 20
 	additem ITEM_ZINC 10
 	additem ITEM_FROST_ORB 1
+	additem ITEM_PORTABLE_PC 1
+	additem ITEM_INFINITE_REPEL 1
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
