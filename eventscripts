@@ -201,3 +201,14 @@ npc 1 106 0 EventScript_Strength
 npc 1 106 1 EventScript_Strength
 npc 1 106 2 EventScript_Strength
 npc 1 106 9 EventScript_Strength
+
+##Tutors
+npc 6 2 2 EventScript_FirstBadgeTutor
+npc 7 5 3 EventScript_SecondBadgeTutor
+npc 9 6 3 EventScript_ThirdBadgeTutor
+npc 3 6 8 EventScript_FourthBadgeTutor
+npc 11 3 7 EventScript_FifthBadgeTutor
+npc 14 3 8 EventScript_SixthBadgeTutor
+npc 12 0 8 EventScript_SeventhBadgeTutor
+npc 5 1 9 EventScript_EighthBadgeTutor
+npc 13 0 2 EventScript_PkmnLeagueTutor
