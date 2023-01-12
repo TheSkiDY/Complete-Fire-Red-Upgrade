@@ -2108,6 +2108,9 @@ Task_InitMoveRelearnerMenu = 0x80E4660 | 1;
 CB2_ReturnToPartyMenuFromSummaryScreen = 0x8122DBC | 1;
 DisplayMoveTutorMenu = 0x80e4634 | 1;
 
+/* Scripting */
+CountDigits = 0x80CBF04 | 1;
+
 /* New RAM */
 gLastWildIndex = 0x203E0C7;
 gPartyIndexLoaded = 0x203E0C8;

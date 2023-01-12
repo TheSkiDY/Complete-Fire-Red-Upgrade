@@ -99,7 +99,7 @@ u32 GetLocationHash(u8 locGroup, u8 locNum)
 	return hash;
 }
 
-u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 trainerId, u8 locationGroup, u8 locationId, u8 index, bool8 trainerBattle)
+u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 seed, u8 locationGroup, u8 locationId, u8 index, bool8 trainerBattle)
 {
 	u32 loopValConst = 2654435761;
 	u32 loopVal = loopValConst;
@@ -108,7 +108,7 @@ u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 trainerId, u8 locationGr
 	u16 oldSpecies = species;
 	u16 newSpecies = SPECIES_NONE;
 
-	toHash = (trainerId * oldSpecies) ^ 0x9e3779b9;
+	toHash = (seed * oldSpecies) ^ 0x9e3779b9;
 	toHash += GetLocationHash(locationGroup, locationId);
 	toHash += toHash * (index + 1);
 	newSpecies = GetSpeciesFromHashVal(toHash);
@@ -133,12 +133,12 @@ u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 trainerId, u8 locationGr
 	return SPECIES_NONE;
 }
 
-u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 id, bool8 trainerBattle)
+u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 seed, bool8 trainerBattle)
 {
 	u16 newSpecies;
 	u16 speciesCount = NUM_SPECIES_RANDOMIZER;
-	u16 startAt = (id & 0xFFFF) % (u32) speciesCount;
-	u16 xorVal = (id >> 16) % (u32) 0x400; //Only set the bits likely to be in the species
+	u16 startAt = (seed & 0xFFFF) % (u32) speciesCount;
+	u16 xorVal = (seed >> 16) % (u32) 0x400; //Only set the bits likely to be in the species
 	u32 numAttempts = 0;
 
 	newSpecies = species + startAt;
@@ -203,14 +203,14 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		{
 			u16 oldSpecies = *species;
 			u16 newSpecies = SPECIES_NONE;
-			u32 trainerId = T1_READ_32(gSaveBlock2->playerTrainerId);
+			u32 seed = gSaveBlock1->randomizerSeed;
 			u8 locationGroup = gSaveBlock1->location.mapGroup;
 			u8 locationId = gSaveBlock1->location.mapNum;
 			u8 index = gLastWildIndex;
 
-			newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId, locationGroup, locationId, index, FALSE);
+			newSpecies = InitialSpeciesRandomizer(oldSpecies, seed, locationGroup, locationId, index, FALSE);
 			if(newSpecies == SPECIES_NONE)
-				newSpecies = BackupSpeciesRandomizer(oldSpecies, trainerId * (locationGroup + 1) * (locationId + 1) * (index + 1), FALSE);
+				newSpecies = BackupSpeciesRandomizer(oldSpecies, seed * (locationGroup + 1) * (locationId + 1) * (index + 1), FALSE);
 
 			*species = newSpecies;
 		}

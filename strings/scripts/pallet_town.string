@@ -24,3 +24,18 @@ Custom regional forms will appear\nin the game.
 
 #org @gText_TechnologyGuy_DisableRegionalsQuestion
 Do you want to disable custom\nregional forms?
+
+#org @gText_TechnologyGuy_RerandomizeQuestion
+Your current seed is [BUFFER1].\nDo you want to re-randomize your\lgame?
+
+#org @gText_RerandomizeOption1
+Set seed
+
+#org @gText_RerandomizeOption2
+New random
+
+#org @gText_RerandomizeCancel
+CANCEL
+
+#org @gText_TechnologyGuy_Rerandomized
+Your new seed is [BUFFER1].\nEnjoy.

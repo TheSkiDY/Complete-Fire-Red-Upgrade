@@ -1002,8 +1002,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 			//Assign random ability including hidden
 			if (FlagGet(FLAG_POKEMON_RANDOMIZER))
 			{
-				u32 trainerId = T1_READ_32(gSaveBlock2->playerTrainerId);
-				u8 randAb = (trainerId * gTrainerHashVal) % 3;
+				u32 seed = gSaveBlock1->randomizerSeed;
+				u8 randAb = (seed * gTrainerHashVal) % 3;
 				switch(randAb)
 				{
 					case 1:

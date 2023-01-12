@@ -14,6 +14,7 @@
 #include "../include/naming_screen.h"
 #include "../include/overworld.h"
 #include "../include/pokemon_storage_system.h"
+#include "../include/random.h"
 #include "../include/region_map.h"
 #include "../include/script.h"
 #include "../include/script_menu.h"
@@ -73,6 +74,8 @@ tables to edit:
 
 extern u8 AddPalRef(u8 Type, u16 PalTag);
 extern u8 BuildFrontierParty(struct Pokemon* party, u16 trainerNum, bool8 firstTrainer, bool8 ForPlayer, u8 side);
+
+s32 __attribute__((long_call)) CountDigits(s32 number);
 
 extern const struct SwarmData gSwarmTable[];
 extern const species_t gSkyBattleBannedSpeciesList[];
@@ -2942,6 +2945,23 @@ void IsPortablePCBanned(void)
 		VarSet(0x800D, 0x0);
 }
 
+void InitRandomizerSeed(void)
+{
+	u32 trainerId = T1_READ_32(gSaveBlock2->playerTrainerId);
+	gSaveBlock1->randomizerSeed = trainerId;
+}
+
+void BufferRandomizerSeed(void)
+{
+	u32 seed = gSaveBlock1->randomizerSeed;
+	ConvertIntToDecimalStringN(gStringVar1, seed, 2, 10);
+}
+
+void AssignNewRandomSeed(void)
+{
+	u32 newSeed = Random32();
+	gSaveBlock1->randomizerSeed = newSeed;
+}
 
 #ifdef SCROLLING_MULTICHOICE
 

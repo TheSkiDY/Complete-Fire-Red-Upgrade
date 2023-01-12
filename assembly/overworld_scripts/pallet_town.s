@@ -110,7 +110,7 @@ TechnologyGuy_DisableRegionalsQuestion:
 	if 0x1 _goto TechnologyGuy_DisableRegionals
 	clearflag 0x977
 	msgbox gText_TechnologyGuy_EnableRegionals MSG_NORMAL
-	goto TechnologyGuy_Rerandomize
+	goto TechnologyGuy_RerandomizeQuestion
 	end
 
 TechnologyGuy_DisableFakemons:
@@ -122,10 +122,21 @@ TechnologyGuy_DisableFakemons:
 TechnologyGuy_DisableRegionals:
 	setflag 0x977 @no regionals
 	msgbox gText_TechnologyGuy_DisableRegionals MSG_NORMAL
-	goto TechnologyGuy_Rerandomize
+	goto TechnologyGuy_RerandomizeQuestion
+	end
+
+TechnologyGuy_RerandomizeQuestion:
+	callasm BufferRandomizerSeed
+	msgbox gText_TechnologyGuy_RerandomizeQuestion MSG_YESNO
+	compare LASTRESULT YES
+	if 0x1 _goto TechnologyGuy_Rerandomize
+	goto TechnologyGuy_Quit
 	end
 
 TechnologyGuy_Rerandomize:
+	callasm AssignNewRandomSeed
+	callasm BufferRandomizerSeed
+	msgbox gText_TechnologyGuy_Rerandomized MSG_NORMAL
 	goto TechnologyGuy_Quit
 	end
 
@@ -170,6 +181,7 @@ gPlayerSpawnScripts:
 	.byte MAP_SCRIPT_TERMIN
 
 PlayerHome_InitScript1:
+	callasm InitRandomizerSeed
 	compare 0x4056 0x0
 	if 0x1 _call 0x8168CBA
 	end
