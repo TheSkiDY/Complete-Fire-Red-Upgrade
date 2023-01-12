@@ -1564,7 +1564,7 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if (gSpecialMoveFlags[move].gNoFireHeatMoves && defType == TYPE_ICE)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
-	if (move == MOVE_ACID && defType == TYPE_POISON)
+	if (move == MOVE_ACID && defType == TYPE_STEEL)
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
 	if (move == MOVE_CUT && defType == TYPE_GRASS)

@@ -3939,19 +3939,20 @@ static u8 GetHighestMonLevel(const struct Pokemon* const party)
 u8 GetAveragePartyLevel(const struct Pokemon* const party)
 {
 	u32 sum = 0;
-	u8 level;
+	u8 level, count = 0;
 
 	for (u8 i = 0; i < PARTY_SIZE; ++i)
 	{
 		u16 species = GetMonData(&party[i], MON_DATA_SPECIES2, NULL);
 
-		if (species == SPECIES_EGG)
+		if (species == SPECIES_EGG || species == SPECIES_NONE)
 			continue;
 
 		level = GetMonData(&party[i], MON_DATA_LEVEL, NULL);
 		sum += level;
+		count++;
 	}
-	return (u8)udivsi(sum, PARTY_SIZE);
+	return sum / count;
 }
 
 u8 GetMonPokeBall(struct PokemonSubstruct0* data)

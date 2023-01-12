@@ -1,6 +1,9 @@
 ##
 npc 3 0 1 EventScript_PalletTown_TechnologyGuy
+tile 3 0 3 EventScript_PalletTown_RandomizerStop
+tile 3 0 4 EventScript_PalletTown_RandomizerStop
 npc 1 0 0 EventScript_ViridianForest_AllItemsGuy
+map 4 1 gPlayerSpawnScripts
 
 ##New PokeCenter script
 npc 6 5 2 EventScript_FastPokeCenterHeal
@@ -24,8 +27,8 @@ npc 37 0 0 EventScript_FastPokeCenterHeal
 npc 31 3 0 EventScript_FastPokeCenterHeal
 
 ## Lorelei check fix for Indigo Plateau
-npc 13 0 3 EventScript_IndigoPlateau_FromHereOnGirl_Start
-map 13 0 MapScript_IndigoPlateau_Start
+npc 13 0 3 EventScript_IndigoPlateau_InviteGirl_Start
+map 13 0 gIndigoPlateauScripts
 
 ##New HMs
 npc 3 20 2 EventScript_CutTree

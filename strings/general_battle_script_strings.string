@@ -874,7 +874,7 @@ But [ATTACKER] anchors\nitself with [ATTACKER_ABILITY]!
 The [LAST_ITEM] strengthened\nthe power of [CURRENT_MOVE]!
 
 #org @gText_MegaReacting
-[BUFFER][00]'s [LAST_ITEM] is reactin[SCRIPTING_BANK]\nto [TRAINER_NAME]'s [BUFFER][01]!
+[BUFFER][00]'s [LAST_ITEM] is reacting\nto [TRAINER_NAME]'s [BUFFER][01]!
 
 #org @gText_MegaEvolutionComplete
 [SCRIPTING_BANK] mega evolved\ninto MEGA [SPECIES_NAME]!

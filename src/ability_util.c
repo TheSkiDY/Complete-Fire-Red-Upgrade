@@ -1546,6 +1546,7 @@ static const u8* sTypeBoostDescriptions[] =
 const u8* GetAbilityNameOverride(const u8 ability, const u16 species) //Bypasses the 255 Ability limitation and implements clone Abilities
 {
     const u8* nameStr = NULL;
+
 	switch (ability)
 	{
 		case ABILITY_INSOMNIA:
@@ -1645,14 +1646,14 @@ const u8* GetAbilityNameOverride(const u8 ability, const u16 species) //Bypasses
             break;
 	}
 
-	for(u16 i = 0; i < ARRAY_COUNT(sDuplicateNames); ++i)
-	{
-		if(ability == sDuplicateNames[i].currAbility && species == sDuplicateNames[i].species)
-		{
-			nameStr = sDuplicateNames[i].replaceAbilityName;
+    for(u16 i = 0; i < ARRAY_COUNT(sDuplicateNames); ++i)
+    {
+        if(ability == sDuplicateNames[i].currAbility && species == sDuplicateNames[i].species)
+        {
+            nameStr = sDuplicateNames[i].replaceAbilityName;
             break;
-		}
-	}
+        }
+    }
 
 	return nameStr;
 }

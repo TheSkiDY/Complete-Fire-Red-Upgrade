@@ -1981,11 +1981,7 @@ u32 GetFrostbiteDamage(unusedArg u8 bank)
 	if (gBattleMons[bank].status1 & STATUS_FREEZE
 	&& ability != ABILITY_MAGICGUARD)
 	{
-		#ifdef OLD_BURN_DAMAGE
-			damage = MathMax(1, GetBaseMaxHP(bank) / 8);
-		#else
-			damage = MathMax(1, GetBaseMaxHP(bank) / 16);
-		#endif
+		damage = MathMax(1, GetBaseMaxHP(bank) / 8);
 	}
 	#endif
 

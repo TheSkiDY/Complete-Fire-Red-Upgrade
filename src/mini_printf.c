@@ -58,12 +58,12 @@ struct mini_buff
 
 static s32 _puts(char *s, s32 len, void *buf)
 {
+    if (!buf) 
+        return len;
+
     char *p0;
     s32 i;
     struct mini_buff *b;
-
-    if (!buf) 
-        return len;
 
     b = buf;
     p0 = b->buffer;

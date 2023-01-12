@@ -6,7 +6,7 @@
  */
 
 /*===== Debugging Options =====*/
-//#define DEBUG_QUICK_BATTLES //Battles will end after choosing the first attack
+#define DEBUG_QUICK_BATTLES //Battles will end after choosing the first attack
 //#define DEBUG_MEGA //Mega Evolution can always be used
 //#define DEBUG_HMS //HMs can always be used from the party screen, Surf, Waterfall, and Rock Climb can always be used
 //#define DEBUG_OBEDIENCE //Traded Pokemon never have obedience issues
@@ -134,7 +134,7 @@ enum //These vars need to be one after the other (hence the enum)
 
 /*===== General Number Options =====*/
 #define KANTO_DEX_COUNT 151
-#define NATIONAL_DEX_COUNT 905
+#define NATIONAL_DEX_COUNT 1406
 
 #define MAX_LEVEL 100 //Also change this in the file "asm_defines.asm" found in the root
 #define NUM_TRAINER_CLASSES 107 //Vanilla FR has 107
@@ -187,9 +187,9 @@ enum //These vars need to be one after the other (hence the enum)
 
 /*=====Safari Zone Options=====*/
 #define EXPAND_SAFARI_BALLS	//Hold up to 0xFFFF safari balls
-#define SAFARI_ZONE_MAX_STEPS 600	//Number of safari zone steps the player has
-#define SAFARI_ZONE_BALL_START 30	//Number of safari balls the player starts with
-#define MAX_SAFARI_BALLS 30		//Total safari balls player can get (maximum is 0xFFFF or 0xFF if EXPAND_SAFARI_BALLS is defined or not)
+#define SAFARI_ZONE_MAX_STEPS 800	//Number of safari zone steps the player has
+#define SAFARI_ZONE_BALL_START 50	//Number of safari balls the player starts with
+#define MAX_SAFARI_BALLS 50		//Total safari balls player can get (maximum is 0xFFFF or 0xFF if EXPAND_SAFARI_BALLS is defined or not)
 
 /*=====Randomizer Options=====*/
 #define FLAG_POKEMON_RANDOMIZER 0x940 //Setting randomizes Pokemon species that are created.
@@ -357,11 +357,11 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_SCALE_WILD_BOSS_LEVEL 0x974
 #define FLAG_IN_BATTLE_TEAM_PREVIEW 0x975
 #define FLAG_NO_FAKEMONS 0x976
+#define FLAG_NO_CUSTOM_REGIONALS 0x977
 
 #define FRIENDSHIP_EVOLUTION_LEVEL 25
 #define ITEM_EVOLUTION_LEVEL 40
 #define OTHER_EVOLUTION_LEVEL 45
 
-
 #define TEAM_PREVIEW_TRIGGER
-//#define TECH_DEMO
+#define TECH_DEMO

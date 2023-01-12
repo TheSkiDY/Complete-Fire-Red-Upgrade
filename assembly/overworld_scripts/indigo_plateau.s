@@ -5,41 +5,55 @@
 .include "../xse_defines.s"
 .include "../asm_defines.s"
 
-.global EventScript_IndigoPlateau_FromHereOnGirl_Start
-.global MapScript_IndigoPlateau_Start
+.global EventScript_IndigoPlateau_InviteGirl_Start
+.global gIndigoPlateauScripts
 
-EventScript_IndigoPlateau_FromHereOnGirl_Start:
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+EventScript_IndigoPlateau_InviteGirl_Start:
 	lock
 	faceplayer
 	checkflag 0x82C
-	if 0x1 _goto EventScript_IndigoPlateau_FromHereOnGirl_NoEntry
+	if 0x1 _goto IndigoPlateau_InviteGirl_NoEntry
 	msgbox 0x819A8D8 MSG_KEEPOPEN
 	release
 	end
 
-EventScript_IndigoPlateau_FromHereOnGirl_NoEntry:
+IndigoPlateau_InviteGirl_NoEntry:
 	checkflag 0x844
-	if 0x1 _goto EventScript_IndigoPlateau_FromHereOnGirl_AfterLoreleiCheck
+	if 0x1 _goto IndigoPlateau_InviteGirl_AfterLoreleiCheck
 	msgbox 0x819A943 MSG_KEEPOPEN
 	release
 	end
 
-EventScript_IndigoPlateau_FromHereOnGirl_AfterLoreleiCheck:
+IndigoPlateau_InviteGirl_AfterLoreleiCheck:
 	msgbox 0x819A8D8 MSG_KEEPOPEN
 	release
 	end
 
-MapScript_IndigoPlateau_Start:
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+gIndigoPlateauScripts:
+	mapscript MAP_SCRIPT_ON_TRANSITION IndigoPlateau_MoveInviteGirl
+	mapscript MAP_SCRIPT_ON_RESUME IndigoPlateau_CallSpecial
+	.byte MAP_SCRIPT_TERMIN
+
+IndigoPlateau_MoveInviteGirl:
 	sethealingplace 0xA
 	checkflag 0x82C
-	if 0x1 _call MapScript_IndigoPlateau_LoreleiMissing
+	if 0x1 _call IndigoPlateau_LoreleiMissing
 	end
 
-MapScript_IndigoPlateau_LoreleiMissing:
+IndigoPlateau_LoreleiMissing:
 	checkflag 0x844
-	if 0x1 _goto MapScript_IndigoPlateau_End
+	if 0x1 _goto IndigoPlateau_End
 	movesprite2 0x4 0x4 0x2
 	return
 
-MapScript_IndigoPlateau_End:
+IndigoPlateau_End:
 	return
+
+IndigoPlateau_CallSpecial:
+	special 0x182
+	end

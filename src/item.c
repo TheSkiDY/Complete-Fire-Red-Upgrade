@@ -670,7 +670,11 @@ void LoadTMNameWithNo(u8* dst, u16 itemId)
 	StringAppend(gStringVar4, (void*) 0x846317C);
 	StringAppend(gStringVar4, (void*) 0x8416703);
 
-	StringAppendFullMoveName(gStringVar4, gLongMoveNames[ItemIdToBattleMoveId(itemId)]);
+
+	if (itemId == 0x1AE) //Electric Terrain TM
+		StringAppendFullMoveName(gStringVar4, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+	else
+		StringAppendFullMoveName(gStringVar4, gLongMoveNames[ItemIdToBattleMoveId(itemId)]);
 	
 	StringCopy(dst, gStringVar4);
 }

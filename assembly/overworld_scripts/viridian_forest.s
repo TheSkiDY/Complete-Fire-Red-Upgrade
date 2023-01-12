@@ -11,6 +11,7 @@ EventScript_ViridianForest_AllItemsGuy:
 	checkflag 0x201
 	if 0x1 _goto AllItemsGuy_Enjoy
 	msgbox gText_ViridianForest_AllItemGuy_Gives MSG_FACE
+	additem ITEM_ITEMFINDER 1
 	additem 0x2 0x64
 	additem 0x3 0x64
 	additem 0x4 0x64
@@ -271,6 +272,7 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 0x150 0x1
 	additem 0x151 0x1
 	additem 0x152 0x1
+	additem 0x157 0x1
 	additem 0x15B 0x1
 	additem 0x161 0x1
 	additem 0x169 0x1

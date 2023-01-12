@@ -485,7 +485,7 @@ sItemName_CharizarditeX 08905bc8
 sItemName_CharizarditeY 08905bf4
 sItemName_Blastoisinite 08905c20
 sItemName_Kangaskhanite 08905d28
-sItemName_Aerodactylite 08905dad
+sItemName_Aerodactylite 08905dac
 sItemName_Houndoominite 08905ee0
 sItemName_AloraichiumZ 089066c8
 sItemName_PikashuniumZ 089068ac
@@ -513,6 +513,7 @@ sItemName_BlackAugurite 08907dfc
 sItemName_CatchingCharm 08908114
 sItemName_ThunderStone 08901080
 sItemName_InfiniteRepel 08908090
+sItemName_DiscreetPill 0890837c
 
 ItemScript_PortablePC 087e0a40
 ItemScript_InfiniteRepel 087e0a90

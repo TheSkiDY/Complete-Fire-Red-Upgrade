@@ -6,6 +6,9 @@
 #org @DESC_NO_MOVE
 No move information.
 
+#org @DESC_CUT
+The foe is cut with\na scythe or a claw.\nIt's super-effective\non GRASS-types. Can\nalso be used to cut\ndown small trees.
+
 #org @DESC_ICEPUNCH
 #ifdef FROSTBITE
 The foe is punched\nwith an icy fist.\nIt may leave the\nfoe with frostbite.

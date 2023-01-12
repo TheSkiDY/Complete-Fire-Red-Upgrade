@@ -446,7 +446,7 @@ BattleScript_MistProtected:
 
 BattleScript_FlashFireBurnSetup:
 	setbyte POISONED_BY 0x1
-	setbyte EFFECT_BYTE 0x4
+	setbyte EFFECT_BYTE 0x3
 	seteffectsecondary @;Affected by Safeguard
 	return
 

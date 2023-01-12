@@ -870,7 +870,7 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
 bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 {
-	if(!FlagGet(FLAG_NO_EVS))
+	if(FlagGet(FLAG_NO_EVS))
 		return FALSE;
 
 	u8 currentEv = GetMonData(mon, MON_DATA_HP_EV + statId, NULL);

@@ -123,7 +123,8 @@ static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 	#ifdef FLAG_SCALE_WILD_POKEMON_LEVELS
 	if (FlagGet(FLAG_SCALE_WILD_POKEMON_LEVELS))
 	{
-		min = max = GetLowestMonLevel(gPlayerParty);
+		u16 lvl = ((u16)GetAveragePartyLevel(gPlayerParty) * 3) / 4;
+		min = max = (u8)lvl;
 
 		#ifdef FLAG_HARD_LEVEL_CAP
 		u8 levelCap;

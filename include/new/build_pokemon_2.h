@@ -22,13 +22,17 @@
 	|| (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER))																			\
 		lvl = GetHighestMonLevel(gPlayerParty);																					\
 																																\
+	if (FlagGet(FLAG_SCALE_TRAINER_LEVELS) 																						\
+		&& !IsBossTrainerClassForLevelScaling(trainerId)																		\
+		&& (gSaveBlock1->location.mapGroup != 4 && gSaveBlock1->location.mapNum != 3))											\
+		lvl = GetAveragePartyLevel(gPlayerParty) - 1;																			\
+																																\
 	if (levelScaling && (side == B_SIDE_OPPONENT || !firstTrainer))																\
 	{																															\
 		if (IsBossTrainerClassForLevelScaling(trainerId))																		\
 			ModifySpeciesAndLevelForBossBattle(&speciesToCreate, &lvl, maxPartyLevel, highestPlayerLevel, canEvolveMon);		\
 		else																													\
 		{																														\
-			lvl = GetAveragePartyLevel(gPlayerParty) - 1;																		\
 			ModifySpeciesAndLevelForGenericBattle(&speciesToCreate, &lvl, minPartyLevel, highestPlayerLevel, modifiedAveragePlayerLevel, trainer->partyFlags, trainer->partySize, canEvolveMon); \
 		}																														\
 	}																															\

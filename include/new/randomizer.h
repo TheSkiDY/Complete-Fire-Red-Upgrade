@@ -12,7 +12,9 @@ u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 trainerId, u8 locationGr
 u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 id, bool8 trainerBattle);
 void TryRandomizeSpecies(unusedArg u16* species);
 bool8 IsSpeciesBannedFromRandomizer(u16 species);
-bool8 IsSpeciesBannedFromTrainerRandomizer(u16 species);
+bool8 IsSpeciesAllowedInTrainerRandomizer(u16 species);
+u32 GetLocationHash(u8 locGroup, u8 locNum);
+bool8 TryRandomizeTrainerMon(u16* species);
 u16 GetRandomizedSpecies(u16 species);
 move_t RandomizeMove(u16 move);
 bool8 IsOriginalFormChangeAbilityBannedInRandomizer(u8 ability, u16 species);

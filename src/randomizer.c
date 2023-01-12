@@ -39,14 +39,17 @@
 #include "../include/new/multi.h"
 #include "../include/new/pokemon_storage_system.h"
 #include "../include/new/randomizer.h"
+#include "../include/new/rom_locs.h"
 #include "../include/new/species_tables.h"
 #include "../include/new/util.h"
 
 extern const species_t gRandomizerSpeciesBanList[];
+extern const u8 gTypeNames[][TYPE_NAME_LENGTH + 1];
 
 #define TRIES_FOR_SINGLE_LOOPVAL 256
 #define BITWISE_SHIFTS 32
 #define BACKUP_TRIES 512
+#define TRAINER_NEARBY_SEARCHES 6
 
 u32 hash_uint(u32 x)
 {
@@ -78,28 +81,43 @@ u32 SetInitialHashValueForTrainerRandomizer(u16 trainerId)
 		hashVal = (hashVal + (letter - CHAR_A + 1) * p_pow) % m;
 		p_pow = (p_pow * p) % m;
 	}
+	hashVal += (trainerId * p_pow) % m;
 
 	return hashVal;
 }
 
+u32 GetLocationHash(u8 locGroup, u8 locNum)
+{
+	u32 hash = 0;
+	locGroup += 2;
+	u8 num = locNum + 3;
+	for (u8 i = 0; i < locGroup; ++i)
+	{
+		hash += (num * (i + 1));
+	}
+
+	return hash;
+}
+
 u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 trainerId, u8 locationGroup, u8 locationId, u8 index, bool8 trainerBattle)
 {
-	u32 loopVal = 2654435761;
+	u32 loopValConst = 2654435761;
+	u32 loopVal = loopValConst;
 	u32 toHash;
 	u16 j;
 	u16 oldSpecies = species;
 	u16 newSpecies = SPECIES_NONE;
 
 	toHash = (trainerId * oldSpecies) ^ 0x9e3779b9;
-	toHash ^= (toHash << locationGroup) + (toHash >> locationId);
+	toHash += GetLocationHash(locationGroup, locationId);
 	toHash += toHash * (index + 1);
 	newSpecies = GetSpeciesFromHashVal(toHash);
 
 	for(u8 i = 0; i < BITWISE_SHIFTS; i++)
 	{
-		loopVal = (loopVal << i) | (loopVal >> (32 - i));
+		loopVal = (loopValConst << i) | (loopValConst >> (32 - i));
 		j = 1;
-		while((trainerBattle ? IsSpeciesBannedFromTrainerRandomizer(newSpecies) : IsSpeciesBannedFromRandomizer(newSpecies)) 
+		while((trainerBattle ? !TryRandomizeTrainerMon(&newSpecies) : IsSpeciesBannedFromRandomizer(newSpecies)) 
 			&& j <= TRIES_FOR_SINGLE_LOOPVAL)
 		{
 			toHash += (loopVal * j);
@@ -133,7 +151,7 @@ u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 id, bool8 trainerBattle)
 	newSpecies ^= xorVal;
 	newSpecies %= (u32) speciesCount; //Prevent overflow
 	
-	while ((trainerBattle ? IsSpeciesBannedFromTrainerRandomizer(newSpecies) : IsSpeciesBannedFromRandomizer(newSpecies))
+	while ((trainerBattle ? !TryRandomizeTrainerMon(&newSpecies) : IsSpeciesBannedFromRandomizer(newSpecies))
 		 && numAttempts < BACKUP_TRIES)
 	{
 		newSpecies *= xorVal;
@@ -157,7 +175,7 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 	u8 index = gPartyIndexLoaded;
 	u32 hashVal = gTrainerHashVal;
 	
-	newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId * hashVal, locationGroup, locationId, index, TRUE);
+	newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId * hashVal, locationGroup, locationId, index * 10, TRUE);
 	if(newSpecies == SPECIES_NONE)
 		newSpecies = BackupSpeciesRandomizer(oldSpecies, trainerId * hashVal * (locationGroup+1) * (locationId+1) * (index+1), TRUE);
 
@@ -179,7 +197,7 @@ void TryRandomizeSpecies(unusedArg u16* species)
 	#endif
 	&& *species != SPECIES_NONE && *species != SPECIES_ZYGARDE_CELL && *species < NUM_SPECIES)
 	{
-		if(gNewBS->isTrainerBattle && gSaveBlock1->location.mapGroup != 4 && gSaveBlock1->location.mapNum != 3)
+		if(gNewBS->isTrainerBattle && !(gSaveBlock1->location.mapGroup == 4 && gSaveBlock1->location.mapNum == 3))
 			TryRandomizeForTrainers(species);
 		else
 		{
@@ -206,276 +224,208 @@ bool8 IsSpeciesBannedFromRandomizer(u16 species)
 	return gSpecialSpeciesFlags[species].randomizerFullBan || gSpecialSpeciesFlags[species].randomizerGettableBan;
 }
 
-bool8 IsMonSuitableForLocation(u16 species, bool8 *inCase)
+bool8 IsSpeciesAllowedInTrainerRandomizer(u16 species)
 {
 	u8 locGroup = gSaveBlock1->location.mapGroup;
 	u8 locNum = gSaveBlock1->location.mapNum;
-	bool8 foundSuitableMon = FALSE;
-	*inCase = FALSE;
-
-	if (locGroup == 6 && locNum == 2) // Brock's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_ROCK);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 7 && locNum == 5) // Misty's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_WATER);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 9 && locNum == 6) // Surge's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_ELECTRIC);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 10 && locNum == 16) // Erika's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_GRASS);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 11 && locNum == 3) // Koga's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_POISON);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 14 && locNum == 3) // Sabrina's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_PSYCHIC);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 14 && locNum == 2) // Saffron Dojo
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_FIGHTING);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 12 && locNum == 0) // Blaine's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_FIRE);
-		*inCase = TRUE;
-	}
-	else if (locGroup == 5 && locNum == 1) // Giovanni's gym
-	{
-		foundSuitableMon = IsSpeciesOfType(species, TYPE_GROUND);
-		*inCase = TRUE;
-	}
-	else
-	{
-		foundSuitableMon = FALSE;
-	}
-
-	return foundSuitableMon;
-}
-
-bool8 IsMonSuitableForSpecificTrainer(u16 species, bool8 *inCase)
-{
 	u16 trainerId = gTrainerBattleOpponent_A;
-	bool8 foundSuitableMon = FALSE;
-	*inCase = FALSE;
+	u16 trainerClass = gTrainers[trainerId].trainerClass;
 
+	if(gSpecialSpeciesFlags[species].randomizerFullBan)
+		return FALSE;
+
+	//Check for specific trainer
 	switch(trainerId)
 	{
 		case 0x15C:
 		case 0x15D: // Giovanni
 		case 0x15E:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_GROUND);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_GROUND);
 		case 0x19A: 
 		case 0x2DF: // Lorelei
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_ICE);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_ICE);
 		case 0x19B:
 		case 0x2E0: // Bruno
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_FIGHTING)
-							+ IsSpeciesOfType(species, TYPE_ROCK);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_FIGHTING)
+					+ IsSpeciesOfType(species, TYPE_ROCK);
 		case 0x19C:
 		case 0x2E1: // Agatha
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_GHOST)
-							+ IsSpeciesOfType(species, TYPE_POISON);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_GHOST)
+					+ IsSpeciesOfType(species, TYPE_POISON);
 		case 0x19D:
 		case 0x2E2: // Lance
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_DRAGON);
-			*inCase = TRUE;
-			break;
-		default:
-			foundSuitableMon = FALSE;
+			return IsSpeciesOfType(species, TYPE_DRAGON);
 	}
 
-	return foundSuitableMon;
-}
+	//Check for specific location
+	if (locGroup == 6 && locNum == 2) // Brock's gym
+	{
+		return IsSpeciesOfType(species, TYPE_ROCK);
+	}
+	else if (locGroup == 7 && locNum == 5) // Misty's gym
+	{
+		return IsSpeciesOfType(species, TYPE_WATER);
+	}
+	else if (locGroup == 9 && locNum == 6) // Surge's gym
+	{
+		return IsSpeciesOfType(species, TYPE_ELECTRIC);
+	}
+	else if (locGroup == 10 && locNum == 16) // Erika's gym
+	{
+		return IsSpeciesOfType(species, TYPE_GRASS);
+	}
+	else if (locGroup == 11 && locNum == 3) // Koga's gym
+	{
+		return IsSpeciesOfType(species, TYPE_POISON);
+	}
+	else if (locGroup == 14 && locNum == 3) // Sabrina's gym
+	{
+		return IsSpeciesOfType(species, TYPE_PSYCHIC);
+	}
+	else if (locGroup == 14 && locNum == 2) // Saffron Dojo
+	{
+		return IsSpeciesOfType(species, TYPE_FIGHTING);
+	}
+	else if (locGroup == 12 && locNum == 0) // Blaine's gym
+	{
+		return IsSpeciesOfType(species, TYPE_FIRE);
+	}
+	else if (locGroup == 5 && locNum == 1) // Giovanni's gym
+	{
+		return IsSpeciesOfType(species, TYPE_GROUND);
+	}
 
-bool8 IsMonSuitableForTrainerClass(u16 species, bool8 *inCase)
-{
-	u16 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
-	bool8 foundSuitableMon = TRUE;
-
+	//Check for trainer class
 	switch(trainerClass)
 	{
 		case CLASS_YOUNGSTER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_GRASS)
-							+ IsSpeciesOfType(species, TYPE_POISON)
-							+ IsSpeciesOfType(species, TYPE_ELECTRIC)
-							+ IsSpeciesOfType(species, TYPE_BUG)
-							+ IsSpeciesOfType(species, TYPE_FLYING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_GRASS)
+					+ IsSpeciesOfType(species, TYPE_POISON)
+					+ IsSpeciesOfType(species, TYPE_ELECTRIC)
+					+ IsSpeciesOfType(species, TYPE_BUG)
+					+ IsSpeciesOfType(species, TYPE_FLYING);
 		case CLASS_BUG_CATCHER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_BUG);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_BUG);
 		case CLASS_LASS:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_GRASS)
-							+ IsSpeciesOfType(species, TYPE_FAIRY)
-							+ IsSpeciesOfType(species, TYPE_WATER)
-							+ IsSpeciesOfType(species, TYPE_ICE)
-							+ IsSpeciesOfType(species, TYPE_FLYING);
-			*inCase = TRUE;
-			break;
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_WATER);
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_GRASS)
+					+ IsSpeciesOfType(species, TYPE_FAIRY)
+					+ IsSpeciesOfType(species, TYPE_WATER)
+					+ IsSpeciesOfType(species, TYPE_ICE)
+					+ IsSpeciesOfType(species, TYPE_FLYING);
 		case CLASS_CAMPER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_GRASS)
-							+ IsSpeciesOfType(species, TYPE_POISON)
-							+ IsSpeciesOfType(species, TYPE_GROUND)
-							+ IsSpeciesOfType(species, TYPE_PSYCHIC);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_GRASS)
+					+ IsSpeciesOfType(species, TYPE_POISON)
+					+ IsSpeciesOfType(species, TYPE_GROUND)
+					+ IsSpeciesOfType(species, TYPE_PSYCHIC);
 		case CLASS_PICNICKER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_GRASS)
-							+ IsSpeciesOfType(species, TYPE_FAIRY)
-							+ IsSpeciesOfType(species, TYPE_GROUND)
-							+ IsSpeciesOfType(species, TYPE_PSYCHIC)
-							+ IsSpeciesOfType(species, TYPE_FLYING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_GRASS)
+					+ IsSpeciesOfType(species, TYPE_FAIRY)
+					+ IsSpeciesOfType(species, TYPE_GROUND)
+					+ IsSpeciesOfType(species, TYPE_PSYCHIC)
+					+ IsSpeciesOfType(species, TYPE_FLYING);
 		case CLASS_SUPER_NERD:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_STEEL)
-							+ IsSpeciesOfType(species, TYPE_ELECTRIC)
-							+ IsSpeciesOfType(species, TYPE_POISON);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_STEEL)
+					+ IsSpeciesOfType(species, TYPE_ELECTRIC)
+					+ IsSpeciesOfType(species, TYPE_POISON);
 		case CLASS_HIKER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_ROCK)
-							+ IsSpeciesOfType(species, TYPE_STEEL)
-							+ IsSpeciesOfType(species, TYPE_GROUND);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_ROCK)
+					+ IsSpeciesOfType(species, TYPE_STEEL)
+					+ IsSpeciesOfType(species, TYPE_GROUND);
 		case CLASS_BIKER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_POISON)
-							+ IsSpeciesOfType(species, TYPE_FIRE)
-							+ IsSpeciesOfType(species, TYPE_DARK)
-							+ IsSpeciesOfType(species, TYPE_GHOST)
-							+ IsSpeciesOfType(species, TYPE_FIGHTING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_POISON)
+					+ IsSpeciesOfType(species, TYPE_FIRE)
+					+ IsSpeciesOfType(species, TYPE_DARK)
+					+ IsSpeciesOfType(species, TYPE_GHOST)
+					+ IsSpeciesOfType(species, TYPE_FIGHTING);
 		case CLASS_BURGLAR:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_FIRE)
-							+ IsSpeciesOfType(species, TYPE_POISON);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_FIRE)
+					+ IsSpeciesOfType(species, TYPE_POISON);
 		case CLASS_ENGINEER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_STEEL)
-							+ IsSpeciesOfType(species, TYPE_ELECTRIC);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_STEEL)
+					+ IsSpeciesOfType(species, TYPE_ELECTRIC);
 		case CLASS_SAILOR:
 		case CLASS_FISHERMAN:
 		case CLASS_SWIMMER_F:
 		case CLASS_SWIMMER_M:
 		case CLASS_TUBER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_WATER);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_WATER);
 		case CLASS_CUE_BALL:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_DARK)
-							+ IsSpeciesOfType(species, TYPE_POISON)
-							+ IsSpeciesOfType(species, TYPE_FIGHTING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_DARK)
+					+ IsSpeciesOfType(species, TYPE_POISON)
+					+ IsSpeciesOfType(species, TYPE_FIGHTING);
 		case CLASS_BEAUTY:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_FAIRY);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_FAIRY);
 		case CLASS_PSYCHIC:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_PSYCHIC);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_PSYCHIC);
 		case CLASS_ROCKER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_ELECTRIC);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_ELECTRIC);
 		case CLASS_JUGGLER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_ELECTRIC)
-							+ IsSpeciesOfType(species, TYPE_PSYCHIC);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_ELECTRIC)
+					+ IsSpeciesOfType(species, TYPE_PSYCHIC);
 		case CLASS_TAMER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_GRASS)
-							+ IsSpeciesOfType(species, TYPE_DARK);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_GRASS)
+					+ IsSpeciesOfType(species, TYPE_DARK);
 		case CLASS_BIRD_KEEPER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_FLYING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_FLYING);
 		case CLASS_BLACK_BELT:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_FIGHTING);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_FIGHTING);
 		case CLASS_SCIENTIST:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_ELECTRIC)
-							+ IsSpeciesOfType(species, TYPE_GHOST)
-							+ IsSpeciesOfType(species, TYPE_STEEL);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_ELECTRIC)
+					+ IsSpeciesOfType(species, TYPE_GHOST)
+					+ IsSpeciesOfType(species, TYPE_STEEL);
 		case CLASS_TEAM_ROCKET:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_NORMAL)
-							+ IsSpeciesOfType(species, TYPE_DARK)
-							+ IsSpeciesOfType(species, TYPE_GROUND)
-							+ IsSpeciesOfType(species, TYPE_POISON);
-			*inCase = TRUE;
-			break;
+			return IsSpeciesOfType(species, TYPE_NORMAL)
+					+ IsSpeciesOfType(species, TYPE_DARK)
+					+ IsSpeciesOfType(species, TYPE_GROUND)
+					+ IsSpeciesOfType(species, TYPE_POISON);
 		case CLASS_CHANNELER:
-			foundSuitableMon = IsSpeciesOfType(species, TYPE_GHOST);
-			*inCase = TRUE;
-			break;
-		default:
-			foundSuitableMon = TRUE;
+			return IsSpeciesOfType(species, TYPE_GHOST);
 	}
 
-	return foundSuitableMon;
+	return TRUE;
 }
 
-bool8 IsSpeciesBannedFromTrainerRandomizer(u16 species)
+bool8 TryRandomizeTrainerMon(u16* species)
 {
-	bool8 inCase = FALSE;
+	u16 consideredSpecies = *species;
+	u8 loopLen = TRAINER_NEARBY_SEARCHES / 2;
 
-	if(gSpecialSpeciesFlags[species].randomizerFullBan)
+	if (gSpecialSpeciesFlags[consideredSpecies].randomizerFullBan)
+		return FALSE;
+
+	if (!IsSpeciesAllowedInTrainerRandomizer(consideredSpecies))
+	{
+		for (u8 i = 0; i < loopLen; i++)
+		{
+			u16 mon1 = consideredSpecies - (i+1);
+			u16 mon2 = consideredSpecies + (i+1);
+
+			if (IsSpeciesAllowedInTrainerRandomizer(mon1))
+			{
+				*species = mon1;
+				return TRUE;
+			}
+
+			if (IsSpeciesAllowedInTrainerRandomizer(mon2))
+			{
+				*species = mon2;
+				return TRUE;
+			}
+		}
+	}
+	else
+	{
 		return TRUE;
-
-	if(!IsMonSuitableForSpecificTrainer(species, &inCase) && inCase == TRUE)
-		return TRUE;
-
-	if(!IsMonSuitableForLocation(species, &inCase) && inCase == TRUE)
-		return TRUE;
-
-	if(!IsMonSuitableForTrainerClass(species, &inCase) && inCase == TRUE)
-		return TRUE;
-
+	}
 	return FALSE;
 }
 

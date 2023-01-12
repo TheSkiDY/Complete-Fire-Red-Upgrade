@@ -17015,10 +17015,18 @@ ANIM_DRUM_BEATING:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-@Credits to GF
 .global ANIM_SNAP_TRAP
 ANIM_SNAP_TRAP:
-	goto 0x81CE29E @Original Clamp animation that uses teeth
+	loadparticle ANIM_TAG_SNAP_TRAP
+	playsound2 0x9A SOUND_PAN_TARGET
+	launchtemplate SNAPTRAP_TEMP, TEMPLATE_TARGET | 2, 0x3, 0, 0, 1
+	pause 0x4
+	playsound2 0x71 SOUND_PAN_TARGET
+	waitanimation
+	endanimation
+
+.align 2
+SNAPTRAP_TEMP: objtemplate ANIM_TAG_SNAP_TRAP ANIM_TAG_SNAP_TRAP OAM_OFF_32x32 sExplosionAnimTable 0x0 gDummySpriteAffineAnimTable SpriteCB_AnimSpriteOnMonPos
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

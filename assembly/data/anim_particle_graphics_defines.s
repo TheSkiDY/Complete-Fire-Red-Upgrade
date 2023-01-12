@@ -99,6 +99,7 @@ definitions for animation particles
 .equ LARGE_HOOPA_RING_IMG, Hoopa_Ring_LargeTiles
 .equ ALPHA_SYMBOL_IMG, Alpha_SymbolTiles
 .equ OMEGA_SYMBOL_IMG, Omega_SymbolTiles
+.equ SNAP_TRAP_IMG, SnapTrapTiles
 
 @;Palettes
 .equ SWORD_PAL, SwordPal
@@ -200,3 +201,4 @@ definitions for animation particles
 .equ LARGE_HOOPA_RING_PAL, Hoopa_Ring_LargePal
 .equ ALPHA_SYMBOL_PAL, Alpha_SymbolPal
 .equ OMEGA_SYMBOL_PAL, Omega_SymbolPal
+.equ SNAP_TRAP_PAL, SnapTrapPal

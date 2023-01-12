@@ -289,13 +289,10 @@ u32 GetBaseBallCatchOdds(u8 ballType, u8 bankAtk, u8 bankDef)
 	u16 defSpecies = GetMonData(GetBankPartyData(bankDef), MON_DATA_SPECIES, NULL); //Can't use gBattleMons because of things like Transform
 	u8 atkLevel = gBattleMons[bankAtk].level;
 	u8 defLevel = gBattleMons[bankDef].level;
+	
+	catchRate = gBaseStats[GetMonData(GetBankPartyData(bankDef), MON_DATA_SPECIES, NULL)].catchRate; //Uses party data b/c Transform update Gen 5+
 
-	if (ballType == BALL_TYPE_SAFARI_BALL)
-		catchRate = (gBattleStruct->safariCatchFactor * 1275) % 100;
-	else
-		catchRate = gBaseStats[GetMonData(GetBankPartyData(bankDef), MON_DATA_SPECIES, NULL)].catchRate; //Uses party data b/c Transform update Gen 5+
-
-	if (ballType >= BALL_TYPE_NET_BALL)
+	if (ballType >= BALL_TYPE_SAFARI_BALL)
 	{
 		switch (ballType) {
 			case BALL_TYPE_NET_BALL:
@@ -337,6 +334,10 @@ u32 GetBaseBallCatchOdds(u8 ballType, u8 bankAtk, u8 bankDef)
 			case BALL_TYPE_FRIEND_BALL:
 			case BALL_TYPE_HEAL_BALL:
 				ballMultiplier = 10;
+				break;
+
+			case BALL_TYPE_SAFARI_BALL:
+				ballMultiplier = 15;
 				break;
 
 			case BALL_TYPE_LEVEL_BALL:

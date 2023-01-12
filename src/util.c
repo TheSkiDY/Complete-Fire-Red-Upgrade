@@ -17,6 +17,8 @@ util.c
 	general utility functions
 */
 
+extern const u8 gTypeNames[][7];
+
 u32 MathMax(u32 num1, u32 num2)
 {
 	if (num1 > num2)
@@ -516,6 +518,7 @@ bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 	//bool8 found;
 	u16 species = *originalSpecies;
 
+
 	START:
 	//found = FALSE;
 	for (j = 1; j < NUM_SPECIES; ++j)
@@ -562,13 +565,21 @@ bool8 IsReasonablyFast(u16 species)
 	return (gBaseStats[species].baseSpeed > 70);
 }
 
+bool8 IsSpeciesDisabled(u16 species)
+{
+	if (FlagGet(FLAG_NO_FAKEMONS) && gSpecialSpeciesFlags[species].isFakemon)
+		return TRUE;
+
+	if (FlagGet(FLAG_NO_CUSTOM_REGIONALS) && gSpecialSpeciesFlags[species].isCustomRegional)
+		return TRUE;
+
+	return FALSE;
+}
+
 u16 FindReplacementSpecies(u16 species)
 {
-	if(!FlagGet(FLAG_NO_FAKEMONS))
-		return species;
-
-	if(!gSpecialSpeciesFlags[species].isFakemon)
-		return species;
+	if (IsSpeciesDisabled(species))
+		return TRUE;
 
 	u8 type1 = gBaseStats[species].type1;
 	u8 type2 = gBaseStats[species].type2;
@@ -583,7 +594,7 @@ u16 FindReplacementSpecies(u16 species)
 
 	for (u16 i = 0; i < NUM_SPECIES; ++i)
 	{
-		if(IsSpeciesBannedFromRandomizer(i) || gSpecialSpeciesFlags[i].isFakemon)
+		if(IsSpeciesBannedFromRandomizer(i) || IsSpeciesDisabled(i))
 			continue;
 
 		score = 0;
