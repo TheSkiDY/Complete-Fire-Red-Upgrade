@@ -22,8 +22,8 @@ EventScript_PalletTown_TechnologyGuy:
 	faceplayer
 	checkflag 0x940
 	if 0x1 _goto TechnologyGuy_FurtherQuestions
-	@call TechnologyGuy_Debug
-	call TechnologyGuy_TechDemo
+	call TechnologyGuy_Debug
+	@call TechnologyGuy_TechDemo
 	callasm 0x8727DCD
 	callasm DebugFunc
 	release
@@ -38,23 +38,23 @@ TechnologyGuy_Debug:
 	additem ITEM_ABILITY_PATCH 20
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_NECROZMA_DUSK_MANE 12 0 0 0 0
-	givepokemon SPECIES_SLOWKING_G 5 0 0 0 0
+	givepokemon SPECIES_NECROZMA_DUSK_MANE 60 0 0 0 0
+	givepokemon SPECIES_SLOWKING_G 60 0 0 0 0
 	givepokemon SPECIES_GHOLDENGO 60 0 0 0 0
-	givepokemon SPECIES_GLIMMORA 5 0 0 0 0
-	givepokemon SPECIES_CYCLIZAR 33 0 0 0 0
+	givepokemon SPECIES_GLIMMORA 60 0 0 0 0
+	givepokemon SPECIES_CYCLIZAR 60 0 0 0 0
 	setvar 0x8000 MOVE_DISCHARGE
 	setvar 0x8001 MOVE_AGILITY
 	setvar 0x8002 MOVE_DRAGONBREATH
 	setvar 0x8002 MOVE_SNAPTRAP
-	givepokemon SPECIES_MIRAIDON 35 0 0 1 0
+	givepokemon SPECIES_MIRAIDON 60 0 0 1 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
 	setflag 0x940 @randomizer
 	setflag 0x974 @scale wild bosses
 	setflag 0x972 @no evs
-	setflag 0x973 @hard level cap
+	@setflag 0x973 @hard level cap
 	setflag 0x975 @team preview
 	setflag 0x91F @bike turbo
 	setflag 0x929 @turbo surf

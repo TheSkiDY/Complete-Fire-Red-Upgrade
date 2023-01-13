@@ -49,7 +49,7 @@ extern const u8 gTypeNames[][TYPE_NAME_LENGTH + 1];
 #define TRIES_FOR_SINGLE_LOOPVAL 256
 #define BITWISE_SHIFTS 32
 #define BACKUP_TRIES 512
-#define TRAINER_NEARBY_SEARCHES 6
+#define TRAINER_NEARBY_SEARCHES 4
 
 u32 hash_uint(u32 x)
 {
@@ -175,7 +175,7 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 	u8 index = gPartyIndexLoaded;
 	u32 hashVal = gTrainerHashVal;
 	
-	newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId * hashVal, locationGroup, locationId, index * 10, TRUE);
+	newSpecies = InitialSpeciesRandomizer(oldSpecies, trainerId * hashVal, locationGroup, locationId, index * 3, TRUE);
 	if(newSpecies == SPECIES_NONE)
 		newSpecies = BackupSpeciesRandomizer(oldSpecies, trainerId * hashVal * (locationGroup+1) * (locationId+1) * (index+1), TRUE);
 
@@ -183,6 +183,11 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 	{
 		DevolveSpeciesByLevel(&newSpecies, GetCurrentLevelCap());
 		EvolveSpeciesByLevel(&newSpecies, GetCurrentLevelCap());
+	}
+	else
+	{
+		DevolveSpeciesByLevel(&newSpecies, GetAveragePartyLevel(gPlayerParty));
+		EvolveSpeciesByLevel(&newSpecies, GetAveragePartyLevel(gPlayerParty));
 	}
 
 	*species = newSpecies;
@@ -389,6 +394,8 @@ bool8 IsSpeciesAllowedInTrainerRandomizer(u16 species)
 					+ IsSpeciesOfType(species, TYPE_POISON);
 		case CLASS_CHANNELER:
 			return IsSpeciesOfType(species, TYPE_GHOST);
+		case CLASS_CHAMPION:
+			return gSpecialSpeciesFlags[species].setPerfectXIVs;
 	}
 
 	return TRUE;
@@ -408,6 +415,9 @@ bool8 TryRandomizeTrainerMon(u16* species)
 		{
 			u16 mon1 = consideredSpecies - (i+1);
 			u16 mon2 = consideredSpecies + (i+1);
+
+			if (mon1 == SPECIES_NONE || mon2 == SPECIES_NONE)
+				break;
 
 			if (IsSpeciesAllowedInTrainerRandomizer(mon1))
 			{
