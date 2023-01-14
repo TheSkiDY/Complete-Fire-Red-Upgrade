@@ -195,6 +195,9 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 
 void TryRandomizeSpecies(unusedArg u16* species)
 {
+	u8 locationGroup = gSaveBlock1->location.mapGroup;
+	u8 locationId = gSaveBlock1->location.mapNum;
+
 	#ifdef FLAG_POKEMON_RANDOMIZER
 	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY)
 	#ifdef FLAG_TEMP_DISABLE_RANDOMIZER
@@ -202,15 +205,13 @@ void TryRandomizeSpecies(unusedArg u16* species)
 	#endif
 	&& *species != SPECIES_NONE && *species != SPECIES_ZYGARDE_CELL && *species < NUM_SPECIES)
 	{
-		if(gNewBS->isTrainerBattle && !(gSaveBlock1->location.mapGroup == 4 && gSaveBlock1->location.mapNum == 3))
+		if(gNewBS->isTrainerBattle && !(locationGroup == 4 && locationId == 3))
 			TryRandomizeForTrainers(species);
 		else
 		{
 			u16 oldSpecies = *species;
 			u16 newSpecies = SPECIES_NONE;
 			u32 seed = gSaveBlock1->randomizerSeed;
-			u8 locationGroup = gSaveBlock1->location.mapGroup;
-			u8 locationId = gSaveBlock1->location.mapNum;
 			u8 index = gLastWildIndex;
 
 			newSpecies = InitialSpeciesRandomizer(oldSpecies, seed, locationGroup, locationId, index, FALSE);

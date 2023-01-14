@@ -5,7 +5,7 @@ The randomizer has been\nturned [GREEN]on[BLACK].
 Mr. Debug
 
 #org @gText_PalletTown_NotRandomized
-I should enable the randomizer\nfirst.
+I should enable the randomizer\nfirst. Why don't I check the\lPROFESSOR OAK's lab?
 
 #org @gText_TechnologyGuy_DisableFakemons
 Fakemons has been [RED]disabled[BLACK].
@@ -36,6 +36,9 @@ New random
 
 #org @gText_RerandomizeCancel
 CANCEL
+
+#org @gText_RerandomizeOptionSelect
+Please, select an option.
 
 #org @gText_TechnologyGuy_Rerandomized
 Your new seed is [BUFFER1].\nEnjoy.

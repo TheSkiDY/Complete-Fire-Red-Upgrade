@@ -23,3 +23,7 @@ bool8 IsNewFormChangeAbilityBannedInRandomizer(u8 ability, u16 species);
 bool8 IsNewAbilityBannedInRandomizer(u8 ability, u16 species);
 
 u8 TryRandomizeAbility(u8 originalAbility, unusedArg u16 species);
+
+#define RANDOMIZER_WATER_WILD_MULTIPLIER 13
+#define RANDOMIZER_ROCK_WILD_MULTIPLIER 26
+#define RANDOMIZER_FISH_WILD_MULTIPLIER 39

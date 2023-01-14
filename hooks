@@ -785,3 +785,7 @@ StartMenuPlayerCallback 806F4B4 0
 DrawSafariZoneStatsWindow 806EE7C 0
 DestroySafariZoneStatsWindow 806EF18 0
 DoDrawStartMenu 806F01C 0
+
+## Wild pokedex area
+IsSpeciesOnMap 813CBD0 2
+IsSpeciesInEncounterTable 813CC18 3

@@ -346,10 +346,6 @@ enum //These vars need to be one after the other (hence the enum)
 #define WEATHER_BALL_MULTIPLIER 40
 #define SHINY_BALL_MULTIPLIER 50
 
-#define RANDOMIZER_WATER_WILD_MULTIPLIER 13 //should move this to randomizer.h
-#define RANDOMIZER_ROCK_WILD_MULTIPLIER 26
-#define RANDOMIZER_FISH_WILD_MULTIPLIER 39
-
 #define FLAG_GEN_3_EXP_SHARE 0x970
 #define FLAG_TEMP_DISABLE_RANDOMIZER 0x971
 #define FLAG_NO_EVS 0x972

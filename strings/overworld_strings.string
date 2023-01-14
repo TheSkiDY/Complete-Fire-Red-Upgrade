@@ -283,6 +283,9 @@ Enter Password
 #org @gText_EnterSpeciesName
 Enter a Species
 
+#org @gText_EnterSeed
+Enter a New Seed
+
 #org @gText_Purchased
 PURCHASED
 

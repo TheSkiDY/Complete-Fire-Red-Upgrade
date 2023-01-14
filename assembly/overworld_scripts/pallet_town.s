@@ -134,6 +134,36 @@ TechnologyGuy_RerandomizeQuestion:
 	end
 
 TechnologyGuy_Rerandomize:
+	setvar 0x8006 0x0
+	loadpointer 0x0 gText_RerandomizeOption1
+	special 0x25
+	setvar 0x8006 0x1
+	loadpointer 0x0 gText_RerandomizeOption2
+	special 0x25
+	setvar 0x8006 0x2
+	loadpointer 0x0 gText_RerandomizeCancel
+	special 0x25
+	preparemsg gText_RerandomizeOptionSelect
+	waitmsg
+	multichoice 0x20 0x6 0x21 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto TechnologyGuy_RerandomizeSet
+	compare LASTRESULT 0x1
+	if 0x1 _goto TechnologyGuy_RerandomizeRandom
+	goto TechnologyGuy_Quit
+	end
+
+TechnologyGuy_RerandomizeSet:
+	setvar 0x8000 0x4
+	special 0x12C
+	waitstate
+	callasm AssignSetSeed
+	callasm BufferRandomizerSeed
+	msgbox gText_TechnologyGuy_Rerandomized MSG_NORMAL
+	goto TechnologyGuy_Quit
+	end
+
+TechnologyGuy_RerandomizeRandom:
 	callasm AssignNewRandomSeed
 	callasm BufferRandomizerSeed
 	msgbox gText_TechnologyGuy_Rerandomized MSG_NORMAL
@@ -177,14 +207,18 @@ Movement_RandomizerStop_StepDown:
 
 gPlayerSpawnScripts:
 	mapscript MAP_SCRIPT_ON_TRANSITION PlayerHome_InitScript1
-	mapscript MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE PlayerHome_InitScript2
+	mapscript MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE PlayerHome_InitScripts
 	.byte MAP_SCRIPT_TERMIN
 
 PlayerHome_InitScript1:
-	callasm InitRandomizerSeed
+	callasm AssignNewRandomSeed
 	compare 0x4056 0x0
 	if 0x1 _call 0x8168CBA
 	end
+
+PlayerHome_InitScripts:
+	levelscript 0x4056, 0, PlayerHome_InitScript2
+    .byte MAP_SCRIPT_TERMIN
 
 PlayerHome_InitScript2:
 	spriteface 0xFF 0x2

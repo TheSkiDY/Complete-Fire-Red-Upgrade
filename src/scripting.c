@@ -2238,6 +2238,9 @@ void sp12C_DoEnterPhraseScreen(void)
 		case 3:
 			type = NAMING_SCREEN_ENTER_SPECIES_NAME;
 			break;
+		case 4:
+			type = NAMING_SCREEN_ENTER_SEED;
+			break;
 		default:
 			type = NAMING_SCREEN_ENTER_PHRASE;
 	}
@@ -2312,6 +2315,18 @@ static const struct NamingScreenTemplate sEnterSpeciesNamingScreenTemplate =
 	.title = gText_EnterSpeciesName,
 };
 
+extern const u8 gText_EnterSeed[];
+static const struct NamingScreenTemplate sEnterSeedNamingScreenTemplate =
+{
+	.copyExistingString = 0,
+	.maxChars = 12,
+	.iconFunction = 0,
+	.addGenderIcon = 0,
+	.initialPage = 1,
+	.unused = 35,
+	.title = gText_EnterSeed,
+};
+
 const struct NamingScreenTemplate* const sNamingScreenTemplates[] =
 {
 	sPlayerNamingScreenTemplate,
@@ -2324,6 +2339,7 @@ const struct NamingScreenTemplate* const sNamingScreenTemplates[] =
 	&sEnterPasswordNamingScreenTemplate,
 	&sEnter5CharPasswordNamingScreenTemplate,
 	&sEnterSpeciesNamingScreenTemplate,
+	&sEnterSeedNamingScreenTemplate,
 };
 
 void (*const sNamingScreenTitlePrintingFuncs[])(void) = //Must be the same length as sNamingScreenTemplates!
@@ -2332,6 +2348,7 @@ void (*const sNamingScreenTitlePrintingFuncs[])(void) = //Must be the same lengt
 	(void*) (0x809F49C | 1),
 	(void*) (0x809F4F0 | 1),
 	(void*) (0x809F4F0 | 1),
+	(void*) (0x809F49C | 1),
 	(void*) (0x809F49C | 1),
 	(void*) (0x809F49C | 1),
 	(void*) (0x809F49C | 1),
@@ -2961,6 +2978,22 @@ void AssignNewRandomSeed(void)
 {
 	u32 newSeed = Random32();
 	gSaveBlock1->randomizerSeed = newSeed;
+}
+
+void AssignSetSeed(void)
+{
+	u8 character = gStringVar1[0];
+	u8 i = 0;
+	u32 hash = 0;
+
+	while(character != EOS)
+	{
+		hash ^= hash_uint(character * (i+1)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+		i++;
+		character = gStringVar1[i];
+	}
+
+	gSaveBlock1->randomizerSeed = hash;
 }
 
 #ifdef SCROLLING_MULTICHOICE

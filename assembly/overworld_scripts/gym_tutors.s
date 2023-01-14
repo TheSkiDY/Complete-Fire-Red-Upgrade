@@ -1,4 +1,4 @@
-.thumb
+	.thumb
 .align 2
 
 .include "../xse_commands.s"

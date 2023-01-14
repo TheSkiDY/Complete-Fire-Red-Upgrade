@@ -60,6 +60,7 @@ void IsPortablePCBanned(void);
 void InitRandomizerSeed(void);
 void BufferRandomizerSeed(void);
 void AssignNewRandomSeed(void);
+void AssignSetSeed(void);
 
 /*
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);

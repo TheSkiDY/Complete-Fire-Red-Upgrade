@@ -29,6 +29,7 @@
 #include "../include/new/exp.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
+#include "../include/new/randomizer.h"
 #include "../include/new/species_tables.h"
 #include "../include/new/util.h"
 #include "../include/new/wild_encounter.h"
@@ -85,6 +86,10 @@ static void StartRoamerBattle(void);
 
 static bool8 InfluenceWildMonByAbilities(const struct WildPokemonInfo* wildMonInfo, u8* wildMonIndex, u8 monsCount);
 
+//Newly hooked functions
+bool32 IsSpeciesOnMap(const struct WildPokemonHeader * data, s32 species);
+bool32 IsSpeciesInEncounterTable(const struct WildPokemonInfo * info, s32 species, s32 count);
+bool32 IsSpeciesInRandomizedEncounterTable(const struct WildPokemonInfo* info, s32 species, s32 count, u8 indexMultiplier, u8 mapGroup, u8 mapNum);
 
 #ifdef FLAG_SCALE_WILD_POKEMON_LEVELS
 static u8 GetLowestMonLevel(const struct Pokemon* const party);
@@ -1665,3 +1670,94 @@ static u8 GetLowestMonLevel(const struct Pokemon* const party)
 	return min;
 }
 #endif
+
+bool32 IsSpeciesOnMap(const struct WildPokemonHeader * data, s32 species)
+{
+	u8 locGroup = gSaveBlock1->location.mapGroup;
+	u8 locNum = gSaveBlock1->location.mapNum;
+
+
+	if (FlagGet(FLAG_POKEMON_RANDOMIZER))
+	{
+		if (IsSpeciesInRandomizedEncounterTable(data->landMonsInfo, species, LAND_WILD_COUNT, 0, data->mapGroup, data->mapNum))
+	        goto SPECIES_FOUND;
+	    if (IsSpeciesInRandomizedEncounterTable(data->waterMonsInfo, species, WATER_WILD_COUNT, RANDOMIZER_WATER_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+	        goto SPECIES_FOUND;
+	    if (IsSpeciesInRandomizedEncounterTable(data->fishingMonsInfo, species, FISH_WILD_COUNT, RANDOMIZER_FISH_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+	        goto SPECIES_FOUND;
+	    if (IsSpeciesInRandomizedEncounterTable(data->rockSmashMonsInfo, species, ROCK_WILD_COUNT, RANDOMIZER_ROCK_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+	        goto SPECIES_FOUND;
+	}
+	else
+	{
+	    if (IsSpeciesInEncounterTable(data->landMonsInfo, species, LAND_WILD_COUNT))
+	        return TRUE;
+	    if (IsSpeciesInEncounterTable(data->waterMonsInfo, species, WATER_WILD_COUNT))
+	        return TRUE;
+	    if (IsSpeciesInEncounterTable(data->fishingMonsInfo, species, FISH_WILD_COUNT))
+	        return TRUE;
+	    if (IsSpeciesInEncounterTable(data->rockSmashMonsInfo, species, ROCK_WILD_COUNT))
+	        return TRUE;
+	}
+	gSaveBlock1->location.mapGroup = locGroup;
+	gSaveBlock1->location.mapNum = locNum;
+    return FALSE;
+
+	SPECIES_FOUND:
+	gSaveBlock1->location.mapGroup = locGroup;
+	gSaveBlock1->location.mapNum = locNum;
+	return TRUE;
+}
+
+bool32 IsSpeciesInEncounterTable(const struct WildPokemonInfo * info, s32 species, s32 count)
+{
+    s32 i;
+    if (info != NULL)
+    {
+        for (i = 0; i < count; i++)
+        {
+            if (info->wildPokemon[i].species == species)
+                return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+bool32 IsSpeciesInRandomizedEncounterTable(const struct WildPokemonInfo* info, s32 species, s32 count, u8 indexMultiplier, u8 mapGroup, u8 mapNum)
+{
+	s32 i;
+	u16 originalSpecies = SPECIES_NONE;
+	gSaveBlock1->location.mapGroup = mapGroup;
+	gSaveBlock1->location.mapNum = mapNum;
+
+	switch(indexMultiplier)
+	{
+	case 0:
+		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered land check for location (%d, %d)",mapGroup, mapNum);
+		break;
+	case RANDOMIZER_WATER_WILD_MULTIPLIER:
+		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered water check for location (%d, %d)",mapGroup, mapNum);
+		break;
+	case RANDOMIZER_FISH_WILD_MULTIPLIER:
+		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered fish check for location (%d, %d)",mapGroup, mapNum);
+		break;
+	case RANDOMIZER_ROCK_WILD_MULTIPLIER:
+		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered rock check for location (%d, %d)",mapGroup, mapNum);
+		break;
+	}
+
+	if (info != NULL)
+	{
+		for (i = 0; i < count; i++)
+		{
+			originalSpecies = info->wildPokemon[i].species;
+			gLastWildIndex = i + indexMultiplier;
+			TryRandomizeSpecies(&originalSpecies);
+			if (originalSpecies == species)
+			{
+				return TRUE;
+			}
+		}
+	}
+	return FALSE;
+}

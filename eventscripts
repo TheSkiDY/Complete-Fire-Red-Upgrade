@@ -1,5 +1,5 @@
 ##
-npc 3 0 1 EventScript_PalletTown_TechnologyGuy
+npc 4 3 0 EventScript_PalletTown_TechnologyGuy
 tile 3 0 3 EventScript_PalletTown_RandomizerStop
 tile 3 0 4 EventScript_PalletTown_RandomizerStop
 npc 1 0 0 EventScript_ViridianForest_AllItemsGuy
