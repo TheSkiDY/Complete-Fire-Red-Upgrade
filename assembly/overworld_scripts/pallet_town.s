@@ -13,18 +13,11 @@
 
 EventScript_PalletTown_TechnologyGuy:
 	lock 
-	loadpointer 0x0 gText_TechnologyGuyName
-	setvar 0x8000 0x1
-	setvar 0x8001 0xB
-	setvar 0x8002 0x8
-	setvar 0x8003 0x2
-	callasm 0x8727CF9
 	faceplayer
 	checkflag 0x940
-	if 0x1 _goto TechnologyGuy_FurtherQuestions
-	call TechnologyGuy_Debug
-	@call TechnologyGuy_TechDemo
-	callasm 0x8727DCD
+	if 0x1 _goto TechnologyGuy_ShowGameplayOptionsScreen
+	@call TechnologyGuy_Debug
+	call TechnologyGuy_TechDemo
 	callasm DebugFunc
 	release
 	end
@@ -67,14 +60,6 @@ TechnologyGuy_Debug:
 	return
 
 TechnologyGuy_TechDemo:
-	lock 
-	loadpointer 0x0 gText_TechnologyGuyName
-	setvar 0x8000 0x1
-	setvar 0x8001 0xB
-	setvar 0x8002 0x8
-	setvar 0x8003 0x2
-	callasm 0x8727CF9
-	faceplayer
 	additem ITEM_RARE_CANDY 1
 	additem ITEM_ABILITY_CAPSULE 20
 	additem ITEM_ABILITY_PATCH 20
@@ -95,45 +80,129 @@ TechnologyGuy_TechDemo:
 	setvar 0x408C 0x1
 	return
 
-TechnologyGuy_FurtherQuestions:
-	msgbox gText_TechnologyGuy_DisableFakemonsQuestion MSG_YESNO
-	compare LASTRESULT YES
-	if 0x1 _goto TechnologyGuy_DisableFakemons
+TechnologyGuy_ShowGameplayOptionsScreen:
+	goto TechnologyGuy_LoadFakemonOptionText
+	end
+
+TechnologyGuy_ShowGameplayOptionsScreen_Multichoice:
+	multichoiceoption gText_RerandomizeOptionText 0x3
+	preparemsg gText_GameplayOptionText
+	waitmsg
+	multichoice 0x0 0x0 0x22 0x0
+	compare LASTRESULT 0x0
+	if 0x1 _goto TechnologyGuy_ChangeFakemon
+	compare LASTRESULT 0x1
+	if 0x1 _goto TechnologyGuy_ChangeRegional
+	compare LASTRESULT 0x2
+	if 0x1 _goto TechnologyGuy_ChangeLoadDexArea
+	compare LASTRESULT 0x3
+	if 0x1 _goto TechnologyGuy_Rerandomize
+	goto TechnologyGuy_Quit
+	end
+	
+TechnologyGuy_LoadFakemonOptionText:
+	checkflag 0x976
+	if 0x1 _goto TechnologyGuy_LoadOnFakemonOptionText
+	goto TechnologyGuy_LoadOffFakemonOptionText
+	end
+
+TechnologyGuy_LoadOffFakemonOptionText:
+	multichoiceoption gText_TurnOffFakemonOptionText 0x0
+	goto TechnologyGuy_LoadRegionalsOptionText
+	end
+
+TechnologyGuy_LoadOnFakemonOptionText:
+	multichoiceoption gText_TurnOnFakemonOptionText 0x0
+	goto TechnologyGuy_LoadRegionalsOptionText
+	end
+
+TechnologyGuy_LoadRegionalsOptionText:
+	checkflag 0x977
+	if 0x1 _goto TechnologyGuy_LoadOnRegionalsOptionText
+	goto TechnologyGuy_LoadOffRegionalsOptionText
+	end
+
+TechnologyGuy_LoadOffRegionalsOptionText:
+	multichoiceoption gText_TurnOffRegionalsOptionText 0x1
+	goto TechnologyGuy_LoadDexAreaOptionText
+	end
+
+TechnologyGuy_LoadOnRegionalsOptionText:
+	multichoiceoption gText_TurnOnRegionalsOptionText 0x1
+	goto TechnologyGuy_LoadDexAreaOptionText
+	end
+
+TechnologyGuy_LoadDexAreaOptionText:
+	checkflag 0x978
+	if 0x1 _goto TechnologyGuy_LoadOffDexAreaOptionText
+	goto TechnologyGuy_LoadOnDexAreaOptionText
+	end
+
+TechnologyGuy_LoadOffDexAreaOptionText:
+	multichoiceoption gText_TurnOffDexAreaOptionText 0x2
+	goto TechnologyGuy_ShowGameplayOptionsScreen_Multichoice
+
+TechnologyGuy_LoadOnDexAreaOptionText:
+	multichoiceoption gText_TurnOnDexAreaOptionText 0x2
+	goto TechnologyGuy_ShowGameplayOptionsScreen_Multichoice
+	end
+
+TechnologyGuy_ChangeFakemon:
+	checkflag 0x976
+	if 0x1 _goto TechnologyGuy_TurnOnFakemon
+	goto TechnologyGuy_TurnOffFakemon
+	end
+
+TechnologyGuy_TurnOnFakemon:
 	clearflag 0x976
 	msgbox gText_TechnologyGuy_EnableFakemons MSG_NORMAL
-	goto TechnologyGuy_DisableRegionalsQuestion
+	goto TechnologyGuy_Quit
 	end
 
-TechnologyGuy_DisableRegionalsQuestion:
-	msgbox gText_TechnologyGuy_DisableRegionalsQuestion MSG_YESNO
-	compare LASTRESULT YES
-	if 0x1 _goto TechnologyGuy_DisableRegionals
+TechnologyGuy_TurnOffFakemon:
+	setflag 0x976
+	msgbox gText_TechnologyGuy_DisableFakemons MSG_NORMAL
+	goto TechnologyGuy_Quit
+	end
+
+TechnologyGuy_ChangeRegional:
+	checkflag 0x977
+	if 0x1 _goto TechnologyGuy_TurnOnRegional
+	goto TechnologyGuy_TurnOffRegional
+	end
+
+TechnologyGuy_TurnOnRegional:
 	clearflag 0x977
 	msgbox gText_TechnologyGuy_EnableRegionals MSG_NORMAL
-	goto TechnologyGuy_RerandomizeQuestion
+	goto TechnologyGuy_Quit
 	end
 
-TechnologyGuy_DisableFakemons:
-	setflag 0x976 @no fakemons
-	msgbox gText_TechnologyGuy_DisableFakemons MSG_NORMAL
-	goto TechnologyGuy_DisableRegionalsQuestion
-	end
-
-TechnologyGuy_DisableRegionals:
-	setflag 0x977 @no regionals
+TechnologyGuy_TurnOffRegional:
+	setflag 0x977
 	msgbox gText_TechnologyGuy_DisableRegionals MSG_NORMAL
-	goto TechnologyGuy_RerandomizeQuestion
+	goto TechnologyGuy_Quit
 	end
 
-TechnologyGuy_RerandomizeQuestion:
-	callasm BufferRandomizerSeed
-	msgbox gText_TechnologyGuy_RerandomizeQuestion MSG_YESNO
-	compare LASTRESULT YES
-	if 0x1 _goto TechnologyGuy_Rerandomize
+TechnologyGuy_ChangeLoadDexArea:
+	checkflag 0x978
+	if 0x1 _goto TechnologyGuy_TurnOffDexArea
+	goto TechnologyGuy_TurnOnDexArea
+	end
+
+TechnologyGuy_TurnOffDexArea:
+	clearflag 0x978
+	msgbox gText_TechnologyGuy_DisableDexArea MSG_NORMAL
+	goto TechnologyGuy_Quit
+	end
+
+TechnologyGuy_TurnOnDexArea:
+	setflag 0x978
+	msgbox gText_TechnologyGuy_EnableDexArea MSG_NORMAL
 	goto TechnologyGuy_Quit
 	end
 
 TechnologyGuy_Rerandomize:
+	callasm BufferRandomizerSeed
 	setvar 0x8006 0x0
 	loadpointer 0x0 gText_RerandomizeOption1
 	special 0x25
@@ -171,7 +240,6 @@ TechnologyGuy_RerandomizeRandom:
 	end
 
 TechnologyGuy_Quit:
-	callasm 0x8727DCD
 	release
 	end
 

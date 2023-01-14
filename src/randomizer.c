@@ -62,13 +62,10 @@ u32 hash_uint(u32 x)
 
 u16 GetSpeciesFromHashVal(u32 toHash)
 {
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered GetSpeciesFromHashVal");
-
 	u16 speciesCount = NUM_SPECIES_RANDOMIZER;
 	u32 s = hash_uint(toHash);
 	u16 species = (u16)(s % (u32) speciesCount);
 
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Exiting GetSpeciesFromHashVal");
 	return species; 
 }
 
@@ -105,8 +102,6 @@ u32 GetLocationHash(u8 locGroup, u8 locNum)
 
 u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 seed, u8 locationGroup, u8 locationId, u8 index, bool8 trainerBattle)
 {
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered InitialSpeciesRandomizer");
-
 	u32 loopValConst = 2654435761;
 	u32 loopVal = loopValConst;
 	u32 toHash;
@@ -127,7 +122,6 @@ u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 seed, u8 locationGroup, 
 			&& j <= TRIES_FOR_SINGLE_LOOPVAL)
 		{
 			toHash += (loopVal * j);
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Exiting InitialSpeciesRandomizer");
 			newSpecies = GetSpeciesFromHashVal(toHash);
 			j++;
 		}
@@ -137,15 +131,11 @@ u16 InitialSpeciesRandomizer(unusedArg u16 species, u32 seed, u8 locationGroup, 
 		}
 	}
 
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Exiting InitialSpeciesRandomizer");
 	return SPECIES_NONE;
 }
 
 u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 seed, bool8 trainerBattle)
 {
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered BackupSpeciesRandomizer");
-
-
 	u16 newSpecies;
 	u16 speciesCount = NUM_SPECIES_RANDOMIZER;
 	u16 startAt = (seed & 0xFFFF) % (u32) speciesCount;
@@ -172,8 +162,6 @@ u16 BackupSpeciesRandomizer(unusedArg u16 species, u32 seed, bool8 trainerBattle
 
 	if (numAttempts >= BACKUP_TRIES)
 		newSpecies = SPECIES_DITTO;
-
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Exiting BackupSpeciesRandomizer");
 	return newSpecies;
 }
 
@@ -209,8 +197,6 @@ void TryRandomizeSpecies(unusedArg u16* species)
 {
 	u8 locationGroup = gSaveBlock1->location.mapGroup;
 	u8 locationId = gSaveBlock1->location.mapNum;
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered TryRandomizeSpecies");
-
 
 	#ifdef FLAG_POKEMON_RANDOMIZER
 	if (FlagGet(FLAG_POKEMON_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY)
@@ -236,7 +222,6 @@ void TryRandomizeSpecies(unusedArg u16* species)
 		}
 	}
 	*species = FindReplacementSpecies(*species);
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Exiting TryRandomizeSpecies");
 	#endif
 }
 

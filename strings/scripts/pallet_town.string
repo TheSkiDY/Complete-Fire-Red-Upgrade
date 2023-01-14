@@ -13,20 +13,23 @@ Fakemons has been [RED]disabled[BLACK].
 #org @gText_TechnologyGuy_EnableFakemons
 Fakemons will appear in the game.
 
-#org @gText_TechnologyGuy_DisableFakemonsQuestion
-Do you want to disable fakemons?
-
 #org @gText_TechnologyGuy_DisableRegionals
 Custom regional forms has been\n[RED]disabled[BLACK].
 
 #org @gText_TechnologyGuy_EnableRegionals
 Custom regional forms will appear\nin the game.
 
-#org @gText_TechnologyGuy_DisableRegionalsQuestion
-Do you want to disable custom\nregional forms?
+#org @gText_TechnologyGuy_EnableDexArea
+Encounter data will be loaded in\nthe POK\eDEX screen. This will take\lsome time.
+
+#org @gText_TechnologyGuy_DisableDexArea
+Encounter data won't be loaded in\nthe POK\eDEX screen.
 
 #org @gText_TechnologyGuy_RerandomizeQuestion
 Your current seed is [BUFFER1].\nDo you want to re-randomize your\lgame?
+
+#org @gText_GameplayOptionText
+Please, select an option.
 
 #org @gText_RerandomizeOption1
 Set seed
@@ -38,7 +41,28 @@ New random
 CANCEL
 
 #org @gText_RerandomizeOptionSelect
-Please, select an option.
+Your current seed is [BUFFER1].\nPlease, select an option.
 
 #org @gText_TechnologyGuy_Rerandomized
 Your new seed is [BUFFER1].\nEnjoy.
+
+#org @gText_TurnOffFakemonOptionText
+Turn [RED]off[BLACK] fakemons.
+
+#org @gText_TurnOnFakemonOptionText
+Turn [GREEN]on[BLACK] fakemons.
+
+#org @gText_TurnOffRegionalsOptionText
+Turn [RED]off[BLACK] custom regionals.
+
+#org @gText_TurnOnRegionalsOptionText
+Turn [GREEN]on[BLACK] custom regionals.
+
+#org @gText_TurnOffDexAreaOptionText
+Turn [RED]off[BLACK] encounter data in POK\eDEX.
+
+#org @gText_TurnOnDexAreaOptionText
+Turn [GREEN]on[BLACK] encounter data in POK\eDEX.
+
+#org @gText_RerandomizeOptionText
+Change randomizer seed.

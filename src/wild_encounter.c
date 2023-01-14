@@ -1679,14 +1679,21 @@ bool32 IsSpeciesOnMap(const struct WildPokemonHeader * data, s32 species)
 
 	if (FlagGet(FLAG_POKEMON_RANDOMIZER))
 	{
-		if (IsSpeciesInRandomizedEncounterTable(data->landMonsInfo, species, LAND_WILD_COUNT, 0, data->mapGroup, data->mapNum))
-	        goto SPECIES_FOUND;
-	    if (IsSpeciesInRandomizedEncounterTable(data->waterMonsInfo, species, WATER_WILD_COUNT, RANDOMIZER_WATER_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
-	        goto SPECIES_FOUND;
-	    if (IsSpeciesInRandomizedEncounterTable(data->fishingMonsInfo, species, FISH_WILD_COUNT, RANDOMIZER_FISH_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
-	        goto SPECIES_FOUND;
-	    if (IsSpeciesInRandomizedEncounterTable(data->rockSmashMonsInfo, species, ROCK_WILD_COUNT, RANDOMIZER_ROCK_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
-	        goto SPECIES_FOUND;
+		if (FlagGet(FLAG_RANDOMIZER_LOAD_DEX_AREA))
+		{
+			if (IsSpeciesInRandomizedEncounterTable(data->landMonsInfo, species, LAND_WILD_COUNT, 0, data->mapGroup, data->mapNum))
+		        goto SPECIES_FOUND;
+		    if (IsSpeciesInRandomizedEncounterTable(data->waterMonsInfo, species, WATER_WILD_COUNT, RANDOMIZER_WATER_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+		        goto SPECIES_FOUND;
+		    if (IsSpeciesInRandomizedEncounterTable(data->fishingMonsInfo, species, FISH_WILD_COUNT, RANDOMIZER_FISH_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+		        goto SPECIES_FOUND;
+		    if (IsSpeciesInRandomizedEncounterTable(data->rockSmashMonsInfo, species, ROCK_WILD_COUNT, RANDOMIZER_ROCK_WILD_MULTIPLIER, data->mapGroup, data->mapNum))
+		        goto SPECIES_FOUND;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 	else
 	{
@@ -1729,22 +1736,6 @@ bool32 IsSpeciesInRandomizedEncounterTable(const struct WildPokemonInfo* info, s
 	u16 originalSpecies = SPECIES_NONE;
 	gSaveBlock1->location.mapGroup = mapGroup;
 	gSaveBlock1->location.mapNum = mapNum;
-
-	switch(indexMultiplier)
-	{
-	case 0:
-		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered land check for location (%d, %d)",mapGroup, mapNum);
-		break;
-	case RANDOMIZER_WATER_WILD_MULTIPLIER:
-		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered water check for location (%d, %d)",mapGroup, mapNum);
-		break;
-	case RANDOMIZER_FISH_WILD_MULTIPLIER:
-		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered fish check for location (%d, %d)",mapGroup, mapNum);
-		break;
-	case RANDOMIZER_ROCK_WILD_MULTIPLIER:
-		MgbaPrintfBounded(MGBA_LOG_INFO, "Entered rock check for location (%d, %d)",mapGroup, mapNum);
-		break;
-	}
 
 	if (info != NULL)
 	{
