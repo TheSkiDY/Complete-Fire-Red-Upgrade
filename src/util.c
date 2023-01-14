@@ -578,8 +578,8 @@ bool8 IsSpeciesDisabled(u16 species)
 
 u16 FindReplacementSpecies(u16 species)
 {
-	if (IsSpeciesDisabled(species))
-		return TRUE;
+	if (!IsSpeciesDisabled(species))
+		return species;
 
 	u8 type1 = gBaseStats[species].type1;
 	u8 type2 = gBaseStats[species].type2;
