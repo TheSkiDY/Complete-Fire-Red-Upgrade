@@ -16,8 +16,8 @@ EventScript_PalletTown_TechnologyGuy:
 	faceplayer
 	checkflag 0x940
 	if 0x1 _goto TechnologyGuy_ShowGameplayOptionsScreen
-	@call TechnologyGuy_Debug
-	call TechnologyGuy_TechDemo
+	call TechnologyGuy_Debug
+	@call TechnologyGuy_TechDemo
 	callasm DebugFunc
 	release
 	end
@@ -31,17 +31,25 @@ TechnologyGuy_Debug:
 	additem ITEM_ABILITY_PATCH 20
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_NECROZMA_DUSK_MANE 60 0 0 0 0
-	givepokemon SPECIES_SLOWKING_G 60 0 0 0 0
-	givepokemon SPECIES_GHOLDENGO 60 0 0 0 0
-	givepokemon SPECIES_GLIMMORA 60 0 0 0 0
-	givepokemon SPECIES_CYCLIZAR 60 0 0 0 0
+	givepokemon SPECIES_RATTATA_A 30 0 0 0 0
+	givepokemon SPECIES_SLOWKING_G 50 0 0 0 0
+	givepokemon SPECIES_GHOLDENGO 50 0 0 0 0
+	givepokemon SPECIES_SHEDINJA 5 0 0 0 0
+	givepokemon SPECIES_TUCAM 5 0 0 0 0
 	setvar 0x8000 MOVE_DISCHARGE
 	setvar 0x8001 MOVE_AGILITY
 	setvar 0x8002 MOVE_DRAGONBREATH
 	setvar 0x8002 MOVE_SNAPTRAP
-	givepokemon SPECIES_MIRAIDON 60 0 0 1 0
+	givepokemon SPECIES_MIRAIDON 5 0 0 1 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
+	setflag 0x820
+	setflag 0x821
+	setflag 0x822
+	setflag 0x823
+	setflag 0x824
+	setflag 0x825
+	setflag 0x826
+	setflag 0x827
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
 	setflag 0x940 @randomizer
@@ -51,8 +59,8 @@ TechnologyGuy_Debug:
 	setflag 0x975 @team preview
 	setflag 0x91F @bike turbo
 	setflag 0x929 @turbo surf
-	setflag 0x90D @wild scale
-	setflag 0x90E @trainer scale
+	@setflag 0x90D @wild scale
+	@setflag 0x90E @trainer scale
 	setflag 0x927 @keep consumables
 	addmoney 800000
 	setvar 0x408C 0x1

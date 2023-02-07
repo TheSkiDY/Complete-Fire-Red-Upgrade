@@ -4135,11 +4135,11 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		case MOVE_LASTRESPECTS: ;
 			u8 faints = gBattleStruct->faintedMonsCounter[SIDE(bankAtk)];
-			power = MathMax(5050, (faints * 50) + power); 
+			power = MathMin(5050, (faints * 50) + power); 
 			break;
 
 		case MOVE_RAGEFIST: ;
-			u8 hits = MathMax(6, gBattleStruct->hitCounter[SIDE(bankAtk)][gBattlerPartyIndexes[bankAtk]]);
+			u8 hits = MathMin(6, gBattleStruct->hitCounter[SIDE(bankAtk)][gBattlerPartyIndexes[bankAtk]]);
 			power = (hits * 50) + power;
 			break;
 

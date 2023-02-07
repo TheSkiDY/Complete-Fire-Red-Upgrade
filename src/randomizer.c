@@ -169,7 +169,7 @@ void TryRandomizeForTrainers(unusedArg u16* species)
 {
 	u16 oldSpecies = *species;
 	u16 newSpecies = SPECIES_NONE;
-	u32 trainerId = T1_READ_32(gSaveBlock2->playerTrainerId);
+	u32 trainerId = gSaveBlock1->randomizerSeed;
 	u8 locationGroup = gSaveBlock1->location.mapGroup;
 	u8 locationId = gSaveBlock1->location.mapNum;
 	u8 index = gPartyIndexLoaded;

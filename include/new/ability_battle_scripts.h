@@ -36,6 +36,7 @@ extern const u8 BattleScript_TerrainFromAbility[];
 extern const u8 BattleScript_RainDishActivates[];
 extern const u8 BattleScript_DrySkinDamage[];
 extern const u8 BattleScript_SolarPowerDamage[];
+extern const u8 BattleScript_WonderGuardDamage[];
 extern const u8 BattleScript_HealerStatus[];
 extern const u8 BattleScript_HealerHP[];
 extern const u8 BattleScript_HealerHPSelf[];

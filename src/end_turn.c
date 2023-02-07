@@ -561,6 +561,7 @@ u8 TurnBasedEffects(void)
 								case ABILITY_SHEDSKIN:
 								case ABILITY_HYDRATION:
 								case ABILITY_HEALER:
+								case ABILITY_WONDERGUARD:
 								case ABILITY_EMERGENCYEXIT:
 									if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))
 										effect++;

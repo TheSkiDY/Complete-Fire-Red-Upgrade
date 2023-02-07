@@ -786,14 +786,6 @@ SKIP_CHECK_TARGET:
 				break;
 			}
 
-			#ifdef SPECIES_DARKRAI
-			if (move == MOVE_DARKVOID && data->atkSpecies != SPECIES_DARKRAI)
-			{
-				DECREASE_VIABILITY(10);
-				break;
-			}
-			#endif
-
 		AI_CHECK_SLEEP:
 			if (!CanBePutToSleep(bankDef, bankAtk, TRUE)
 			|| (MoveBlockedBySubstitute(move, bankAtk, bankDef))

@@ -565,6 +565,11 @@ u8 CanStatNotBeLowered(u8 statId, u8 bankDef, u8 bankAtk, u8 defAbility)
 		return STAT_CAN_BE_LOWERED;		
 	}
 
+	if(CheckGrounding(bankDef) && gTerrainType == SHADOW_TERRAIN)
+	{
+		return STAT_PROTECTED_BY_MIST;
+	}
+
 	if (STAT_STAGE(bankDef, statId) == STAT_STAGE_MIN)
 		return STAT_AT_MIN;
 	else if (BankSideHasMist(bankDef) && bankDef != bankAtk && !BypassesScreens(ABILITY(bankAtk)))

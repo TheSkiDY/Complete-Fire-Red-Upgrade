@@ -39,6 +39,8 @@ tables to edit:
 extern u8 gStatusConditionString_MentalState[];
 extern u8 gStatusConditionString_TauntProblem[];
 
+extern const u8 gAbilityNames[][ABILITY_NAME_LENGTH + 1];
+
 const s8 gAbilityRatings[ABILITIES_COUNT] =
 {
 	[ABILITY_ADAPTABILITY] = 8,
@@ -1852,6 +1854,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 			
+				case ABILITY_WONDERGUARD: ;
+					if (gBaseStats[SPECIES(bank)].baseHP > 1)
+					{
+						gBattleMoveDamage = MathMax(1, GetBaseMaxHP(bank) / 8);
+						BattleScriptExecute(BattleScript_WonderGuardDamage);
+						effect++;
+					}
+					break;
+
 				//case ABILITY_WIMPOUT:
 				case ABILITY_EMERGENCYEXIT:
 					if (!(gStatuses3[bank] & (STATUS3_SKY_DROP_ANY))

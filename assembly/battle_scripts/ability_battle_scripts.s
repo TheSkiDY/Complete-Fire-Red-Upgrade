@@ -42,6 +42,7 @@ ability_battle_scripts.s
 .global BattleScript_RainDishActivates
 .global BattleScript_DrySkinDamage
 .global BattleScript_SolarPowerDamage
+.global BattleScript_WonderGuardDamage
 .global BattleScript_HealerStatus
 .global BattleScript_HealerHP
 .global BattleScript_HealerHPSelf
@@ -523,6 +524,7 @@ BattleScript_RainDishActivates:
 
 BattleScript_DrySkinDamage:
 BattleScript_SolarPowerDamage:
+BattleScript_WonderGuardDamage:
 	call BattleScript_AbilityPopUp
 	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG
 	graphicalhpupdate BANK_SCRIPTING

@@ -835,7 +835,7 @@ ES_TutorSeventhBadgeFirstPage:
 	compare LASTRESULT 0x5
 	if 0x1 _goto ES_Tutor102Selected
 	compare LASTRESULT 0x6
-	if 0x1 _goto ES_TutorSixthBadgeSecondPage
+	if 0x1 _goto ES_TutorSeventhBadgeSecondPage
 	goto ES_BadgeTutorGoodbye
 	end
 

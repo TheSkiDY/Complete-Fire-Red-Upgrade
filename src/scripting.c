@@ -2948,7 +2948,7 @@ void DebugFunc(void)
 
 void DebugFunc2(void)
 {
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered ShedTailBS");
+	
 }
 
 void IsPortablePCBanned(void)
