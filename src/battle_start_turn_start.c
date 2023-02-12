@@ -149,6 +149,7 @@ void HandleNewBattleRamClearBeforeBattle(void)
 	FormsRevert(gPlayerParty); //Try to reset all forms before battle
 
 
+
 	#ifdef TECH_DEMO
 	if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_COOLTRAINER || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_COOL_COUPLE || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION)
 	{
@@ -670,6 +671,13 @@ void BattleBeginFirstTurn(void)
 				gBattleScripting.atk49_state = 0;
 				gBattleStruct->faintedActionsState = 0;
 				gBattleStruct->turncountersTracker = 0;
+
+				//fixing low catch rates on Safari Zone
+				u16 catchRate = gBaseStats[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL)].catchRate * 10;
+				if(catchRate > 255)
+					catchRate = 255;
+				gBattleStruct->safariCatchFactor = catchRate * 100 / 1275;
+
 				gMoveResultFlags = 0;
 				gRandomTurnNumber = Random();
 				#ifdef DEBUG_AI_CHOICES

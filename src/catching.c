@@ -290,7 +290,13 @@ u32 GetBaseBallCatchOdds(u8 ballType, u8 bankAtk, u8 bankDef)
 	u8 atkLevel = gBattleMons[bankAtk].level;
 	u8 defLevel = gBattleMons[bankDef].level;
 	
-	catchRate = gBaseStats[GetMonData(GetBankPartyData(bankDef), MON_DATA_SPECIES, NULL)].catchRate; //Uses party data b/c Transform update Gen 5+
+	if (ballType == BALL_TYPE_SAFARI_BALL)
+	{
+		u32 safariFactor = (u32)gBattleStruct->safariCatchFactor;
+		catchRate = udivsi(safariFactor * 1275, 100);
+	}
+	else
+		catchRate = gBaseStats[GetMonData(GetBankPartyData(bankDef), MON_DATA_SPECIES, NULL)].catchRate; //Uses party data b/c Transform update Gen 5+
 
 	if (ballType >= BALL_TYPE_SAFARI_BALL)
 	{
