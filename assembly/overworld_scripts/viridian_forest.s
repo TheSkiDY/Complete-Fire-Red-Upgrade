@@ -390,6 +390,9 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 0x1E2 0x1
 	additem 0x1E3 0x1
 	additem 0x1E4 0x1
+	additem ITEM_ADAMANT_CRYSTAL 1
+	additem ITEM_LUSTROUS_GLOBE 1
+	additem ITEM_GRISEOUS_CORE 1
 	additem 0x1E5 0x1
 	additem 0x1E6 0x1
 	additem 0x1E7 0x1
@@ -437,6 +440,7 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 0x211 20
 	additem 0x212 20
 	additem 0x213 20
+	additem ITEM_CYAN_NECTAR 20
 	additem 0x215 0x1
 	additem 0x216 0x1
 	additem 0x217 0x1
@@ -585,8 +589,13 @@ EventScript_ViridianForest_AllItemsGuy:
 	additem 0x2DA 1
 	additem 0x2DB 1
 	additem 0x2DC 1
+	additem ITEM_LOADED_DICE 1
+	additem ITEM_PUNCHING_GLOVES 3
+	additem ITEM_MIRROR_HERB 10
 	additem 0x2DD 20
 	additem 0x2DE 20
+	additem ITEM_AUSPICIOUS_ARMOR 5
+	additem ITEM_MALICIOUS_ARMOR 5
 	additem 0x2DF 1
 	additem 0x2E0 1
 	additem 0x2E1 1

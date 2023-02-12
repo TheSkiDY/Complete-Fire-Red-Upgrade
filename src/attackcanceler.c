@@ -970,6 +970,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			if (gSpecialMoveFlags[gCurrentMove].gTwoToFiveStrikesMoves)
 			{
 				u8 ability = ABILITY(gBankAttacker);
+				u8 itemEffect = ITEM_EFFECT(gBankAttacker);
 
 				if (gCurrentMove == MOVE_SURGINGSTRIKES || gCurrentMove == MOVE_TRIPLEDIVE)
 				{
@@ -991,6 +992,13 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				else if (ability == ABILITY_SKILLLINK)
 				{
 					gMultiHitCounter = 5;
+				}
+				else if (itemEffect == ITEM_EFFECT_LOADED_DICE)
+				{
+					if ((Random() & 1) == 0)
+						gMultiHitCounter = 4;
+					else 
+						gMultiHitCounter = 5;
 				}
 				else
 				{

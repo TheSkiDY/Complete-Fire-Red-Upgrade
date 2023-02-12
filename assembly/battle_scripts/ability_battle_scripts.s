@@ -119,6 +119,7 @@ ability_battle_scripts.s
 .global BattleScript_AngerShellActivates
 .global BattleScript_ElectromorphosisActivates
 .global BattleScript_Opportunist
+.global BattleScript_MirrorHerb
 .global BattleScript_ToxicDebris
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1641,6 +1642,36 @@ BattleScript_OpportunistCall:
 	setbyte FORM_COUNTER 0x0
 	setbyte MAGICIAN_HELPER 0x0
 	call BattleScript_AbilityPopUpRevert
+	goto OpportunistReturn
+
+BattleScript_MirrorHerb:
+	copybyte BATTLE_SCRIPTING_BANK FORM_COUNTER
+	statbuffchange BANK_SCRIPTING | STAT_BS_PTR OpportunistReturn
+
+BattleScript_MirrorHerbCall:
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 OpportunistReturn
+	pause DELAY_HALFSECOND
+	setbyte STAT_ANIM_PLAYED 0x0
+	copybyte FORM_COUNTER USER_BANK
+	copybyte MAGICIAN_HELPER TARGET_BANK
+	copybyte USER_BANK BATTLE_SCRIPTING_BANK
+	copybyte TARGET_BANK BATTLE_SCRIPTING_BANK
+	playanimation BANK_SCRIPTING ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	call MirrorHerbAnim
+	copybyte USER_BANK FORM_COUNTER
+	copybyte TARGET_BANK MAGICIAN_HELPER
+	setbyte FORM_COUNTER 0x0
+	setbyte MAGICIAN_HELPER 0x0
+	goto OpportunistReturn
+
+MirrorHerbAnim:
+	playanimation BANK_ATTACKER ANIM_ITEM_USE 0x0
+	setword BATTLE_STRING_LOADER gText_PowerHerb
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	removeitem BANK_ATTACKER
 
 OpportunistReturn:
 	return

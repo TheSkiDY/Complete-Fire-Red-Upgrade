@@ -514,6 +514,13 @@ sItemName_CatchingCharm 08908114
 sItemName_ThunderStone 08901080
 sItemName_InfiniteRepel 08908090
 sItemName_DiscreetPill 0890837c
+sItemName_AdamantCrystal 0890800C
+sItemName_LustrousGlobe 08908038
+sItemName_GriseousCore 08908064
+sItemName_AuspiciousArmor 089087F4
+sItemName_MaliciousArmor 08908820
+sItemName_LeadersCrest 0890884C
+sItemName_PunchingGloves 089088A4
 
 ItemScript_PortablePC 087e0a40
 ItemScript_InfiniteRepel 087e0a90

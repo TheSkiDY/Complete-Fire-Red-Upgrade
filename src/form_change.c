@@ -420,35 +420,20 @@ void TryRevertOriginFormes(unusedArg struct Pokemon* mon, unusedArg bool8 ignore
 	u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
 	u8 itemEffect = ItemId_GetHoldEffect(item);
 
-	switch (GetMonData(mon, MON_DATA_SPECIES, NULL))
-	{
-		#if (defined SPECIES_GIRATINA && defined SPECIES_GIRATINA_ORIGIN)
-		case SPECIES_GIRATINA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_GRISEOUS_ORB
-			#ifdef MAPSEC_DISTORTION_WORLD
-			&& (ignoreDistortionWorld || GetCurrentRegionMapSectionId() != MAPSEC_DISTORTION_WORLD)
-			#endif
-			)
-				targetSpecies = SPECIES_GIRATINA;
-			break;
-		#endif
+	// switch (GetMonData(mon, MON_DATA_SPECIES, NULL))
+	// {
+	// 	#if (defined SPECIES_GIRATINA && defined SPECIES_GIRATINA_ORIGIN)
+	// 	case SPECIES_GIRATINA_ORIGIN:
+	// 		if (itemEffect != ITEM_EFFECT_GRISEOUS_ORB
+	// 		#ifdef MAPSEC_DISTORTION_WORLD
+	// 		&& (ignoreDistortionWorld || GetCurrentRegionMapSectionId() != MAPSEC_DISTORTION_WORLD)
+	// 		#endif
+	// 		)
+	// 			targetSpecies = SPECIES_GIRATINA;
+	// 		break;
+	// 	#endif
 
-		#ifdef PLA_HELD_ORIGIN_ORBS
-		#if (defined SPECIES_DIALGA && defined SPECIES_DIALGA_ORIGIN)
-		case SPECIES_DIALGA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_ADAMANT_ORB)
-				targetSpecies = SPECIES_DIALGA;
-			break;
-		#endif
-
-		#if (defined SPECIES_PALKIA && defined SPECIES_PALKIA_ORIGIN)
-		case SPECIES_PALKIA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_LUSTROUS_ORB)
-				targetSpecies = SPECIES_PALKIA;
-			break;
-		#endif
-		#endif
-	}
+	// }
 
 	if (targetSpecies != SPECIES_NONE)
 		SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
@@ -816,47 +801,7 @@ void HoldItemFormChange(struct Pokemon* mon, u16 item)
 	u8 type = ItemId_GetHoldEffectParam(item);
 
 	switch(species) {
-		#if (defined SPECIES_GIRATINA && defined SPECIES_GIRATINA_ORIGIN)
-		case SPECIES_GIRATINA:
-			if (itemEffect == ITEM_EFFECT_GRISEOUS_ORB)
-				targetSpecies = SPECIES_GIRATINA_ORIGIN;
-			break;
-
-		case SPECIES_GIRATINA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_GRISEOUS_ORB
-			#ifdef MAPSEC_DISTORTION_WORLD
-			&& GetCurrentRegionMapSectionId() != MAPSEC_DISTORTION_WORLD
-			#endif
-			)
-				targetSpecies = SPECIES_GIRATINA;
-			break;
-		#endif
-
-		#ifdef PLA_HELD_ORIGIN_ORBS
-		#if (defined SPECIES_DIALGA && defined SPECIES_DIALGA_ORIGIN)
-		case SPECIES_DIALGA:
-			if (itemEffect == ITEM_EFFECT_ADAMANT_ORB)
-				targetSpecies = SPECIES_DIALGA_ORIGIN;
-			break;
-
-		case SPECIES_DIALGA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_ADAMANT_ORB)
-				targetSpecies = SPECIES_DIALGA;
-			break;
-		#endif
-
-		#if (defined SPECIES_PALKIA && defined SPECIES_PALKIA_ORIGIN)
-		case SPECIES_PALKIA:
-			if (itemEffect == ITEM_EFFECT_LUSTROUS_ORB)
-				targetSpecies = SPECIES_PALKIA_ORIGIN;
-			break;
-
-		case SPECIES_PALKIA_ORIGIN:
-			if (itemEffect != ITEM_EFFECT_LUSTROUS_ORB)
-				targetSpecies = SPECIES_PALKIA;
-			break;
-		#endif
-		#endif
+		
 
 		#ifdef SPECIES_GENESECT
 		case SPECIES_GENESECT:

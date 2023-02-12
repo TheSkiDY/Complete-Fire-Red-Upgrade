@@ -2119,6 +2119,50 @@ static void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc func)
 			DoItemFormChange(mon, species);
 			gTasks[taskId].func = func;
 			break;
+
+		case ITEM_GRISEOUS_CORE:
+			switch (species)
+			{
+				case SPECIES_GIRATINA:
+					species = SPECIES_GIRATINA_ORIGIN;
+					break;
+				case SPECIES_GIRATINA_ORIGIN:
+					species = SPECIES_GIRATINA;
+					break;
+			}
+			DoItemFormChange(mon, species);
+			gTasks[taskId].func = func;
+			break;
+
+		case ITEM_ADAMANT_CRYSTAL:
+			switch (species)
+			{
+				case SPECIES_DIALGA:
+					species = SPECIES_DIALGA_ORIGIN;
+					break;
+				case SPECIES_DIALGA_ORIGIN:
+					species = SPECIES_DIALGA;
+					break;
+			}
+			DoItemFormChange(mon, species);
+			gTasks[taskId].func = func;
+			break;
+
+		case ITEM_LUSTROUS_GLOBE:
+			switch (species)
+			{
+				case SPECIES_PALKIA:
+					species = SPECIES_PALKIA_ORIGIN;
+					break;
+				case SPECIES_PALKIA_ORIGIN:
+					species = SPECIES_PALKIA;
+					break;
+			}
+			DoItemFormChange(mon, species);
+			gTasks[taskId].func = func;
+			break;
+
+
 		case ITEM_PRISON_BOTTLE:
 			#if (defined SPECIES_HOOPA && defined SPECIES_HOOPA_UNBOUND)
 			if (species == SPECIES_HOOPA)
@@ -2138,8 +2182,8 @@ static void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc func)
 				goto NO_EFFECT;
 			break;
 		case ITEM_RED_NECTAR:
-			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S)
-			if (species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_S)
+			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S && defined SPECIES_ORICORIO_R)
+			if (species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_S || species == SPECIES_ORICORIO_R)
 			{
 				species = SPECIES_ORICORIO;
 				DoItemFormChange(mon, species);
@@ -2151,8 +2195,8 @@ static void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc func)
 				goto NO_EFFECT;
 			break;
 		case ITEM_YELLOW_NECTAR:
-			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S)
-			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_S)
+			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S && defined SPECIES_ORICORIO_R)
+			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_S || species == SPECIES_ORICORIO_R)
 			{
 				species = SPECIES_ORICORIO_Y;
 				DoItemFormChange(mon, species);
@@ -2164,8 +2208,8 @@ static void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc func)
 				goto NO_EFFECT;
 			break;
 		case ITEM_PINK_NECTAR:
-			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S)
-			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_S)
+			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S && defined SPECIES_ORICORIO_R)
+			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_S || species == SPECIES_ORICORIO_R)
 			{
 				species = SPECIES_ORICORIO_P;
 				DoItemFormChange(mon, species);
@@ -2177,10 +2221,23 @@ static void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc func)
 				goto NO_EFFECT;
 			break;
 		case ITEM_PURPLE_NECTAR:
-			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S)
-			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_P)
+			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S && defined SPECIES_ORICORIO_R)
+			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_R)
 			{
 				species = SPECIES_ORICORIO_S;
+				DoItemFormChange(mon, species);
+				RemoveBagItem(Var800E, 1);
+				gTasks[taskId].func = func;
+			}
+			else
+			#endif
+				goto NO_EFFECT;
+			break;
+		case ITEM_CYAN_NECTAR:
+			#if (defined SPECIES_ORICORIO && defined SPECIES_ORICORIO_Y && defined SPECIES_ORICORIO_P && defined SPECIES_ORICORIO_S && defined SPECIES_ORICORIO_R)
+			if (species == SPECIES_ORICORIO || species == SPECIES_ORICORIO_Y || species == SPECIES_ORICORIO_P || species == SPECIES_ORICORIO_S)
+			{
+				species = SPECIES_ORICORIO_R;
 				DoItemFormChange(mon, species);
 				RemoveBagItem(Var800E, 1);
 				gTasks[taskId].func = func;

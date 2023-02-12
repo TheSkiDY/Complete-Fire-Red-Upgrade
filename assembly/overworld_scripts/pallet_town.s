@@ -29,18 +29,26 @@ TechnologyGuy_Debug:
 	additem ITEM_RARE_CANDY 1
 	additem ITEM_ABILITY_CAPSULE 20
 	additem ITEM_ABILITY_PATCH 20
+	additem ITEM_LOADED_DICE 1
+	additem ITEM_ADAMANT_CRYSTAL 1
+	additem ITEM_LUSTROUS_GLOBE 1
+	additem ITEM_GRISEOUS_CORE 1
+	additem ITEM_AUSPICIOUS_ARMOR 1
+	additem ITEM_MALICIOUS_ARMOR 1
+	additem ITEM_CYAN_NECTAR 1
+	additem ITEM_PURPLE_NECTAR 1
 	setvar 0x8004 0xF
 	special 0x62
-	givepokemon SPECIES_RATTATA_A 30 0 0 0 0
-	givepokemon SPECIES_SLOWKING_G 50 0 0 0 0
-	givepokemon SPECIES_GHOLDENGO 50 0 0 0 0
-	givepokemon SPECIES_SHEDINJA 5 0 0 0 0
-	givepokemon SPECIES_TUCAM 5 0 0 0 0
-	setvar 0x8000 MOVE_DISCHARGE
-	setvar 0x8001 MOVE_AGILITY
-	setvar 0x8002 MOVE_DRAGONBREATH
-	setvar 0x8002 MOVE_SNAPTRAP
-	givepokemon SPECIES_MIRAIDON 5 0 0 1 0
+	givepokemon SPECIES_EXEGGCUTE 15 0 0 0 0
+	givepokemon SPECIES_DIALGA 15 0 0 0 0
+	givepokemon SPECIES_PALKIA 15 0 0 0 0
+	givepokemon SPECIES_GIRATINA 15 0 0 0 0
+	givepokemon SPECIES_ORICORIO_Y 15 0 0 0 0
+		@setvar 0x8000 MOVE_DISCHARGE
+		@setvar 0x8001 MOVE_AGILITY
+		@setvar 0x8002 MOVE_DRAGONBREATH
+		@setvar 0x8002 MOVE_SNAPTRAP
+	givepokemon SPECIES_CHARCADET 15 0 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x820
 	setflag 0x821
@@ -59,7 +67,7 @@ TechnologyGuy_Debug:
 	setflag 0x975 @team preview
 	setflag 0x91F @bike turbo
 	setflag 0x929 @turbo surf
-	@setflag 0x90D @wild scale
+	setflag 0x90D @wild scale
 	@setflag 0x90E @trainer scale
 	setflag 0x927 @keep consumables
 	addmoney 800000

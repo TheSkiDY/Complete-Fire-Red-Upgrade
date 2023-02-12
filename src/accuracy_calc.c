@@ -81,8 +81,10 @@ ACCURACY_CHECK_START:
 			move = gCurrentMove;
 
 		if (gNewBS->ParentalBondOn == 1
-		||  (gNewBS->MultiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
-						 || ABILITY(gBankAttacker) == ABILITY_SKILLLINK)))
+		||  (gNewBS->MultiHitOn 
+			&& (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
+			|| ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LOADED_DICE
+			|| ABILITY(gBankAttacker) == ABILITY_SKILLLINK)))
 		{
 			//No acc checks for second hit of Parental Bond or multi hit moves
 			TrySetDestinyBondToHappen();

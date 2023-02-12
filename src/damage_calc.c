@@ -405,7 +405,7 @@ u32 SplintersDamageCalc(u8 bankAtk, u8 bankDef, u16 move)
 	return gBattleMoveDamage;
 }
 
-static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, u8 defAbility, unusedArg u16 atkSpecies)
+static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, u8 defAbility, u8 atkItemEffect, unusedArg u16 atkSpecies)
 {
 	u8 numHits = 1;
 
@@ -421,7 +421,7 @@ static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, u8 defAbility, unusedAr
 	}
 	else if (gSpecialMoveFlags[move].gTwoToFiveStrikesMoves)
 	{
-		if (atkAbility == ABILITY_SKILLLINK)
+		if (atkAbility == ABILITY_SKILLLINK || atkItemEffect == ITEM_EFFECT_LOADED_DICE)
 			numHits = 5;
 		else
 			numHits = 3; //Three hits on average
@@ -551,7 +551,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 
 	damage = (damage * 93) / 100; //Roll 93% damage - about halfway between min & max damage
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkItemEffect, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -660,7 +660,7 @@ u32 AI_CalcPartyDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, st
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkItemEffect, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -773,7 +773,7 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->defAbility, damageData->atkItemEffect, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -4387,6 +4387,11 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 
 		case ITEM_EFFECT_WISE_GLASSES:
 			if (data->moveSplit == SPLIT_SPECIAL)
+				power = (power * 11) / 10;
+			break;
+
+		case ITEM_EFFECT_PUNCHING_GLOVES:
+			if (gSpecialMoveFlags[move].gPunchingMoves)
 				power = (power * 11) / 10;
 			break;
 

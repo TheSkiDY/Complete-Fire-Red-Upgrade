@@ -2277,11 +2277,7 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_TRIAGE_AFFECTED,
-		#ifdef BUFFED_LEECH_LIFE
 		.z_move_power = 160,
-		#else
-		.z_move_power = 100,
-		#endif
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},

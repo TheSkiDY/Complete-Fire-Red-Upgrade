@@ -2880,9 +2880,7 @@ void atk8D_setmultihitcounter(void) {
 	if (gBattlescriptCurrInstr[1])
 		gMultiHitCounter = gBattlescriptCurrInstr[1];
 
-	if (ABILITY(gBankAttacker) == ABILITY_SKILLLINK)
-		gMultiHitCounter = 5;
-
+	
 	#ifdef SPECIES_ASHGRENINJA
 	else if (ABILITY(gBankAttacker) == ABILITY_FORM_CHANGE
 	&& SpeciesHasBattleBond(SPECIES(gBankAttacker))
@@ -2891,7 +2889,18 @@ void atk8D_setmultihitcounter(void) {
 	{
 		gMultiHitCounter = 3;
 	}
-	else
+	else if (ABILITY(gBankTarget) == ABILITY_PRESSURE)
+	{
+		gMultiHitCounter = 2;
+	}
+	else if (ABILITY(gBankAttacker) == ABILITY_SKILLLINK)
+	{
+		gMultiHitCounter = 5;
+	}
+	else if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LOADED_DICE)
+	{
+		gMultiHitCounter = (Random() & 3) + 2;
+	}
 	#endif
 	{
 		gMultiHitCounter = Random() & 3;

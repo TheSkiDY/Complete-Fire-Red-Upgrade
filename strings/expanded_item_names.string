@@ -186,3 +186,24 @@ INFINITE REPEL
 
 #org @sItemName_DiscreetPill
 DISCREET PILL
+
+#org @sItemName_AdamantCrystal
+ADAMANT CRYSTAL
+
+#org @sItemName_LustrousGlobe
+LUSTROUS GLOBE
+
+#org @sItemName_GriseousCore
+GRISEOUS CORE
+
+#org @sItemName_AuspiciousArmor
+AUSPICIOUS ARMOR
+
+#org @sItemName_MaliciousArmor
+MALICIOUS ARMOR
+
+#org @sItemName_LeadersCrest
+LEADER'S CREST
+
+#org @sItemName_PunchingGloves
+PUNCHING GLOVES

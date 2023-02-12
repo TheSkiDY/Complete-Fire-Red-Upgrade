@@ -521,6 +521,8 @@ bool8 IsContactMove(u16 move, u8 bankAtk, u8 bankDef)
 {
 	if (move == MOVE_SHELLSIDEARM && bankAtk != bankDef)
 		return gNewBS->shellSideArmSplit[bankAtk][bankDef] == SPLIT_PHYSICAL; //Calculated in advance
+	else if (gSpecialMoveFlags[move].gPunchingMoves && ITEM_EFFECT(bankAtk) == ITEM_EFFECT_PUNCHING_GLOVES)
+		return FALSE;
 	else
 		return gBattleMoves[move].flags & FLAG_MAKES_CONTACT;
 }

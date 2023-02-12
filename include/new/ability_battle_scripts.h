@@ -125,6 +125,8 @@ extern const u8 BattleScript_AuraBreakActivate[];
 extern const u8 BattleScript_AngerShellActivates[];
 extern const u8 BattleScript_ElectromorphosisActivates[];
 extern const u8 BattleScript_Opportunist[];
+extern const u8 BattleScript_MirrorHerb[];
+
 extern const u8 BattleScript_ToxicDebris[];
 
 extern const u8 ShadowTerrainSetString[];

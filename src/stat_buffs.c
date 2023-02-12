@@ -72,6 +72,13 @@ bool8 OpportunistActivation(u8 bankToCopyFrom, u8 bankToCopyTo)
 		gBattlescriptCurrInstr = BattleScript_Opportunist;
 		return TRUE;
 	}
+	else if (ITEM_EFFECT(bankToCopyTo) == ITEM_EFFECT_MIRROR_HERB && ITEM_EFFECT(bankToCopyFrom) != ITEM_EFFECT_MIRROR_HERB)
+	{
+		gFormCounter = bankToCopyTo;
+		BattleScriptPushCursor();
+		gBattlescriptCurrInstr = BattleScript_MirrorHerb;
+		return TRUE;
+	}
 	else
 		return FALSE;
 }
