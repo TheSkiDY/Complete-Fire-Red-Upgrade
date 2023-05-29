@@ -1233,7 +1233,7 @@ The user attacks by\nhurling a blizzard-\ncloaked icicle lance\nat opposing POK\
 A slash that may\npoison, paralyze, or\nsleep the foe. It\nhas a high crit ratio.
 
 #org @DESC_PSYSHIELD_BASH
-The user slams into\nthe foe with psychic\nenergy. It raises the\nuser's defensive stats.
+The user slams into\nthe foe with psychic\nenergy. It raises the\nuser's DEFENSE stat.
 
 #org @DESC_POWER_SHIFT
 The user swaps its\noffensive and\ndefensive stats.
@@ -1242,13 +1242,13 @@ The user swaps its\noffensive and\ndefensive stats.
 The foe is hit with\nan axe that leaves\nbehind pointed stones.\nIt has a high crit\nratio.
 
 #org @DESC_MYSTICAL_POWER
-After dealing damage,\nthe user raises the\nhigher stats of its\noffenses or defenses.
+The user attacks by\nemitting a mysterious\npower. This also\nboosts the user's\nSP. ATK stat.
 
 #org @DESC_RAGING_FURY
 The user rampages\nand spews vicious\nflames for two to\nthree turns.
 
 #org @DESC_WAVE_CRASH
-The user slams into\nthe target, hurting\nitself a little. This\nmove strikes first.
+The user shrouds\nitself in water and\nslams into the target.\nThis also damages\nthe user.
 
 #org @DESC_CHLOROBLAST
 The user launches its\namassed chlorophyll\nat the foe. This also\nhurts the user if not in\nharsh sunlight.
@@ -1260,14 +1260,13 @@ The user hurls giant\nchunks of ice at\nthe foe that may\ncause it to flinch.
 The user dances to\nusher in victory.\nThis raises ATTACK,\nDEFENSE, and SPEED.
 
 #org @DESC_HEADLONG_RUSH
-The user smashes into\nthe foe. This cuts\nthe user's ATTACK\nand DEFENSE stats.
+The user smashes into\nthe foe. This cuts\nthe user's DEFENSE\nand SP.DEF stats.
 
 #org @DESC_BARB_BARRAGE
 Barbs that may poison\nare shot at the foe.\nIts power doubles if\nthe foe is poisoned.
 
 #org @DESC_ESPER_WING
-//The foe is slashed\nwith wings of light.\nThis has a high crit\nratio and goes first.
-The foe is slashed\nwith wings of light.\nThis goes first and\nhas a high crit ratio.
+The foe is slashed\nwith wings of light.\nThis raises SPEED and\nhas a high crit ratio.
 
 #org @DESC_BITTER_MALICE
 #ifdef FROSTBITE
@@ -1280,7 +1279,7 @@ Resentment that may\nfreeze hits the foe.\nIts power doubles if\nthe foe is froz
 The user makes its\nskin iron-hard to\nraise its DEFENSE,\nSP.DEF and evasiveness.
 
 #org @DESC_TRIPLE_ARROWS
-The foe is shot with\narrows that raise the\ncrit ratio and lower\nthe foe's DEFENSE.
+The foe is shot with\narrows that raise the\ncrit ratio and may\nlower foe's DEFENSE.
 
 #org @DESC_INFERNAL_PARADE
 Myriad fireballs that\nmay burn hit the foe.\nIts power doubles if\nthe foe is burned.
@@ -1302,13 +1301,13 @@ The user savagely\nattacks with wind\nand lightning. This\nmay cause paralysis.
 The user attacks\nwith fierce winds\nand hot sand. This\nmay cause a burn.
 
 #org @DESC_SPRINGTIDE_STORM
-The user attacks\nwith love and hate.\nThe effects depend\non the user's form.
+The user attacks\nwith love and hate.\nThis may also lower\nfoes' ATTACK stat.
 
 #org @DESC_LUNAR_BLESSING
 The user heals its\nown statuses and\nrestores HP. It also\nraises evasiveness.
 
 #org @DESC_TAKE_HEART
-The user heals its\nown statuses and\nraises all its\nstats.
+If the user's\nsuffering, it heals its\nown statuses and\nraises all its\nstats.
 
 #org @DESC_MAX_GUARD
 Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
@@ -1485,7 +1484,7 @@ The user attacks by\nshooting out rusty\nwater. It's super\neffective against ST
 The user dizzyingly\ndances then attacks\ntwo to five times in\nusccession. It may\nleave the foe with\nconfusion.
 
 #org @DESC_NATUREBREAK
-The user calls to\nmother nature for a\ndevastating attack.\nIt also cuts the\nuser's DEFENSE and\nSP. DEF stats.
+The user calls to\nmother nature for a\ndevastating attack.\nIt also cuts the\nuser's SP.ATK and\nSP. DEF stats.
 
 #org @DESC_METALARROWS
 The user shoots out\nbarrows made out of\nsteel. Can knock down\nPOK\eMON to the\nground and lower its\nSPEED.

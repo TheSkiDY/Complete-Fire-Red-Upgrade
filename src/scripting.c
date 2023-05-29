@@ -2943,7 +2943,7 @@ void ConvertCoinInt(u32 coinAmount)
 
 void DebugFunc(void)
 {
-	MgbaPrintfBounded(MGBA_LOG_INFO, "Entered BS_079_Substitute");
+	
 }
 
 void DebugFunc2(void)

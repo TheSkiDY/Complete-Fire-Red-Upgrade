@@ -4090,7 +4090,7 @@ AquaRingBS:
 BS_182_Superpower:
 	jumpifmove MOVE_CLOSECOMBAT CloseCombatBS
 	jumpifmove MOVE_DRAGONASCENT CloseCombatBS
-	jumpifmove MOVE_NATUREBREAK CloseCombatBS
+	jumpifmove MOVE_HEADLONGRUSH CloseCombatBS
 	jumpifmove MOVE_ARMORCANNON CloseCombatBS
 	jumpifmove MOVE_HAMMERARM HammerArmBS
 	jumpifmove MOVE_ICEHAMMER HammerArmBS
@@ -4098,6 +4098,7 @@ BS_182_Superpower:
 	jumpifmove MOVE_VCREATE VCreateBS
 	jumpifmove MOVE_HYPERSPACEFURY HyperspaceFuryBS
 	jumpifmove MOVE_SPINOUT SpinOutBS
+	jumpifmove MOVE_NATUREBREAK NatureBreakBS
 	setmoveeffect MOVE_EFFECT_ATK_DEF_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BS_STANDARD_HIT
 
@@ -4184,6 +4185,33 @@ SpinOutBS:
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	goto BS_STANDARD_HIT
 
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+NatureBreakBS:
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+	jumpifstat BANK_ATTACKER GREATERTHAN STAT_SPATK STAT_MIN NB_LowerSpAtk
+	jumpifstat BANK_ATTACKER EQUALS STAT_SPDEF STAT_MIN BS_MOVE_FAINT
+
+NB_LowerSpAtk:
+	setbyte STAT_ANIM_PLAYED 0x0
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_SPATK | STAT_ANIM_SPDEF, STAT_ANIM_DOWN | STAT_ANIM_IGNORE_ABILITIES
+NB_SkipTo:
+	setstatchanger STAT_SPATK | DECREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN NB_LowerSpDef
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 NB_LowerSpDef
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+NB_LowerSpDef:
+	setstatchanger STAT_SPDEF | DECREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN BS_MOVE_FAINT
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BS_MOVE_FAINT
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_FAINT
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -5181,6 +5209,10 @@ CalmMind_SpDef:
 TakeHeartBS: @;Also heals status conditions
 	attackstring
 	ppreduce
+	jumpifstatus BANK_TARGET STATUS_ANY TakeHeartAfterStatusCheck
+	goto FAILED
+
+TakeHeartAfterStatusCheck:
 	cureifburnedparalysedorpoisoned TakeHeart_CheckStats
 	attackanimation
 	waitanimation

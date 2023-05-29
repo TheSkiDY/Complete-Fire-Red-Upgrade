@@ -7,6 +7,8 @@ build/*
 *.dmp
 *.bak
 *.lnk
+*.rar
+*.zip
 *.sav
 *.sa1
 *.sg1
