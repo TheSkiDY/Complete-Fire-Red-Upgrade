@@ -91,6 +91,7 @@ static s32 mini_itoa(u32 value, u32 radix, s32 uppercase, bool32 unsig, char *bu
     char *pbuffer = buffer;
     s32 negative = 0;
     s32 i, len;
+    u32 tempradix = 10;        
 
     /* No support for unusual radixes. */
     if (radix > 16)
@@ -105,9 +106,9 @@ static s32 mini_itoa(u32 value, u32 radix, s32 uppercase, bool32 unsig, char *bu
     /* This builds the string back to front ... */
     do 
     {
-        s32 digit = value % radix;
+        s32 digit = value % tempradix;
         *(pbuffer++) = (digit < 10 ? '0' + digit : (uppercase ? 'A' : 'a') + digit - 10);
-        value /= radix;
+        value /= tempradix;
     } while (value > 0);
 
     if (negative)

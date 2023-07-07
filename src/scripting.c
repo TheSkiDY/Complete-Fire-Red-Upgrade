@@ -2943,7 +2943,7 @@ void ConvertCoinInt(u32 coinAmount)
 
 void DebugFunc(void)
 {
-	
+
 }
 
 void DebugFunc2(void)
