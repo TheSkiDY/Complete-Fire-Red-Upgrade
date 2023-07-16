@@ -1651,11 +1651,11 @@ The user shoots\nmystical beams from\nits eyes to inflict\ndamage. The target is
 #org @DESC_WICKEDTORQUE
 A powerful move that\nhas a 10% chance of\nputting the target to\nsleep.
 
-#org @DESC_EMPTYSLOT_63X
-Empty move.
+#org @DESC_HYDROSTEAM
+User blasts with\nboiling water. Power\nis not lowered in\nharsh sun, but rather\nboosted by 50%.
 
-#org @DESC_EMPTYSLOT_64X
-Empty move.
+#org @DESC_PSYBLADE
+User rends the target\nwith an etheral\nblade. Power is\nboosted by 50%\nif the user is on\nElectric Terrain.
 
 #org @DESC_EMPTYSLOT_65X
 Empty move.

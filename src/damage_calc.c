@@ -3362,11 +3362,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 					damage = (damage * 15) / 10;
 					break;
 				case TYPE_WATER:
-					if(move == MOVE_HYDROSTEAM){
-						damage = (damage * 15) / 10;
-					}else{
+					if(move != MOVE_HYDROSTEAM){
 						damage /= 2;
-					}					
+					}		
 					break;
 			}
 		}
@@ -4145,6 +4143,16 @@ static u16 GetBasePower(struct DamageCalc* data)
 		case MOVE_RAGEFIST: ;
 			u8 hits = MathMin(6, gBattleStruct->hitCounter[SIDE(bankAtk)][gBattlerPartyIndexes[bankAtk]]);
 			power = (hits * 50) + power;
+			break;
+
+		case MOVE_HYDROSTEAM:
+			if(gBattleWeather & WEATHER_SUN_ANY)
+				power = (power * 15) / 10;
+			break;
+
+		case MOVE_PSYBLADE:
+			if(gTerrainType == ELECTRIC_TERRAIN)
+				power = (power * 15) / 10;
 			break;
 
 		default:

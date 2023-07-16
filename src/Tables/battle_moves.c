@@ -13293,18 +13293,18 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = 0
 	},
 
-	[MOVE_EMPTYSLOT_64X] = 
+	[MOVE_PSYBLADE] = 
 	{
 		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
+		.power = 80,
+		.type = TYPE_PSYCHIC,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 160,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
@@ -19353,8 +19353,8 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_TWINBEAM] = 140,
 	[MOVE_WICKEDTORQUE] = 150,
 	[MOVE_HYDROSTEAM] = 130,
+	[MOVE_PSYBLADE] = 130,
 
-	[MOVE_EMPTYSLOT_64X] = 100,
 	[MOVE_EMPTYSLOT_65X] = 100,
 	[MOVE_EMPTYSLOT_66X] = 100,
 	[MOVE_EMPTYSLOT_67X] = 100,

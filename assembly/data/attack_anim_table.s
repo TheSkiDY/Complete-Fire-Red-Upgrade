@@ -874,7 +874,7 @@ gMoveAnimations:
 .word ANIM_TWINBEAM
 .word ANIM_WICKEDTORQUE
 .word ANIM_HYDROSTEAM
-.word ANIM_EMPTYSLOT_64X
+.word ANIM_PSYBLADE
 .word ANIM_EMPTYSLOT_65X
 .word ANIM_EMPTYSLOT_66X
 .word ANIM_EMPTYSLOT_67X
@@ -29952,9 +29952,48 @@ ANIM_HYDROSTEAM:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_64X:
-	goto 0x81c6f34
+.equ PSYBLADE_FLIGHT_TIME, 0x18
+.equ PSYBLADE_GAP_TIME, 0x5
+
+@Credits to Skeli & Tokagero
+ANIM_PSYBLADE:
+	loadparticle ANIM_TAG_PUNISHMENT_BLADES
+	launchtask AnimTask_BlendParticle 0x5 0x5 ANIM_TAG_PUNISHMENT_BLADES 0x0 0xC 0xC 0x6804 @;Darkviolet
+	call SET_PSYCHIC_BG
+	pokespritetoBG bank_target
+	leftbankBG_over_partnerBG bank_target
+	setblends 0x80C
+	soundcomplex 0x99 SOUND_PAN_ATTACKER, PSYBLADE_GAP_TIME, 3
+	call PSYBLADE_BLADE_FIRE
+	pause PSYBLADE_GAP_TIME
+	call PSYBLADE_BLADE_FIRE
+	pause PSYBLADE_GAP_TIME
+	call PSYBLADE_BLADE_FIRE
+	pause PSYBLADE_FLIGHT_TIME - PSYBLADE_GAP_TIME - PSYBLADE_GAP_TIME - PSYBLADE_GAP_TIME
+	launchtask AnimTask_move_bank_2 0x2 0x5 0x1 0x3 0x0 0x14 0x1
+	launchtask AnimTask_pal_fade_complex 0x2 0x6 PAL_DEF 0x1 0x2 0x0 0xb 0x6804  @;Quick fade to darkviolet
+	soundcomplex 0x81 SOUND_PAN_TARGET, PSYBLADE_GAP_TIME, 3
+	waitanimation
+	call UNSET_SCROLLING_BG
+	pokespritefromBG bank_target
+	stopmusic
 	endanimation
+
+PSYBLADE_BLADE_FIRE:
+	launchtask AnimTask_IsTargetPlayerSide 0x2 0x0
+	jumpifargmatches 0x7 bank_target PSYBLADE_OPPONENT_ATTACK
+	launchtemplate PSYBLADE_BLADE TEMPLATE_TARGET | 2, 0x3, 0x0 0x0 PSYBLADE_FLIGHT_TIME
+	return
+
+PSYBLADE_OPPONENT_ATTACK:
+	launchtemplate PSYBLADE_BLADE_OPPONENT TEMPLATE_TARGET | 2, 0x3, 0x0 0x0 PSYBLADE_FLIGHT_TIME
+	return
+
+.align 2
+PSYBLADE_BLADE: objtemplate ANIM_TAG_PUNISHMENT_BLADES ANIM_TAG_PUNISHMENT_BLADES OAM_DOUBLE_BLEND_32x32 gDummySpriteAnimTable 0x0 gSpriteAffineAnimTable_GrowingFist 0x80B563D
+PSYBLADE_BLADE_OPPONENT: objtemplate ANIM_TAG_PUNISHMENT_BLADES ANIM_TAG_PUNISHMENT_BLADES OAM_DOUBLE_BLEND_32x32 gDummySpriteAnimTable 0x0 gSpriteAffineAnimTable_PsychoCutOpponent 0x80B563D
+
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
