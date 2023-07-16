@@ -873,7 +873,7 @@ gMoveAnimations:
 .word ANIM_TRIPLEDIVE
 .word ANIM_TWINBEAM
 .word ANIM_WICKEDTORQUE
-.word ANIM_EMPTYSLOT_63X
+.word ANIM_HYDROSTEAM
 .word ANIM_EMPTYSLOT_64X
 .word ANIM_EMPTYSLOT_65X
 .word ANIM_EMPTYSLOT_66X
@@ -29946,8 +29946,8 @@ ANIM_WICKEDTORQUE:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
-ANIM_EMPTYSLOT_63X:
-	goto 0x81c6f34
+ANIM_HYDROSTEAM:
+	goto ANIM_HYDROPUMP
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

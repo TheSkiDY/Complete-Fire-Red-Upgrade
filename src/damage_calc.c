@@ -3362,7 +3362,11 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 					damage = (damage * 15) / 10;
 					break;
 				case TYPE_WATER:
-					damage /= 2;
+					if(move == MOVE_HYDROSTEAM){
+						damage = (damage * 15) / 10;
+					}else{
+						damage /= 2;
+					}					
 					break;
 			}
 		}

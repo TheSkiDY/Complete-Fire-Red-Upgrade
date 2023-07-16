@@ -40,15 +40,16 @@ TechnologyGuy_Debug:
 	setvar 0x8004 0xF
 	special 0x62
 	givepokemon SPECIES_EXEGGCUTE 15 0 0 0 0
+		@setvar 0x8000 MOVE_HYDROSTEAM
 	givepokemon SPECIES_DIALGA 15 0 0 0 0
 	givepokemon SPECIES_PALKIA 15 0 0 0 0
 	givepokemon SPECIES_GIRATINA 15 0 0 0 0
 	givepokemon SPECIES_ORICORIO_Y 15 0 0 0 0
-		@setvar 0x8000 MOVE_DISCHARGE
-		@setvar 0x8001 MOVE_AGILITY
-		@setvar 0x8002 MOVE_DRAGONBREATH
-		@setvar 0x8002 MOVE_SNAPTRAP
-	givepokemon SPECIES_CHARCADET 15 0 0 0 0
+	setvar 0x8000 MOVE_HYDROSTEAM
+	setvar 0x8001 MOVE_SUNNYDAY
+	setvar 0x8002 MOVE_TAILWHIP
+	setvar 0x8003 MOVE_GROWL
+	givepokemon SPECIES_MIRAIDON 15 0 0 1 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x820
 	setflag 0x821

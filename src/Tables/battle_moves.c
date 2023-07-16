@@ -13277,19 +13277,19 @@ const struct BattleMove gBattleMoves[] =
 		.z_move_effect = 0
 	},
 
-	[MOVE_EMPTYSLOT_63X] = 
+	[MOVE_HYDROSTEAM] = 
 	{
 		.effect = EFFECT_HIT,
-		.power = 40,
-		.type = TYPE_NORMAL,
+		.power = 80,
+		.type = TYPE_WATER,
 		.accuracy = 100,
-		.pp = 35,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
-		.split = SPLIT_PHYSICAL,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 160,
+		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 
@@ -19352,8 +19352,8 @@ const u8 gDynamaxMovePowers[MOVES_COUNT] =
 	[MOVE_TRIPLEDIVE] = 130,
 	[MOVE_TWINBEAM] = 140,
 	[MOVE_WICKEDTORQUE] = 150,
+	[MOVE_HYDROSTEAM] = 130,
 
-	[MOVE_EMPTYSLOT_63X] = 100,
 	[MOVE_EMPTYSLOT_64X] = 100,
 	[MOVE_EMPTYSLOT_65X] = 100,
 	[MOVE_EMPTYSLOT_66X] = 100,
