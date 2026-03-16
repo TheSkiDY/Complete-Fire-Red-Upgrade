@@ -138,7 +138,7 @@ void SetStatSwapSplit(void)
 			gBattleMons[bankAtk].defense = temp;
 			gStatuses3[bankAtk] ^= STATUS3_POWER_TRICK;
 
-			string = PowerTrickString;
+			string = gText_PowerTrick;
 			break;
 
 		case MOVE_POWERSHIFT: //Swaps both offenses with both defenses
@@ -161,7 +161,7 @@ void SetStatSwapSplit(void)
 			STAT_STAGE(bankDef, STAT_STAGE_ATK) = atkAtkBuff;
 			STAT_STAGE(bankDef, STAT_STAGE_SPATK) = atkSpAtkBuff;
 
-			string = PowerSwapString;
+			string = gText_PowerSwap;
 			break;
 
 		case MOVE_GUARDSWAP:	;
@@ -172,7 +172,7 @@ void SetStatSwapSplit(void)
 			STAT_STAGE(bankDef, STAT_STAGE_DEF) = atkDefBuff;
 			STAT_STAGE(bankDef, STAT_STAGE_SPDEF) = atkSpDefBuff;
 
-			string = GuardSwapString;
+			string = gText_GuardSwap;
 			break;
 
 		case MOVE_SPEEDSWAP:
@@ -180,7 +180,7 @@ void SetStatSwapSplit(void)
 			gBattleMons[bankAtk].speed = gBattleMons[bankDef].speed;
 			gBattleMons[bankDef].speed = temp;
 
-			string = SpeedSwapString;
+			string = gText_SpeedSwap;
 			break;
 
 		case MOVE_HEARTSWAP:
@@ -191,7 +191,7 @@ void SetStatSwapSplit(void)
 				gBattleMons[bankDef].statStages[i] = temp;
 			}
 
-			string = HeartSwapString;
+			string = gText_HeartSwap;
 			break;
 
 		case MOVE_POWERSPLIT:	;
@@ -203,7 +203,7 @@ void SetStatSwapSplit(void)
 			gBattleMons[bankDef].attack = MathMax(1, newAtk);
 			gBattleMons[bankDef].spAttack = MathMax(1, newSpAtk);
 
-			string = PowerSplitString;
+			string = gText_PowerSplit;
 			break;
 
 		case MOVE_GUARDSPLIT:	;
@@ -215,7 +215,7 @@ void SetStatSwapSplit(void)
 			gBattleMons[bankDef].defense = MathMax(1, newDef);
 			gBattleMons[bankDef].spDefense = MathMax(1, newSpDef);
 
-			string = GuardSplitString;
+			string = gText_GuardSplit;
 	}
 
 	gBattleStringLoader = string;
@@ -709,7 +709,7 @@ void SetPledgeEffect(void)
 			if (!BankSideHasSwamp(gBankTarget))
 			{
 				gNewBS->SwampTimers[SIDE(gBankTarget)] = 5;
-				gBattleStringLoader = SwampString;
+				gBattleStringLoader = gText_Swamp;
 				//gBattleScripting.animArg1 = B_ANIM_SWAMP;
 			}
 			else
@@ -720,7 +720,7 @@ void SetPledgeEffect(void)
 			if (!BankSideHasSeaOfFire(gBankTarget))
 			{
 				gNewBS->SeaOfFireTimers[SIDE(gBankTarget)] = 5;
-				gBattleStringLoader = SeaOfFireString;
+				gBattleStringLoader = gText_SeaOfFire;
 				gBattleScripting.animArg1 = B_ANIM_SEA_OF_FIRE;
 			}
 			else
@@ -731,7 +731,7 @@ void SetPledgeEffect(void)
 			if (!BankSideHasRainbow(gBankTarget))
 			{
 				gNewBS->RainbowTimers[SIDE(gBankTarget)] = 5;
-				gBattleStringLoader = RainbowString;
+				gBattleStringLoader = gText_Rainbow;
 				//BattleScripting->animArg1 = B_ANIM_RAINBOW;
 			}
 			else
@@ -805,7 +805,7 @@ void DoBattleFieldEffect(void)
 			if (gNewBS->TrickRoomTimer > 0)
 			{
 				gNewBS->TrickRoomTimer = 0;
-				gBattleStringLoader = TrickRoomEndString;
+				gBattleStringLoader = gText_TrickRoomEnd;
 			}
 			else if (!IsTrickRoomActive())
 			{
@@ -820,7 +820,7 @@ void DoBattleFieldEffect(void)
 			if (gNewBS->WonderRoomTimer > 0)
 			{
 				gNewBS->WonderRoomTimer = 0;
-				gBattleStringLoader = WonderRoomEndString;
+				gBattleStringLoader = gText_WonderRoomEnd;
 			}
 			else if (!IsWonderRoomActive())
 			{
@@ -835,7 +835,7 @@ void DoBattleFieldEffect(void)
 			if (gNewBS->MagicRoomTimer)
 			{
 				gNewBS->MagicRoomTimer = 0;
-				gBattleStringLoader = MagicRoomEndString;
+				gBattleStringLoader = gText_MagicRoomEnd;
 			}
 			else if (!IsMagicRoomActive())
 			{
@@ -850,7 +850,7 @@ void DoBattleFieldEffect(void)
 			if (gNewBS->GravityTimer > 0)
 			{
 				gNewBS->GravityTimer = 0;
-				gBattleStringLoader = GravityEndString;
+				gBattleStringLoader = gText_GravityEnd;
 			}
 			else if (!IsGravityActive())
 			{
@@ -1927,11 +1927,11 @@ void UndoAbilityEffectsForNeutralizingGas(void)
 	gBattleStringLoader = NULL;
 
 	if (gBattleWeather & WEATHER_RAIN_PRIMAL)
-		gBattleStringLoader = PrimalRainEndString;
+		gBattleStringLoader = gText_PrimalRainEnd;
 	else if (gBattleWeather & WEATHER_SUN_PRIMAL)
-		gBattleStringLoader = PrimalSunEndString;
+		gBattleStringLoader = gText_PrimalSunEnd;
 	else if (gBattleWeather & WEATHER_AIR_CURRENT_PRIMAL)
-		gBattleStringLoader = PrimalAirCurrentEndString;
+		gBattleStringLoader = gText_PrimalAirCurrentEnd;
 
 	if (gBattleStringLoader != NULL)
 	{

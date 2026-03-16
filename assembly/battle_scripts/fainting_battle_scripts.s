@@ -62,7 +62,7 @@ BattleScript_FaintScriptingBank:
 	pokemonfaintcry BANK_FAINTED
 	pause 0x30
 	dofaintanimation BANK_FAINTED
-	setword BATTLE_STRING_LOADER ScriptingBankFainted
+	setword BATTLE_STRING_LOADER gText_ScriptingBankFainted
 	printstring 0x184
 	cleareffectsonfaint BANK_FAINTED
 	printstring 0x130
@@ -115,6 +115,3 @@ BattleScript_BenjaminButterfreeDevolution:
 	tryactivateswitchinability BANK_EFFECT
 	callasm RestoreOriginalAttackerAndTarget
 	return
-
-.align 2
-ScriptingBankFainted: .byte 0xFD, 0x13, 0xFE, 0xDA, 0xD5, 0xDD, 0xE2, 0xE8, 0xD9, 0xD8, 0xAB, 0xFA, 0xFF

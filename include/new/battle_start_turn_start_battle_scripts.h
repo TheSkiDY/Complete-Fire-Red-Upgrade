@@ -47,3 +47,13 @@ extern const u8 gText_WeightSpeedBattleStart[];
 extern const u8 gText_PixieBattleStart[];
 extern const u8 gText_ShadowShieldBattleStart[];
 extern const u8 gText_RainbowBattleStart[];
+
+extern const u8 gText_AirBalloonEntry[];
+extern const u8 gText_TotemAuraFlared[];
+extern const u8 gText_PrimalReversion[];
+extern const u8 gText_ElectricTerrainBattleBegin[];
+extern const u8 gText_GrassyTerrainBattleBegin[];
+extern const u8 gText_MistyTerrainBattleBegin[];
+extern const u8 gText_PsychicTerrainBattleBegin[];
+extern const u8 gText_BeakBlastWarmUp[];
+extern const u8 gText_ShellTrapSet[];

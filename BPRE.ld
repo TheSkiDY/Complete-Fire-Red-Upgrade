@@ -1260,6 +1260,7 @@ MallocInit = 0x8002B80 | 1;
 Malloc = 0x8002B9C | 1;
 malloc_ = 0x8002B9C | 1;
 Calloc = 0x8002BB0 | 1;
+Alloc = 0x8002B9C | 1;
 AllocZeroed = 0x8002BB0 | 1;
 calloc_ = 0x8002BB0 | 1;
 Free = 0x8002BC4 | 1;

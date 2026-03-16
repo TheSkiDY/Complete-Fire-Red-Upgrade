@@ -811,6 +811,89 @@ gMoveAnimations:
 .word ANIM_LUNAR_BLESSING
 .word ANIM_TAKE_HEART
 
+.word ANIM_ZIPPYZAP
+.word ANIM_SPLISHYSPLASH
+.word ANIM_FLOATYFALL
+.word ANIM_PIKAPAPOW
+.word ANIM_BOUNCYBUBBLE
+.word ANIM_BUZZYBUZZ
+.word ANIM_SIZZLYSLIDE
+.word ANIM_GLITZYGLOW
+.word ANIM_BADDYBAD
+.word ANIM_SAPPYSEED
+.word ANIM_FREEZYFROST
+.word ANIM_SPARKLYSWIRL
+.word ANIM_VEEVEEVOLLEY
+.word ANIM_TERABLAST
+.word ANIM_SILKTRAP
+.word ANIM_AXEKICK
+.word ANIM_LASTRESPECTS
+.word ANIM_LUMINACRASH
+.word ANIM_ORDERUP
+.word ANIM_JETPUNCH
+.word ANIM_SPICYEXTRACT
+.word ANIM_SPINOUT
+.word ANIM_POPULATIONBOMB
+.word ANIM_ICESPINNER
+.word ANIM_GLAIVERUSH
+.word ANIM_REVIVALBLESSING
+.word ANIM_SALTCURE
+.word ANIM_TRIPLEDIVE
+.word ANIM_MORTALSPIN
+.word ANIM_DOODLE
+.word ANIM_FILLETAWAY
+.word ANIM_KOWTOWCLEAVE
+.word ANIM_FLOWERTRICK
+.word ANIM_TORCHSONG
+.word ANIM_AQUASTEP
+.word ANIM_RAGINGBULL
+.word ANIM_MAKEITRAIN
+.word ANIM_PSYBLADE
+.word ANIM_HYDROSTEAM
+.word ANIM_RUINATION
+.word ANIM_COLLISIONCOURSE
+.word ANIM_ELECTRODRIFT
+.word ANIM_SHEDTAIL
+.word ANIM_CHILLYRECEPTION
+.word ANIM_TIDYUP
+.word ANIM_POUNCE
+.word ANIM_TRAILBLAZE
+.word ANIM_CHILLINGWATER
+.word ANIM_HYPERDRILL
+.word ANIM_TWINBEAM
+.word ANIM_RAGEFIST
+.word ANIM_ARMORCANNON
+.word ANIM_BITTERBLADE
+.word ANIM_DOUBLESHOCK
+.word ANIM_GIGATONHAMMER
+.word ANIM_COMEUPPANCE
+.word ANIM_AQUACUTTER
+.word ANIM_BLAZINGTORQUE
+.word ANIM_WICKEDTORQUE
+.word ANIM_NOXIOUSTORQUE
+.word ANIM_COMBATTORQUE
+.word ANIM_MAGICALTORQUE
+.word ANIM_BLOODMOON
+.word ANIM_MATCHAGOTCHA
+.word ANIM_SYRUPBOMB
+.word ANIM_IVYCUDGEL
+.word ANIM_ELECTROSHOT
+.word ANIM_TERASTARSTORM
+.word ANIM_FICKLEBEAM
+.word ANIM_BURNINGBULWARK
+.word ANIM_THUNDERCLAP
+.word ANIM_MIGHTYCLEAVE
+.word ANIM_TACHYONCUTTER
+.word ANIM_HARDPRESS
+.word ANIM_DRAGONCHEER
+.word ANIM_ALLURINGVOICE
+.word ANIM_TEMPERFLARE
+.word ANIM_SUPERCELLSLAM
+.word ANIM_PSYCHICNOISE
+.word ANIM_UPPERHAND
+.word ANIM_MALIGNANTCHAIN
+.word ANIM_NIHILLIGHT
+
 @;New attacks go above!
 .word ANIM_BREAKNECK_BLITZ
 .word ANIM_BREAKNECK_BLITZ
@@ -28764,6 +28847,499 @@ ANIM_G_MAX_ONE_BLOW:
 @Credits to -
 ANIM_G_MAX_RAPID_FLOW:
 	goto ANIM_AQUAJET
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ZIPPYZAP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SPLISHYSPLASH:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_FLOATYFALL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_PIKAPAPOW:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BOUNCYBUBBLE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BUZZYBUZZ:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SIZZLYSLIDE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_GLITZYGLOW:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BADDYBAD:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SAPPYSEED:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_FREEZYFROST:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SPARKLYSWIRL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_VEEVEEVOLLEY:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TERABLAST:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SILKTRAP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_AXEKICK:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_LASTRESPECTS:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_LUMINACRASH:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ORDERUP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_JETPUNCH:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SPICYEXTRACT:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SPINOUT:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_POPULATIONBOMB:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ICESPINNER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_GLAIVERUSH:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_REVIVALBLESSING:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SALTCURE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TRIPLEDIVE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MORTALSPIN:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_DOODLE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_FILLETAWAY:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_KOWTOWCLEAVE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_FLOWERTRICK:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TORCHSONG:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_AQUASTEP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_RAGINGBULL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MAKEITRAIN:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_PSYBLADE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_HYDROSTEAM:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_RUINATION:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_COLLISIONCOURSE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ELECTRODRIFT:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SHEDTAIL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_CHILLYRECEPTION:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TIDYUP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_POUNCE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TRAILBLAZE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_CHILLINGWATER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_HYPERDRILL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TWINBEAM:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_RAGEFIST:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ARMORCANNON:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BITTERBLADE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_DOUBLESHOCK:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_GIGATONHAMMER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_COMEUPPANCE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_AQUACUTTER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BLAZINGTORQUE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_WICKEDTORQUE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_NOXIOUSTORQUE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_COMBATTORQUE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MAGICALTORQUE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BLOODMOON:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MATCHAGOTCHA:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SYRUPBOMB:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_IVYCUDGEL:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ELECTROSHOT:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TERASTARSTORM:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_FICKLEBEAM:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_BURNINGBULWARK:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_THUNDERCLAP:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MIGHTYCLEAVE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TACHYONCUTTER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_HARDPRESS:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_DRAGONCHEER:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_ALLURINGVOICE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_TEMPERFLARE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_SUPERCELLSLAM:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_PSYCHICNOISE:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_UPPERHAND:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_MALIGNANTCHAIN:
+	goto 0x81c6f34	@MOVE_POUND
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+@Credits to -
+ANIM_NIHILLIGHT:
+	goto 0x81c6f34	@MOVE_POUND
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

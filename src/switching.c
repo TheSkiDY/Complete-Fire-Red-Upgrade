@@ -152,16 +152,16 @@ static bool8 TryRemovePrimalWeather(u8 bank, u8 ability)
 			&& !FlagGet(FLAG_PRIMORDIAL_SEA_BATTLE) //Should continue to rain even if mon leaves the field
 			#endif
 			)
-				gBattleStringLoader = PrimalRainEndString;
+				gBattleStringLoader = gText_PrimalRainEnd;
 			break;
 		case ABILITY_DESOLATELAND:
 			if (gBattleWeather & WEATHER_SUN_PRIMAL)
-				gBattleStringLoader = PrimalSunEndString;
+				gBattleStringLoader = gText_PrimalSunEnd;
 			break;
 		case ABILITY_DELTASTREAM:
 			if (gBattleWeather & WEATHER_AIR_CURRENT_PRIMAL
 			&& !IsDeltaStreamBattle()) //Should continue to blow even if mon leaves the field
-				gBattleStringLoader = PrimalAirCurrentEndString;
+				gBattleStringLoader = gText_PrimalAirCurrentEnd;
 			break;
 	}
 

@@ -41,7 +41,7 @@ It was alerted to\n[EFFECT_BANK]'s\l[BUFFER][00]!
 [SCRIPTING_BANK] frisked\n[EFFECT_BANK] and found\lits [LAST_ITEM]!
 
 #org @gText_ItIsHailing
-It is hailing.
+It is snowing.
 
 #org @gText_FogIsDeep
 The fog is deep[.]
@@ -53,7 +53,7 @@ A heavy rain began to fall!
 The sunlight turned extremely harsh!
 
 #org @gText_DeltaStream
-Mysterious strong winds are protecting\nFlying-type Pok\emon!
+Mysterious strong winds are protecting\nFLYING-type POK\eMON!
 
 #org @gText_StrongWindsWeakenedAttack
 The mysterious strong winds\nweakened the attack!
@@ -74,7 +74,7 @@ But the vicious sandstorm refuses\nto let up!
 [SCRIPTING_BANK] got its\nact together!
 
 #org @gText_FlashFirePowerUp
-The power of [SCRIPTING_BANK]'s\nFire-type moves rose!
+The power of [SCRIPTING_BANK]'s\nFIRE-type moves rose!
 
 #org @gText_AbilityCuredStatusProblem
 [SCRIPTING_BANK] was cured of\nits [BUFFER][00] problem!
@@ -95,19 +95,19 @@ The power of [SCRIPTING_BANK]'s\nFire-type moves rose!
 [LAST_ABILITY] allows only\n[CURRENT_MOVE] to be used!\p
 
 #org @gText_IceFaceTookDamage
-The Ice Face took damage for\n[TARGET]!
+The ICE FACE took damage for\n[TARGET]!
 
 #org @gText_IceFaceBusted
-[TARGET]'s Ice Face\nshattered!
+[TARGET]'s ICE FACE\nshattered!
 
 #org @gText_ScreenCleanerActivate
 All screens on the field were\ncleansed!
 
 #org @gText_NeutralizingGasActivate
-Neutralizing Gas fills the area!
+NEUTRALIZING GAS fills the area!
 
 #org @gText_NeutralizingGasEnd
-The effects of Neutralizing Gas\nwore off!
+The effects of NEUTRALIZING GAS\nwore off!
 
 #org @gText_CuriousMedicineActivate
 [TARGET]'s stat changes\nwere removed!
@@ -126,3 +126,46 @@ But [TARGET] evaporated\nthe attack!
 
 #org @gText_ButAbilityEvaporatesRain
 But [SCRIPTING_BANK] evaporates\nrain!
+
+#org @gText_AdrenalineOrb
+[TARGET]'s ADRENALINE ORB\nraised its SPEED!
+
+#org @gText_HurtByAbility
+[TARGET]'s was hurt!
+
+#org @gText_BadDreamsHurt
+[TARGET] is tormented!
+
+#org @gText_Harvest
+[SCRIPTING_BANK] harvested\none [LAST_ITEM]!
+
+#org @gText_Pickup
+[SCRIPTING_BANK] found one\n[LAST_ITEM]!
+
+#org @gText_DestinyKnot
+[SCRIPTING_BANK] fell in love\nfrom the [LAST_ITEM]!
+
+#org @gText_Mummy
+[ATTACKER]'s ability\nbecame [TARGET_ABILITY]!
+
+#org @gText_AngerPoint
+[TARGET]'s [TARGET_ABILITY]\nmaxed its [BUFFER][00]!
+
+#org @gText_IllusionWoreOff
+[SCRIPTING_BANK]'s illusion\nwore off!
+
+#org @gText_SynchronizeNoEffect
+It had no effect on\n[TARGET][.]
+
+#org @gText_MimikyuDisguisedTookDamage
+[TARGET]'s disguise\nserved as its decoy!
+
+#org @gText_DisguiseBusted
+[TARGET]'s disguise\nwas busted!
+
+#org @gText_Receiver
+[SCRIPTING_BANK] took over [EFFECT_BANK]'s\n[EFFECT_BANK_ABILITY]!
+
+#org @gText_Defiant
+[SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY]\nsharply raised its [BUFFER][00]!
+

@@ -1,76 +1,76 @@
 //GUI Strings
 
 #org @gText_DexNavWater
-Water
+WATER
 
 #org @gText_DexNavLand
-Land
+LAND
 
 #org @gText_PinkFlowers
-Pink Flowers
+PINK FLOWERS
 
 #org @gText_YellowFlowers
-Yellow Flowers
+YELLOW FLOWERS
 
 #org @gText_RedFlowers
-Red Flowers
+RED FLOWERS
 
 #org @gText_BlueFlowers
-Blue Flowers
+BLUE FLOWERS
 
 #org @gText_PinkAndPurpleFlowers
-Pink-Purple Flowers
+PINK-PURPLE FLOWERS
 
 #org @gText_BlueAndYellowFlowers
-Blue-Yellow Flowers
+BLUE-YELLOW FLOWERS
 
 #org @gText_Magma
-Magma
+MAGMA
 
 #org @gText_Sand
-Sand
+SAND
 
 #org @gText_DexNavReeds
-Reeds
+REEDS
 
 #org @gText_DexNavDeepWater
-Deep Water
+DEEP WATER
 
 #org @gText_DexNav_Chain
-Chain: 
+CHAIN: 
 
 #org @gText_DexNav_CaptureToSee
 Capture first!
 
 #org @gText_DexNav_Walk
-Walk
+WALK
 
 #org @gText_DexNav_Surf
-Surf
+SURF
 
 #org @gText_DexNav_LavaSurf
-Lava Surf
+LAVA SURF
 
 #org @gText_DexNav_OldRod
-Old Rod
+OLD ROD
 
 #org @gText_DexNav_GoodRod
-Good Rod
+GOOD ROD
 
 #org @gText_DexNav_SuperRod
-Super Rod
+SUPER ROD
 
 #org @gText_DexNav_SurfOldRod
-Surf/Old Rod
+SURF/OLD ROD
 
 #org @gText_DexNav_SurfGoodRod
-Surf/Good Rod
+SURF/GOOD ROD
 
 #org @gText_DexNav_SurfSuperRod
-Surf/Super Rod
+SURF/SUPER ROD
 
 #org @gText_DexNav_Swarm
-Swarm
+SWARM
 
 #org @gText_DexNav_NoInfo
 --------
@@ -79,13 +79,13 @@ Swarm
 Unavailable
 
 #org @gText_DexNav_ListMenuRegister
-Register
+REGISTER
 
 #org @gText_DexNav_ListMenuScan
-Scan
+SCAN
 
 #org @gText_DexNav_ListMenuCancel
-Cancel
+CANCEL
 
 #org @gText_DexNav_PokemonSelected
 [BUFFER1] is selected.
@@ -94,25 +94,25 @@ Cancel
 The [BUFFER2] must be acquired\nbefore searching for [BUFFER1].[PAUSE_UNTIL_PRESS]
 
 #org @gText_DexNav_Invalid
-That Pok\emon can't be searched yet![PAUSE_UNTIL_PRESS]
+That POK\eMON can't be searched yet![PAUSE_UNTIL_PRESS]
 
 #org @gText_DexNav_NoDataForSlot
-There's no data for that Pok\emon[.][PAUSE_UNTIL_PRESS]
+There's no data for that POK\eMON[.][PAUSE_UNTIL_PRESS]
 
 #org @gText_DexNav_Locked
 [BUFFER1] is searchable via [R_BUTTON]![PAUSE_UNTIL_PRESS]
 
 #org @gText_DexNav_TooDark
-It's too dark to search for a Pok\emon![PAUSE_UNTIL_PRESS]
+It's too dark to search for a POK\eMON![PAUSE_UNTIL_PRESS]
 
 #org @gText_DexNav_NoPokemonHere
-No Pok\emon can be found here.[PAUSE_UNTIL_PRESS]
+No POK\eMON can be found here.[PAUSE_UNTIL_PRESS]
 
 
 //Field Strings
 
 #org @gText_DexNavDescription
-Search for wild Pok\emon in the area\nwith potential special qualities!
+Search for wild POK\eMON in the area\nwith potential special qualities!
 
 #org @gText_GotAway
 [BUFFER1] got away!
@@ -121,10 +121,10 @@ Search for wild Pok\emon in the area\nwith potential special qualities!
 [BUFFER1] got away!\nTry moving more slowly.
 
 #org @gText_PokemonGotAway
-The Pok\emon got away!
+The POK\eMON got away!
 
 #org @gText_PokemonGotAwayShouldSneak
-The Pok\emon got away!\nTry moving more slowly.
+The POK\eMON got away!\nTry moving more slowly.
 
 #org @gText_LostSignal
 There is no reaction.\nThe signal was lost!
@@ -139,10 +139,10 @@ That form of [BUFFER1] cannot\nbe found here.
 [BUFFER1] couldn't be found nearby.\nTry looking in a different area!
 
 #org @gText_TooDarkForDexNav
-It's too dark to search for\na Pok\emon!
+It's too dark to search for\na POK\eMON!
 
 #org @gText_DexNavDetectedRarePokemon
-Huh? The DexNav is detecting an\nunusual Pok\emon!
+Huh? The DexNav is detecting an\nunusual POK\eMON!
 
 #org @gText_DexNav_UpArrow
 [ARROW_UP]
@@ -157,7 +157,7 @@ Huh? The DexNav is detecting an\nunusual Pok\emon!
 [ARROW_RIGHT]
 
 #org @gText_DexNavHUDChainNumber
-No. 
+NO. 
 
 #org @gText_MenuCube
-Cube
+CUBE

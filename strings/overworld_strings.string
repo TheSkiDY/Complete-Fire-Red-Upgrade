@@ -1,5 +1,5 @@
 #org @gText_ChangeSaveType
-WRONG SAVE TYPE!\nPlease change to Flash 128k.\pIf you are using VBA, consider\nswitching to the superior [GREEN]mGBA[BLACK].\pIf you do not wish to, then follow\nthese instructions to fix the Save Type.\p[RED]VBA Instructions[BLACK]:\pFirst, click [GREEN]Options[BLACK] on the top bar.\pNext, under [GREEN]Emulator[BLACK], select the\n[GREEN]Save Type[BLACK] option.\pAnd then, click [GREEN]Flash 128K[BLACK].\pFinally, completely close and restart\nthe emulator.\p[RED]3DS Instructions[BLACK]:\pUse the [GREEN]New Super Ultimate VC Injector\nfor 3DS[BLACK] to create the CIA file.\pOnce open, confirm the [GREEN]ROM Save Type[BLACK]\nis set to the following:\p[GREEN]Flash 1Mbit (Macronix, ID: 0x09C2)\n+ RTC[BLACK].\pThe [GREEN]injection method[BLACK] must also be\nset to [GREEN]GBA Virtual Console[BLACK].\pIf your emulator was not mentioned,\nplease change emulators.
+WRONG SAVE TYPE!\nPlease change to FLASH 128K.\pIf you are using VBA, consider\nswitching to the superior [GREEN]mGBA[BLACK].\pIf you do not wish to, then follow\nthese instructions to fix the Save Type.\p[RED]VBA Instructions[BLACK]:\pFirst, click [GREEN]Options[BLACK] on the top bar.\pNext, under [GREEN]Emulator[BLACK], select the\n[GREEN]Save Type[BLACK] option.\pAnd then, click [GREEN]FLASH 128K[BLACK].\pFinally, completely close and restart\nthe emulator.\p[RED]3DS Instructions[BLACK]:\pUse the [GREEN]New Super Ultimate VC Injector\nfor 3DS[BLACK] to create the CIA file.\pOnce open, confirm the [GREEN]ROM Save Type[BLACK]\nis set to the following:\p[GREEN]Flash 1Mbit (Macronix, ID: 0x09C2)\n+ RTC[BLACK].\pThe [GREEN]injection method[BLACK] must also be\nset to [GREEN]GBA Virtual Console[BLACK].\pIf your emulator was not mentioned,\nplease change emulators.
 
 #org @gText_MainMenuEnableRTC
 WARNING!\pThe correct system time could\nnot be read.\pEnable the Real Time Clock (RTC),\nand make sure the time is correct.
@@ -11,19 +11,19 @@ WARNING!\pThe correct system time could\nnot be read.\pEnable the Real Time Cloc
 WARNING!\pRTC tampering has been detected\nin your save file!\pThe current ingame date is set to\n[BUFFER1]/[BUFFER2]/[BUFFER3].\pAll daily events such as gifts\nand Raids may cease to function\lproperly until the day after.\pPlease refrain from tampering\nwith the RTC again.
 
 #org @gText_UsedVar2WildStronger
-[BUFFER][01] used the\n[BUFFER][03].\pThe chance of encountering strong\nwild Pok\emon in this area increased.[FC][09]
+[BUFFER][01] used the\n[BUFFER][03].\pThe chance of encountering strong\nwild POK\eMON in this area increased.[FC][09]
 
 #org @gText_UsedVar2WildWeaker
-[BUFFER][01] used the\n[BUFFER][03].\pThe chance of encountering weak\nwild Pok\emon in this area increased.[FC][09]
+[BUFFER][01] used the\n[BUFFER][03].\pThe chance of encountering weak\nwild POK\eMON in this area increased.[FC][09]
 
 #org @gText_SecondBagItemCanBeRegisteredToL
-A second item in the Cube can be\nregistered to [L_BUTTON] for easy use.
+A second item in the BAG can be\nregistered to [L_BUTTON] for easy use.
 
 #org @gText_AutoRunEnable
-Auto-run has been [GREEN]enabled[BLACK].
+AUTO-RUN has been [GREEN]enabled[BLACK].
 
 #org @gText_AutoRunDisable
-Auto-run has been [GREEN]disabled[BLACK].
+AUTO-RUN has been [GREEN]disabled[BLACK].
 
 #org @gText_BikeTurboBoostEnable
 Turbo boost has been [GREEN]activated[BLACK].
@@ -32,13 +32,13 @@ Turbo boost has been [GREEN]activated[BLACK].
 Turbo boost has been [GREEN]deactivated[BLACK].
 
 #org @gText_SurfTurboBoostEnable
-Turbo Surf has been [GREEN]activated[BLACK].
+Turbo surf has been [GREEN]activated[BLACK].
 
 #org @gText_SurfTurboBoostDisable
-Turbo Surf has been [GREEN]deactivated[BLACK].
+Turbo surf has been [GREEN]deactivated[BLACK].
 
 #org @gText_PoisonSurvial
-[BUFFER][02] survived the Poison.\nThe Poison faded away!
+[BUFFER][02] survived the POISON.\nThe POISON faded away!
 
 #org @gText_ThrowInOnePremierBall
 You also get a [BUFFER][03] as\nan added bonus.[FC][09]
@@ -86,7 +86,7 @@ Obtained a [BUFFER][03]!\nIt contains [BUFFER][02].
 Use which item?
 
 #org @gText_ScurriedToNearestHealer
-[PLAYER] scurried to the nearest healer,\nprotecting the exhausted and fainted\nPok\emon from further harm[.]\p
+[PLAYER] scurried to the nearest healer,\nprotecting the exhausted and fainted\nPOK\eMON from further harm[.]\p
 
 #org @gText_WantToScaleCliff
 The wall is very rocky[.]\nWould you like to use [BUFFER2]?
@@ -98,7 +98,7 @@ The wall is very rocky[.]\nWould you like to use the ADM?
 The wall is very rocky[.]\nWould you like to scale it?
 
 #org @gText_RockIsRocky
-The wall is very rocky[.]\nWill a Pok\emon's move scale it?
+The wall is very rocky[.]\nWill a POK\eMON's move scale it?
 
 #org @gText_DefogBlewAwayFog
 [BUFFER1] blew away the fog!
@@ -158,10 +158,10 @@ Light is filtering down from above.\nWould you like to use the ADM?
 The ADM allowed you to resurface!
 
 #org @gText_CantDive
-The sea is deep here. A Pok\emon\nmay be able to go underwater.
+The sea is deep here. A POK\eMON\nmay be able to go underwater.
 
 #org @gText_CantSurface
-Light is filtering down from above.\nA Pok\emon may be able to surface.
+Light is filtering down from above.\nA POK\eMON may be able to surface.
 
 #org @gText_TVSwarm
 Calling all Trainers!\pA swarm of [GREEN][BUFFER2][BLACK] have appeared\naround [GREEN][BUFFER1][BLACK]!\pThis is a rare opportunity to get\nyour hands on a [BUFFER2], so\ldon't pass this chance up!\p[.]\pThis message is sponsored by\nCube Corp.
@@ -182,7 +182,7 @@ Look!\nYou've found a narrow path.\pWill you follow it?
 The narrow path went nowhere.
 
 #org @gText_WantToUseHeadbutt
-It's a moderately sized tree.\nWould you like to use Headbutt?
+It's a moderately sized tree.\nWould you like to use HEADBUTT?
 
 #org @gText_TreeCanBeHeadbutted
 There's a formidable tree that\nlooks like it can be headbutted!
@@ -204,19 +204,19 @@ You already own that TM.[FC][09]
 Sort this pocket's\nitems how?
 
 #org @gMenuText_ByType
-Type
+TYPE
 
 #org @gMenuText_ByName
-Name
+NAME
 
 #org @gMenuText_ByMost
-Most
+MOST
 
 #org @gMenuText_ByLeast
-Least
+LEAST
 
 #org @gMenuText_ByAmount
-Amount
+AMOUNT
 
 #org @gText_name
 name
@@ -242,13 +242,13 @@ Items sorted by\n[BUFFER1]!
 //Battle Tower Pokemon Select
 
 #org @gOtherText_NoMoreOnePoke
-No more than one Pok\emon\nmay enter.[FC][09]
+No more than one POK\eMON\nmay enter.[FC][09]
 
 #org @gOtherText_NoMoreFourPoke
-No more than four Pok\emon\nmay enter.[FC][09]
+No more than four POK\eMON\nmay enter.[FC][09]
 
 #org @gOtherText_NoMoreFivePoke
-No more than five Pok\emon\nmay enter.[FC][09]
+No more than five POK\eMON\nmay enter.[FC][09]
 
 #org @gText_First
 FIRST
@@ -269,22 +269,22 @@ FIFTH
 SIXTH
 
 #org @gText_PokemonAreNeeded
-[BUFFER][02] Pok\emon are needed.
+[BUFFER][02] POK\eMON are needed.
 
 #org @gText_EnterNumber
-Enter a Number
+Enter a NUMBER
 
 #org @gText_EnterPhrase
-Enter a Phrase
+Enter a PHRASE
 
 #org @gText_EnterPassword
-Enter Password
+Enter PASSWORD
 
 #org @gText_EnterSpeciesName
 Enter a Species
 
 #org @gText_Purchased
-Purchased
+PURCHASED
 
 #org @gText_StopZooming
 Stop zooming!

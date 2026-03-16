@@ -237,7 +237,7 @@ void atkFF06_setterrain(void)
 				//	gNewBS->terrainForcefullyRemoved = TRUE; //Screw this lol
 				type = 0;
 				gBattleScripting.animArg1 = B_ANIM_LOAD_DEFAULT_BG;
-				gBattleStringLoader = TerrainEndString;
+				gBattleStringLoader = gText_TerrainEnd;
 				break;
 		}
 	}
@@ -851,7 +851,7 @@ void atkFF1F_flowershieldlooper(void)
 			}
 			else if (priority && gBankAttacker != bank && gTerrainType == PSYCHIC_TERRAIN && CheckGrounding(bank))
 			{
-				gBattleStringLoader = PsychicTerrainAttackCancelString;
+				gBattleStringLoader = gText_PsychicTerrainAttackCancel;
 				gBattleCommunication[MULTISTRING_CHOOSER] = 5; //Protected by Psychic Terrain
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
 			}

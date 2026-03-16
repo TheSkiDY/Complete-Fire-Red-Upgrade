@@ -1620,7 +1620,7 @@ static const u8* TryUseFlashInDarkCave(void)
 
 	if (gSpecialVar_LastResult && HasBadgeToUseFlash())
 	{
-		if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_TM70_FLASH, 0)) < PARTY_SIZE)
+		if ((Var8004 = gFieldEffectArguments[0] = PartyHasMonWithFieldMovePotential(MOVE_FLASH, ITEM_HM05_FLASH, 0)) < PARTY_SIZE)
 			return EventScript_UseFlash;
 	}
 
@@ -2682,9 +2682,6 @@ bool8 TrySetupDiveDownScript(void)
 	&& TrySetDiveWarp() == 2)
 	{
 		u16 item = ITEM_NONE;
-		#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-		item = ITEM_HM05_DIVE;
-		#endif
 
 		#ifdef FLAG_BOUGHT_ADM
 		if (FlagGet(FLAG_BOUGHT_ADM))
@@ -2717,9 +2714,6 @@ bool8 TrySetupDiveEmergeScript(void)
 	&& TrySetDiveWarp() == 1)
 	{
 		u16 item = ITEM_NONE;
-		#ifdef ONLY_CHECK_ITEM_FOR_HM_USAGE
-		item = ITEM_HM05_DIVE;
-		#endif
 
 		#ifdef FLAG_BOUGHT_ADM
 		if (FlagGet(FLAG_BOUGHT_ADM))

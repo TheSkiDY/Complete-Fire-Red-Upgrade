@@ -46,6 +46,16 @@
 08079DBE 04 1C E1 F7 32 F8 0D 4A D9 21 C9 00 88 5C
 ##End of Optional Byte Changes##
 
+##16-Character Move Name Limiters##
+080BFA7C 11
+08125B7E 11
+08125C92 11
+08126036 11
+081260E8 11
+081261BC 11
+0812624A 11
+08126E0A 11
+
 ##Remove Things##
 ##Remove Help System
 0800051A C0 46 C0 46 C0 46 C0 46 C0 46
@@ -545,8 +555,8 @@
 08104B10 3C 58 02 02
 08104B94 3C 58 02 02
 #Caught Flags @0x20258B9
-08104B5C B9 58 02 02
-08104BB8 B9 58 02 02
+08104B5C E0 58 02 02
+08104BB8 E0 58 02 02
 
 ##gSelectedOrderFromParty 0x203C750##
 080A0360 50 C7 03 02
@@ -693,3 +703,32 @@
 08740F45 16 C2 50 32 00 16 00 80 00 00 25 67 00 02
 ##Battle BG
 087803A5 3
+
+#endif
+
+################################# NEW STUFF
+
+##Show pokemon seen instead of captured
+0800CF56 00 20
+0800CF64 00 20
+080F803C 00 20
+080F8044 00 20
+
+##Prevent the Pokemon from fleeing in the Safari Zone
+080169D4 00
+
+##Auto National Dex
+0806E25C 01 20 70 47
+
+##Remove HM animation
+080860C2 00 00 00 00 00 00 00 00 00 00 00 00
+
+##Allow space for 4 digits dex number
+08105F06 20
+08103A74 2A
+08136126 04
+
+##Fix TM Case Text Positions
+#08132036 AC
+#08463191 0E
+#084631A9 02

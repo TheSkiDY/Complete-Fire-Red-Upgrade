@@ -101,3 +101,64 @@ extern const u8 sText_YourCaps[];
 
 #define sText_Someones (u8*) 0x83FD81A
 #define sText_Bills	(u8*) 0x83FD824
+
+extern const u8 gText_ProtectedByTerrain[];
+extern const u8 gText_ReflectType[];
+extern const u8 gText_Purify[];
+extern const u8 gText_BecameNimble[];
+extern const u8 gText_FreezeShockCharging[];
+extern const u8 gText_IceBurnCharging[];
+extern const u8 gText_ShadowForce[];
+extern const u8 gText_LaserFocus[];
+extern const u8 gText_BurnUp[];
+extern const u8 gText_UTurn[];
+extern const u8 gText_RemoveFog[];
+extern const u8 gText_SpectralThief[];
+extern const u8 gText_StockpileWoreOff[];
+extern const u8 gText_Bestow[];
+extern const u8 gText_AquaRingSet[];
+extern const u8 gText_CantUseHyperspaceFury[];
+extern const u8 gText_CantUseMove[];
+extern const u8 gText_WrongHoopaForm[];
+extern const u8 gText_PsychoShift[];
+extern const u8 gText_GeomancyCharge[];
+extern const u8 gText_PowerHerb[];
+extern const u8 gText_PowerTrick[];
+extern const u8 gText_PowerSwap[];
+extern const u8 gText_GuardSwap[];
+extern const u8 gText_SpeedSwap[];
+extern const u8 gText_HeartSwap[];
+extern const u8 gText_PowerSplit[];
+extern const u8 gText_GuardSplit[];
+extern const u8 gText_PledgeReady[];
+extern const u8 gText_PledgeCombined[];
+extern const u8 gText_Swamp[];
+extern const u8 gText_SeaOfFire[];
+extern const u8 gText_Rainbow[];
+extern const u8 gText_Fling[];
+extern const u8 gText_ProtectLifted[];
+extern const u8 gText_HealBlockSet[];
+extern const u8 gText_EmbargoSet[];
+extern const u8 gText_PowderSet[];
+extern const u8 gText_TelekinesisSet[];
+extern const u8 gText_HealBlockTarget[];
+extern const u8 gText_Electrify[];
+extern const u8 gText_TopsyTurvy[];
+extern const u8 gText_AfterYou[];
+extern const u8 gText_Quash[];
+extern const u8 gText_MagnetRiseSet[];
+extern const u8 gText_FlameBurst[];
+
+extern const u8 gText_SlappedAwake[];
+extern const u8 gText_BurnCured[];
+extern const u8 gText_ItemCantBeRemoved[];
+
+extern const u8 gText_HealingWishHeal[];
+extern const u8 gText_LunarDanceHeal[];
+extern const u8 gText_PrimalRainEnd[];
+extern const u8 gText_PrimalSunEnd[];
+extern const u8 gText_PrimalAirCurrentEnd[];
+
+extern const u8 gText_SkyDropUp[];
+extern const u8 gText_FreedFromSkyDrop[];
+extern const u8 gText_AbilitySuppressed[];

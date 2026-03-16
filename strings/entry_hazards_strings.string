@@ -20,7 +20,7 @@ The entry hazards around\n[FD][36] side were blown away!
 The entry hazards around\n[FD][35] side were blown away!
 
 #org @gText_HurtBySpikes
-[TARGET] is hurt\nby the Spikes!
+[TARGET] is hurt\nby the SPIKES!
 
 #org @gText_HurtByStealthRock
 Pointed stones dug into\n[TARGET]!
@@ -29,10 +29,10 @@ Pointed stones dug into\n[TARGET]!
 The sharp steel bit into\n[TARGET]!
 
 #org @gText_AbsorbedToxicSpikes
-The Toxic Spikes disappeared from\naround [TARGET]'s feet!
+The TOXIC SPIKES disappeared from\naround [TARGET]'s feet!
 
 #org @gText_CaughtInStickyWeb
-[TARGET] was caught\nin a Sticky Web!
+[TARGET] was caught\nin a STICKY WEB!
 
 #org @gText_HazardsBlownAway
 The hazards were blown away from\naround [ATTACKER]!

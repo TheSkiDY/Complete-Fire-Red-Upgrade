@@ -11,34 +11,34 @@
 [MAIN_COLOUR][07][SHADOW_COLOUR][06]+
 
 #org @gText_Power
-Power: 
+POWER: 
 
 #org @gText_OHKO
 OHKO
 
 #org @gText_Acc
-Acc: 
+ACC: 
 
 #org @gText_NoMiss
-No Miss
+NO MISS
 
 #org @gText_Contact
-Contact
+CONTACT
 
 #org @gText_NoContact
-No Contact
+NO CONTACT
 
 #org @gText_ResetStats
-Reset Lowered Stats
+RESET LOWERED STATS
 
 #org @gText_StatsPlus
-+ All Stats
++ ALL STATS
 
 #org @gText_CritHitsPlus
-+ Critical Hit Chance
++ CRITICAL HIT CHANCE
 
 #org @gText_FollowMe
-Follow Me
+FOLLOW ME
 
 #org @gText_RecoverHP
 Recover HP
@@ -95,7 +95,7 @@ Set Lasting Damage Trap
 Trap & Damage Foes
 
 #org @gText_MaxMoveEffectSpore
-Give Foes Psn, Par, or Slp
+Give Foes PSN, PAR, or SLP
 
 #org @gText_MaxMoveParalyzeFoes
 Paralyze Foes
@@ -165,3 +165,22 @@ Ignore Foe Ability
 
 #org @gText_MaxMoveBypassProtect
 Bypass Protection
+
+#org @gText_EncoreMoveMenu
+[CURRENT_MOVE] must be selected\nafter the ENCORE!\p
+
+#org @gText_AssualtVestMoveMenu
+The [LAST_ITEM] prevents the\nuse of status moves!\p
+
+#org @gText_SkyBattleMoveMenu
+[CURRENT_MOVE] can't be used\nin a SKY BATTLE!\p
+
+#org @gText_GravityMoveMenu
+[CURRENT_MOVE] can't be used\nwhile GRAVITY is in effect!\p
+
+#org @gText_ThroatChopMoveMenu
+[SCRIPTING_BANK] can't use sound moves\nafter the THROAT CHOP!\p
+
+#org @gText_HealBlockMoveMenu
+[SCRIPTING_BANK] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!\p
+
