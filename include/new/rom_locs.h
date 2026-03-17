@@ -6,7 +6,8 @@
 //#define gStatStageRatios ((u8**) 0x825DEAD)
 #define gBitTable ((u32*) 0x825E45C)
 
-#define gItems ((struct Item*) *((u32*) 0x80001C8))
+//#define gItems ((struct Item*) *((u32*) 0x80001C8))
+extern const struct Item gItems[];
 
 typedef u8 SpeciesNames_t[POKEMON_NAME_LENGTH + 1];
 #define gSpeciesNames ((SpeciesNames_t*) *((u32*) 0x8000144))

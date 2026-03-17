@@ -13,7 +13,7 @@ struct Item
     u8 holdEffectParam;	//0x13
     const u8 *description;	//0x14
     u8 importance;	//0x18
-    u8 unk19;		//0x19
+    u8 registrability;		//0x19
     u8 pocket;		//0x1a
     u8 type;		//0x1b
     ItemUseFunc fieldUseFunc;	//0x1c
@@ -22,10 +22,37 @@ struct Item
     u8 secondaryId;	//0x28
 };
 
+struct ItemNamePtr
+{
+    const u8 *itemPtr;
+    u8 nameLeftovers[10];
+    u16 itemId; //0xE
+    u16 price;  //0x10
+    u8 holdEffect;  //0x12
+    u8 holdEffectParam; //0x13
+    const u8 *description;  //0x14
+    u8 importance;  //0x18
+    u8 registrability;      //0x19
+    u8 pocket;      //0x1a
+    u8 type;        //0x1b
+    ItemUseFunc fieldUseFunc;   //0x1c
+    u8 battleUsage; //0x20
+    ItemUseFunc battleUseFunc;  //0x24
+    u8 secondaryId; //0x28
+};
+
 struct BagPocket
 {
     struct ItemSlot *itemSlots;
     u16 capacity;
+};
+
+enum {
+    TYPE_MAIL,
+    TYPE_PARTY_MENU,
+    TYPE_FIELD,
+    TYPE_POKEBLOCK_CASE, // Used for Pokeblock case in RSE
+    TYPE_BAG_MENU, // No exit callback, stays in bag menu
 };
 
 extern struct BagPocket gBagPockets[];

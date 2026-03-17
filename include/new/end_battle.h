@@ -21,5 +21,8 @@ u8 IsRunningFromBattleImpossible(void);
 bool8 TryRunFromBattle(u8 bank);
 void EndOfBattleThings(void);
 
+void BattleUseFunc_PokeDoll(u8 taskId);
+
 //Exported Data Structures
 extern u8 gConsumableItemEffects[];
+

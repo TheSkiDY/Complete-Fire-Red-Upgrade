@@ -897,3 +897,5 @@ enum
 #define POCKET_POKE_BALLS  3
 #define POCKET_TM_CASE     4
 #define POCKET_BERRY_POUCH 5
+
+extern u8 gExpandedItemNames[][17];

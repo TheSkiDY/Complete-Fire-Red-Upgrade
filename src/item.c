@@ -91,11 +91,14 @@ u16 SanitizeItemId(u16 itemId)
 
 const u8* ItemId_GetName(u16 itemId)
 {
-	u8* name = gItems[SanitizeItemId(itemId)].name;
+	// u8* name = gItems[SanitizeItemId(itemId)].name;
 
-	if (name[3] == 0x8 || name[3] == 0x9) //Expanded Item Names
-		name = T1_READ_PTR(name);
+	// if (name[3] == 0x8 || name[3] == 0x9) //Expanded Item Names
+	// 	name = T1_READ_PTR(name);
 
+	// return name;
+
+	u8* name = gExpandedItemNames[SanitizeItemId(itemId)];
 	return name;
 }
 
@@ -461,8 +464,22 @@ bool8 CanMonLearnTutorMove(struct Pokemon* mon, u8 tutorId)
 	#if (NUM_MOVE_TUTORS > 160)
 		else if (tutorId >= 160 && tutorId < 192)
 		{
-			mask = 1 << (tutorId - 128);
+			mask = 1 << (tutorId - 160);
 			return (gTutorLearnsets[species][5] & mask) != 0 ? TRUE : FALSE;
+		}
+	#endif
+	#if (NUM_MOVE_TUTORS > 192)
+		else if (tutorId >= 192 && tutorId < 224)
+		{
+			mask = 1 << (tutorId - 192);
+			return (gTutorLearnsets[species][6] & mask) != 0 ? TRUE : FALSE;
+		}
+	#endif
+	#if (NUM_MOVE_TUTORS > 224)
+		else if (tutorId >= 224 && tutorId < 256)
+		{
+			mask = 1 << (tutorId - 224);
+			return (gTutorLearnsets[species][7] & mask) != 0 ? TRUE : FALSE;
 		}
 	#endif
 	}

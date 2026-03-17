@@ -655,7 +655,7 @@ extern struct Pokemon gPlayerParty[PARTY_SIZE];
 extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
 extern const struct BaseStats gBaseStats[];
-#define gItemEffectTable ((const u8**) *((u32*) 0x803A2B0)) //extern const u8 *const gItemEffectTable[];
+extern const u8 *const gItemEffectTable[];
 //extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 extern const u8 gStatStageRatios[][2];
 extern struct SpriteTemplate gMultiuseSpriteTemplate;

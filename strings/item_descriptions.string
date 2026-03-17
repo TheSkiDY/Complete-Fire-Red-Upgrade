@@ -1,0 +1,2483 @@
+#org @gItemDescription_None
+?????
+
+#org @gItemDescription_MasterBall
+The best BALL with the ultimate\nperformance. It will catch any wild\nPOK\eMON without fail.
+
+#org @gItemDescription_UltraBall
+A very high-grade BALL that offers\na higher POK\eMON catch rate than\na GREAT BALL.
+
+#org @gItemDescription_GreatBall
+A good, quality BALL that offers\na higher POK\eMON catch rate than\na standard POK\e BALL.
+
+#org @gItemDescription_PokeBall
+A BALL thrown to catch a wild\nPOK\eMON. It is designed in a\ncapsule style.
+
+#org @gItemDescription_SafariBall
+A special BALL that is used only in\nthe SAFARI ZONE. It is finished in\na camouflage pattern.
+
+#org @gItemDescription_NetBall
+A somewhat different BALL that\nworks especially well on WATER- and\nBUG-type POK\eMON.
+
+#org @gItemDescription_DiveBall
+A somewhat different BALL that\nworks especially well on POK\eMON\ndeep in the sea.
+
+#org @gItemDescription_NestBall
+A somewhat different BALL that\nworks especially well on weaker\nPOK\eMON.
+
+#org @gItemDescription_RepeatBall
+A somewhat different BALL that\nworks especially well on POK\eMON\ncaught before.
+
+#org @gItemDescription_TimerBall
+A somewhat different BALL that\nbecomes progressively better the\nmore turns there are in a battle.
+
+#org @gItemDescription_LuxuryBall
+A comfortable BALL that makes a\ncaptured wild POK\eMON quickly grow\nfriendly.
+
+#org @gItemDescription_PremierBall
+A rare BALL that has been\nspecially made to commemorate an\nevent of some sort.
+
+#org @gItemDescription_Potion
+A spray-type wound medicine.\nIt restores the HP of one POK\eMON\nby 20 points.
+
+#org @gItemDescription_Antidote
+A spray-type medicine.\nIt heals one POK\eMON from a\npoisoning.
+
+#org @gItemDescription_BurnHeal
+A spray-type medicine.\nIt heals one POK\eMON of a burn.
+
+#org @gItemDescription_IceHeal
+A spray-type medicine.\nIt defrosts a frozen POK\eMON.
+
+#org @gItemDescription_Awakening
+A spray-type medicine.\nIt awakens a sleeping POK\eMON.
+
+#org @gItemDescription_ParalyzeHeal
+A spray-type medicine.\nIt heals one POK\eMON from\nparalysis.
+
+#org @gItemDescription_FullRestore
+A medicine that fully restores the\nHP and heals any status problems\nof one POK\eMON.
+
+#org @gItemDescription_MaxPotion
+A spray-type wound medicine.\nIt fully restores the HP of one\nPOK\eMON.
+
+#org @gItemDescription_HyperPotion
+A spray-type wound medicine.\nIt restores the HP of one POK\eMON\nby 200 points.
+
+#org @gItemDescription_SuperPotion
+A spray-type wound medicine.\nIt restores the HP of one POK\eMON\nby 50 points.
+
+#org @gItemDescription_FullHeal
+A spray-type medicine.\nIt heals all the status problems of\none POK\eMON.
+
+#org @gItemDescription_Revive
+A medicine that revives a fainted\nPOK\eMON, restoring HP by half the\nmaximum amount.
+
+#org @gItemDescription_MaxRevive
+A medicine that revives a fainted\nPOK\eMON, restoring HP fully.
+
+#org @gItemDescription_FreshWater
+Water with a high mineral content.\nIt restores the HP of one POK\eMON\nby 50 points.
+
+#org @gItemDescription_SodaPop
+A fizzy soda drink.\nIt restores the HP of one POK\eMON\nby 60 points.
+
+#org @gItemDescription_Lemonade
+A very sweet drink.\nIt restores the HP of one POK\eMON\nby 80 points.
+
+#org @gItemDescription_MoomooMilk
+Highly nutritious milk.\nIt restores the HP of one POK\eMON\nby 100 points.
+
+#org @gItemDescription_EnergyPowder
+A very bitter medicine powder.\nIt restores the HP of one POK\eMON\nby 50 points.
+
+#org @gItemDescription_EnergyRoot
+A very bitter root.\nIt restores the HP of one POK\eMON\nby 200 points.
+
+#org @gItemDescription_HealPowder
+A very bitter medicine powder.\nIt heals all the status problems of\none POK\eMON.
+
+#org @gItemDescription_RevivalHerb
+A very bitter medicinal herb.\nIt revives a fainted POK\eMON,\nrestoring HP fully.
+
+#org @gItemDescription_Ether
+Restores a selected move's PP by\n10 points for one POK\eMON.
+
+#org @gItemDescription_MaxEther
+Fully restores a selected move's PP\nfor one POK\eMON.
+
+#org @gItemDescription_Elixir
+Restores the PP of all moves for\none POK\eMON by 10 points each.
+
+#org @gItemDescription_MaxElixir
+Fully restores the PP of all moves\nfor one POK\eMON.
+
+#org @gItemDescription_LavaCookie
+LAVARIDGE TOWN's local specialty.\nIt heals all the status problems of\none POK\eMON.
+
+#org @gItemDescription_BlueFlute
+A blue glass flute that awakens\na sleeping POK\eMON.
+
+#org @gItemDescription_YellowFlute
+A yellow glass flute that snaps one\nPOK\eMON out of confusion.
+
+#org @gItemDescription_RedFlute
+A red glass flute that snaps one\nPOK\eMON out of infatuation.
+
+#org @gItemDescription_BlackFlute
+A black glass flute.\nWhen blown, it makes wild POK\eMON\nless likely to appear.
+
+#org @gItemDescription_WhiteFlute
+A white glass flute.\nWhen blown, it makes wild POK\eMON\nmore likely to appear.
+
+#org @gItemDescription_BerryJuice
+A 100% pure juice.\nIt restores the HP of one POK\eMON\nby 20 points.
+
+#org @gItemDescription_SacredAsh
+Revives all fainted POK\eMON,\nrestoring HP fully.
+
+#org @gItemDescription_ShoalSalt
+Pure salt obtained from deep inside\nthe SHOAL CAVE. It is extremely\nsalty.
+
+#org @gItemDescription_ShoalShell
+A pretty seashell found deep inside\nthe SHOAL CAVE. It is striped in\nblue and white.
+
+#org @gItemDescription_RedShard
+A small red shard.\nIt appears to be from some sort of\na tool made long ago.
+
+#org @gItemDescription_BlueShard
+A small blue shard.\nIt appears to be from some sort of\na tool made long ago.
+
+#org @gItemDescription_YellowShard
+A small yellow shard.\nIt appears to be from some sort of\na tool made long ago.
+
+#org @gItemDescription_GreenShard
+A small green shard.\nIt appears to be from some sort of\na tool made long ago.
+
+#org @gItemDescription_RageCandyBar
+MAHOGANY TOWN's famous candy. It\nheals all the status conditions of\na POK\eMON.
+
+#org @gItemDescription_OldGateau
+The OLD CHATEAU's hidden\nspecialty. It heals all the status\nconditions of a POK\eMON.
+
+#org @gItemDescription_Casteliacone
+CASTELIA CITY's specialty,\nsoft-serve ice cream. It heals all\nthe status problems of a POK\eMON.
+
+#org @gItemDescription_LumioseGalette
+A popular treat in LUMIOSE CITY.\nIt heals all the status conditions\nof a POK\eMON.
+
+#org @gItemDescription_ShalourSable
+SHALOUR CITY's famous shortbread.\nIt heals all the status conditions\nof a POK\eMON.
+
+#org @gItemDescription_HealthWing
+An item for use on a POK\eMON. It\nslightly increases the base HP of a\nsingle POK\eMON.
+
+#org @gItemDescription_MuscleWing
+An item for use on a POK\eMON. It\nslightly increases the base ATTACK\nstat of a single POK\eMON.
+
+#org @gItemDescription_ResistWing
+An item for use on a POK\eMON. It\nslightly increases the base DEFENSE\nstat of a single POK\eMON.
+
+#org @gItemDescription_GeniusWing
+An item for use on a POK\eMON. It\nslightly increases the base SP. ATK\nstat of a single POK\eMON.
+
+#org @gItemDescription_CleverWing
+An item for use on a POK\eMON. It\nslightly increases the base SP. DEF\nstat of a single POK\eMON.
+
+#org @gItemDescription_SwiftWing
+An item for use on a POK\eMON. It\nslightly increases the base SPEED\nstat of a single POK\eMON.
+
+#org @gItemDescription_HpUp
+A nutritious drink for POK\eMON.\nIt raises the base HP of one\nPOK\eMON.
+
+#org @gItemDescription_Protein
+A nutritious drink for POK\eMON.\nIt raises the base ATTACK stat of\none POK\eMON.
+
+#org @gItemDescription_Iron
+A nutritious drink for POK\eMON.\nIt raises the base DEFENSE stat of\none POK\eMON.
+
+#org @gItemDescription_Carbos
+A nutritious drink for POK\eMON.\nIt raises the base SPEED stat of\none POK\eMON.
+
+#org @gItemDescription_Calcium
+A nutritious drink for POK\eMON.\nIt raises the base SP. ATK stat\nof one POK\eMON.
+
+#org @gItemDescription_RareCandy
+A candy that is packed with energy.\nIt raises the level of a POK\eMON\nby one.
+
+#org @gItemDescription_PpUp
+Slightly raises the maximum PP of\na selected move for one POK\eMON.
+
+#org @gItemDescription_Zinc
+A nutritious drink for POK\eMON.\nIt raises the base SP. DEF stat\nof one POK\eMON.
+
+#org @gItemDescription_PpMax
+Raises the PP of a selected move\nto its maximum level for one\nPOK\eMON.
+
+#org @gItemDescription_DynamaxCandy
+A candy that is packed with dynamax\nenergy. When consumed, it adds or\nremoves the GIGANTAMAX factor. 
+
+#org @gItemDescription_GuardSpec
+An item that prevents stat reduction\namong party POK\eMON for five turns\nafter use.
+
+#org @gItemDescription_DireHit
+Raises the critical-hit ratio of\nPOK\eMON in battle. Wears off if the\nPOK\eMON is withdrawn.
+
+#org @gItemDescription_XAttack
+Raises the ATTACK stat of POK\eMON\nin battle. Wears off if the POK\eMON\nis withdrawn.
+
+#org @gItemDescription_XDefend
+Raises the DEFENSE stat of POK\eMON\nin battle. Wears off if the POK\eMON\nis withdrawn.
+
+#org @gItemDescription_XSpeed
+Raises the SPEED stat of POK\eMON\nin battle. Wears off if the POK\eMON\nis withdrawn.
+
+#org @gItemDescription_XAccuracy
+Raises the accuracy stat of\nPOK\eMON in battle. Wears off if the\nPOK\eMON is withdrawn.
+
+#org @gItemDescription_XSpecial
+Raises the SP. ATK stat of\nPOK\eMON in battle. Wears off if the\nPOK\eMON is withdrawn.
+
+#org @gItemDescription_PokeDoll
+An attractive doll.\nUse it to flee from any battle with\na wild POK\eMON.
+
+#org @gItemDescription_FluffyTail
+An attractive item.\nUse it to flee from any battle with\na wild POK\eMON.
+
+#org @gItemDescription_BigMalasada
+It is ALOLA region's local specialty.\nIt can be used to heal all the\nstatus conditions of a POK\eMON.     
+
+#org @gItemDescription_SuperRepel
+Prevents weak wild POK\eMON from\nappearing for 200 steps.
+
+#org @gItemDescription_MaxRepel
+Prevents weak wild POK\eMON from\nappearing for 250 steps.
+
+#org @gItemDescription_EscapeRope
+A long, durable rope.\nUse it to escape instantly from a\ncave or a dungeon.
+
+#org @gItemDescription_Repel
+Prevents weak wild POK\eMON from\nappearing for 100 steps.
+
+#org @gItemDescription_LinkCable
+An intriguing cable used for\nlinking unknown devices. It helps\ncertain kinds of POK\eMON to evolve.
+
+#org @gItemDescription_Protector
+A protective item of some sort.\nIt is extremely stiff and heavy. It\nis loved by a certain POK\eMON.
+
+#org @gItemDescription_Electirizer
+A box packed with a tremendous\namount of electric energy. It is\nloved by a certain POK\eMON.
+
+#org @gItemDescription_Magmarizer
+A box packed with a tremendous\namount of magma energy. It is\nloved by a certain POK\eMON.
+
+#org @gItemDescription_DubiousDisc
+A transparent device overflowing\nwith dubious data. Its producer\nis unknown.
+
+#org @gItemDescription_ReaperCloth
+A cloth imbued with horrifyingly\nstrong spiritual energy. It is loved\nby a certain POK\eMON.
+
+#org @gItemDescription_SunStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt is as red as the sun.
+
+#org @gItemDescription_MoonStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt is as black as the night sky.
+
+#org @gItemDescription_FireStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt is colored orange.
+
+#org @gItemDescription_ThunderStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt has a thunderbolt pattern.
+
+#org @gItemDescription_WaterStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt is a clear light blue.
+
+#org @gItemDescription_LeafStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve.\nIt has a leaf pattern.
+
+#org @gItemDescription_ShinyStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve. It\nshines with a dazzling light.
+
+#org @gItemDescription_DuskStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve. It\nis as dark as dark can be.
+
+#org @gItemDescription_DawnStone
+A peculiar stone that makes certain\nspecies of POK\eMON evolve. It\nsparkles like eyes.
+
+#org @gItemDescription_IceStone
+A stone that can make certain\nspecies of POK\eMON evolve. It\nhas a snowflake pattern.
+
+#org @gItemDescription_TinyMushroom
+A small and rare mushroom.\nIt is quite popular among certain\npeople.
+
+#org @gItemDescription_BigMushroom
+A large and rare mushroom.\nIt is very popular among certain\npeople.
+
+#org @gItemDescription_BalmMushroom
+A rare mushroom that gives off\na nice fragrance. It can be sold\nat a high price to shops.
+
+#org @gItemDescription_Pearl
+A relatively small pearl that\nsparkles in a pretty silver color.\nIt can be sold cheaply.
+
+#org @gItemDescription_BigPearl
+A quite-large pearl that sparkles\nin a pretty silver color.\nIt can be sold at a high price.
+
+#org @gItemDescription_Stardust
+A pretty red sand with a loose,\nsilky feel.\nIt can be sold at a high price.
+
+#org @gItemDescription_StarPiece
+A shard of a pretty gem that\nsparkles in a red color.\nIt can be sold at a high price.
+
+#org @gItemDescription_Nugget
+A nugget of pure gold that gives\noff a lustrous gleam.\nIt can be sold at a high price.
+
+#org @gItemDescription_HeartScale
+A pretty, heart-shaped scale that\nis extremely rare. It glows faintly\nin the colors of a rainbow.
+
+#org @gItemDescription_RareBone
+A bone that is extremely valuable\nfor archaeology. It can be sold for\na high price to shops.
+
+#org @gItemDescription_PearlString
+Very large pearls that sparkle in\na pretty silver color. They can be\nsold at a high price to shops.
+
+#org @gItemDescription_CometShard
+A shard that fell to the ground\nwhen a comet approached. It can\nbe sold at a high price to shops.
+
+#org @gItemDescription_BigNugget
+A big nugget of pure gold that\ngives off a lustrous gleam. It can\nbe sold at a high price to shops.
+
+#org @gItemDescription_Honey
+A sweet honey collected by a\nPOK\eMON. It can be used to attract\nwild POK\eMON.                      
+
+#org @gItemDescription_PrettyWing
+Though this feather is beautiful,\nit's just a regular feather and\nhas no effect on POK\eMON.
+
+#org @gItemDescription_OvalStone
+A peculiar stone that makes a\ncertain species of POK\eMON evolve.\nIt's shaped like an egg.
+
+#org @gItemDescription_RazorClaw
+An item to be held by a POK\eMON.\nIt is a sharply hooked claw that\nups the holder's critical-hit ratio.
+
+#org @gItemDescription_RazorFang
+An item to be held by a POK\eMON.\nIt may cause the foe to flinch\nwhen the holder inflicts damage.
+
+#org @gItemDescription_OrangeMail
+A piece of MAIL featuring a cute\nZIGZAGOON print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_HarborMail
+A piece of MAIL featuring a cute\nWINGULL print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_GlitterMail
+A piece of MAIL featuring a cute\nPIKACHU print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_MechMail
+A piece of MAIL featuring a cute\nMAGNEMITE print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_WoodMail
+A piece of MAIL featuring a cute\nSLAKOTH print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_WaveMail
+A piece of MAIL featuring a cute\nWAILMER print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_BeadMail
+A piece of MAIL to be held by a\nPOK\eMON. It will bear the print of\nthe POK\eMON holding it.
+
+#org @gItemDescription_ShadowMail
+A piece of MAIL featuring a cute\nDUSKULL print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_TropicMail
+A piece of MAIL featuring a cute\nBELLOSSOM print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_DreamMail
+A piece of MAIL to be held by a\nPOK\eMON. It will bear the print of\nthe POK\eMON holding it.
+
+#org @gItemDescription_FabMail
+A piece of MAIL featuring a\ngorgeous, extravagant print.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_RetroMail
+A piece of MAIL featuring a print\nof three cute POK\eMON.\nIt is to be held by a POK\eMON.
+
+#org @gItemDescription_CheriBerry
+When held by a POK\eMON, it will be\nused in battle to heal paralysis.
+
+#org @gItemDescription_ChestoBerry
+When held by a POK\eMON, it will be\nused in battle to wake up.
+
+#org @gItemDescription_PechaBerry
+When held by a POK\eMON, it will be\nused in battle to cure poison.
+
+#org @gItemDescription_RawstBerry
+When held by a POK\eMON, it will be\nused in battle to heal a burn.
+
+#org @gItemDescription_AspearBerry
+When held by a POK\eMON, it will be\nused in battle for defrosting.
+
+#org @gItemDescription_LeppaBerry
+When held by a POK\eMON, it will be\nused in battle to restore 10 PP.
+
+#org @gItemDescription_OranBerry
+When held by a POK\eMON, it will be\nused in battle to restore 10 HP.
+
+#org @gItemDescription_PersimBerry
+When held by a POK\eMON, it will be\nused in battle to lift confusion.
+
+#org @gItemDescription_LumBerry
+When held by a POK\eMON, it will be\nused in battle to heal any problem.
+
+#org @gItemDescription_SitrusBerry
+When held by a POK\eMON, it will be\nused in battle to restore 30 HP.
+
+#org @gItemDescription_FigyBerry
+A hold item that restores HP but\nmay cause confusion when used.
+
+#org @gItemDescription_WikiBerry
+A hold item that restores HP but\nmay cause confusion when used.
+
+#org @gItemDescription_MagoBerry
+A hold item that restores HP but\nmay cause confusion when used.
+
+#org @gItemDescription_AguavBerry
+A hold item that restores HP but\nmay cause confusion when used.
+
+#org @gItemDescription_IapapaBerry
+A hold item that restores HP but\nmay cause confusion when used.
+
+#org @gItemDescription_RazzBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_BlukBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_NanabBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_WepearBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_PinapBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_PomegBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers HP.
+
+#org @gItemDescription_KelpsyBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers ATTACK.
+
+#org @gItemDescription_QualotBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers DEFENSE.
+
+#org @gItemDescription_HondewBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers SP. ATK.
+
+#org @gItemDescription_GrepaBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers SP. DEF.
+
+#org @gItemDescription_TamatoBerry
+Using it on a POK\eMON makes it\nfriendlier, but also lowers SPEED.
+
+#org @gItemDescription_CornnBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_MagostBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_RabutaBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_NomelBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_SpelonBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_PamtreBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_WatmelBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_DurinBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_BelueBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_LiechiBerry
+When held by a POK\eMON, it raises\nthe ATTACK stat in a pinch.
+
+#org @gItemDescription_GanlonBerry
+When held by a POK\eMON, it raises\nthe DEFENSE stat in a pinch.
+
+#org @gItemDescription_SalacBerry
+When held by a POK\eMON, it raises\nthe SPEED stat in a pinch.
+
+#org @gItemDescription_PetayaBerry
+When held by a POK\eMON, it raises\nthe SP. ATK stat in a pinch.
+
+#org @gItemDescription_ApicotBerry
+When held by a POK\eMON, it raises\nthe SP. DEF stat in a pinch.
+
+#org @gItemDescription_LansatBerry
+When held by a POK\eMON, it raises\nthe critical-hit ratio in a pinch.
+
+#org @gItemDescription_StarfBerry
+When held by a POK\eMON, it sharply\nraises one stat in a pinch.
+
+#org @gItemDescription_EnigmaBerry
+Can be ground up into a powder as\nan ingredient for medicine.
+
+#org @gItemDescription_PrismScale
+A mysterious scale that evolves\ncertain POK\eMON. It shines in\nrainbow colors.
+
+#org @gItemDescription_Sachet
+A sachet filled with fragrances\nthat are slightly overwhelming. It\nis loved by a certain POK\eMON.
+
+#org @gItemDescription_WhippedDream
+A soft and sweet treat made of\nwhipped and whirled cream. It\nis loved by a certain POK\eMON.
+
+#org @gItemDescription_BrightPowder
+An item to be held by a POK\eMON.\nIt casts a tricky glare that lowers\nthe opponent's accuracy.
+
+#org @gItemDescription_WhiteHerb
+An item to be held by a POK\eMON.\nIt restores any lowered stat in\nbattle. It can be used only once.
+
+#org @gItemDescription_MachoBrace
+An item to be held by a POK\eMON.\nIt promotes strong growth but\nlowers SPEED while it is held.
+
+#org @gItemDescription_ExpShare
+An item to be held by a POK\eMON.\nThe holder gets a share of EXP.\npoints without having to battle.
+
+#org @gItemDescription_QuickClaw
+An item to be held by a POK\eMON.\nA light and sharp claw. The holder\nmay be able to strike first.
+
+#org @gItemDescription_SootheBell
+An item to be held by a POK\eMON.\nA bell with a comforting chime that\nmakes the holder calm and friendly.
+
+#org @gItemDescription_MentalHerb
+An item to be held by a POK\eMON.\nIt snaps the holder out of\ninfatuation. It can be used once.
+
+#org @gItemDescription_ChoiceBand
+An item to be held by a POK\eMON.\nThis headband ups ATTACK, but\nallows the use of only one move.
+
+#org @gItemDescription_KingsRock
+An item to be held by a POK\eMON.\nIt may cause the foe to flinch\nupon taking damage.
+
+#org @gItemDescription_SilverPowder
+An item to be held by a POK\eMON.\nA shiny silver powder that boosts\nthe power of BUG-type moves.
+
+#org @gItemDescription_AmuletCoin
+An item to be held by a POK\eMON.\nIt doubles the battle money if the\nholding POK\eMON takes part.
+
+#org @gItemDescription_CleanseTag
+An item to be held by a POK\eMON.\nIt repels wild POK\eMON if the\nholder is first in the party.
+
+#org @gItemDescription_SoulDew
+An orb to be held by a LATIOS or\nLATIAS. It raises the SP. ATK\nand SP. DEF stats.
+
+#org @gItemDescription_DeepSeaTooth
+An item to be held by a POK\eMON.\nA fang that gleams a sharp silver.\nIt raises the SP. ATK stat.
+
+#org @gItemDescription_DeepSeaScale
+An item to be held by a POK\eMON.\nA scale that shines a faint pink.\nIt raises the SP. DEF stat.
+
+#org @gItemDescription_SmokeBall
+An item to be held by a POK\eMON.\nThe holding POK\eMON can flee from\nany wild POK\eMON for sure.
+
+#org @gItemDescription_Everstone
+An item to be held by a POK\eMON.\nThe holding POK\eMON is prevented\nfrom evolving.
+
+#org @gItemDescription_FocusBand
+An item to be held by a POK\eMON.\nThe holding POK\eMON may endure an\nattack, leaving just 1 HP.
+
+#org @gItemDescription_LuckyEgg
+An item to be held by a POK\eMON.\nAn egg filled with happiness that\nearns extra EXP. points in battle.
+
+#org @gItemDescription_ScopeLens
+An item to be held by a POK\eMON.\nA lens that boosts the critical-hit\nratio of the holding POK\eMON.
+
+#org @gItemDescription_MetalCoat
+An item to be held by a POK\eMON.\nA special metallic film that boosts\nthe power of STEEL-type moves.
+
+#org @gItemDescription_Leftovers
+An item to be held by a POK\eMON.\nThe holding POK\eMON gradually\nregains HP during battle.
+
+#org @gItemDescription_DragonScale
+A thick and tough scale.\nA DRAGON-type POK\eMON may be\nholding it.
+
+#org @gItemDescription_LightBall
+An orb to be held by a PIKACHU\nthat raises the SP. ATK stat.\nTouching it may cause a shock.
+
+#org @gItemDescription_SoftSand
+An item to be held by a POK\eMON.\nA loose, silky sand that boosts the\npower of GROUND-type moves.
+
+#org @gItemDescription_HardStone
+An item to be held by a POK\eMON.\nAn unbreakable stone that boosts\nthe power of ROCK-type moves.
+
+#org @gItemDescription_MiracleSeed
+An item to be held by a POK\eMON.\nA seed imbued with life that boosts\nthe power of GRASS-type moves.
+
+#org @gItemDescription_BlackGlasses
+An item to be held by a POK\eMON.\nA shady-looking pair of glasses\nthat boosts DARK-type moves.
+
+#org @gItemDescription_BlackBelt
+An item to be held by a POK\eMON.\nA belt that boosts determination\nand FIGHTING-type moves.
+
+#org @gItemDescription_Magnet
+An item to be held by a POK\eMON.\nA powerful magnet that boosts the\npower of ELECTRIC-type moves.
+
+#org @gItemDescription_MysticWater
+An item to be held by a POK\eMON.\nA teardrop-shaped gem that boosts\nthe power of WATER-type moves.
+
+#org @gItemDescription_SharpBeak
+An item to be held by a POK\eMON.\nA long, sharp beak that boosts the\npower of FLYING-type moves.
+
+#org @gItemDescription_PoisonBarb
+An item to be held by a POK\eMON.\nA small, poisonous barb that boosts\nthe power of POISON-type moves.
+
+#org @gItemDescription_NeverMeltIce
+An item to be held by a POK\eMON.\nA piece of ice that repels heat\nand boosts ICE-type moves.
+
+#org @gItemDescription_SpellTag
+An item to be held by a POK\eMON.\nA sinister, eerie tag that boosts\nGHOST-type moves.
+
+#org @gItemDescription_TwistedSpoon
+An item to be held by a POK\eMON.\nA spoon imbued with telekinetic\npower boosts PSYCHIC-type moves.
+
+#org @gItemDescription_Charcoal
+An item to be held by a POK\eMON.\nA combustible fuel that boosts the\npower of FIRE-type moves.
+
+#org @gItemDescription_DragonFang
+An item to be held by a POK\eMON.\nA hard and sharp fang that boosts\nthe power of DRAGON-type moves.
+
+#org @gItemDescription_SilkScarf
+An item to be held by a POK\eMON.\nA sumptuous scarf that boosts the\npower of NORMAL-type moves.
+
+#org @gItemDescription_UpGrade
+A transparent device filled with all\nsorts of data.\nIt is made by SILPH CO.
+
+#org @gItemDescription_ShellBell
+An item to be held by a POK\eMON.\nThe holding POK\eMON regains some\nHP upon striking the foe.
+
+#org @gItemDescription_SeaIncense
+An item to be held by a POK\eMON.\nIt slightly boosts the power of\nWATER-type moves.
+
+#org @gItemDescription_LaxIncense
+An item to be held by a POK\eMON.\nIts tricky aroma slightly reduces\nthe foe's accuracy.
+
+#org @gItemDescription_LuckyPunch
+A glove to be held by a CHANSEY.\nIt raises CHANSEY's critical-hit\nratio.
+
+#org @gItemDescription_MetalPowder
+A fine, hard powder to be held by\na DITTO.\nIt raises DITTO's DEFENSE stat.
+
+#org @gItemDescription_ThickClub
+A hard bone of some sort to be\nheld by a CUBONE or MAROWAK.\nIt raises the ATTACK stat.
+
+#org @gItemDescription_Leek
+A stick of leek to be held by a\nFARFETCH'D. It raises FARFETCH'D's\ncritical-hit ratio.
+
+#org @gItemDescription_StrawberrySweet
+A strawberry-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_BerrySweet
+A berry-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_LoveSweet
+A heart-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_CloverSweet
+A clover-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_FlowerSweet
+A flower-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_RibbonSweet
+A ribbon-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_StarSweet
+A star-shaped sweet.\nWhen a MILCERY holds this, it will\nspin around happily.
+
+#org @gItemDescription_SweetApple
+A peculiar apple that can make\na certain species of POK\eMON\nevolve. It's exceptionally sweet.
+
+#org @gItemDescription_TartApple
+A peculiar apple that can make\na certain species of POK\eMON\nevolve. It's exceptionally tart.
+
+#org @gItemDescription_CrackedPot
+A cracked teapot that can make a\ncertain species of POK\eMON evolve.\nTea poured from it is delicious.
+
+#org @gItemDescription_ChippedPot
+A chipped teapot that can make a\ncertain species of POK\eMON evolve.\nTea poured from it is delicious.
+
+#org @gItemDescription_GalaricaCuff
+A cuff made from woven-together\nGALARICA TWIGS. Giving it to certain\nPOK\eMON will make them happy.
+
+#org @gItemDescription_GalaricaWreath
+A crown made from woven-together\nGALARICA TWIGS. Giving it to certain\nPOK\eMON will make them happy.
+
+#org @gItemDescription_CherishBall
+A quite rare BALL that has been\nspecially crafted to commemorate\nan ocassion of some sort.
+
+#org @gItemDescription_DuskBall
+A BALL that makes it easier to\ncatch wild POK\eMON at night or\nin dark places such as caves.
+
+#org @gItemDescription_HealBall
+A BALL that restores the caught\nPOK\eMON's HP and eliminates\nany status problem.
+
+#org @gItemDescription_QuickBall
+A BALL that provides a better\ncatch rate if it is used at the\nstart of a wild encounter.
+
+#org @gItemDescription_FastBall
+A BALL that makes it easier to\ncatch POK\eMON which are quick to\nrun away.
+
+#org @gItemDescription_LevelBall
+A BALL that makes it easier to\ncatch POK\eMON that are a lower\nlevel than your own.
+
+#org @gItemDescription_LureBall
+A BALL that is good for catching\nPOK\eMON that you reel in with a\nRod while out fishing.
+
+#org @gItemDescription_HeavyBall
+A BALL that is better than usual\nat catching very large and heavy\nPOK\eMON.
+
+#org @gItemDescription_LoveBall
+A BALL for catching POK\eMON that\nare the opposite gender of your\nPOK\eMON.
+
+#org @gItemDescription_FriendBall
+A BALL that will make the wild\nPOK\eMON caught with it more\nfriendly toward you.
+
+#org @gItemDescription_MoonBall
+A BALL that will make it easier to\ncatch POK\eMON that can evolve\nusing a MOON STONE.
+
+#org @gItemDescription_SportBall
+A special POK\e BALL that is\nused during the BUG-CATCHING\nCONTEST.
+
+#org @gItemDescription_BeastBall
+A BALL designed to catch ULTRA\nBEASTS. It has a low success rate\nfor catching others.
+
+#org @gItemDescription_DreamBall
+A BALL that makes it easier to\ncatch wild POK\eMON while it is\nasleep.
+
+#org @gItemDescription_ParkBall
+A special POK\e BALL for\nthe PAL PARK.
+
+#org @gItemDescription_RedScarf
+An item to be held by a POK\eMON.\nIt boosts the holding POK\eMON's\nCOOL condition in CONTESTS.
+
+#org @gItemDescription_BlueScarf
+An item to be held by a POK\eMON.\nIt boosts the holding POK\eMON's\nBEAUTY condition in CONTESTS.
+
+#org @gItemDescription_PinkScarf
+An item to be held by a POK\eMON.\nIt boosts the holding POK\eMON's\nCUTE condition in CONTESTS.
+
+#org @gItemDescription_GreenScarf
+An item to be held by a POK\eMON.\nIt boosts the holding POK\eMON's\nSMART condition in CONTESTS.
+
+#org @gItemDescription_YellowScarf
+An item to be held by a POK\eMON.\nIt boosts the holding POK\eMON's\nTOUGH condition in CONTESTS.
+
+#org @gItemDescription_MachBike
+A folding bicycle that is at least\ntwice as fast as walking.
+
+#org @gItemDescription_CoinCase
+A case for holding COINS obtained\nat the GAME CORNER.\nIt holds up to 9,999 COINS.
+
+#org @gItemDescription_Itemfinder
+A device used for finding items.\nIf there is a hidden item nearby\nwhen it is used, it emits a signal.
+
+#org @gItemDescription_OldRod
+An old and beat-up fishing rod.\nUse it by any body of water to \nfish for wild POK\eMON.
+
+#org @gItemDescription_GoodRod
+A new, good-quality fishing rod.\nUse it by any body of water to \nfish for wild POK\eMON.
+
+#org @gItemDescription_SuperRod
+An awesome, high-tech fishing rod.\nUse it by any body of water to fish\nfor wild POK\eMON.
+
+#org @gItemDescription_SsTicket
+The ticket required for sailing on\nthe ferry S.S. ANNE.\nIt has a drawing of a ship on it.
+
+#org @gItemDescription_ContestPass
+The pass required for entering\nPOK\eMON CONTESTS. It has a\ndrawing of an award ribbon on it.
+
+#org @gItemDescription_ZPowerRing
+A mysterious ring that enables\nthe use of Z-POWER. It requires the\nwillpower of the trainer wearing it.    
+
+#org @gItemDescription_WailmerPail
+A nifty watering pail.\nUse it to promote strong growth in\nBERRIES planted in soft soil.
+
+#org @gItemDescription_DevonGoods
+A package that contains mechanical\nparts of some sort made by the\nDEVON CORPORATION.
+
+#org @gItemDescription_SootSack
+A sack used to collect volcanic\nash automatically during walks\nover deep ash.
+
+#org @gItemDescription_BasementKey
+The key to NEW MAUVILLE, which\nwas constructed beneath MAUVILLE\nCITY.
+
+#org @gItemDescription_AcroBike
+A folding bicycle that is capable\nof stunts like jumps and wheelies.
+
+#org @gItemDescription_PokeblockCase
+A case for holding \P\K\B\L\CS made\nwith a BERRY BLENDER. It releases\none \P\K\B\L\C when shaken.
+
+#org @gItemDescription_Letter
+An extremely important letter to\nSTEVEN from the PRESIDENT of the\nDEVON CORPORATION.
+
+#org @gItemDescription_EonTicket
+The ticket required for sailing on a\nferry to a distant southern island.\nIt features a drawing of an island.
+
+#org @gItemDescription_RedOrb
+An orb that glows red.\nIt is said to contain an incredible\npower from ancient times.
+
+#org @gItemDescription_BlueOrb
+An orb that glows blue.\nIt is said to contain an incredible\npower from ancient times.
+
+#org @gItemDescription_Scanner
+A device used to search for\nlife-forms in water.\nIt looks too difficult to use.
+
+#org @gItemDescription_GoGoggles
+A pair of protective goggles.\nThey enable a TRAINER to travel\nthrough even desert sandstorms.
+
+#org @gItemDescription_Meteorite
+A meteorite that fell from space\nonto MT. MOON long ago.\nIt is very lumpy and hard.
+
+#org @gItemDescription_Room1Key
+A key that opens the door to Room\n1 inside the ABANDONED SHIP.\nIt is old and looks easily broken.
+
+#org @gItemDescription_Room2Key
+A key that opens the door to Room\n2 inside the ABANDONED SHIP.\nIt is old and looks easily broken.
+
+#org @gItemDescription_Room4Key
+A key that opens the door to Room\n4 inside the ABANDONED SHIP.\nIt is old and looks easily broken.
+
+#org @gItemDescription_Room6Key
+A key that opens the door to Room\n6 inside the ABANDONED SHIP.\nIt is old and looks easily broken.
+
+#org @gItemDescription_StorageKey
+A key that opens the storage hold\ninside the ABANDONED SHIP.\nIt is old and looks easily broken.
+
+#org @gItemDescription_RootFossil
+A fossil of an ancient, seafloor-\ndwelling POK\eMON. It appears to be\npart of a plant root.
+
+#org @gItemDescription_ClawFossil
+A fossil of an ancient, seafloor-\ndwelling POK\eMON. It appears to be\npart of a claw.
+
+#org @gItemDescription_DevonScope
+A scope that signals the presence\nof any unseeable POK\eMON.\nIt is made by the DEVON CORP.
+
+#org @gItemDescription_TM01
+An attack that is\nexecuted last.\nThe user flinches\nif hit beforehand.
+
+#org @gItemDescription_TM02
+Sharp, huge claws\nhook and slash the\nfoe quickly and\nwith great power.
+
+#org @gItemDescription_TM03
+An attack with a\npulsing blast of\nwater. It may also\nconfuse the foe.
+
+#org @gItemDescription_TM04
+The user focuses\nits mind to raise\nthe SP. ATK and\nSP. DEF stats.
+
+#org @gItemDescription_TM05
+The foe is made to\nswitch out with an\nally. In the wild,\nthe battle ends.
+
+#org @gItemDescription_TM06
+A move that badly\npoisons the foe.\nIts poison damage\nworsens every turn.
+
+#org @gItemDescription_TM07
+A hailstorm lasting\nfive turns damages\nall POK\eMON except\nthe ICE-type.
+
+#org @gItemDescription_TM08
+The user bulks up\nits body to boost\nboth its ATTACK and\nDEFENSE stats.
+
+#org @gItemDescription_TM09
+The user shoots\nseeds at the foe.\nTwo to five seeds\nare shot at once.
+
+#org @gItemDescription_TM10
+An attack that\nvaries in type and\nintensity depending\non the user.
+
+#org @gItemDescription_TM11
+The sun blazes for\nfive turns, powering\nup FIRE-type\nmoves.
+
+#org @gItemDescription_TM12
+The foe is taunted\ninto a rage that\nallows it to use\nonly attack moves.
+
+#org @gItemDescription_TM13
+The foe is struck\nwith an icy beam.\nIt may freeze the\nfoe solid.
+
+#org @gItemDescription_TM14
+The foe is blasted\nwith a blizzard.\nIt may freeze the\nfoe solid.
+
+#org @gItemDescription_TM15
+A severely damaging\nattack that makes\nthe user rest on\nthe next turn.
+
+#org @gItemDescription_TM16
+A wall of light\ncuts damage from\nSP. ATK attacks\nfor five turns.
+
+#org @gItemDescription_TM17
+Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.
+
+#org @gItemDescription_TM18
+A heavy rain falls\nfor five turns,\npowering up WATER-\ntype moves.
+
+#org @gItemDescription_TM19
+A harsh attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.
+
+#org @gItemDescription_TM20
+It protects the\nuser's party from\nall status problems\nfor five turns.
+
+#org @gItemDescription_TM21
+This attack move\ngrows more powerful\nthe less the user\nlikes its TRAINER.
+
+#org @gItemDescription_TM22
+A 2-turn move that\nblasts the foe with\nabsorbed energy in\nthe 2nd turn.
+
+#org @gItemDescription_TM23
+An attack with a\nsteel-hard tail.\nIt may lower the\nfoe's DEFENSE stat.
+
+#org @gItemDescription_TM24
+A strong electrical\nattack that may\nalso leave the foe\nparalyzed.
+
+#org @gItemDescription_TM25
+A brutal lightning\nattack that may\nalso leave the foe\nparalyzed.
+
+#org @gItemDescription_TM26
+An earthquake that\nstrikes all POK\eMON\nin battle excluding\nthe user.
+
+#org @gItemDescription_TM27
+This attack move\ngrows more powerful\nthe more the user\nlikes its TRAINER.
+
+#org @gItemDescription_TM28
+An attack that hits\non the 2nd turn.\nCan also be used\nto exit dungeons.
+
+#org @gItemDescription_TM29
+A strong telekinetic\nattack. It may also\nlower the foe's\nSP. DEF stat.
+
+#org @gItemDescription_TM30
+A shadowy blob is\nhurled at the foe.\nMay also lower the\nfoe's SP. DEF.
+
+#org @gItemDescription_TM31
+An attack that also\nbreaks any barrier\nlike LIGHT SCREEN\nand REFLECT.
+
+#org @gItemDescription_TM32
+The user creates\nillusory copies of\nitself to raise its\nevasiveness.
+
+#org @gItemDescription_TM33
+A wall of light\ncuts damage from\nphysical attacks\nfor five turns.
+
+#org @gItemDescription_TM34
+A rapid jolt of\nelectricity strikes\nthe foe. It can't\nbe evaded.
+
+#org @gItemDescription_TM35
+The foe is scorched\nwith intense flames.\nThe foe may suffer\na burn.
+
+#org @gItemDescription_TM36
+Filthy sludge is\nhurled at the foe.\nIt may poison the\ntarget.
+
+#org @gItemDescription_TM37
+A 5-turn sandstorm\nthat damages all\ntypes except ROCK,\nGROUND, and STEEL.
+
+#org @gItemDescription_TM38
+The foe is hit with\nan intense flame.\nIt may leave the\ntarget with a burn.
+
+#org @gItemDescription_TM39
+Boulders are hurled\nat the foe. It also\nlowers the foe's\nSPEED if it hits.
+
+#org @gItemDescription_TM40
+An extremely fast\nattack against one\ntarget. It can't be\nevaded.
+
+#org @gItemDescription_TM41
+It enrages the foe,\nmaking it incapable\nof using the same\nmove successively.
+
+#org @gItemDescription_TM42
+An attack that is\nboosted if user is\nburned, poisoned,\nor paralyzed.
+
+#org @gItemDescription_TM43
+An attack that may\nhave an additional\neffect that varies\nwith the terrain.
+
+#org @gItemDescription_TM44
+The user sleeps for\ntwo turns to fully\nrestore HP and heal\nany status problem.
+
+#org @gItemDescription_TM45
+If it is the other\ngender, the foe is\nmade infatuated and\nunlikely to attack.
+
+#org @gItemDescription_TM46
+An attack that may\ntake the foe's held\nitem if the user\nisn't holding one.
+
+#org @gItemDescription_TM47
+The foe is hit with\nwings of steel.\nIt may also raise\nthe user's DEFENSE.
+
+#org @gItemDescription_TM48
+The user employs\nits psychic power\nto swap abilities\nwith the foe.
+
+#org @gItemDescription_TM49
+Steals the effects\nof the foe's\nhealing or status-\nchanging move.
+
+#org @gItemDescription_TM50
+An intense attack\nthat also sharply\nreduces the user's\nSP. ATK stat.
+
+#org @gItemDescription_Hm01Cut
+A basic attack.\nIt can be used to\ncut down thin trees\nand grass.
+
+#org @gItemDescription_Hm02Fly
+A 2-turn move that\nhits on the 2nd\nturn. Use it to fly\nto any known town.
+
+#org @gItemDescription_Hm03Surf
+A big wave crashes\ndown on the foe.\nCan also be used\nfor crossing water.
+
+#org @gItemDescription_Hm04Strength
+The foe is slugged\nat maximum power.\nCan also be used\nto move boulders.
+
+#org @gItemDescription_Hm05Flash
+A blast of light\nthat cuts the foe's\naccuracy. It also\nilluminates caves.
+
+#org @gItemDescription_Hm06RockSmash
+An attack that may\nalso cut DEFENSE.\nIt can also smash\ncracked boulders.
+
+#org @gItemDescription_Hm07Waterfall
+A powerful charge\nattack. It can also\nbe used to climb\na waterfall.
+
+#org @gItemDescription_Hm08RockClimb
+The user dives\nunderwater on the\nfirst turn and\nstrikes next turn.
+
+#org @gItemDescription_DynamaxBand
+A Wishing Star has been affixed\nto it. It lets out a light that\nallows POK\eMON to Dynamax.
+
+#org @gItemDescription_GoldTeeth
+A set of false teeth lost by the\nSAFARI ZONE'S WARDEN. It makes his\nsmile sparkle.
+
+#org @gItemDescription_OaksParcel
+A parcel to be delivered to PROF.\nOAK from VIRIDIAN CITY's POK\eMON\nMART.
+
+#org @gItemDescription_PokeFlute
+A flute that is said to instantly\nawaken any POK\eMON. It has a\nlovely tone.
+
+#org @gItemDescription_SecretKey
+The key to CINNABAR ISLAND GYM's\nfront door. It is colored red and\ndecorated.
+
+#org @gItemDescription_BikeVoucher
+Take this voucher to the BIKE SHOP\nin CERULEAN CITY and exchange it\nfor a bicycle.
+
+#org @gItemDescription_MegaRing
+A ring which enables POK\eMON\nholding a Mega Stone to MEGA\nEVOLVE in battle.
+
+#org @gItemDescription_OldAmber
+A piece of amber that contains\nthe genes of an ancient POK\eMON.\nIt is clear with a reddish tint.
+
+#org @gItemDescription_CardKey
+A card-type key that unlocks doors\nin SILPH CO.'s HEAD OFFICE in\nSAFFRON CITY.
+
+#org @gItemDescription_LiftKey
+A key that operates the elevator\nin TEAM ROCKET's HIDEOUT.\nIt bears the TEAM ROCKET logo.
+
+#org @gItemDescription_HelixFossil
+A fossil of an ancient, seafloor-\ndwelling POK\eMON. It appears to be\npart of a seashell.
+
+#org @gItemDescription_DomeFossil
+A fossil of an ancient, seafloor-\ndwelling POK\eMON. It appears to be\npart of a shell.
+
+#org @gItemDescription_SilphScope
+A scope that makes unseeable\nPOK\eMON visible.\nIt is made by SILPH CO.
+
+#org @gItemDescription_Bicycle
+A folding bicycle that allows\nfaster movement than the RUNNING\nSHOES.
+
+#org @gItemDescription_TownMap
+A very convenient map that can be\nviewed anytime. It even shows your \npresent location.
+
+#org @gItemDescription_VsSeeker
+A device that indicates TRAINERS\nwho want to battle. The battery\ncharges while traveling.
+
+#org @gItemDescription_FameChecker
+A device that enables you to\nrecall what you've heard and seen\nabout famous people.
+
+#org @gItemDescription_TMCase
+A case that holds TMs and HMs.\nIt is attached to the BAG's\ncompartment for important items.
+
+#org @gItemDescription_BerryPouch
+A pouch for carrying BERRIES.\nIt is attached to the BAG's\ncompartment for important items.
+
+#org @gItemDescription_TeachyTv
+A television set that is tuned to\na program with useful tips for\nnovice TRAINERS.
+
+#org @gItemDescription_TriPass
+A pass for ferries between ONE,\nTWO, and THREE ISLAND.\nIt has a drawing of three islands.
+
+#org @gItemDescription_RainbowPass
+A pass for ferries between\nVERMILION and the SEVII ISLANDS.\nIt features a drawing of a rainbow.
+
+#org @gItemDescription_Tea
+An aromatic tea prepared by an old\nlady. It will slake even the worst\nthirst.
+
+#org @gItemDescription_MysticTicket
+A ticket required to board the ship\nto NAVEL ROCK.\nIt glows with a mystic light.
+
+#org @gItemDescription_AuroraTicket
+A ticket required to board the ship\nto BIRTH ISLAND.\nIt glows beautifully.
+
+#org @gItemDescription_PowderJar
+A jar for storing BERRY POWDER\nmade using a BERRY CRUSHER.
+
+#org @gItemDescription_Ruby
+An exquisitely beautiful gem that\nhas a red glow.\nIt symbolizes passion.
+
+#org @gItemDescription_Sapphire
+An exquisitely beautiful gem that\nhas a blue glow.\nIt symbolizes honesty.
+
+#org @gItemDescription_XSpDef
+?????
+
+#org @gItemDescription_TM51
+?????
+
+#org @gItemDescription_TM52
+?????
+
+#org @gItemDescription_TM53
+?????
+
+#org @gItemDescription_TM54
+?????
+
+#org @gItemDescription_TM55
+?????
+
+#org @gItemDescription_TM56
+?????
+
+#org @gItemDescription_TM57
+?????
+
+#org @gItemDescription_TM58
+?????
+
+#org @gItemDescription_TM59
+?????
+
+#org @gItemDescription_TM60
+?????
+
+#org @gItemDescription_TM61
+?????
+
+#org @gItemDescription_TM62
+?????
+
+#org @gItemDescription_TM63
+?????
+
+#org @gItemDescription_TM64
+?????
+
+#org @gItemDescription_TM65
+?????
+
+#org @gItemDescription_TM66
+?????
+
+#org @gItemDescription_TM67
+?????
+
+#org @gItemDescription_TM68
+?????
+
+#org @gItemDescription_TM69
+?????
+
+#org @gItemDescription_TM70
+?????
+
+#org @gItemDescription_TM71
+?????
+
+#org @gItemDescription_TM72
+?????
+
+#org @gItemDescription_TM73
+?????
+
+#org @gItemDescription_TM74
+?????
+
+#org @gItemDescription_TM75
+?????
+
+#org @gItemDescription_TM76
+?????
+
+#org @gItemDescription_TM77
+?????
+
+#org @gItemDescription_TM78
+?????
+
+#org @gItemDescription_TM79
+?????
+
+#org @gItemDescription_TM80
+?????
+
+#org @gItemDescription_TM81
+?????
+
+#org @gItemDescription_TM82
+?????
+
+#org @gItemDescription_TM83
+?????
+
+#org @gItemDescription_TM84
+?????
+
+#org @gItemDescription_TM85
+?????
+
+#org @gItemDescription_TM86
+?????
+
+#org @gItemDescription_TM87
+?????
+
+#org @gItemDescription_TM88
+?????
+
+#org @gItemDescription_TM89
+?????
+
+#org @gItemDescription_TM90
+?????
+
+#org @gItemDescription_TM91
+?????
+
+#org @gItemDescription_TM92
+?????
+
+#org @gItemDescription_TM93
+?????
+
+#org @gItemDescription_TM94
+?????
+
+#org @gItemDescription_TM95
+?????
+
+#org @gItemDescription_TM96
+?????
+
+#org @gItemDescription_TM97
+?????
+
+#org @gItemDescription_TM98
+?????
+
+#org @gItemDescription_TM99
+?????
+
+#org @gItemDescription_TM100
+?????
+
+#org @gItemDescription_TM101
+?????
+
+#org @gItemDescription_TM102
+?????
+
+#org @gItemDescription_TM103
+?????
+
+#org @gItemDescription_TM104
+?????
+
+#org @gItemDescription_TM105
+?????
+
+#org @gItemDescription_TM106
+?????
+
+#org @gItemDescription_TM107
+?????
+
+#org @gItemDescription_TM108
+?????
+
+#org @gItemDescription_TM109
+?????
+
+#org @gItemDescription_TM110
+?????
+
+#org @gItemDescription_TM111
+?????
+
+#org @gItemDescription_TM112
+?????
+
+#org @gItemDescription_TM113
+?????
+
+#org @gItemDescription_TM114
+?????
+
+#org @gItemDescription_TM115
+?????
+
+#org @gItemDescription_TM116
+?????
+
+#org @gItemDescription_TM117
+?????
+
+#org @gItemDescription_TM118
+?????
+
+#org @gItemDescription_TM119
+?????
+
+#org @gItemDescription_TM120
+?????
+
+#org @gItemDescription_OccaBerry
+If held, reduces damage taken from\none super effective Fire-move.
+
+#org @gItemDescription_PasshoBerry
+If held, reduces damage taken from\none super effective Water-move.
+
+#org @gItemDescription_WacanBerry
+If held, reduces damage taken from\none super effective Electric-move.
+
+#org @gItemDescription_RindoBerry
+If held, reduces damage taken from\none super effective Grass-move.
+
+#org @gItemDescription_YacheBerry
+If held, reduces damage taken from\none super effective Ice-move.
+
+#org @gItemDescription_ChopleBerry
+If held, reduces damage taken from\none super effective Fighting-move.
+
+#org @gItemDescription_KebiaBerry
+If held, reduces damage taken from\none super effective Poison-move.
+
+#org @gItemDescription_ShucaBerry
+If held, reduces damage taken from\none super effective Ground-move.
+
+#org @gItemDescription_CobaBerry
+If held, reduces damage taken from\none super effective Flying-move.
+
+#org @gItemDescription_PayapaBerry
+If held, reduces damage taken from\none super effective Psychic-move.
+
+#org @gItemDescription_TangaBerry
+If held, reduces damage taken from\none super effective Bug-move.
+
+#org @gItemDescription_ChartiBerry
+If held, reduces damage taken from\none super effective Rock-move.
+
+#org @gItemDescription_KasibBerry
+If held, reduces damage taken from\none super effective Ghost-move.
+
+#org @gItemDescription_HabanBerry
+If held, reduces damage taken from\none super effective Dragon-move.
+
+#org @gItemDescription_ColburBerry
+If held, reduces damage taken from\none super effective Dark-move.
+
+#org @gItemDescription_BabiriBerry
+If held, reduces damage taken from\none super effective Steel-move.
+
+#org @gItemDescription_ChilanBerry
+If held, reduces damage taken from\none Normal-move.
+
+#org @gItemDescription_MicleBerry
+If held by a POK\eMON, it increases\nAccuracy just once in a pinch.
+
+#org @gItemDescription_CustapBerry
+If held by a POK\eMON, it gets to\nmove first just once in a pinch.
+
+#org @gItemDescription_JabocaBerry
+When the holder is hit with a\nphysical move, the attacker is hurt.
+
+#org @gItemDescription_RowapBerry
+When the holder is hit with a\nspecial move, the attacker is hurt.
+
+#org @gItemDescription_RoseliBerry
+If held, reduces damage taken from\none super effective Fairy-move.
+
+#org @gItemDescription_KeeBerry
+When hit by a physical attack,\nDefense will increase slightly.         
+
+#org @gItemDescription_MarangaBerry
+When the holder is hit by a special\nattack, its Sp. Def will increase.
+
+#org @gItemDescription_OvalCharm
+An oval charm said to increase\nthe chance of Eggs being found\nat the Day Care.
+
+#org @gItemDescription_ShinyCharm
+A shiny charm said to increase\nthe chance of finding a Shiny\nPOK\eMON.
+
+#org @gItemDescription_RainbowWing
+A mystical rainbow feather that\nsparkles.
+
+#org @gItemDescription_SilverWing
+A strange, silvery feather that\nsparkles.
+
+#org @gItemDescription_MagmaStone
+A stone formed by boulders that\nmelted in hot magma, and hardened.\nMagma still remains inside it.
+
+#org @gItemDescription_LightStone
+Reshiram's body was destroyed and\nchanged into this stone. It is said\nto be waiting for a hero.
+
+#org @gItemDescription_DarkStone
+Zekrom's body was destroyed and\nchanged into this stone. It is said\nto be waiting for a hero.
+
+#org @gItemDescription_SunFlute
+It is said that the tones it\nproduces were offered up as an\nexpression of gratitude.
+
+#org @gItemDescription_MoonFlute
+It is said that the tones it\nproduces were offered up as an\nexpression of gratitude.
+
+#org @gItemDescription_Gracidea
+A flower bundled in bouquets to\nconvey gratitude. It allows\nShaymin to change forme.                     
+
+#org @gItemDescription_DnaSplicers
+A splicer that fuses or separates\nKyurem and Reshiram or Zekrom.
+
+#org @gItemDescription_RevealGlass
+A glass that reveals the truth.\nIt's a mysterious glass that returns\na POK\eMON to its original shape.
+
+#org @gItemDescription_PrisonBottle
+A bottle believed to have been\nused to seal away the power of a\ncertain POK\eMON long, long ago.
+
+#org @gItemDescription_NSolarizer
+A machine to fuse or separate\nNECROZMA, which needs light,\nand Solgaleo.
+
+#org @gItemDescription_NLunarizer
+A machine to fuse or separate\nNECROZMA, which needs light,\nand Lunala.
+
+#org @gItemDescription_RustedSword
+It is said that a hero used this\nsword to halt a terrible disaster, \nbut it has since worn out.                
+
+#org @gItemDescription_RustedShield
+It is said that a hero used this\nshield to halt a terrible disaster, \nbut it has since worn out.                
+
+#org @gItemDescription_AdamantOrb
+An orb to be held by DIALGA.\nIt boosts the power of DRAGON- and\nSTEEL-type moves when held.        
+
+#org @gItemDescription_LustrousOrb
+An orb to be held by PALKIA.\nIt boosts the power of DRAGON- and\nWATER-type moves when held.       
+
+#org @gItemDescription_GriseousOrb
+An orb to be held by GIRATINA.\nIt boosts the power of DRAGON- and\nGHOST-type moves when held.       
+
+#org @gItemDescription_FistPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of FIGHTING-type moves.
+
+#org @gItemDescription_SkyPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of FLYING-type moves.
+
+#org @gItemDescription_ToxicPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of POISON-type moves.
+
+#org @gItemDescription_EarthPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of GROUND-type moves.
+
+#org @gItemDescription_StonePlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of ROCK-type moves.
+
+#org @gItemDescription_InsectPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of BUG-type moves.
+
+#org @gItemDescription_SpookyPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of GHOST-type moves.
+
+#org @gItemDescription_IronPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of STEEL-type moves.
+
+#org @gItemDescription_FlamePlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of FIRE-type moves.
+
+#org @gItemDescription_SplashPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of WATER-type moves.
+
+#org @gItemDescription_MeadowPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of GRASS-type moves.
+
+#org @gItemDescription_ZapPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of ELECTRIC-type moves.
+
+#org @gItemDescription_MindPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of PSYCHIC-type moves.
+
+#org @gItemDescription_IciclePlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of ICE-type moves.
+
+#org @gItemDescription_DracoPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of DRAGON-type moves.
+
+#org @gItemDescription_DreadPlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of DARK-type moves.
+
+#org @gItemDescription_PixiePlate
+An item to be held by a POK\eMON.\nIt is a stone tablet that boosts\nthe power of FAIRY-type moves.
+
+#org @gItemDescription_FightingMemory
+A memory disc that contains\nFIGHTING-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_FlyingMemory
+A memory disc that contains\nFLYING-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_PoisonMemory
+A memory disc that contains\nPOISON-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_GroundMemory
+A memory disc that contains\nGROUND-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_RockMemory
+A memory disc that contains\nROCK-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_BugMemory
+A memory disc that contains\nBUG-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_GhostMemory
+A memory disc that contains\nGHOST-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_SteelMemory
+A memory disc that contains\nSTEEL-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_FireMemory
+A memory disc that contains\nFIRE-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_WaterMemory
+A memory disc that contains\nWATER-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_GrassMemory
+A memory disc that contains\nGRASS-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_ElectricMemory
+A memory disc that contains\nELECTRIC-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_PsychicMemory
+A memory disc that contains\nPSYCHIC-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_IceMemory
+A memory disc that contains\nICE-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_DragonMemory
+A memory disc that contains\nDRAGON-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_DarkMemory
+A memory disc that contains\nDARK-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_FairyMemory
+A memory disc that contains\nFAIRY-type data. It changes the\ntype of SILVALLY if held.
+
+#org @gItemDescription_BurnDrive
+A cassette to be held by GENESECT.\nIt changes Techno Blast to a\nFIRE-type move.
+
+#org @gItemDescription_DouseDrive
+A cassette to be held by GENESECT.\nIt changes Techno Blast to a\nWATER-type move.
+
+#org @gItemDescription_ShockDrive
+A cassette to be held by GENESECT.\nIt changes Techno Blast to a\nELECTRIC-type move.
+
+#org @gItemDescription_ChillDrive
+A cassette to be held by GENESECT.\nIt changes Techno Blast to a\nICE-type move.
+
+#org @gItemDescription_RedNectar
+A flower nectar obtained at\nULA'ULA MEADOW. It changes the form\nof certain species of POK\eMON.
+
+#org @gItemDescription_YellowNectar
+A flower nectar obtained at\nMELEMELE MEADOW. It changes the\nform of certain species of POK\eMON.
+
+#org @gItemDescription_PinkNectar
+A flower nectar obtained at ROYAL\nAVENUE. It changes the form of\ncertain species of POK\eMON.
+
+#org @gItemDescription_PurpleNectar
+A flower nectar obtained at PONI\nMEADOW. It changes the form of\ncertain species of POK\eMON.
+
+#org @gItemDescription_UltranecroziumZ
+Have NECROZMA hold this, and this\nstone will enable it to ULTRA\nBURST during battle.
+
+#org @gItemDescription_Venusaurite
+Have VENUSAUR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_CharizarditeX
+Have CHARIZARD hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_CharizarditeY
+Have CHARIZARD hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Blastoisinite
+Have BLASTOISE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Beedrillite
+Have BEEDRILL hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Pidgeotite
+Have PIDGEOT hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Alakazite
+Have ALAKAZAM hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Slowbronite
+Have SLOWBRO hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Gengarite
+Have GENGAR hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Kangaskhanite
+Have KANGASKHAN hold this, and\nthis stone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Pinsirite
+Have PINSIR hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Gyaradosite
+Have GYARADOS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Aerodactylite
+Have AERODACTYL hold this, and\nthis stone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_MewtwoniteX
+Have MEWTWO hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_MewtwoniteY
+Have MEWTWO hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Ampharosite
+Have AMPHAROS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Steelixite
+Have STEELIX hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Scizorite
+Have SCIZOR hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Heracronite
+Have HERACROSS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Houndoominite
+Have HOUNDOOM hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Tyranitarite
+Have TYRANITAR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Sceptilite
+Have SCEPTILE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Blazikenite
+Have BLAZIKEN hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Swampertite
+Have SWAMPERT hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Gardevoirite
+Have GARDEVOIR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Sablenite
+Have SABLEYE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Mawilite
+Have MAWILE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Aggronite
+Have AGGRON hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Medichamite
+Have MEDICHAM hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Manectite
+Have MANECTRIC hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Sharpedonite
+Have SHARPEDO hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Cameruptite
+Have CAMERUPT hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Altarianite
+Have ALTARIA hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Banettite
+Have BANETTE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Absolite
+Have ABSOL hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Glalitite
+Have GLALIE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Salamencite
+Have SALAMENCE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Metagrossite
+Have METAGROSS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Latiasite
+Have LATIAS hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Latiosite
+Have LATIOS hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Lopunnite
+Have LOPUNNY hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Garchompite
+Have GARCHOMP hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Lucarionite
+Have LUCARIO hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Abomasite
+Have ABOMASNOW hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Galladite
+Have GALLADE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Audinite
+Have AUDINO hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_Diancite
+Have DIANCIE hold this, and this\nstone will enable it to MEGA EVOLVE\nduring battle.
+
+#org @gItemDescription_NormaliumZ
+This is a crystallized form of\nZ-POWER. It upgrades NORMAL-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_FightiniumZ
+This is a crystallized form of\nZ-POWER. It upgrades FIGHTING-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_FlyiniumZ
+This is a crystallized form of\nZ-POWER. It upgrades FLYING-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_PoisoniumZ
+This is a crystallized form of\nZ-POWER. It upgrades POISON-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_GroundiumZ
+This is a crystallized form of\nZ-POWER. It upgrades GROUND-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_RockiumZ
+This is a crystallized form of\nZ-POWER. It upgrades ROCK-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_BuginiumZ
+This is a crystallized form of\nZ-POWER. It upgrades BUG-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_GhostiumZ
+This is a crystallized form of\nZ-POWER. It upgrades GHOST-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_SteeliumZ
+This is a crystallized form of\nZ-POWER. It upgrades STEEL-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_FiriumZ
+This is a crystallized form of\nZ-POWER. It upgrades FIRE-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_WateriumZ
+This is a crystallized form of\nZ-POWER. It upgrades WATER-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_GrassiumZ
+This is a crystallized form of\nZ-POWER. It upgrades GRASS-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_ElectriumZ
+This is a crystallized form of\nZ-POWER. It upgrades ELECTRIC-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_PsychiumZ
+This is a crystallized form of\nZ-POWER. It upgrades PSYCHIC-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_IciumZ
+This is a crystallized form of\nZ-POWER. It upgrades ICE-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_DragoniumZ
+This is a crystallized form of\nZ-POWER. It upgrades DRAGON-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_DarkiniumZ
+This is a crystallized form of\nZ-POWER. It upgrades DARK-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_FairiumZ
+This is a crystallized form of\nZ-POWER. It upgrades FAIRY-type\nmoves to Z-MOVES.
+
+#org @gItemDescription_AloraichiumZ
+This is a crystallized form of\nZ-POWER. It upgrades ALOLAN\nRAICHU's THUNDERBOLT to a Z-MOVE.
+
+#org @gItemDescription_DecidiumZ
+This is a crystallized form of\nZ-POWER. It upgrades DECIDUEYE'S\nSPIRIT SHACKLE to a Z-MOVE.
+
+#org @gItemDescription_EeviumZ
+This is a crystallized form of\nZ-POWER. It upgrades EEVEE'S\nLAST RESORT to a Z-MOVE.
+
+#org @gItemDescription_InciniumZ
+This is a crystallized form of\nZ-POWER. It upgrades INCINEROAR'S\nDARKEST LARIAT to a Z-MOVE.
+
+#org @gItemDescription_KommoniumZ
+This is a crystallized form of\nZ-POWER. It upgrades KOMMO-O'S\nCLANGING SCALES to a Z-MOVE.
+
+#org @gItemDescription_LunaliumZ
+This is a crystallized form of\nZ-POWER. It upgrades LUNALA'S\nMOONGEIST BEAM to a Z-MOVE.
+
+#org @gItemDescription_LycaniumZ
+This is a crystallized form of\nZ-POWER. It upgrades LYCANROC'S\nSTONE EDGE to a Z-MOVE.
+
+#org @gItemDescription_MarshadiumZ
+This is a crystallized form of\nZ-POWER. It upgrades MARSHADOW'S\nSPECTRAL THIEF to a Z-MOVE.
+
+#org @gItemDescription_MewniumZ
+This is a crystallized form of\nZ-POWER. It upgrades MEW'S\nPSYCHIC to a Z-MOVE.
+
+#org @gItemDescription_MimikiumZ
+This is a crystallized form of\nZ-POWER. It upgrades MIMIKYU'S\nPLAY ROUGH to a Z-MOVE.
+
+#org @gItemDescription_PikaniumZ
+This is a crystallized form of\nZ-POWER. It upgrades PIKACHU'S\nVOLT TACKLE to a Z-MOVE.
+
+#org @gItemDescription_PikashuniumZ
+This is a crystallized form of\nZ-POWER. It upgrades a THUNDERBOLT\nby PIKACHU in a cap to a Z-MOVE.
+
+#org @gItemDescription_PrimariumZ
+This is a crystallized form of\nZ-POWER. It upgrades PRIMARINA'S\nSPARKLING ARIA to a Z-MOVE.
+
+#org @gItemDescription_SnorliumZ
+This is a crystallized form of\nZ-POWER. It upgrades SNORLAX'S\nGIGA IMPACT to a Z-MOVE.
+
+#org @gItemDescription_SolganiumZ
+This is a crystallized form of\nZ-POWER. It upgrades SOLGALEO'S\nSUNSTEEL STRIKE to a Z-MOVE.
+
+#org @gItemDescription_TapuniumZ
+This is a crystallized form of\nZ-POWER. It upgrades the TAPU's\nNATURE'S MADNESS to a Z-MOVE.
+
+#org @gItemDescription_BlackApricorn
+A black APRICORN. It has a\nscent beyond one's experience.
+
+#org @gItemDescription_BlueApricorn
+A blue APRICORN. It\nsmells a bit like grass.
+
+#org @gItemDescription_GreenApricorn
+A green APRICORN. It has\na mysterious, aromatic scent.
+
+#org @gItemDescription_PinkApricorn
+A pink APRICORN. It has\na nice, sweet scent.
+
+#org @gItemDescription_RedApricorn
+A red APRICORN. It\nassails your nostrils.
+
+#org @gItemDescription_WhiteApricorn
+A white APRICORN. It\ndoesn't smell like anything.
+
+#org @gItemDescription_YellowApricorn
+A yellow APRICORN. It\nhas an invigorating scent.
+
+#org @gItemDescription_RelicCopper
+A copper coin used by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_RelicSilver
+A silver coin used by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_RelicGold
+A gold coin used by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_RelicVase
+A fragile vase made by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_RelicBand
+A heavy bracelet made by an\nancient civilization about 3000\nyears ago.
+
+#org @gItemDescription_RelicStatue
+A stone figurine made by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_RelicCrown
+A heavy crown made by an ancient\ncivilization about 3000 years ago.
+
+#org @gItemDescription_SkullFossil
+A fossil from a prehistoric\nPOK\eMON that lived on the land. It\nappears to be part of a head.
+
+#org @gItemDescription_ArmorFossil
+A fossil from a prehistoric\nPOK\eMON that lived on the land. It\nappears to be part of a collar.
+
+#org @gItemDescription_CoverFossil
+A fossil of an ancient POK\eMON\nthat lived in the sea. It appears\nto be part of its back.
+
+#org @gItemDescription_PlumeFossil
+A fossil of an ancient POK\eMON\nthat flew in the sky. It appears\nto be part of its wing.
+
+#org @gItemDescription_JawFossil
+A fossil from an ancient POK\eMON\nthat once lived on the land. It\nlooks like a piece of large jaw.
+
+#org @gItemDescription_SailFossil
+A fossil from an ancient POK\eMON\nthat once lived on land. It looks\nlike the impression from a skin sail.
+
+#org @gItemDescription_FossilizedBird
+A fossil of an ancient POK\eMON\nthat soared through the sky.\nWhat it looked like is a mystery.
+
+#org @gItemDescription_FossilizedFish
+A fossil of an ancient POK\eMON\nthat once lived in the sea. What\nit looked like is a mystery.
+
+#org @gItemDescription_FossilizedDrake
+A fossil of an ancient POK\eMON\nthat once roamed the land. What\nit looked like is a mystery.
+
+#org @gItemDescription_FossilizedDino
+A fossil of an ancient POK\eMON\nthat once lived in the sea. What\nit looked like is a mystery.
+
+#org @gItemDescription_OddKeystone
+An item needed to keep a stone\ntower from collapsing. Voices can\nbe heard from it occasionally.
+
+#org @gItemDescription_BottleCap
+A bottle cap that gives off a\nsilver gleam. Some people are\nhappy to receive one.
+
+#org @gItemDescription_GoldBottleCap
+A bottle cap that gives off a\ngolden gleam. Some people are\nhappy to receive one.
+
+#org @gItemDescription_WishingPiece
+Throw one into a POK\eMON\nDen to attract a wild Dynamax\nPOK\eMON.
+
+#org @gItemDescription_PowerBracer
+A POK\eMON held item that promotes\nAttack gain on leveling, but\nreduces the Speed stat.
+
+#org @gItemDescription_PowerBelt
+A POK\eMON held item that promotes\nDefense gain on leveling, but\nreduces the Speed stat.
+
+#org @gItemDescription_PowerLens
+A POK\eMON held item that promotes\nSpecial Attack gain on leveling,\nbut reduces the Speed stat.
+
+#org @gItemDescription_PowerBand
+A POK\eMON held item that promotes\nSpecial Defense gain on leveling,\nbut reduces the Speed stat.
+
+#org @gItemDescription_PowerAnklet
+A POK\eMON held item that promotes\nSpeed gain on leveling, but\nreduces the Speed stat.
+
+#org @gItemDescription_PowerWeight
+A POK\eMON held item that promotes\nHP gain on leveling, but reduces\nthe Speed stat.
+
+#org @gItemDescription_LuckIncense
+An item to be held by a POK\eMON.\nIt doubles the battle money if the\nholding POK\eMON takes part.
+
+#org @gItemDescription_FullIncense
+An item to be held by a POK\eMON.\nAn exotic incense that makes the\nholder bloated and slow moving.
+
+#org @gItemDescription_OddIncense
+An item to be held by a POK\eMON.\nThis exotic incense boosts the\npower of PSYCHIC-type moves.
+
+#org @gItemDescription_PureIncense
+An item to be held by a POK\eMON.\nIt repels wild POK\eMON if the\nholder is first in the party.
+
+#org @gItemDescription_RockIncense
+An item to be held by a POK\eMON.\nIt is an exotic incense that boosts\nthe power of ROCK-type moves.
+
+#org @gItemDescription_RoseIncense
+An item to be held by a POK\eMON.\nIt is an exotic incense that boosts\nthe power of GRASS-type moves.
+
+#org @gItemDescription_WaveIncense
+An item to be held by a POK\eMON.\nIt is an exotic incense that boosts\nthe power of WATER-type moves.
+
+#org @gItemDescription_NormalGem
+A gem with an ordinary essence.\nWhen held, it strengthens the power\nof a Normal-type move once.
+
+#org @gItemDescription_FightingGem
+A gem with an essence of combat.\nWhen held, it strengthens the power\nof a Fighting-type move once.
+
+#org @gItemDescription_FlyingGem
+A gem with an essence of air. When\nheld, it strengthens the power of\na Flying-type move once.
+
+#org @gItemDescription_PoisonGem
+A gem with an essence of poison.\nWhen held, it strengthens the power\nof a Poison-type move once.
+
+#org @gItemDescription_GroundGem
+A gem with an essence of land.\nWhen held, it strengthens the power\nof a Ground-type move once.
+
+#org @gItemDescription_RockGem
+A gem with an essence of rock.\nWhen held, it strengthens the power\nof a Rock-type move once.
+
+#org @gItemDescription_BugGem
+A gem with an insect-like essence.\nWhen held, it strengthens the\npower of a Bug-type move once.
+
+#org @gItemDescription_GhostGem
+A gem with a spectral essence.\nWhen held, it strengthens the power\nof a Ghost-type move once.
+
+#org @gItemDescription_SteelGem
+A gem with an essence of steel.\nWhen held, it strengthens the power\nof a Steel-type move once.
+
+#org @gItemDescription_FireGem
+A gem with an essence of fire.\nWhen held, it strengthens the power\nof a Fire-type move once.
+
+#org @gItemDescription_WaterGem
+A gem with an essence of water.\nWhen held, it strengthens the power\nof a Water-type move once.
+
+#org @gItemDescription_GrassGem
+A gem with an essence of nature.\nWhen held, it strengthens the power\nof a Grass-type move once.
+
+#org @gItemDescription_ElectricGem
+A gem with an essence of lightning.\nWhen held, it strengthens the power\nof an Electric-type move once.  
+
+#org @gItemDescription_PsychicGem
+A gem with an essence of the mind.\nWhen held, it strengthens the\npower of a Psychic-type move once.
+
+#org @gItemDescription_IceGem
+A gem with an essence of ice. When\nheld, it strengthens the power of\nan Ice-type move once.
+
+#org @gItemDescription_DragonGem
+A gem with a draconic essence.\nWhen held, it strengthens the power\nof a Dragon-type move once.
+
+#org @gItemDescription_DarkGem
+A gem with an essence of darkness.\nWhen held, it strengthens the\npower of a Dark-type move once.
+
+#org @gItemDescription_FairyGem
+A gem with an essence of the fey.\nWhen held, it strengthens the\npower of a Fairy-type move once.
+
+#org @gItemDescription_WideLens
+An item to be held by a POK\eMON.\nIt is a magnifying lens that boosts\nthe accuracy of moves.
+
+#org @gItemDescription_MuscleBand
+An item to be held by a POK\eMON.\nIt is a headband that slightly\nboosts the power of physical moves.
+
+#org @gItemDescription_WiseGlasses
+An item to be held by a POK\eMON.\nThis thick pair of glasses slightly\nboosts the power of special moves.
+
+#org @gItemDescription_ExpertBelt
+An item to be held by a POK\eMON.\nIt's a well-worn belt that boosts\nthe power of super effective moves.
+
+#org @gItemDescription_LightClay
+A hold item that extends the\nduration of moves like Reflect and\nLight Screen used by the holder.
+
+#org @gItemDescription_LifeOrb
+An item to be held by a POK\eMON.\nIt boosts the power of moves, at\nthe cost of some HP on each hit.
+
+#org @gItemDescription_PowerHerb
+A single-use item to be held by a\nPOK\eMON. It allows a charging move\non the first turn immediate usage.
+
+#org @gItemDescription_ToxicOrb
+An item to be held by a POK\eMON.\nIt is a bizzare orb that badly\npoisons the holder in battle.
+
+#org @gItemDescription_FlameOrb
+An item to be held by a POK\eMON.\nIt is a bizzare orb that inflicts a\nburn on the holder in battle.
+
+#org @gItemDescription_QuickPowder
+An item to be held by Ditto.\nExtremely fine yet hard, this odd\npowder boosts the Speed stat.
+
+#org @gItemDescription_FocusSash
+An item to be held by a POK\eMON.\nIf holder has full HP, it will\nendure a KO attack with 1 HP.
+
+#org @gItemDescription_ZoomLens
+An item to be held by a POK\eMON.\nIf the holder moves after the foe,\nits accuracy will be boosted.
+
+#org @gItemDescription_Metronome
+An item to be held by a POK\eMON.\nIt boosts moves used consecutively\nuntil a different move is used.
+
+#org @gItemDescription_IronBall
+A POK\eMON held item that cuts\nSpeed. It allows Ground-type moves\nto hit Flying and floating POK\eMON.  
+
+#org @gItemDescription_LaggingTail
+An item to be held by a POK\eMON.\nIt is tremendously heavy and makes\nthe holder move slower than usual.
+
+#org @gItemDescription_DestinyKnot
+An item to be held by a POK\eMON.\nIf the holder becomes infatuated,\nthe opposing POK\eMON will be, too.
+
+#org @gItemDescription_BlackSludge
+An item to be held by a POK\eMON.\nPoison-type POK\eMON regain HP,\nbut it damages any other type.
+
+#org @gItemDescription_IcyRock
+An item to be held by a POK\eMON.\nIt extends the duration of the move\nHail when used by the holder.
+
+#org @gItemDescription_SmoothRock
+An item to be held by a POK\eMON.\nIt extends the duration of the move\nSandstorm when used by the holder.
+
+#org @gItemDescription_HeatRock
+An item to be held by a POK\eMON.\nIt extends the duration of the move\nSunny Day when used by the holder.
+
+#org @gItemDescription_DampRock
+An item to be held by a POK\eMON.\nIt extends the duration of the move\nRain Dance when used by the holder.
+
+#org @gItemDescription_GripClaw
+An item to be held by a POK\eMON.\nIt extends the duration of multi-\nturn attacks like Bind or Wrap.
+
+#org @gItemDescription_ChoiceScarf
+An item to be held by a POK\eMON.\nThis scarf boosts Speed, but\nallows the use of only one move.
+
+#org @gItemDescription_ChoiceSpecs
+An item to be held by a POK\eMON.\nThese glasses raise Sp. Atk, but\nallows the use of only one move.
+
+#org @gItemDescription_StickyBarb
+A held item that damages the\nholder every turn and latches on\nto POK\eMON that touch the holder.        
+
+#org @gItemDescription_ShedShell
+An item to be held by a POK\eMON.\nThis carapace enables the holder to\nswitch out of battle without fail.
+
+#org @gItemDescription_BigRoot
+An item to be held by a POK\eMON.\nIt boosts the amount of HP \nrecovered from draining moves.            
+
+#org @gItemDescription_Eviolite
+A mysterious evolutionary lump.\nIt raises the Defense and Sp. Def\nof a POK\eMON that can evolve.
+
+#org @gItemDescription_FloatStone
+An item to be held by a POK\eMON.\nThis very light stone reduces the\nweight of a POK\eMON when held.
+
+#org @gItemDescription_RockyHelmet
+An item to be held by a POK\eMON.\nIf the holder is hit, the attacker\nwill also be damaged upon contact.
+
+#org @gItemDescription_AirBalloon
+An item to be held by a POK\eMON.\nThe holder floats in the air until\nhit. Once hit, this item will burst.
+
+#org @gItemDescription_RedCard
+An item to be held by a POK\eMON.\nIf the holder is hit by an attack,\nthe attacker is removed from battle.
+
+#org @gItemDescription_RingTarget
+An item to be held by a POK\eMON.\nMoves that normally have no effect\nwill land on a POK\eMON holding it.
+
+#org @gItemDescription_BindingBand
+An item to be held by a POK\eMON. A\nband that increases the power of\nbinding moves used by the holder.
+
+#org @gItemDescription_AbsorbBulb
+An item to be held by a POK\eMON.\nIt boosts Sp. Atk if hit with a\nWater-type attack once.
+
+#org @gItemDescription_CellBattery
+An item to be held by a POK\eMON.\nIt boosts Attack if hit with an\nElectric-type attack once.
+
+#org @gItemDescription_EjectButton
+An item to be held by a POK\eMON.\nIf the holder is hit by an attack,\nit will be switched out of battle.
+
+#org @gItemDescription_WeaknessPolicy
+An item to be held by a POK\eMON. \nAtk and Sp. Atk. increase if it is\nhit with a move it's weak to.
+
+#org @gItemDescription_AssaultVest
+An item to be held by a POK\eMON.\nThis vest raises Sp. Def but\nprevents the use of status moves.
+
+#org @gItemDescription_LuminousMoss
+An item to be held by a POK\eMON.\nIt boosts Sp. Def if hit with a\nWater-type attack once.
+
+#org @gItemDescription_Snowball
+An item to be held by a POK\eMON.\nIt boosts Attack if hit with an\nIce-type attack once.
+
+#org @gItemDescription_SafetyGoggles
+These goggles protect the holder \nfrom both weather-related damage\nand powder.
+
+#org @gItemDescription_AdrenalineOrb
+An item to be held by a POK\eMON.\nIt boosts Speed if the holder is\nintimidated.
+
+#org @gItemDescription_TerrainExtender
+An item to be held by a POK\eMON.\nIt extends the terrain duration of\nthe holder's move or ability.
+
+#org @gItemDescription_ProtectivePads
+An item that protects the holder\nfrom effects caused by making\ndirect contact with the enemy.            
+
+#org @gItemDescription_ElectricSeed
+An item to be held by a POK\eMON.\nIt boosts Defense on Electric\nTerrain. It can only be used once.
+
+#org @gItemDescription_GrassySeed
+An item to be held by a POK\eMON.\nIt boosts Defense on Grassy\nTerrain. It can only be used once.
+
+#org @gItemDescription_MistySeed
+An item to be held by a POK\eMON.\nIt boosts Sp. Defense on Misty\nTerrain. It can only be used once.
+
+#org @gItemDescription_PsychicSeed
+An item to be held by a POK\eMON.\nIt boosts Sp. Defense on Psychic\nTerrain. It can only be used once.
+
+#org @gItemDescription_EjectPack
+An item to be held by a POK\eMON.\nWhen stats are lowered, the holder\nwill be switched out of battle.
+
+#org @gItemDescription_RoomService
+An item to be held by a POK\eMON.\nIt lower's the holder's Speed when\nTrick Room takes effect.
+
+#org @gItemDescription_BlunderPolicy
+An item to be held by a POK\eMON.\nIt raises Speed when a POK\eMON\nmisses a move due to accuracy.
+
+#org @gItemDescription_HeavyDutyBoots
+An item to be held by a POK\eMON.\nThese boots prevent the effects of\ntraps set on the battlefield.
+
+#org @gItemDescription_UtilityUmbrella
+An item to be held by a POK\eMON.\nThis sturdy umbrella protects the\nholder from the effects of weather.
+
+#org @gItemDescription_ThroatSpray
+An item to be held by a POK\eMON.\nIt raises Sp. Atk when a POK\eMON\nuses a sound-based move.
+
+#org @gItemDescription_AbilityCapsule
+A capsule that allows a POK\eMON\nwith two Abilities to switch\nbetween these Abilities when used.
+
+#org @gItemDescription_AbilityPatch
+A patch that allows a POK\eMON with\na regular Ability to have a rare\nAbility.
+
+#org @gItemDescription_Remedy
+A herbal medicine that can restore\n60 HP. Yet the bitter taste will\nmake the POK\eMON less friendly.
+
+#org @gItemDescription_FineRemedy
+A herbal medicine that can restore\n100 HP. Yet the bitter taste will\nmake the POK\eMON less friendly.
+
+#org @gItemDescription_SuperbRemedy
+A herbal medicine that can restore\n150 HP. Yet the bitter taste will\nmake the POK\eMON less friendly.
+
+#org @gItemDescription_MaxHoney
+Honey that DYNAMAX VESPIQUEN\nproduces. It has the same\neffect as a MAX REVIVE.
+
+#org @gItemDescription_JubilifeMuffin
+A hidden gem gaining popularity in\nJUBILIFE VILLAGE. Can cure any\nstatus condition of a POK\eMON.
+
+#org @gItemDescription_PewterCrunchies
+PEWTER CITY's famous crunchy snack.\nThey can be used to cure any status\ncondition a POK\eMON may have.
+
+#org @gItemDescription_SweetHeart
+A piece of cloyingly sweet chocolate.\nIt can be used to restore 20 HP\nto a POK\eMON.
+
+#org @gItemDescription_AbilityShield
+An item to be held by a POK\eMON. It\nprotects the holder from having its\nability changed by others.
+
+#org @gItemDescription_BoosterEnergy
+Held item for POK\eMON with certain\nabilities. The energy of this capsule\nboosts the strength of the POK\eMON.
+
+#org @gItemDescription_ClearAmulet
+An item to be held by a POK\eMON.\nIt protects the holder from having\nits stats lowered by opposing POK\eMON.
+
+#org @gItemDescription_CovertCloak
+An item to be held by a POK\eMON.\nIt protects the holder from the\nadditional effects of moves.
+
+#org @gItemDescription_FairyFeather
+An item to be held by a POK\eMON.\nA faintly gleaming feather that\nboosts the power of FAIRY-type moves.
+
+#org @gItemDescription_LoadedDice
+An item to be held by a POK\eMON.\nIt can ensure that the holder's\nmultistrike moves hit more times.
+
+#org @gItemDescription_MirrorHerb
+An item to be held by a POK\eMON.\nThis herb will allow the holder to\nmirror a foe's stat increases once.
+
+#org @gItemDescription_PunchingGlove
+An item to be held by a POK\eMON.\nIt boosts the power of the holder's\npunching moves and prevents contact.
+
+#org @gItemDescription_CornerstoneMask
+An item to be held by OGERPON. This\ncarved wooden mask allows OGERPON to\nwield the ROCK type during battle.
+
+#org @gItemDescription_HearthflameMask
+An item to be held by OGERPON. This\ncarved wooden mask allows OGERPON to\nwield the FIRE type during battle.
+
+#org @gItemDescription_WellspringMask
+An item to be held by OGERPON. This\ncarved wooden mask allows OGERPON to\nwield the WATER type during battle.
+
+#org @gItemDescription_AdamantCrystal
+When used on DIALGA, this large,\nglowing gem wells with power and\nallows the POK\eMON to change form.
+
+#org @gItemDescription_GriseousCore
+When used on GIRATINA, this large,\nglowing gem wells with power and\nallows the POK\eMON to change form.
+
+#org @gItemDescription_LustrousGlobe
+When used on PALKIA, this large,\nglowing gem wells with power and\nallows the POK\eMON to change form.
+
+#org @gItemDescription_AuspiciousArmor
+A peculiar set of armor that can make\na certain species of POK\eMON evolve.\nAuspicious wishes live within it.
+
+#org @gItemDescription_MaliciousArmor
+A peculiar set of armor that can make\na certain species of POK\eMON evolve.\nMalicious will lurks within it.
+
+#org @gItemDescription_BlackAugurite
+A glassy black stone that produces a\nsharp cutting edge when split.\nIt's loved by a certain POK\eMON.
+
+#org @gItemDescription_LeadersCrest
+A shard of what appears to be an\nold blade of some sort.\nIt's loved by a certain POK\eMON.
+
+#org @gItemDescription_MasterpieceTeacup
+A peculiar cup that can make a certain\nPOK\eMON evolve. It may be chipped,\nbut tea drunk from it is delicious.
+
+#org @gItemDescription_UnremarkableTeacup
+A peculiar cup that can make a certain\nPOK\eMON evolve. It may be cracked,\nbut tea drunk from it is delicious.
+
+#org @gItemDescription_MetalAlloy
+A peculiar metal that can make\ncertain species of POK\eMON evolve.\nIt is composed of many layers.
+
+#org @gItemDescription_PeatBlock
+A block of muddy material that can\nbe used as fuel for burning.\nIt's loved by a certain POK\eMON.
+
+#org @gItemDescription_ScrollOfDarkness
+A peculiar scroll loved by certain\nPOK\eMON. Written upon it are the\ntrue secrets of the path of darkness.
+
+#org @gItemDescription_ScrollOfWaters
+A peculiar scroll loved by certain\nPOK\eMON. Written upon it are the\ntrue secrets of the path of water.
+
+#org @gItemDescription_SyrupyApple
+A peculiar apple that can make a\ncertain species of POK\eMON evolve.\nIt's exceptionally syrupy.
+
+#org @gItemDescription_AdamantMint
+When a POK\eMON smells this mint, its\nATTACK will grow more easily, but\nits SP. ATK will grow more slowly.
+
+#org @gItemDescription_BoldMint
+When a POK\eMON smells this mint, its\nDEFENSE will grow more easily, but\nits ATTACK will grow more slowly.
+
+#org @gItemDescription_BraveMint
+When a POK\eMON smells this mint, its\nATTACK will grow more easily, but\nits SPEED will grow more slowly.
+
+#org @gItemDescription_CalmMint
+When a POK\eMON smells this mint, its\nSP. DEF will grow more easily, but\nits ATTACK will grow more slowly.
+
+#org @gItemDescription_CarefulMint
+When a POK\eMON smells this mint, its\nSP. DEF will grow more easily, but\nits SP. ATK will grow more slowly.
+
+#org @gItemDescription_GentleMint
+When a POK\eMON smells this mint, its\nSP. DEF will grow more easily, but\nits DEFENSE will grow more slowly.
+
+#org @gItemDescription_HastyMint
+When a POK\eMON smells this mint, its\nSPEED will grow more easily, but\nits DEFENSE will grow more slowly.
+
+#org @gItemDescription_ImpishMint
+When a POK\eMON smells this mint, its\nDEFENSE will grow more easily, but\nits SP. ATK will grow more slowly.
+
+#org @gItemDescription_JollyMint
+When a POK\eMON smells this mint, its\nSPEED will grow more easily, but\nits SP. ATK will grow more slowly.
+
+#org @gItemDescription_LaxMint
+When a POK\eMON smells this mint, its\nDEFENSE will grow more easily, but\nits SP. DEF will grow more slowly.
+
+#org @gItemDescription_LonelyMint
+When a POK\eMON smells this mint, its\nATTACK will grow more easily, but\nits DEFENSE will grow more slowly.
+
+#org @gItemDescription_MildMint
+When a POK\eMON smells this mint, its\nSP. ATK will grow more easily, but\nits DEFENSE will grow more slowly.
+
+#org @gItemDescription_ModestMint
+When a POK\eMON smells this mint, its\nSP. ATK will grow more easily, but\nits ATTACK will grow more slowly.
+
+#org @gItemDescription_NaiveMint
+When a POK\eMON smells this mint, its\nSPEED will grow more easily, but\nits SP. DEF will grow more slowly.
+
+#org @gItemDescription_NaughtyMint
+When a POK\eMON smells this mint, its\nATTACK will grow more easily, but\nits SP. DEF will grow more slowly.
+
+#org @gItemDescription_QuietMint
+When a POK\eMON smells this mint, its\nSP. ATK will grow more easily, but\nits SPEED will grow more slowly.
+
+#org @gItemDescription_RashMint
+When a POK\eMON smells this mint, its\nSP. ATK will grow more easily, but\nits SP. DEF will grow more slowly.
+
+#org @gItemDescription_RelaxedMint
+When a POK\eMON smells this mint, its\nDEFENSE will grow more easily, but\nits SPEED will grow more slowly.
+
+#org @gItemDescription_SassyMint
+When a POK\eMON smells this mint, its\nSP. DEF will grow more easily, but\nits SPEED will grow more slowly.
+
+#org @gItemDescription_SeriousMint
+When a POK\eMON smells this mint, its\nATTACK, DEFENSE, SP. ATK, SP. DEF,\nand SPEED will grow at usual rates.
+
+#org @gItemDescription_TimidMint
+When a POK\eMON smells this mint, its\nSPEED will grow more easily, but\nits ATTACK will grow more slowly.
+
+#org @gItemDescription_AbsoliteZ
+Have ABSOL hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Barbaracite
+Have BARBARACLE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Baxcalibrite
+Have BAXCALIBUR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Chandelurite
+Have CHANDELURE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Chesnaughtite
+Have CHESNAUGHT hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Chimechite
+Have CHIMECHO hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Clefablite
+Have CLEFABLE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Crabominite
+Have CRABMINBLE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Darkranite
+Have DARKRAI hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Delphoxite
+Have DELPHOX hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Dragalgite
+Have DRAGALGE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Dragoninite
+Have DRAGONITE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Drampanite
+Have DRAMPA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Eelektrossite
+Have EELEKTROSS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Emboarite
+Have EMBOAR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Excadrite
+Have EXCADRILL hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Falinksite
+Have FALINKS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Feraligite
+Have FERALIGATR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Floettite
+Have ETERNAL FLOETTE hold this, and\nthis stone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Froslassite
+Have FROSLASS hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_GarchompiteZ
+Have GARCHOMP hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Glimmoranite
+Have GLIMMORA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Golisopite
+Have GOLISOPOD hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Golurkite
+Have GOLURK hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Greninjite
+Have GRENINJA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Hawluchanite
+Have HAWLUCHA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Heatranite
+Have HEATRAN hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_LucarioniteZ
+Have LUCARIO hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Magearnite
+Have MAGEARNA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Malamarite
+Have MALAMAR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Meganiumite
+Have MEGANIUM hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Meowsticite
+Have MEOWSTIC hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Pyroarite
+Have PYROAR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_RaichuniteX
+Have RAICHU hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_RaichuniteY
+Have RAICHU hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Scolipite
+Have SCOLIPEDE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Scovillainite
+Have SCOVILLAIN hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Scraftinite
+Have SCRAFTY hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Skarmorite
+Have SKARMORY hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Staraptite
+Have STARAPTOR hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Starminite
+Have STARMIE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Tatsugirinite
+Have TATSUGIRI hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Victreebelite
+Have VICTREEBEL hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Zeraorite
+Have ZERAORA hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_Zygardite
+Have ZYGARDE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.

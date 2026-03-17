@@ -18,6 +18,7 @@ defines_battle.h
 #include "../include/constants/species.h"
 #include "../include/constants/abilities.h"
 #include "../include/constants/moves.h"
+#include "../include/constants/items.h"
 #include "../include/constants/hold_effects.h"
 #include "../include/constants/battle_move_effects.h"
 

@@ -40,6 +40,12 @@ void sp10A_CanUseCutOnTree(void);
 void sp10B_CanUseRockSmashOnRock(void);
 void sp10C_CanUseStrengthOnBoulder(void);
 
+void FieldUseFunc_MaxPowder(u8 taskId);
+void FieldUseFunc_Honey(u8 taskId);
+void FieldUseFunc_EVReducingBerry(u8 taskId);
+void FieldUseFunc_FormChangeItem(u8 taskId);
+void FieldUseFunc_AbilityCapsule(u8 taskId);
+
 //Exported Data Structures
 //extern const struct XX gPartyMenuCursorOptions[];
 //extern const struct XX gFieldMoveCursorCallbacks[];

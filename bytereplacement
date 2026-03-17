@@ -2,6 +2,7 @@
 #include "include/party_menu.h"
 #include "include/pokemon_storage_system.h"
 #include "include/constants/tutors.h"
+#include "include/constants/items.h"
 #include "include/new/catching.h"
 
 ##Optional Byte Changes##
@@ -732,3 +733,7 @@
 #08132036 AC
 #08463191 0E
 #084631A9 02
+
+##Item expansion
+0809A8AE 00 00 00 00
+08098998 0C 33

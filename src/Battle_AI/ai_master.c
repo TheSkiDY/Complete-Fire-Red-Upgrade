@@ -1323,7 +1323,7 @@ u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect) //Fixed from vanilla
         return AI_ITEM_CURE_CONDITION;
     else if (itemEffect[0] & (ITEM0_HIGH_CRIT | ITEM0_X_ATTACK) || itemEffect[1] != 0 || itemEffect[2] != 0)
         return AI_ITEM_X_STAT;
-    else if (itemEffect[3] & ITEM3_MIST)
+    else if (itemEffect[3] & ITEM3_GUARD_SPEC)
         return AI_ITEM_GUARD_SPECS;
     else
         return AI_ITEM_NOT_RECOGNIZABLE;
