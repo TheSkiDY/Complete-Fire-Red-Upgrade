@@ -3066,3 +3066,9 @@ void SetScrollingListSize(unusedArg u8 taskId)
 	gTasks[taskId].data[4] = 0xC;	//width?
 #endif
 }
+
+
+void InitMgba(void)
+{
+	MgbaOpen();
+}	

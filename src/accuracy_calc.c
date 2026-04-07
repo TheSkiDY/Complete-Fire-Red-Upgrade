@@ -463,14 +463,16 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	if (WEATHER_HAS_EFFECT)
 	{
 		switch (defAbility) {
-			case ABILITY_SANDVEIL:
-				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+			case ABILITYBRANCH_EVASION_IN_WEATHER:
+				if (BankHasBranchAbility(bankDef, BRANCH_SAND_VEIL) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+				{
 					calc = udivsi((calc * 80), 100); // 0.8 Sand Veil loss
-				break;
-
-			case ABILITY_SNOWCLOAK:
-				if (gBattleWeather & WEATHER_HAIL_ANY)
+				}
+				else if (BankHasBranchAbility(bankDef, BRANCH_SNOW_CLOAK) && gBattleWeather & WEATHER_HAIL_ANY)
+				{
 					calc = udivsi((calc * 80), 100); // 0.8 Snow Cloak loss
+				}
+				break;
 		}
 
 		if (gBattleWeather & WEATHER_FOG_ANY)

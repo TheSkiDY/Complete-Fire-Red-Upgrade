@@ -662,7 +662,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 		case CANCELLER_STANCE_CHANGE:
 		case CANCELLER_STANCE_CHANGE_2:
 			#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-			if (ABILITY(gBankAttacker) == ABILITY_STANCECHANGE && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
+			if (BankHasBranchAbility(gBankAttacker, BRANCH_STANCE_CHANGE) && !(gBattleMons[gBankAttacker].status2 & STATUS2_TRANSFORMED))
 			{
 				switch (gBattleMons[gBankAttacker].species)
 				{
@@ -961,7 +961,7 @@ static u8 AtkCanceller_UnableToUseMove(void)
 					gMultiHitCounter = 5;
 				}
 				#ifdef SPECIES_ASHGRENINJA
-				else if (ability == ABILITY_BATTLEBOND
+				else if (BankHasBranchAbility(gBankAttacker, BRANCH_BATTLE_BOND)
 				&& gCurrentMove == MOVE_WATERSHURIKEN
 				&& SPECIES(gBankAttacker) == SPECIES_ASHGRENINJA)
 				{

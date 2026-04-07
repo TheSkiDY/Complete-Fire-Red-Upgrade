@@ -1211,7 +1211,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 				case MOVE_KINGSSHIELD:
 					#if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-					if (atkAbility == ABILITY_STANCECHANGE //Special logic for Aegislash
+					if (BankHasBranchAbility(bankAtk, BRANCH_STANCE_CHANGE) //Special logic for Aegislash
 					&&  !IsBankIncapacitated(bankDef))
 					{
 						if (data->atkSpecies == SPECIES_AEGISLASH_BLADE //In blade form
@@ -1416,9 +1416,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			&& atkAbility == ABILITY_SANDRUSH)
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
-			else if (atkAbility == ABILITY_SANDVEIL
+			else if (atkAbility == ABILITYBRANCH_EVASION_IN_WEATHER
 			|| atkAbility == ABILITY_SANDRUSH
-			|| atkAbility == ABILITY_SANDFORCE
 			|| atkAbility == ABILITY_SANDFORCE
 			|| atkAbility == ABILITY_OVERCOAT
 			|| atkAbility == ABILITY_MAGICGUARD
@@ -1609,12 +1608,12 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (IsClassDoublesSetupAttacker(class)
-			&& atkAbility == ABILITY_SWIFTSWIM)
+			&& BankHasBranchAbility(bankAtk, BRANCH_SWIFT_SWIM)) 
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (!ItemEffectIgnoresSunAndRain(data->atkItemEffect)
-			&& (atkAbility == ABILITY_SWIFTSWIM
-			 || atkAbility == ABILITY_FORECAST
+			&& (BankHasBranchAbility(bankAtk, BRANCH_SWIFT_SWIM) 
+			 || BankHasBranchAbility(bankAtk, BRANCH_FORECAST)
 			 || atkAbility == ABILITY_HYDRATION
 			 || atkAbility == ABILITY_RAINDISH
 			 || atkAbility == ABILITY_DRYSKIN
@@ -1641,13 +1640,13 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (IsClassDoublesSetupAttacker(class)
-			&& atkAbility == ABILITY_CHLOROPHYLL)
+			&& BankHasBranchAbility(bankAtk, BRANCH_CHLOROPHYLL)) 
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (!ItemEffectIgnoresSunAndRain(data->atkItemEffect)
-			&& (atkAbility == ABILITY_CHLOROPHYLL
+			&& (BankHasBranchAbility(bankAtk, BRANCH_CHLOROPHYLL) 
 			 || atkAbility == ABILITY_FLOWERGIFT
-			 || atkAbility == ABILITY_FORECAST
+			 || BankHasBranchAbility(bankAtk, BRANCH_FORECAST)
 			 || atkAbility == ABILITY_LEAFGUARD
 			 || atkAbility == ABILITY_SOLARPOWER
 			 || atkAbility == ABILITY_HARVEST
@@ -1791,13 +1790,13 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (IsClassDoublesSetupAttacker(class)
-			&& atkAbility == ABILITY_SLUSHRUSH)
+			&& BankHasBranchAbility(bankAtk, BRANCH_SLUSH_RUSH)) //SLUSH_RUSH
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
-			else if (atkAbility == ABILITY_SNOWCLOAK
+			else if (BankHasBranchAbility(bankAtk, BRANCH_SNOW_CLOAK)
 			|| atkAbility == ABILITY_ICEBODY
-			|| atkAbility == ABILITY_FORECAST
-			|| atkAbility == ABILITY_SLUSHRUSH
+			|| BankHasBranchAbility(bankAtk, BRANCH_FORECAST)
+			|| BankHasBranchAbility(bankAtk, BRANCH_SLUSH_RUSH)
 			|| atkAbility == ABILITY_MAGICGUARD
 			|| atkAbility == ABILITY_OVERCOAT
 			|| MoveInMoveset(MOVE_BLIZZARD, bankAtk)
@@ -1946,11 +1945,10 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					if (atkAbility != ABILITY_SOLARPOWER && atkAbility != ABILITY_DRYSKIN)
 					{
 						switch (defAbility) {
-							case ABILITY_SWIFTSWIM:
+							case ABILITYBRANCH_SPEED_IN_WEATHER: //SWIFT_SWIM
 								if (gBattleWeather & WEATHER_RAIN_ANY)
 									INCREASE_STATUS_VIABILITY(3); //Slow 'em down
 								break;
-							case ABILITY_CHLOROPHYLL:
 							case ABILITY_FLOWERGIFT:
 								if (gBattleWeather & WEATHER_SUN_ANY)
 									INCREASE_STATUS_VIABILITY(3); //Slow 'em down
@@ -2460,7 +2458,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					break;
 
 				case MOVE_IONDELUGE:
-					if ((atkAbility == ABILITY_VOLTABSORB
+					if (((atkAbility == ABILITYBRANCH_TYPE_ABSORPTION && BankHasBranchAbility(bankAtk, BRANCH_VOLT_ABSORB))
 					||  atkAbility == ABILITY_MOTORDRIVE
 					||  atkAbility == ABILITY_LIGHTNINGROD)
 					 && GetMoveTypeSpecial(bankDef, predictedMove) == TYPE_NORMAL)
@@ -2594,7 +2592,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			switch (move) {
 				case MOVE_ELECTRIFY:
 					if (GetMoveTypeSpecial(bankDef, predictedMove) == TYPE_NORMAL
-					&& (atkAbility == ABILITY_VOLTABSORB
+					&& ((atkAbility == ABILITYBRANCH_TYPE_ABSORPTION && BankHasBranchAbility(bankAtk, BRANCH_VOLT_ABSORB))
 					 || atkAbility == ABILITY_MOTORDRIVE
 					 || atkAbility == ABILITY_LIGHTNINGROD))
 					{

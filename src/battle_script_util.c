@@ -962,7 +962,7 @@ void ChangeTargetTypeFunc(void)
 	switch (gCurrentMove) {
 		case MOVE_SOAK:
 			if (ABILITY(gBankTarget) == ABILITY_MULTITYPE
-			||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
+			||  ABILITY(gBankTarget) == ABILITY_RKSSYSTEM
 			|| (gBattleMons[gBankTarget].type1 == TYPE_WATER &&
 				gBattleMons[gBankTarget].type2 == TYPE_WATER &&
 				gBattleMons[gBankTarget].type3 == TYPE_BLANK))
@@ -985,7 +985,7 @@ void ChangeTargetTypeFunc(void)
 				gBattlescriptCurrInstr = BattleScript_NotAffected - 5;
 			}
 			else if (ABILITY(gBankTarget) == ABILITY_MULTITYPE
-			||  ABILITY(gBankTarget) == ABILITY_RKS_SYSTEM
+			||  ABILITY(gBankTarget) == ABILITY_RKSSYSTEM
 			|| (gBattleMons[gBankTarget].type1 == TYPE_PSYCHIC &&
 				gBattleMons[gBankTarget].type2 == TYPE_PSYCHIC &&
 				gBattleMons[gBankTarget].type3 == TYPE_BLANK))
@@ -1414,8 +1414,9 @@ void AbilityChangeBSFunc(void)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
-				*defAbilityLoc = ABILITY_INSOMNIA;
-				ResetTookAbilityFrom(gBankTarget);
+				*defAbilityLoc = ABILITYBRANCH_STATUS_PREVENTION;
+				gNewBS->tookAbilityFrom[gBankTarget] = SPECIES_DROWZEE; //random mon with Insomnia, so that the BRANCH_INSOMNIA gets detected
+				///ResetTookAbilityFrom(gBankTarget);
 				gLastUsedAbility = defAbility; //Original ability
 				ResetVarsForAbilityChange(gBankTarget);
 				gBattleStringLoader = WorrySeedString;
@@ -2642,4 +2643,9 @@ void ChooseMoveEffectForSpringtideStorm(void)
 		moveEffect = EFFECT_ALL_STATS_UP_HIT;
 
 	gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[moveEffect] - 5;
+}
+
+void MummyWanderingSpiritSetCorrectTookAbilityFrom(void)
+{
+	SetTookAbilityFrom(gBankAttacker, gBankTarget);
 }

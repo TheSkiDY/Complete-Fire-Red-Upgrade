@@ -2816,7 +2816,7 @@ static bool8 TeamDoesntHaveSynergy(const struct BattleTowerSpread* const spread,
 				return TRUE;
 		}
 	}
-
+/*
 	//Team should have max 1 weather type
 	switch (ability) {
 		case ABILITY_DRIZZLE:
@@ -2843,7 +2843,7 @@ static bool8 TeamDoesntHaveSynergy(const struct BattleTowerSpread* const spread,
 			if (hasSandSetter || hasHailSetter) //Weather abilities like these knock of Shedinja
 				return TRUE;
 			break;
-	}
+	}*/
 
 	u8 maxWeaknesses;
 	u8 class = PredictFightingStyle(spread->moves, ability, itemEffect, 0xFF);
@@ -3082,7 +3082,7 @@ static void UpdateBuilderAfterSpread(struct TeamBuilder* builder, const struct B
 		builder->partyIndex[HAZARDS_SETUP] = partyId;
 
 	//Abilities Always
-	switch (ability) {
+/*	switch (ability) {
 		case ABILITY_DRIZZLE:
 			builder->partyIndex[RAIN_SETTER] = partyId;
 			break;
@@ -3099,19 +3099,19 @@ static void UpdateBuilderAfterSpread(struct TeamBuilder* builder, const struct B
 			builder->partyIndex[PSYCHIC_TERRAIN_SETTER] = partyId;
 			break;
 	}
-
+*/
 	u8 defType1 = (gBattleTypeFlags & BATTLE_TYPE_CAMOMONS) ? GetCamomonsTypeBySpread(spread, 0) : gBaseStats[species].type1;
 	u8 defType2 = (gBattleTypeFlags & BATTLE_TYPE_CAMOMONS) ? GetCamomonsTypeBySpread(spread, 1) : gBaseStats[species].type2;
 	if (!IsFrontierSingles(builder->battleType)) //Doubles or Multi
 	{
 		switch (ability) {
-			case ABILITY_VOLTABSORB:
+			//case ABILITY_VOLTABSORB:
 			case ABILITY_MOTORDRIVE:
 			case ABILITY_LIGHTNINGROD:
 				builder->partyIndex[ELECTRIC_IMMUNITY] = partyId;
 				break;
 
-			case ABILITY_WATERABSORB:
+			//case ABILITY_WATERABSORB:
 			case ABILITY_DRYSKIN:
 			case ABILITY_STORMDRAIN:
 				builder->partyIndex[WATER_IMMUNITY] = partyId;
@@ -3197,20 +3197,20 @@ static bool8 IsSpreadWeakToType(u8 moveType, u8 defType1, u8 defType2, u8 abilit
 			if (moveType == TYPE_FIRE)
 				typeDmg *= 2;
 			break;
-		case ABILITY_DROUGHT:
-			if (moveType == TYPE_WATER)
-				typeDmg /= 2;
-			break;
-		case ABILITY_VOLTABSORB:
+		// case ABILITY_DROUGHT:
+		// 	if (moveType == TYPE_WATER)
+		// 		typeDmg /= 2;
+		// 	break;
+		//case ABILITY_VOLTABSORB:
 		case ABILITY_MOTORDRIVE:
 		case ABILITY_LIGHTNINGROD:
 			if (moveType == TYPE_ELECTRIC)
 				typeDmg = 0;
 			break;
-		case ABILITY_WATERABSORB:
+		//case ABILITY_WATERABSORB:
 		case ABILITY_DRYSKIN:
 		case ABILITY_STORMDRAIN:
-		case ABILITY_DESOLATELAND:
+		//case ABILITY_DESOLATELAND:
 			if (moveType == TYPE_WATER)
 				typeDmg = 0;
 			break;
@@ -3546,17 +3546,17 @@ static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder)
 
 		switch (ConvertFrontierAbilityNumToAbility(builder->spreads[i]->ability, builder->spreads[i]->species)) {
 			case ABILITY_DRIZZLE:
-			case ABILITY_DROUGHT:
-			case ABILITY_SANDSTREAM:
-			case ABILITY_SNOWWARNING:
+			// case ABILITY_DROUGHT:
+			// case ABILITY_SANDSTREAM:
+			// case ABILITY_SNOWWARNING:
 				weatherIndex = i;
 				break;
-			case ABILITY_ELECTRICSURGE:
-			case ABILITY_GRASSYSURGE:
-			case ABILITY_MISTYSURGE:
-			case ABILITY_PSYCHICSURGE:
-				terrainIndex = i;
-				break;
+			// case ABILITY_ELECTRICSURGE:
+			// case ABILITY_GRASSYSURGE:
+			// case ABILITY_MISTYSURGE:
+			// case ABILITY_PSYCHICSURGE:
+			// 	terrainIndex = i;
+			// 	break;
 			case ABILITY_DEFIANT:
 			case ABILITY_COMPETITIVE:
 			case ABILITY_CONTRARY:

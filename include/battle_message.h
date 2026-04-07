@@ -244,7 +244,6 @@ void __attribute__((long_call)) BattleHandleAddTextPrinter(const u8* text, u8 ar
 void __attribute__((long_call)) SetPpNumbersPaletteInMoveSelection(void);
 u8 __attribute__((long_call)) GetCurrentPpToMaxPpState(u8 currentPp, u8 maxPp);
 
-
 extern u8 gDisplayedStringBattle[300];
 extern u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT];
 extern u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT];
@@ -258,5 +257,10 @@ extern const u8* const gStatNamesTable2[];
 
 extern const u16 gMissStringIds[];
 extern const u16 gTrappingMoves[];
+
+extern const u8 gText_ShadowTagPreventsSwitching[];
+extern const u8 gText_ArenaTrapPreventsSwitching[];
+extern const u8 gText_MagnetPullPreventsSwitching[];
+extern const u8 gText_AbilityPreventsSwitching[];
 
 #endif // GUARD_BATTLE_MESSAGE_H

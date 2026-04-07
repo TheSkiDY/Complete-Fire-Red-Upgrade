@@ -2213,8 +2213,14 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 	{
 		switch (ABILITY(bankDef))
 		{
+			case ABILITYBRANCH_TYPE_ABSORPTION:
+				if (BankHasBranchAbility(bankDef, BRANCH_VOLT_ABSORB) && GetMoveTypeSpecial(bankAtk, move) == TYPE_ELECTRIC)
+					return TRUE;
+				else if (BankHasBranchAbility(bankDef, BRANCH_WATER_ABSORB) && GetMoveTypeSpecial(bankAtk, move) == TYPE_WATER)
+					return TRUE;
+				break;
+
 			//Electric
-			case ABILITY_VOLTABSORB:
 			case ABILITY_MOTORDRIVE:
 			case ABILITY_LIGHTNINGROD:
 				if (GetMoveTypeSpecial(bankAtk, move) == TYPE_ELECTRIC)
@@ -2222,7 +2228,6 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 				break;
 
 			//Water
-			case ABILITY_WATERABSORB:
 			case ABILITY_DRYSKIN:
 			case ABILITY_STORMDRAIN:
 				if (GetMoveTypeSpecial(bankAtk, move) == TYPE_WATER)
@@ -2253,9 +2258,6 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 				break;
 
 			case ABILITY_DAZZLING:
-			#ifdef ABILITY_QUEENLYMAJESTY
-			case ABILITY_QUEENLYMAJESTY:
-			#endif
 				if (PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > 0) //Check if right num
 					return TRUE;
 				break;
@@ -2327,8 +2329,14 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 	{
 		switch (ABILITY(bankDef))
 		{
+			case ABILITYBRANCH_TYPE_ABSORPTION:
+				if (BankHasBranchAbility(bankDef, BRANCH_VOLT_ABSORB) && GetMonMoveTypeSpecial(monAtk, move) == TYPE_ELECTRIC)
+					return TRUE;
+				else if (BankHasBranchAbility(bankDef, BRANCH_WATER_ABSORB) && GetMonMoveTypeSpecial(monAtk, move) == TYPE_WATER)
+					return TRUE;
+				break;
+
 			//Electric
-			case ABILITY_VOLTABSORB:
 			case ABILITY_MOTORDRIVE:
 			case ABILITY_LIGHTNINGROD:
 				if (GetMonMoveTypeSpecial(monAtk, move) == TYPE_ELECTRIC)
@@ -2336,7 +2344,6 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 				break;
 
 			//Water
-			case ABILITY_WATERABSORB:
 			case ABILITY_DRYSKIN:
 			case ABILITY_STORMDRAIN:
 				if (GetMonMoveTypeSpecial(monAtk, move) == TYPE_WATER)
@@ -2367,9 +2374,6 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 				break;
 
 			case ABILITY_DAZZLING:
-			#ifdef ABILITY_QUEENLYMAJESTY
-			case ABILITY_QUEENLYMAJESTY:
-			#endif
 				if (PriorityCalcMon(monAtk, move) > 0) //Check if right num
 					return TRUE;
 				break;
@@ -2580,9 +2584,9 @@ bool8 IsTrapped(u8 bank, bool8 switching)
 	{
 		if (gBattleMons[bank].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED)
 		|| (gStatuses3[bank] & STATUS3_ROOTED)
-		|| (ABILITY_ON_OPPOSING_FIELD(bank, ABILITY_SHADOWTAG) && IsTrappedByAbility(bank, ABILITY_SHADOWTAG))
-		|| (ABILITY_ON_OPPOSING_FIELD(bank, ABILITY_ARENATRAP) && IsTrappedByAbility(bank, ABILITY_ARENATRAP))
-		|| (ABILITY_ON_OPPOSING_FIELD(bank, ABILITY_MAGNETPULL) && IsTrappedByAbility(bank, ABILITY_MAGNETPULL))
+		|| (SHADOW_TAG_ON_OPPOSING_FIELD(bank) && IsTrappedByAbility(bank, BRANCH_SHADOW_TAG))
+		|| (ARENA_TRAP_ON_OPPOSING_FIELD(bank) && IsTrappedByAbility(bank, BRANCH_ARENA_TRAP))
+		|| (MAGNET_PULL_ON_OPPOSING_FIELD(bank) && IsTrappedByAbility(bank, BRANCH_MAGNET_PULL))
 		|| IsFairyLockActive())
 			return TRUE;
 	}
@@ -2654,11 +2658,7 @@ static u32 GetContactDamageByDefAbilityItemEffect(u8 defAbility, u8 defItemEffec
 {
 	u32 dmg = 0;
 
-	if (defAbility == ABILITY_ROUGHSKIN
-	#ifdef ABILITY_IRONBARBS
-	|| defAbility == ABILITY_IRONBARBS
-	#endif
-	)
+	if (defAbility == ABILITY_ROUGHSKIN)
 		dmg += baseMaxHP / 8;
 
 	if (defItemEffect == ITEM_EFFECT_ROCKY_HELMET)
@@ -3015,33 +3015,25 @@ bool8 BadIdeaToMakeContactWith(u8 bankAtk, u8 bankDef)
 
 	switch (ABILITY(bankDef))
 	{
-		case ABILITY_EFFECTSPORE:
-			badIdea = CanBePoisoned(bankAtk, bankDef, TRUE) || CanBeParalyzed(bankAtk, bankDef, TRUE) || CanBePutToSleep(bankAtk, bankDef, TRUE);
+		case ABILITYBRANCH_STATUS_ON_CONTACT:
+			if (BankHasBranchAbility(bankDef, BRANCH_EFFECT_SPORE))
+				badIdea = CanBePoisoned(bankAtk, bankDef, TRUE) || CanBeParalyzed(bankAtk, bankDef, TRUE) || CanBePutToSleep(bankAtk, bankDef, TRUE);
+			else if (BankHasBranchAbility(bankDef, BRANCH_POISON_POINT))
+				badIdea = CanBePoisoned(bankAtk, bankDef, TRUE);
+			else if (BankHasBranchAbility(bankDef, BRANCH_STATIC))
+				badIdea = CanBeParalyzed(bankAtk, bankDef, TRUE);
+			else if (BankHasBranchAbility(bankDef, BRANCH_FLAME_BODY))
+				badIdea = CanBeBurned(bankAtk, bankDef, TRUE);
+			else if (BankHasBranchAbility(bankDef, BRANCH_CUTE_CHARM))
+				badIdea = CanBeInfatuated(bankAtk, bankDef);
 			break;
-		case ABILITY_POISONPOINT:
-			badIdea = CanBePoisoned(bankAtk, bankDef, TRUE);
-			break;
-		case ABILITY_STATIC:
-			badIdea = CanBeParalyzed(bankAtk, bankDef, TRUE);
-			break;
-		case ABILITY_FLAMEBODY:
-			badIdea = CanBeBurned(bankAtk, bankDef, TRUE);
-			break;
-		case ABILITY_CUTECHARM:
-			badIdea = CanBeInfatuated(bankAtk, bankDef);
-			break;
+
 		case ABILITY_AFTERMATH:
 			badIdea = !ABILITY_ON_FIELD(ABILITY_DAMP) && atkAbility != ABILITY_MAGICGUARD;
 			break;
-		#ifdef ABILITY_TANGLINGHAIR
-		case ABILITY_TANGLINGHAIR:
-		#endif
 		case ABILITY_GOOEY:
 			badIdea = STAT_CAN_FALL(gBankAttacker, STAT_SPD) && atkAbility != ABILITY_MIRRORARMOR;
 			break;
-		#ifdef ABILITY_IRONBARBS
-		case ABILITY_IRONBARBS:
-		#endif
 		case ABILITY_ROUGHSKIN:
 			badIdea = atkAbility != ABILITY_MAGICGUARD;
 			break;
@@ -5496,23 +5488,38 @@ static bool8 CalcShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 */
 static bool8 MonCanTriggerWeatherAbilityWithMaxMove(struct Pokemon* mon)
 {
+	u8 ability;
+	u16 species;
 	if (WEATHER_HAS_EFFECT)
 	{
-		switch (GetMonAbility(mon)) {
-			case ABILITY_SWIFTSWIM:
+		ability = GetMonAbility(mon);
+		species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
+		if(SpeciesHasBranchAbility(species, ability, BRANCH_SWIFT_SWIM))
+			ability = ABILITY_RAINDISH;
+
+		if(SpeciesHasBranchAbility(species, ability, BRANCH_CHLOROPHYLL))
+			ability = ABILITY_SOLARPOWER;
+
+		if(SpeciesHasBranchAbility(species, ability, BRANCH_SAND_RUSH))
+			ability = ABILITY_SANDFORCE;
+
+		if(SpeciesHasBranchAbility(species, ability, BRANCH_SLUSH_RUSH))
+			ability = ABILITY_ICEBODY;
+
+		if(SpeciesHasBranchAbility(species, ability, BRANCH_ICE_FACE))
+			ability = ABILITY_ICEBODY;
+
+		switch (ability) {
 			case ABILITY_RAINDISH:
 			case ABILITY_DRYSKIN:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_RAIN);
-			case ABILITY_CHLOROPHYLL:
 			case ABILITY_SOLARPOWER:
 			case ABILITY_FLOWERGIFT:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_SUN);
-			case ABILITY_SANDRUSH:
 			case ABILITY_SANDFORCE:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_SANDSTORM);
-			case ABILITY_SLUSHRUSH:
 			case ABILITY_ICEBODY:
-			case ABILITY_ICEFACE:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_HAIL);
 			case ABILITY_SURGESURFER:
 				return MonCanUseMaxMoveWithEffect(mon, MAX_EFFECT_ELECTRIC_TERRAIN);

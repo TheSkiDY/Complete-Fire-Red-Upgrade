@@ -803,6 +803,7 @@ BattleScript_MummyActivates:
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert
 	setability BANK_ATTACKER ABILITY_MUMMY
+	callasm MummyWanderingSpiritSetCorrectTookAbilityFrom
 	call BattleScript_AbilityPopUp
 	setword BATTLE_STRING_LOADER gText_Mummy
 	printstring 0x184
@@ -823,6 +824,7 @@ BattleScript_WanderingSpiritActivates:
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert
 	copyarray BATTLE_SCRIPTING_BANK TARGET_BANK 0x1
+	callasm MummyWanderingSpiritSetCorrectTookAbilityFrom
 	call BattleScript_AbilityPopUp
 	pause DELAY_HALFSECOND
 	call BattleScript_AbilityPopUpRevert

@@ -2101,3 +2101,6 @@ FieldUseFunc_TeachyTv = 0x80A18EC | 1;
 FieldUseFunc_PowderJar = 0x80A14E8 | 1;
 FieldUseFunc_PpUp = 0x80A1718 | 1;
 FieldUseFunc_Rod = 0x80A1338 | 1;
+
+/* New stuff */
+AddTextPrinterParameterized3 = 0x812E51C | 1;

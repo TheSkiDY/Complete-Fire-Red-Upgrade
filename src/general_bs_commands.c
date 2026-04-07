@@ -418,7 +418,7 @@ void atk09_attackanimation(void)
 
 	#if (defined SPECIES_CRAMORANT && defined SPECIES_CRAMORANT_GORGING && defined SPECIES_CRAMORANT_GULPING)
 	if ((move == MOVE_SURF || move == MOVE_DIVE)
-	&& ABILITY(gBankAttacker) == ABILITY_GULPMISSILE
+	&& BankHasBranchAbility(gBankAttacker, BRANCH_GULP_MISSILE)
 	&& !IsDynamaxed(gBankAttacker))
 	{
 		u16 species = GetMonData(GetBankPartyData(gBankAttacker), MON_DATA_SPECIES2, NULL);
@@ -590,14 +590,11 @@ static void DoublesHPBarReduction(void)
 
 void atk0B_healthbarupdate(void)
 {
-	u8 ability;
-
 	if (gBattleExecBuffer) return;
 
 	if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gHitMarker & HITMARKER_NON_ATTACK_DMG))
 	{
 		gActiveBattler = GetBankForBattleScript(gBattlescriptCurrInstr[1]);
-		ability = ABILITY(gActiveBattler);
 
 		if (IS_BEHIND_SUBSTITUTE(gActiveBattler)
 		&& gDisableStructs[gActiveBattler].substituteHP != 0
@@ -609,7 +606,7 @@ void atk0B_healthbarupdate(void)
 				DoublesHPBarReduction();
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ability == ABILITY_DISGUISE
+		else if (BankHasBranchAbility(gActiveBattler, BRANCH_DISGUISE)
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -623,7 +620,7 @@ void atk0B_healthbarupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ability == ABILITY_ICEFACE
+		else if (BankHasBranchAbility(gActiveBattler, BRANCH_ICE_FACE)
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical moves are stopped by the ice face
@@ -708,7 +705,7 @@ void atk0C_datahpupdate(void)
 			}
 		}
 		#ifdef SPECIES_MIMIKYU
-		else if (ABILITY(gActiveBattler) == ABILITY_DISGUISE //Disguise Protected
+		else if (BankHasBranchAbility(gActiveBattler, BRANCH_DISGUISE) //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_MIMIKYU
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
 		&& !IS_TRANSFORMED(gActiveBattler))
@@ -745,7 +742,7 @@ void atk0C_datahpupdate(void)
 		}
 		#endif
 		#ifdef SPECIES_EISCUE
-		else if (ABILITY(gActiveBattler) == ABILITY_ICEFACE //Disguise Protected
+		else if (BankHasBranchAbility(gActiveBattler, BRANCH_ICE_FACE) //Disguise Protected
 		&& SPECIES(gActiveBattler) == SPECIES_EISCUE
 		&& SPLIT(gCurrentMove) == SPLIT_PHYSICAL //Only physical attacks break the ice
 		&& (!(gHitMarker & (HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_NON_ATTACK_DMG)) || gNewBS->breakDisguiseSpecialDmg)
@@ -1466,11 +1463,7 @@ void atk1B_cleareffectsonfaint(void) {
 				u8 partnerAbility = ABILITY(partner);
 
 				if (IS_DOUBLE_BATTLE
-				&& (partnerAbility == ABILITY_RECEIVER
-				#ifdef ABILITY_POWEROFALCHEMY
-				|| partnerAbility == ABILITY_POWEROFALCHEMY
-				#endif
-				)
+				&& (partnerAbility == ABILITY_RECEIVER)
 				&& !gSpecialAbilityFlags[CopyAbility(gActiveBattler)].gReceiverBannedAbilities)
 				{
 					gLastUsedAbility = partnerAbility;
@@ -2685,14 +2678,13 @@ void atk81_trysetrest(void)
 
 	if (!fail)
 	{
+		if (BankHasBranchAbility(gActiveBattler, BRANCH_INSOMNIA) || BankHasBranchAbility(gActiveBattler, BRANCH_VITAL_SPIRIT))
+		{
+			gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
+			fail = TRUE;
+		}
+
 		switch (ABILITY(gActiveBattler)) {
-			case ABILITY_INSOMNIA:
-			#ifdef ABILITY_VITALSPIRIT
-			case ABILITY_VITALSPIRIT:
-			#endif
-				gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
-				fail = TRUE;
-				break;
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
 				{
@@ -2704,15 +2696,17 @@ void atk81_trysetrest(void)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed;
 				fail = TRUE;
 				break;
-			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(gBankAttacker)->species == SPECIES_MINIOR_SHIELD)
+
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(gActiveBattler, BRANCH_SHIELDS_DOWN))
 				{
-					gBattlescriptCurrInstr = BattleScript_ButItFailed;
-					fail = TRUE;
+					if (GetBankPartyData(gBankAttacker)->species == SPECIES_MINIOR_SHIELD)
+					{
+						gBattlescriptCurrInstr = BattleScript_ButItFailed;
+						fail = TRUE;
+					}
 				}
 				break;
-			#endif
 		}
 	}
 
@@ -2871,7 +2865,7 @@ void atk8D_setmultihitcounter(void) {
 		gMultiHitCounter = 5;
 
 	#ifdef SPECIES_ASHGRENINJA
-	else if (ABILITY(gBankAttacker) == ABILITY_BATTLEBOND
+	else if (BankHasBranchAbility(gBankAttacker, BRANCH_BATTLE_BOND)
 	&& gCurrentMove == MOVE_WATERSHURIKEN
 	&& gBattleMons[gBankAttacker].species == SPECIES_ASHGRENINJA)
 	{
@@ -3210,7 +3204,8 @@ bool8 SandstormHurts(u8 bank)
 	if (TakesGeneralWeatherDamage(bank))
 	{
 		if (!IsOfType(bank, TYPE_ROCK) && !IsOfType(bank, TYPE_GROUND) && !IsOfType(bank, TYPE_STEEL)
-		&& ability != ABILITY_SANDVEIL && ability != ABILITY_SANDRUSH && ability != ABILITY_SANDFORCE)
+		&& !BankHasBranchAbility(bank, BRANCH_SAND_RUSH) && ability != ABILITY_SANDFORCE
+		&& !BankHasBranchAbility(bank, BRANCH_SAND_VEIL))
 			return TRUE;
 	}
 
@@ -3234,7 +3229,7 @@ bool8 HailHurts(u8 bank)
 
 	if (TakesGeneralWeatherDamage(bank))
 	{
-		if (!IsOfType(bank, TYPE_ICE) && ability != ABILITY_ICEBODY && ability != ABILITY_SNOWCLOAK)
+		if (!IsOfType(bank, TYPE_ICE) && ability != ABILITY_ICEBODY && !BankHasBranchAbility(bank, BRANCH_SNOW_CLOAK))
 			return TRUE;
 	}
 
@@ -5421,16 +5416,14 @@ void atkE7_trycastformdatachange(void)
 				break;
 			#endif
 
-			#if (defined SPECIES_EISCUE && defined SPECIES_EISCUE_NOICE)
 			case SPECIES_EISCUE_NOICE:
-				if (ABILITY(bank) == ABILITY_ICEFACE && !IS_TRANSFORMED(bank)
+				if (BankHasBranchAbility(bank, BRANCH_ICE_FACE) && !IS_TRANSFORMED(bank)
 				&& WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
 				{
 					DoFormChange(bank, SPECIES_EISCUE, FALSE, FALSE, FALSE);
 					BattleScriptPushCursorAndCallback(BattleScript_IceFaceRestoreFace);
 				}
 				break;
-			#endif
 		}
 	}
 }

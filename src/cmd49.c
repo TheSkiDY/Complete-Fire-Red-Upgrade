@@ -830,129 +830,126 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					}
 					break;
 
-				case ABILITY_MOXIE:
-				#ifdef ABILITY_CHILLINGNEIGH
-				case ABILITY_CHILLINGNEIGH:
-				#endif
-				#ifdef ABILITY_ASONE_CHILLING
-				case ABILITY_ASONE_CHILLING:
-				#endif
-					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
-					&& gBattleMons[bankDef].hp == 0
-					&& BATTLER_ALIVE(gBankAttacker)
-					&& TOOK_DAMAGE(bankDef)
-					&& MOVE_HAD_EFFECT
-					&& STAT_CAN_RISE(gBankAttacker, STAT_STAGE_ATK)
-					&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
+				case ABILITYBRANCH_KO_STAT_BOOST:
+					if (BankHasBranchAbility(gBankAttacker, BRANCH_MOXIE) 
+						|| BankHasBranchAbility(gBankAttacker, BRANCH_CHILLING_NEIGH)
+						|| BankHasBranchAbility(gBankAttacker, BRANCH_AS_ONE_CHILLING))
 					{
-						PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_ATK);
-
-						gEffectBank = gBankAttacker;
-						gBattleScripting.bank = gBankAttacker;
-						gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_ATK;
-						gBattleScripting.animArg1 = 0xE + STAT_STAGE_ATK;
-						gBattleScripting.animArg2 = 0;
-
-						BattleScriptPushCursor();
-						gBattlescriptCurrInstr = BattleScript_Moxie;
-						effect = 1;
-					}
-					break;
-
-				#if (defined ABILITY_GRIMNEIGH || defined ABILITY_ASONE_GRIM)
-				#ifdef ABILITY_GRIMNEIGH
-				case ABILITY_GRIMNEIGH:
-				#endif
-				#ifdef ABILITY_ASONE_GRIM
-				case ABILITY_ASONE_GRIM:
-				#endif
-					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
-					&& gBattleMons[bankDef].hp == 0
-					&& BATTLER_ALIVE(gBankAttacker)
-					&& TOOK_DAMAGE(bankDef)
-					&& MOVE_HAD_EFFECT
-					&& STAT_CAN_RISE(gBankAttacker, STAT_STAGE_SPATK)
-					&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
-					{
-						PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_SPATK);
-
-						gEffectBank = gBankAttacker;
-						gBattleScripting.bank = gBankAttacker;
-						gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_SPATK;
-						gBattleScripting.animArg1 = 0xE + STAT_STAGE_SPATK;
-						gBattleScripting.animArg2 = 0;
-
-						BattleScriptPushCursor();
-						gBattlescriptCurrInstr = BattleScript_Moxie;
-						effect = 1;
-					}
-					break;
-				#endif
-
-				case ABILITY_BEASTBOOST: ;
-					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
-					&& gBattleMons[bankDef].hp == 0
-					&& BATTLER_ALIVE(gBankAttacker)
-					&& TOOK_DAMAGE(bankDef)
-					&& MOVE_HAD_EFFECT
-					&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
-					{
-						u16 maxStatId;
-						u16 stats[STAT_STAGE_SPDEF + 1]; //Create new array to avoid modifying original stats
-
-						stats[STAT_STAGE_ATK] = gBattleMons[gBankAttacker].attack;
-						stats[STAT_STAGE_DEF] = gBattleMons[gBankAttacker].defense;
-						stats[STAT_STAGE_SPATK] = gBattleMons[gBankAttacker].spAttack;
-						stats[STAT_STAGE_SPDEF] = gBattleMons[gBankAttacker].spDefense;
-						stats[STAT_STAGE_SPEED] = gBattleMons[gBankAttacker].speed;
-
-						if (IsWonderRoomActive())
+						if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+						&& gBattleMons[bankDef].hp == 0
+						&& BATTLER_ALIVE(gBankAttacker)
+						&& TOOK_DAMAGE(bankDef)
+						&& MOVE_HAD_EFFECT
+						&& STAT_CAN_RISE(gBankAttacker, STAT_STAGE_ATK)
+						&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
 						{
-							u16 temp = stats[STAT_STAGE_DEF];
-							stats[STAT_STAGE_DEF] = stats[STAT_STAGE_SPDEF];
-							stats[STAT_STAGE_SPDEF] = temp;
-						}
-
-						maxStatId = STAT_STAGE_ATK;
-						for (u8 i = STAT_STAGE_DEF; i < NELEMS(stats); ++i)
-						{
-							if (stats[i] > stats[maxStatId])
-								maxStatId = i;
-						}
-
-						if (STAT_CAN_RISE(gBankAttacker, maxStatId))
-						{
-							PREPARE_STAT_BUFFER(gBattleTextBuff1, maxStatId);
+							PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_ATK);
 
 							gEffectBank = gBankAttacker;
 							gBattleScripting.bank = gBankAttacker;
-							gBattleScripting.statChanger = INCREASE_1 | maxStatId;
-							gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + maxStatId - 1;
+							gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_ATK;
+							gBattleScripting.animArg1 = 0xE + STAT_STAGE_ATK;
 							gBattleScripting.animArg2 = 0;
+
 							BattleScriptPushCursor();
 							gBattlescriptCurrInstr = BattleScript_Moxie;
 							effect = 1;
 						}
 					}
+					else if (BankHasBranchAbility(gBankAttacker, BRANCH_GRIM_NEIGH)
+							|| BankHasBranchAbility(gBankAttacker, BRANCH_AS_ONE_GRIM))
+					{
+						if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+						&& gBattleMons[bankDef].hp == 0
+						&& BATTLER_ALIVE(gBankAttacker)
+						&& TOOK_DAMAGE(bankDef)
+						&& MOVE_HAD_EFFECT
+						&& STAT_CAN_RISE(gBankAttacker, STAT_STAGE_SPATK)
+						&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
+						{
+							PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_STAGE_SPATK);
+
+							gEffectBank = gBankAttacker;
+							gBattleScripting.bank = gBankAttacker;
+							gBattleScripting.statChanger = INCREASE_1 | STAT_STAGE_SPATK;
+							gBattleScripting.animArg1 = 0xE + STAT_STAGE_SPATK;
+							gBattleScripting.animArg2 = 0;
+
+							BattleScriptPushCursor();
+							gBattlescriptCurrInstr = BattleScript_Moxie;
+							effect = 1;
+						}
+					}
+					else if (BankHasBranchAbility(gBankAttacker, BRANCH_BEAST_BOOST))
+					{
+						if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+						&& gBattleMons[bankDef].hp == 0
+						&& BATTLER_ALIVE(gBankAttacker)
+						&& TOOK_DAMAGE(bankDef)
+						&& MOVE_HAD_EFFECT
+						&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0) //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
+						{
+							u16 maxStatId;
+							u16 stats[STAT_STAGE_SPDEF + 1]; //Create new array to avoid modifying original stats
+
+							stats[STAT_STAGE_ATK] = gBattleMons[gBankAttacker].attack;
+							stats[STAT_STAGE_DEF] = gBattleMons[gBankAttacker].defense;
+							stats[STAT_STAGE_SPATK] = gBattleMons[gBankAttacker].spAttack;
+							stats[STAT_STAGE_SPDEF] = gBattleMons[gBankAttacker].spDefense;
+							stats[STAT_STAGE_SPEED] = gBattleMons[gBankAttacker].speed;
+
+							if (IsWonderRoomActive())
+							{
+								u16 temp = stats[STAT_STAGE_DEF];
+								stats[STAT_STAGE_DEF] = stats[STAT_STAGE_SPDEF];
+								stats[STAT_STAGE_SPDEF] = temp;
+							}
+
+							maxStatId = STAT_STAGE_ATK;
+							for (u8 i = STAT_STAGE_DEF; i < NELEMS(stats); ++i)
+							{
+								if (stats[i] > stats[maxStatId])
+									maxStatId = i;
+							}
+
+							if (STAT_CAN_RISE(gBankAttacker, maxStatId))
+							{
+								PREPARE_STAT_BUFFER(gBattleTextBuff1, maxStatId);
+
+								gEffectBank = gBankAttacker;
+								gBattleScripting.bank = gBankAttacker;
+								gBattleScripting.statChanger = INCREASE_1 | maxStatId;
+								gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + maxStatId - 1;
+								gBattleScripting.animArg2 = 0;
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_Moxie;
+								effect = 1;
+							}
+						}
+					}
 					break;
 
 				#if (defined SPECIES_GRENINJA && defined SPECIES_ASHGRENINJA)
-				case ABILITY_BATTLEBOND:
-					if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
-					&& SPECIES(gBankAttacker) == SPECIES_GRENINJA
-					&& gBattleMons[bankDef].hp == 0
-					&& BATTLER_ALIVE(gBankAttacker)
-					&& TOOK_DAMAGE(bankDef)
-					&& MOVE_HAD_EFFECT
-					&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0 //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
-					&& !IS_TRANSFORMED(gBankAttacker))
+				case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+					if(BankHasBranchAbility(gBankAttacker, BRANCH_BATTLE_BOND))
 					{
-						DoFormChange(gBankAttacker, SPECIES_ASHGRENINJA, TRUE, TRUE, FALSE);
+						if ((arg1 != ARG_IN_FUTURE_ATTACK || gWishFutureKnock.futureSightPartyIndex[bankDef] == gBattlerPartyIndexes[gBankAttacker])
+						&& SPECIES(gBankAttacker) == SPECIES_GRENINJA
+						&& gBattleMons[bankDef].hp == 0
+						&& BATTLER_ALIVE(gBankAttacker)
+						&& TOOK_DAMAGE(bankDef)
+						&& MOVE_HAD_EFFECT
+						&& ViableMonCountFromBank(FOE(gBankAttacker)) > 0 //Use FOE so as to not get boost when KOing partner last after enemy has no mons left
+						&& !IS_TRANSFORMED(gBankAttacker))
+						{
+							DoFormChange(gBankAttacker, SPECIES_ASHGRENINJA, TRUE, TRUE, FALSE);
 
-						BattleScriptPushCursor();
-						gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
-						effect = 1;
+							BattleScriptPushCursor();
+							gBattlescriptCurrInstr = BattleScript_AbilityTransformed;
+							effect = 1;
+						}
 					}
+					break;
 				#endif
 			}
 			*gSeedHelper = 0; //For Soul-Heart Loop
@@ -1266,7 +1263,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 					if (bank != gBankAttacker)
 					{
-						if ((/*ABILITY(bank) == ABILITY_WIMPOUT ||*/ ABILITY(bank) == ABILITY_EMERGENCYEXIT)
+						if ((ABILITY(bank) == ABILITY_WIMPOUT /*|| ABILITY(bank) == ABILITY_EMERGENCYEXIT*/)
 						&&  !(gNewBS->ResultFlags[bank] & MOVE_RESULT_NO_EFFECT)
 						&&  !MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bank)
 						&&  !(gStatuses3[bank] & (STATUS3_SKY_DROP_ANY))
@@ -1287,7 +1284,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 					}
 					else //Self inflicted damage
 					{
-						if ((/*ABILITY(bank) == ABILITY_WIMPOUT ||*/ ABILITY(bank) == ABILITY_EMERGENCYEXIT)
+						if ((ABILITY(bank) == ABILITY_WIMPOUT /*|| ABILITY(bank) == ABILITY_EMERGENCYEXIT*/)
 						&&  !(gStatuses3[bank] & (STATUS3_SKY_DROP_ANY))
 						&&  BATTLER_ALIVE(bank)
 						&&  (gBattleMons[bank].hp <= gBattleMons[bank].maxHP / 2 || gNewBS->lessThanHalfHPBeforeShellBell) //Ignore Shell Bell Recovery

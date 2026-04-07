@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "defines_battle.h"
+#include "../include/battle_message.h"
 #include "../include/random.h"
 #include "../include/party_menu.h"
 #include "../include/constants/songs.h"
@@ -145,24 +146,29 @@ static bool8 TryRemovePrimalWeather(u8 bank, u8 ability)
 	int i;
 	gBattleStringLoader = NULL;
 
-	switch (ability) {
-		case ABILITY_PRIMORDIALSEA:
+	if (ability == ABILITYBRANCH_PRIMAL_WEATHER)
+	{
+		if (BankHasBranchAbility(bank, BRANCH_PRIMORDIAL_SEA))
+		{
 			if (gBattleWeather & WEATHER_RAIN_PRIMAL
 			#ifdef FLAG_PRIMORDIAL_SEA_BATTLE
 			&& !FlagGet(FLAG_PRIMORDIAL_SEA_BATTLE) //Should continue to rain even if mon leaves the field
 			#endif
 			)
 				gBattleStringLoader = gText_PrimalRainEnd;
-			break;
-		case ABILITY_DESOLATELAND:
+		}
+		else if (BankHasBranchAbility(bank, BRANCH_DESOLATE_LAND))
+		{
 			if (gBattleWeather & WEATHER_SUN_PRIMAL)
 				gBattleStringLoader = gText_PrimalSunEnd;
-			break;
-		case ABILITY_DELTASTREAM:
+		}
+		else if (BankHasBranchAbility(bank, BRANCH_DELTA_STREAM))
+		{
 			if (gBattleWeather & WEATHER_AIR_CURRENT_PRIMAL
 			&& !IsDeltaStreamBattle()) //Should continue to blow even if mon leaves the field
 				gBattleStringLoader = gText_PrimalAirCurrentEnd;
-			break;
+		}
+
 	}
 
 	if (gBattleStringLoader != NULL)
@@ -217,7 +223,7 @@ static bool8 TryRemoveNeutralizingGas(u8 bank, u8 ability, bool8 leftField)
 				gDisableStructs[gBankTarget].truantCounter = 0;
 
 				//Some abilities don't reactivate
-				if (IsUnnerveAbility(ability) || ability == ABILITY_IMPOSTER) //Never gets another chance
+				if (IsUnnerveAbility(ability, GetProperAbilityPopUpSpecies(bank)) || ability == ABILITY_IMPOSTER) //Never gets another chance
 					gStatuses3[bank] |= STATUS3_SWITCH_IN_ABILITY_DONE;
 				else
 					gStatuses3[bank] &= ~STATUS3_SWITCH_IN_ABILITY_DONE;
@@ -243,7 +249,7 @@ static bool8 TryRemoveUnnerve(u8 bank)
 	bool8 ret = FALSE;
 	u8 ability = ABILITY(bank);
 
-	if (IsUnnerveAbility(ability))
+	if (IsUnnerveAbility(ability, GetProperAbilityPopUpSpecies(bank)))
 	{
 		*GetAbilityLocation(bank) = ABILITY_NONE; //Temporarily remove Unnerve so Berries can activate
 
@@ -273,11 +279,7 @@ static bool8 TryActivateFlowerGift(u8 leavingBank)
 {
 	u32 i = 0;
 
-	if (ABILITY(leavingBank) == ABILITY_CLOUDNINE
-	#ifdef ABILITY_AIRLOCK
-	|| ABILITY(leavingBank) == ABILITY_AIRLOCK
-	#endif
-	)
+	if (ABILITY(leavingBank) == ABILITY_CLOUDNINE)
 		gBattleMons[leavingBank].ability = ABILITY_NONE; //Remove ability because we can't have these anymore
 
 	for (u8 bank = gBanksByTurnOrder[i]; i < gBattlersCount; ++i, bank = gBanksByTurnOrder[i])
@@ -285,7 +287,7 @@ static bool8 TryActivateFlowerGift(u8 leavingBank)
 		if (bank == leavingBank)
 			continue; //Don't do this form change if you're the bank switching out
 
-		if ((ABILITY(bank) == ABILITY_FLOWERGIFT || ABILITY(bank) == ABILITY_FORECAST)) //Just in case someone with Air Lock/Cloud Nine switches out
+		if ((ABILITY(bank) == ABILITY_FLOWERGIFT || BankHasBranchAbility(bank, BRANCH_FORECAST))) //Just in case someone with Air Lock/Cloud Nine switches out
 		{
 			gStatuses3[bank] &= ~STATUS3_SWITCH_IN_ABILITY_DONE;
 
@@ -820,8 +822,8 @@ void atk52_switchineffects(void)
 		__attribute__ ((fallthrough));
 
 		case SwitchIn_EmergencyExit:
-			if (ABILITY(gActiveBattler) == ABILITY_EMERGENCYEXIT
-			/*||  ABILITY(gActiveBattler) == ABILITY_WIMPOUT*/)
+			if (ABILITY(gActiveBattler) == ABILITY_WIMPOUT
+			/*||  ABILITY(gActiveBattler) == ABILITY_EMERGENCYEXIT*/)
 			{
 				if (gBattleMons[gActiveBattler].hp > 0
 				&&  gBattleMons[gActiveBattler].hp <= gBattleMons[gActiveBattler].maxHP / 2
@@ -1328,9 +1330,9 @@ void PartyMenuSwitchingUpdate(void)
 		TRAPPED:
 		EmitChoosePokemon(0, PARTY_CANT_SWITCH, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
 	}
-	else if (((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_SHADOWTAG)) && IsTrappedByAbility(gActiveBattler, ABILITY_SHADOWTAG))
-		 ||  ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_ARENATRAP)) && IsTrappedByAbility(gActiveBattler, ABILITY_ARENATRAP))
-		 ||  ((i = ABILITY_ON_OPPOSING_FIELD(gActiveBattler, ABILITY_MAGNETPULL)) && IsTrappedByAbility(gActiveBattler, ABILITY_MAGNETPULL)))
+	else if (((i = SHADOW_TAG_ON_OPPOSING_FIELD(gActiveBattler)) && IsTrappedByAbility(gActiveBattler, BRANCH_SHADOW_TAG))
+		 ||  ((i = ARENA_TRAP_ON_OPPOSING_FIELD(gActiveBattler)) && IsTrappedByAbility(gActiveBattler, BRANCH_ARENA_TRAP))
+		 ||  ((i = MAGNET_PULL_ON_OPPOSING_FIELD(gActiveBattler)) && IsTrappedByAbility(gActiveBattler, BRANCH_MAGNET_PULL)))
 	{
 		EmitChoosePokemon(0, ((i - 1) << 4) | PARTY_ABILITY_PREVENTS, 6, gLastUsedAbility, gBattleStruct->battlerPartyOrders[gActiveBattler]);
 	}
@@ -1492,4 +1494,36 @@ u32 GetMonEntryHazardDamage(struct Pokemon* mon, u8 side)
 bool8 WillFaintFromEntryHazards(struct Pokemon* mon, u8 side)
 {
 	return GetMonEntryHazardDamage(mon, side) >= mon->hp;
+}
+
+void SetMonPreventsSwitchingString(void)
+{
+    gLastUsedAbility = gBattleStruct->abilityPreventingSwitchout;
+    gBattleTextBuff1[0] = B_BUFF_PLACEHOLDER_BEGIN;
+    gBattleTextBuff1[1] = B_BUFF_MON_NICK_WITH_PREFIX;
+    gBattleTextBuff1[2] = gBattleStruct->battlerPreventingSwitchout;
+    gBattleTextBuff1[4] = B_BUFF_EOS;
+
+    if (GetBattlerSide(gBattleStruct->battlerPreventingSwitchout) == B_SIDE_PLAYER)
+        gBattleTextBuff1[3] = GetBattlePartyIdFromPartyId(gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout]);
+    else
+        gBattleTextBuff1[3] = gBattlerPartyIndexes[gBattleStruct->battlerPreventingSwitchout];
+
+    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff2, gBattlerInMenuId, GetBattlePartyIdFromPartyId(gBattlerPartyIndexes[gBattlerInMenuId]))
+
+    switch(gNewBS->lastCheckedTrappingAbilityBranch)
+    {
+    	case BRANCH_SHADOW_TAG:
+    		BattleStringExpandPlaceholders(gText_ShadowTagPreventsSwitching, gStringVar4);
+    		break;
+    	case BRANCH_ARENA_TRAP:
+    		BattleStringExpandPlaceholders(gText_ArenaTrapPreventsSwitching, gStringVar4);
+    		break;
+    	case BRANCH_MAGNET_PULL:
+    		BattleStringExpandPlaceholders(gText_MagnetPullPreventsSwitching, gStringVar4);
+    		break;
+    	default:
+    		BattleStringExpandPlaceholders(gText_AbilityPreventsSwitching, gStringVar4);
+    		break;
+    }
 }

@@ -604,7 +604,7 @@ static u8 GetMaxMoveType(u16 move, u8 bank, struct Pokemon* mon)
 
 		//Try to modify Max Move's type using ability
 		u16 maxMove = GetTypeBasedMaxMove(gBattleMoves[move].type, moveSplit);
-		moveType = GetMoveTypeSpecialPostAbility(maxMove, ability, FALSE);
+		moveType = GetMoveTypeSpecialPostAbility(maxMove, ability, FALSE, GetProperAbilityPopUpSpecies(bank));
 	}
 
 	return moveType;

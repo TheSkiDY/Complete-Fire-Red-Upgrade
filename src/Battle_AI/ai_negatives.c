@@ -211,8 +211,19 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	{
 		switch (data->defAbility) //Type-specific ability checks - Primordial weather handled separately
 		{
+			case ABILITYBRANCH_TYPE_ABSORPTION:
+				if ((moveType == TYPE_ELECTRIC && BankHasBranchAbility(bankDef, BRANCH_VOLT_ABSORB))
+				 || (moveType == TYPE_WATER && BankHasBranchAbility(bankDef, BRANCH_WATER_ABSORB))) 
+				{
+					if (!TARGETING_PARTNER) //Good idea to attack partner
+					{
+						DECREASE_VIABILITY(20);
+						return viability;
+					}
+				}
+				break;
+
 			//Electric
-			case ABILITY_VOLTABSORB:
 			case ABILITY_MOTORDRIVE:
 			case ABILITY_LIGHTNINGROD:
 				if (moveType == TYPE_ELECTRIC) // && (moveSplit != SPLIT_STATUS))
@@ -226,7 +237,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			//Water
-			case ABILITY_WATERABSORB:
 			case ABILITY_DRYSKIN:
 			case ABILITY_STORMDRAIN:
 				if (moveType == TYPE_WATER)
@@ -337,9 +347,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_DAZZLING:
-			#ifdef ABILITY_QUEENLYMAJESTY
-			case ABILITY_QUEENLYMAJESTY:
-			#endif
 				if (PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > 0) //Check if right num
 				{
 					DECREASE_VIABILITY(10);
@@ -401,12 +408,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_CLEARBODY:
-			#ifdef ABILITY_FULLMETALBODY
-			case ABILITY_FULLMETALBODY:
-			#endif
-			#ifdef ABILITY_WHITESMOKE
-			case ABILITY_WHITESMOKE:
-			#endif
 				if (CheckTableForMovesEffect(move, gStatLoweringMoveEffects)
 				|| move == MOVE_PARTINGSHOT)
 				{
@@ -475,8 +476,9 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				}
 				break;
 
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bankDef, BRANCH_SHIELDS_DOWN)
+				&&  GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD
 				&&  CheckTableForMovesEffect(move, gSetStatusMoveEffects))
 				{
 					DECREASE_VIABILITY(10);
@@ -560,9 +562,6 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					break;
 
 				case ABILITY_DAZZLING:
-				#ifdef ABILITY_QUEENLYMAJESTY
-				case ABILITY_QUEENLYMAJESTY:
-				#endif
 					if (PriorityCalc(bankAtk, ACTION_USE_MOVE, move) > 0) //Check if right num
 					{
 						DECREASE_VIABILITY(10);
@@ -1804,7 +1803,7 @@ SKIP_CHECK_TARGET:
 				case MOVE_LASERFOCUS:
 					if (IsLaserFocused(bankAtk))
 						DECREASE_VIABILITY(10);
-					else if (data->defAbility == ABILITY_SHELLARMOR || data->defAbility == ABILITY_BATTLEARMOR)
+					else if (data->defAbility == ABILITY_BATTLEARMOR)
 						DECREASE_VIABILITY(8);
 					break;
 

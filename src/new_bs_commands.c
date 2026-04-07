@@ -1441,13 +1441,13 @@ void atkFF29_trysetsleep(void)
 
 	if (!fail)
 	{
+		if (BankHasBranchAbility(bank, BRANCH_INSOMNIA) || BankHasBranchAbility(bank, BRANCH_VITAL_SPIRIT))
+		{
+			gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
+			return;
+		}
+
 		switch (ABILITY(bank)) {
-			case ABILITY_INSOMNIA:
-			#ifdef ABILITY_VITALSPIRIT
-			case ABILITY_VITALSPIRIT:
-			#endif
-				gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
-				return;
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bank))
 				{
@@ -1458,8 +1458,8 @@ void atkFF29_trysetsleep(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1552,13 +1552,13 @@ void atkD7_setyawn(void)
 
 	if (!fail)
 	{
+		if(BankHasBranchAbility(bank, BRANCH_INSOMNIA) || BankHasBranchAbility(bank, BRANCH_VITAL_SPIRIT))
+		{
+			gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
+			return;			
+		}
+
 		switch (ABILITY(bank)) {
-			case ABILITY_INSOMNIA:
-			#ifdef ABILITY_VITALSPIRIT
-			case ABILITY_VITALSPIRIT:
-			#endif
-				gBattlescriptCurrInstr = BattleScript_TargetStayedAwakeUsingAbility;
-				return;
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bank))
 				{
@@ -1569,8 +1569,8 @@ void atkD7_setyawn(void)
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1669,6 +1669,12 @@ void atkFF2A_trysetparalysis(void)
 
 	if (!fail)
 	{
+		if (BankHasBranchAbility(bank, BRANCH_LIMBER))
+		{
+			gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
+			return;
+		}
+
 		switch (ABILITY(bank)) {
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bank))
@@ -1677,12 +1683,11 @@ void atkFF2A_trysetparalysis(void)
 					return;
 				}
 				break;
-			case ABILITY_LIMBER:
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1761,6 +1766,12 @@ void atkFF2B_trysetburn(void)
 
 	if (!fail)
 	{
+		if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL))
+		{
+			gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
+			return;
+		}
+
 		switch (ABILITY(bank)) {
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bank))
@@ -1769,13 +1780,12 @@ void atkFF2B_trysetburn(void)
 					return;
 				}
 				break;
-			case ABILITY_WATERVEIL:
 			case ABILITY_WATERBUBBLE:
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;
@@ -1871,6 +1881,12 @@ void atkFF2C_trysetpoison(void)
 
 	if (!fail)
 	{
+		if (BankHasBranchAbility(bank, BRANCH_IMMUNITY))
+		{
+			gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
+			return;	
+		}
+
 		switch (ABILITY(bank)) {
 			case ABILITY_LEAFGUARD:
 				if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(bank))
@@ -1879,12 +1895,11 @@ void atkFF2C_trysetpoison(void)
 					return;
 				}
 				break;
-			case ABILITY_IMMUNITY:
 			case ABILITY_COMATOSE:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
-			case ABILITY_SHIELDSDOWN:
-				if (SPECIES(bank) == SPECIES_MINIOR_SHIELD)
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN) && SPECIES(bank) == SPECIES_MINIOR_SHIELD)
 				{
 					gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 					return;

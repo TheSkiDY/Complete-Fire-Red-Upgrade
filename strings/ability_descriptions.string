@@ -130,10 +130,6 @@ Avoids ball and bomb moves.
 #org @DESC_GALEWINGS
 FLYING-type moves hit first.
 
-#org @DESC_MOXIE
-#org @DESC_CHILLINGNEIGH
-Knockouts boost ATTACK.
-
 #org @DESC_AFTERMATH
 Fainting damages the foe.
 
@@ -182,18 +178,6 @@ Powers up FAIRY-type moves.
 
 #org @DESC_AURABREAK
 Reverses AURA abilities.
-
-#org @DESC_REFRIGERATE
-NORMAL moves become ICE.
-
-#org @DESC_PIXILATE
-NORMAL moves become FAIRY.
-
-#org @DESC_AERILATE
-NORMAL moves become FLYING.
-
-#org @DESC_NORMALIZE
-All moves become NORMAL-type.
 
 #org @DESC_UNBURDEN
 Doubles SPEED if item is lost.
@@ -252,9 +236,6 @@ KOing a foe ups highest stat.
 #org @DESC_CORROSION
 May poison any type.
 
-#org @DESC_DISGUISE
-Takes one hit with no damage.
-
 #org @DESC_EMERGENCYEXIT
 #org @DESC_WIMPOUT
 Switches out below half HP.
@@ -272,9 +253,6 @@ Transforms below half HP.
 #org @DESC_RKS_SYSTEM
 Changes type to match MEMORY.
 
-#org @DESC_SCHOOLING
-Schools up with high HP.
-
 #org @DESC_SHADOWSHIELD
 Reduces damage at full HP.
 
@@ -289,9 +267,6 @@ Knockouts boost SP. ATK.
 
 #org @DESC_STAMINA
 Taking a hit raises DEFENSE.
-
-#org @DESC_STEELWORKER
-Powers up STEEL-type moves.
 
 #org @DESC_TRIAGE
 Gives priority to healing moves.
@@ -471,9 +446,6 @@ Takes over a KOed ally's ability.
 #org @DESC_NEUROFORCE
 Powers up super effective hits.
 
-#org @DESC_GALVANIZE
-NORMAL moves become ELECTRIC.
-
 //Sword and Shield Abilities.
 
 #org @DESC_INTREPIDSWORD
@@ -549,12 +521,6 @@ Changes form each turn.
 #org @DESC_UNSEENFIST
 Contact moves bypass PROTECT.
 
-#org @DESC_DRAGONSMAW
-Powers up DRAGON-type moves.
-
-#org @DESC_TRANSISTOR
-Powers up ELECTRIC-type moves.
-
 #org @DESC_GRIMNEIGH
 Knockouts boost SP. ATK.
 
@@ -570,6 +536,9 @@ Sometimes moves quicker.
 #org @DESC_CURIOUSMEDICINE
 Resets ally's stat changes.
 
+#org @DESC_UNUSED
+Unused ability.
+
 //Unbound Custom Abilities//
 
 #org @gText_AbilityDescription_Evaporate
@@ -583,3 +552,6 @@ Tail moves hit first.
 
 #org @gText_AbilityDescription_DrillBeak
 Drill moves land critical hits.
+
+#org @DESC_STENCH
+The stench may cause the target\nto flinch.

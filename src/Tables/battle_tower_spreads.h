@@ -41848,7 +41848,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.hpEv = 252,
 		.spDefEv = 252,
 		.defEv = 4,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_RKS_SYSTEM
+		.ability = FRONTIER_ABILITY_1, //ABILITY_RKSSYSTEM
 		.item = ITEM_STEEL_MEMORY,
 		.moves =
 		{
@@ -41874,7 +41874,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.spAtkEv = 252,
 		.spDefEv = 4,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_RKS_SYSTEM
+		.ability = FRONTIER_ABILITY_1, //ABILITY_RKSSYSTEM
 		.item = ITEM_GHOST_MEMORY,
 		.moves =
 		{
@@ -41900,7 +41900,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.defEv = 4,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_RKS_SYSTEM
+		.ability = FRONTIER_ABILITY_1, //ABILITY_RKSSYSTEM
 		.item = ITEM_DRAGON_MEMORY,
 		.moves =
 		{
@@ -41926,7 +41926,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.hpEv = 4,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_RKS_SYSTEM
+		.ability = FRONTIER_ABILITY_1, //ABILITY_RKSSYSTEM
 		.item = ITEM_CHOICE_SPECS,
 		.moves =
 		{
@@ -41952,7 +41952,7 @@ const struct BattleTowerSpread gFrontierSpreads[] =
 		.hpEv = 4,
 		.spAtkEv = 252,
 		.spdEv = 252,
-		.ability = FRONTIER_ABILITY_1, //ABILITY_RKS_SYSTEM
+		.ability = FRONTIER_ABILITY_1, //ABILITY_RKSSYSTEM
 		.item = ITEM_ELECTRIC_MEMORY,
 		.moves =
 		{

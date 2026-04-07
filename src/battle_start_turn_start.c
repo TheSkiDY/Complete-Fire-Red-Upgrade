@@ -105,7 +105,8 @@ static void SavePartyItems(void);
 static void TryPrepareTotemBoostInBattleSands(void);
 static void TrySetupRaidBossRepeatedAttack(u8 turnActionNumber);
 static u8 GetWhoStrikesFirstUseLastBracketCalc(u8 bank1, u8 bank2);
-static u32 BoostSpeedInWeather(u8 ability, u8 itemEffect, u32 speed);
+static u32 BoostSpeedInWeather(u8 ability, u8 bank, u8 itemEffect, u32 speed);
+static u32 MonBoostSpeedInWeather(u8 ability, u16 species, u8 itemEffect, u32 speed);
 static u32 BoostSpeedByItemEffect(u8 itemEffect, u8 itemQuality, u16 species, u32 speed, bool8 isDynamaxed);
 static void TryClearLevelCapKeptOn(void);
 
@@ -2222,26 +2223,34 @@ s32 BracketCalc(u8 bank, u8 action, u16 move)
 	return 0;
 }
 
-static u32 BoostSpeedInWeather(u8 ability, u8 itemEffect, u32 speed)
+static u32 BoostSpeedInWeather(u8 ability, u8 bank, u8 itemEffect, u32 speed)
 {
-	if (WEATHER_HAS_EFFECT) {
-		switch (ability) {
-			case ABILITY_SWIFTSWIM:
-				if (gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
-					speed *= 2;
-				break;
-			case ABILITY_CHLOROPHYLL:
-				if (gBattleWeather & WEATHER_SUN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
-					speed *= 2;
-				break;
-			case ABILITY_SANDRUSH:
-				if (gBattleWeather & WEATHER_SANDSTORM_ANY)
-					speed *= 2;
-				break;
-			case ABILITY_SLUSHRUSH:
-				if (gBattleWeather & WEATHER_HAIL_ANY)
-					speed *= 2;
-				break;
+	if (WEATHER_HAS_EFFECT)
+	{
+		if (ability == ABILITYBRANCH_SPEED_IN_WEATHER)
+		{
+			if ((BankHasBranchAbility(bank, BRANCH_SWIFT_SWIM) && gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
+			 || (BankHasBranchAbility(bank, BRANCH_CHLOROPHYLL) && gBattleWeather & WEATHER_SUN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
+			 || (BankHasBranchAbility(bank, BRANCH_SAND_RUSH) && gBattleWeather & WEATHER_SANDSTORM_ANY) 
+			 || (BankHasBranchAbility(bank, BRANCH_SLUSH_RUSH) && gBattleWeather & WEATHER_HAIL_ANY))
+				speed *=2;
+		}
+	}
+
+	return speed;
+}
+
+static u32 MonBoostSpeedInWeather(u8 ability, u16 species, u8 itemEffect, u32 speed)
+{
+	if (WEATHER_HAS_EFFECT)
+	{
+		if (ability == ABILITYBRANCH_SPEED_IN_WEATHER)
+		{
+			if ((SpeciesHasBranchAbility(species, ability, BRANCH_SWIFT_SWIM) && gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
+			 || (SpeciesHasBranchAbility(species, ability, BRANCH_CHLOROPHYLL) && gBattleWeather & WEATHER_SUN_ANY && !ItemEffectIgnoresSunAndRain(itemEffect))
+			 || (SpeciesHasBranchAbility(species, ability, BRANCH_SAND_RUSH) && gBattleWeather & WEATHER_SANDSTORM_ANY) 
+			 || (SpeciesHasBranchAbility(species, ability, BRANCH_SLUSH_RUSH) && gBattleWeather & WEATHER_HAIL_ANY))
+				speed *=2;
 		}
 	}
 
@@ -2291,7 +2300,7 @@ u32 SpeedCalc(u8 bank)
 	speed = (rawSpeed * gStatStageRatios[gBattleMons[bank].statStages[STAT_STAGE_SPEED-1]][0]) / gStatStageRatios[gBattleMons[bank].statStages[STAT_STAGE_SPEED-1]][1];
 
 	//Check for abilities that alter speed
-	speed = BoostSpeedInWeather(ability, itemEffect, speed);
+	speed = BoostSpeedInWeather(ability, bank, itemEffect, speed);
 
 	switch (ability) {
 		case ABILITY_UNBURDEN:
@@ -2378,7 +2387,7 @@ u32 SpeedCalcMon(u8 side, struct Pokemon* mon) //Used for the AI
 	speed = (speed * gStatStageRatios[statVal][0]) / gStatStageRatios[statVal][1];
 
 	//Check for abilities that alter speed
-	speed = BoostSpeedInWeather(ability, itemEffect, speed);
+	speed = MonBoostSpeedInWeather(ability, GetMonData(mon, MON_DATA_SPECIES, NULL), itemEffect, speed);
 
 	switch (ability) {
 		case ABILITY_SLOWSTART:

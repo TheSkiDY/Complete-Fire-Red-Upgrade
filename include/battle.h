@@ -931,6 +931,7 @@ struct NewBattleStruct
 	u8 criticalHitsThisBattle[PARTY_SIZE];
 	u8 pickupMonId;
 	u8 shellSideArmSplit[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
+    u8 lastCheckedTrappingAbilityBranch;
 
 	//Things for Spread Moves
 	s32 DamageTaken[MAX_BATTLERS_COUNT];

@@ -195,7 +195,7 @@ static bool8 PredictedMoveWontDoTooMuchToMon(u8 activeBattler, struct Pokemon* m
 	u8 monAbility = GetMonAbility(mon);
 	if (IsAffectedByDisguse(monAbility, mon->species, CalcMoveSplit(defMove, foe, activeBattler)))
 	{
-		if (monAbility == ABILITY_DISGUISE) //Disguise only - no Ice Face
+		if (SpeciesHasBranchAbility(GetMonData(mon, MON_DATA_SPECIES, NULL), monAbility, BRANCH_DISGUISE)) //Disguise only - no Ice Face
 			predictedDmg = mon->maxHP / 8; //Loses an 1/8 of max HP when the disguise is busted
 	}
 	else
@@ -228,7 +228,7 @@ static bool8 PredictedMoveWontKOMon(u8 activeBattler, struct Pokemon* mon, u8 fo
 	u8 monAbility = GetMonAbility(mon);
 	if (IsAffectedByDisguse(monAbility, mon->species, CalcMoveSplit(defMove, foe, activeBattler)))
 	{
-		if (monAbility == ABILITY_DISGUISE) //Disguise only - no Ice Face
+		if (SpeciesHasBranchAbility(mon->species, monAbility, BRANCH_DISGUISE)) //Disguise only - no Ice Face
 			predictedDmg = mon->maxHP / 8;
 	}
 	else
@@ -346,9 +346,12 @@ Don't switch to mon if:
 2. It will faint from entry hazards (100%)
 3. The mon to switch to has an HP absorption Ability and will be switched in at full health, and the mon out can take a couple hits (100% in Singles).
 */
-static bool8 TypeAbosorbingSwitchAbilityCheck(struct Pokemon* mon, u8 monId, u16 predictedMove, u8 absorbingTypeAbility1, u8 absorbingTypeAbility2, u8 absorbingTypeAbility3)
+static bool8 TypeAbosorbingSwitchAbilityCheck(struct Pokemon* mon, u8 monId, u16 predictedMove, u8 absorbingTypeAbility1, u8 absorbingTypeAbility2, u8 absorbingTypeAbility3, u8 type)
 {
 	u8 side = SIDE(gActiveBattler);
+	bool8 correctTypeAbsorbBranchAbility = FALSE;
+	bool8 correctAbsorbAbility = FALSE;
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
 	//Check mon has been switched to for type absorbing before
 	if (gNewBS->ai.didTypeAbsorbSwitchToMonBefore[side] & gBitTable[monId]) //Used this mon for a type switch before
@@ -362,9 +365,24 @@ static bool8 TypeAbosorbingSwitchAbilityCheck(struct Pokemon* mon, u8 monId, u16
 	u8 monAbility = GetMonAbilityAfterTrace(mon, FOE(gActiveBattler));
 	monAbility = TryReplaceImposterAbility(monAbility, gActiveBattler);
 
-	if (monAbility == absorbingTypeAbility1
-	||  monAbility == absorbingTypeAbility2
-	||  monAbility == absorbingTypeAbility3)
+	switch(type)
+	{
+		case TYPE_ELECTRIC:
+			if(monAbility == ABILITYBRANCH_TYPE_ABSORPTION && SpeciesHasBranchAbility(species, monAbility, BRANCH_VOLT_ABSORB))
+				correctTypeAbsorbBranchAbility = TRUE;
+			break;
+		case TYPE_WATER:
+			if(monAbility == ABILITYBRANCH_TYPE_ABSORPTION && SpeciesHasBranchAbility(species, monAbility, BRANCH_WATER_ABSORB))
+				correctTypeAbsorbBranchAbility = TRUE;
+			break;
+	}
+
+	correctAbsorbAbility = correctTypeAbsorbBranchAbility
+							|| ((monAbility == absorbingTypeAbility1 
+							||  monAbility == absorbingTypeAbility2 
+							||  monAbility == absorbingTypeAbility3));
+
+	if (correctAbsorbAbility)
 	{
 		if (!WillFaintFromEntryHazards(mon, side)) //Theres a point to switching in this mon
 		{
@@ -406,6 +424,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 	u8 foe1, foe2;
 	u16 predictedMove1, predictedMove2;
 	u8 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3;
+	u8 type;
 
 	LoadBattlersAndFoes(&battlerIn1, &battlerIn2, &foe1, &foe2);
 
@@ -508,21 +527,25 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 			absorbingTypeAbility1 = ABILITY_FLASHFIRE;
 			absorbingTypeAbility2 = ABILITY_FLASHFIRE;
 			absorbingTypeAbility3 = ABILITY_FLASHFIRE;
+			type = TYPE_FIRE;
 			break;
 		case TYPE_ELECTRIC:
-			absorbingTypeAbility1 = ABILITY_VOLTABSORB;
+			absorbingTypeAbility1 = ABILITY_LIGHTNINGROD; //VoltAbsorb checked elsewhere as a branch ability
 			absorbingTypeAbility2 = ABILITY_LIGHTNINGROD;
 			absorbingTypeAbility3 = ABILITY_MOTORDRIVE;
+			type = TYPE_ELECTRIC;
 			break;
 		case TYPE_WATER:
-			absorbingTypeAbility1 = ABILITY_WATERABSORB;
+			absorbingTypeAbility1 = ABILITY_STORMDRAIN; //WaterAbsorb checked elsewhere as a branch ability
 			absorbingTypeAbility2 = ABILITY_DRYSKIN;
 			absorbingTypeAbility3 = ABILITY_STORMDRAIN;
+			type = TYPE_WATER;
 			break;
 		case TYPE_GRASS:
 			absorbingTypeAbility1 = ABILITY_SAPSIPPER;
 			absorbingTypeAbility2 = ABILITY_SAPSIPPER;
 			absorbingTypeAbility3 = ABILITY_SAPSIPPER;
+			type = TYPE_GRASS;
 			break;
 		default:
 			return FALSE;
@@ -541,7 +564,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 	if (bestMonId != gBattleStruct->monToSwitchIntoId[battlerIn1]
 	&&  bestMonId != gBattleStruct->monToSwitchIntoId[battlerIn2]
 	&&  TypeAbosorbingSwitchAbilityCheck(&party[bestMonId], bestMonId, predictedMove1,
-										 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3))
+										 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3, type))
 		return TRUE;
 
 	//Check second best mon to switch into
@@ -550,7 +573,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 	&& secondBestMonId != gBattleStruct->monToSwitchIntoId[battlerIn1]
 	&& secondBestMonId != gBattleStruct->monToSwitchIntoId[battlerIn2]
 	&& TypeAbosorbingSwitchAbilityCheck(&party[secondBestMonId], secondBestMonId, predictedMove1,
-										 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3))
+										 absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3, type))
 		return TRUE;
 
 	//Check the rest of the party
@@ -569,7 +592,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 		||	i == gBattleStruct->monToSwitchIntoId[battlerIn2])
 			continue;
 
-		if (TypeAbosorbingSwitchAbilityCheck(&party[i], i, predictedMove1, absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3))
+		if (TypeAbosorbingSwitchAbilityCheck(&party[i], i, predictedMove1, absorbingTypeAbility1, absorbingTypeAbility2, absorbingTypeAbility3, type))
 			return TRUE;
 	}
 
@@ -2311,7 +2334,7 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 							//Check if KO in one shot
 							if (IsAffectedByDisguse(foeDamageData.defAbility, foeDamageData.defSpecies, foeDamageData.moveSplit))
 							{
-								if (foeDamageData.defAbility == ABILITY_DISGUISE) //Disguise only - not Ice Face
+								if (BankHasBranchAbility(foeDamageData.bankDef, BRANCH_DISGUISE)) //Disguise only - not Ice Face
 									firstHitDmg = foeDamageData.defMaxHP / 8;
 								else
 									firstHitDmg = 0;

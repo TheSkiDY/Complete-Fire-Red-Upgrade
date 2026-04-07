@@ -300,6 +300,8 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 {
 	u8 enemyMonIndex = 0;
 	bool8 checkCuteCharm = TRUE;
+	u8 ability = GetMonAbility(&gPlayerParty[0]);
+	u16 leadingMonSpecies = gPlayerParty[0].species;
 
 	if (purgeParty)
 		ZeroEnemyPartyMons();
@@ -316,10 +318,9 @@ void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)
 
 	if (checkCuteCharm
 	&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)
-	&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM
+	&& SpeciesHasBranchAbility(leadingMonSpecies, ability, BRANCH_CUTE_CHARM)
 	&& (Random() % 3) > 0) //2/3 of the time
 	{
-		u16 leadingMonSpecies = gPlayerParty[0].species;
 		u32 leadingMonPersonality = gPlayerParty[0].personality;
 		u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
 
@@ -827,15 +828,11 @@ u8 GetAbilityEncounterRateModType(void)
     if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL))
     {
         u8 ability = GetMonAbility(&gPlayerParty[0]);
-		#ifndef ABILITY_WHITESMOKE
-		if (IsWhiteSmokeAbility(ability, GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL)))
+
+        if(SpeciesHasBranchAbility(GetMonData(&gPlayerParty[0],MON_DATA_SPECIES, NULL), ability, BRANCH_WHITE_SMOKE))
 			ability = ABILITY_STENCH;
-		#endif
 	
 		switch (ability) {
-			#ifdef ABILITY_WHITESMOKE
-			case ABILITY_WHITESMOKE:
-			#endif
 			case ABILITY_STENCH:
 			case ABILITY_QUICKFEET:
 			case ABILITY_INFILTRATOR:
@@ -847,13 +844,17 @@ u8 GetAbilityEncounterRateModType(void)
 			case ABILITY_SWARM:
 				sWildEncounterData.abilityEffect = 2;
 				break;
-			case ABILITY_SANDVEIL:
-				if (GetCurrentWeather() == WEATHER_SANDSTORM)
+			case ABILITYBRANCH_EVASION_IN_WEATHER:
+				if (SpeciesHasBranchAbility(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL), ability, BRANCH_SAND_VEIL)
+				 && GetCurrentWeather() == WEATHER_SANDSTORM)
+				{
 					sWildEncounterData.abilityEffect = 1;
-				break;
-			case ABILITY_SNOWCLOAK:
-				if (GetCurrentWeather() == WEATHER_STEADY_SNOW)
+				}
+				else if (SpeciesHasBranchAbility(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL), ability, BRANCH_SNOW_CLOAK)
+				 && GetCurrentWeather() == WEATHER_STEADY_SNOW)
+				{
 					sWildEncounterData.abilityEffect = 1;
+				}
 				break;
 		}
     }
@@ -1219,6 +1220,10 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon* wildM
 	else if (GetMonAbility(&gPlayerParty[0]) != ability)
 		return FALSE;
 	else if (umodsi(Random(), 2) != 0)
+		return FALSE;
+
+	//special case for STATIC as it was changed to a branch ability
+	if (ability == ABILITY_STATIC && !SpeciesHasBranchAbility(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL),ability,BRANCH_STATIC))
 		return FALSE;
 
 	return TryGetRandomWildMonIndexByType(wildMon, type, monsCount, monIndex);

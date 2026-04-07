@@ -127,8 +127,6 @@ extern const u8 gText_TeravoltActivate[];
 extern const u8 gText_TurboblazeActivate[];
 extern const u8 gText_SlowStartActivate[];
 extern const u8 gText_UnnerveActivate[];
-extern const u8 gText_DarkAuraActivate[];
-extern const u8 gText_FairyAuraActivate[];
 extern const u8 gText_AuraBreakActivate[];
 extern const u8 gText_ComatoseActivate[];
 extern const u8 gText_AnticipationActivate[];

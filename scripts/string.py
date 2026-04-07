@@ -9,6 +9,7 @@ CharMap = "charmap.tbl"
 SpecialBuffers = {
     ".": ["B0"],
     "BUFFER": ["FD"],
+    "BUFF": ["FD", "00"],
     "ATTACKER": ["FD", "0F"],
     "TARGET": ["FD", "10"],
     "EFFECT_BANK": ["FD", "11"],

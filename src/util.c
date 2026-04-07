@@ -3,6 +3,7 @@
 #include "../include/constants/abilities.h"
 
 #include "../include/new/ability_tables.h"
+#include "../include/new/ability_util.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/evolution.h"
 #include "../include/new/frontier.h"
@@ -449,14 +450,16 @@ bool8 CanPartyMonBeGeneralStatused(struct Pokemon* mon)
 
 bool8 CanPartyMonBePutToSleep(struct Pokemon* mon)
 {
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
 	if (!CanPartyMonBeGeneralStatused(mon))
 		return FALSE;
 
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_INSOMNIA)
+	 || SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_VITAL_SPIRIT))
+		return FALSE;
+
 	switch (GetMonAbility(mon)) {
-		case ABILITY_INSOMNIA:
-		#ifdef ABILITY_VITALSPIRIT
-		case ABILITY_VITALSPIRIT:
-		#endif
 		case ABILITY_SWEETVEIL:
 			return FALSE;
 	}
@@ -469,11 +472,15 @@ bool8 CanPartyMonBePoisoned(struct Pokemon* mon)
 	u8 type1 = GetMonType(mon, 0);
 	u8 type2 = GetMonType(mon, 1);
 
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
 	if (!CanPartyMonBeGeneralStatused(mon))
 		return FALSE;
 
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_IMMUNITY))
+		return FALSE;
+
 	switch (GetMonAbility(mon)) {
-		case ABILITY_IMMUNITY:
 		case ABILITY_PASTELVEIL:
 			return FALSE;
 	}
@@ -492,13 +499,13 @@ bool8 CanPartyMonBeParalyzed(struct Pokemon* mon)
 	u8 type1 = GetMonType(mon, 0);
 	u8 type2 = GetMonType(mon, 1);
 
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
 	if (!CanPartyMonBeGeneralStatused(mon))
 		return FALSE;
 
-	switch (GetMonAbility(mon)) {
-		case ABILITY_LIMBER:
-			return FALSE;
-	}
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_LIMBER))
+		return FALSE;
 
 	if (type1 == TYPE_ELECTRIC
 	||  type2 == TYPE_ELECTRIC)
@@ -511,12 +518,15 @@ bool8 CanPartyMonBeBurned(struct Pokemon* mon)
 {
 	u8 type1 = GetMonType(mon, 0);
 	u8 type2 = GetMonType(mon, 1);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
 	if (!CanPartyMonBeGeneralStatused(mon))
 		return FALSE;
 
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_WATER_VEIL))
+		return FALSE;
+
 	switch (GetMonAbility(mon)) {
-		case ABILITY_WATERVEIL:
 		case ABILITY_WATERBUBBLE:
 			return FALSE;
 	}
@@ -532,14 +542,13 @@ bool8 CanPartyMonBeFrozen(struct Pokemon* mon)
 {
 	u8 type1 = GetMonType(mon, 0);
 	u8 type2 = GetMonType(mon, 1);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
 	if (!CanPartyMonBeGeneralStatused(mon))
 		return FALSE;
 
-	switch (GetMonAbility(mon)) {
-		case ABILITY_MAGMAARMOR:
-			return FALSE;
-	}
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_MAGMA_ARMOR))
+		return FALSE;
 
 	if (type1 == TYPE_ICE
 	||  type2 == TYPE_ICE)

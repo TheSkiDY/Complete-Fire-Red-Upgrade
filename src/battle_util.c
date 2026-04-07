@@ -847,9 +847,6 @@ bool8 IsMoveRedirectionPrevented(u16 move, u8 atkAbility)
 {
 	return move == MOVE_SNIPESHOT
 		|| (move != MOVE_NONE && gBattleMoves[move].effect == EFFECT_SKY_DROP)
-		#ifdef ABILITY_PROPELLERTAIL
-		|| atkAbility == ABILITY_PROPELLERTAIL
-		#endif
 		|| atkAbility == ABILITY_STALWART;
 }
 
@@ -1882,12 +1879,7 @@ bool8 WeatherHasEffect(void)
 	{
 		u8 ability = ABILITY(i);
 
-		if ((ability == ABILITY_CLOUDNINE
-		#ifdef ABILITY_AIRLOCK
-		|| ability == ABILITY_AIRLOCK
-		#endif
-		)
-		&& BATTLER_ALIVE(i))
+		if (ability == ABILITY_CLOUDNINE && BATTLER_ALIVE(i))
 			return FALSE;
 	}
 
@@ -2054,12 +2046,13 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 					return FALSE;
 				break;
 
-			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
-					return FALSE;
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bankDef, BRANCH_SHIELDS_DOWN))
+				{
+					if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
+						return FALSE;
+				}
 				break;
-			#endif
 		}
 	}
 
@@ -2093,11 +2086,10 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
+		if (BankHasBranchAbility(bankDef, BRANCH_INSOMNIA) || BankHasBranchAbility(bankDef, BRANCH_VITAL_SPIRIT))
+			return FALSE;
+
 		switch (defAbility) {
-			case ABILITY_INSOMNIA:
-			#ifdef ABILITY_VITALSPIRIT
-			case ABILITY_VITALSPIRIT:
-			#endif
 			case ABILITY_SWEETVEIL:
 				return FALSE;
 		}
@@ -2136,11 +2128,10 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 	u8 defAbility = ABILITY(bankDef);
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
+		if(BankHasBranchAbility(bankDef, BRANCH_INSOMNIA) || BankHasBranchAbility(bankDef, BRANCH_VITAL_SPIRIT))
+			return FALSE;
+
 		switch (defAbility) {
-			case ABILITY_INSOMNIA:
-			#ifdef ABILITY_VITALSPIRIT
-			case ABILITY_VITALSPIRIT:
-			#endif
 			case ABILITY_SWEETVEIL:
 			case ABILITY_COMATOSE:
 				return FALSE;
@@ -2152,12 +2143,13 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 				if (IsOfType(bankDef, TYPE_GRASS))
 					return FALSE;
 				break;
-			#ifdef SPECIES_MINIOR_SHIELD
-			case ABILITY_SHIELDSDOWN:
-				if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
-					return FALSE;
+			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+				if (BankHasBranchAbility(bankDef, BRANCH_SHIELDS_DOWN))
+				{
+					if (GetBankPartyData(bankDef)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
+						return FALSE;
+				}
 				break;
-			#endif
 		}
 	}
 
@@ -2213,11 +2205,10 @@ bool8 CanRest(u8 bank)
 		}
 	}
 
+	if (BankHasBranchAbility(bank, BRANCH_INSOMNIA) || BankHasBranchAbility(bank, BRANCH_VITAL_SPIRIT))
+		return FALSE;
+
 	switch (ABILITY(bank)) {
-		case ABILITY_INSOMNIA:
-		#ifdef ABILITY_VITALSPIRIT
-		case ABILITY_VITALSPIRIT:
-		#endif
 		case ABILITY_SWEETVEIL:
 		case ABILITY_COMATOSE:
 			return FALSE;
@@ -2229,12 +2220,13 @@ bool8 CanRest(u8 bank)
 			if (IsOfType(bank, TYPE_GRASS))
 				return FALSE;
 			break;
-		#ifdef SPECIES_MINIOR_SHIELD
-		case ABILITY_SHIELDSDOWN:
-			if (GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
-				return FALSE;
+		case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
+			if (BankHasBranchAbility(bank, BRANCH_SHIELDS_DOWN))
+			{
+				if (GetBankPartyData(bank)->species == SPECIES_MINIOR_SHIELD) //Prevents Ditto from getting this benefit
+					return FALSE;
+			}
 			break;
-		#endif
 	}
 
 	return TRUE;
@@ -2250,8 +2242,10 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
+		if(BankHasBranchAbility(defAbility, BRANCH_IMMUNITY))
+			return FALSE;
+
 		switch (defAbility) {
-			case ABILITY_IMMUNITY:
 			case ABILITY_PASTELVEIL:
 				return FALSE;
 		}
@@ -2282,10 +2276,9 @@ bool8 CanBeParalyzed(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
-		switch (defAbility) {
-			case ABILITY_LIMBER:
-				return FALSE;
-		}
+		if (BankHasBranchAbility(bankDef, BRANCH_LIMBER))
+			return FALSE;
+
 	}
 
 	return TRUE;
@@ -2309,8 +2302,10 @@ bool8 CanBeBurned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
+		if(BankHasBranchAbility(bankDef, BRANCH_WATER_VEIL))
+			return FALSE;
+
 		switch (defAbility) {
-			case ABILITY_WATERVEIL:
 			case ABILITY_WATERBUBBLE:
 				return FALSE;
 		}
@@ -2337,10 +2332,8 @@ bool8 CanBeFrozen(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
-		switch (defAbility) {
-			case ABILITY_MAGMAARMOR:
-				return FALSE;
-		}
+		if (BankHasBranchAbility(bankDef, BRANCH_MAGMA_ARMOR))
+			return FALSE;
 	}
 
 	if (gBattleWeather & WEATHER_SUN_ANY && WEATHER_HAS_EFFECT && AffectedBySun(bankDef))

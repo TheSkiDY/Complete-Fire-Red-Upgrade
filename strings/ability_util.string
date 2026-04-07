@@ -1,0 +1,653 @@
+#org @NAME_FULL_METAL_BODY
+FULL METAL BODY
+
+#org @NAME_PURE_POWER
+PURE POWER
+
+#org @NAME_SHELL_ARMOR
+SHELL ARMOR
+
+#org @NAME_AIR_LOCK
+AIR LOCK
+
+#org @NAME_IRON_BARBS
+IRON BARBS
+
+#org @NAME_CACOPHONY
+CACOPHONY
+
+#org @NAME_TURBOBLAZE
+TURBOBLAZE
+
+#org @NAME_TERAVOLT
+TERAVOLT
+
+#org @NAME_SOLID_ROCK
+SOLID ROCK
+
+#org @NAME_PRISM_ARMOR
+PRISM ARMOR
+
+#org @NAME_SHADOW_SHIELD
+SHADOW SHIELD
+
+#org @NAME_TANGLING_HAIR
+TANGLING HAIR
+
+#org @NAME_LIBERO
+LIBERO
+
+#org @NAME_EMERGENCY_EXIT
+EMERGENCY EXIT
+
+#org @NAME_QUEENLY_MAJESTY
+QUEENLY MAJESTY
+
+#org @NAME_POWER_OF_ALCHEMY
+POWR OF ALCHEMY
+
+#org @NAME_PROPELLER_TAIL
+PROPELLER TAIL
+
+#org @DESC_WEATHER_ON_SWITCH_IN
+Branch ability (wthr swtch in).
+
+#org @DESC_STATUS_PREVENTION
+Branch ability (status prevention).
+
+#org @DESC_WEATHER_EVASION
+Branch ability (weather evasion).
+
+#org @DESC_WEATHER_SPEED
+Branch ability (weather speed).
+
+#org @DESC_STATUS_CONTACT
+Branch ability (status contact).
+
+#org @DESC_TYPE_ABSORPTION
+Branch ability (type absorb).
+
+#org @DESC_SWITCHOUT_PREVENTION
+Branch ability (switch prevent).
+
+#org @DESC_KO_STAT_BOOST
+Branch ability (KO stat boost).
+
+#org @DESC_TYPE_POWERUP
+Branch ability (type powerup).
+
+#org @NAME_DRIZZLE
+DRIZZLE
+
+#org @DESC_DRIZZLE
+Summons rain in battle.
+
+#org @NAME_DROUGHT
+DROUGHT
+
+#org @DESC_DROUGHT
+Summons sunlight in battle.
+
+#org @NAME_SAND_STREAM
+SAND STREAM
+
+#org @DESC_SAND_STREAM
+Summons a sandstorm.
+
+#org @NAME_SNOW_WARNING
+SNOW WARNING
+
+#org @DESC_SNOW_WARNING
+Summons a snowstorm in battle.
+
+#org @NAME_LIMBER
+LIMBER
+
+#org @DESC_LIMBER
+Prevents paralysis.
+
+#org @NAME_INSOMNIA
+INSOMNIA
+
+#org @DESC_INSOMNIA
+Prevents sleep.
+
+#org @NAME_IMMUNITY
+IMMUNITY
+
+#org @DESC_IMMUNITY
+Prevents poisoning.
+
+#org @NAME_MAGMA_ARMOR
+MAGMA ARMOR
+
+#org @DESC_MAGMA_ARMOR
+Prevents frostbite.
+
+#org @NAME_WATER_VEIL
+WATER VEIL
+
+#org @DESC_WATER_VEIL
+Prevents burns.
+
+#org @NAME_VITAL_SPIRIT
+VITAL SPIRIT
+
+#org @DESC_VITAL_SPIRIT
+Prevets sleep.
+
+#org @NAME_SAND_VEIL
+SAND VEIL
+
+#org @DESC_SAND_VEIL
+Raises evasion in sandstorm.
+
+#org @NAME_SNOW_CLOAK
+SNOW CLOAK
+
+#org @DESC_SNOW_CLOAK
+Raises evasion in snowstorm.
+
+#org @NAME_SWIFT_SWIM
+SWIFT SWIM
+
+#org @DESC_SWIFT_SWIM
+Raises SPEED in rain.
+
+#org @NAME_CHLOROPHYLL
+CHLOROPHYLL
+
+#org @DESC_CHLOROPHYLL
+Raises SPEED in sun.
+
+#org @NAME_SAND_RUSH
+SAND RUSH
+
+#org @DESC_SAND_RUSH
+Raises SPEED in sandstorm.
+
+#org @NAME_SLUSH_RUSH
+SLUSH RUSH
+
+#org @DESC_SLUSH_RUSH
+Raises SPEED in snow.
+
+#org @NAME_STATIC
+STATIC
+
+#org @DESC_STATIC
+Can paralyze on contact.
+
+#org @NAME_CUTE_CHARM
+CUTE CHARM
+
+#org @DESC_CUTE_CHARM
+Can infatuate on contact.
+
+#org @NAME_EFFECT_SPORE
+EFFECT SPORE
+
+#org @DESC_EFFECT_SPORE
+Leaves spores on contact.
+
+#org @NAME_POISON_POINT
+POISON POINT
+
+#org @DESC_POISON_POINT
+Can poison foe on contact.
+
+#org @NAME_CURSED_BODY
+CURSED BODY
+
+#org @DESC_CURSED_BODY
+May disable a foe's move.
+
+#org @NAME_FLAME_BODY
+FLAME BODY
+
+#org @DESC_FLAME_BODY
+Can burn a foe on contact.
+
+#org @NAME_VOLT_ABSORB
+VOLT ABSORB
+
+#org @DESC_VOLT_ABSORB
+Turns electricity into HP.
+
+#org @NAME_WATER_ABSORB
+WATER ABSORB
+
+#org @DESC_WATER_ABSORB
+Changes water into HP.
+
+#org @NAME_SHADOW_TAG
+SHADOW TAG
+
+#org @DESC_SHADOW_TAG
+Prevents the foe's escape.
+
+#org @NAME_ARENA_TRAP
+ARENA TRAP
+
+#org @DESC_ARENA_TRAP
+Prevents fleeing.
+
+#org @NAME_MAGNET_PULL
+MAGNET PULL
+
+#org @DESC_MAGNET_PULL
+Traps STEEL-type POK\eMON.
+
+#org @gText_ShadowTagPreventsSwitching
+[BUFF]'s SHADOW TAG\nprevents switching!\p
+
+#org @gText_ArenaTrapPreventsSwitching
+[BUFF]'s ARENA TRAP\nprevents switching!\p
+
+#org @gText_MagnetPullPreventsSwitching
+[BUFF]'s MAGNET PULL\nprevents switching!\p
+
+#org @gText_AbilityPreventsSwitching
+[BUFF]'s ability\nprevents switching!\p
+
+#org @NAME_WHITE_SMOKE
+WHITE SMOKE
+
+#org @DESC_WHITE_SMOKE
+Prevents lowering stats.
+
+#org @NAME_FORECAST
+FORECAST
+
+#org @DESC_FORECAST
+Changes with the weather.
+
+#org @NAME_ZEN_MODE
+ZEN MODE
+
+#org @DESC_ZEN_MODE
+Transforms below half HP.
+
+#org @NAME_STANCE_CHANGE
+STANCE CHANGE
+
+#org @DESC_STANCE_CHANGE
+Switches form when attacking.
+
+#org @NAME_SHIELDS_DOWN
+SHIELDS DOWN
+
+#org @DESC_SHIELDS_DOWN
+Lowers shields below half HP.
+
+#org @NAME_SCHOOLING
+SCHOOLING
+
+#org @DESC_SCHOOLING
+Schools up with high HP.
+
+#org @NAME_DISGUISE
+DISGUISE
+
+#org @DESC_DISGUISE
+Takes one hit with no damage.
+
+#org @NAME_BATTLE_BOND
+BATTLE BOND
+
+#org @DESC_BATTLE_BOND
+Transforms after a KO.
+
+#org @NAME_POWER_CONSTRUCT
+POWER CONSTRUCT
+
+#org @DESC_POWER_CONSTRUCT
+Transforms below half HP.
+
+#org @NAME_GULP_MISSILE
+GULP MISSILE
+
+#org @DESC_GULP_MISSILE
+Spits prey if hit after a swim.
+
+#org @NAME_ICE_FACE
+ICE FACE
+
+#org @DESC_ICE_FACE
+Free physical hit. Snow renews.
+
+#org @NAME_HUNGER_SWITCH
+HUNGER SWITCH
+
+#org @DESC_HUNGER_SWITCH
+Changes form each turn.
+
+#org @DESC_SIGNATURE_FORM_CHANGE
+Branch ability (form change).
+
+#org @NAME_BLAZE
+BLAZE
+
+#org @DESC_BLAZE
+Ups FIRE moves in a pinch.
+
+#org @NAME_TORRENT
+TORRENT
+
+#org @DESC_TORRENT
+Ups WATER moves in a pinch.
+
+#org @NAME_OVERGROW
+OVERGROW
+
+#org @DESC_OVERGROW
+Ups GRASS moves in a pinch.
+
+#org @NAME_SWARM
+SWARM
+
+#org @DESC_SWARM
+Ups BUG moves in a pinch.
+
+#org @DESC_BLAZE_VARIANT
+Empty Blaze variant.
+
+#org @NAME_NORMALIZE
+NORMALIZE
+
+#org @DESC_NORMALIZE
+All moves become NORMAL type.
+
+#org @NAME_AERILATE
+AERILATE
+
+#org @DESC_AERILATE
+NORMAL moves become FLYING type.
+
+#org @NAME_PIXILATE
+PIXILATE
+
+#org @DESC_PIXILATE
+NORMAL moves become FAIRY type.
+
+#org @NAME_REFRIGERATE
+REFRIGERATE
+
+#org @DESC_REFRIGERATE
+NORMAL moves become ICE type.
+
+#org @NAME_GALVANIZE
+GALVANIZE
+
+#org @DESC_GALVANIZE
+NORMAL moves become ELECTRIC type.
+
+#org @DESC_NORMALIZE_VARIANT
+Empty Normalize variant.
+
+#org @NAME_MOXIE
+MOXIE
+
+#org @DESC_MOXIE
+Knockouts boost ATTACK.
+
+#org @NAME_BEAST_BOOST
+BEAST BOOST
+
+#org @DESC_BEAST_BOOST
+KOing a foe ups highest stat.
+
+#org @NAME_CHILLING_NEIGH
+CHILLING NEIGH
+
+#org @DESC_CHILLING_NEIGH
+Knockouts boost ATTACK.
+
+#org @NAME_GRIM_NEIGH
+GRIM NEIGH
+
+#org @DESC_GRIM_NEIGH
+Knockouts boost SP. ATK.
+
+#org @NAME_AS_ONE_CHILLING
+AS ONE
+
+#org @DESC_AS_ONE_CHILLING
+Both UNNERVE and CHILLING NEIGH.
+
+#org @NAME_AS_ONE_GRIM
+AS ONE
+
+#org @DESC_AS_ONE_GRIM
+Both UNNERVE and GRIM NEIGH.
+
+#org @NAME_STEELWORKER
+STEELWORKER
+
+#org @DESC_STEELWORKER
+Powers up STEEL-type moves.
+
+#org @NAME_TRANSISTOR
+TRANSISTOR
+
+#org @DESC_TRANSISTOR
+Powers up ELECTRIC-type moves.
+
+#org @NAME_DRAGONS_MAW
+DRAGON'S MAW
+
+#org @DESC_DRAGONS_MAW
+Powers up DRAGON-type moves.
+
+#org @NAME_NORMAL_AURA
+NORMAL AURA
+
+#org @DESC_NORMAL_AURA
+Boosts NORMAL moves on the field.
+
+#org @NAME_FIGHTING_AURA
+FIGHTING AURA
+
+#org @DESC_FIGHTING_AURA
+Boosts FIGHTING moves on the field.
+
+#org @NAME_FLYING_AURA
+FLYING AURA
+
+#org @DESC_FLYING_AURA
+Boosts FLYING moves on the field.
+
+#org @NAME_POISON_AURA
+POISON AURA
+
+#org @DESC_POISON_AURA
+Boosts POISON moves on the field.
+
+#org @NAME_GROUND_AURA
+GROUND AURA
+
+#org @DESC_GROUND_AURA
+Boosts GROUND moves on the field.
+
+#org @NAME_ROCK_AURA
+ROCK AURA
+
+#org @DESC_ROCK_AURA
+Boosts ROCK moves on the field.
+
+#org @NAME_BUG_AURA
+BUG AURA
+
+#org @DESC_BUG_AURA
+Boosts BUG moves on the field.
+
+#org @NAME_GHOST_AURA
+GHOST AURA
+
+#org @DESC_GHOST_AURA
+Boosts GHOST moves on the field.
+
+#org @NAME_STEEL_AURA
+STEEL AURA
+
+#org @DESC_STEEL_AURA
+Boosts STEEL moves on the field.
+
+#org @NAME_FIRE_AURA
+FIRE AURA
+
+#org @DESC_FIRE_AURA
+Boosts FIRE moves on the field.
+
+#org @NAME_WATER_AURA
+WATER AURA
+
+#org @DESC_WATER_AURA
+Boosts WATER moves on the field.
+
+#org @NAME_GRASS_AURA
+GRASS AURA
+
+#org @DESC_GRASS_AURA
+Boosts GRASS moves on the field.
+
+#org @NAME_ELECTRIC_AURA
+ELECTRIC AURA
+
+#org @DESC_ELECTRIC_AURA
+Boosts ELECTRIC moves on the field.
+
+#org @NAME_PSYCHIC_AURA
+PSYCHIC AURA
+
+#org @DESC_PSYCHIC_AURA
+Boosts PSYCHIC moves on the field.
+
+#org @NAME_ICE_AURA
+ICE AURA
+
+#org @DESC_ICE_AURA
+Boosts ICE moves on the field.
+
+#org @NAME_DRAGON_AURA
+DRAGON AURA
+
+#org @DESC_DRAGON_AURA
+Boosts DRAGON moves on the field.
+
+#org @NAME_DARK_AURA
+DARK AURA
+
+#org @DESC_DARK_AURA
+Boosts DARK moves on the field.
+
+#org @NAME_FAIRY_AURA
+FAIRY AURA
+
+#org @DESC_FAIRY_AURA
+Boosts FAIRY moves on the field.
+
+#org @DESC_AURA_VARIANT
+Empty Aura variant.
+
+#org @gText_NormalAuraActivate
+[SCRIPTING_BANK] is radiating\na normal aura!
+
+#org @gText_FightingAuraActivate
+[SCRIPTING_BANK] is radiating\na fighting aura!
+
+#org @gText_FlyingAuraActivate
+[SCRIPTING_BANK] is radiating\na flying aura!
+
+#org @gText_PoisonAuraActivate
+[SCRIPTING_BANK] is radiating\na poison aura!
+
+#org @gText_GroundAuraActivate
+[SCRIPTING_BANK] is radiating\na ground aura!
+
+#org @gText_RockAuraActivate
+[SCRIPTING_BANK] is radiating\na rock aura!
+
+#org @gText_BugAuraActivate
+[SCRIPTING_BANK] is radiating\na bug aura!
+
+#org @gText_GhostAuraActivate
+[SCRIPTING_BANK] is radiating\na ghost aura!
+
+#org @gText_SteelAuraActivate
+[SCRIPTING_BANK] is radiating\na steel aura!
+
+#org @gText_FireAuraActivate
+[SCRIPTING_BANK] is radiating\na fire aura!
+
+#org @gText_WaterAuraActivate
+[SCRIPTING_BANK] is radiating\na water aura!
+
+#org @gText_GrassAuraActivate
+[SCRIPTING_BANK] is radiating\na grass aura!
+
+#org @gText_ElectricAuraActivate
+[SCRIPTING_BANK] is radiating\na electric aura!
+
+#org @gText_PsychicAuraActivate
+[SCRIPTING_BANK] is radiating\na psychic aura!
+
+#org @gText_IceAuraActivate
+[SCRIPTING_BANK] is radiating\na ice aura!
+
+#org @gText_DragonAuraActivate
+[SCRIPTING_BANK] is radiating\na dragon aura!
+
+#org @gText_DarkAuraActivate
+[SCRIPTING_BANK] is radiating\na dark aura!
+
+#org @gText_FairyAuraActivate
+[SCRIPTING_BANK] is radiating\na fairy aura!
+
+#org @NAME_PRIMORDIAL_SEA
+PRIMORDIAL SEA
+
+#org @DESC_PRIMORDIAL_SEA
+Summons a heavy rainstorm.
+
+#org @NAME_DESOLATE_LAND
+DESOLATE LAND
+
+#org @DESC_DESOLATE_LAND
+Summons extremely harsh sunlight.
+
+#org @NAME_DELTA_STREAM
+DELTA STREAM
+
+#org @DESC_DELTA_STREAM
+Summons a mysterious air current.
+
+#org @NAME_ELECTRIC_SURGE
+ELECTRIC SURGE
+
+#org @DESC_ELECTRIC_SURGE
+Creates an ELECTRIC TERRAIN.
+
+#org @NAME_PSYCHIC_SURGE
+PSYCHIC SURGE
+
+#org @DESC_PSYCHIC_SURGE
+Creates a PSYCHIC TERRAIN.
+
+#org @NAME_MISTY_SURGE
+MISTY SURGE
+
+#org @DESC_MISTY_SURGE
+Creates a MISTY TERRAIN.
+
+#org @NAME_GRASSY_SURGE
+GRASSY SURGE
+
+#org @DESC_GRASSY_SURGE
+Creates a GRASSY TERRAIN.
+
+#org @DESC_PRIMAL_WEATHER
+Branch ability (primal weather).
+
+#org @DESC_TERRAIN_SWITCHIN
+Branch ability (terrain switch-in).

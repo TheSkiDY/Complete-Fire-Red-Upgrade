@@ -63,11 +63,13 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 	{
 		switch (atkPartnerAbility) //Type-specific ability checks - primordial weather handled separately
 		{
-			//Electric
-			case ABILITY_VOLTABSORB:
-				if (moveType == TYPE_ELECTRIC)
+			case ABILITYBRANCH_TYPE_ABSORPTION:
+				if (moveType == TYPE_ELECTRIC && BankHasBranchAbility(bankAtkPartner, BRANCH_VOLT_ABSORB)) 
+					IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
+				else if (moveType == TYPE_WATER && BankHasBranchAbility(bankAtkPartner, BRANCH_WATER_ABSORB)) 
 					IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
 				break;
+
 			case ABILITY_MOTORDRIVE:
 				if (moveType == TYPE_ELECTRIC
 				&&  !IsClassDoublesTotalTeamSupport(partnerClass) //Don't help out a partner that's meant to be doing the helping out
@@ -86,8 +88,6 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 				}
 				break;
 
-			// Water
-			case ABILITY_WATERABSORB:
 			case ABILITY_DRYSKIN:
 				if (moveType == TYPE_WATER)
 					IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
@@ -367,8 +367,8 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			break;
 
 		case EFFECT_SANDSTORM:
-			if (atkPartnerAbility == ABILITY_SANDVEIL
-			|| atkPartnerAbility == ABILITY_SANDRUSH
+			if (atkPartnerAbility == ABILITYBRANCH_EVASION_IN_WEATHER
+			|| atkPartnerAbility == ABILITYBRANCH_SPEED_IN_WEATHER
 			|| atkPartnerAbility == ABILITY_SANDFORCE
 			|| atkPartnerAbility == ABILITY_OVERCOAT
 			|| atkPartnerAbility == ABILITY_MAGICGUARD
@@ -391,8 +391,8 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			&& (MoveEffectInMoveset(EFFECT_THUNDER, bankAtkPartner)
 			 || MoveInMoveset(MOVE_WEATHERBALL, bankAtkPartner)
 			 || atkPartnerItemEffect == ITEM_EFFECT_DAMP_ROCK
-			 || atkPartnerAbility == ABILITY_SWIFTSWIM
-			 || atkPartnerAbility == ABILITY_FORECAST
+			 || BankHasBranchAbility(bankAtkPartner, BRANCH_SWIFT_SWIM)
+			 || BankHasBranchAbility(bankAtkPartner, BRANCH_FORECAST)
 			 || atkPartnerAbility == ABILITY_HYDRATION
 			 || atkPartnerAbility == ABILITY_RAINDISH
 			 || atkPartnerAbility == ABILITY_DRYSKIN
@@ -409,9 +409,9 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 
 		case EFFECT_SUNNY_DAY:
 			if (!ItemEffectIgnoresSunAndRain(atkPartnerItemEffect)
-			&& (atkPartnerAbility == ABILITY_CHLOROPHYLL
+			&& (BankHasBranchAbility(bankAtkPartner, BRANCH_CHLOROPHYLL)
 			 || atkPartnerAbility == ABILITY_FLOWERGIFT
-			 || atkPartnerAbility == ABILITY_FORECAST
+			 || BankHasBranchAbility(bankAtkPartner, BRANCH_FORECAST)
 			 || atkPartnerAbility == ABILITY_LEAFGUARD
 			 || atkPartnerAbility == ABILITY_SOLARPOWER
 			 || atkPartnerAbility == ABILITY_HARVEST
@@ -429,10 +429,10 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			break;
 
 		case EFFECT_HAIL:
-			if (atkPartnerAbility == ABILITY_SNOWCLOAK
+			if (BankHasBranchAbility(bankAtkPartner, BRANCH_SNOW_CLOAK)
 			|| atkPartnerAbility == ABILITY_ICEBODY
-			|| atkPartnerAbility == ABILITY_FORECAST
-			|| atkPartnerAbility == ABILITY_SLUSHRUSH
+			|| BankHasBranchAbility(bankAtkPartner, BRANCH_FORECAST)
+			|| BankHasBranchAbility(bankAtkPartner, BRANCH_SLUSH_RUSH)
 			|| atkPartnerAbility == ABILITY_MAGICGUARD
 			|| atkPartnerAbility == ABILITY_OVERCOAT
 			|| MoveInMoveset(MOVE_BLIZZARD, bankAtkPartner)

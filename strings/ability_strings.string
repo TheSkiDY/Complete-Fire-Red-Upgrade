@@ -17,16 +17,10 @@ The effects of weather\ndisappeared.
 [SCRIPTING_BANK] couldn't get\ngoing!
 
 #org @gText_UnnerveActivate
-[FD][37] team is too\nnervous to eat Berries!
-
-#org @gText_DarkAuraActivate
-[SCRIPTING_BANK] is radiating\na dark aura!
-
-#org @gText_FairyAuraActivate
-[SCRIPTING_BANK] is radiating\na fairy aura!
+[FD][37] team is too\nnervous to eat berries!
 
 #org @gText_AuraBreakActivate
-[SCRIPTING_BANK] reversed all\nother Pok\emon's auras!
+[SCRIPTING_BANK] reversed all\nother POK\eMON's auras!
 
 #org @gText_ComatoseActivate
 [SCRIPTING_BANK] is drowsing!

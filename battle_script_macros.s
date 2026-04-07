@@ -120,14 +120,6 @@
 	.byte \bank
 	.byte ABILITY_CLEARBODY
 	.word \rom_address
-	.byte 0x1E
-	.byte \bank
-	.byte ABILITY_WHITESMOKE
-	.word \rom_address
-	.byte 0x1E
-	.byte \bank
-	.byte ABILITY_FULLMETALBODY 
-	.word \rom_address
 	.endm
 	
 	.macro jumpifstatcanbelowered bank stat rom_address

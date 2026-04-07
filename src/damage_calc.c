@@ -59,7 +59,7 @@ static const u16 sCriticalHitChances[] =
 static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, struct Pokemon* monDef);
 static void TypeDamageModificationByDefTypes(u8 atkAbility, u8 bankDef, u16 move, u8 moveType, u8* flags, u8 defType1, u8 defType2, u8 defType3, struct Pokemon* monDef);
 static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, const u8 defType, const u8 bankDef, u8 atkAbility, u8* flags, struct Pokemon* monDef);
-static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 zMoveActive);
+static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 zMoveActive, u16 species);
 static s32 CalculateBaseDamage(struct DamageCalc* data);
 static u16 GetBasePower(struct DamageCalc* data);
 static u16 AdjustBasePower(struct DamageCalc* data, u16 power);
@@ -104,7 +104,6 @@ void atk04_critcalc(void)
 		u8 defAbility = ABILITY(bankDef);
 
 		if (defAbility == ABILITY_BATTLEARMOR
-		||  defAbility == ABILITY_SHELLARMOR
 		||  CantScoreACrit(gBankAttacker, NULL)
 		||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL | BATTLE_TYPE_POKE_DUDE)
 		||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -202,7 +201,6 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	if (defAbility == ABILITY_BATTLEARMOR
-	||  defAbility == ABILITY_SHELLARMOR
 	||  CantScoreACrit(bankAtk, monAtk)
 	||  gBattleTypeFlags & (BATTLE_TYPE_OLD_MAN | BATTLE_TYPE_OAK_TUTORIAL)
 	||  gNewBS->LuckyChantTimers[SIDE(bankDef)])
@@ -1657,7 +1655,7 @@ u8 GetMoveTypeSpecial(u8 bankAtk, u16 move)
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, gNewBS->zMoveData.active || gNewBS->zMoveData.viewing, GetProperAbilityPopUpSpecies(bankAtk));
 }
 
 u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
@@ -1676,38 +1674,33 @@ u8 GetMoveTypeSpecialPreAbility(u16 move, u8 bankAtk, struct Pokemon* monAtk)
 	}
 
 	if (moveType == TYPE_NORMAL && monAtk == NULL && IsIonDelugeActive()
-	&& !AbilityCanChangeTypeAndBoost(move, ABILITY(bankAtk), gNewBS->ElectrifyTimers[bankAtk], FALSE)) //Type-change abilities override Ion Deluge
+	&& !AbilityCanChangeTypeAndBoost(move, ABILITY(bankAtk), gNewBS->ElectrifyTimers[bankAtk], FALSE, GetProperAbilityPopUpSpecies(bankAtk))) //Type-change abilities override Ion Deluge
 		return TYPE_ELECTRIC;
 
 	return 0xFF;
 }
 
-u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
+u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive, u16 species)
 {
 	u8 moveType = gBattleMoves[move].type;
 	bool8 moveTypeCanBeChanged = !zMoveActive || SPLIT(move) == SPLIT_STATUS;
+	u8 variantType;
 
 	if (moveTypeCanBeChanged)
 	{
 		//Change Normal-type Moves
-		if (moveType == TYPE_NORMAL)
+		if (moveType == TYPE_NORMAL && atkAbility == ABILITYVARIANT_NORMALIZE)
 		{
-			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-					return TYPE_ICE;
-				case ABILITY_PIXILATE:
-					return TYPE_FAIRY;
-				case ABILITY_AERILATE:
-					return TYPE_FLYING;
-				case ABILITY_GALVANIZE:
-					return TYPE_ELECTRIC;
-			}
+			variantType = GetSpeciesNormalizeVariant(species, atkAbility);
+			return variantType;
 		}
 
 		//Change non-Normal-type moves
 		switch (atkAbility) {
-			case ABILITY_NORMALIZE:
-				return TYPE_NORMAL;
+			case ABILITYVARIANT_NORMALIZE:
+				if (GetSpeciesNormalizeVariant(species, atkAbility) == TYPE_NORMAL) //has Normalize
+					return TYPE_NORMAL;
+				break;
 			case ABILITY_LIQUIDVOICE:
 				if (CheckSoundMove(move)) //Change Sound Moves
 					return TYPE_WATER;
@@ -1721,14 +1714,15 @@ u8 GetMoveTypeSpecialPostAbility(u16 move, u8 atkAbility, bool8 zMoveActive)
 u8 GetMonMoveTypeSpecial(struct Pokemon* mon, u16 move)
 {
 	u8 atkAbility = GetMonAbility(mon);
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
 	u8 moveType = GetMoveTypeSpecialPreAbility(move, 0, mon);
 	if (moveType != 0xFF)
 		return moveType;
 
-	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE);
+	return GetMoveTypeSpecialPostAbility(move, atkAbility, FALSE, species);
 }
 
-static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 zMoveActive)
+static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyTimer, bool8 zMoveActive, u16 species)
 {
 	u8 moveType = gBattleMoves[move].type;
 	bool8 moveTypeCanBeChanged = !zMoveActive || SPLIT(move) == SPLIT_STATUS;
@@ -1738,23 +1732,11 @@ static bool8 AbilityCanChangeTypeAndBoost(u16 move, u8 atkAbility, u8 electrifyT
 	|| gSpecialMoveFlags[move].gTypeChangeExceptionMoves)
 		return FALSE;
 
-	//Check Normal-type Moves
-	if (moveType == TYPE_NORMAL)
-	{
-		if (moveTypeCanBeChanged)
-		{
-			switch (atkAbility) {
-				case ABILITY_REFRIGERATE:
-				case ABILITY_PIXILATE:
-				case ABILITY_AERILATE:
-				case ABILITY_GALVANIZE:
-					return TRUE;
-			}
-		}
-	}
+	if (moveType == TYPE_NORMAL && moveTypeCanBeChanged && atkAbility == ABILITYVARIANT_NORMALIZE)
+		return TRUE;
 
-	//Check non-Normal-type moves
-	return atkAbility == ABILITY_NORMALIZE && moveTypeCanBeChanged;
+	//Check Normalize
+	return GetSpeciesNormalizeVariant(species, atkAbility) == TYPE_NORMAL && moveTypeCanBeChanged;
 }
 
 u8 GetExceptionMoveType(u8 bankAtk, u16 move)
@@ -2643,9 +2625,6 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 //Attacker Ability Checks
 	switch(data->atkAbility) {
 		case ABILITY_HUGEPOWER:
-		#ifdef ABILITY_PUREPOWER
-		case ABILITY_PUREPOWER:
-		#endif
 		//2x Boost
 			if (!IsScaleMonsBattle() //Too OP
 			|| !IsSpeciesAffectedByScalemons(data->atkSpecies)) //Doesn't get the Scalemons boost
@@ -2708,33 +2687,9 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				spAttack = (spAttack * 15) / 10;
 			break;
 
-		case ABILITY_OVERGROW:
-		//1.5x Boost
-			if (data->moveType == TYPE_GRASS && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_BLAZE:
-		//1.5x Boost
-			if (data->moveType == TYPE_FIRE && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_TORRENT:
-		//1.5x Boost
-			if (data->moveType == TYPE_WATER && data->atkHP <= data->atkMaxHP / 3)
-			{
-				attack = (attack * 15) / 10;
-				spAttack = (spAttack * 15) / 10;
-			}
-			break;
-		case ABILITY_SWARM:
-		//1.5x Boost
-			if (data->moveType == TYPE_BUG && data->atkHP <= data->atkMaxHP / 3)
+		case ABILITYVARIANT_BLAZE: 	;
+			u8 blazeType = GetBankBlazeVariant(bankAtk);
+			if (data->moveType == blazeType && data->atkHP <= data->atkMaxHP / 3)
 			{
 				attack = (attack * 15) / 10;
 				spAttack = (spAttack * 15) / 10;
@@ -3090,17 +3045,22 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		}
 	}
 
-	//Aura Abilities
-	if ((data->moveType == TYPE_DARK
-		&& (ABILITY_ON_FIELD(ABILITY_DARKAURA) || data->atkAbility == ABILITY_DARKAURA || data->defAbility == ABILITY_DARKAURA)) //Check all because may be party mon
-	||  (data->moveType == TYPE_FAIRY
-		&& (ABILITY_ON_FIELD(ABILITY_FAIRYAURA) || data->atkAbility == ABILITY_FAIRYAURA || data->defAbility == ABILITY_FAIRYAURA)))
+	//Aura abilities
+	u8 auraType = GetAuraTypeOnField();
+	if(auraType != 0xFF || GetBankAuraVariant(bankAtk) != 0xFF || GetBankAuraVariant(bankDef) != 0xFF)
 	{
-		if (ABILITY_ON_FIELD(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
-			damage = (damage * 75) / 100;
-		else
-			damage = (damage * 4) / 3;
+		auraType = (auraType!=0xFF) ? auraType : GetBankAuraVariant(bankAtk);
+		auraType = (auraType!=0xFF) ? auraType : GetBankAuraVariant(bankDef);
+
+		if (data->moveType == auraType)
+		{
+			if (ABILITY_ON_FIELD(ABILITY_AURABREAK) || data->atkAbility == ABILITY_AURABREAK || data->defAbility == ABILITY_AURABREAK)
+				damage = (damage * 75) / 100;
+			else
+				damage = (damage * 4) / 3;
+		}
 	}
+
 
 	//Second Attacker Ability Checks
 	switch (data->atkAbility) {
@@ -3132,11 +3092,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 				damage = (damage * 125) / 100;
 			break;
 
-		#ifdef ABILITY_SOLIDROCK
-		case ABILITY_SOLIDROCK:
-		#endif
 		case ABILITY_FILTER:
-		case ABILITY_PRISMARMOR:
 		//0.75x Decrement
 			if (data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
 				damage = (damage * 75) / 100;
@@ -3150,7 +3106,6 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			break;
 
 		case ABILITY_MULTISCALE:
-		case ABILITY_SHADOWSHIELD:
 		//0.5x Decrement
 			if (data->defHP >= data->defMaxHP)
 				damage /= 2;
@@ -3187,7 +3142,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	switch (data->defItemEffect) {
 		case ITEM_EFFECT_WEAKNESS_BERRY:
 			if (!UnnerveOnOpposingField(bankDef)
-			&& !IsUnnerveAbility(data->atkAbility))
+			&& !IsUnnerveAbility(data->atkAbility, GetProperAbilityPopUpSpecies(bankAtk)))
 			{
 				if ((data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE && data->defItemQuality == data->moveType)
 				|| (data->defItemQuality == TYPE_NORMAL && data->moveType == TYPE_NORMAL)) //Chilan Berry
@@ -3605,7 +3560,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 
 		#ifdef SPECIES_ASHGRENINJA
 		case MOVE_WATERSHURIKEN:
-			if (data->atkSpecies == SPECIES_ASHGRENINJA && data->atkAbility == ABILITY_BATTLEBOND)
+			if (data->atkSpecies == SPECIES_ASHGRENINJA && BankHasBranchAbility(bankAtk, BRANCH_BATTLE_BOND))
 				power = 20;
 			break;
 		#endif
@@ -3931,14 +3886,10 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power = (power * 13) / 10;
 			break;
 
-		case ABILITY_AERILATE:
-		case ABILITY_PIXILATE:
-		case ABILITY_REFRIGERATE:
-		case ABILITY_GALVANIZE:
-		case ABILITY_NORMALIZE:
+		case ABILITYVARIANT_NORMALIZE:
 		//1.2x / 1.3x Boost
-			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing)))
-			||   (useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, 0, FALSE)))
+			if ((!useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, gNewBS->ElectrifyTimers[bankAtk], (gNewBS->zMoveData.active || gNewBS->zMoveData.viewing), GetProperAbilityPopUpSpecies(bankAtk)))
+			||   (useMonAtk && AbilityCanChangeTypeAndBoost(move, data->atkAbility, 0, FALSE, GetProperAbilityPopUpSpecies(bankAtk))))
 			{
 				#ifdef OLD_ATE_BOOST
 					power = (power * 13) / 10;
@@ -3980,7 +3931,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 				power *= 2;
 			break;
 
-		case ABILITY_STEELWORKER:
+		case ABILITYVARIANT_TYPE_POWERUP: ;
+			u8 variantType = GetBankTypePowerUpVariant(bankAtk);
+			if (data->moveType == variantType)
+				power = (power * 15) / 10;
+			break; 
+
 		case ABILITY_STEELYSPIRIT:
 		//1.5x Boost
 			if (data->moveType == TYPE_STEEL)
@@ -4004,22 +3960,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 			if (CheckSoundMove(move))
 				power = (power * 13) / 10;
 			break;
-
-		#ifdef ABILITY_TRANSISTOR
-		case ABILITY_TRANSISTOR:
-		//1.5x Boost
-			if (data->moveType == TYPE_ELECTRIC)
-				power = (power * 15) / 10;
-			break;
-		#endif
-
-		#ifdef ABILITY_DRAGONSMAW
-		case ABILITY_DRAGONSMAW:
-		//1.5x Boost
-			if (data->moveType == TYPE_DRAGON)
-				power = (power * 15) / 10;
-			break;
-		#endif
+			
 	}
 
 	//Check attacker partner ability boost
