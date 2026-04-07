@@ -38,6 +38,7 @@
 #include "../include/new/set_z_effect.h"
 #include "../include/new/util.h"
 
+
 /*
 general_bs_commands.c
 	functions that support the battle scripting in assembly/battle_scripts
@@ -2578,11 +2579,20 @@ void atk7D_setrain(void)
 }
 
 void atk7E_setreflect(void) {
-	if (gSideStatuses[SIDE(gBankAttacker)] & SIDE_STATUS_REFLECT) {
-		gMoveResultFlags |= MOVE_RESULT_MISSED;
-		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+	if (gSideStatuses[SIDE(gBankAttacker)] & SIDE_STATUS_REFLECT)
+	{
+		if (gCurrentMove == MOVE_BADDYBAD)
+		{
+			gBattlescriptCurrInstr = BattleScript_MoveEnd - 5;
+		}
+		else
+		{
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
 	}
-	else {
+	else 
+	{
 		gSideStatuses[SIDE(gBankAttacker)] |= SIDE_STATUS_REFLECT;
 
 		if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LIGHT_CLAY)
@@ -2602,23 +2612,39 @@ const u16 gReflectLightScreenStringIds[] =
 	STRINGID_BUTITFAILED, 0x184
 };
 
-void atk7F_setseeded(void) {
-	if ((gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gStatuses3[gBankTarget] & STATUS3_LEECHSEED)) {
-		gMoveResultFlags |= MOVE_RESULT_MISSED;
-		gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+void atk7F_setseeded(void)
+{
+	if (gCurrentMove == MOVE_SAPPYSEED)
+	{
+		if (gStatuses3[gBankTarget] & STATUS3_LEECHSEED || IsOfType(gBankTarget, TYPE_GRASS))
+		{
+			gBattlescriptCurrInstr = BattleScript_MoveEnd - 5;
+		}
+		else
+		{
+			gStatuses3[gBankTarget] |= gBankAttacker;
+			gStatuses3[gBankTarget] |= STATUS3_LEECHSEED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
 	}
+	else
+	{
+		if ((gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gStatuses3[gBankTarget] & STATUS3_LEECHSEED)) {
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+		}
 
-	else if (IsOfType(gBankTarget, TYPE_GRASS)) {
-		gMoveResultFlags |= MOVE_RESULT_MISSED;
-		gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+		else if (IsOfType(gBankTarget, TYPE_GRASS)) {
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+		}
+
+		else {
+			gStatuses3[gBankTarget] |= gBankAttacker;
+			gStatuses3[gBankTarget] |= STATUS3_LEECHSEED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
 	}
-
-	else {
-		gStatuses3[gBankTarget] |= gBankAttacker;
-		gStatuses3[gBankTarget] |= STATUS3_LEECHSEED;
-		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-	}
-
 	gBattlescriptCurrInstr++;
 }
 
@@ -2853,6 +2879,7 @@ void atk8A_normalisebuffs(void) //Haze
 		for (j = 0; j < BATTLE_STATS_NO-1; ++j)
 			gBattleMons[i].statStages[j] = 6;
 	}
+	MgbaPrintf(MGBA_LOG_INFO, "Haze set.");
 
 	++gBattlescriptCurrInstr;
 }
@@ -2988,8 +3015,15 @@ void atk92_setlightscreen(void)
 {
 	if (gSideStatuses[SIDE(gBankAttacker)] & SIDE_STATUS_LIGHTSCREEN)
 	{
-		gMoveResultFlags |= MOVE_RESULT_MISSED;
-		gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		if(gCurrentMove == MOVE_GLITZYGLOW)
+		{
+			gBattlescriptCurrInstr = BattleScript_MoveEnd - 5;
+		}
+		else
+		{
+			gMoveResultFlags |= MOVE_RESULT_MISSED;
+			gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+		}
 	}
 	else
 	{

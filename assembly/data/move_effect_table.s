@@ -229,10 +229,10 @@ gBattleScriptsForMoveEffects:
 .word BS_211_CalmMind
 .word BS_212_DragonDance
 .word BS_213_StatSwapSplitters
-.word BS_214_Blank
-.word BS_215_Blank
-.word BS_216_Blank
-.word BS_217_Blank
+.word BS_214_DamageSetScreens
+.word BS_215_DamageLeechSeed
+.word BS_216_DamageHaze
+.word BS_217_DamageHealBell
 .word BS_218_MeFirst
 .word BS_219_DestroyBerry
 .word BS_220_NaturalGift

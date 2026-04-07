@@ -2451,6 +2451,8 @@ static u8 CalcMovePowerForForewarn(u16 move)
 			case MOVE_NIGHTSHADE:
 			case MOVE_PSYWAVE:
 			case MOVE_RETURN:
+			case MOVE_PIKAPAPOW:
+			case MOVE_VEEVEEVOLLEY:
 			case MOVE_REVERSAL:
 			case MOVE_SEISMICTOSS:
 			case MOVE_SONICBOOM:

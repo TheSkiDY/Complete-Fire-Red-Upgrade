@@ -1317,6 +1317,7 @@ SKIP_CHECK_TARGET:
 				goto AI_SUBSTITUTE_CHECK;
 			break;
 
+		case EFFECT_DAMAGE_HAZE:
 		case EFFECT_HAZE:
 		AI_HAZE_CHECK:
 			decreased = FALSE;
@@ -1327,7 +1328,7 @@ SKIP_CHECK_TARGET:
 				{
 					if (STAT_STAGE(bankAtk, i) > 6 || (IS_DOUBLE_BATTLE && STAT_STAGE(bankAtkPartner, i) > 6))
 					{
-						DECREASE_VIABILITY(10);
+						moveEffect == EFFECT_DAMAGE_HAZE ? DECREASE_VIABILITY(6) : DECREASE_VIABILITY(10);
 						decreased = TRUE;
 						break;
 					}
@@ -1345,13 +1346,13 @@ SKIP_CHECK_TARGET:
 			
 				if (goodToGetRidOf  < badToGetRidOf)
 				{
-					DECREASE_VIABILITY(10);
+					moveEffect == EFFECT_DAMAGE_HAZE ? DECREASE_VIABILITY(6) : DECREASE_VIABILITY(10);
 					break;
 				}
 			}
 
 			if (PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET)
-				DECREASE_VIABILITY(10);
+				moveEffect == EFFECT_DAMAGE_HAZE ? DECREASE_VIABILITY(6) : DECREASE_VIABILITY(10);
 			break;
 
 		case EFFECT_BIDE:
@@ -1698,6 +1699,12 @@ SKIP_CHECK_TARGET:
 
 		case EFFECT_METRONOME:
 			break;
+
+		case EFFECT_DAMAGE_LEECH_SEED:
+			if (data->defAbility == ABILITY_LIQUIDOOZE)
+				DECREASE_VIABILITY(6);
+			break;
+
 
 		case EFFECT_LEECH_SEED:
 			if (IsOfType(bankDef, TYPE_GRASS)

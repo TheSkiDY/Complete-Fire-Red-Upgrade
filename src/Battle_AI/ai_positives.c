@@ -562,6 +562,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				INCREASE_STATUS_VIABILITY(1);
 			break;
 
+		case EFFECT_DAMAGE_HAZE:
 		case EFFECT_HAZE:
 			if (ShouldPhaze(bankAtk, bankDef, move, class))
 			{
@@ -1038,6 +1039,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_HEAL_BELL:
+		case EFFECT_DAMAGE_HEAL_BELL:
 			if (ShouldUseWishAromatherapy(bankAtk, bankDef, move, class))
 				INCREASE_VIABILITY(7);
 			break;
@@ -2887,6 +2889,7 @@ u8 AIScript_SemiSmart(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case EFFECT_CONFUSE_HIT:
 			case EFFECT_SUBSTITUTE:
 			case EFFECT_LEECH_SEED:
+			case EFFECT_DAMAGE_LEECH_SEED:
 			case EFFECT_SPLASH:
 			case EFFECT_ENCORE:
 			case EFFECT_PAIN_SPLIT:

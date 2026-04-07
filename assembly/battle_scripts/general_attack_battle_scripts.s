@@ -5160,27 +5160,81 @@ BS_213_StatSwapSplitters:
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_214_Blank
-BS_214_Blank:
-	goto BS_STANDARD_HIT
+.global BS_214_DamageSetScreens
+BS_214_DamageSetScreens:
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+	jumpifmove MOVE_BADDYBAD BaddyBadBS
+
+GlitzyGlowBS:
+	setlightscreen
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+BaddyBadBS:
+	setreflect
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_215_Blank
-BS_215_Blank:
-	goto BS_STANDARD_HIT
+.global BS_215_DamageLeechSeed
+BS_215_DamageLeechSeed:
+	tryactivateprotean
+	jumpifsecondarystatus BANK_TARGET STATUS2_SUBSTITUTE BS_STANDARD_HIT
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	jumpiffainted BANK_TARGET BS_MOVE_FAINT
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+
+SetSappyLeechSeed:
+	setleechseed
+	printfromtable 0x83FE558
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_216_Blank
-BS_216_Blank:
-	goto BS_STANDARD_HIT
+.global BS_216_DamageHaze
+BS_216_DamageHaze:
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+
+FreezyFrostHaze:
+	normalisebuffs
+	printstring 0xF9
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_217_Blank
-BS_217_Blank:
-	goto BS_STANDARD_HIT
+.global BS_217_DamageHealBell
+BS_217_DamageHealBell:
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0 
+	call STANDARD_DAMAGE
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+	healpartystatus
+	printfromtable 0x83FE5E4
+	waitmessage DELAY_1SECOND
+	goto BattleScript_PartyHealEnd
+
 	
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

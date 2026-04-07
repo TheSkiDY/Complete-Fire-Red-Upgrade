@@ -19,7 +19,11 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 20
 	setvar 0x8004 0xF @erase party
 	special 0x62
-	givepokemon SPECIES_TRUBBISH 20 0 0 0
+	setvar 0x8000 MOVE_COUNTER
+	setvar 0x8001 0x30B
+	setvar 0x8002 0x307
+	setvar 0x8003 0x306
+	givepokemon SPECIES_MEWTWO 20 0 0 1
 	givepokemon SPECIES_TAPU_KOKO 20 0 0 0
 	givepokemon SPECIES_TAPU_LELE 20 0 0 0
 	givepokemon SPECIES_TAPU_FINI 20 0 0 0
@@ -34,12 +38,12 @@ EventScript_PalletTown_TechnologyGuy:
 	end
 
 EventScript_PalletTown_TechnologyGuy_Part2:
-	@setflag 0x90B @wild_custom_moves 
-	@setvar 0x8000 MOVE_HEADBUTT
-	@setvar 0x8001 MOVE_HARDEN
-	@setvar 0x8002 0xFFFF
-	@setvar 0x8003 0xFFFF
-	setwildbattle SPECIES_ZACIAN_CROWNED 14
+	setflag 0x90B @wild_custom_moves 
+	setvar 0x8000 MOVE_THUNDERWAVE
+	setvar 0x8001 0x0
+	setvar 0x8002 0x0
+	setvar 0x8003 0x0
+	setwildbattle SPECIES_REGIDRAGO 25
 	dowildbattle
 	release
 	end

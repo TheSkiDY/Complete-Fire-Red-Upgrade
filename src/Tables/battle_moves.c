@@ -12505,52 +12505,52 @@ const struct BattleMove gBattleMoves[] =
 	[MOVE_ZIPPYZAP] =
 	{
 		.effect = EFFECT_HIT,
-		.power = 80,
+		.power = 50,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
 		.pp = 10,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
-		.priority = 0,
-		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.priority = 2,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MAKES_CONTACT | FLAG_MIRROR_MOVE_AFFECTED,
 		.z_move_power = 100,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 	[MOVE_SPLISHYSPLASH] =
 	{
-		.effect = EFFECT_HIT,
+		.effect = EFFECT_PARALYZE_HIT,
 		.power = 90,
 		.type = TYPE_WATER,
 		.accuracy = 100,
 		.pp = 15,
-		.secondaryEffectChance = 0,
+		.secondaryEffectChance = 30,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_FLOATYFALL] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_FLINCH_HIT,
 		.power = 90,
 		.type = TYPE_FLYING,
 		.accuracy = 95,
 		.pp = 15,
-		.secondaryEffectChance = 0,
+		.secondaryEffectChance = 30,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MAKES_CONTACT | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 175,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 	[MOVE_PIKAPAPOW] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_BLANK_78,
-		.power = 0,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_HIT,
+		.power = 1,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 0,
 		.pp = 20,
@@ -12558,142 +12558,142 @@ const struct BattleMove gBattleMoves[] =
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 160,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_BOUNCYBUBBLE] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 60,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_ABSORB,
+		.power = 90,
 		.type = TYPE_WATER,
 		.accuracy = 100,
-		.pp = 20,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_TRIAGE_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_BUZZYBUZZ] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 60,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_PARALYZE_HIT,
+		.power = 90,
 		.type = TYPE_ELECTRIC,
 		.accuracy = 100,
-		.pp = 20,
-		.secondaryEffectChance = 0,
+		.pp = 15,
+		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_SIZZLYSLIDE] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 60,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_BURN_HIT,
+		.power = 90,
 		.type = TYPE_FIRE,
 		.accuracy = 100,
-		.pp = 20,
-		.secondaryEffectChance = 0,
+		.pp = 15,
+		.secondaryEffectChance = 100,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 	[MOVE_GLITZYGLOW] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 80,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_DAMAGE_SET_SCREENS,
+		.power = 90,
 		.type = TYPE_PSYCHIC,
-		.accuracy = 95,
+		.accuracy = 100,
 		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_BADDYBAD] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 80,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_DAMAGE_SET_SCREENS,
+		.power = 90,
 		.type = TYPE_DARK,
-		.accuracy = 95,
+		.accuracy = 100,
 		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_SAPPYSEED] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 100,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_DAMAGE_LEECH_SEED,
+		.power = 90,
 		.type = TYPE_GRASS,
-		.accuracy = 90,
-		.pp = 10,
+		.accuracy = 100,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},
 	[MOVE_FREEZYFROST] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 100,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_DAMAGE_HAZE,
+		.power = 90,
 		.type = TYPE_ICE,
-		.accuracy = 90,
-		.pp = 10,
+		.accuracy = 100,
+		.pp = 15,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_SPARKLYSWIRL] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_HIT,
-		.power = 120,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_DAMAGE_HEAL_BELL,
+		.power = 90,
 		.type = TYPE_FAIRY,
-		.accuracy = 85,
+		.accuracy = 100,
 		.pp = 5,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.z_move_power = 175,
 		.split = SPLIT_SPECIAL,
 		.z_move_effect = 0
 	},
 	[MOVE_VEEVEEVOLLEY] =
-	{ //ANIMATION AND EFFECT TO DO
-		.effect = EFFECT_BLANK_78,
-		.power = 0,
+	{ //ANIMATION TO DO
+		.effect = EFFECT_HIT,
+		.power = 1,
 		.type = TYPE_NORMAL,
 		.accuracy = 0,
 		.pp = 20,
 		.secondaryEffectChance = 0,
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.z_move_power = 100,
+		.flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_MAKES_CONTACT,
+		.z_move_power = 160,
 		.split = SPLIT_PHYSICAL,
 		.z_move_effect = 0
 	},

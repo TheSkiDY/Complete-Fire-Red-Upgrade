@@ -28852,79 +28852,79 @@ ANIM_G_MAX_RAPID_FLOW:
 .pool
 @Credits to -
 ANIM_ZIPPYZAP:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_ZINGZAP
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_SPLISHYSPLASH:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81d48a6		@MOVE_WATERPULSE
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_FLOATYFALL:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_ACROBATICS
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_PIKAPAPOW:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81d36fa		@MOVE_RETURN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_BOUNCYBUBBLE:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81c9d13		@MOVE_BUBBLEBEAM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_BUZZYBUZZ:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_DISCHARGE
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_SIZZLYSLIDE:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_FIRELASH
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_GLITZYGLOW:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81cc0fb		@MOVE_LUSTERPURGE
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_BADDYBAD:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81cde9b		@MOVE_FEINTATTACK
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_SAPPYSEED:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81cc513		@MOVE_NEEDLEARM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_FREEZYFROST:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_FROSTBREATH
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_SPARKLYSWIRL:
-	goto 0x81c6f34	@MOVE_POUND
+	goto ANIM_DAZZLINGGLEAM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
 @Credits to -
 ANIM_VEEVEEVOLLEY:
-	goto 0x81c6f34	@MOVE_POUND
+	goto 0x81d36fa		@MOVE_RETURN
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool

@@ -4507,7 +4507,8 @@ bool8 HazingMoveInMoveset(u8 bank)
 		if (!(gBitTable[i] & moveLimitations))
 		{
 			if (gBattleMoves[move].effect == EFFECT_HAZE
-			|| gBattleMoves[move].effect == EFFECT_REMOVE_TARGET_STAT_CHANGES)
+			|| gBattleMoves[move].effect == EFFECT_REMOVE_TARGET_STAT_CHANGES
+			|| gBattleMoves[move].effect == EFFECT_DAMAGE_HAZE)
 				return TRUE;
 		}
 	}
@@ -4524,7 +4525,7 @@ static bool8 IsUsablePhazingMove(u16 move, u8 bankAtk, u8 bankDef)
 	&& !IsDamagingMoveUnusable(move, bankAtk, bankDef)) //Contains just Soundproof check for Roar
 		return TRUE;
 
-	if (effect == EFFECT_HAZE || move == MOVE_TOPSYTURVY)
+	if (effect == EFFECT_HAZE || move == MOVE_TOPSYTURVY || EFFECT_DAMAGE_HAZE)
 		return TRUE;
 
 	if (effect == EFFECT_REMOVE_TARGET_STAT_CHANGES

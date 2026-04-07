@@ -3646,6 +3646,8 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 
 		case MOVE_RETURN:
+		case MOVE_PIKAPAPOW:
+		case MOVE_VEEVEEVOLLEY:
 			if ((gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER_TOWER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER))
 			|| IsFrontierRaidBattle()
 			#ifdef FLAG_SANDBOX_MODE

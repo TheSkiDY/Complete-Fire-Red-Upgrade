@@ -424,11 +424,13 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 
 					case EFFECT_HAZE:
 					case EFFECT_REMOVE_TARGET_STAT_CHANGES:
+					case EFFECT_DAMAGE_HAZE:
 						class = FIGHT_CLASS_TEAM_SUPPORT_PHAZING;
 						break;
 
 					case EFFECT_WISH:
 					case EFFECT_HEAL_BELL:
+					case EFFECT_DAMAGE_HEAL_BELL:
 						class = FIGHT_CLASS_TEAM_SUPPORT_CLERIC;
 						break;
 
@@ -445,10 +447,12 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 						break;
 
 					case EFFECT_LIGHT_SCREEN:
+					case EFFECT_DAMAGE_SET_SCREENS:
 						++reflectionNum;
 						break;
 
 					case EFFECT_LEECH_SEED:
+					case EFFECT_DAMAGE_LEECH_SEED:
 						leechSeed = TRUE;
 						break;
 					
@@ -636,6 +640,7 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 
 					case EFFECT_ROAR:
 					case EFFECT_HAZE:
+					case EFFECT_DAMAGE_HAZE:
 					case EFFECT_REMOVE_TARGET_STAT_CHANGES:
 						hasPhazing = TRUE;
 						break;
@@ -669,9 +674,11 @@ u8 PredictFightingStyle(const u16* const moves, const u8 ability, const u8 itemE
 						hasRedirection = TRUE;
 						break;
 
+					case EFFECT_DAMAGE_SET_SCREENS:
 					case EFFECT_REFLECT:
 					case EFFECT_LIGHT_SCREEN:
 					case EFFECT_HEAL_BELL:
+					case EFFECT_DAMAGE_HEAL_BELL:
 					case EFFECT_SAFEGUARD:
 					case EFFECT_MIST:
 						hasTeamSupport = TRUE;
@@ -1251,6 +1258,7 @@ bool8 ShouldPhaze(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 						return TRUE;
 				}
 				break;
+			case EFFECT_DAMAGE_HAZE:
 			case EFFECT_HAZE:
 				if ((BATTLER_ALIVE(PARTNER(bankAtk)) && AnyUsefulStatIsRaised(PARTNER(bankAtk))))
 					return FALSE; //Don't Haze if partner will lose benefits
@@ -1320,6 +1328,7 @@ bool8 ShouldUseWishAromatherapy(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 				break;
 
 			case EFFECT_HEAL_BELL:
+			case EFFECT_DAMAGE_HEAL_BELL:
 				if (hasStatus)
 					return TRUE;
 		}
@@ -1332,6 +1341,7 @@ bool8 ShouldUseWishAromatherapy(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 				return ShouldRecover(bankAtk, bankDef, move); //Switch recovery isn't good idea in doubles
 
 			case EFFECT_HEAL_BELL:
+			case EFFECT_DAMAGE_HEAL_BELL:
 				if (hasStatus)
 					return TRUE;
 		}
