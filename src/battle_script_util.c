@@ -2133,8 +2133,10 @@ void SetLaserFocusTimer(void)
 
 void SetHealBlockTimer(void)
 {
+	u8 timer = gCurrentMove == MOVE_PSYCHICNOISE ? 3 : 5;
+
 	if (!IsHealBlocked(gBankTarget))
-		gNewBS->HealBlockTimers[gBankTarget] = 5;
+		gNewBS->HealBlockTimers[gBankTarget] = timer;
 }
 
 void SetThroatChopTimer(void)
@@ -2648,4 +2650,102 @@ void ChooseMoveEffectForSpringtideStorm(void)
 void MummyWanderingSpiritSetCorrectTookAbilityFrom(void)
 {
 	SetTookAbilityFrom(gBankAttacker, gBankTarget);
+}
+
+void SetGlaiveRushTimer(void)
+{
+	gNewBS->GlaiveRushTimers[gBankAttacker] = 2;
+}
+
+void FailMoveIfBelowHalfHP(void)
+{
+	if (gBattleMons[gBankAttacker].hp <= gBattleMons[gBankAttacker].maxHP / 2)
+		gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
+}
+
+void EnsureSubstituteOnSwitchInAfterShedTail(void)
+{
+    u32 hp;
+    hp = 1;
+    hp = gBattleMons[gBankSwitching].maxHP / 4;
+    if (gBattleMons[gBankSwitching].maxHP / 4 == 0)
+        hp = 1;
+
+    gBattleMoveDamage = hp; 
+    if (gBattleMoveDamage == 0)
+        gBattleMoveDamage = 1;
+
+    gBattleMons[gBankSwitching].status2 |= STATUS2_SUBSTITUTE;
+    gBattleMons[gBankSwitching].status2 &= ~STATUS2_WRAPPED;
+    gDisableStructs[gBankSwitching].substituteHP = gBattleMoveDamage;
+    gBattleSpritesDataPtr->bankData[gBankSwitching].behindSubstitute = 1;
+}
+
+void TidyUpRemoveSubstitutes(void)
+{
+    u8 i;
+    u8 bank = gBankAttacker;
+
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    {
+    	if(IS_BEHIND_SUBSTITUTE(i))
+        {
+        	BattleScriptPushCursor();
+			gBankTarget = i;
+			gBattleMons[i].status2 &= ~STATUS2_SUBSTITUTE;
+			gDisableStructs[i].substituteHP = 0;
+    		gBattleSpritesDataPtr->bankData[i].behindSubstitute = 0;
+    		gBattlescriptCurrInstr = BattleScript_SubstituteFade;
+        	BattleScriptPushCursor();
+        }
+        gBankAttacker = bank;
+    }
+    gBankAttacker = bank;
+}
+
+void DoubleShockFunc(void)
+{
+	if (gBattleMons[gBankAttacker].type1 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type1 = TYPE_MYSTERY;
+
+	if (gBattleMons[gBankAttacker].type2 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type2 = TYPE_MYSTERY;
+
+	if (gBattleMons[gBankAttacker].type3 == TYPE_ELECTRIC)
+		gBattleMons[gBankAttacker].type3 = TYPE_BLANK;
+}
+
+void FickleBeamHelperFunc(void)
+{
+	if (IsFickleBeamActive(gBankAttacker))
+	{
+		gBattlescriptCurrInstr = BattleScript_FickleBeamAllOut - 5;
+	}
+}
+
+bool8 IsFickleBeamActive(u8 bank)
+{
+	return gNewBS->fickleBeamRandomNumber[bank] <= 30; //30% chance
+}
+
+void DragonCheerFunc(void)
+{
+	if(!IS_DOUBLE_BATTLE)
+		gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
+	else
+	{
+		u8 partnerBank = PARTNER(gBankAttacker);
+		if(IsOfType(partnerBank, TYPE_DRAGON))
+			gNewBS->dragonCheerCritBoosts[partnerBank] = 2; 
+		else
+			gNewBS->dragonCheerCritBoosts[partnerBank] = 1; 
+
+		gBattleScripting.bank = partnerBank;
+	}
+}
+
+void TrySetAlluringVoiceMoveEffect(void)
+{
+	if (gNewBS->statRoseThisRound[gBankTarget])
+		gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_CONFUSION;
 }

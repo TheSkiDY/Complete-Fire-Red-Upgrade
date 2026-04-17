@@ -190,6 +190,7 @@ static bool8 BankHoldingUsefulItemToProtectFor(u8 bank);
 static bool8 BankHasAbilityUsefulToProtectFor(u8 bankAtk, u8 bankDef);
 static bool8 ShouldTryToSetUpStat(u8 bankAtk, u8 bankDef, u16 move, u8 stat, u8 statLimit);
 static bool8 ShouldUseSubstitute(u8 bankAtk, u8 bankDef);
+static bool8 ShouldUseShedTail(u8 bankAtk, u8 bankDef);
 
 bool8 IsClassSweeper(u8 class)
 {
@@ -1574,7 +1575,7 @@ bool8 ShouldPivot(u8 bankAtk, u8 bankDef, u16 move, u8 class)
 		{
 			if (CanKnockOut(bankDef, bankAtk))
 			{
-				if (gBattleMoves[move].effect == EFFECT_TELEPORT)
+				if (gBattleMoves[move].effect == EFFECT_TELEPORT || move == MOVE_CHILLYRECEPTION)
 					return DONT_PIVOT; //If you're going to faint because you'll go second, use a different move
 				else
 					return CAN_TRY_PIVOT; //You're probably going to faint anyways so if for some reason you don't, better switch
@@ -2106,6 +2107,37 @@ static bool8 ShouldUseSubstitute(u8 bankAtk, u8 bankDef)
 	return FALSE;
 }
 
+static bool8 ShouldUseShedTail(u8 bankAtk, u8 bankDef)
+{
+	if (ViableMonCountFromBankLoadPartyRange(bankAtk) <= 2)
+		return FALSE;
+
+	u16 defPrediction = IsValidMovePrediction(bankDef, bankAtk);
+
+	if (IsBankIncapacitated(bankDef))
+		return TRUE;
+
+	if (defPrediction != MOVE_NONE)
+	{
+		if (MoveWouldHitFirst(MOVE_SHEDTAIL, bankAtk, bankDef))
+		{
+			if (GetFinalAIMoveDamage(defPrediction, bankDef, bankAtk, 1, NULL) < MathMax(1, gBattleMons[bankAtk].maxHP / 2))
+				return TRUE;
+		}
+		else
+		{
+			if (IsPredictedToSwitch(bankDef, bankAtk))
+				return TRUE;
+
+			s32 hp = gBattleMons[bankAtk].hp - GetFinalAIMoveDamage(defPrediction, bankDef, bankAtk, 1, NULL);
+			if (hp > gBattleMons[bankAtk].maxHP / 2)
+				return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 void IncreaseSleepViability(s16* originalViability, u8 class, u8 bankAtk, u8 bankDef, u16 move)
 {
 	s16 viability = *originalViability;
@@ -2333,87 +2365,114 @@ void IncreaseFreezeViability(s16* originalViability, u8 class, u8 bankAtk, u8 ba
 void IncreaseSubstituteViability(s16* originalViability, u8 class, u8 bankAtk, u8 bankDef)
 {
 	s16 viability = *originalViability;
+	bool8 shouldUse = ShouldUseSubstitute(bankAtk, bankDef);
 
-	if (!IS_BEHIND_SUBSTITUTE(bankAtk))
+	if (!IS_BEHIND_SUBSTITUTE(bankAtk) && shouldUse)
 	{
 		switch (class) {
 			case FIGHT_CLASS_SWEEPER_KILL:
 				break;
 
 			case FIGHT_CLASS_SWEEPER_SETUP_STATS:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_VIABILITY(8);
+				INCREASE_VIABILITY(8);
 				break;
 
 			case FIGHT_CLASS_SWEEPER_SETUP_STATUS:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(2);
+				INCREASE_STATUS_VIABILITY(2);
 				break;
 
 			case FIGHT_CLASS_STALL:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(2);
+				INCREASE_STATUS_VIABILITY(2);
 				break;
 
 			case FIGHT_CLASS_TEAM_SUPPORT_BATON_PASS:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					IncreaseViability(&viability, 4);
+				IncreaseViability(&viability, 4);
 				break;
 
 			case FIGHT_CLASS_TEAM_SUPPORT_CLERIC:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1);
+				INCREASE_STATUS_VIABILITY(1);
 				break;
 
 			case FIGHT_CLASS_TEAM_SUPPORT_SCREENS:
 			case FIGHT_CLASS_SWEEPER_SETUP_SCREENS:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1);
+				INCREASE_STATUS_VIABILITY(1);
 				break;
 
 			case FIGHT_CLASS_TEAM_SUPPORT_PHAZING:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1);
+				INCREASE_STATUS_VIABILITY(1);
 				break;
 
 			case FIGHT_CLASS_ENTRY_HAZARDS:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1);
+				INCREASE_STATUS_VIABILITY(1);
 				break;
 
 			case FIGHT_CLASS_DOUBLES_ALL_OUT_ATTACKER:
 				break;
 
 			case FIGHT_CLASS_DOUBLES_SETUP_ATTACKER:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
 
 			case FIGHT_CLASS_DOUBLES_TRICK_ROOM_ATTACKER:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
 
 			case FIGHT_CLASS_DOUBLES_TRICK_ROOM_SETUP:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
 
 			case FIGHT_CLASS_DOUBLES_UTILITY:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
 
 			case FIGHT_CLASS_DOUBLES_PHAZING:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
 
 			case FIGHT_CLASS_DOUBLES_TEAM_SUPPORT:
 			case FIGHT_CLASS_DOUBLES_TOTAL_TEAM_SUPPORT:
-				if (ShouldUseSubstitute(bankAtk, bankDef))
-					INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
+				INCREASE_STATUS_VIABILITY(1); //Treat like a low-priority status move
 				break;
+		}
+	}
+
+	*originalViability = MathMin(viability, 255);
+}
+
+void IncreaseShedTailViability(s16* originalViability, u8 class, u8 bankAtk, u8 bankDef)
+{
+	s16 viability = *originalViability;
+	u16 calculatedViability = 0;
+	bool8 viable = FALSE;
+	bool8 shouldUse = ShouldUseShedTail(bankAtk, bankDef);
+
+	if (!IS_BEHIND_SUBSTITUTE(bankAtk) && shouldUse)
+	{
+		switch (class) {
+
+			case FIGHT_CLASS_STALL:
+			case FIGHT_CLASS_TEAM_SUPPORT_CLERIC:
+			case FIGHT_CLASS_TEAM_SUPPORT_SCREENS:
+			case FIGHT_CLASS_TEAM_SUPPORT_PHAZING:
+				calculatedViability = 2;
+				viable = TRUE;
+				break;
+
+			case FIGHT_CLASS_ENTRY_HAZARDS:
+			case FIGHT_CLASS_DOUBLES_UTILITY:
+			case FIGHT_CLASS_DOUBLES_PHAZING:
+			case FIGHT_CLASS_DOUBLES_TEAM_SUPPORT:
+			case FIGHT_CLASS_DOUBLES_TOTAL_TEAM_SUPPORT:
+				calculatedViability = 1; 
+				viable = TRUE;
+				break;
+		}
+		if(viable)
+		{
+			if(ABILITY(bankAtk) == ABILITY_REGENERATOR)
+				INCREASE_STATUS_VIABILITY(calculatedViability * 2);
+			else
+				INCREASE_STATUS_VIABILITY(calculatedViability);
 		}
 	}
 

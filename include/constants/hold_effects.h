@@ -142,6 +142,8 @@
 #define ITEM_EFFECT_RUSTED_SWORD 138
 #define ITEM_EFFECT_RUSTED_SHIELD 139
 
+#define ITEM_EFFECT_OGERPON_MASK 150 //Quality = Move Type
+
 #define ITEM_EFFECT_COUNT (ITEM_EFFECT_THROAT_SPRAY + 1)
 
 //Focus Sash: Item Effect = ITEM_EFFECT_FOCUS_BAND, Item Quality = 100, Item Mystery 2 = 1

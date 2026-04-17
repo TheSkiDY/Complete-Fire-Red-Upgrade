@@ -279,7 +279,7 @@ u8 GetBankFromPartyData(struct Pokemon* mon)
 
 bool8 CanHitSemiInvulnerableTarget(u8 bankAtk, u8 bankDef, u16 move)
 {
-	if (ABILITY(bankAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD)
+	if (ABILITY(bankAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD || gNewBS->GlaiveRushTimers[bankDef] > 0)
 		return TRUE;
 
 	if (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
@@ -591,6 +591,8 @@ bool8 LiftProtect(u8 bank)
 	|| gProtectStructs[bank].SpikyShield
 	|| gProtectStructs[bank].BanefulBunker
 	|| gProtectStructs[bank].obstruct
+	|| gProtectStructs[bank].silkTrap
+	|| gProtectStructs[bank].burningBulwark
 	|| gSideStatuses[SIDE(bank)] & (SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK | SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD))
 	{
 		if (!IsDynamaxed(bank))
@@ -600,6 +602,8 @@ bool8 LiftProtect(u8 bank)
 		gProtectStructs[bank].SpikyShield = 0;
 		gProtectStructs[bank].BanefulBunker = 0;
 		gProtectStructs[bank].obstruct = 0;
+		gProtectStructs[bank].silkTrap = 0;
+		gProtectStructs[bank].burningBulwark = 0;
 		gSideStatuses[SIDE(bank)] &= ~(SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK | SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD);
 		return TRUE;
 	}
@@ -612,7 +616,9 @@ bool8 ProtectsAgainstZMoves(u16 move, u8 bankAtk, u8 bankDef)
 	if (gProtectStructs[bankDef].protected
 	|| gProtectStructs[bankDef].SpikyShield
 	|| gProtectStructs[bankDef].BanefulBunker
-	|| gProtectStructs[bankDef].obstruct)
+	|| gProtectStructs[bankDef].obstruct
+	|| gProtectStructs[bankDef].silkTrap
+	|| gProtectStructs[bankDef].burningBulwark)
 	{
 		return TRUE;
 	}
@@ -754,6 +760,8 @@ bool8 IsUnusableMove(u16 move, u8 bank, u8 check, u8 pp, u8 ability, u8 holdEffe
 	else if (IsTaunted(bank) && check & MOVE_LIMITATION_TAUNT && SPLIT(move) == SPLIT_STATUS)
 		return TRUE;
 	else if (!isMaxMove && IsImprisoned(bank, move) && check & MOVE_LIMITATION_IMPRISION)
+		return TRUE;
+	else if (!isMaxMove && move == gLastUsedMoves[bank] && gSpecialMoveFlags[move].gSuccessionFailMoves)
 		return TRUE;
 	else if (gDisableStructs[bank].encoreTimer && gDisableStructs[bank].encoredMove != move && check & MOVE_LIMITATION_ENCORE)
 		return TRUE;
@@ -1765,10 +1773,12 @@ void RemoveScreensFromSide(const u8 side)
 	gNewBS->AuroraVeilTimers[side] = 0;
 }
 
-void UpdateQuickClawRandomNumber(u8 bank)
+void UpdateStructRandomNumbers(u8 bank)
 {
 	gNewBS->quickClawRandomNumber[bank] = ((u32) Random32()) % 100;
 	gNewBS->quickDrawRandomNumber[bank] = ((u32) Random32()) % 100;
+	gNewBS->fickleBeamRandomNumber[bank] = ((u32) Random32()) % 100;
+	
 }
 
 void GiveOmniboost(u8 bank)

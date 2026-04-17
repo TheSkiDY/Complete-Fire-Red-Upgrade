@@ -34,6 +34,8 @@ cmd49_battle_scripts.s
 .global BattleScript_BrokenRaidBarrier
 .global BattleScript_RaidBattleStatIncrease
 .global BattleScript_MistProtected
+.global BattleScript_SilkTrapStatDecrement
+.global BattleScript_BurningBulwark
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -95,8 +97,24 @@ BattleScript_BanefulBunker:
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+BattleScript_BurningBulwark:
+	statusanimation BANK_ATTACKER
+	refreshhpbar BANK_ATTACKER
+	setword BATTLE_STRING_LOADER gText_BurningBulwarkBRN
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 BattleScript_ObstructStatDecrement:
 	setstatchanger STAT_DEF | DECREASE_2
+	goto BattleScript_KingsShieldPostDecrementSet
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_SilkTrapStatDecrement:
+	setstatchanger STAT_SPD | DECREASE_1
 	goto BattleScript_KingsShieldPostDecrementSet
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -307,7 +325,14 @@ BattleScript_DancerActivated:
 
 BattleScript_MultiHitPrintStrings:
 	copyarray 0x2022AB8 MULTIHIT_STRING 0x6
+	jumpifmove MOVE_POPULATIONBOMB BS_PopBombHit10Times
 	printstring 0x22
+	waitmessage DELAY_1SECOND
+	return
+
+BS_PopBombHit10Times:
+	setword BATTLE_STRING_LOADER gText_Multihit10Times
+	printstring 0x184
 	waitmessage DELAY_1SECOND
 	return
 

@@ -666,7 +666,7 @@ void BattleBeginFirstTurn(void)
 					gNewBS->statRoseThisRound[i] = FALSE;
 					gNewBS->statFellThisTurn[i] = FALSE;
 					gNewBS->statFellThisRound[i] = FALSE;
-					UpdateQuickClawRandomNumber(i);
+					UpdateStructRandomNumbers(i);
 				}
 
 				gBattleStruct->turnEffectsTracker = 0;

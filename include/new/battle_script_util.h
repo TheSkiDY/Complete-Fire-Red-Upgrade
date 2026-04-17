@@ -164,3 +164,14 @@ void ModifyAttackStatChangeForVictoryDance(void);
 bool8 IsSpringtideStormSpDefDown(u8 bank);
 void ChooseMoveEffectForSpringtideStorm(void);
 void MummyWanderingSpiritSetCorrectTookAbilityFrom(void);
+void SetGlaiveRushTimer(void);
+void FailMoveIfBelowHalfHP(void);
+void EnsureSubstituteOnSwitchInAfterShedTail(void);
+void TidyUpRemoveSubstitutes(void);
+void DoubleShockFunc(void);
+void FickleBeamHelperFunc(void);
+bool8 IsFickleBeamActive(u8 bank);
+void DragonCheerFunc(void);
+void TrySetAlluringVoiceMoveEffect(void);
+
+extern const u8 BattleScript_TidyUpRemoveHazards[];

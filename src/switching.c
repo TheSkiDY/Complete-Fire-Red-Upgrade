@@ -1282,11 +1282,17 @@ void ClearSwitchBytes(u8 bank)
 	gNewBS->splinterAttackerMonId[bank] = 0;
 	gNewBS->splinterMove[bank] = 0;
 	gNewBS->tookAbilityFrom[bank] = 0;
+	gNewBS->GlaiveRushTimers[bank] = 0;
+	gNewBS->saltCured[bank] = FALSE;
+	gNewBS->SyrupBombTimers[bank] = 0;
+	gNewBS->dragonCheerCritBoosts[bank] = 0;
 
 	gProtectStructs[bank].KingsShield = 0;	//Necessary because could be sent away with Roar
 	gProtectStructs[bank].SpikyShield = 0;
 	gProtectStructs[bank].BanefulBunker = 0;
 	gProtectStructs[bank].obstruct = 0;
+	gProtectStructs[bank].silkTrap = 0;
+	gProtectStructs[bank].burningBulwark = 0;
 	gProtectStructs[bank].enduredSturdy = 0;
 	
 	DestroyMegaIndicator(bank);

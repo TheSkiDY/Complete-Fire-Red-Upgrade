@@ -19,6 +19,7 @@ move_menu_battle_scripts.s
 .global BattleScript_SelectingNotAllowedThroatChop
 .global BattleScript_SelectingNotAllowedHealBlock
 .global BattleScript_SelectingNotAllowedMinimize
+.global BattleScript_SelectingNotAllowedSuccessionFailMove
 
 BattleScript_MustSelectEncoredMove:
 	setword BATTLE_STRING_LOADER gText_EncoreMoveMenu
@@ -69,4 +70,10 @@ BattleScript_SelectingNotAllowedMinimize:
 	setword BATTLE_STRING_LOADER gText_NoMinimizeOnInsane
 	printselectionstring 0x184
 	endselectionscript
+
+BattleScript_SelectingNotAllowedSuccessionFailMove:
+	setword BATTLE_STRING_LOADER gText_SuccessionFailMovesMoveMenu
+	printselectionstring 0x184
+	endselectionscript
+
 

@@ -60,6 +60,8 @@ enum EndTurnEffects
 	ET_Splinters,
 	ET_Item_Effects9,
 	ET_Switch_Out_Abilities9,
+	ET_SaltCure,
+	ET_SyrupBomb,
 	ET_Octolock,
 	ET_Taunt_Timer,
 	ET_Encore_Timer,
@@ -189,6 +191,12 @@ u8 TurnBasedEffects(void)
 
 					if (gNewBS->DestinyBondCounters[i])
 						--gNewBS->DestinyBondCounters[i];
+
+					if (gNewBS->GlaiveRushTimers[i])
+						--gNewBS->GlaiveRushTimers[i];
+
+					if (gNewBS->SyrupBombTimers[i])
+						--gNewBS->SyrupBombTimers[i];
 
 					if (gNewBS->ai.switchingCooldown[i])
 						--gNewBS->ai.switchingCooldown[i];
@@ -840,6 +848,29 @@ u8 TurnBasedEffects(void)
 					}
 				}
 				gNewBS->turnDamageTaken[gActiveBattler] = gBattleMoveDamage; //For Emergency Exit
+				break;
+
+			case ET_SaltCure:
+				if (BATTLER_ALIVE(gActiveBattler)
+				&& gNewBS->saltCured[gActiveBattler]
+				&& ABILITY(gActiveBattler) != ABILITY_MAGICGUARD)
+				{
+					gBattleMoveDamage = GetSaltCureDamage(gActiveBattler);
+					gBattleScripting.bank = gActiveBattler;
+					BattleScriptExecute(BattleScript_SaltCureDamage);
+					effect++;
+				}
+				gNewBS->turnDamageTaken[gActiveBattler] = gBattleMoveDamage; //For Emergency Exit
+				break;
+
+			case ET_SyrupBomb:
+				if (BATTLER_ALIVE(gActiveBattler)
+				&& gNewBS->SyrupBombTimers[gActiveBattler])
+				{
+					gBattleScripting.bank = gActiveBattler;
+					BattleScriptExecute(BattleScript_SyrupBombLowerSpeed);
+					effect++;
+				}
 				break;
 
 			case ET_Octolock:
@@ -1767,7 +1798,7 @@ u8 TurnBasedEffects(void)
 					gNewBS->statRoseThisRound[i] = FALSE;
 					gNewBS->statFellThisRound[i] = FALSE;
 					gNewBS->turnDamageTaken[i] = 0;
-					UpdateQuickClawRandomNumber(i);
+					UpdateStructRandomNumbers(i);
 
 					if (gNewBS->metronomeItemBonus[i] > 0)
 						--gNewBS->metronomeItemBonus[i];
@@ -2070,6 +2101,19 @@ u32 GetGMaxVolcalithDamage(u8 bank)
 	&& ABILITY(bank) != ABILITY_MAGICGUARD)
 	{
 		damage = MathMax(1, GetBaseMaxHP(bank) / 6);
+	}
+
+	return damage;
+}
+
+u32 GetSaltCureDamage(u8 bank)
+{
+	u32 damage = 0;
+	u8 divisor = (IsOfType(bank, TYPE_WATER) || IsOfType(bank, TYPE_STEEL)) ? 4 : 8;
+
+	if (gNewBS->saltCured[bank] && ABILITY(bank) != ABILITY_MAGICGUARD)
+	{
+		damage = MathMax(1, GetBaseMaxHP(bank) / divisor);
 	}
 
 	return damage;

@@ -1727,6 +1727,16 @@
 	.4byte \rom_address
 	.endm
 
+	.macro increasefaintcounter bank
+	.byte 0xFF, 0x37
+	.byte \bank
+	.endm
+
+	.macro comeuppancedamagecalculator rom_address
+	.byte 0xFF, 0x38
+	.4byte \rom_address
+	.endm
+
 @ various command changed to more readable macros
 	.equ VARIOUS_CANCEL_MULTI_TURN_MOVES, 0
 	.equ VARIOUS_SET_MAGIC_COAT_TARGET, 1

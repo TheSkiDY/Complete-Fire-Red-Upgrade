@@ -169,4 +169,8 @@ enum Counters
 	Counters_BeakBlast,			//15
 	Counters_AuroraVeil, 		//16
 	Counters_TarShot,			//17
+	Counters_GlaiveRush,		//18
+	Counters_SyrupBomb,			//19
 };
+
+void IncreaseHitCounter(u8 bank);

@@ -628,7 +628,8 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 						||  !MoveWouldHitFirst(partnerMove, bankAtkPartner, data->foe2))
 						{
 							if (gBattleMoves[partnerMove].effect == EFFECT_COUNTER
-							||  gBattleMoves[partnerMove].effect == EFFECT_MIRROR_COAT)
+							||  gBattleMoves[partnerMove].effect == EFFECT_MIRROR_COAT
+							||  gBattleMoves[partnerMove].effect == EFFECT_COMEUPPANCE)
 								break; //These moves need to go last
 
 							IncreaseHelpingHandViability(&viability, class);

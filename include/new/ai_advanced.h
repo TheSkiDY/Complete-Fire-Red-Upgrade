@@ -58,6 +58,7 @@ void IncreaseStatViability(s16* viability, u8 class, u8 boost, u8 bankAtk, u8 ba
 void IncreaseSleepViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef, u16 move);
 void IncreaseFreezeViability(s16* originalViability, u8 class, u8 bankAtk, u8 bankDef);
 void IncreaseSubstituteViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef);
+void IncreaseShedTailViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef);
 void IncreaseEntryHazardsViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef, u16 move);
 void IncreaseFakeOutViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef, u16 move);
 void IncreasePivotViability(s16* viability, u8 class, u8 bankAtk, u8 bankDef, u8 pivotType);

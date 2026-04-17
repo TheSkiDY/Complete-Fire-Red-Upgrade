@@ -919,6 +919,7 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 				&& moveEffect != EFFECT_BIDE //Moves that deal direct damage aren't included
 				&& moveEffect != EFFECT_COUNTER
 				&& moveEffect != EFFECT_MIRROR_COAT
+				&& moveEffect != EFFECT_COMEUPPANCE
 				&& moveEffect != EFFECT_ENDEAVOR
 				&& moveEffect != EFFECT_SUPER_FANG
 				&& moveEffect != EFFECT_LEVEL_DAMAGE

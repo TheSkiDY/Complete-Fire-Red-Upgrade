@@ -239,8 +239,8 @@ gBattleScriptsForMoveEffects:
 .word BS_221_SmackDown
 .word BS_222_DamageResetTargetStatChanges
 .word BS_223_RelicSong
-.word BS_224_Blank
-.word BS_225_Blank
+.word BS_224_GlaiveRush
+.word BS_225_RevivalBlessing
 .word BS_226_Terrain
 .word BS_227_Pledges
 .word BS_228_FieldEffects
@@ -262,9 +262,9 @@ gBattleScriptsForMoveEffects:
 .word BS_244_Teatime
 .word BS_245_Poltergeist
 .word BS_246_SkyDrop
-.word BS_247_Blank
-.word BS_248_Blank
-.word BS_249_Blank
+.word BS_247_Comeuppance
+.word BS_248_SetSleepChance
+.word BS_249_FickleBeam
 .word BS_250_Blank
 .word BS_251_Blank
 .word BS_252_Blank
@@ -327,4 +327,5 @@ gMoveEffectsThatIgnoreWeaknessResistance:
 .byte EFFECT_PAIN_SPLIT
 .byte EFFECT_COUNTER
 .byte EFFECT_MIRROR_COAT
+.byte EFFECT_COMEUPPANCE
 .byte MOVE_EFFECT_TABLES_TERMIN

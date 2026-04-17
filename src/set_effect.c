@@ -8,6 +8,7 @@
 #include "../include/new/battle_util.h"
 #include "../include/new/battle_script_util.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/end_turn_battle_scripts.h"
 #include "../include/new/item.h"
 #include "../include/new/move_battle_scripts.h"
 #include "../include/new/set_effect.h"
@@ -735,8 +736,20 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				break;
 
 			case MOVE_EFFECT_SP_ATK_TWO_DOWN: // Overheat
-				BattleScriptPush(gBattlescriptCurrInstr + 1);
-				gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+				if (gCurrentMove == MOVE_MAKEITRAIN)
+				{
+					if(SIDE(gBankAttacker) == B_SIDE_PLAYER)
+					{
+						gNewBS->makeitrainMoney += (5 * gBattleMons[gBankAttacker].level);
+					}
+					BattleScriptPush(gBattlescriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_MakeItRain;
+				}
+				else
+				{
+					BattleScriptPush(gBattlescriptCurrInstr + 1);
+					gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+				}
 				break;
 
 			case MOVE_EFFECT_BURN_BERRY:
@@ -853,18 +866,42 @@ void SetMoveEffect(bool8 primary, u8 certain)
 				break;
 
 			case MOVE_EFFECT_SPLINTERS:
-				if (gNewBS->splinterTimer[gEffectBank] == 0)
+				switch(gCurrentMove)
 				{
-					gNewBS->splinterTimer[gEffectBank] = 4; //3 turns of splinters
-					gNewBS->splinterAttackerBank[gEffectBank] = gBankAttacker;
-					gNewBS->splinterAttackerMonId[gEffectBank] = gBattlerPartyIndexes[gBankAttacker];
-					gNewBS->splinterMove[gEffectBank] = gCurrentMove;
-					BattleScriptPush(gBattlescriptCurrInstr + 1);
-					gBattleStringLoader = gText_EffectBankAfflictedBySplinters;
-					gBattlescriptCurrInstr = BattleScript_PrintCustomString;	
+					case MOVE_SALTCURE:
+						if (!gNewBS->saltCured[gBankTarget])
+						{
+							gNewBS->saltCured[gBankTarget] = TRUE;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattleStringLoader = gText_SaltCureSet;
+							gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+
+						}
+						break;
+					case MOVE_SYRUPBOMB:
+						if (gNewBS->SyrupBombTimers[gEffectBank] == 0)
+						{
+							gNewBS->SyrupBombTimers[gEffectBank] = 4;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattleStringLoader = gText_SyrupBombSet;
+							gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+						}
+						break;
+					default:
+						if (gNewBS->splinterTimer[gEffectBank] == 0)
+						{
+							gNewBS->splinterTimer[gEffectBank] = 4; //3 turns of splinters
+							gNewBS->splinterAttackerBank[gEffectBank] = gBankAttacker;
+							gNewBS->splinterAttackerMonId[gEffectBank] = gBattlerPartyIndexes[gBankAttacker];
+							gNewBS->splinterMove[gEffectBank] = gCurrentMove;
+							BattleScriptPush(gBattlescriptCurrInstr + 1);
+							gBattleStringLoader = gText_EffectBankAfflictedBySplinters;
+							gBattlescriptCurrInstr = BattleScript_PrintCustomString;	
+						}
+						else
+							gBattlescriptCurrInstr++;
+						break;
 				}
-				else
-					gBattlescriptCurrInstr++;
 				break;
 
 			default:

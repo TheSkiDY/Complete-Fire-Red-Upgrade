@@ -882,6 +882,7 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_TELEPORT:
+			TELEPORT_CHECK:
 			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 			{
 				if (!HasMonToSwitchTo(bankAtk))
@@ -1179,6 +1180,9 @@ SKIP_CHECK_TARGET:
 						break;
 
 					default: //Dragon Dance + Shift Gear
+						if(move == MOVE_TIDYUP)
+							goto TIDYUP_HAZARD_CHECK;
+						TIDYUP_CONTINUE:
 						if (data->atkAbility == ABILITY_CONTRARY
 						|| (IsTrickRoomActive() && !IsTrickRoomOnLastTurn())) //Trick Room not about to end
 							DECREASE_VIABILITY(10);
@@ -1187,6 +1191,7 @@ SKIP_CHECK_TARGET:
 							if ((!AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_ATK) || !RealPhysicalMoveInMoveset(bankAtk))
 							&&  (!AI_STAT_CAN_RISE(bankAtk, STAT_STAGE_SPEED)))
 								DECREASE_VIABILITY(10);
+
 						}
 				}
 			}
@@ -1653,7 +1658,7 @@ SKIP_CHECK_TARGET:
 		//Add check for sound move?
 		case EFFECT_SUBSTITUTE:
 			if (data->atkStatus2 & STATUS2_SUBSTITUTE
-			|| GetHealthPercentage(bankAtk) <= 25
+			|| (GetHealthPercentage(bankAtk) <= 25 || (move == MOVE_SHEDTAIL && GetHealthPercentage(bankAtk) <= 50))
 			|| (IsShadowShieldBattle() && !IsAffectedByShadowShieldBattle(bankAtk)))
 				DECREASE_VIABILITY(10);
 			else if (BypassesScreens(data->defAbility)
@@ -1736,12 +1741,13 @@ SKIP_CHECK_TARGET:
 
 		case EFFECT_COUNTER:
 		case EFFECT_MIRROR_COAT:
+		case EFFECT_COMEUPPANCE:
 			if (SPLIT(predictedMove) == SPLIT_STATUS
 			|| predictedMove == MOVE_NONE
 			|| MoveBlockedBySubstitute(predictedMove, bankDef, bankAtk))
 				DECREASE_VIABILITY(10);
 
-			if (move == MOVE_METALBURST
+			if ((move == MOVE_METALBURST || moveEffect == EFFECT_COMEUPPANCE)
 			&& MoveWouldHitFirst(move, bankAtk, bankDef)) //Metal Burst has no negative priority, so it can easily go first and fail
 				DECREASE_VIABILITY(10);
 
@@ -2127,11 +2133,22 @@ SKIP_CHECK_TARGET:
 				DECREASE_VIABILITY(10);
 			break;
 
-		case EFFECT_BURN_UP:
-			if (!IsOfType(bankAtk, TYPE_FIRE))
-				DECREASE_VIABILITY(10);
-			else
-				goto AI_STANDARD_DAMAGE;
+		case EFFECT_BURN_UP: ;
+			switch (move)
+			{
+				case MOVE_BURNUP:
+					if (!IsOfType(bankAtk, TYPE_FIRE))
+						DECREASE_VIABILITY(10);
+					else
+						goto AI_STANDARD_DAMAGE;
+					break;
+				case MOVE_DOUBLESHOCK:
+					if (!IsOfType(bankAtk, TYPE_ELECTRIC))
+						DECREASE_VIABILITY(10);
+					else
+						goto AI_STANDARD_DAMAGE;
+					break;
+			}
 			break;
 
 		case EFFECT_BATON_PASS:
@@ -2191,7 +2208,7 @@ SKIP_CHECK_TARGET:
 						break;
 					}
 				}
-
+				TIDYUP_HAZARD_CHECK:
 				if (gSideStatuses[SIDE(bankDef)] & SIDE_STATUS_SPIKES)
 				{
 					DECREASE_VIABILITY(10); //Don't blow away opposing spikes
@@ -2207,6 +2224,8 @@ SKIP_CHECK_TARGET:
 						break; //Don't use Defog if partner is going to set up hazards
 					}
 				}
+				if(move == MOVE_TIDYUP)
+					goto TIDYUP_CONTINUE;
 
 				goto AI_LOWER_EVASION;
 			}
@@ -2344,6 +2363,8 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_HAIL:
+			if (move == MOVE_CHILLYRECEPTION)
+				goto TELEPORT_CHECK;
 			if (gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)
 			|| PARTNER_MOVE_EFFECT_IS_WEATHER
 			|| IsCurrentWeatherPartnersWeather(data->bankAtkPartner, data->atkPartnerAbility)) //Don't override the partner's weather with your own
@@ -2979,6 +3000,9 @@ SKIP_CHECK_TARGET:
 				case MOVE_THROATCHOP:
 					goto AI_STANDARD_DAMAGE;
 
+				case MOVE_PSYCHICNOISE:
+					goto AI_STANDARD_DAMAGE;
+
 				default: //Heal Block
 					if (IsHealBlocked(bankDef)
 					|| PARTNER_MOVE_IS_SAME)
@@ -3294,6 +3318,7 @@ static bool8 PartnerMoveEffectIsStatusSameTarget(struct AIScript* data, u16 move
 
 			case EFFECT_PARALYZE_HIT:
 			case EFFECT_BURN_HIT:
+			case EFFECT_SLEEP_HIT:
 			case EFFECT_POISON_HIT:
 			case EFFECT_BAD_POISON_HIT:
 			case EFFECT_FREEZE_HIT:

@@ -1761,6 +1761,11 @@ u8 TrySetCantSelectMoveBattleScript(void)
 		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveAssaultVest;
 		++limitations;
 	}
+	else if (gLastUsedMoves[gActiveBattler] == move && gSpecialMoveFlags[move].gSuccessionFailMoves)
+	{
+		gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedSuccessionFailMove;
+		++limitations;
+	}
 	#ifdef FLAG_SKY_BATTLE
 	else if (!gNewBS->zMoveData.toBeUsed[gActiveBattler] //Can still use status Z-Moves even during Sky Battle
 	&& FlagGet(FLAG_SKY_BATTLE) && gSpecialMoveFlags[move].gSkyBattleBannedMoves)

@@ -327,3 +327,5 @@ gBattleScriptingCommandsTable2:
 .word atkFF34_canconfuse
 .word atkFF35_jumpifmaxchistrikecapped
 .word atkFF36_trygetcottondowntarget
+.word atkFF37_increasefaintcounter
+.word atkFF38_comeuppancedamagecalculator

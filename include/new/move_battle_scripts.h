@@ -236,3 +236,7 @@ extern const u8 gText_SurroundedByGMaxCannonade[];
 extern const u8 gText_SurroundedByGMaxVolcalith[];
 
 extern const u8 gText_ScriptingBankFainted[];
+
+extern const u8 BattleScript_MakeItRain[];
+extern const u8 gText_MakeItRainScatteredCoins[];
+extern const u8 BattleScript_FickleBeamAllOut[];

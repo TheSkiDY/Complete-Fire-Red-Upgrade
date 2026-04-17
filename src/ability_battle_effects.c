@@ -2428,6 +2428,11 @@ static u8 CalcMovePowerForForewarn(u16 move)
 	else
 	{
 		switch (move) {
+			case MOVE_LASTRESPECTS:
+			case MOVE_RAGEFIST:
+				power = 150;
+				break;
+			
 			case MOVE_COUNTER:
 			case MOVE_METALBURST:
 			case MOVE_MIRRORCOAT:
@@ -2458,6 +2463,7 @@ static u8 CalcMovePowerForForewarn(u16 move)
 			case MOVE_SONICBOOM:
 			case MOVE_TRUMPCARD:
 			case MOVE_WRINGOUT:
+			case MOVE_HARDPRESS:
 				power = 80;
 				break;
 

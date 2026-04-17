@@ -184,3 +184,5 @@ The [LAST_ITEM] prevents the\nuse of status moves!\p
 #org @gText_HealBlockMoveMenu
 [SCRIPTING_BANK] can't use [CURRENT_MOVE]\nafter the HEAL BLOCK!\p
 
+#org @gText_SuccessionFailMovesMoveMenu
+[SCRIPTING_BANK] can't use [CURRENT_MOVE]\ntwice in a row!\p

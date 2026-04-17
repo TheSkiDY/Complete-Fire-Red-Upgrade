@@ -125,7 +125,7 @@ void AddBankToPickupStack(const u8 bank);
 void RemoveBankFromPickupStack(const u8 bank);
 u8 GetTopOfPickupStackNotIncludingBank(const u8 bank);
 void RemoveScreensFromSide(const u8 side);
-void UpdateQuickClawRandomNumber(u8 bank);
+void UpdateStructRandomNumbers(u8 bank);
 void GiveOmniboost(u8 bank);
 bool8 WillPoltergeistFail(u16 item, u8 ability);
 bool8 WillSyncronoiseFail(u8 bankAtk, u8 bankDef);

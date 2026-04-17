@@ -98,6 +98,7 @@ gBattleAnims_General:
 .word ANIM_AI_ITEM_HEAL
 .word ANIM_HOOPA_RING_SPAWN
 .word ANIM_SPLINTER_DAMAGE
+.word ANIM_SUBSTITUTE2
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -1180,6 +1181,12 @@ ANIM_FROSTBITE:
 	launchtemplate Template_IceCrystalHitSmall 0x82 0x3 0x11 0xfff4 0x0
 	playsound2 0x82 SOUND_PAN_TARGET
 	waitanimation 
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SUBSTITUTE2:
+	goto 0x81d3433		@MOVE_SUBSTITUTE
 	endanimation
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

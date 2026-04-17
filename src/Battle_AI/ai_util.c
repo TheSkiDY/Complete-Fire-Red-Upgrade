@@ -460,6 +460,7 @@ bool8 IsWeakestContactMoveWithBestAccuracy(u16 move, u8 bankAtk, u8 bankDef)
 		&& moveEffect != EFFECT_RECHARGE
 		&& moveEffect != EFFECT_COUNTER
 		&& moveEffect != EFFECT_MIRROR_COAT
+		&& moveEffect != EFFECT_COMEUPPANCE
 		&& moveEffect != EFFECT_BURN_UP
 		&& moveEffect != EFFECT_FAKE_OUT
 		&& moveEffect != EFFECT_SOLARBEAM
@@ -965,6 +966,10 @@ void UpdateBestDoubleKillingMoveScore(u8 bankAtk, u8 bankDef, u8 bankAtkPartner,
 									if (CALC && !BadIdeaToPoison(currTarget, bankAtk))
 										break;
 									goto DEFAULT_CHECK;
+								case EFFECT_SLEEP_HIT:
+									if (CALC && !BadIdeaToPutToSleep(currTarget, bankAtk))
+										break;
+									goto DEFAULT_CHECK;
 								case EFFECT_ATTACK_DOWN_HIT:
 									if (CALC && GoodIdeaToLowerAttack(currTarget, bankAtk, move))
 										break;
@@ -1342,6 +1347,7 @@ u16 CalcFinalAIMoveDamage(u16 move, u8 bankAtk, u8 bankDef, u8 numHits, struct D
 
 		case EFFECT_COUNTER: //Includes Metal Burst
 		case EFFECT_MIRROR_COAT:
+		case EFFECT_COMEUPPANCE:
 			return MathMin(CalcPredictedDamageForCounterMoves(move, bankAtk, bankDef), gBattleMons[bankDef].hp);
 	}
 
@@ -1451,6 +1457,7 @@ static u32 CalcPredictedDamageForCounterMoves(u16 move, u8 bankAtk, u8 bankDef)
 	&& SPLIT(predictedMove) != SPLIT_STATUS
 	&& predictedMoveEffect != EFFECT_COUNTER //Can't counter a Counter
 	&& predictedMoveEffect != EFFECT_MIRROR_COAT //Can't counter a Mirror Coat
+	&& predictedMoveEffect != EFFECT_COMEUPPANCE //Can't counter Comeuppance
 	&& predictedMoveEffect != EFFECT_FUTURE_SIGHT //Can't counter Future Sight
 	&& AttacksThisTurn(bankDef, predictedMove) == 2 //Not charging
 	&& !MoveBlockedBySubstitute(predictedMove, bankDef, bankAtk))
@@ -1552,6 +1559,7 @@ static move_t CalcStrongestMoveIgnoringMove(const u8 bankAtk, const u8 bankDef, 
 			}
 			else if (predictedDamage == highestDamage //This move does the same as the strongest move so far (they probably just both KO)
 			&& moveEffect != EFFECT_COUNTER
+			&& moveEffect != EFFECT_COMEUPPANCE
 			&& moveEffect != EFFECT_MIRROR_COAT //Never try to make counter moves a priority unless they do the most damage
 			&& moveEffect != EFFECT_FUTURE_SIGHT //Never try to make future attacks a priority unless they do the most damage
 			&& !IsEffectivePursuit(strongestMove, defCantSwitch, playerHasSwitchedBefore)) //Pursuit isn't already the best possible move that can be used if the player can switch out to avoid a KO
@@ -1822,7 +1830,8 @@ static bool8 MoveAlwaysHitsTarget(u16 move, u8 bankDef)
 bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 {
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD
-	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk))
+	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk)
+	|| gNewBS->GlaiveRushTimers[bankDef] > 0)
 		return TRUE;
 
 	if (MoveCantHitTarget(move, bankDef))
@@ -1834,7 +1843,7 @@ bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 
 bool8 MonMoveWillHit(u16 move, struct Pokemon* monAtk, u8 bankDef)
 {
-	if (GetMonAbility(monAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD)
+	if (GetMonAbility(monAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD || gNewBS->GlaiveRushTimers[bankDef] > 0)
 		return TRUE;
 
 	if (MoveCantHitTarget(move, bankDef))
@@ -2270,8 +2279,17 @@ bool8 IsDamagingMoveUnusable(u16 move, u8 bankAtk, u8 bankDef)
 				return TRUE;
 			break;
 		case EFFECT_BURN_UP:
-			if (!IsOfType(bankAtk, TYPE_FIRE))
-				return TRUE;
+			switch (move)
+			{
+				case MOVE_BURNUP:
+					if (!IsOfType(bankAtk, TYPE_FIRE))
+						return TRUE;
+					break;
+				case MOVE_DOUBLESHOCK:
+					if (!IsOfType(bankAtk, TYPE_ELECTRIC))
+						return TRUE;
+					break;
+			}
 			break;
 		case EFFECT_POLTERGEIST:
 			if (WillPoltergeistFail(ITEM(bankDef), ABILITY(bankDef)))
@@ -2383,8 +2401,17 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 	switch (gBattleMoves[move].effect)
 	{
 		case EFFECT_BURN_UP:
-			if (!IsMonOfType(monAtk, TYPE_FIRE))
-				return TRUE;
+			switch (move)
+			{
+				case MOVE_BURNUP:
+					if (!IsMonOfType(monAtk, TYPE_FIRE))
+						return TRUE;
+					break;
+				case MOVE_DOUBLESHOCK:
+					if (!IsMonOfType(monAtk, TYPE_ELECTRIC))
+						return TRUE;
+					break;
+			}
 			break;
 		case EFFECT_POLTERGEIST:
 			if (WillPoltergeistFail(ITEM(bankDef), ABILITY(bankDef)))
@@ -2398,6 +2425,7 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 			break;
 		case EFFECT_COUNTER: //Includes Metal Burst
 		case EFFECT_MIRROR_COAT:
+		case EFFECT_COMEUPPANCE:
 			return TRUE;
 	}
 
@@ -2623,7 +2651,8 @@ static u32 CalcSecondaryEffectDamage(u8 bank)
 			+ GetGMaxVineLashDamage(bank)
 			+ GetGMaxWildfireDamage(bank)
 			+ GetGMaxCannonadeDamage(bank)
-			+ GetGMaxVolcalithDamage(bank);
+			+ GetGMaxVolcalithDamage(bank)
+			+ GetSaltCureDamage(bank);
 	}
 
 	return damage;
@@ -2804,6 +2833,8 @@ bool8 ShouldAIDelayMegaEvolution(u8 bankAtk, u8 bankDef, u16 move, bool8 optimiz
 				case MOVE_KINGSSHIELD:
 				case MOVE_BANEFULBUNKER:
 				case MOVE_OBSTRUCT:
+				case MOVE_SILKTRAP:
+				case MOVE_BURNINGBULWARK:
 					return TRUE; //Delay Mega Evolution if using Protect for Speed Boost benefits
 			}
 			break;
@@ -3170,6 +3201,10 @@ bool8 BadIdeaToRaiseSpeedAgainst(u8 bankAtk, u8 bankDef, u8 amount, bool8 checkP
 	bool8 checkingOriginalTarget = checkPartner;
 
 	if (IsTrickRoomActive() && !IsTrickRoomOnLastTurn())
+		return TRUE;
+
+	if (checkingOriginalTarget
+	&& MoveInMoveset(MOVE_SILKTRAP, bankDef) && CheckContact(GetStrongestMove(bankAtk, bankDef), bankAtk, bankDef))
 		return TRUE;
 
 	if (BadIdeaToRaiseStatAgainst(bankAtk, bankDef, checkingOriginalTarget)
@@ -3583,6 +3618,7 @@ bool8 DamagingMoveInMoveset(u8 bank)
 			if (SPLIT(move) != SPLIT_STATUS
 			&& gBattleMoves[move].power != 0
 			&& gBattleMoves[move].effect != EFFECT_COUNTER
+			&& gBattleMoves[move].effect != EFFECT_COMEUPPANCE
 			&& gBattleMoves[move].effect != EFFECT_MIRROR_COAT)
 				return TRUE;
 		}
@@ -3607,6 +3643,7 @@ bool8 PhysicalMoveInMoveset(u8 bank)
 			if (CalcMoveSplit(move, bank, bank) == SPLIT_PHYSICAL
 			&& gBattleMoves[move].power != 0
 			&& gBattleMoves[move].effect != EFFECT_COUNTER
+			&& gBattleMoves[move].effect != EFFECT_COMEUPPANCE
 			&& move != MOVE_FAKEOUT) //While physical, it can only be used on the first turn
 				return TRUE;
 		}
@@ -3632,6 +3669,7 @@ bool8 RealPhysicalMoveInMoveset(u8 bank)
 			if (CalcMoveSplit(move, bank, bank) == SPLIT_PHYSICAL
 			&& gBattleMoves[move].power != 0
 			&& gBattleMoves[move].effect != EFFECT_COUNTER
+			&& gBattleMoves[move].effect != EFFECT_COMEUPPANCE
 			&& move != MOVE_FAKEOUT
 			&& move != MOVE_FOULPLAY
 			&& move != MOVE_BODYPRESS)
@@ -3693,7 +3731,8 @@ bool8 PhysicalMoveInMonMoveset(struct Pokemon* mon, u8 moveLimitations)
 		{
 			if (CalcMoveSplitFromParty(move, mon) == SPLIT_PHYSICAL
 			&& gBattleMoves[move].power != 0
-			&& gBattleMoves[move].effect != EFFECT_COUNTER)
+			&& gBattleMoves[move].effect != EFFECT_COUNTER
+			&& gBattleMoves[move].effect != EFFECT_COMEUPPANCE)
 				return TRUE;
 		}
 	}
@@ -3811,6 +3850,8 @@ bool8 HasProtectionMoveInMoveset(u8 bank, u8 checkType)
 					case MOVE_KINGSSHIELD:
 					case MOVE_BANEFULBUNKER:
 					case MOVE_OBSTRUCT:
+					case MOVE_SILKTRAP:
+					case MOVE_BURNINGBULWARK:
 						if (checkType & CHECK_REGULAR_PROTECTION)
 							return TRUE;
 						break;
@@ -3861,6 +3902,8 @@ bool8 HasContactProtectionMoveInMoveset(u8 bank)
 				case MOVE_KINGSSHIELD:
 				case MOVE_BANEFULBUNKER:
 				case MOVE_OBSTRUCT:
+				case MOVE_SILKTRAP:
+				case MOVE_BURNINGBULWARK:
 					return TRUE;
 			}
 		}
@@ -4338,7 +4381,8 @@ bool8 PivotingMoveInMovesetThatAffects(u8 bankAtk, u8 bankDef)
 		{
 			if (move != MOVE_BATONPASS //Passing stats isn't considering pivoting
 			&& (gBattleMoves[move].effect == EFFECT_BATON_PASS
-			 || gBattleMoves[move].effect == EFFECT_TELEPORT))
+			 || gBattleMoves[move].effect == EFFECT_TELEPORT
+			 || move == MOVE_CHILLYRECEPTION))
 			{
 				if (SPLIT(move) != SPLIT_STATUS
 				&& (AI_SpecialTypeCalc(move, bankAtk, bankDef) & MOVE_RESULT_NO_EFFECT
@@ -5329,7 +5373,7 @@ static bool8 CalcShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 			if (IsAffectedByDisguse(defAbility, defSpecies, CalcMoveSplit(zMove, bankAtk, bankDef)))
 				return FALSE; //Don't waste a Z-Move breaking a disguise
 
-			if (defMovePrediction == MOVE_PROTECT || defMovePrediction == MOVE_KINGSSHIELD || defMovePrediction == MOVE_SPIKYSHIELD || defMovePrediction == MOVE_OBSTRUCT
+			if (defMovePrediction == MOVE_PROTECT || defMovePrediction == MOVE_KINGSSHIELD || defMovePrediction == MOVE_SPIKYSHIELD || defMovePrediction == MOVE_OBSTRUCT || defMovePrediction == MOVE_SILKTRAP
 			|| (IsDynamaxed(bankDef) && SPLIT(defMovePrediction) == SPLIT_STATUS))
 				return FALSE; //Don't waste a Z-Move on a Protect
 

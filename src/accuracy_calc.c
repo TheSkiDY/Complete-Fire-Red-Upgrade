@@ -66,7 +66,8 @@ ACCURACY_CHECK_START:
 		}
 		else if (gStatuses3[gBankTarget] & STATUS3_SEMI_INVULNERABLE
 			  && ABILITY(gBankAttacker) != ABILITY_NOGUARD
-			  && ABILITY(gBankTarget) != ABILITY_NOGUARD)
+			  && ABILITY(gBankTarget) != ABILITY_NOGUARD
+			  && gNewBS->GlaiveRushTimers[gBankTarget] == 0)
 		{
 			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 		}
@@ -246,6 +247,26 @@ bool8 ProtectAffects(u16 move, u8 bankAtk, u8 bankDef, bool8 set)
 			gBattleCommunication[6] = 1;
 		}
 	}
+	else if (gProtectStructs[bankDef].silkTrap && protectFlag)
+	{
+		effect = 1;
+		gNewBS->missStringId[bankDef] = 1;
+		if (contact && set)
+		{
+			gProtectStructs[bankDef].silkTrapDamage = TRUE;
+			gBattleCommunication[6] = 1;
+		}
+	}
+	else if (gProtectStructs[bankDef].burningBulwark && protectFlag)
+	{
+		effect = 1;
+		gNewBS->missStringId[bankDef] = 1;
+		if (contact && set)
+		{
+			gProtectStructs[bankDef].burningBulwarkDamage = 1;
+			gBattleCommunication[6] = 1;
+		}
+	}
 	else if (gSideStatuses[defSide] & SIDE_STATUS_CRAFTY_SHIELD && !(target & (MOVE_TARGET_USER | MOVE_TARGET_OPPONENTS_FIELD)) && split == SPLIT_STATUS)
 	{
 		effect = 1;
@@ -303,6 +324,8 @@ bool8 DoesProtectionMoveBlockMove(u8 bankAtk, u8 bankDef, u16 atkMove, u16 prote
 
 			case MOVE_KINGSSHIELD:
 			case MOVE_OBSTRUCT:
+			case MOVE_SILKTRAP:
+			case MOVE_BURNINGBULWARK:
 				return protectFlag && split != SPLIT_STATUS;
 
 			case MOVE_MATBLOCK:
@@ -358,6 +381,7 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	//then 0 acc moves
 	if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS) && gDisableStructs[bankDef].bankWithSureHit == gBankAttacker)
 	||   (ABILITY(gBankAttacker) == ABILITY_NOGUARD) || (ABILITY(bankDef) == ABILITY_NOGUARD)
+	||   (gNewBS->GlaiveRushTimers[bankDef] > 0)
 	||   (move == MOVE_TOXIC && IsOfType(gBankAttacker, TYPE_POISON))
 	||   (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
@@ -531,6 +555,7 @@ u32 VisualAccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 	u32 acc = AccuracyCalcPassDefAbilityItemEffect(move, bankAtk, bankDef, defAbility, defEffect);
 
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || defAbility == ABILITY_NOGUARD
+	|| (gNewBS->GlaiveRushTimers[bankDef] > 0)
 	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk)
 	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
 	|| (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)

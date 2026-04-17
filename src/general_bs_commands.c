@@ -32,6 +32,7 @@
 #include "../include/new/move_battle_scripts.h"
 #include "../include/new/move_tables.h"
 #include "../include/new/multi.h"
+#include "../include/new/new_bs_commands.h"
 #include "../include/new/pickup_items.h"
 #include "../include/new/stat_buffs.h"
 #include "../include/new/switching.h"
@@ -447,7 +448,7 @@ void atk09_attackanimation(void)
 		resultFlags = UpdateEffectivenessResultFlagsForDoubleSpreadMoves(resultFlags);
 
 	if (((gHitMarker & HITMARKER_NO_ANIMATIONS)
-	 && (move != MOVE_TRANSFORM && move != MOVE_SUBSTITUTE
+	 && (move != MOVE_TRANSFORM && move != MOVE_SUBSTITUTE && move != MOVE_SHEDTAIL
 	  && move != MOVE_ELECTRICTERRAIN && move != MOVE_PSYCHICTERRAIN
 	  && move != MOVE_MISTYTERRAIN && move != MOVE_GRASSYTERRAIN)) //Terrain animations always need to play and reload BG
 	|| gNewBS->tempIgnoreAnimations)
@@ -2126,6 +2127,7 @@ void atk5C_hitanimation(void)
 		}
 		else if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE || gNewBS->bypassSubstitute) || !IS_BEHIND_SUBSTITUTE(gActiveBattler) || gDisableStructs[gActiveBattler].substituteHP == 0)
 		{
+			IncreaseHitCounter(gActiveBattler);
 			//Do the hit animation on the actual Pokemon sprite, not the Substitute
 			EmitHitAnimation(0);
 			MarkBufferBankForExecution(gActiveBattler);
@@ -2141,6 +2143,7 @@ void atk5C_hitanimation(void)
 
 				if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE || gNewBS->bypassSubstitute) || !IS_BEHIND_SUBSTITUTE(gActiveBattler) || gDisableStructs[gActiveBattler].substituteHP == 0)
 				{
+					IncreaseHitCounter(gActiveBattler);
 					EmitHitAnimation(0);
 					MarkBufferBankForExecution(gActiveBattler);
 				}
@@ -2329,6 +2332,8 @@ void atk77_setprotect(void)
 		case MOVE_QUICKGUARD:
 		case MOVE_WIDEGUARD:
 		case MOVE_OBSTRUCT:
+		case MOVE_SILKTRAP:
+		case MOVE_BURNINGBULWARK:
 		case MOVE_MAX_GUARD:
 			break;
 		default:
@@ -2367,6 +2372,16 @@ void atk77_setprotect(void)
 
 			case MOVE_OBSTRUCT:
 				gProtectStructs[gBankAttacker].obstruct = 1;
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+				break;
+
+			case MOVE_SILKTRAP:
+				gProtectStructs[gBankAttacker].silkTrap = 1;
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+				break;
+
+			case MOVE_BURNINGBULWARK:
+				gProtectStructs[gBankAttacker].burningBulwark = 1;
 				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 				break;
 
@@ -2879,7 +2894,6 @@ void atk8A_normalisebuffs(void) //Haze
 		for (j = 0; j < BATTLE_STATS_NO-1; ++j)
 			gBattleMons[i].statStages[j] = 6;
 	}
-	MgbaPrintf(MGBA_LOG_INFO, "Haze set.");
 
 	++gBattlescriptCurrInstr;
 }
@@ -2995,6 +3009,7 @@ void atk91_givepaydaymoney(void)
 			money += (gPlayerParty[i].level * 5) * gNewBS->PayDayByPartyIndices[i];
 		money *= gBattleStruct->moneyMultiplier;
 		money += gNewBS->maxGoldrushMoney * gBattleStruct->moneyMultiplier;
+		money += gNewBS->makeitrainMoney * gBattleStruct->moneyMultiplier;
 		#ifdef PAYDAY_MONEY_CAP
 		money = MathMin(money, 99999); //Pay Day and Gold Rush cap at $99999
 		#endif
@@ -3094,7 +3109,7 @@ void atk93_tryKO(void)
 			}
 			#endif
 			else if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk)
-			|| atkAbility == ABILITY_NOGUARD || defAbility == ABILITY_NOGUARD))
+			|| atkAbility == ABILITY_NOGUARD || defAbility == ABILITY_NOGUARD || gNewBS->GlaiveRushTimers[bankDef] > 0))
 			{
 				chance = TRUE;
 			}
@@ -4554,10 +4569,11 @@ void atkBD_copyfoestats(void) //Psych up
 void atkBE_rapidspinfree(void)
 {
 	u8 bankAtk = gBankAttacker;
+	u8 bankDef = gBankTarget;
 	u8 sideAtk = SIDE(bankAtk);
 	u8 sideDef = SIDE(gBankTarget);
 
-	if (gCurrentMove == MOVE_RAPIDSPIN)
+	if (gCurrentMove == MOVE_RAPIDSPIN || gCurrentMove == MOVE_MORTALSPIN)
 	{
 		if (gBattleMons[bankAtk].status2 & STATUS2_WRAPPED)
 		{
@@ -4598,8 +4614,46 @@ void atkBE_rapidspinfree(void)
 				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER;
 				SetMoveEffect(TRUE, TRUE); //Automatically increments gBattlescriptCurrInstr
 			}
+			else if (gCurrentMove == MOVE_MORTALSPIN
+			&& ABILITY(bankAtk) != ABILITY_SHEERFORCE
+			&& CanBePoisoned(bankDef, bankAtk, TRUE))
+			{
+				gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_POISON;
+				SetMoveEffect(TRUE, TRUE);
+			}
 			else
 				gBattlescriptCurrInstr++;
+		}
+	}
+	else if (gCurrentMove == MOVE_TIDYUP)
+	{
+		if (gSideStatuses[sideAtk] & SIDE_STATUS_SPIKES)
+		{
+			gSideStatuses[sideAtk] &= ~(SIDE_STATUS_SPIKES);
+			gSideTimers[sideAtk].spikesAmount = 0;
+			gSideTimers[sideAtk].tspikesAmount = 0;
+			gSideTimers[sideAtk].srAmount = 0;
+			gSideTimers[sideAtk].stickyWeb = 0;
+			gSideTimers[sideAtk].steelsurge = 0;
+			BattleScriptPushCursor();
+			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+			gBattleStringLoader = RemovedEntryHazardsString;
+		}
+		else if (gSideStatuses[sideDef] & SIDE_STATUS_SPIKES)
+		{
+			gSideStatuses[sideDef] &= ~(SIDE_STATUS_SPIKES);
+			gSideTimers[sideDef].spikesAmount = 0;
+			gSideTimers[sideDef].tspikesAmount = 0;
+			gSideTimers[sideDef].srAmount = 0;
+			gSideTimers[sideDef].stickyWeb = 0;
+			gSideTimers[sideDef].steelsurge = 0;
+			BattleScriptPushCursor();
+			gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+			gBattleStringLoader = RemovedEntryHazardsTargetSideString;
+		}
+		else
+		{
+			gBattlescriptCurrInstr++;
 		}
 	}
 	else //Defog + G-Max Windrage

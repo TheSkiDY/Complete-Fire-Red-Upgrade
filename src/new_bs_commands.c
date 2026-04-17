@@ -232,6 +232,7 @@ void atkFF06_setterrain(void)
 			case MOVE_SPLINTERED_STORMSHARDS:
 			case MOVE_DEFOG:
 			case MOVE_STEELROLLER:
+			case MOVE_ICESPINNER:
 			REMOVE_TERRAIN:
 				//if (gCurrentMove != MOVE_DEFOG)
 				//	gNewBS->terrainForcefullyRemoved = TRUE; //Screw this lol
@@ -389,6 +390,19 @@ void atkFF08_counterclear(void)
 			else
 				failed = TRUE;
 			break;
+		case Counters_GlaiveRush:
+			if (gNewBS->GlaiveRushTimers[bank])
+				gNewBS->GlaiveRushTimers[bank] = 0;
+			else
+				failed = TRUE;
+			break;
+		case Counters_SyrupBomb:
+			if (gNewBS->SyrupBombTimers[bank])
+				gNewBS->SyrupBombTimers[bank] = 0;
+			else
+				failed = TRUE;
+			break;
+
 	}
 
 	if (failed)
@@ -462,6 +476,12 @@ void atkFF09_jumpifcounter(void)
 			break;
 		case Counters_TarShot:
 			counter = gNewBS->tarShotBits & gBitTable[bank];
+			break;
+		case Counters_GlaiveRush:
+			counter = gNewBS->GlaiveRushTimers[bank];
+			break;
+		case Counters_SyrupBomb:
+			counter = gNewBS->SyrupBombTimers[bank];
 			break;
 		default:
 			counter = 0; //Shouldn't happen...
@@ -579,6 +599,12 @@ void atkFF0E_setcounter(void)
 			break;
 		case Counters_TarShot:
 			gNewBS->tarShotBits |= gBitTable[bank];
+			break;
+		case Counters_GlaiveRush:
+			gNewBS->GlaiveRushTimers[bank] = amount;
+			break;
+		case Counters_SyrupBomb:
+			gNewBS->SyrupBombTimers[bank] = amount;
 			break;
 	}
 
@@ -844,7 +870,7 @@ void atkFF1F_flowershieldlooper(void)
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
 				gNewBS->StompingTantrumTimers[gBankAttacker] = 2;
 			}
-			else if (BATTLER_SEMI_INVULNERABLE(bank) && ABILITY(gBankAttacker) != ABILITY_NOGUARD && ABILITY(bank) != ABILITY_NOGUARD)
+			else if (BATTLER_SEMI_INVULNERABLE(bank) && ABILITY(gBankAttacker) != ABILITY_NOGUARD && ABILITY(bank) != ABILITY_NOGUARD && gNewBS->GlaiveRushTimers[bank] > 0)
 			{
 				gBattleCommunication[MULTISTRING_CHOOSER] = 0; //Avoided attack
 				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 6);
@@ -1056,6 +1082,37 @@ void atkFE_prefaintmoveendeffects(void)
 				{
 					BattleScriptPushCursor();
 					gBattlescriptCurrInstr = BattleScript_ObstructStatDecrement;
+					effect = TRUE;
+					break;
+				}
+			}
+
+			if (gProtectStructs[gBankTarget].silkTrapDamage)
+			{
+				gProtectStructs[gBankTarget].silkTrapDamage = FALSE;
+
+				if (BATTLER_ALIVE(gBankAttacker) && STAT_CAN_FALL(gBankAttacker, STAT_SPD))
+				{
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_SilkTrapStatDecrement;
+					effect = TRUE;
+					break;
+				}
+			}
+
+			if (gProtectStructs[gBankTarget].burningBulwarkDamage)
+			{
+				gProtectStructs[gBankTarget].burningBulwarkDamage = 0;
+
+				if (BATTLER_ALIVE(gBankAttacker) && CanBeBurned(gBankAttacker, gBankTarget, TRUE)) //Target burns Attacker
+				{
+					gBattleMons[gBankAttacker].status1 = STATUS_BURN;
+					gEffectBank = gActiveBattler = gBankAttacker;
+					EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBankAttacker].status1);
+					MarkBufferBankForExecution(gActiveBattler);
+
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_BurningBulwark;
 					effect = TRUE;
 					break;
 				}
@@ -2054,4 +2111,54 @@ void atkFF36_trygetcottondowntarget(void)
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	else
 		gBattlescriptCurrInstr += 5;
+}
+
+//increasefaintcounter BANK
+void atkFF37_increasefaintcounter(void)
+{
+	u8 bank = GetBankForBattleScript(gBattlescriptCurrInstr[1]);
+	gBattleStruct->faintedMonsCounter[SIDE(bank)]++;
+}
+
+void IncreaseHitCounter(u8 bank)
+{
+	u8 side = SIDE(bank);
+	u8 index = gBattlerPartyIndexes[bank];
+	u8 counter = gNewBS->hitCounter[side][index];
+
+	if(counter != 255)
+		gNewBS->hitCounter[side][index]++;
+}
+
+void atkFF38_comeuppancedamagecalculator(void)
+{
+	u8 atkSide = SIDE(gBankAttacker);
+	u8 defSpecialSide = SIDE(gProtectStructs[gBankAttacker].specialBank);
+	u8 defPhysicalSide = SIDE(gProtectStructs[gBankAttacker].physicalBank);
+
+	if (gProtectStructs[gBankAttacker].specialDmg && atkSide != defSpecialSide && gBattleMons[gProtectStructs[gBankAttacker].specialBank].hp)
+	{
+		gBattleMoveDamage = gProtectStructs[gBankAttacker].specialDmg * 2;
+
+		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defSpecialSide))
+			gBankTarget = gSideTimers[defSpecialSide].followmeTarget;
+		else
+			gBankTarget = gProtectStructs[gBankAttacker].specialBank;
+		gBattlescriptCurrInstr += 5;
+	}
+	else if (gProtectStructs[gBankAttacker].physicalDmg && atkSide != defPhysicalSide && gBattleMons[gProtectStructs[gBankAttacker].physicalBank].hp)
+	{
+		gBattleMoveDamage = gProtectStructs[gBankAttacker].physicalDmg * 2;
+
+		if (IsMoveRedirectedByFollowMe(gCurrentMove, gBankAttacker, defPhysicalSide))
+			gBankTarget = gSideTimers[defPhysicalSide].followmeTarget;
+		else
+			gBankTarget = gProtectStructs[gBankAttacker].physicalBank;
+		gBattlescriptCurrInstr += 5;
+	}
+	else
+	{
+		gSpecialStatuses[gBankAttacker].ppNotAffectedByPressure = 1;
+		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+	}
 }

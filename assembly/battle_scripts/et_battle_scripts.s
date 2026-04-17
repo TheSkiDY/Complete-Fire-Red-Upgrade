@@ -61,6 +61,8 @@ et_battle_scripts.s
 .global BattleScript_HoopaSOS
 .global BattleScript_PrintCustomStringEnd2
 .global BattleScript_PrintCustomStringEnd3
+.global BattleScript_SaltCureDamage
+.global BattleScript_SyrupBombLowerSpeed
 
 .global gText_TrickRoomEnd
 .global gText_WonderRoomEnd
@@ -265,6 +267,33 @@ BattleScript_BadThoughtsTurnDmg:
 	setword BATTLE_STRING_LOADER gText_TormentedByBadThoughts
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	goto BattleScript_DoTurnDmg
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_SaltCureDamage:
+	playanimation BANK_ATTACKER ANIM_SPLINTER_DAMAGE 0x0 @temp animation
+	setword BATTLE_STRING_LOADER gText_HurtBySaltCure
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BattleScript_DoTurnDmg
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_SyrupBombLowerSpeed:
+	setword BATTLE_STRING_LOADER gText_SpeedLoweredBySyrupBomb
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MIN SyrupBomb_End
+	playstatchangeanimation BANK_ATTACKER, STAT_ANIM_SPD, STAT_ANIM_DOWN
+	setstatchanger STAT_SPD | DECREASE_1
+	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_NOT_PROTECT_AFFECTED SyrupBomb_PrintSpeedMsg
+SyrupBomb_PrintSpeedMsg:
+	jumpifbyte GREATERTHAN MULTISTRING_CHOOSER 0x2 SyrupBomb_End
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+SyrupBomb_End:
 	goto BattleScript_DoTurnDmg
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

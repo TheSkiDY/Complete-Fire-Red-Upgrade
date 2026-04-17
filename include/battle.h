@@ -414,7 +414,19 @@ struct ProtectStruct
     /* field_8 */ u32 specialDmg;
     /* field_C */ u8 physicalBank;
     /* field_D */ u8 specialBank;
-    /* field_E */ u16 fieldE;
+
+    /* field_E */
+    u32 silkTrap : 1;
+    u32 silkTrapDamage : 1;
+    u32 burningBulwark : 1;
+    u32 burningBulwarkDamage : 1;
+    u32 fieldE_unused_4 : 1;
+    u32 fieldE_unused_5 : 1;
+    u32 fieldE_unused_6 : 1;
+    u32 fieldE_unused_7 : 1;
+
+    /* field_F */ u8 field_F;
+
 };
 
 extern struct ProtectStruct gProtectStructs[BATTLE_BANKS_COUNT];
@@ -704,8 +716,7 @@ struct BattleStruct
 	u16 castformPalette[MAX_BATTLERS_COUNT][16];
 	u8 wishPerishSongState;
 	u8 wishPerishSongBattlerId;
-	u8 field_182;
-	u8 field_183;
+	u8 faintedMonsCounter[NUM_BATTLE_SIDES]; //for Last Respects
 	u8 field_184;
 	u8 field_185;
 	u8 field_186;
@@ -743,6 +754,7 @@ struct NewBattleStruct
 	u8 maxCannonadeTimers[NUM_BATTLE_SIDES];
 	u8 maxVolcalithTimers[NUM_BATTLE_SIDES];
 	u8 ragePowdered;
+    u8 hitCounter[NUM_BATTLE_SIDES][PARTY_SIZE]; //for Rage Fist
 
 	//Personal Counters
 	u8 TelekinesisTimers[MAX_BATTLERS_COUNT];
@@ -787,6 +799,10 @@ struct NewBattleStruct
 	u8 quickDrawRandomNumber[MAX_BATTLERS_COUNT];
 	u8 powerShifted[MAX_BATTLERS_COUNT];
 	u16 tookAbilityFrom[MAX_BATTLERS_COUNT]; //Helps display the correct Ability when one has been passed around
+    u8 GlaiveRushTimers[MAX_BATTLERS_COUNT];
+    u8 SyrupBombTimers[MAX_BATTLERS_COUNT];
+    u8 fickleBeamRandomNumber[MAX_BATTLERS_COUNT];
+    u8 dragonCheerCritBoosts[MAX_BATTLERS_COUNT];
 
 	//Bit Fields for Banks
 	u8 MicleBerryBits;
@@ -932,6 +948,8 @@ struct NewBattleStruct
 	u8 pickupMonId;
 	u8 shellSideArmSplit[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
     u8 lastCheckedTrappingAbilityBranch;
+    u8 saltCured[MAX_BATTLERS_COUNT];
+    u32 makeitrainMoney;
 
 	//Things for Spread Moves
 	s32 DamageTaken[MAX_BATTLERS_COUNT];

@@ -26,6 +26,7 @@ BattleScript_FaintAttacker:
 	dofaintanimation BANK_ATTACKER
 	printstring 0x1C @;STRINGID_ATTACKERFAINTED
 	cleareffectsonfaint BANK_ATTACKER
+	increasefaintcounter BANK_ATTACKER
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_ATTACKER
 	return
@@ -34,6 +35,7 @@ BattleScript_FaintRaidAttacker:
 	pokemonfaintcry BANK_ATTACKER
 	playanimation BANK_ATTACKER ANIM_POWDER_EXPLOSION 0x0
 	cleareffectsonfaint BANK_ATTACKER
+	increasefaintcounter BANK_ATTACKER
 
 BattleScript_FinishFaintRaidBoss:
 	callasm ClearPlayerRechargeMultipleTurns @;So the game doesn't lock
@@ -47,6 +49,7 @@ BattleScript_FaintTarget:
 	dofaintanimation BANK_TARGET
 	printstring 0x1D @;STRINGID_TARGETFAINTED
 	cleareffectsonfaint BANK_TARGET
+	increasefaintcounter BANK_TARGET
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_TARGET
 	return
@@ -55,6 +58,7 @@ BattleScript_FaintRaidTarget:
 	pokemonfaintcry BANK_TARGET
 	playanimation BANK_TARGET ANIM_POWDER_EXPLOSION 0x0
 	cleareffectsonfaint BANK_TARGET
+	increasefaintcounter BANK_TARGET
 	goto BattleScript_FinishFaintRaidBoss
 
 BattleScript_FaintScriptingBank:
@@ -65,6 +69,7 @@ BattleScript_FaintScriptingBank:
 	setword BATTLE_STRING_LOADER gText_ScriptingBankFainted
 	printstring 0x184
 	cleareffectsonfaint BANK_FAINTED
+	increasefaintcounter BANK_FAINTED
 	printstring 0x130
 	trytrainerslidefirstdownmsg BANK_FAINTED
 	return
@@ -74,6 +79,7 @@ BattleScript_FaintRaidScriptingBank:
 	pokemonfaintcry BANK_FAINTED
 	playanimation BANK_FAINTED ANIM_POWDER_EXPLOSION 0x0
 	cleareffectsonfaint BANK_FAINTED
+	increasefaintcounter BANK_FAINTED
 	goto BattleScript_FinishFaintRaidBoss
 
 BattleScript_SuccessBallThrow:

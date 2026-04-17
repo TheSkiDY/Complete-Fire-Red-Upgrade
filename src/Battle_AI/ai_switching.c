@@ -1387,6 +1387,9 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 			}
 			else if (!MoveBlockedBySubstitute(move, bankAtk, bankDef))
 			{
+				if (move == MOVE_CHILLYRECEPTION)
+					return FALSE;
+
 				switch (gBattleMoves[move].effect) {
 					case EFFECT_SLEEP:
 					case EFFECT_YAWN:
@@ -1616,12 +1619,13 @@ static bool8 ShouldSwitchWhenOffensiveStatsAreLow(struct Pokemon* party)
 
 				if (split == SPLIT_PHYSICAL)
 				{
-					if (gBattleMoves[move].effect != EFFECT_COUNTER && move != MOVE_BODYPRESS && move != MOVE_FOULPLAY)
+					if (gBattleMoves[move].effect != EFFECT_COUNTER && move != MOVE_BODYPRESS && move != MOVE_FOULPLAY 
+						&& gBattleMoves[move].effect != EFFECT_COMEUPPANCE)
 						hasPhysicalMove = TRUE;
 				}
 				else if (split == SPLIT_SPECIAL)
 				{
-					if (gBattleMoves[move].effect != EFFECT_MIRROR_COAT)
+					if (gBattleMoves[move].effect != EFFECT_MIRROR_COAT && gBattleMoves[move].effect != EFFECT_COMEUPPANCE)
 						hasSpecialMove = TRUE;
 				}
 			}

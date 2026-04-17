@@ -10,6 +10,7 @@
 #include "../include/new/accuracy_calc.h"
 #include "../include/new/ai_util.h"
 #include "../include/new/battle_start_turn_start.h"
+#include "../include/new/battle_script_util.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
@@ -121,6 +122,7 @@ void atk04_critcalc(void)
 		{
 			critChance  = 2 * ((gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
 						+ gNewBS->chiStrikeCritBoosts[gBankAttacker]
+						+ gNewBS->dragonCheerCritBoosts[gBankAttacker]
 						+ (gSpecialMoveFlags[gCurrentMove].gHighCriticalChanceMoves)
 						+ (atkEffect == ITEM_EFFECT_SCOPE_LENS)
 						+ (atkAbility == ABILITY_SUPERLUCK)
@@ -395,7 +397,7 @@ static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, unusedArg u16 atkSpecie
 {
 	u8 numHits = 1;
 
-	if (move == MOVE_SURGINGSTRIKES
+	if (move == MOVE_SURGINGSTRIKES || move == MOVE_TRIPLEDIVE
 	#ifdef SPECIES_ASHGRENINJA
 	|| (move == MOVE_WATERSHURIKEN && atkSpecies == SPECIES_ASHGRENINJA)
 	#endif
@@ -718,9 +720,18 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 			if (finalHp >= monDef->hp)
 				return 0;
 			return monDef->hp - finalHp;
-		case EFFECT_BURN_UP:
-			if (!IsOfType(bankAtk, TYPE_FIRE))
-				return 0;
+		case EFFECT_BURN_UP: ;
+			switch (move)
+			{
+				case MOVE_BURNUP: 
+					if (!IsOfType(bankAtk, TYPE_FIRE))
+						return 0;
+					break;
+				case MOVE_DOUBLESHOCK:
+					if (!IsOfType(bankAtk, TYPE_ELECTRIC))
+						return 0;
+					break;
+			}
 			break;
 		case EFFECT_POLTERGEIST:
 			if (WillPoltergeistFail(monDef->item, GetMonAbilityAfterTrace(monDef, bankAtk)))
@@ -1520,6 +1531,9 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
 			return; //Miracle Eye causes normal damage hits
+
+		if (move == MOVE_NIHILLIGHT && defType == TYPE_FAIRY)
+			return; //Nihil Light bypasses Fairy immunity
 	}
 	else if (checkMonDef)
 	{
@@ -1855,6 +1869,28 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 				}
 			}
 			break;
+
+		case MOVE_RAGINGBULL: ;
+			switch(SPECIES(bankAtk))
+			{
+				case SPECIES_TAUROS_P_COMBAT:
+					moveType = TYPE_FIGHTING;
+					break;
+				case SPECIES_TAUROS_P_BLAZE:
+					moveType = TYPE_FIRE;
+					break;
+				case SPECIES_TAUROS_P_AQUA:
+					moveType = TYPE_WATER;
+					break;
+			}
+			break;
+
+		case MOVE_IVYCUDGEL:
+			if (SpeciesToNationalPokedexNum(SPECIES(bankAtk)) == NATIONAL_DEX_OGERPON && effect == ITEM_EFFECT_OGERPON_MASK)
+				moveType = quality;
+			else
+				moveType = TYPE_GRASS;
+			break;
 	}
 
 	if (moveType == TYPE_NORMAL && IsIonDelugeActive())
@@ -1954,6 +1990,21 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 						moveType = TYPE_NORMAL;
 						break;
 				}
+			}
+			break;
+
+		case MOVE_RAGINGBULL: ;
+			switch(mon->species)
+			{
+				case SPECIES_TAUROS_P_COMBAT:
+					moveType = TYPE_FIGHTING;
+					break;
+				case SPECIES_TAUROS_P_BLAZE:
+					moveType = TYPE_FIRE;
+					break;
+				case SPECIES_TAUROS_P_AQUA:
+					moveType = TYPE_WATER;
+					break;
 			}
 			break;
 	}
@@ -3039,11 +3090,23 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 					damage = (damage * 15) / 10;
 					break;
 				case TYPE_WATER:
-					damage /= 2;
+					if (move == MOVE_HYDROSTEAM)
+					{
+						damage = (damage * 15) / 10;
+					}
+					else
+					{
+						damage /= 2;
+					}
 					break;
 			}
 		}
 	}
+
+	//Target used Glaive Rush in previous turn
+	if (gNewBS->GlaiveRushTimers[bankDef])
+		damage *= 2;
+
 
 	//Aura abilities
 	u8 auraType = GetAuraTypeOnField();
@@ -3371,6 +3434,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 
 		case MOVE_STOMPINGTANTRUM:
+		case MOVE_TEMPERFLARE:
 			if (!useMonAtk && gNewBS->StompingTantrumTimers[bankAtk])
 				power *= 2;
 			break;
@@ -3569,6 +3633,11 @@ static u16 GetBasePower(struct DamageCalc* data)
 		case MOVE_WRINGOUT:
 			if (!(data->specialFlags & FLAG_IGNORE_TARGET))
 				power = MathMax(1, (data->defHP * 120) / data->defMaxHP);
+			break;
+
+		case MOVE_HARDPRESS:
+			if (!(data->specialFlags & FLAG_IGNORE_TARGET))
+				power = MathMax(1, (data->defHP * 100) / data->defMaxHP);
 			break;
 
 		case MOVE_TRUMPCARD: ;
@@ -3781,13 +3850,46 @@ static u16 GetBasePower(struct DamageCalc* data)
 			#endif
 			break;
 
+		case MOVE_LASTRESPECTS: ;
+			u8 faints = gBattleStruct->faintedMonsCounter[SIDE(bankAtk)];
+			power = MathMin(5050, (faints * 50) + power); 
+			break;
+
+		case MOVE_PSYBLADE:
+			if (gTerrainType == ELECTRIC_TERRAIN) //no grounding check, as it is how it works in SV
+				power = 120;
+			break;
+
+		case MOVE_COLLISIONCOURSE:
+		case MOVE_ELECTRODRIFT:
+			if (!(data->specialFlags & FLAG_IGNORE_TARGET)
+			&& data->resultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+				power = (power * 4) / 3;
+			break;
+
+		case MOVE_RAGEFIST: ;
+			u8 hitCounter = gNewBS->hitCounter[SIDE(bankAtk)][gBattlerPartyIndexes[bankAtk]];
+			power = MathMin(350, (hitCounter * 50) + power);
+			break;
+
 		default:
-			if (gBattleMoves[move].effect == EFFECT_TRIPLE_KICK)
+			if (gBattleMoves[move].effect == EFFECT_FICKLE_BEAM)
+			{
+				if(data->specialFlags & FLAG_AI_CALC)
+					power = 104;
+				else
+				{
+					power = IsFickleBeamActive(bankAtk) ? (power * 2) : power;
+				}
+			}
+			else if (gBattleMoves[move].effect == EFFECT_TRIPLE_KICK)
 			{
 				if (data->specialFlags & FLAG_AI_CALC) //Pretend as if it'll hit three times
 				{
 					//Generalized base power considering accuracy and missing
-					if (move == MOVE_TRIPLEAXEL)
+					if (move == MOVE_POPULATIONBOMB)
+						power = 120;
+					else if (move == MOVE_TRIPLEAXEL)
 						power = 100;
 					else
 						power = 50;

@@ -114,6 +114,11 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				goto AI_FREEZE_CHECKS;
 			break;
 
+		case EFFECT_SLEEP_HIT:
+			if (CalcSecondaryEffectChance(bankAtk, move, atkAbility) >= 75 && !MoveBlockedBySubstitute(move, bankAtk, bankDef))
+				goto AI_SLEEP_CHECKS;
+			break;
+
 		case EFFECT_EXPLOSION:
 			if (predictedMove != MOVE_NONE //If foe isn't going to attack, don't kill yourself now
 			&&  gBattleMoves[predictedMove].effect != EFFECT_PROTECT)
@@ -395,6 +400,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_DRAGON_DANCE:
 			switch (move)
 			{
+				case MOVE_TIDYUP:
+					goto TIDYUP_HAZARD_CHECK;
 				case MOVE_SHELLSMASH:
 					if (atkAbility == ABILITY_CONTRARY)
 					{
@@ -411,6 +418,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 					break;
 				default:
+					TIDYUP_CONTINUE:
 					if (atkAbility == ABILITY_CONTRARY)
 						break;
 
@@ -502,7 +510,12 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_DEFENSE_DOWN_2:
 		AI_DEFENSE_MINUS:
 			if (GoodIdeaToLowerDefense(bankDef, bankAtk, move))
-				INCREASE_STATUS_VIABILITY(1);
+			{
+				if (move == MOVE_SPICYEXTRACT && !GoodIdeaToRaiseAttackAgainst(bankDef, bankAtk, 2))
+					INCREASE_STATUS_VIABILITY(1);
+				else if (move != MOVE_SPICYEXTRACT)
+					INCREASE_STATUS_VIABILITY(1);
+			}
 			break;
 
 		case EFFECT_SPEED_DOWN:
@@ -721,7 +734,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 
 		case EFFECT_TRAP:
 		AI_TRAP:
-			if (MoveInMoveset(MOVE_RAPIDSPIN, bankDef)
+			if ((MoveInMoveset(MOVE_RAPIDSPIN, bankDef) || MoveInMoveset(MOVE_MORTALSPIN, bankDef))
 			||  IsOfType(bankDef, TYPE_GHOST)
 			||  data->defStatus2 & (STATUS2_WRAPPED))
 			{
@@ -884,8 +897,16 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				goto AI_CONFUSE_CHECK;
 			break;
 
-		case EFFECT_SUBSTITUTE:
-			IncreaseSubstituteViability(&viability, class, bankAtk, bankDef);
+		case EFFECT_SUBSTITUTE: ;
+			switch (move)
+			{
+				case MOVE_SUBSTITUTE:
+					IncreaseSubstituteViability(&viability, class, bankAtk, bankDef); 
+					break;
+				case MOVE_SHEDTAIL:
+					IncreaseShedTailViability(&viability, class, bankAtk, bankDef);
+					break;
+			}
 			break;
 
 		case EFFECT_MIMIC:
@@ -915,7 +936,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 		case EFFECT_LEECH_SEED:
 			if (IsOfType(bankDef, TYPE_GRASS)
 			|| data->defStatus3 & STATUS3_LEECHSEED
-			|| MoveInMoveset(MOVE_RAPIDSPIN, bankDef)
+			|| (MoveInMoveset(MOVE_RAPIDSPIN, bankDef) || MoveInMoveset(MOVE_MORTALSPIN, bankDef))
 			|| defAbility == ABILITY_LIQUIDOOZE
 			|| defAbility == ABILITY_MAGICGUARD)
 				break;
@@ -929,6 +950,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 		
 		case EFFECT_TELEPORT:
+			TELEPORT_CHECK:
 			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || SIDE(bankAtk) == B_SIDE_PLAYER)
 				goto PIVOT_CHECK;
 			break;
@@ -1265,6 +1287,23 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 							break;
 						}
 					}
+					goto PROTECT_CHECKS;
+
+				case MOVE_BURNINGBULWARK:
+					if (predictedMove != MOVE_NONE
+					 && CheckContact(predictedMove, bankDef, bankAtk)
+					 && CanBeBurned(bankDef, bankAtk, TRUE))
+					{
+						if (IsClassStall(class))
+						{
+							INCREASE_VIABILITY(6);
+						}
+						else if (IS_DOUBLE_BATTLE)
+						{
+							INCREASE_VIABILITY(17);
+							break;
+						}
+					}
 					//Fallthrough
 
 				default:
@@ -1553,6 +1592,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_RAPID_SPIN:
+			TIDYUP_HAZARD_CHECK:
 			if (gSideStatuses[SIDE(bankAtk)] & SIDE_STATUS_SPIKES)
 			{
 				if ((IS_SINGLE_BATTLE && ViableMonCountFromBank(bankAtk) >= 2) //Pokemon to switch out to in singles
@@ -1565,6 +1605,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					break;
 				}
 			}
+			if(move == MOVE_TIDYUP)
+				goto TIDYUP_CONTINUE;
 
 			//At this point no entry hazards are to be removed
 			if (move == MOVE_DEFOG)
@@ -1771,6 +1813,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_HAIL:
+			if(move == MOVE_CHILLYRECEPTION)
+				goto TELEPORT_CHECK;
 			if (MoveInMovesetAndUsable(MOVE_AURORAVEIL, bankAtk))
 			{
 				if (IsClassScreener(class))
@@ -2042,6 +2086,8 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			{
 				if ((move == MOVE_HAMMERARM || move == MOVE_ICEHAMMER)
 				&& GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 1, data->atkSpeed, data->defSpeed))
+					goto AI_SPEED_PLUS;
+				else if (move == MOVE_SPINOUT && GoodIdeaToRaiseSpeedAgainst(bankAtk, bankDef, 2, data->atkSpeed, data->atkSpeed))
 					goto AI_SPEED_PLUS;
 				else if (move == MOVE_SUPERPOWER && GoodIdeaToRaiseAttackAgainst(bankAtk, bankDef, 1))
 					goto AI_ATTACK_PLUS;
@@ -2559,6 +2605,15 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 						INCREASE_VIABILITY(3); //Past strongest move
 					break;
 
+				case MOVE_PSYCHICNOISE:
+					if (MoveWouldHitFirst(move, bankAtk, bankDef) && IsMovePredictionHealingMove(bankDef, bankAtk))
+						INCREASE_STATUS_VIABILITY(3); //Try to cancel move
+
+					else if (HealingMoveInMoveset(bankDef)
+					|| data->defItemEffect == ITEM_EFFECT_LEFTOVERS
+					|| (data->defItemEffect == ITEM_EFFECT_BLACK_SLUDGE && IsOfType(bankDef, TYPE_POISON)))
+						INCREASE_VIABILITY(2);
+
 				default: //Heal Block
 					if (MoveWouldHitFirst(move, bankAtk, bankDef) && IsMovePredictionHealingMove(bankDef, bankAtk))
 						INCREASE_STATUS_VIABILITY(3); //Try to cancel move
@@ -2864,6 +2919,7 @@ u8 AIScript_SemiSmart(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			case EFFECT_FREEZE_HIT:
 			case EFFECT_PARALYZE_HIT:
 			case EFFECT_BAD_POISON_HIT:
+			case EFFECT_SLEEP_HIT:
 			case EFFECT_EXPLOSION:
 			case EFFECT_MIRROR_MOVE:
 			case EFFECT_ATTACK_UP:

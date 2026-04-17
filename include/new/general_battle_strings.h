@@ -162,3 +162,9 @@ extern const u8 gText_PrimalAirCurrentEnd[];
 extern const u8 gText_SkyDropUp[];
 extern const u8 gText_FreedFromSkyDrop[];
 extern const u8 gText_AbilitySuppressed[];
+
+extern const u8 gText_Multihit10Times[];
+extern const u8 gText_ChillyReception[];
+extern const u8 gText_DoubleShock[];
+extern const u8 gText_FickleBeamAllOut[];
+extern const u8 gText_DragonCheer[];

@@ -607,6 +607,9 @@ The battlefield is weird.
 #org @gText_BanefulBunkerPSN
 [EFFECT_BANK] was poisoned\nby the BANEFUL BUNKER!
 
+#org @gText_BurningBulwarkBRN
+[EFFECT_BANK] was burned\nby the BURNING BULWARK!
+
 #org @gText_BeakBlast
 [EFFECT_BANK] was burned by\n[ATTACKER]'s beak!
 
@@ -941,3 +944,35 @@ The mysterious air current has\ndissipated!
 #org @gText_AbilitySuppressed
 [TARGET]'s ability\nwas suppressed!
 
+#org @gText_Multihit10Times
+Hit 10 time(s)!
+
+#org @gText_SaltCureSet
+[TARGET] is being\nsalt cured!
+
+#org @gText_HurtBySaltCure
+[SCRIPTING_BANK] is hurt\nby SALT CURE!
+
+#org @gText_MakeItRainScatteredCoins
+Coins were scattered everywhere!
+
+#org @gText_ChillyReception
+[ATTACKER] is preparing\nto tell a chillingly bad joke!
+
+#org @gText_DoubleShock
+[ATTACKER] used up\nall its electricity!
+
+#org @gText_SyrupBombSet
+[TARGET] got covered\nin sticky candy syrup!
+
+#org @gText_SpeedLoweredBySyrupBomb
+[SCRIPTING_BANK] is covered\nin sticky candy syrup!
+
+#org @gText_ElectroShotCharge
+[ATTACKER]\nabsorbed electricity!
+
+#org @gText_FickleBeamAllOut
+[ATTACKER] is going\nall out for this attack!
+
+#org @gText_DragonCheer
+[SCRIPTING_BANK] is getting pumped!
