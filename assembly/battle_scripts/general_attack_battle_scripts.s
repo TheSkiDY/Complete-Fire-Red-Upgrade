@@ -3251,6 +3251,7 @@ BS_151_Solarbeam:
 	@;jumpifabilitypresent ABILITY_AIRLOCK, BSSolarbeamDecideTurn
 	jumpifhelditemeffect BANK_ATTACKER, ITEM_EFFECT_UTILITY_UMBRELLA, BSSolarbeamDecideTurn
 	jumpifweather WEATHER_SUN_ANY BSSolarbeamOnFirstTurn
+	jumpifability BANK_ATTACKER ABILITY_MEGASOL BSSolarbeamOnFirstTurn
 
 BSSolarbeamDecideTurn:
 	jumpifsecondarystatus BANK_ATTACKER STATUS2_MULTIPLETURNS TwoTurnMovesSecondTurnBS

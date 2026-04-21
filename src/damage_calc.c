@@ -1775,7 +1775,9 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 			break;
 
 		case MOVE_WEATHERBALL:
-			if (gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(effect) && WEATHER_HAS_EFFECT)
+			if (ABILITY(bankAtk) == ABILITY_MEGASOL)
+				moveType = TYPE_FIRE;
+			else if (gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(effect) && WEATHER_HAS_EFFECT)
 				moveType = TYPE_WATER;
 			else if (gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAS_EFFECT)
 				moveType = TYPE_ROCK;
@@ -1918,7 +1920,9 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 		case MOVE_WEATHERBALL:
 			if (gMain.inBattle)
 			{
-				if (gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(effect) && WEATHER_HAS_EFFECT)
+				if (ability == ABILITY_MEGASOL)
+					moveType = TYPE_FIRE;
+				else if (gBattleWeather & WEATHER_RAIN_ANY && !ItemEffectIgnoresSunAndRain(effect) && WEATHER_HAS_EFFECT)
 					moveType = TYPE_WATER;
 				else if (gBattleWeather & WEATHER_SANDSTORM_ANY && WEATHER_HAS_EFFECT)
 					moveType = TYPE_ROCK;
@@ -2092,6 +2096,11 @@ void AdjustDamage(bool8 checkFalseSwipe)
 		&& !IsDynamaxed(bankDef)
 		&& ProtectsAgainstZMoves(gCurrentMove, gBankAttacker, bankDef))
 			damage = max(1, (damage  * 25) / 100);
+
+		if (ABILITY(gBankAttacker) == ABILITY_PIERCINGDRILL 
+		 && IsContactMove(gCurrentMove, gBankAttacker, bankDef)
+		 && ProtectsAgainstZMoves(gCurrentMove, gBankAttacker, bankDef))
+			damage = max(1, (damage * 25) / 100);
 
 		if (MoveBlockedBySubstitute(gCurrentMove, gBankAttacker, bankDef))
 			goto END;
@@ -3097,7 +3106,8 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 
 		case MOVE_SOLARBEAM:
 		case MOVE_SOLARBLADE:
-			if (WEATHER_HAS_EFFECT
+			if (data->atkAbility != ABILITY_MEGASOL
+			&& WEATHER_HAS_EFFECT
 			&& !ItemEffectIgnoresSunAndRain(data->atkItemEffect)
 			&& gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SANDSTORM_ANY | WEATHER_HAIL_ANY | WEATHER_FOG_ANY | WEATHER_AIR_CURRENT_PRIMAL))
 				damage /= 2; //Any weather except sun weakens Solar Beam
@@ -3124,7 +3134,25 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		damage = (damage * 15) / 10;
 
 	//Weather Boost
-	if (WEATHER_HAS_EFFECT && !ItemEffectIgnoresSunAndRain(data->defItemEffect))
+	if (data->atkAbility == ABILITY_MEGASOL)
+	{
+		switch (data->moveType) {
+			case TYPE_FIRE:
+				damage = (damage * 15) / 10;
+				break;
+			case TYPE_WATER:
+				if (move == MOVE_HYDROSTEAM)
+				{
+					damage = (damage * 15) / 10;
+				}
+				else
+				{
+					damage /= 2;
+				}
+				break;
+		}
+	}
+	else if (WEATHER_HAS_EFFECT && !ItemEffectIgnoresSunAndRain(data->defItemEffect))
 	{
 		if (gBattleWeather & WEATHER_RAIN_ANY)
 		{
@@ -3525,7 +3553,7 @@ static u16 GetBasePower(struct DamageCalc* data)
 			break;
 
 		case MOVE_WEATHERBALL:
-			if (gBattleWeather & WEATHER_ANY && WEATHER_HAS_EFFECT && !(gBattleWeather & WEATHER_AIR_CURRENT_PRIMAL))
+			if (data->atkAbility == ABILITY_MEGASOL || (gBattleWeather & WEATHER_ANY && WEATHER_HAS_EFFECT && !(gBattleWeather & WEATHER_AIR_CURRENT_PRIMAL)))
 				power *= 2;
 			break;
 

@@ -273,6 +273,10 @@ extern const u8 NAME_WELL_BAKED_BODY[];
 extern const u8 DESC_WELL_BAKED_BODY[];
 extern const u8 NAME_ZERO_TO_HERO[];
 extern const u8 DESC_ZERO_TO_HERO[];
+extern const u8 NAME_DRAGONIZE[];
+extern const u8 DESC_DRAGONIZE[];
+extern const u8 NAME_SPICY_SPRAY[];
+extern const u8 DESC_SPICY_SPRAY[];
 
 
 extern const u8 gText_NormalAuraActivate[];
@@ -727,6 +731,7 @@ static struct AbilityVariant sNormalizeVariantTable[TYPE_FAIRY + 1] =
 	[TYPE_FAIRY] = {.name = NAME_PIXILATE, .description = DESC_PIXILATE},
 	[TYPE_ICE] = {.name = NAME_REFRIGERATE, .description = DESC_REFRIGERATE},
 	[TYPE_ELECTRIC] = {.name = NAME_GALVANIZE, .description = DESC_GALVANIZE},
+	[TYPE_DRAGON] = {.name = NAME_DRAGONIZE, .description = DESC_DRAGONIZE},
 };
 
 static struct AbilityVariant sTypePowerUpVariantTable[TYPE_FAIRY + 1] = 
@@ -802,6 +807,8 @@ static struct MonWithTypeBasedAbilityVariant sNormalizeVariantsData[] =
 	{.species = SPECIES_GEODUDE_A, .type = TYPE_ELECTRIC },
 	{.species = SPECIES_GRAVELER_A, .type = TYPE_ELECTRIC },
 	{.species = SPECIES_GOLEM_A, .type = TYPE_ELECTRIC },
+	{.species = SPECIES_GOLEM_A, .type = TYPE_ELECTRIC },
+	{.species = SPECIES_FERALIGATR_MEGA, .type = TYPE_DRAGON },
 };
 
 static struct MonWithTypeBasedAbilityVariant sTypePowerUpVariantsData[] =
@@ -842,6 +849,7 @@ static struct AbilityBranch sBranchTable[] =
 	[BRANCH_POISON_POINT] = {.ability = ABILITYBRANCH_STATUS_ON_CONTACT, .name = NAME_POISON_POINT, .description = DESC_POISON_POINT},
 	[BRANCH_CURSED_BODY] = {.ability = ABILITYBRANCH_STATUS_ON_CONTACT, .name = NAME_CURSED_BODY, .description = DESC_CURSED_BODY},
 	[BRANCH_FLAME_BODY] = {.ability = ABILITYBRANCH_STATUS_ON_CONTACT, .name = NAME_FLAME_BODY, .description = DESC_FLAME_BODY},
+	[BRANCH_SPICY_SPRAY] = {.ability = ABILITYBRANCH_STATUS_ON_CONTACT, .name = NAME_SPICY_SPRAY, .description = DESC_SPICY_SPRAY},
 	[BRANCH_VOLT_ABSORB] = {.ability = ABILITYBRANCH_TYPE_ABSORPTION, .name = NAME_VOLT_ABSORB, .description = DESC_VOLT_ABSORB},
 	[BRANCH_WATER_ABSORB] = {.ability = ABILITYBRANCH_TYPE_ABSORPTION, .name = NAME_WATER_ABSORB, .description = DESC_WATER_ABSORB},
 	[BRANCH_SHADOW_TAG] = {.ability = ABILITYBRANCH_SWITCHOUT_PREVENTION, .name = NAME_SHADOW_TAG, .description = DESC_SHADOW_TAG},
@@ -1273,6 +1281,7 @@ static struct MonWithBranchedAbility sStatusContactBranchData[] =
 	{ .species = SPECIES_SIZZLIPEDE,			.branch = BRANCH_FLAME_BODY },
 	{ .species = SPECIES_CENTISKORCH,			.branch = BRANCH_FLAME_BODY },
 	{ .species = SPECIES_CHARCADET,				.branch = BRANCH_FLAME_BODY },
+	{ .species = SPECIES_SCOVILLAIN_MEGA, 		.branch = BRANCH_SPICY_SPRAY },
 
 };
 

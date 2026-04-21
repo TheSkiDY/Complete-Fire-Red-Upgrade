@@ -898,7 +898,11 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 					break;
 
 				default:
-					if (gBattleWeather & WEATHER_SUN_ANY)
+					if (ABILITY(bankAtk) == ABILITY_MEGASOL)
+					{
+						amountToRecover = maxHp;
+					}
+					else if (gBattleWeather & WEATHER_SUN_ANY)
 					{
 						if (AffectedBySun(bankAtk))
 							amountToRecover = maxHp;

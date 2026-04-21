@@ -87,11 +87,10 @@ void IncreaseNimbleCounter(void)
 
 void ModifyGrowthInSun(void)
 {
-	if (gCurrentMove == MOVE_GROWTH
-	&& WEATHER_HAS_EFFECT
-	&& gBattleWeather & WEATHER_SUN_ANY
-	&& AffectedBySun(gBankAttacker))
+	if ((gCurrentMove == MOVE_GROWTH && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && AffectedBySun(gBankAttacker))
+		|| (ABILITY(gBankAttacker) == ABILITY_MEGASOL))
 		gBattleScripting.statChanger += INCREASE_1;
+
 }
 
 void AcupressureFunc(void)

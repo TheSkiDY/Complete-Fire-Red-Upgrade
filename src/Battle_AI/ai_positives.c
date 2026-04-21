@@ -1688,6 +1688,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				IncreaseTailwindViability(&viability, class, bankAtk, bankDef);
 
 			else if (!ItemEffectIgnoresSunAndRain(data->atkItemEffect)
+			&& atkAbility != ABILITY_MEGASOL
 			&& (BankHasBranchAbility(bankAtk, BRANCH_CHLOROPHYLL) 
 			 || atkAbility == ABILITY_FLOWERGIFT
 			 || BankHasBranchAbility(bankAtk, BRANCH_FORECAST)

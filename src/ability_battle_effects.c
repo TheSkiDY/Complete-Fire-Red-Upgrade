@@ -1932,6 +1932,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						effect++;
 					}
 				}
+				else if (BankHasBranchAbility(bank, BRANCH_SPICY_SPRAY))
+				{
+					if (MOVE_HAD_EFFECT
+					&& TOOK_DAMAGE(bank)
+					&& BATTLER_ALIVE(gBankAttacker)
+					&& gBankAttacker != bank
+					&& CanBeBurned(gBankAttacker, bank, TRUE))
+					{
+						gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_BURN;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_AbilityApplySecondaryEffect;
+						gHitMarker |= HITMARKER_IGNORE_SAFEGUARD; //Safeguard checked earlier
+						effect++;
+					}
+				}
 				else if (BankHasBranchAbility(bank, BRANCH_CUTE_CHARM))
 				{
 					if (MOVE_HAD_EFFECT

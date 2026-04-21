@@ -193,7 +193,8 @@ bool8 ProtectAffects(u16 move, u8 bankAtk, u8 bankDef, bool8 set)
 	u8 defSide = SIDE(bankDef);
 
 	#ifdef ABILITY_UNSEENFIST
-	if (protectFlag && IsContactMove(move, bankAtk, bankDef) && ABILITY(bankAtk) == ABILITY_UNSEENFIST) //Uses IsContactMove instead of CheckContact because Protective Pads don't affect this Ability
+	if (protectFlag && IsContactMove(move, bankAtk, bankDef) 
+	  && (ABILITY(bankAtk) == ABILITY_UNSEENFIST || ABILITY(bankAtk) == ABILITY_PIERCINGDRILL)) //Uses IsContactMove instead of CheckContact because Protective Pads don't affect this Ability
 		protectFlag = FALSE;
 	#endif
 
@@ -313,6 +314,7 @@ bool8 DoesProtectionMoveBlockMove(u8 bankAtk, u8 bankDef, u16 atkMove, u16 prote
 	if (!gSpecialMoveFlags[atkMove].gMovesThatLiftProtectTable
 	#ifdef ABILITY_UNSEENFIST
 	&& ABILITY(bankAtk) != ABILITY_UNSEENFIST
+	&& ABILITY(bankAtk) != ABILITY_PIERCINGDRILL
 	#endif
 	)
 	{
@@ -454,9 +456,8 @@ static u32 AccuracyCalcPassDefAbilityItemEffect(u16 move, u8 bankAtk, u8 bankDef
 	moveAcc = TryAdjustAccuracyForOriginForms(moveAcc, move, bankAtk);
 
 	//Check Thunder + Hurricane in sunny weather
-	if (WEATHER_HAS_EFFECT
-	&& (gBattleWeather & WEATHER_SUN_ANY)
-	&& !ItemEffectIgnoresSunAndRain(defEffect)
+	if (((WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY) && !ItemEffectIgnoresSunAndRain(defEffect))
+		|| (ABILITY(atkAbility) == ABILITY_MEGASOL))
 	&& gSpecialMoveFlags[move].gAlwaysHitInRainMoves)
 		moveAcc = 50;
 
@@ -586,8 +587,7 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 	moveAcc = TryAdjustAccuracyForOriginForms(moveAcc, move, bankAtk);
 
 	//Check Thunder + Hurricane in sunny weather
-	if (WEATHER_HAS_EFFECT
-	&& (gBattleWeather & WEATHER_SUN_ANY)
+	if (((WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY)) || (atkAbility == ABILITY_MEGASOL))
 	&& gSpecialMoveFlags[move].gAlwaysHitInRainMoves)
 		moveAcc = 50;
 

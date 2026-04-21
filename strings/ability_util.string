@@ -750,3 +750,15 @@ ZERO TO HERO
 
 #org @DESC_ZERO_TO_HERO
 Transforms after switching out.
+
+#org @NAME_SPICY_SPRAY
+SPICY SPRAY
+
+#org @DESC_SPICY_SPRAY
+Burns any attacker.
+
+#org @NAME_DRAGONIZE
+DRAGONIZE
+
+#org @DESC_DRAGONIZE
+NORMAL moves become DRAGON type.

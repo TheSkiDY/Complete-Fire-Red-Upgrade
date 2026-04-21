@@ -1654,7 +1654,8 @@ u8 AttacksThisTurn(u8 bank, u16 move) // Note: returns 1 if it's a charging turn
 	if (ITEM_EFFECT(bank) == ITEM_EFFECT_POWER_HERB)
 		return 2;
 
-	if (moveEffect == EFFECT_SOLARBEAM && (gBattleWeather & WEATHER_SUN_ANY) && WEATHER_HAS_EFFECT)
+	if (moveEffect == EFFECT_SOLARBEAM 
+		&& (((gBattleWeather & WEATHER_SUN_ANY) && WEATHER_HAS_EFFECT) || (ABILITY(bank) == ABILITY_MEGASOL)))
 		return 2;
 
 	if (moveEffect == EFFECT_SKULL_BASH
@@ -2350,6 +2351,9 @@ bool8 CanBeFrozen(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	}
 
 	if (gBattleWeather & WEATHER_SUN_ANY && WEATHER_HAS_EFFECT && AffectedBySun(bankDef))
+		return FALSE;
+
+	if (atkAbility == ABILITY_MEGASOL)
 		return FALSE;
 
 	return TRUE;

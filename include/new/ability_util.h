@@ -74,6 +74,7 @@
 #define BRANCH_TOXIC_CHAIN 64
 #define BRANCH_WELL_BAKED_BODY 65
 #define BRANCH_ZERO_TO_HERO 66
+#define BRANCH_SPICY_SPRAY 67
 
 
 //Exported Functions

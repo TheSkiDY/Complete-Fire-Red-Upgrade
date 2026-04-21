@@ -603,3 +603,9 @@ Becomes charged if hit by\na wind move.
 
 #org @DESC_WINDRIDER
 Boosts ATTACK if hit by a wind move.
+
+#org @DESC_MEGASOL
+Acts as if there is harsh sunlight.
+
+#org @DESC_PIERCINGDRILL
+Deals 25% damage through protection.
