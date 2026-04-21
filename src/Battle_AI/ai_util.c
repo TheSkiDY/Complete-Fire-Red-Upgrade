@@ -2395,6 +2395,11 @@ bool8 IsDamagingMoveUnusableByMon(u16 move, struct Pokemon* monAtk, u8 bankDef)
 				if (PriorityCalcMon(monAtk, move) > 0) //Check if right num
 					return TRUE;
 				break;
+
+			case ABILITY_WINDRIDER:
+				if (gSpecialMoveFlags[move].gWindMoves)
+					return TRUE;
+				break;
 		}
 	}
 

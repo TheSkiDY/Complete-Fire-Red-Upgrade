@@ -35,6 +35,7 @@ attackcanceler_battle_scripts.s
 .global BattleScript_MoveUsedRaidBattlePrevents
 .global BattleScript_MoveUsedRaidShieldPrevents
 .global BattleScript_RaidBattleStatNullification
+.global BattleScript_GoodAsGoldPrevents
 
 .global BattleScript_TryRemoveIllusion
 .global gText_AbilityRaisedStat
@@ -350,5 +351,19 @@ BattleScript_RaidBattleStatNullification:
 	waitmessage DELAY_1SECOND
 	refreshhpbar BANK_SCRIPTING
 	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_GoodAsGoldPrevents:
+	attackstring
+	orbyte OUTCOME OUTCOME_FAILED
+	ppreduce
+	pause DELAY_HALFSECOND
+	call BattleScript_AbilityPopUp
+	setword BATTLE_STRING_LOADER gText_GoodAsGoldAttackCancel
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto BS_MOVE_END
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

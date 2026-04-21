@@ -173,5 +173,7 @@ void FickleBeamHelperFunc(void);
 bool8 IsFickleBeamActive(u8 bank);
 void DragonCheerFunc(void);
 void TrySetAlluringVoiceMoveEffect(void);
+void CudChewBerryEat(void);
+void WindPowerFunc(void);
 
 extern const u8 BattleScript_TidyUpRemoveHazards[];

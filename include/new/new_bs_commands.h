@@ -171,6 +171,7 @@ enum Counters
 	Counters_TarShot,			//17
 	Counters_GlaiveRush,		//18
 	Counters_SyrupBomb,			//19
+	Counters_CudChew,			//20
 };
 
 void IncreaseHitCounter(u8 bank);

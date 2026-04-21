@@ -6058,6 +6058,7 @@ BS_239_TeamEffectsAndMagnetRise:
 	waitanimation
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	jumpifmove MOVE_TAILWIND Tailwind_HandleWindRider
 	goto BS_MOVE_END
 	
 MagnetRiseBS:
@@ -6070,6 +6071,58 @@ MagnetRiseBS:
 	setword BATTLE_STRING_LOADER gText_MagnetRiseSet
 	printstring 0x184
 	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
+
+Tailwind_HandleWindRider:
+	setbyte TARGET_BANK 0x0
+WindRiderActivatesLoop:
+	setstatchanger STAT_ATK | INCREASE_1
+	trygetwindridertarget BattleScript_WindRiderActivatesReturn
+	@callasm BattleScript_AbilityPopUp @AbilityPopUp crashes for some reason
+	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR WindRiderActiavatesLoopIncrement
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BattleScript_WindRiderPrevented
+	setgraphicalstatchangevalues
+	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+	@callasm BattleScript_AbilityPopUpRevert
+	goto WindRiderActiavatesLoopIncrement
+
+BattleScript_WindRiderPrevented:
+	pause DELAY_HALFSECOND
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+WindRiderActiavatesLoopIncrement:
+	jumpifword NOTANDS BATTLE_TYPE BATTLE_DOUBLE BattleScript_WindRiderActivatesReturn
+	addbyte TARGET_BANK 0x1
+	trygetwindridertarget BattleScript_WindRiderActivatesReturn
+	goto WindRiderActivatesLoop
+
+BattleScript_WindRiderActivatesReturn:
+	callasm RestoreOriginalAttackerAndTarget
+	callasm RestoreOriginalTargetResultFlags
+	goto Tailwind_HandleWindPower
+
+Tailwind_HandleWindPower:
+	setbyte TARGET_BANK 0x0
+WindPowerActivatesLoop:
+	trygetwindpowertarget BattleScript_WindPowerActivatesReturn
+	callasm WindPowerFunc
+	setword BATTLE_STRING_LOADER gText_ElectromorphosisWindPower
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto WindPowerActivatesLoopIncrement
+
+WindPowerActivatesLoopIncrement:
+	jumpifword NOTANDS BATTLE_TYPE BATTLE_DOUBLE BattleScript_WindPowerActivatesReturn
+	addbyte TARGET_BANK 0x1
+	trygetwindpowertarget BattleScript_WindPowerActivatesReturn
+	goto WindPowerActivatesLoop
+
+BattleScript_WindPowerActivatesReturn:
+	callasm RestoreOriginalAttackerAndTarget
+	callasm RestoreOriginalTargetResultFlags
 	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

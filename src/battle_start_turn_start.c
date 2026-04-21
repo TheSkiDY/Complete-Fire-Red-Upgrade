@@ -2215,6 +2215,8 @@ s32 BracketCalc(u8 bank, u8 action, u16 move)
 					return -2;
 			}
 		}
+		if (ability == ABILITY_MYCELIUMMIGHT && SPLIT(move) == SPLIT_STATUS)
+			return -1;
 
 		if (ability == ABILITY_STALL)
 			return -1;
@@ -2317,6 +2319,11 @@ u32 SpeedCalc(u8 bank)
 			break;
 	}
 
+	if (BankProtosynthesisQuarkDriveActive(bank) && GetHighestStatForProtosynthesisQuarkDrive(bank) == STAT_STAGE_SPEED)
+	{
+		speed *= 2;
+	}
+
 	speed = BoostSpeedByItemEffect(itemEffect, itemQuality, SPECIES(bank), speed, IsDynamaxed(bank));
 
 	if (BankHasTailwind(bank))
@@ -2398,6 +2405,11 @@ u32 SpeedCalcMon(u8 side, struct Pokemon* mon) //Used for the AI
 				speed *= 2;
 			break;
 	}
+
+	if(MonProtosynthesisQuarkDriveActive(side, mon) && GetHighestStatForProtosynthesisQuarkDriveMon(mon) == STAT_STAGE_SPEED)
+	{
+		speed *=2;
+	}	
 
 	//Check for items that alter speed
 	speed = BoostSpeedByItemEffect(itemEffect, itemQuality, mon->species, speed, FALSE);

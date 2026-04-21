@@ -3,6 +3,7 @@
 #include "../include/battle_anim.h"
 #include "../include/pokeball.h"
 #include "../include/random.h"
+#include "../include/string_util.h"
 #include "../include/constants/pokedex.h"
 #include "../include/constants/songs.h"
 
@@ -1564,6 +1565,15 @@ void SeedRoomServiceLooper(void)
 				return;
 			}
 		}
+		if (BankProtosynthesisQuarkDriveActive(bank) && !gNewBS->ProtosynthesisQuarkDriveActivated[bank])
+		{
+			gNewBS->ProtosynthesisQuarkDriveActivated[bank] = TRUE;
+			u8 stat = GetHighestStatForProtosynthesisQuarkDrive(bank);
+			gBattleScripting.bank = bank;
+			StringCopy(gBattleTextBuff1, gStatNamesTable[stat]);	
+			gBattleStringLoader = gText_QuarkDriveActivate;
+			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+		}
 	}
 }
 
@@ -2748,4 +2758,23 @@ void TrySetAlluringVoiceMoveEffect(void)
 {
 	if (gNewBS->statRoseThisRound[gBankTarget])
 		gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_CONFUSION;
+}
+
+void CudChewBerryEat(void)
+{
+	gBattlescriptCurrInstr += 5;
+
+	if (ItemBattleEffects(ItemEffects_EndTurn, gBattleScripting.bank, TRUE, TRUE))
+		gNewBS->doingPluckItemEffect = TRUE;
+	else if (ItemBattleEffects(ItemEffects_ContactTarget, gBattleScripting.bank, TRUE, TRUE))
+		gNewBS->doingPluckItemEffect = TRUE;
+
+	gBattlescriptCurrInstr -= 5;
+}
+
+void WindPowerFunc(void)
+{
+	gStatuses3[gBankTarget] |= STATUS3_CHARGED_UP;
+    gDisableStructs[gBankTarget].chargeTimer = 2;
+    gDisableStructs[gBankTarget].chargeTimerStartValue = 2;
 }

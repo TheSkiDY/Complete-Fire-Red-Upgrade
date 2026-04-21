@@ -976,3 +976,9 @@ Coins were scattered everywhere!
 
 #org @gText_DragonCheer
 [SCRIPTING_BANK] is getting pumped!
+
+#org @gText_GoodAsGoldAttackCancel
+But [SCRIPTING_BANK]'s GOOD AS GOLD\nprevents status moves!
+
+#org @gText_HospitalityHealed
+[EFFECT_BANK] drank down\nall the matcha that [SCRIPTING_BANK] made!

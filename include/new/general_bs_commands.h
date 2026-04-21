@@ -68,3 +68,5 @@ enum CastformForms
 	CASTFORM_RAIN,
 	CASTFORM_HAIL
 };
+
+extern const u8* const sEntryHazardsStrings[];

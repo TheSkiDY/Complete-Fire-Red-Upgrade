@@ -773,7 +773,9 @@ bool8 DoesFishBite(void)
 		if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL))
 		{
 			u8 ability = GetMonAbility(&gPlayerParty[0]);
-			if (ability == ABILITY_SUCTIONCUPS || ability  == ABILITY_STICKYHOLD)
+			u16 species = GetMonData(&gPlayerParty[0],MON_DATA_SPECIES, NULL);
+			if ((ability == ABILITY_SUCTIONCUPS && !SpeciesHasBranchAbility(species, ability, BRANCH_GUARD_DOG))
+			 || ability  == ABILITY_STICKYHOLD)
 				chance = 85; //85% chance with abilities
 		}
 
@@ -1177,12 +1179,14 @@ bool8 StartRandomWildEncounter(bool8 waterMon)
 static bool8 IsAbilityAllowingEncounter(u8 level)
 {
 	u8 ability;
+	u16 species;
 
 	if (GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL))
 		return TRUE;
 
 	ability = GetMonAbility(&gPlayerParty[0]);
-	if (ability == ABILITY_KEENEYE || ability == ABILITY_INTIMIDATE)
+	species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
+	if ((ability == ABILITY_KEENEYE && !SpeciesHasBranchAbility(species, ability, BRANCH_MINDS_EYE)) || ability == ABILITY_INTIMIDATE)
 	{
 		u8 playerMonLevel = gPlayerParty[0].level;
 		if (playerMonLevel > 5 && level <= playerMonLevel - 5 && !umodsi(Random(), 2))

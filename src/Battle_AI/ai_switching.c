@@ -519,7 +519,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(struct Pokemon* party, u8 firstId, 
 	}
 
 	moveType = GetMoveTypeSpecial(foe1, predictedMove1);
-	if (IS_MOLD_BREAKER(ABILITY(foe1), predictedMove1))
+	if (IS_MOLD_BREAKER(ABILITY(foe1), predictedMove1) || IS_MYCELIUM_MIGHT(ABILITY(foe1), predictedMove1))
 		return FALSE; //Can't absorb move if the Ability is ignored
 
 	switch (moveType) {

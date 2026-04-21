@@ -1526,7 +1526,7 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if (!checkMonDef && multiplier == TYPE_MUL_NO_EFFECT)
 	{
 		if ((defType == TYPE_GHOST && (moveType == TYPE_NORMAL || moveType == TYPE_FIGHTING))
-		&& (gBattleMons[bankDef].status2 & STATUS2_FORESIGHT || atkAbility == ABILITY_SCRAPPY))
+		&& (gBattleMons[bankDef].status2 & STATUS2_FORESIGHT || atkAbility == ABILITY_SCRAPPY || BankHasBranchAbility(FOE(bankDef), BRANCH_MINDS_EYE)))
 			return; //Foresight & Scrappy break Ghost immunity
 
 		if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && (gStatuses3[bankDef] & STATUS3_MIRACLE_EYED))
@@ -1537,7 +1537,7 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	}
 	else if (checkMonDef)
 	{
-		if (atkAbility == ABILITY_SCRAPPY
+		if ((atkAbility == ABILITY_SCRAPPY || BankHasBranchAbility(FOE(bankDef), BRANCH_MINDS_EYE))
 		&& (defType == TYPE_GHOST && (moveType == TYPE_NORMAL || moveType == TYPE_FIGHTING)))
 			return; //Scrappy breaks Ghost immunity
 	}
@@ -2752,6 +2752,23 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			if (!IsDynamaxed(bankAtk))
 				attack = (attack * 15) / 10;
 			break;
+
+		case ABILITYBRANCH_WEATHER_ON_SWITCHIN:
+		//1.3(3)x Boost
+			if (BankHasBranchAbility(bankAtk, BRANCH_ORICHALCUM_PULSE))
+			{
+				attack = (attack * 4) / 3;
+			}
+			break;
+
+		case ABILITYBRANCH_TERRAIN_SWITCHIN:
+		//1.3(3)x Boost
+			if (BankHasBranchAbility(bankAtk, BRANCH_HADRON_ENGINE))
+			{
+				spAttack = (spAttack * 4) / 3;
+			}
+			break;
+		
 	}
 
 	switch (data->atkPartnerAbility) {
@@ -2801,6 +2818,43 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 			}
 		#endif
 			break;
+	}
+
+//Treasures of Ruin
+	if (IsBranchAbilityOnTheField(BRANCH_TABLETS_OF_RUIN) && !BankHasBranchAbility(bankAtk, BRANCH_TABLETS_OF_RUIN))
+		attack = (75 * attack) / 100; 
+	if (IsBranchAbilityOnTheField(BRANCH_SWORD_OF_RUIN) && !BankHasBranchAbility(bankDef, BRANCH_SWORD_OF_RUIN))
+		defense = (75 * defense) / 100; 
+	if (IsBranchAbilityOnTheField(BRANCH_VESSEL_OF_RUIN) && !BankHasBranchAbility(bankAtk, BRANCH_VESSEL_OF_RUIN))
+		spAttack = (75 * spAttack) / 100; 
+	if (IsBranchAbilityOnTheField(BRANCH_BEADS_OF_RUIN) && !BankHasBranchAbility(bankDef, BRANCH_BEADS_OF_RUIN))
+		spDefense = (75 * spDefense) / 100; 
+
+//Protosynthesis / Quark Drive
+	if (BankProtosynthesisQuarkDriveActive(bankAtk))
+	{
+		switch(GetHighestStatForProtosynthesisQuarkDrive(bankAtk))
+		{
+			case STAT_STAGE_ATK:
+				attack = (13 * attack) / 10;
+				break;
+			case STAT_STAGE_SPATK:
+				spAttack = (13 * spAttack) / 10;
+				break; 
+		}
+	}
+
+	if (BankProtosynthesisQuarkDriveActive(bankDef))
+	{
+		switch(GetHighestStatForProtosynthesisQuarkDrive(bankDef))
+		{
+			case STAT_STAGE_DEF:
+				defense = (13 * defense) / 10;
+				break;
+			case STAT_STAGE_SPDEF:
+				spDefense = (13 * defense) / 10; 
+				break;
+		}
 	}
 
 //Attacker Item Checks
@@ -3193,6 +3247,12 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		case ABILITY_ICESCALES:
 		//0.5x Decrement
 			if (data->moveSplit == SPLIT_SPECIAL)
+				damage /= 2;
+			break;
+
+		case ABILITY_PURIFYINGSALT:
+		//0.5x Decrement
+			if (data->moveType == TYPE_GHOST)
 				damage /= 2;
 			break;
 	}
@@ -4063,6 +4123,18 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//1.3x Boost
 			if (CheckSoundMove(move))
 				power = (power * 13) / 10;
+			break;
+
+		case ABILITY_SHARPNESS:
+		//1.5x Boost
+			if (gSpecialMoveFlags[move].gSlicingMoves)
+				power = (power * 15) / 10;
+			break;
+
+		case ABILITY_SUPREMEOVERLORD: ;
+		//+ 0.1x for every fainted mon in the party
+			u8 faints = (SIDE(bankAtk) == B_SIDE_PLAYER) ? CountFaintedMonsInParty(gPlayerParty) : CountFaintedMonsInParty(gEnemyParty);
+			power = (power * (10 + faints)) / 10;
 			break;
 			
 	}

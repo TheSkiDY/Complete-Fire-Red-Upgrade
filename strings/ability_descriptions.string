@@ -555,3 +555,51 @@ Drill moves land critical hits.
 
 #org @DESC_STENCH
 The stench may cause the target\nto flinch.
+
+#org @DESC_COSTAR
+Copies ally's stat changes.
+
+#org @DESC_CUDCHEW
+Eats a berry again the next turn.
+
+#org @DESC_ELECTROMORPHOSIS
+Becomes charged when damaged.
+
+#org @DESC_GOODASGOLD
+Prevents status moves.
+
+#org @DESC_HOSPITALITY
+Restores ally's HP on switch-in.
+
+#org @DESC_MYCELIUMMIGHT
+Always hit status moves but\nmoves slower.
+
+#org @DESC_POISONPUPPETEER
+Confuses any foe that gets\npoisoned.
+
+#org @DESC_PROTOSYNTHESIS
+Ups highest stat in sun\nor with BOOSTER ENERGY.
+
+#org @DESC_QUARKDRIVE
+Boosts in ELECTRIC TERRAIN\nor with BOOSTER ENERGY.
+
+#org @DESC_PURIFYINGSALT
+Halves damage from GHOST hits.\nCan't be statused.
+
+#org @DESC_SEEDSOWER
+Creates GRASSY TERRRAIN when hit.
+
+#org @DESC_SHARPNESS
+Powers up slicing moves.
+
+#org @DESC_SUPREMEOVERLORD
+Powers up for every fainted\nPOK\eMON in the party.
+
+#org @DESC_TOXICDEBRIS
+Scatters poison spikes on contact.
+
+#org @DESC_WINDPOWER
+Becomes charged if hit by\na wind move.
+
+#org @DESC_WINDRIDER
+Boosts ATTACK if hit by a wind move.

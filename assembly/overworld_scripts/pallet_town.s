@@ -19,15 +19,16 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 20
 	setvar 0x8004 0xF @erase party
 	special 0x62
-	setvar 0x8000 MOVE_PSYCHICNOISE
-	setvar 0x8001 MOVE_NIHILLIGHT
-	setvar 0x8002 MOVE_TACKLE
-	setvar 0x8003 MOVE_ICESPINNER
-	givepokemon SPECIES_MEWTWO 20 0 0 1
-	givepokemon SPECIES_ELECTABUZZ 20 0 0 1
-	givepokemon SPECIES_TAUROS_P_COMBAT 35 0 0 0
-	givepokemon SPECIES_TAUROS_P_BLAZE 35 0 0 0
-	givepokemon SPECIES_TAUROS_P_AQUA 35 0 0 0
+	setvar 0x8000 MOVE_TACKLE
+	setvar 0x8001 MOVE_TAILWIND
+	setvar 0x8002 MOVE_POISONPOWDER
+	setvar 0x8003 MOVE_MALIGNANTCHAIN
+	givepokemon SPECIES_PALAFIN 20 0 0 0
+	givepokemon SPECIES_MEW 20 0 0 1
+	givepokemon SPECIES_BRAMBLEGHAST 20 0 0 0
+	givepokemon SPECIES_KILOWATTREL 20 0 0 0
+	givepokemon SPECIES_IRON_MOTH 2 0 0 0
+	givepokemon SPECIES_IRON_BOULDER 2 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
@@ -38,17 +39,17 @@ EventScript_PalletTown_TechnologyGuy:
 
 EventScript_PalletTown_TechnologyGuy_Part2:
 	setflag 0x90B @wild_custom_moves 
-	setvar 0x8000 MOVE_RECOVER
+	setvar 0x8000 MOVE_WHIRLWIND
 	setvar 0x8001 0x0
 	setvar 0x8002 0x0
 	setvar 0x8003 0x0
-	setwildbattle SPECIES_TOGEKISS 21
+	setwildbattle SPECIES_TOGEKISS 14
 	dowildbattle
 	release
 	end
 	@setwildbattle 0xFFFF 0x0 0x0
-	@setwildbattle SPECIES_REGIDRAGO 20 ITEM_NONE
-	@setwildbattle SPECIES_REGIELEKI 20 ITEM_NONE
+	@setwildbattle SPECIES_REGIDRAGO 11 ITEM_NONE
+	@setwildbattle SPECIES_REGIELEKI 11 ITEM_NONE
 	@special 0x138
 	@waitstate
 	@release

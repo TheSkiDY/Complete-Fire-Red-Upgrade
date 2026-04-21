@@ -403,6 +403,13 @@ void atkFF08_counterclear(void)
 				failed = TRUE;
 			break;
 
+		case Counters_CudChew:
+			if (gNewBS->CudChewTimers[bank])
+				gNewBS->CudChewTimers[bank] = 0;
+			else
+				failed = TRUE;
+			break;
+
 	}
 
 	if (failed)
@@ -482,6 +489,9 @@ void atkFF09_jumpifcounter(void)
 			break;
 		case Counters_SyrupBomb:
 			counter = gNewBS->SyrupBombTimers[bank];
+			break;
+		case Counters_CudChew:
+			counter = gNewBS->CudChewTimers[bank];
 			break;
 		default:
 			counter = 0; //Shouldn't happen...
@@ -605,6 +615,9 @@ void atkFF0E_setcounter(void)
 			break;
 		case Counters_SyrupBomb:
 			gNewBS->SyrupBombTimers[bank] = amount;
+			break;
+		case Counters_CudChew:
+			gNewBS->CudChewTimers[bank] = amount;
 			break;
 	}
 
@@ -1010,18 +1023,36 @@ void atkFE_prefaintmoveendeffects(void)
 						break;
 
 					case ABILITY_POISONTOUCH: ;
-						u8 chance = 30;
-						if (BankHasRainbow(gBankAttacker))
-							chance *= 2;
-
-						if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
-						&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
-						&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
-						&& umodsi(Random(), 100) < chance)
+						if (BankHasBranchAbility(gBankAttacker, BRANCH_TOXIC_CHAIN))
 						{
-							BattleScriptPushCursor();
-							gBattlescriptCurrInstr = BattleScript_PoisonTouch;
-							effect = TRUE;
+							u8 chance = 30;
+							if (BankHasRainbow(gBankAttacker))
+								chance *= 2;
+
+							if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
+							&& umodsi(Random(), 100) < chance)
+							{
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_ToxicChain;
+								effect = TRUE;
+							}
+						}
+						else
+						{
+							u8 chance = 30;
+							if (BankHasRainbow(gBankAttacker))
+								chance *= 2;
+
+							if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
+							&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
+							&& umodsi(Random(), 100) < chance)
+							{
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_PoisonTouch;
+								effect = TRUE;
+							}
 						}
 				}
 			}
@@ -1513,6 +1544,7 @@ void atkFF29_trysetsleep(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
@@ -1624,6 +1656,7 @@ void atkD7_setyawn(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
@@ -1741,6 +1774,7 @@ void atkFF2A_trysetparalysis(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
@@ -1823,7 +1857,7 @@ void atkFF2B_trysetburn(void)
 
 	if (!fail)
 	{
-		if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL))
+		if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL) || BankHasBranchAbility(bank, BRANCH_THERMAL_EXCHANGE))
 		{
 			gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 			return;
@@ -1839,6 +1873,7 @@ void atkFF2B_trysetburn(void)
 				break;
 			case ABILITY_WATERBUBBLE:
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
@@ -1953,6 +1988,7 @@ void atkFF2C_trysetpoison(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ProtectedByAbility;
 				return;
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
@@ -2161,4 +2197,53 @@ void atkFF38_comeuppancedamagecalculator(void)
 		gSpecialStatuses[gBankAttacker].ppNotAffectedByPressure = 1;
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	}
+}
+
+void atkFF39_jumpifbranchability(void)
+{
+	u8 battlerId = GetBankForBattleScript(gBattlescriptCurrInstr[1]);
+	u8 branch = gBattlescriptCurrInstr[2];
+	const u8* jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 3);
+
+	if (BankHasBranchAbility(battlerId, branch))
+	{
+		gBattlescriptCurrInstr = jumpPtr;
+		gBattleScripting.bankWithAbility = battlerId;
+	}
+	else
+		gBattlescriptCurrInstr += 7;
+}
+
+void atkFF3A_trygetwindridertarget(void)
+{
+	for (; gBankTarget < gBattlersCount; ++gBankTarget)
+	{
+		if (ABILITY(gBankTarget) == ABILITY_WINDRIDER && BATTLER_ALIVE(gBankTarget))
+		{
+			gBattleScripting.bank = gBankTarget;
+			break;
+		}
+	}
+
+	if (gBankTarget >= gBattlersCount)
+		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+	else
+		gBattlescriptCurrInstr += 5;
+}
+
+void atkFF3B_trygetwindpowertarget(void)
+{
+	for (; gBankTarget < gBattlersCount; ++gBankTarget)
+	{
+		if (ABILITY(gBankTarget) == ABILITY_WINDPOWER && BATTLER_ALIVE(gBankTarget))
+		{
+			gBattleScripting.bank = gBankTarget;
+			break;
+		}
+	}
+
+	if (gBankTarget >= gBattlersCount)
+		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+	else
+		gBattlescriptCurrInstr += 5;
 }

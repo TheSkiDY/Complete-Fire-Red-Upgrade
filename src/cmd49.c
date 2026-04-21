@@ -186,18 +186,36 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 						break;
 
 					case ABILITY_POISONTOUCH: ;
-						u8 chance = 30;
-						if (BankHasRainbow(gBankAttacker))
-							chance *= 2;
-
-						if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
-						&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
-						&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
-						&& umodsi(Random(), 100) < chance)
+						if(BankHasBranchAbility(gBankAttacker, BRANCH_TOXIC_CHAIN))
 						{
-							BattleScriptPushCursor();
-							gBattlescriptCurrInstr = BattleScript_PoisonTouch;
-							effect = TRUE;
+							u8 chance = 30;
+							if (BankHasRainbow(gBankAttacker))
+								chance *= 2;
+
+							if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							 && CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
+							 && umodsi(Random(), 100) < chance)
+							{
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_ToxicChain;
+								effect = TRUE;
+							}
+						}
+						else
+						{
+							u8 chance = 30;
+							if (BankHasRainbow(gBankAttacker))
+								chance *= 2;
+
+							if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
+							&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
+							&& umodsi(Random(), 100) < chance)
+							{
+								BattleScriptPushCursor();
+								gBattlescriptCurrInstr = BattleScript_PoisonTouch;
+								effect = TRUE;
+							}
 						}
 				}
 			}

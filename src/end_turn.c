@@ -198,6 +198,9 @@ u8 TurnBasedEffects(void)
 					if (gNewBS->SyrupBombTimers[i])
 						--gNewBS->SyrupBombTimers[i];
 
+					if (gNewBS->CudChewTimers[i])
+						--gNewBS->CudChewTimers[i];
+
 					if (gNewBS->ai.switchingCooldown[i])
 						--gNewBS->ai.switchingCooldown[i];
 
@@ -1516,6 +1519,7 @@ u8 TurnBasedEffects(void)
 								case ABILITY_HARVEST:
 								case ABILITY_PICKUP:
 								case ABILITY_BALLFETCH:
+								case ABILITY_CUDCHEW:
 									if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, gActiveBattler, 0, 0, 0))
 										effect++;
 							}

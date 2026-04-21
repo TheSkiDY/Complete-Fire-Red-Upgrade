@@ -193,6 +193,10 @@ void SwitchOutFormsRevert(u8 bank)
 				DoFormChange(bank, SPECIES_CRAMORANT, FALSE, TRUE, FALSE);
 			break;
 		#endif
+
+		case SPECIES_PALAFIN:
+			DoFormChange(bank, SPECIES_PALAFIN_HERO, FALSE, TRUE, FALSE);
+			break;
 	}
 }
 
@@ -349,6 +353,12 @@ bool8 TryFormRevert(struct Pokemon* mon)
 		ZeroMonData(mon);
 	}
 	#endif
+	else if (mon->species == SPECIES_PALAFIN_HERO)
+	{
+		mon->species = SPECIES_PALAFIN;
+		CalculateMonStats(mon);
+		return TRUE;
+	}
 
 	return FALSE;
 }

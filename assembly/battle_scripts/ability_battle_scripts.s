@@ -104,6 +104,10 @@ ability_battle_scripts.s
 .global BattleScript_CramorantCatchPrey
 .global BattleScript_CramorantSpitPrey
 
+.global BattleScript_AngerShellActivates
+.global BattleScript_CudChew
+.global BattleScript_ToxicDebris
+
 .global BattleScript_AbilityPopUp
 .global BattleScript_AbilityPopUpRevert
 
@@ -210,6 +214,7 @@ BattleScript_IntimidateActivatesRet:
 	setbyte TARGET_BANK 0x0
 
 BS_IntimidateActivatesLoop:
+	jumpifbranchability BANK_TARGET BRANCH_GUARD_DOG GuardDogBS
 	setstatchanger STAT_ATK | DECREASE_1
 	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
 	jumpifbehindsubstitute BANK_TARGET IntimidateActivatesLoopIncrement
@@ -255,6 +260,20 @@ BattleScript_IntimidateActivatesReturn:
 	callasm TryRemoveIntimidateAbilityPopUp @;In case the battle scripting bank is changed
 	callasm RemoveIntimidateActive
 	return
+
+GuardDogBS:
+	setstatchanger STAT_ATK | INCREASE_1
+	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
+	jumpifbehindsubstitute BANK_TARGET IntimidateActivatesLoopIncrement
+	statbuffchange STAT_TARGET | STAT_NOT_PROTECT_AFFECTED | STAT_BS_PTR IntimidateActivatesLoopIncrement
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 BattleScript_IntimidatePrevented
+	setgraphicalstatchangevalues
+	playanimation BANK_TARGET ANIM_STAT_BUFF ANIM_ARG_1
+	setword BATTLE_STRING_LOADER gText_GuardDogIntimidated
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	jumpifhelditemeffect BANK_TARGET ITEM_EFFECT_ADRENALINE_ORB BattleScript_AdrenalineOrb
+	goto IntimidateActivatesLoopIncrement
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -1388,6 +1407,106 @@ BattleScript_AbilityPopUp:
 
 BattleScript_AbilityPopUpRevert:
 	playanimation BANK_SCRIPTING ANIM_REMOVE_ABILITY_POP_UP 0x0
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_AngerShellActivates:
+	jumpifstat BANK_TARGET GREATERTHAN STAT_DEF STAT_MIN AngerShell_DropDef
+	jumpifstat BANK_TARGET EQUALS STAT_SPDEF STAT_MIN AngerShell_BoostStats
+
+AngerShell_DropDef:
+	call BattleScript_AbilityPopUp
+	jumpifstat BANK_TARGET EQUALS STAT_DEF STAT_MIN AngerShell_DropSpDef
+	orword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE @;Ignored Sheer Force
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_DEF | STAT_ANIM_SPDEF, STAT_ANIM_DOWN
+	setstatchanger STAT_DEF | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_DropSpDef
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_DropSpDef
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_DropSpDef:
+	setstatchanger STAT_SPDEF | DECREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_BoostStats
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_BoostStats
+	printfromtable gStatDownStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_BoostStats:
+	jumpifstat BANK_TARGET LESSTHAN STAT_ATK STAT_MAX AngerShell_UpAtk
+	jumpifstat BANK_TARGET LESSTHAN STAT_SPATK STAT_MAX AngerShell_UpAtk
+	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MAX AngerShell_Return
+
+AngerShell_UpAtk:
+	jumpifstat BANK_TARGET EQUALS STAT_ATK STAT_MAX AngerShell_UpSpAtk
+	playstatchangeanimation BANK_TARGET, STAT_ANIM_ATK | STAT_ANIM_SPATK | STAT_ANIM_SPD, STAT_ANIM_UP
+	setstatchanger STAT_ATK | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_UpSpAtk
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_UpSpAtk
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_UpSpAtk:
+	jumpifstat BANK_TARGET EQUALS STAT_SPATK STAT_MAX AngerShell_UpSpeed
+	setstatchanger STAT_SPATK | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_UpSpeed
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_UpSpeed
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_UpSpeed:
+	jumpifstat BANK_TARGET EQUALS STAT_SPD STAT_MAX AngerShell_RevertPopUp
+	setstatchanger STAT_SPD | INCREASE_1
+	statbuffchange STAT_TARGET | STAT_CERTAIN AngerShell_RevertPopUp
+	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 AngerShell_RevertPopUp
+	printfromtable gStatUpStringIds
+	waitmessage DELAY_1SECOND
+
+AngerShell_RevertPopUp:
+	bicword HIT_MARKER, HITMARKER_IGNORE_SUBSTITUTE
+	call BattleScript_AbilityPopUpRevert
+
+AngerShell_Return:
+	return
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_CudChew:
+	recycleitem HarvestBSEnd
+	call BattleScript_AbilityPopUp
+	callasm CudChewBerryEat
+	callasm ClearDoingPluckItemEffect
+	call BattleScript_AbilityPopUpRevert
+	removeitem BANK_SCRIPTING
+	end3
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.global BattleScript_Hospitality
+BattleScript_Hospitality:
+	waitmessage DELAY_HALFSECOND
+	call BattleScript_AbilityPopUp
+	playanimation BANK_EFFECT ANIM_HEALING_SPARKLES 0x0
+	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
+	graphicalhpupdate BANK_EFFECT
+	datahpupdate BANK_EFFECT
+	setword BATTLE_STRING_LOADER gText_HospitalityHealed
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	end3
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ToxicDebris:
+	call BattleScript_AbilityPopUp
+	playanimation BANK_ATTACKER ANIM_TOXIC_DEBRIS 0x0
+	copybyte USER_BANK TARGET_BANK
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+ToxicDebrisEnd:
 	return
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

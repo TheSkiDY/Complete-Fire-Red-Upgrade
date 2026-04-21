@@ -1429,7 +1429,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			}
 			else
 			{
-				if (atkAbility == ABILITY_SCRAPPY)
+				if (atkAbility == ABILITY_SCRAPPY || BankHasBranchAbility(bankAtk, BRANCH_MINDS_EYE))
 					break;
 				else if (STAT_STAGE(bankDef, STAT_STAGE_EVASION) > 6
 				|| (IsOfType(bankDef, TYPE_GHOST)
@@ -2613,6 +2613,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					|| data->defItemEffect == ITEM_EFFECT_LEFTOVERS
 					|| (data->defItemEffect == ITEM_EFFECT_BLACK_SLUDGE && IsOfType(bankDef, TYPE_POISON)))
 						INCREASE_VIABILITY(2);
+					break;
 
 				default: //Heal Block
 					if (MoveWouldHitFirst(move, bankAtk, bankDef) && IsMovePredictionHealingMove(bankDef, bankAtk))

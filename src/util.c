@@ -437,6 +437,7 @@ bool8 CanPartyMonBeGeneralStatused(struct Pokemon* mon)
 
 	switch (GetMonAbility(mon)) {
 		case ABILITY_COMATOSE:
+		case ABILITY_PURIFYINGSALT:
 			return FALSE;
 
 		case ABILITY_FLOWERVEIL:
@@ -524,6 +525,9 @@ bool8 CanPartyMonBeBurned(struct Pokemon* mon)
 		return FALSE;
 
 	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_WATER_VEIL))
+		return FALSE;
+
+	if (SpeciesHasBranchAbility(species, GetMonAbility(mon), BRANCH_THERMAL_EXCHANGE))
 		return FALSE;
 
 	switch (GetMonAbility(mon)) {

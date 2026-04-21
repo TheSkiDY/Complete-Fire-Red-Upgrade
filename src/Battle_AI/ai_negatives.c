@@ -311,6 +311,27 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					}
 				}
 				break;
+
+			case ABILITYBRANCH_STATUS_PREVENTION:
+				if(BankHasBranchAbility(bankDef, BRANCH_THERMAL_EXCHANGE))
+				{
+					if (moveSplit != SPLIT_STATUS
+					&& (moveType == TYPE_FIRE))
+					{
+						if (!TARGETING_PARTNER //Don't decrement if the partner is the target (handled later)
+						&& AI_STAT_CAN_RISE(bankDef, STAT_ATK) //Ability can activate
+						&& !MoveKnocksOutXHits(move, bankAtk, bankDef, 1)) //This attack won't KO yet
+						{
+							if (MoveKnocksOutXHits(move, bankAtk, bankDef, 2))
+								DECREASE_VIABILITY(1); //Risk it, but not best choice because foe might outspeed and strike back harder
+							else
+								DECREASE_VIABILITY(9); //Don't risk raising enemy stats
+							//Don't return because could get worse from here
+						}
+					}
+				}
+				break;
+
 			case ABILITY_STEAMENGINE:
 				if (moveSplit != SPLIT_STATUS
 				&& (moveType == TYPE_WATER || moveType == TYPE_FIRE))
@@ -469,6 +490,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				if (CheckTableForMovesEffect(move, gSetStatusMoveEffects))
 				{
 					DECREASE_VIABILITY(10);
@@ -498,6 +520,22 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				&& WEATHER_HAS_EFFECT)
 				{
 					DECREASE_VIABILITY(10);
+					return viability;
+				}
+				break;
+
+			case ABILITY_WINDRIDER:
+				if (specialMoveFlags->gWindMoves)
+				{
+					DECREASE_VIABILITY(10);
+					return viability;
+				}
+				break;
+
+			case ABILITY_WINDPOWER:
+				if (specialMoveFlags->gWindMoves)
+				{
+					DECREASE_VIABILITY(2);
 					return viability;
 				}
 				break;

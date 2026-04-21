@@ -163,3 +163,30 @@ It had no effect on\n[TARGET][.]
 #org @gText_Defiant
 [SCRIPTING_BANK]'s [SCRIPTING_BANK_ABILITY]\nsharply raised its [BUFFER][00]!
 
+#org @gText_TabletsOfRuinActivate
+[SCRIPTING_BANK]'s TABLETS OF RUIN\nweakened the ATTACK of all\lsurrounding POK\eMON!
+
+#org @gText_SwordOfRuinActivate
+[SCRIPTING_BANK]'s SWORD OF RUIN\nweakened the DEFENSE of all\lsurrounding POK\eMON!
+
+#org @gText_VesselOfRuinActivate
+[SCRIPTING_BANK]'s VESSEL OF RUIN\nweakened the SP. ATK of all\lsurrounding POK\eMON!
+
+#org @gText_BeadsOfRuinActivate
+[SCRIPTING_BANK]'s BEADS OF RUIN\nweakened the SP. DEF of all\lsurrounding POK\eMON!
+
+#org @gText_CostarActivate
+[SCRIPTING_BANK] copied [EFFECT_BANK]'s\nstat changes!
+
+#org @gText_ElectromorphosisWindPower
+Being hit by [CURRENT_MOVE] charged\n[SCRIPTING_BANK] with power!
+
+#org @gText_GuardDogIntimidated
+[TARGET]'s ATTACK rose\ndue to GUARD DOG!
+
+#org @gText_ProtosynthesisActivate
+The harsh sunlight activated\n[SCRIPTING_BANK]'s PROTOSYNTHESIS!\p[SCRIPTING_BANK]'s [BUFFER][00] was heightened!
+
+#org @gText_QuarkDriveActivate
+The ELECTRIC TERRAIN activated\n[SCRIPTING_BANK]'s QUARK DRIVE!\p[SCRIPTING_BANK]'s [BUFFER][00] was heightened!
+

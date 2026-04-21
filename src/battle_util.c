@@ -2044,6 +2044,7 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 	{
 		switch (defAbility) {
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				return FALSE;
 
 			case ABILITY_LEAFGUARD:
@@ -2144,6 +2145,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 		switch (defAbility) {
 			case ABILITY_SWEETVEIL:
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				return FALSE;
 			case ABILITY_LEAFGUARD:
 				if (gBattleWeather & WEATHER_SUN_ANY && WEATHER_HAS_EFFECT && AffectedBySun(bankDef))
@@ -2221,6 +2223,7 @@ bool8 CanRest(u8 bank)
 	switch (ABILITY(bank)) {
 		case ABILITY_SWEETVEIL:
 		case ABILITY_COMATOSE:
+		case ABILITY_PURIFYINGSALT:
 			return FALSE;
 		case ABILITY_LEAFGUARD:
 			if (gBattleWeather & WEATHER_SUN_ANY && WEATHER_HAS_EFFECT && AffectedBySun(bank))
@@ -2312,7 +2315,7 @@ bool8 CanBeBurned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 
 	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
 	{
-		if(BankHasBranchAbility(bankDef, BRANCH_WATER_VEIL))
+		if(BankHasBranchAbility(bankDef, BRANCH_WATER_VEIL) || BankHasBranchAbility(bankDef, BRANCH_THERMAL_EXCHANGE))
 			return FALSE;
 
 		switch (defAbility) {
@@ -2692,4 +2695,15 @@ u16 TryFixDynamaxTransformSpecies(u8 bank, u16 species)
 		species = gBattleSpritesDataPtr->bankData[bank].transformSpecies;
 
 	return species;
+}
+
+u8 CountFaintedMonsInParty(struct Pokemon* party)
+{
+	u8 count = 0;
+	for (u8 i = 0; i < PARTY_SIZE; ++i)
+	{
+		if (party[i].species != SPECIES_NONE && party[i].hp == 0 && !party[i].isEgg)
+			count++;
+	}
+	return count;
 }

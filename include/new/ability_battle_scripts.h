@@ -112,6 +112,11 @@ extern const u8 BattleScript_PrimalWeatherEnd[];
 extern const u8 BattleScript_AbilityPopUp[];
 extern const u8 BattleScript_AbilityPopUpRevert[];
 
+extern const u8 BattleScript_AngerShellActivates[];
+extern const u8 BattleScript_CudChew[];
+extern const u8 BattleScript_Hospitality[];
+extern const u8 BattleScript_ToxicDebris[];
+
 //Strings
 extern const u8 gText_ItIsHailing[];
 extern const u8 gText_FogIsDeep[];
@@ -159,3 +164,14 @@ extern const u8 gText_MimikyuDisguisedTookDamage[];
 extern const u8 gText_DisguiseBusted[];
 extern const u8 gText_Receiver[];
 extern const u8 gText_Defiant[];
+
+extern const u8 gText_TabletsOfRuinActivate[];
+extern const u8 gText_SwordOfRuinActivate[];
+extern const u8 gText_VesselOfRuinActivate[];
+extern const u8 gText_BeadsOfRuinActivate[];
+extern const u8 gText_CostarActivate[];
+extern const u8 gText_ElectromorphosisWindPower[];
+extern const u8 gText_GuardDogIntimidated[];
+extern const u8 gText_HospitalityHealed[];
+extern const u8 gText_ProtosynthesisActivate[];
+extern const u8 gText_QuarkDriveActivate[];

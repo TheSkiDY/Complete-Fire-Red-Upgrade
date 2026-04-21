@@ -1286,6 +1286,8 @@ void ClearSwitchBytes(u8 bank)
 	gNewBS->saltCured[bank] = FALSE;
 	gNewBS->SyrupBombTimers[bank] = 0;
 	gNewBS->dragonCheerCritBoosts[bank] = 0;
+	gNewBS->CudChewTimers[bank] = 0;
+	gNewBS->ProtosynthesisQuarkDriveActivated[bank] = FALSE;
 
 	gProtectStructs[bank].KingsShield = 0;	//Necessary because could be sent away with Roar
 	gProtectStructs[bank].SpikyShield = 0;

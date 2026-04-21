@@ -60,7 +60,20 @@
 #define BRANCH_PSYCHIC_SURGE 50
 #define BRANCH_MISTY_SURGE 51
 #define BRANCH_GRASSY_SURGE 52
-
+#define BRANCH_ANGER_SHELL 53
+#define BRANCH_TABLETS_OF_RUIN 54
+#define BRANCH_SWORD_OF_RUIN 55
+#define BRANCH_VESSEL_OF_RUIN 56
+#define BRANCH_BEADS_OF_RUIN 57
+#define BRANCH_EARTH_EATER 58
+#define BRANCH_GUARD_DOG 59
+#define BRANCH_HADRON_ENGINE 60
+#define BRANCH_ORICHALCUM_PULSE 61
+#define BRANCH_MINDS_EYE 62
+#define BRANCH_THERMAL_EXCHANGE 63
+#define BRANCH_TOXIC_CHAIN 64
+#define BRANCH_WELL_BAKED_BODY 65
+#define BRANCH_ZERO_TO_HERO 66
 
 
 //Exported Functions
@@ -117,3 +130,8 @@ u8 GetSpeciesTypePowerUpVariant(u16 species, u8 ability);
 u8 GetBankAuraVariant(u8 bank);
 u8 GetSpeciesAuraVariant(u16 species, u8 ability);
 u8 GetAuraTypeOnField(void);
+bool8 IsBranchAbilityOnTheField(u8 branch);
+u8 GetHighestStatForProtosynthesisQuarkDrive(u8 bank);
+bool8 BankProtosynthesisQuarkDriveActive(u8 bank);
+bool8 MonProtosynthesisQuarkDriveActive(u8 side, struct Pokemon* mon);
+u8 GetHighestStatForProtosynthesisQuarkDriveMon(struct Pokemon* mon);

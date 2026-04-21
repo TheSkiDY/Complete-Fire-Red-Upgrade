@@ -35,6 +35,7 @@ extern const u8 BattleScript_DampStopsExplosion[];
 extern const u8 BattleScript_TookAttack[];
 extern const u8 BattleScript_EvaporatedAttack[];
 extern const u8 BattleScript_RaidBattleStatNullification[];
+extern const u8 BattleScript_GoodAsGoldPrevents[];
 
 #define BattleScript_NoPPForMove (u8*) 0x81D8EA8
 #define BattleScript_MagicCoatBounce (u8*) 0x81D8FAA
@@ -77,3 +78,4 @@ extern const u8 gText_ZPowerSurrounds[];
 extern const u8 gText_ZMoveUnleashed[];
 extern const u8 gText_IllusionWoreOff[];
 extern const u8 gText_SkyBattleAttackCancel[];
+extern const u8 gText_GoodAsGoldAttackCancel[];

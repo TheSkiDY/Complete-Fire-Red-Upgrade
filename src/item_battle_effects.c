@@ -685,7 +685,10 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 			if (effect)
 			{
 				if (GetPocketByItemId(gLastUsedItem) == POCKET_BERRY_POUCH)
+				{
 					gNewBS->canBelch[SIDE(bank)] |= gBitTable[gBattlerPartyIndexes[bank]];
+					gNewBS->CudChewTimers[bank] = 3; //3, because Cud Chew activates on 1
+				}
 
 				gBattleScripting.bank = bank;
 				gStringBank = bank;

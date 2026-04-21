@@ -157,6 +157,22 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 					IncreaseHelpingHandViability(&viability, class);
 				}
 				break;
+
+			case ABILITYBRANCH_STATUS_PREVENTION:
+				if (BankHasBranchAbility(bankAtkPartner, BRANCH_THERMAL_EXCHANGE))
+				{
+					if (moveSplit != SPLIT_STATUS
+					&&  !IsClassDoublesTotalTeamSupport(partnerClass)
+					&& (moveType == TYPE_FIRE)
+					&& AI_STAT_CAN_RISE(bankAtkPartner, STAT_ATK)
+					&& (GoodIdeaToRaiseAttackAgainst(bankAtkPartner, data->foe1, 1) || GoodIdeaToRaiseAttackAgainst(bankAtkPartner, data->foe2, 1))
+					&& !MoveKnocksOutXHits(move, bankAtk, bankAtkPartner, 1))
+					{
+						IncreaseHelpingHandViability(&viability, class);
+					}
+				}
+				break;
+
 			case ABILITY_STEAMENGINE:
 				if (moveSplit != SPLIT_STATUS
 				&&  !IsClassDoublesTotalTeamSupport(partnerClass)
@@ -173,6 +189,16 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 			case ABILITY_CONTRARY:
 				if (!IsClassDoublesTotalTeamSupport(partnerClass)
 				&& CheckTableForMovesEffect(move, gStatLoweringMoveEffects))
+				{
+					IncreaseHelpingHandViability(&viability, class);
+				}
+				break;
+
+			case ABILITY_WINDRIDER:
+				if (gSpecialMoveFlags[move].gWindMoves
+				&&  !IsClassDoublesTotalTeamSupport(partnerClass)
+				&& AI_STAT_CAN_RISE(bankAtkPartner, STAT_ATK)
+				&& (GoodIdeaToRaiseAttackAgainst(bankAtkPartner, data->foe1, 1) || GoodIdeaToRaiseAttackAgainst(bankAtkPartner, data->foe2, 1)))
 				{
 					IncreaseHelpingHandViability(&viability, class);
 				}

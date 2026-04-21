@@ -7,6 +7,7 @@
 
 #include "../include/new/ability_tables.h"
 #include "../include/new/ability_util.h"
+#include "../include/new/ai_util.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/move_tables.h"
 #include "../include/new/util.h"
@@ -75,6 +76,8 @@ extern const u8 NAME_EMERGENCY_EXIT[];
 extern const u8 NAME_QUEENLY_MAJESTY[];
 extern const u8 NAME_POWER_OF_ALCHEMY[];
 extern const u8 NAME_PROPELLER_TAIL[];
+extern const u8 NAME_LINGERING_AROMA[];
+extern const u8 NAME_ARMOR_TAIL[];
 
 extern const u8 NAME_DRIZZLE[];
 extern const u8 DESC_DRIZZLE[];
@@ -240,6 +243,37 @@ extern const u8 NAME_MISTY_SURGE[];
 extern const u8 DESC_MISTY_SURGE[];
 extern const u8 NAME_GRASSY_SURGE[];
 extern const u8 DESC_GRASSY_SURGE[];
+extern const u8 NAME_ANGER_SHELL[];
+extern const u8 DESC_ANGER_SHELL[];
+extern const u8 NAME_TABLETS_OF_RUIN[];
+extern const u8 DESC_TABLETS_OF_RUIN[];
+extern const u8 NAME_SWORD_OF_RUIN[];
+extern const u8 DESC_SWORD_OF_RUIN[];
+extern const u8 NAME_VESSEL_OF_RUIN[];
+extern const u8 DESC_VESSEL_OF_RUIN[];
+extern const u8 NAME_BEADS_OF_RUIN[];
+extern const u8 DESC_BEADS_OF_RUIN[];
+extern const u8 NAME_EARTH_EATER[];
+extern const u8 DESC_EARTH_EATER[];
+extern const u8 NAME_GUARD_DOG[];
+extern const u8 DESC_GUARD_DOG[];
+extern const u8 NAME_HADRON_ENGINE[];
+extern const u8 DESC_HADRON_ENGINE[];
+extern const u8 NAME_ORICHALCUM_PULSE[];
+extern const u8 DESC_ORICHALCUM_PULSE[];
+extern const u8 NAME_MINDS_EYE[];
+extern const u8 DESC_MINDS_EYE[];
+extern const u8 NAME_ROCKY_PAYLOAD[];
+extern const u8 DESC_ROCKY_PAYLOAD[];
+extern const u8 NAME_THERMAL_EXCHANGE[];
+extern const u8 DESC_THERMAL_EXCHANGE[];
+extern const u8 NAME_TOXIC_CHAIN[];
+extern const u8 DESC_TOXIC_CHAIN[];
+extern const u8 NAME_WELL_BAKED_BODY[];
+extern const u8 DESC_WELL_BAKED_BODY[];
+extern const u8 NAME_ZERO_TO_HERO[];
+extern const u8 DESC_ZERO_TO_HERO[];
+
 
 extern const u8 gText_NormalAuraActivate[];
 extern const u8 gText_FightingAuraActivate[];
@@ -605,6 +639,13 @@ static struct CloneAbilityName sCloneNames[] =
 		.replaceAbilityName = NAME_QUEENLY_MAJESTY,
 	},
 
+	// Dazzling -> Armor Tail
+	{
+		.species = SPECIES_FARIGIRAF,
+		.originalAbility = ABILITY_DAZZLING,
+		.replaceAbilityName = NAME_ARMOR_TAIL,
+	},
+
 	// Receiver -> Power of Alchemy
 	{
 		.species = SPECIES_GRIMER_A,
@@ -628,6 +669,14 @@ static struct CloneAbilityName sCloneNames[] =
 		.originalAbility = ABILITY_STALWART,
 		.replaceAbilityName = NAME_PROPELLER_TAIL,
 	},
+
+	// Mummy -> Lingering Aroma
+	{
+		.species = SPECIES_OINKOLOGNE,
+		.originalAbility = ABILITY_MUMMY,
+		.replaceAbilityName = NAME_LINGERING_AROMA,
+	},
+
 };
 
 
@@ -685,6 +734,7 @@ static struct AbilityVariant sTypePowerUpVariantTable[TYPE_FAIRY + 1] =
 	[TYPE_STEEL] = {.name = NAME_STEELWORKER, .description = DESC_STEELWORKER},
 	[TYPE_ELECTRIC] = {.name = NAME_TRANSISTOR, .description = DESC_TRANSISTOR},
 	[TYPE_DRAGON] = {.name = NAME_DRAGONS_MAW, .description = DESC_DRAGONS_MAW},
+	[TYPE_ROCK] = {.name = NAME_ROCKY_PAYLOAD, .description = DESC_ROCKY_PAYLOAD},
 };
 
 static struct AbilityVariant sAuraVariantTable[TYPE_FAIRY + 1] =
@@ -757,13 +807,14 @@ static struct MonWithTypeBasedAbilityVariant sNormalizeVariantsData[] =
 static struct MonWithTypeBasedAbilityVariant sTypePowerUpVariantsData[] =
 {
 	{.species = SPECIES_DHELMISE, .type = TYPE_STEEL},
-	//{.species = SPECIES_REGIELEKI, .type = TYPE_ELECTRIC},
-	//{.species = SPECIES_REGIDRAGO, .type = TYPE_DRAGON},
+	{.species = SPECIES_REGIELEKI, .type = TYPE_ELECTRIC},
+	{.species = SPECIES_REGIDRAGO, .type = TYPE_DRAGON},
+	{.species = SPECIES_BOMBIRDIER, .type = TYPE_ROCK},
 };
 
 static struct MonWithTypeBasedAbilityVariant sAuraVariantsData[] = 
 {
-	{.species = SPECIES_XERNEAS, .type = TYPE_WATER},
+	{.species = SPECIES_XERNEAS, .type = TYPE_FAIRY},
 	//{.species = SPECIES_YVELTAL, .type = TYPE_DARK},
 };
 
@@ -821,6 +872,20 @@ static struct AbilityBranch sBranchTable[] =
 	[BRANCH_PSYCHIC_SURGE] = {.ability = ABILITYBRANCH_TERRAIN_SWITCHIN, .name = NAME_PSYCHIC_SURGE, .description = DESC_PSYCHIC_SURGE},
 	[BRANCH_MISTY_SURGE] = {.ability = ABILITYBRANCH_TERRAIN_SWITCHIN, .name = NAME_MISTY_SURGE, .description = DESC_MISTY_SURGE},
 	[BRANCH_GRASSY_SURGE] = {.ability = ABILITYBRANCH_TERRAIN_SWITCHIN, .name = NAME_GRASSY_SURGE, .description = DESC_GRASSY_SURGE},
+	[BRANCH_ANGER_SHELL] = {.ability = ABILITY_BERSERK, .name = NAME_ANGER_SHELL, .description = DESC_ANGER_SHELL},
+	[BRANCH_TABLETS_OF_RUIN] = {.ability = ABILITYBRANCH_TREASURES_OF_RUIN, .name = NAME_TABLETS_OF_RUIN, .description = DESC_TABLETS_OF_RUIN},
+	[BRANCH_SWORD_OF_RUIN] = {.ability = ABILITYBRANCH_TREASURES_OF_RUIN, .name = NAME_SWORD_OF_RUIN, .description = DESC_SWORD_OF_RUIN},
+	[BRANCH_VESSEL_OF_RUIN] = {.ability = ABILITYBRANCH_TREASURES_OF_RUIN, .name = NAME_VESSEL_OF_RUIN, .description = DESC_VESSEL_OF_RUIN},
+	[BRANCH_BEADS_OF_RUIN] = {.ability = ABILITYBRANCH_TREASURES_OF_RUIN, .name = NAME_BEADS_OF_RUIN, .description = DESC_BEADS_OF_RUIN},
+	[BRANCH_EARTH_EATER] = {.ability = ABILITYBRANCH_TYPE_ABSORPTION, .name = NAME_EARTH_EATER, .description = DESC_EARTH_EATER},
+	[BRANCH_GUARD_DOG] = {.ability = ABILITY_SUCTIONCUPS, .name = NAME_GUARD_DOG, .description = DESC_GUARD_DOG},
+	[BRANCH_HADRON_ENGINE] = {.ability = ABILITYBRANCH_TERRAIN_SWITCHIN, .name = NAME_HADRON_ENGINE, .description = DESC_HADRON_ENGINE},
+	[BRANCH_ORICHALCUM_PULSE] = {.ability = ABILITYBRANCH_WEATHER_ON_SWITCHIN, .name = NAME_ORICHALCUM_PULSE, .description = DESC_ORICHALCUM_PULSE},
+	[BRANCH_MINDS_EYE] = {.ability = ABILITY_KEENEYE, .name = NAME_MINDS_EYE, .description = DESC_MINDS_EYE},
+	[BRANCH_THERMAL_EXCHANGE] = {.ability = ABILITYBRANCH_STATUS_PREVENTION, .name = NAME_THERMAL_EXCHANGE, .description = DESC_THERMAL_EXCHANGE},
+	[BRANCH_TOXIC_CHAIN] = {.ability = ABILITY_POISONTOUCH, .name = NAME_TOXIC_CHAIN, .description = DESC_TOXIC_CHAIN},
+	[BRANCH_WELL_BAKED_BODY] = {.ability = ABILITY_FLASHFIRE, .name = NAME_WELL_BAKED_BODY, .description = DESC_WELL_BAKED_BODY},
+	[BRANCH_ZERO_TO_HERO] = {.ability = ABILITYBRANCH_SIGNATURE_FORM_CHANGE, .name = NAME_ZERO_TO_HERO, .description = DESC_ZERO_TO_HERO},
 };
 
 static struct MonWithBranchedAbility sWeatherSwitchInBranchData[] = 
@@ -846,6 +911,7 @@ static struct MonWithBranchedAbility sWeatherSwitchInBranchData[] =
 	{ .species = SPECIES_VANILLUXE, 		.branch = BRANCH_SNOW_WARNING,},
 	{ .species = SPECIES_AMAURA, 			.branch = BRANCH_SNOW_WARNING,},
 	{ .species = SPECIES_AURORUS, 			.branch = BRANCH_SNOW_WARNING,},
+	{ .species = SPECIES_KORAIDON, 			.branch = BRANCH_ORICHALCUM_PULSE,},
 };
 
 static struct MonWithBranchedAbility sStatusPreventionBranchData[] =
@@ -924,6 +990,9 @@ static struct MonWithBranchedAbility sStatusPreventionBranchData[] =
 	{ .species = SPECIES_ROCKRUFF,			.branch = BRANCH_VITAL_SPIRIT },
 	{ .species = SPECIES_LYCANROC_N,		.branch = BRANCH_VITAL_SPIRIT },
 	{ .species = SPECIES_ANNIHILAPE,		.branch = BRANCH_VITAL_SPIRIT },
+	{ .species = SPECIES_FRIGIBAX,			.branch = BRANCH_THERMAL_EXCHANGE },
+	{ .species = SPECIES_ARCTIBAX,			.branch = BRANCH_THERMAL_EXCHANGE },
+	{ .species = SPECIES_BAXCALIBUR,		.branch = BRANCH_THERMAL_EXCHANGE },
 };
 
 static struct MonWithBranchedAbility sWeatherEvasionBranchData[] = 
@@ -1252,6 +1321,10 @@ static struct MonWithBranchedAbility sTypeAbsorptionBranchData[] =
 	{ .species = SPECIES_ARCTOVISH,				.branch = BRANCH_WATER_ABSORB },
 	{ .species = SPECIES_CLODSIRE,				.branch = BRANCH_WATER_ABSORB },
 	{ .species = SPECIES_OGERPON_WELLSPRING,	.branch = BRANCH_WATER_ABSORB },
+	{ .species = SPECIES_TATSUGIRI,				.branch = BRANCH_WATER_ABSORB },
+	{ .species = SPECIES_TATSUGIRI_DROOPY,		.branch = BRANCH_WATER_ABSORB },
+	{ .species = SPECIES_TATSUGIRI_STRETCHY,	.branch = BRANCH_WATER_ABSORB },
+	{ .species = SPECIES_ORTHWORM,				.branch = BRANCH_EARTH_EATER },
 };
 
 static struct MonWithBranchedAbility sSwitchoutPreventionBranchData[] =
@@ -1318,6 +1391,8 @@ static struct MonWithBranchedAbility sSignatureFormChangeBranchData[] =
 	{ .species = SPECIES_EISCUE_NOICE,			.branch = BRANCH_ICE_FACE },
 	{ .species = SPECIES_MORPEKO,				.branch = BRANCH_HUNGER_SWITCH },
 	{ .species = SPECIES_MORPEKO_HANGRY,		.branch = BRANCH_HUNGER_SWITCH },
+	{ .species = SPECIES_PALAFIN,				.branch = BRANCH_ZERO_TO_HERO },
+	{ .species = SPECIES_PALAFIN_HERO,			.branch = BRANCH_ZERO_TO_HERO },
 };
 
 static struct MonWithBranchedAbility sKOStatBoostBranchData[] = 
@@ -1375,8 +1450,44 @@ static struct MonWithBranchedAbility sTerrainSwitchinBranchData[] =
 	{ .species = SPECIES_RILLABOOM,				.branch = BRANCH_GRASSY_SURGE },
 	{ .species = SPECIES_WEEZING_G,				.branch = BRANCH_MISTY_SURGE },
 	{ .species = SPECIES_TAPU_FINI,				.branch = BRANCH_MISTY_SURGE },
+	{ .species = SPECIES_MIRAIDON, 				.branch = BRANCH_HADRON_ENGINE },
 };
 
+static struct MonWithBranchedAbility sBerserkBranchData[] =
+{
+	{ .species = SPECIES_KLAWF,					.branch = BRANCH_ANGER_SHELL },
+};
+
+static struct MonWithBranchedAbility sTreasuresOfRuinBanchData[] =
+{
+	{ .species = SPECIES_WO_CHIEN,				.branch = BRANCH_TABLETS_OF_RUIN },
+	{ .species = SPECIES_CHIEN_PAO,				.branch = BRANCH_SWORD_OF_RUIN },
+	{ .species = SPECIES_TING_LU,				.branch = BRANCH_VESSEL_OF_RUIN },
+	{ .species = SPECIES_CHI_YU,				.branch = BRANCH_BEADS_OF_RUIN },
+};
+
+static struct MonWithBranchedAbility sSuctionCupsBranchData[] = 
+{
+	{ .species = SPECIES_MABOSSTIFF, 			.branch = BRANCH_GUARD_DOG },
+	{ .species = SPECIES_OKIDOGI, 				.branch = BRANCH_GUARD_DOG },
+};
+
+static struct MonWithBranchedAbility sKeenEyeBranchData[] = 
+{
+	{ .species = SPECIES_URSALUNA_BLOODMOON,	.branch = BRANCH_MINDS_EYE },
+};
+
+static struct MonWithBranchedAbility sPoisonTouchBranchData[] =
+{
+	{ .species = SPECIES_OKIDOGI,				.branch = BRANCH_TOXIC_CHAIN },
+	{ .species = SPECIES_MUNKIDORI,				.branch = BRANCH_TOXIC_CHAIN },
+	{ .species = SPECIES_FEZANDIPITI,			.branch = BRANCH_TOXIC_CHAIN },
+};
+
+static struct MonWithBranchedAbility sFlashFireBranchData[] =
+{
+	{ .species = SPECIES_DACHSBUN, 				.branch = BRANCH_WELL_BAKED_BODY },
+};
 
 static struct BranchDataEntry sAbilityToBranchDataTable[] = 
 {
@@ -1392,6 +1503,12 @@ static struct BranchDataEntry sAbilityToBranchDataTable[] =
 	[ABILITYBRANCH_KO_STAT_BOOST] = {.data = sKOStatBoostBranchData, .size = ARRAY_COUNT(sKOStatBoostBranchData),},
 	[ABILITYBRANCH_PRIMAL_WEATHER] = {.data = sPrimalWeatherBranchData, .size = ARRAY_COUNT(sPrimalWeatherBranchData),},
 	[ABILITYBRANCH_TERRAIN_SWITCHIN] = {.data = sTerrainSwitchinBranchData, .size = ARRAY_COUNT(sTerrainSwitchinBranchData),},
+	[ABILITY_BERSERK] = {.data = sBerserkBranchData, .size = ARRAY_COUNT(sBerserkBranchData),},
+	[ABILITYBRANCH_TREASURES_OF_RUIN] = {.data = sTreasuresOfRuinBanchData, .size = ARRAY_COUNT(sTreasuresOfRuinBanchData),},
+	[ABILITY_SUCTIONCUPS] = {.data = sSuctionCupsBranchData, .size = ARRAY_COUNT(sSuctionCupsBranchData),},
+	[ABILITY_KEENEYE] = {.data = sKeenEyeBranchData, .size = ARRAY_COUNT(sKeenEyeBranchData), },
+	[ABILITY_POISONTOUCH] = {.data = sPoisonTouchBranchData, .size = ARRAY_COUNT(sPoisonTouchBranchData), },
+	[ABILITY_FLASHFIRE] = {.data = sFlashFireBranchData, .size = ARRAY_COUNT(sFlashFireBranchData), },
 };
 
 bool8 BankHasBranchAbility(u8 bank, u16 branch)
@@ -1688,12 +1805,14 @@ void ResetTookAbilityFrom(u8 bank)
 
 bool8 IsTargetAbilityIgnored(u8 defAbility, u8 atkAbility, u16 move)
 {
-	return IS_MOLD_BREAKER(atkAbility, move) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities;
+	return (IS_MOLD_BREAKER(atkAbility, move) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities)
+	 || (IS_MYCELIUM_MIGHT(atkAbility, move) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities);
 }
 
 bool8 IsTargetAbilityIgnoredNoMove(u8 defAbility, u8 atkAbility)
 {
-	return IsMoldBreakerAbility(atkAbility) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities;
+	return (IsMoldBreakerAbility(atkAbility) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities)
+	 || (IS_MYCELIUM_MIGHT(atkAbility, gCurrentMove) && gSpecialAbilityFlags[defAbility].gMoldBreakerIgnoredAbilities);
 }
 
 bool8 SpeciesHasTurboblaze(unusedArg u16 species)
@@ -1968,4 +2087,77 @@ bool8 BankOnFieldHasEvaporate(void)
 	return FALSE;
 }
 
+bool8 IsBranchAbilityOnTheField(u8 branch)
+{
+	for (u8 i = 0; i < gBattlersCount; ++i)
+	{
+		u8 bank = gBanksByTurnOrder[i];
 
+		if (BATTLER_ALIVE(bank) && BankHasBranchAbility(bank, branch))
+			return bank + 1;
+	}
+	return FALSE;
+}
+
+u8 GetHighestStatForProtosynthesisQuarkDrive(u8 bank)
+{
+	u8 maxStatId = STAT_STAGE_ATK;
+
+	//this is the order that those abilities check stats in SV
+	u8 statCheckOrder[] = {STAT_STAGE_ATK, STAT_STAGE_DEF, STAT_STAGE_SPATK, STAT_STAGE_SPDEF, STAT_STAGE_SPEED};
+    
+    u16 stats[STAT_STAGE_SPDEF + 1];
+    stats[STAT_STAGE_ATK] = gBattleMons[bank].attack;
+    stats[STAT_STAGE_DEF] = gBattleMons[bank].defense;
+    stats[STAT_STAGE_SPATK] = gBattleMons[bank].spAttack;
+    stats[STAT_STAGE_SPDEF] = gBattleMons[bank].spDefense;
+    stats[STAT_STAGE_SPEED] = gBattleMons[bank].speed;
+
+    for(u8 i = 0; i < NELEMS(statCheckOrder); ++i)
+    {
+        if(stats[statCheckOrder[i]] > stats[maxStatId])
+            maxStatId = statCheckOrder[i];
+    }
+
+    return maxStatId;
+}
+
+u8 GetHighestStatForProtosynthesisQuarkDriveMon(struct Pokemon* mon)
+{
+	u8 maxStatId = STAT_STAGE_ATK;
+
+	//this is the order that those abilities check stats in SV
+	u8 statCheckOrder[] = {STAT_STAGE_ATK, STAT_STAGE_DEF, STAT_STAGE_SPATK, STAT_STAGE_SPDEF, STAT_STAGE_SPEED};
+    
+    u16 stats[STAT_STAGE_SPDEF + 1];
+    stats[STAT_STAGE_ATK] = mon->attack;
+    stats[STAT_STAGE_DEF] = mon->defense;
+    stats[STAT_STAGE_SPATK] = mon->spAttack;
+    stats[STAT_STAGE_SPDEF] = mon->spDefense;
+    stats[STAT_STAGE_SPEED] = mon->speed;
+
+    for(u8 i = 0; i < NELEMS(statCheckOrder); ++i)
+    {
+        if(stats[statCheckOrder[i]] > stats[maxStatId])
+            maxStatId = statCheckOrder[i];
+    }
+
+    return maxStatId;
+}
+
+bool8 BankProtosynthesisQuarkDriveActive(u8 bank)
+{
+	bool8 protosynthesisActive = (ABILITY(bank) == ABILITY_PROTOSYNTHESIS && WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY));
+	bool8 quarkdriveActive = (ABILITY(bank) == ABILITY_QUARKDRIVE && gTerrainType == ELECTRIC_TERRAIN);
+
+	return protosynthesisActive || quarkdriveActive;
+}
+
+bool8 MonProtosynthesisQuarkDriveActive(u8 side, struct Pokemon* mon)
+{
+	u8 ability = GetMonAbilityAfterTrace(mon, FOE(side));
+	bool8 protosynthesisActive = (ability == ABILITY_PROTOSYNTHESIS && WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY));
+	bool8 quarkdriveActive = (ability == ABILITY_QUARKDRIVE && gTerrainType == ELECTRIC_TERRAIN);
+
+	return protosynthesisActive || quarkdriveActive;
+}

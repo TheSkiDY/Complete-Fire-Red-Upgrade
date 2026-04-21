@@ -21,6 +21,7 @@
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/form_change.h"
+#include "../include/new/general_bs_commands.h"
 #include "../include/new/move_battle_scripts.h"
 #include "../include/new/move_tables.h"
 #include "../include/new/text.h"
@@ -511,7 +512,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					effect++;
 				}
 			}
-			else if (BankHasBranchAbility(bank, BRANCH_DROUGHT))
+			else if (BankHasBranchAbility(bank, BRANCH_DROUGHT) || BankHasBranchAbility(bank, BRANCH_ORICHALCUM_PULSE))
 			{
 				if (!(gBattleWeather & (WEATHER_SUN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)))
 				{
@@ -746,6 +747,99 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			effect++;
 			break;
 
+		case ABILITYBRANCH_TREASURES_OF_RUIN:
+			if (BankHasBranchAbility(bank, BRANCH_TABLETS_OF_RUIN))
+			{
+				gBattleStringLoader = gText_TabletsOfRuinActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasBranchAbility(bank, BRANCH_SWORD_OF_RUIN))
+			{
+				gBattleStringLoader = gText_SwordOfRuinActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasBranchAbility(bank, BRANCH_VESSEL_OF_RUIN))
+			{
+				gBattleStringLoader = gText_VesselOfRuinActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			else if (BankHasBranchAbility(bank, BRANCH_BEADS_OF_RUIN))
+			{
+				gBattleStringLoader = gText_BeadsOfRuinActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
+
+		case ABILITY_COSTAR:
+			if(IS_DOUBLE_BATTLE)
+			{
+				u8 partner = PARTNER(bank);
+				u8 statStage = 0;
+				bool8 anyStatCopied = FALSE;
+				for (u8 i = STAT_STAGE_ATK; i < BATTLE_STATS_NO; ++i)
+				{
+					statStage = gBattleMons[partner].statStages[i-1];
+					if(statStage != 6) //copy both positive and negative stat changes (I think that's how it works)
+					{
+						gBattleMons[bank].statStages[i-1] = statStage;
+						anyStatCopied = TRUE;
+					}
+				}
+				if(anyStatCopied)
+				{
+					gEffectBank = partner;
+					gBattleStringLoader = gText_CostarActivate;
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
+			}
+			break;
+
+		case ABILITY_HOSPITALITY:
+			if(IS_DOUBLE_BATTLE)
+			{
+				u8 partner = PARTNER(bank);
+				if(BATTLER_ALIVE(partner) && !BATTLER_MAX_HP(partner) && !IsHealBlocked(partner))
+				{
+					gBattleScripting.bank = bank;
+					gEffectBank = partner;
+					gBattleMoveDamage = MathMax(1, GetBaseMaxHP(partner) / 4);
+					gBattleMoveDamage *= -1;
+					BattleScriptPushCursorAndCallback(BattleScript_Hospitality);
+					effect++;
+				}
+			}
+			break;
+
+		case ABILITY_PROTOSYNTHESIS:
+			if (BankProtosynthesisQuarkDriveActive(bank))
+			{
+				gNewBS->ProtosynthesisQuarkDriveActivated[bank] = TRUE;
+				u8 stat = GetHighestStatForProtosynthesisQuarkDrive(bank);
+				gBattleScripting.bank = bank;
+				StringCopy(gBattleTextBuff1, gStatNamesTable[stat]);	
+				gBattleStringLoader = gText_ProtosynthesisActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
+		case ABILITY_QUARKDRIVE:
+			if (BankProtosynthesisQuarkDriveActive(bank))
+			{
+				gNewBS->ProtosynthesisQuarkDriveActivated[bank] = TRUE;
+				u8 stat = GetHighestStatForProtosynthesisQuarkDrive(bank);
+				gBattleScripting.bank = bank;
+				StringCopy(gBattleTextBuff1, gStatNamesTable[stat]);	
+				gBattleStringLoader = gText_QuarkDriveActivate;
+				BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+				effect++;
+			}
+			break;
+
 		case ABILITY_ANTICIPATION:
 			for (i = 0; i < MAX_MON_MOVES; ++i)
 			{
@@ -926,7 +1020,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			{
 				effect = ImmunityAbilityCheck(bank, STATUS1_SLEEP, gStatusConditionString_Sleep);
 			}
-			else if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL))
+			else if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL) || BankHasBranchAbility(bank, BRANCH_THERMAL_EXCHANGE))
 			{
 				effect = ImmunityAbilityCheck(bank, STATUS1_BURN, gStatusConditionString_Burn);
 			}
@@ -1111,7 +1205,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			break;
 
 		case ABILITYBRANCH_TERRAIN_SWITCHIN:
-			if (BankHasBranchAbility(bank, BRANCH_ELECTRIC_SURGE))
+			if (BankHasBranchAbility(bank, BRANCH_ELECTRIC_SURGE) || BankHasBranchAbility(bank, BRANCH_HADRON_ENGINE))
 			{
 				effect = TryActivateTerrainAbility(ELECTRIC_TERRAIN, B_ANIM_ELECTRIC_SURGE, bank);
 			}
@@ -1432,6 +1526,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 					}
 					break;
 
+				case ABILITY_CUDCHEW:
+					if(gItems[(SAVED_CONSUMED_ITEMS(bank))].pocket == POCKET_BERRY_POUCH && gNewBS->CudChewTimers[bank] == 1)
+					{
+						MgbaPrintf(MGBA_LOG_INFO, "Entered cud chew script");
+						BattleScriptPushCursorAndCallback(BattleScript_CudChew);
+						++effect;
+					}
+					break;
+
 				case ABILITY_PICKUP: ;
 					u8 itemBank = GetTopOfPickupStackNotIncludingBank(bank);
 
@@ -1590,12 +1693,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			if (move == MOVE_NONE) break;
 
 			u8 statId = 0;
+			u8 statIncrease = 0;
 			gBattleScripting.bank = bank;
 			switch (gLastUsedAbility) {
 				case ABILITYBRANCH_TYPE_ABSORPTION:
 					if (BankHasBranchAbility(bank, BRANCH_VOLT_ABSORB) && moveType == TYPE_ELECTRIC)
 						effect = 1;
 					else if (BankHasBranchAbility(bank, BRANCH_WATER_ABSORB) && moveType == TYPE_WATER)
+						effect = 1;
+					else if (BankHasBranchAbility(bank, BRANCH_EARTH_EATER) && moveType == TYPE_GROUND)
 						effect = 1;
 					break;
 
@@ -1606,27 +1712,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 
 				case ABILITY_MOTORDRIVE:
 					if (moveType == TYPE_ELECTRIC)
-						effect = 2, statId = STAT_SPEED;
+						effect = 2, statId = STAT_SPEED, statIncrease = INCREASE_1;
 					break;
 
 				case ABILITY_LIGHTNINGROD:
 					if (moveType == TYPE_ELECTRIC)
-						effect = 2, statId = STAT_SPATK;
+						effect = 2, statId = STAT_SPATK, statIncrease = INCREASE_1;
 					break;
 
 				case ABILITY_STORMDRAIN:
 					if (moveType == TYPE_WATER)
-						effect = 2, statId = STAT_SPATK;
+						effect = 2, statId = STAT_SPATK, statIncrease = INCREASE_1;
 					break;
 
 				case ABILITY_SAPSIPPER:
 					if (moveType == TYPE_GRASS)
-						effect = 2, statId = STAT_ATK;
+						effect = 2, statId = STAT_ATK, statIncrease = INCREASE_1;
 					break;
 
 				case ABILITY_FLASHFIRE:
-					if (moveType == TYPE_FIRE)
-						effect = 3;
+					if(moveType == TYPE_FIRE)
+					{
+						if (BankHasBranchAbility(bank, BRANCH_WELL_BAKED_BODY))
+							effect = 2, statId = STAT_DEF, statIncrease = INCREASE_2;
+						else
+							effect = 3;
+					}
+					break;
+
+				case ABILITY_WINDRIDER:
+					if (gSpecialMoveFlags[move].gWindMoves)
+						effect = 2, statId = STAT_ATK, statIncrease = INCREASE_1;
 					break;
 			}
 
@@ -1666,7 +1782,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 						else
 							gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
 
-						gBattleScripting.statChanger = statId | INCREASE_1;
+						gBattleScripting.statChanger = statId | statIncrease;
 					}
 					break;
 
@@ -1972,18 +2088,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				break;
 
 			case ABILITY_BERSERK:
-				if (MOVE_HAD_EFFECT
-				&& TOOK_DAMAGE(bank)
-				&& BATTLER_ALIVE(bank)
-				&& gBattleMons[bank].hp < gBattleMons[bank].maxHP / 2
-				&& gBattleMons[bank].hp + gHpDealt > gBattleMons[bank].maxHP / 2 //Hp fell below half
-				&& STAT_STAGE(bank, STAT_SPATK) < 12
-				&& !SheerForceCheck())
+				if (BankHasBranchAbility(bank, BRANCH_ANGER_SHELL))
 				{
-					gBattleScripting.statChanger = STAT_SPATK | INCREASE_1;
-					BattleScriptPushCursor();
-					gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
-					effect++;
+					if (MOVE_HAD_EFFECT
+					&& TOOK_DAMAGE(bank)
+					&& BATTLER_ALIVE(bank)
+					&& gBattleMons[bank].hp < gBattleMons[bank].maxHP / 2
+					&& gBattleMons[bank].hp + gHpDealt > gBattleMons[bank].maxHP / 2 //Hp fell below half
+					&& STAT_STAGE(bank, STAT_SPATK) < 12
+					&& (STAT_STAGE(bank,STAT_ATK) < STAT_STAGE_MAX || STAT_STAGE(bank,STAT_SPATK) < STAT_STAGE_MAX || STAT_STAGE(bank, STAT_SPEED) < STAT_STAGE_MAX) 
+						&& (STAT_STAGE(bank,STAT_DEF) > STAT_STAGE_MIN || STAT_STAGE(bank, STAT_SPDEF) > STAT_STAGE_MIN))
+					{
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_AngerShellActivates;
+						effect++;
+					}
+				}
+				else
+				{
+					if (MOVE_HAD_EFFECT
+					&& TOOK_DAMAGE(bank)
+					&& BATTLER_ALIVE(bank)
+					&& gBattleMons[bank].hp < gBattleMons[bank].maxHP / 2
+					&& gBattleMons[bank].hp + gHpDealt > gBattleMons[bank].maxHP / 2 //Hp fell below half
+					&& STAT_STAGE(bank, STAT_SPATK) < 12
+					&& !SheerForceCheck())
+					{
+						gBattleScripting.statChanger = STAT_SPATK | INCREASE_1;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+						effect++;
+					}
 				}
 				break;
 
@@ -2124,6 +2259,84 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				}
 				break;
 
+			case ABILITY_ELECTROMORPHOSIS:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank)
+				{
+					gStatuses3[bank] |= STATUS3_CHARGED_UP;
+				    gDisableStructs[bank].chargeTimer = 2;
+				    gDisableStructs[bank].chargeTimerStartValue = 2;
+					gBattleStringLoader = gText_ElectromorphosisWindPower;
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
+				break;
+
+			case ABILITY_SEEDSOWER:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& gBankAttacker != bank
+				&& !(gTerrainType == GRASSY_TERRAIN))
+				{
+					effect = TryActivateTerrainAbility(GRASSY_TERRAIN, B_ANIM_GRASSY_SURGE, bank);
+				}
+				break;
+
+			case ABILITYBRANCH_STATUS_PREVENTION:
+				if (BankHasBranchAbility(bank, BRANCH_THERMAL_EXCHANGE))
+				{
+					if (MOVE_HAD_EFFECT
+					&& TOOK_DAMAGE(bank)
+					&& BATTLER_ALIVE(bank)
+					&& gBankAttacker != bank
+					&& (moveType == TYPE_FIRE)
+					&& gBattleMons[bank].statStages[STAT_ATK - 1] < 12)
+					{
+						gBattleScripting.statChanger = STAT_ATK | INCREASE_1;
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaise;
+						effect++;
+					}
+				}
+				break;
+
+			case ABILITY_TOXICDEBRIS:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& !IS_BEHIND_SUBSTITUTE(bank)
+				&& gBankAttacker != bank
+				&& gSideTimers[SIDE(gBankAttacker)].tspikesAmount < 2
+				&& SPLIT(move) == SPLIT_PHYSICAL)
+				{
+					gSideStatuses[gBankAttacker] |= SIDE_STATUS_SPIKES;
+					gSideTimers[gBankAttacker].tspikesAmount++;
+					gBattleStringLoader = (u8*) sEntryHazardsStrings[2]; //tspikes message
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_ToxicDebris;
+					effect++;
+				}
+				break;
+
+			case ABILITY_WINDPOWER:
+				if (MOVE_HAD_EFFECT
+				&& TOOK_DAMAGE(bank)
+				&& BATTLER_ALIVE(bank)
+				&& gBankAttacker != bank
+				&& gSpecialMoveFlags[move].gWindMoves)
+				{
+					gStatuses3[bank] |= STATUS3_CHARGED_UP;
+				    gDisableStructs[bank].chargeTimer = 2;
+				    gDisableStructs[bank].chargeTimerStartValue = 2;
+					gBattleStringLoader = gText_ElectromorphosisWindPower;
+					BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+					effect++;
+				}
+				break;
+
+
 			case ABILITYBRANCH_SIGNATURE_FORM_CHANGE:
 				if (BankHasBranchAbility(bank, BRANCH_GULP_MISSILE))
 				{
@@ -2188,7 +2401,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 							effect = 1;
 						}	
 					}
-					else if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL))
+					else if (BankHasBranchAbility(bank, BRANCH_WATER_VEIL) || BankHasBranchAbility(bank, BRANCH_THERMAL_EXCHANGE))
 					{
 						if (gBattleMons[bank].status1 & STATUS1_BURN)
 						{

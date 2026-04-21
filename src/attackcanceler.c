@@ -64,7 +64,9 @@ void atk00_attackcanceler(void)
 		return;
 	}
 
-	if (IS_MOLD_BREAKER(ABILITY(gBankAttacker), gCurrentMove) || gNewBS->dynamaxData.nullifiedStats) //There is a Mold Breaker
+	if (IS_MOLD_BREAKER(ABILITY(gBankAttacker), gCurrentMove) 
+		|| gNewBS->dynamaxData.nullifiedStats 
+		|| IS_MYCELIUM_MIGHT(ABILITY(gBankAttacker), gCurrentMove)) //There is a Mold Breaker
 	{
 		if (!gNewBS->dontActivateMoldBreakersAnymoreThisTurn) //Like after Neutralizing Gas disappears during a spread move
 		{
@@ -922,6 +924,31 @@ static u8 AtkCanceller_UnableToUseMove(void)
 				effect = 1;
 			}
 			#endif
+			gBattleStruct->atkCancellerTracker++;
+			break;
+
+		case CANCELLER_GOOD_AS_GOLD: ;
+			if (ABILITY(gBankTarget) == ABILITY_GOODASGOLD
+			&& gBattleMoves[gCurrentMove].split == SPLIT_STATUS
+			&& !gSpecialMoveFlags[gCurrentMove].gSpecialWholeFieldMoves
+			&& gBankAttacker != gBankTarget
+			&& !(gBattleMoves[gCurrentMove].target & MOVE_TARGET_OPPONENTS_FIELD))
+			{
+				if (IS_SINGLE_BATTLE || !(GetBaseMoveTarget(gCurrentMove, gBankAttacker) & (MOVE_TARGET_BOTH | MOVE_TARGET_ALL))) //Don't cancel moves that can hit two targets b/c one target might not be protected
+					CancelMultiTurnMoves(gBankAttacker);
+
+				gBattleScripting.bank = gBankTarget;
+				gBattlescriptCurrInstr = BattleScript_GoodAsGoldPrevents;
+				effect = 1;
+			}
+			else if (IS_DOUBLE_BATTLE
+				 && ABILITY(PARTNER(gBankAttacker)) == ABILITY_GOODASGOLD
+			     && gSpecialMoveFlags[gCurrentMove].gGoodAsGoldBlockedPartnerMoves)
+			{
+				gBattleScripting.bank = PARTNER(gBankAttacker);
+				gBattlescriptCurrInstr = BattleScript_GoodAsGoldPrevents;
+				effect = 1;
+			}
 			gBattleStruct->atkCancellerTracker++;
 			break;
 

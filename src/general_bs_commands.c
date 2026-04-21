@@ -86,7 +86,7 @@ const u16 gMissStringIds[] =
 	0x184, //Safety Goggles
 };
 
-static const u8* const sEntryHazardsStrings[] =
+const u8* const sEntryHazardsStrings[] =
 {
 	SpikesLayString,
 	StealthRockLayString,
@@ -2734,6 +2734,7 @@ void atk81_trysetrest(void)
 				}
 				break;
 			case ABILITY_COMATOSE:
+			case ABILITY_PURIFYINGSALT:
 				gBattlescriptCurrInstr = BattleScript_ButItFailed;
 				fail = TRUE;
 				break;
@@ -2798,6 +2799,7 @@ void atk84_jumpifcantmakeasleep(void)
 	|| defAbility == ABILITY_VITALSPIRIT
 	#endif
 	|| defAbility == ABILITY_COMATOSE
+	|| defAbility == ABILITY_PURIFYINGSALT
 	|| defAbility == ABILITY_SWEETVEIL
 	|| (defAbility == ABILITY_LEAFGUARD && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
 	|| (defAbility == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS) && gCurrentMove != MOVE_REST))
@@ -4127,7 +4129,6 @@ void atkB0_trysetspikes(void)
 	u8 atkSide = SIDE(gBankAttacker);
 	u8 defSide = atkSide ^ BIT_SIDE;
 	u8 stringcase = 0xFF;
-
 	switch (gCurrentMove) {
 		case MOVE_STEALTHROCK:
 		case MOVE_G_MAX_STONESURGE_P:
@@ -5512,6 +5513,16 @@ void atkE7_trycastformdatachange(void)
 					BattleScriptPushCursorAndCallback(BattleScript_IceFaceRestoreFace);
 				}
 				break;
+		}
+
+		if (BankProtosynthesisQuarkDriveActive(bank) && !gNewBS->ProtosynthesisQuarkDriveActivated[bank])
+		{
+			gNewBS->ProtosynthesisQuarkDriveActivated[bank] = TRUE;
+			u8 stat = GetHighestStatForProtosynthesisQuarkDrive(bank);
+			gBattleScripting.bank = bank;
+			StringCopy(gBattleTextBuff1, gStatNamesTable[stat]);	
+			gBattleStringLoader = gText_ProtosynthesisActivate;
+			BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
 		}
 	}
 }

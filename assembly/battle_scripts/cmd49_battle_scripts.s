@@ -36,6 +36,7 @@ cmd49_battle_scripts.s
 .global BattleScript_MistProtected
 .global BattleScript_SilkTrapStatDecrement
 .global BattleScript_BurningBulwark
+.global BattleScript_ToxicChain
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -228,7 +229,11 @@ BattleScript_PoisonedBy:
 	jumpifbyte EQUALS POISONED_BY 0x4 BanefulBunkerPSN
 	printfromtable 0x83FE5BC
 	waitmessage DELAY_1SECOND
-	goto 0x81D91C3
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	jumpifability BANK_ATTACKER ABILITY_POISONPUPPETEER PoisonPuppeteerBS
+PoisonedByReturn:
+	return
 
 PoisonTouchPSN:
 	setbyte POISONED_BY 0x0
@@ -253,17 +258,30 @@ BanefulBunkerPSN:
 	waitmessage DELAY_1SECOND
 	goto 0x81D91C3
 
+PoisonPuppeteerBS:
+	canconfuse BANK_TARGET PoisonedByReturn
+	call BattleScript_AbilityPopUp
+	setmoveeffect MOVE_EFFECT_CONFUSION
+	seteffectprimary
+	resultmessage
+	waitmessage DELAY_1SECOND
+	call BattleScript_AbilityPopUpRevert
+	goto PoisonedByReturn
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_BadPoisonedBy:
-	statusanimation 0x2
 	jumpifbyte EQUALS POISONED_BY 0x1 PoisonTouchPSN
+	statusanimation 0x2
 	jumpifbyte EQUALS POISONED_BY 0x2 ToxicSpikesBadPSN
 	jumpifbyte EQUALS POISONED_BY 0x3 ToxicOrbBadPSN
 	jumpifbyte EQUALS POISONED_BY 0x4 BanefulBunkerPSN
 	printstring 0x2C
 	waitmessage DELAY_1SECOND
-	goto 0x81D91C3
+	refreshhpbar BANK_EFFECT
+	waitstateatk
+	jumpifability BANK_ATTACKER ABILITY_POISONPUPPETEER PoisonPuppeteerBS
+	goto PoisonedByReturn
 
 ToxicSpikesBadPSN:
 	setbyte POISONED_BY 0x0
@@ -442,3 +460,11 @@ BattleScript_MistProtected:
 	callasm TryHideActiveAbilityPopUps @;For Gooey
 	return
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ToxicChain:
+	setbyte POISONED_BY 0x1
+	setbyte EFFECT_BYTE 0x6
+	seteffectsecondary @;Affected by Safeguard
+	return
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

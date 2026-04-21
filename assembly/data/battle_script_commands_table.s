@@ -329,3 +329,6 @@ gBattleScriptingCommandsTable2:
 .word atkFF36_trygetcottondowntarget
 .word atkFF37_increasefaintcounter
 .word atkFF38_comeuppancedamagecalculator
+.word atkFF39_jumpifbranchability
+.word atkFF3A_trygetwindridertarget
+.word atkFF3B_trygetwindpowertarget
