@@ -635,6 +635,7 @@ void atk52_switchineffects(void)
 			if (!IsAbilitySuppressed(gActiveBattler) //Gastro Acid has higher priority
 			&& ABILITY(gActiveBattler) != ABILITY_NONE
 			&& !gSpecialAbilityFlags[ABILITY(gActiveBattler)].gNeutralizingGasBannedAbilities
+			&& ITEM_EFFECT(gActiveBattler) != ITEM_EFFECT_ABILITY_SHIELD
 			&& AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BANK, gActiveBattler, ABILITY_NEUTRALIZINGGAS, 0, 0))
 			{
 				u8* abilityLoc = GetAbilityLocation(gActiveBattler);
@@ -1288,6 +1289,7 @@ void ClearSwitchBytes(u8 bank)
 	gNewBS->dragonCheerCritBoosts[bank] = 0;
 	gNewBS->CudChewTimers[bank] = 0;
 	gNewBS->ProtosynthesisQuarkDriveActivated[bank] = FALSE;
+	gNewBS->BoosterEnergyUsed[bank] = FALSE;
 
 	gProtectStructs[bank].KingsShield = 0;	//Necessary because could be sent away with Roar
 	gProtectStructs[bank].SpikyShield = 0;

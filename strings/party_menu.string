@@ -60,3 +60,9 @@ Remove the GIGANTAMAX factor from\n[BUFFER1]?
 
 #org @gText_MaxPowderRemovesGigantamax
 [BUFFER1] can no longer GIGANTAMAX.[PAUSE_UNTIL_PRESS]
+
+#org @gText_NatureOfferChange
+Change [BUFFER1]'s nature\nto [BUFFER2]?
+
+#org @gText_NatureMintChangedNature
+[BUFFER1]'s nature has been\nchanged to [BUFFER2].[PAUSE_UNTIL_PRESS]

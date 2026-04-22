@@ -355,7 +355,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 			if ((gEvolutionTable[species][i].method == EVO_ITEM
 			 || gEvolutionTable[species][i].method == EVO_ITEM_LOCATION
 			 || gEvolutionTable[species][i].method == EVO_ITEM_HOLD_ITEM
-			 || gEvolutionTable[species][i].method == EVO_ITEM_NIGHT)
+			 || gEvolutionTable[species][i].method == EVO_ITEM_NIGHT
+			 || gEvolutionTable[species][i].method == EVO_ITEM_DAY)
 			 && gEvolutionTable[species][i].param == evolutionItem)
 			{
 				if (evolutionItem == ITEM_DAWN_STONE && GetMonGender(mon) != gEvolutionTable[species][i].unknown)
@@ -382,6 +383,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon* mon, u8 type, u16 evolutionItem)
 				else if (gEvolutionTable[species][i].method == EVO_ITEM_NIGHT)
 				{
 					if (!IsNightTime())
+						continue;
+				}
+				else if (gEvolutionTable[species][i].method == EVO_ITEM_DAY)
+				{
+					if (IsNightTime())
 						continue;
 				}
 
@@ -445,6 +451,7 @@ bool8 IsItemEvolutionMethod(u8 method)
 		case EVO_HOLD_ITEM_NIGHT:
 		case EVO_HOLD_ITEM_DAY:
 		case EVO_ITEM_NIGHT:
+		case EVO_ITEM_DAY:
 			return TRUE;
 		default:
 			return FALSE;

@@ -199,7 +199,7 @@ static u8 CalcPossibleCritChance(u8 bankAtk, u8 bankDef, u16 move, struct Pokemo
 		defStatus1 = gBattleMons[bankDef].status1;
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	if (defAbility == ABILITY_BATTLEARMOR
@@ -393,7 +393,7 @@ u32 SplintersDamageCalc(u8 bankAtk, u8 bankDef, u16 move)
 	return gBattleMoveDamage;
 }
 
-static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, unusedArg u16 atkSpecies)
+static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, u8 bankAtk, unusedArg u16 atkSpecies)
 {
 	u8 numHits = 1;
 
@@ -407,6 +407,8 @@ static u8 GetNumHitsBasedOnMove(u16 move, u8 atkAbility, unusedArg u16 atkSpecie
 	{
 		if (atkAbility == ABILITY_SKILLLINK)
 			numHits = 5;
+		else if (ITEM_EFFECT(bankAtk) == ITEM_EFFECT_LOADED_DICE)
+			numHits = 4;
 		else
 			numHits = 3; //Three hits on average
 	}
@@ -535,7 +537,7 @@ u32 AI_CalcDmg(const u8 bankAtk, const u8 bankDef, const u16 move, struct Damage
 
 	damage = (damage * 93) / 100; //Roll 93% damage - about halfway between min & max damage
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, bankAtk, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
@@ -644,14 +646,14 @@ u32 AI_CalcPartyDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monAtk, st
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, bankAtk, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
 
 	//Try to reduce the number of hits for a multi-hit move if the attacker won't be able to finish because it will be KOd by the contact recoil first
 	if (numHits > 1)
-		numHits = AdjustNumHitsForContactDamage(numHits, monAtk->hp, GetContactDamageMonAtk(monAtk, bankDef));
+		numHits = AdjustNumHitsForContactDamage(numHits, monAtk->hp, GetContactDamageMonAtk(monAtk, bankDef, move));
 
 	if (numHits <= 1)
 	{
@@ -766,14 +768,14 @@ u32 AI_CalcMonDefDmg(u8 bankAtk, u8 bankDef, u16 move, struct Pokemon* monDef, s
 
 	damage = (damage * 96) / 100; //Roll 96% damage with party mons - be more idealistic
 
-	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, damageData->atkSpecies);
+	u8 numHits = GetNumHitsBasedOnMove(move, damageData->atkAbility, bankAtk, damageData->atkSpecies);
 	u16 multiplier = GetAIParentalBondMultiplierForMove(move, bankAtk, numHits, damageData->atkAbility);
 	if (multiplier != 0) //Move affected by Parental Bond
 		return (damage * multiplier) / 100;
 
 	//Try to reduce the number of hits for a multi-hit move if the attacker won't be able to finish because it will be KOd by the contact recoil first
 	if (numHits > 1)
-		numHits = AdjustNumHitsForContactDamage(numHits, gBattleMons[bankAtk].hp, GetContactDamageMonDef(bankAtk, monDef));
+		numHits = AdjustNumHitsForContactDamage(numHits, gBattleMons[bankAtk].hp, GetContactDamageMonDef(bankAtk, monDef, move));
 
 	if (numHits <= 1)
 	{
@@ -1075,7 +1077,7 @@ u8 TypeCalc(u16 move, u8 bankAtk, u8 bankDef, struct Pokemon* monAtk)
 		moveType = GetMoveTypeSpecial(bankAtk, move);
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check stab
@@ -1158,7 +1160,7 @@ u8 AI_TypeCalc(u16 move, u8 bankAtk, u8 bankDef, struct Pokemon* monDef) //bankD
 		defType3 = gBattleMons[imposterBank].type3;
 	}
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check STAB
@@ -1241,7 +1243,7 @@ u8 AI_SpecialTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 	}
 	defType3 = gBattleMons[bankDef].type3; //Same type 3 - eg switched in on Forest's curse
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	//Check STAB
@@ -1334,7 +1336,7 @@ u8 VisualTypeCalc(u16 move, u8 bankAtk, u8 bankDef)
 
 	defType3 = gBattleMons[bankDef].type3; //Not affected by Illusion
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE; //Ignore Ability
 
 	if (IsDynamaxed(bankDef) && gSpecialMoveFlags[move].gDynamaxBannedMoves) //These moves aren't related to type matchups, but they can still cause the move to fail and should be known to the player
@@ -2472,7 +2474,7 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 	if (!data->defenderLoaded)
 		PopulateDamageCalcStructWithBaseDefenderData(data);
 
-	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move))
+	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		data->defAbility = ABILITY_NONE; //Ignore Ability - modify original value intentionally
 
 	//Create new variables so original values stay constant
@@ -4107,7 +4109,7 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		//1.3x Boost
 			if (((!useMonAtk && IsContactMove(move, bankAtk, bankDef))
 			   || (useMonAtk && gBattleMoves[move].flags & FLAG_MAKES_CONTACT)) //Party mons can't use any fancy calculations for contact moves
-			&& !CanNeverMakeContactByItemEffect(data->atkItemEffect)) //Don't check Ability since it's known to be Tough Claws
+			&& !CanNeverMakeContactByItemEffect(data->atkItemEffect, move)) //Don't check Ability since it's known to be Tough Claws
 				power = (power * 13) / 10;
 			break;
 
@@ -4280,6 +4282,12 @@ static u16 AdjustBasePower(struct DamageCalc* data, u16 power)
 		case ITEM_EFFECT_LIFE_ORB:
 			//1.3x Boost
 			power = (power * 13) / 10;
+			break;
+
+		case ITEM_EFFECT_PUNCHING_GLOVE:
+			//1.1x Boost
+			if (gSpecialMoveFlags[move].gPunchingMoves)
+				power = (power * 11) / 10;
 			break;
 	}
 

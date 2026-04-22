@@ -217,6 +217,28 @@ u8 ItemBattleEffects(u8 caseID, u8 bank, bool8 moveTurn, bool8 doPluck)
 						BattleScriptExecute(BattleScript_ItemStatChangeEnd2);
 				}
 				break;
+
+			case ITEM_EFFECT_BOOSTER_ENERGY:
+				if (!((gBattleWeather & WEATHER_SUN_ANY && ABILITY(bank) == ABILITY_PROTOSYNTHESIS) || (gTerrainType == ELECTRIC_TERRAIN && ABILITY(bank) == ABILITY_QUARKDRIVE))
+					&& (ABILITY(bank) == ABILITY_PROTOSYNTHESIS || ABILITY(bank) == ABILITY_QUARKDRIVE)
+					&& !gNewBS->ProtosynthesisQuarkDriveActivated[bank])
+				{
+					u8 stat = GetHighestStatForProtosynthesisQuarkDrive(bank);
+					gNewBS->ProtosynthesisQuarkDriveActivated[bank] = TRUE;
+					gNewBS->BoosterEnergyUsed[bank] = TRUE;
+					gBattleScripting.bank = bank;
+					StringCopy(gBattleTextBuff1, gStatNamesTable[stat]);
+					effect = ITEM_STATS_CHANGE;
+					
+					if (moveTurn)
+					{
+						BattleScriptPushCursor();
+						gBattlescriptCurrInstr = BattleScript_BoosterEnergyRet;
+					}
+					else
+						BattleScriptExecute(BattleScript_BoosterEnergyEnd2);
+				}
+				break;
 		}
 		break;
 

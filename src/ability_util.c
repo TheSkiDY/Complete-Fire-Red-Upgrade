@@ -2158,8 +2158,9 @@ bool8 BankProtosynthesisQuarkDriveActive(u8 bank)
 {
 	bool8 protosynthesisActive = (ABILITY(bank) == ABILITY_PROTOSYNTHESIS && WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY));
 	bool8 quarkdriveActive = (ABILITY(bank) == ABILITY_QUARKDRIVE && gTerrainType == ELECTRIC_TERRAIN);
+	bool8 boosterEnergyActive = gNewBS->BoosterEnergyUsed[bank];
 
-	return protosynthesisActive || quarkdriveActive;
+	return protosynthesisActive || quarkdriveActive || boosterEnergyActive;
 }
 
 bool8 MonProtosynthesisQuarkDriveActive(u8 side, struct Pokemon* mon)

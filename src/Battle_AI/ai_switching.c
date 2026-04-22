@@ -246,7 +246,7 @@ static bool8 PredictedMoveKOsSelfDueToContact(u8 activeBattler, struct Pokemon* 
 
 	if (CheckContact(defMove, foe, activeBattler))
 	{
-		u32 contactDamage = GetContactDamageMonDef(foe, mon);
+		u32 contactDamage = GetContactDamageMonDef(foe, mon, defMove);
 		return contactDamage >= gBattleMons[foe].hp;
 	}
 
@@ -1757,8 +1757,9 @@ static bool8 ShouldSaveSweeperForLater(struct Pokemon* party)
 		//OPTION B:
 		|| (foeMovePrediction == MOVE_FAKEOUT //The AI can KO but the foe will go first with Fake Out
 	     && CanBeFlinched(gActiveBattler, foe,
-		                  IsTargetAbilityIgnored(ABILITY(gActiveBattler), ABILITY(foe), foeMovePrediction) ? ABILITY_NONE : ABILITY(gActiveBattler),
-		                  foeMovePrediction) //Fake Out will cause a flinch
+		      	(IsTargetAbilityIgnored(ABILITY(gActiveBattler), ABILITY(foe), foeMovePrediction)
+		      	 && ITEM_EFFECT(gActiveBattler) != ITEM_EFFECT_ABILITY_SHIELD) ? ABILITY_NONE : ABILITY(gActiveBattler),
+				foeMovePrediction) //Fake Out will cause a flinch
 	     && GetFinalAIMoveDamage(foeMovePrediction, foe, gActiveBattler, 1, NULL) >= gBattleMons[gActiveBattler].maxHP / 2) //And deal a ton of damage
 	)
 	&& (!IS_BEHIND_SUBSTITUTE(gActiveBattler) || DamagingMoveThaCanBreakThroughSubstituteInMoveset(foe, gActiveBattler)) //It's not behind a Substitute

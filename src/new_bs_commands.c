@@ -732,6 +732,7 @@ void atkFF15_jumpifstatcanbemodified(void)
 				gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
 				return;
 			case STAT_PROTECTED_BY_GENERAL_ABILITY:
+			case STAT_PROTECTED_BY_HELD_ITEM:
 				gBattleScripting.bank = gActiveBattler;
 				break;
 			case STAT_PROTECTED_BY_PARTNER_ABILITY:
@@ -1030,6 +1031,7 @@ void atkFE_prefaintmoveendeffects(void)
 								chance *= 2;
 
 							if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& ITEM_EFFECT(gBankTarget) != ITEM_EFFECT_COVERT_CLOAK
 							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
 							&& umodsi(Random(), 100) < chance)
 							{
@@ -1046,6 +1048,7 @@ void atkFE_prefaintmoveendeffects(void)
 
 							if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
 							&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& ITEM_EFFECT(gBankTarget) != ITEM_EFFECT_COVERT_CLOAK
 							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
 							&& umodsi(Random(), 100) < chance)
 							{

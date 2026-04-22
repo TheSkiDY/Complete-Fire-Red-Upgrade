@@ -2104,3 +2104,4 @@ FieldUseFunc_Rod = 0x80A1338 | 1;
 
 /* New stuff */
 AddTextPrinterParameterized3 = 0x812E51C | 1;
+gNatureNamePointers = 0x8463E60;

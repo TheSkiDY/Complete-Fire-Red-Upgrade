@@ -1410,7 +1410,7 @@ void AbilityChangeBSFunc(void)
 
 	switch (gCurrentMove) {
 		case MOVE_WORRYSEED:
-			if (gSpecialAbilityFlags[defAbility].gWorrySeedBannedAbilities)
+			if (gSpecialAbilityFlags[defAbility].gWorrySeedBannedAbilities || ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			else
 			{
@@ -1425,6 +1425,7 @@ void AbilityChangeBSFunc(void)
 
 		case MOVE_GASTROACID:
 			if (gSpecialAbilityFlags[defAbility].gGastroAcidBannedAbilities
+			|| ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD
 			|| gStatuses3[gBankTarget] & STATUS3_ABILITY_SUPPRESS)
 			{
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
@@ -1446,6 +1447,8 @@ void AbilityChangeBSFunc(void)
 			if (atkAbility == ABILITY_NONE
 			||  IsDynamaxed(gBankTarget)
 			||  *atkAbilityLoc == *defAbilityLoc
+			||  ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD
+			||  ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_ABILITY_SHIELD
 			||  gSpecialAbilityFlags[atkAbility].gEntrainmentBannedAbilitiesAttacker
 			||  gSpecialAbilityFlags[defAbility].gEntrainmentBannedAbilitiesTarget)
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
@@ -1463,7 +1466,7 @@ void AbilityChangeBSFunc(void)
 			break;
 
 		case MOVE_SIMPLEBEAM:
-			if (gSpecialAbilityFlags[defAbility].gSimpleBeamBannedAbilities)
+			if (gSpecialAbilityFlags[defAbility].gSimpleBeamBannedAbilities || ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD)
 			{
 				gBattlescriptCurrInstr = BattleScript_ButItFailed - 5;
 			}

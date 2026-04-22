@@ -805,6 +805,7 @@ struct NewBattleStruct
     u8 dragonCheerCritBoosts[MAX_BATTLERS_COUNT];
     u8 CudChewTimers[MAX_BATTLERS_COUNT];
     bool8 ProtosynthesisQuarkDriveActivated[MAX_BATTLERS_COUNT];
+    bool8 BoosterEnergyUsed[MAX_BATTLERS_COUNT];
 
 	//Bit Fields for Banks
 	u8 MicleBerryBits;

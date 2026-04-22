@@ -37,6 +37,7 @@ cmd49_battle_scripts.s
 .global BattleScript_SilkTrapStatDecrement
 .global BattleScript_BurningBulwark
 .global BattleScript_ToxicChain
+.global BattleScript_ClearAmuletNoStatLoss
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -467,4 +468,15 @@ BattleScript_ToxicChain:
 	setbyte EFFECT_BYTE 0x6
 	seteffectsecondary @;Affected by Safeguard
 	return
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_ClearAmuletNoStatLoss:
+	pause 0x10
+	setword BATTLE_STRING_LOADER gText_ClearAmulet
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	callasm TryHideActiveAbilityPopUps
+	return
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

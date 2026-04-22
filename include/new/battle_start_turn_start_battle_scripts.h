@@ -57,3 +57,4 @@ extern const u8 gText_MistyTerrainBattleBegin[];
 extern const u8 gText_PsychicTerrainBattleBegin[];
 extern const u8 gText_BeakBlastWarmUp[];
 extern const u8 gText_ShellTrapSet[];
+extern const u8 gText_BoosterEnergyActivated[];

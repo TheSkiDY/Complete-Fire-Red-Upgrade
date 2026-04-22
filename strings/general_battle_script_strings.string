@@ -982,3 +982,9 @@ But [SCRIPTING_BANK]'s GOOD AS GOLD\nprevents status moves!
 
 #org @gText_HospitalityHealed
 [EFFECT_BANK] drank down\nall the matcha that [SCRIPTING_BANK] made!
+
+#org @gText_BoosterEnergyActivated
+BOOSTER ENERGY activated [SCRIPTING_BANK]'s\n[SCRIPTING_BANK_ABILITY]!\p[SCRIPTING_BANK]'s [BUFFER][00] was heightened!
+
+#org @gText_ClearAmulet
+But [SCRIPTING_BANK]'s CLEAR AMULET\nprevents lowering its stats!

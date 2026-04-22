@@ -3072,3 +3072,8 @@ void InitMgba(void)
 {
 	MgbaOpen();
 }	
+
+void MgbaDebugCall(void)
+{
+	MgbaPrintf(MGBA_LOG_INFO, "Debug msg.");
+}

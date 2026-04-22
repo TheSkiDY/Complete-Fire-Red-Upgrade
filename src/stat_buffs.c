@@ -9,6 +9,7 @@
 #include "../include/new/accuracy_calc.h"
 #include "../include/new/battle_strings.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/item_battle_scripts.h"
 #include "../include/new/stat_buffs.h"
 /*
 stat_buffs.c
@@ -332,10 +333,33 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 			return STAT_CHANGE_DIDNT_WORK;
 		}
 
+		else if (ITEM_EFFECT(gActiveBattler) == ITEM_EFFECT_CLEAR_AMULET && !certain && gCurrentMove != MOVE_CURSE)
+		{
+			MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet func.");
+			if (flags == STAT_CHANGE_BS_PTR)
+			{
+				if(gSpecialStatuses[gActiveBattler].statLowered)
+				{
+					gBattlescriptCurrInstr = BS_ptr;
+				}
+				else
+				{
+					MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet script call.");
+					BattleScriptPush(BS_ptr);
+					gBattleScripting.bank = gActiveBattler;
+					gBattlescriptCurrInstr = BattleScript_ClearAmuletNoStatLoss;
+					RecordItemEffectBattle(gActiveBattler, ITEM_EFFECT_CLEAR_AMULET);
+					gSpecialStatuses[gActiveBattler].statLowered = 1;
+				}
+			}
+			return STAT_CHANGE_DIDNT_WORK;
+		}
+
 		else if ((IsClearBodyAbility(ability)
 			  || (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		&& !certain && gCurrentMove != MOVE_CURSE)
 		{
+			MgbaPrintf(MGBA_LOG_INFO, "Entered clear body func.");
 			if (flags == STAT_CHANGE_BS_PTR)
 			{
 				if (gSpecialStatuses[gActiveBattler].statLowered)
@@ -344,6 +368,7 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 				}
 				else
 				{
+					MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet script call.");
 					BattleScriptPush(BS_ptr);
 					gBattleScripting.bank = gActiveBattler;
 					gBattleCommunication[0] = gActiveBattler;
@@ -410,7 +435,8 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 			}
 			return STAT_CHANGE_DIDNT_WORK;
 		}
-		else if ((ability == ABILITY_SHIELDDUST || SheerForceCheck()) && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) && flags == 0)
+		else if (((ability == ABILITY_SHIELDDUST || ITEM_EFFECT(gActiveBattler) == ITEM_EFFECT_COVERT_CLOAK)
+		 || SheerForceCheck()) && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) && flags == 0)
 		{
 			return STAT_CHANGE_DIDNT_WORK;
 		}
@@ -539,6 +565,8 @@ u8 CanStatNotBeLowered(u8 statId, u8 bankDef, u8 bankAtk, u8 defAbility)
 	if (IsClearBodyAbility(defAbility)
 	|| (defAbility == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS)))
 		return STAT_PROTECTED_BY_GENERAL_ABILITY;
+	else if (ITEM_EFFECT(bankDef) == ITEM_EFFECT_CLEAR_AMULET)
+		return STAT_PROTECTED_BY_HELD_ITEM;
 	else if (ABILITY(PARTNER(bankDef)) == ABILITY_FLOWERVEIL && IsOfType(bankDef, TYPE_GRASS))
 		return STAT_PROTECTED_BY_PARTNER_ABILITY;
 	else if (AbilityPreventsLoweringStat(defAbility, statId))

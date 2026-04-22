@@ -611,56 +611,61 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			target1 = FOE(bank);
 			target2 = PARTNER(target1);
 
-			if (IS_DOUBLE_BATTLE)
+			if (ITEM_EFFECT(bank) != ITEM_EFFECT_ABILITY_SHIELD)
 			{
-				if (*GetAbilityLocation(target1) != ABILITY_NONE && BATTLER_ALIVE(target1)
-				&& *GetAbilityLocation(target2) != ABILITY_NONE && BATTLER_ALIVE(target2))
+				if (IS_DOUBLE_BATTLE)
 				{
-					if (gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
-						target1 = target2; //Pick the one that might not have a banned Ability
-					else if (Random() & 1)
-						target1 = target2; //50% chance of picking flank bank
+					if (*GetAbilityLocation(target1) != ABILITY_NONE && BATTLER_ALIVE(target1)
+					&& *GetAbilityLocation(target2) != ABILITY_NONE && BATTLER_ALIVE(target2))
+					{
+						if (gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
+							target1 = target2; //Pick the one that might not have a banned Ability
+						else if (Random() & 1)
+							target1 = target2; //50% chance of picking flank bank
 
-					effect++;
+						effect++;
+					}
+					else if (*GetAbilityLocation(target1) != ABILITY_NONE && BATTLER_ALIVE(target1) != 0)
+					{
+						//target1 = target1;
+						effect++;
+					}
+					else if (*GetAbilityLocation(target2) != ABILITY_NONE && BATTLER_ALIVE(target2) != 0)
+					{
+						target1 = target2;
+						effect++;
+					}
 				}
-				else if (*GetAbilityLocation(target1) != ABILITY_NONE && BATTLER_ALIVE(target1) != 0)
+				else //Single Battle
 				{
-					//target1 = target1;
-					effect++;
+					if (BATTLER_ALIVE(target1) && *GetAbilityLocation(target1) != ABILITY_NONE)
+					{
+						target1 = target1;
+						effect++;
+					}
 				}
-				else if (*GetAbilityLocation(target2) != ABILITY_NONE && BATTLER_ALIVE(target2) != 0)
+
+				if (effect)
 				{
-					target1 = target2;
-					effect++;
+					if (!gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
+					{
+						gBankAttacker = bank;
+						*GetAbilityLocation(bank) = *GetAbilityLocation(target1);
+						SetTookAbilityFrom(bank, target1);
+						gLastUsedAbility = *GetAbilityLocation(target1);
+						BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
+
+						PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, target1, gBattlerPartyIndexes[target1])
+						PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)
+					}
+					else
+					{
+						effect = FALSE;
+					}
 				}
 			}
-			else //Single Battle
-			{
-				if (BATTLER_ALIVE(target1) && *GetAbilityLocation(target1) != ABILITY_NONE)
-				{
-					target1 = target1;
-					effect++;
-				}
-			}
-
-			if (effect)
-			{
-				if (!gSpecialAbilityFlags[*GetAbilityLocation(target1)].gTraceBannedAbilities)
-				{
-					gBankAttacker = bank;
-					*GetAbilityLocation(bank) = *GetAbilityLocation(target1);
-					SetTookAbilityFrom(bank, target1);
-					gLastUsedAbility = *GetAbilityLocation(target1);
-					BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
-
-					PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, target1, gBattlerPartyIndexes[target1])
-					PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)
-				}
-				else
-				{
-					effect = FALSE;
-				}
-			}
+			else
+				effect = FALSE;
 			break;
 
 		case ABILITY_CLOUDNINE:
@@ -1273,7 +1278,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 			{
 				if (!IsAbilitySuppressed(i) //Gastro Acid has higher priority
 				&& ABILITY(i) != ABILITY_NONE
-				&& !gSpecialAbilityFlags[ABILITY(i)].gNeutralizingGasBannedAbilities)
+				&& !gSpecialAbilityFlags[ABILITY(i)].gNeutralizingGasBannedAbilities
+				&& ITEM_EFFECT(i) != ITEM_EFFECT_ABILITY_SHIELD)
 				{
 					u8* abilityLoc = GetAbilityLocation(i);
 					gNewBS->neutralizingGasBlockedAbilities[i] = *abilityLoc;

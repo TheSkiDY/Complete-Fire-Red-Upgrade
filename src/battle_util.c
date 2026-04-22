@@ -504,13 +504,13 @@ bool8 HasMonToSwitchTo(u8 bank)
 bool8 CheckContact(u16 move, u8 bankAtk, u8 bankDef)
 {
 	return IsContactMove(move, bankAtk, bankDef)
-		&& !CanNeverMakeContact(bankAtk);
+		&& !CanNeverMakeContact(bankAtk, move);
 }
 
 bool8 CheckContactByMon(u16 move, struct Pokemon* mon)
 {
 	return gBattleMoves[move].flags & FLAG_MAKES_CONTACT
-		&& !CanMonNeverMakeContact(mon);
+		&& !CanMonNeverMakeContact(mon, move);
 }
 
 bool8 IsContactMove(u16 move, u8 bankAtk, u8 bankDef)
@@ -521,25 +521,25 @@ bool8 IsContactMove(u16 move, u8 bankAtk, u8 bankDef)
 		return gBattleMoves[move].flags & FLAG_MAKES_CONTACT;
 }
 
-bool8 CanNeverMakeContact(u8 bank)
+bool8 CanNeverMakeContact(u8 bank, u16 move)
 {
-	return CanNeverMakeContactByAbilityItemEffect(ABILITY(bank), ITEM_EFFECT(bank));
+	return CanNeverMakeContactByAbilityItemEffect(ABILITY(bank), ITEM_EFFECT(bank), move);
 }
 
-bool8 CanMonNeverMakeContact(struct Pokemon* mon)
+bool8 CanMonNeverMakeContact(struct Pokemon* mon, u16 move)
 {
-	return CanNeverMakeContactByAbilityItemEffect(GetMonAbility(mon), GetMonItemEffect(mon));
+	return CanNeverMakeContactByAbilityItemEffect(GetMonAbility(mon), GetMonItemEffect(mon), move);
 }
 
-bool8 CanNeverMakeContactByAbilityItemEffect(u8 ability, u8 itemEffect)
+bool8 CanNeverMakeContactByAbilityItemEffect(u8 ability, u8 itemEffect, u16 move)
 {
 	return ability == ABILITY_LONGREACH
-		|| CanNeverMakeContactByItemEffect(itemEffect);
+		|| CanNeverMakeContactByItemEffect(itemEffect, move);
 }
 
-bool8 CanNeverMakeContactByItemEffect(u8 itemEffect)
+bool8 CanNeverMakeContactByItemEffect(u8 itemEffect, u16 move)
 {
-	return itemEffect == ITEM_EFFECT_PROTECTIVE_PADS;
+	return (itemEffect == ITEM_EFFECT_PROTECTIVE_PADS || (itemEffect == ITEM_EFFECT_PUNCHING_GLOVE && gSpecialMoveFlags[move].gPunchingMoves));
 }
 
 bool8 CheckHealingMove(move_t move)
@@ -1316,26 +1316,25 @@ bool8 CanTransferItem(u16 species, u16 item)
 
 		#ifdef NATIONAL_DEX_GIRATINA
 		case ITEM_EFFECT_GRISEOUS_ORB:
+		case ITEM_EFFECT_GRISEOUS_CORE:
 			if (dexNum == NATIONAL_DEX_GIRATINA)
 				return FALSE;
 			break;
 		#endif
 
-	#ifdef PLA_HELD_ORIGIN_ORBS
 		#ifdef NATIONAL_DEX_DIALGA
-		case ITEM_EFFECT_ADAMANT_ORB:
+		case ITEM_EFFECT_ADAMANT_CRYSTAL:
 			if (dexNum == NATIONAL_DEX_DIALGA)
 				return FALSE;
 			break;
 		#endif
 
 		#ifdef NATIONAL_DEX_PALKIA
-		case ITEM_EFFECT_LUSTROUS_ORB:
+		case ITEM_EFFECT_LUSTROUS_GLOBE:
 			if (dexNum == NATIONAL_DEX_PALKIA)
 				return FALSE;
 			break;
 		#endif
-	#endif
 
 		#ifdef NATIONAL_DEX_ARCEUS
 		case ITEM_EFFECT_PLATE:
@@ -1371,6 +1370,11 @@ bool8 CanTransferItem(u16 species, u16 item)
 				return FALSE;
 			break;
 		#endif
+
+		case ITEM_EFFECT_OGERPON_MASK:
+			if (dexNum == NATIONAL_DEX_OGERPON)
+				return FALSE;
+			break;
 
 		case ITEM_EFFECT_MEGA_STONE:
 			for (i = 0; i < EVOS_PER_MON; ++i)
@@ -2041,7 +2045,7 @@ bool8 DoesSleepClausePrevent(u8 bankToPutToSleep)
 
 static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool8 checkFlowerVeil)
 {
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_COMATOSE:
@@ -2072,7 +2076,7 @@ static bool8 CanBeGeneralStatused(u8 bankDef, u8 defAbility, u8 atkAbility, bool
 	&& IS_DOUBLE_BATTLE
 	&& ABILITY(PARTNER(bankDef)) == ABILITY_FLOWERVEIL //Check target partner Flower Veil
 	&& IsOfType(bankDef, TYPE_GRASS)
-	&& !IsTargetAbilityIgnoredNoMove(ABILITY_FLOWERVEIL, atkAbility)
+	&& (!IsTargetAbilityIgnoredNoMove(ABILITY_FLOWERVEIL, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD)
 	&& !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD))
 		return FALSE;
 
@@ -2096,7 +2100,7 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (!CanBeGeneralStatused(bankDef, defAbility, atkAbility, checkFlowerVeil))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if (BankHasBranchAbility(bankDef, BRANCH_INSOMNIA) || BankHasBranchAbility(bankDef, BRANCH_VITAL_SPIRIT))
 			return FALSE;
@@ -2110,7 +2114,8 @@ bool8 CanBePutToSleep(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (gTerrainType == ELECTRIC_TERRAIN && IsAffectedByElectricTerrain(bankDef))
 		return FALSE;
 
-	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_SWEETVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_SWEETVEIL, atkAbility))
+	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_SWEETVEIL
+	  && (!IsTargetAbilityIgnoredNoMove(ABILITY_SWEETVEIL, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD))
 		return FALSE;
 
 	if (DoesSleepClausePrevent(bankDef))
@@ -2138,7 +2143,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 		return FALSE;
 
 	u8 defAbility = ABILITY(bankDef);
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if(BankHasBranchAbility(bankDef, BRANCH_INSOMNIA) || BankHasBranchAbility(bankDef, BRANCH_VITAL_SPIRIT))
 			return FALSE;
@@ -2170,7 +2175,7 @@ bool8 CanBeYawned(u8 bankDef, u8 bankAtk)
 	{
 		u8 defPartnerAbility = ABILITY(PARTNER(bankDef));
 
-		if (!IsTargetAbilityIgnoredNoMove(defPartnerAbility, atkAbility)) //Target partner's Ability is not ignored
+		if (!IsTargetAbilityIgnoredNoMove(defPartnerAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target partner's Ability is not ignored
 		{
 			switch (defPartnerAbility) {
 				case ABILITY_SWEETVEIL:
@@ -2254,7 +2259,7 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (!CanBeGeneralStatused(bankDef, defAbility, atkAbility, checkFlowerVeil))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if(BankHasBranchAbility(defAbility, BRANCH_IMMUNITY))
 			return FALSE;
@@ -2265,7 +2270,8 @@ bool8 CanBePoisoned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		}
 	}
 
-	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_PASTELVEIL && !IsTargetAbilityIgnoredNoMove(ABILITY_PASTELVEIL, atkAbility))
+	if (IS_DOUBLE_BATTLE && ABILITY(PARTNER(bankDef)) == ABILITY_PASTELVEIL
+	 && (!IsTargetAbilityIgnoredNoMove(ABILITY_PASTELVEIL, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD))
 		return FALSE;
 
 	if (atkAbility != ABILITY_CORROSION)
@@ -2288,7 +2294,7 @@ bool8 CanBeParalyzed(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (IsOfType(bankDef, TYPE_ELECTRIC))
 		return FALSE;
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if (BankHasBranchAbility(bankDef, BRANCH_LIMBER))
 			return FALSE;
@@ -2314,7 +2320,7 @@ bool8 CanBeBurned(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		return FALSE;
 	#endif
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if(BankHasBranchAbility(bankDef, BRANCH_WATER_VEIL) || BankHasBranchAbility(bankDef, BRANCH_THERMAL_EXCHANGE))
 			return FALSE;
@@ -2344,7 +2350,7 @@ bool8 CanBeFrozen(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 		return FALSE;
 	#endif
 
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		if (BankHasBranchAbility(bankDef, BRANCH_MAGMA_ARMOR))
 			return FALSE;
@@ -2369,7 +2375,7 @@ bool8 CanBeConfused(u8 bankDef, u8 bankAtk, u8 checkSafeguard)
 
 	u8 atkAbility = ABILITY(bankAtk);
 	u8 defAbility = ABILITY(bankDef);
-	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Target's Ability is not ignored
+	if (!IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) || ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD) //Target's Ability is not ignored
 	{
 		switch (defAbility) {
 			case ABILITY_OWNTEMPO:
@@ -2405,7 +2411,7 @@ bool8 CanBeInfatuated(u8 bankDef, u8 bankAtk)
 
 	return BATTLER_ALIVE(bankDef)
 		&& !(gBattleMons[bankDef].status2 & STATUS2_INFATUATION)
-		&& (ABILITY(bankDef) != ABILITY_OBLIVIOUS || IsTargetAbilityIgnoredNoMove(ABILITY_OBLIVIOUS, ABILITY(bankAtk)))
+		&& (ABILITY(bankDef) != ABILITY_OBLIVIOUS || (IsTargetAbilityIgnoredNoMove(ABILITY_OBLIVIOUS, ABILITY(bankAtk)) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD))
 		&& GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget)
 		&& GetGenderFromSpeciesAndPersonality(speciesAttacker, personalityAttacker) != MON_GENDERLESS
 		&& GetGenderFromSpeciesAndPersonality(speciesTarget, personalityTarget) != MON_GENDERLESS
@@ -2663,8 +2669,8 @@ bool8 IsLaserFocused(u8 bank)
 
 bool8 IsAbilitySuppressed(u8 bank)
 {
-	return (gStatuses3[bank] & STATUS3_ABILITY_SUPPRESS) != 0
-		|| AreAbilitiesSuppressed();
+	return ((gStatuses3[bank] & STATUS3_ABILITY_SUPPRESS) != 0
+		|| AreAbilitiesSuppressed()) && ITEM_EFFECT(bank) != ITEM_EFFECT_ABILITY_SHIELD;
 }
 
 bool8 AreAbilitiesSuppressed(void)

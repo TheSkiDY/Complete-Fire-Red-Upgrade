@@ -65,6 +65,8 @@ item_battle_scripts.s
 .global BattleScript_WeaknessBerryActivate
 
 .global BattleScript_CheekPouch
+.global BattleScript_BoosterEnergyEnd2
+.global BattleScript_BoosterEnergyRet
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -627,6 +629,21 @@ BattleScript_AIUseGuardSpec:
 	printfromtable 0x83FE5AC @;gMistUsedStringIds
 	waitmessage DELAY_1SECOND
 	finishaction
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+BattleScript_BoosterEnergyEnd2:
+	call BattleScript_BoosterEnergyRet
+	end2
+BattleScript_BoosterEnergyRet:
+	setword BATTLE_STRING_LOADER gText_BoosterEnergyActivated
+	playanimation 0xA ANIM_ITEM_USE 0x0
+	call BattleScript_AbilityPopUp
+	printstring 0x184
+	waitmessage DELAY_HALFSECOND
+	removeitem BANK_SCRIPTING
+	call BattleScript_AbilityPopUpRevert
+	return
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

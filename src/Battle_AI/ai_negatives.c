@@ -118,7 +118,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	data->atkAbility = GetAIAbility(bankAtk, bankDef, move);
 	data->defAbility = GetAIAbility(bankDef, bankAtk, predictedMove);
 
-	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move))
+	if (IsTargetAbilityIgnored(data->defAbility, data->atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		data->defAbility = ABILITY_NONE;
 
 	u8 moveEffect = gBattleMoves[move].effect;
@@ -204,6 +204,12 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	{
 		DECREASE_VIABILITY(10);
 		return viability; //Move Fails
+	}
+
+	if (ITEM_EFFECT(bankDef) == ITEM_EFFECT_CLEAR_AMULET && (CheckTableForMovesEffect(move, gStatLoweringMoveEffects) || move == MOVE_PARTINGSHOT))
+	{
+		DECREASE_VIABILITY(10);
+		return viability;
 	}
 
 	//Target Ability Checks
@@ -2540,6 +2546,8 @@ SKIP_CHECK_TARGET:
 
 			if (atkAbility == defAbility
 			||  defAbility == ABILITY_NONE
+			||  ITEM_EFFECT(bankAtk) == ITEM_EFFECT_ABILITY_SHIELD
+			||  ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD
 			||  gSpecialAbilityFlags[atkAbility].gRolePlayAttackerBannedAbilities
 			||  gSpecialAbilityFlags[defAbility].gRolePlayBannedAbilities)
 				DECREASE_VIABILITY(10);
@@ -2639,6 +2647,7 @@ SKIP_CHECK_TARGET:
 				case MOVE_WORRYSEED:
 					if (defAbility2 == ABILITY_INSOMNIA
 					|| gSpecialAbilityFlags[defAbility2].gWorrySeedBannedAbilities
+					|| ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD
 					|| MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2648,6 +2657,7 @@ SKIP_CHECK_TARGET:
 				case MOVE_GASTROACID:
 					if (IsAbilitySuppressed(bankDef)
 					||  gSpecialAbilityFlags[defAbility2].gGastroAcidBannedAbilities
+					||  ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD
 					||  MoveBlockedBySubstitute(move, bankAtk, bankDef))
 						DECREASE_VIABILITY(10);
 					else
@@ -2657,6 +2667,8 @@ SKIP_CHECK_TARGET:
 				case MOVE_ENTRAINMENT:
 					if (atkAbility2 == ABILITY_NONE
 					||  IsDynamaxed(bankDef)
+					||  ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD
+					||  ITEM_EFFECT(bankAtk) == ITEM_EFFECT_ABILITY_SHIELD
 					||  gSpecialAbilityFlags[atkAbility2].gEntrainmentBannedAbilitiesAttacker
 					||  gSpecialAbilityFlags[defAbility2].gEntrainmentBannedAbilitiesTarget
 					||  MoveBlockedBySubstitute(move, bankAtk, bankDef))
@@ -2681,6 +2693,8 @@ SKIP_CHECK_TARGET:
 					if (atkAbility2 == ABILITY_NONE || defAbility2 == ABILITY_NONE
 					|| IsDynamaxed(bankAtk)
 					|| IsDynamaxed(bankDef)
+					|| ITEM_EFFECT(bankAtk) == ITEM_EFFECT_ABILITY_SHIELD
+					|| ITEM_EFFECT(bankDef) == ITEM_EFFECT_ABILITY_SHIELD
 					|| gSpecialAbilityFlags[atkAbility2].gSkillSwapBannedAbilities
 					|| gSpecialAbilityFlags[defAbility2].gSkillSwapBannedAbilities)
 						DECREASE_VIABILITY(10);

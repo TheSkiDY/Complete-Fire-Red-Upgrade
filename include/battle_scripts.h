@@ -289,4 +289,5 @@ extern const u8 BattleScript_ActionGetNear[];
 extern const u8 BattleScript_ActionThrowPokeblock[];
 extern const u8 BattleScript_82DBEE3[];
 
+
 #endif // GUARD_BATTLE_SCRIPTS_H

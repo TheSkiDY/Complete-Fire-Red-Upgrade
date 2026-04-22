@@ -1466,7 +1466,8 @@ void atk1B_cleareffectsonfaint(void) {
 
 				if (IS_DOUBLE_BATTLE
 				&& (partnerAbility == ABILITY_RECEIVER)
-				&& !gSpecialAbilityFlags[CopyAbility(gActiveBattler)].gReceiverBannedAbilities)
+				&& !gSpecialAbilityFlags[CopyAbility(gActiveBattler)].gReceiverBannedAbilities
+				&& ITEM_EFFECT(partner) != ITEM_EFFECT_ABILITY_SHIELD)
 				{
 					gLastUsedAbility = partnerAbility;
 					SetProperAbilityPopUpSpecies(partner); //Must be set up here before the Ability changes
@@ -2922,6 +2923,9 @@ void atk8D_setmultihitcounter(void) {
 			gMultiHitCounter = (Random() & 3) + 2;
 		else
 			gMultiHitCounter += 2;
+
+		if(gMultiHitCounter <= 3 && ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LOADED_DICE)
+			gMultiHitCounter = 4;
 	}
 
 	gBattlescriptCurrInstr += 2;
@@ -5155,6 +5159,8 @@ void atkD3_trycopyability(void) //Role Play
 
 	if (atkAbility == defAbility
 	||  defAbility == ABILITY_NONE
+	|| ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD
+	|| ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_ABILITY_SHIELD
 	||  gSpecialAbilityFlags[atkAbility].gRolePlayAttackerBannedAbilities
 	||  gSpecialAbilityFlags[defAbility].gRolePlayBannedAbilities)
 	{
@@ -5227,6 +5233,8 @@ void atkDA_tryswapabilities(void) //Skill Swap
 
 	if (atkAbility == ABILITY_NONE || defAbility == ABILITY_NONE
 	|| IsDynamaxed(gBankAttacker) || IsDynamaxed(gBankTarget)
+	|| ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_ABILITY_SHIELD
+	|| ITEM_EFFECT(gBankTarget) == ITEM_EFFECT_ABILITY_SHIELD
 	|| gSpecialAbilityFlags[atkAbility].gSkillSwapBannedAbilities || gSpecialAbilityFlags[defAbility].gSkillSwapBannedAbilities
 	|| gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 	{

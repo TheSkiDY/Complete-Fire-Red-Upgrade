@@ -2002,6 +2002,9 @@ bool8 CanBeFlinched(u8 bankDef, u8 bankAtk, u8 defAbility, u16 move)
 	if (defAbility == ABILITY_SHIELDDUST)
 		return FALSE; //Flinching is only caused by a secondary effect
 
+	if (ITEM_EFFECT(bankDef) == ITEM_EFFECT_COVERT_CLOAK)
+		return FALSE; //same as Shield Dust
+
 	if (!MoveWouldHitFirst(move, bankAtk, bankDef))
 		return FALSE; //Have to go first to flinch
 
@@ -2706,23 +2709,23 @@ u32 GetContactDamage(u16 move, u16 bankAtk, u16 bankDef)
 	if (MoveBlockedBySubstitute(move, bankAtk, bankDef))
 		return 0;
 
-	if (CanNeverMakeContact(bankAtk) || ABILITY(bankAtk) == ABILITY_MAGICGUARD)
+	if (CanNeverMakeContact(bankAtk, move) || ABILITY(bankAtk) == ABILITY_MAGICGUARD)
 		return 0;
 
 	return GetContactDamageByDefAbilityItemEffect(ABILITY(bankDef), ITEM_EFFECT(bankDef), GetBaseMaxHP(bankAtk));
 }
 
-u32 GetContactDamageMonAtk(struct Pokemon* monAtk, u16 bankDef)
+u32 GetContactDamageMonAtk(struct Pokemon* monAtk, u16 bankDef, u16 move)
 {
-	if (CanMonNeverMakeContact(monAtk) || GetMonAbilityAfterTrace(monAtk, bankDef) == ABILITY_MAGICGUARD)
+	if (CanMonNeverMakeContact(monAtk, move) || GetMonAbilityAfterTrace(monAtk, bankDef) == ABILITY_MAGICGUARD)
 		return 0;
 
 	return GetContactDamageByDefAbilityItemEffect(ABILITY(bankDef), ITEM_EFFECT(bankDef), monAtk->maxHP);
 }
 
-u32 GetContactDamageMonDef(u16 bankAtk, struct Pokemon* monDef)
+u32 GetContactDamageMonDef(u16 bankAtk, struct Pokemon* monDef, u16 move)
 {
-	if (CanNeverMakeContact(bankAtk) || ABILITY(bankAtk) == ABILITY_MAGICGUARD)
+	if (CanNeverMakeContact(bankAtk, move) || ABILITY(bankAtk) == ABILITY_MAGICGUARD)
 		return 0;
 
 	return GetContactDamageByDefAbilityItemEffect(GetMonAbilityAfterTrace(monDef, bankAtk), GetMonItemEffect(monDef), GetBaseMaxHP(bankAtk));
@@ -3349,6 +3352,7 @@ bool8 GoodIdeaToLowerAttack(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_ATK) > 4 && RealPhysicalMoveInMoveset(bankDef)
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ATK)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& defAbility != ABILITY_CONTRARY;
@@ -3364,6 +3368,7 @@ bool8 GoodIdeaToLowerDefense(u8 bankDef, u8 bankAtk, u16 move)
 	return STAT_STAGE(bankDef, STAT_STAGE_DEF) > 4
 		&& PhysicalMoveInMoveset(bankAtk)
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_DEF)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& defAbility != ABILITY_CONTRARY;
@@ -3378,6 +3383,7 @@ bool8 GoodIdeaToLowerSpAtk(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPATK) > 4 && SpecialMoveInMoveset(bankDef)
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPATK)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& defAbility != ABILITY_CONTRARY;
@@ -3392,6 +3398,7 @@ bool8 GoodIdeaToLowerSpDef(u8 bankDef, u8 bankAtk, u16 move)
 
 	return STAT_STAGE(bankDef, STAT_STAGE_SPDEF) > 4 && SpecialMoveInMoveset(bankAtk)
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPDEF)
 		&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 		&& defAbility != ABILITY_CONTRARY;
@@ -3407,6 +3414,7 @@ bool8 GoodIdeaToLowerSpeed(u8 bankDef, u8 bankAtk, u16 move, u8 reduceBy)
 	return SpeedCalc(bankAtk) <= SpeedCalc(bankDef)
 		&& defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_SPEED)
 		&& (!IS_DOUBLE_BATTLE || WillBeFasterAfterSpeedDrop(bankAtk, bankDef, reduceBy));
 }
@@ -3420,6 +3428,7 @@ bool8 GoodIdeaToLowerAccuracy(u8 bankDef, u8 bankAtk, u16 move)
 
 	return defAbility != ABILITY_CONTRARY
 		&& !IsClearBodyAbility(defAbility)
+		&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 		&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_ACC);
 }
 
@@ -3428,6 +3437,7 @@ bool8 GoodIdeaToLowerEvasion(u8 bankDef, u8 bankAtk, unusedArg u16 move)
 	u8 defAbility = ABILITY(bankDef);
 
 	if (!IsClearBodyAbility(defAbility)
+	&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 	&& !AbilityPreventsLoweringStat(defAbility, STAT_STAGE_EVASION)
 	&& !AbilityRaisesOneStatWhenSomeStatIsLowered(defAbility)
 	&& defAbility != ABILITY_CONTRARY)
@@ -5360,13 +5370,13 @@ static bool8 CalcShouldAIUseZMove(u8 bankAtk, u8 bankDef, u16 move)
 			u8 defAbility = ABILITY(bankDef);
 			u16 defSpecies = SPECIES(bankDef);
 
-			if (IsTargetAbilityIgnoredNoMove(defAbility, atkAbility)) //Don't factor in the Z-Move
+			if (IsTargetAbilityIgnoredNoMove(defAbility, atkAbility) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD) //Don't factor in the Z-Move
 				defAbility = ABILITY_NONE;
 
 			if (move == MOVE_FAKEOUT && ShouldUseFakeOut(bankAtk, bankDef, defAbility))
 				return FALSE; //Prefer actual Fake Out over Breakneck Blitz
 
-			if (IsTargetAbilityIgnored(defAbility, atkAbility, zMove)) //This time account for the Z-Move
+			if (IsTargetAbilityIgnored(defAbility, atkAbility, zMove) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD) //This time account for the Z-Move
 				defAbility = ABILITY_NONE;
 
 			if (MoveBlockedBySubstitute(zMove, bankAtk, bankDef)

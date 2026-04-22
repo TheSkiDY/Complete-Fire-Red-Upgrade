@@ -1572,6 +1572,14 @@ static void ItemUseCB_MaxPowder(u8 taskId, TaskFunc func);
 static void Task_OfferGigantamaxChange(u8 taskId);
 static void Task_HandleGigantamaxChangeYesNoInput(u8 taskId);
 static void Task_ChangeGigantamax(u8 taskId);
+static void ItemUseCB_NatureMint(u8 taskId, TaskFunc func);
+static u8 GetNatureMintNewNature(struct Pokemon* mon);
+static void Task_OfferNatureChange(u8 taskId);
+static void Task_HandleNatureChangeYesNoInput(u8 taskId);
+static void Task_ChangeNature(u8 taskId);
+extern const u8 gText_NatureOfferChange[];
+extern const u8 gText_NatureMintChangedNature[];
+
 
 void Task_ClosePartyMenuAfterText(u8 taskId)
 {
@@ -2754,3 +2762,123 @@ void FieldUseFunc_VsSeeker(u8 taskId)
 	}
 }
 #endif
+
+void FieldUseFunc_NatureMint(u8 taskId)
+{
+	gItemUseCB = ItemUseCB_NatureMint;
+	SetUpItemUseCallback(taskId);
+}
+
+static void ItemUseCB_NatureMint(u8 taskId, TaskFunc func)
+{
+	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+	u8 changeTo = GetNatureMintNewNature(mon);
+
+	PlaySE(SE_SELECT);
+
+	if(changeTo < NUM_NATURES)
+	{
+		GetMonNickname(mon, gStringVar1);
+		StringCopy(gStringVar2, gNatureNamePointers[changeTo]);
+		StringExpandPlaceholders(gStringVar4, gText_NatureOfferChange);
+		DisplayPartyMenuMessage(gStringVar4, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = Task_OfferNatureChange;
+	}
+	else
+	{
+		gPartyMenuUseExitCallback = FALSE;
+		DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+		ScheduleBgCopyTilemapToVram(2);
+		gTasks[taskId].func = func;
+	}
+}
+
+static u8 GetNatureMintNewNature(struct Pokemon* mon)
+{
+	u16 item = Var800E;
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u8 currentNature = GetNatureFromPersonality(personality);
+	
+	u8 newNature = ItemId_GetHoldEffectParam(item);
+
+	if(currentNature == newNature)
+		return NUM_NATURES;
+	else
+		return newNature;	
+}
+
+static void Task_OfferNatureChange(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        PartyMenuDisplayYesNoMenu();
+        gTasks[taskId].func = Task_HandleNatureChangeYesNoInput;
+    }
+}
+
+static void Task_HandleNatureChangeYesNoInput(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+		case 0:
+			gTasks[taskId].func = Task_ChangeNature;
+			break;
+		case MENU_B_PRESSED:
+			PlaySE(SE_SELECT);
+			// Fallthrough
+		case 1:
+			gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+			break;
+    }
+}
+
+
+static void Task_ChangeNature(u8 taskId)
+{
+	u16 item = Var800E;
+	u8 newNature = ItemId_GetHoldEffectParam(item);
+	struct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];
+	PlaySE(SE_USE_ITEM);
+	
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+	u8 abilityNum = personality & 1;
+	u8 gender = GetGenderFromSpeciesAndPersonality(species, personality);
+	bool8 isShiny = IsMonShiny(mon);
+	u8 letter = GetUnownLetterFromPersonality(personality);
+	bool8 isMinior = IsMinior(species);
+	u16 miniorCore = GetMiniorCoreFromPersonality(personality);
+
+	u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+	u16 sid = HIHALF(trainerId);
+	u16 tid = LOHALF(trainerId);
+
+	do
+	{
+		personality = Random32();
+
+		if(isShiny)
+		{
+			u8 shinyRange = 1;
+			personality = (((shinyRange ^ (sid ^ tid)) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+		}
+		personality &= ~(1);
+		personality |= abilityNum;
+
+	} while (GetNatureFromPersonality(personality) != newNature
+		  	|| GetGenderFromSpeciesAndPersonality(species, personality) != gender
+		  	|| (!isShiny && IsShinyOtIdPersonality(trainerId, personality)) 
+			|| (species == SPECIES_UNOWN && GetUnownLetterFromPersonality(personality) != letter)
+			|| (isMinior && GetMiniorCoreFromPersonality(personality) != miniorCore));
+
+	SetMonData(mon, MON_DATA_PERSONALITY, &personality);
+	CalculateMonStats(mon);
+	GetMonNickname(mon, gStringVar1);
+	StringCopy(gStringVar2, gNatureNamePointers[newNature]);
+	StringExpandPlaceholders(gStringVar4, gText_NatureMintChangedNature);
+	DisplayPartyMenuMessage(gStringVar4, TRUE);
+	ScheduleBgCopyTilemapToVram(2);
+	gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+	RemoveBagItem(item, 1);
+}

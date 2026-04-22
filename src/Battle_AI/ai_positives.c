@@ -52,7 +52,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 	u8 atkAbility = GetAIAbility(bankAtk, bankDef, move);
 	u8 defAbility = GetAIAbility(bankDef, bankAtk, predictedMove);
 
-	if (IsTargetAbilityIgnored(defAbility, atkAbility, move))
+	if (IsTargetAbilityIgnored(defAbility, atkAbility, move) && ITEM_EFFECT(bankDef) != ITEM_EFFECT_ABILITY_SHIELD)
 		defAbility = ABILITY_NONE;
 
 	u8 moveEffect = gBattleMoves[move].effect;
@@ -861,6 +861,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				else //Double Battle
 				{
 					if (!IsClearBodyAbility(defAbility)
+					&& ITEM_EFFECT(bankDef) != ITEM_EFFECT_CLEAR_AMULET
 					&& defAbility != ABILITY_CONTRARY
 					&& AI_STAT_CAN_FALL(bankDef, STAT_STAGE_SPEED))
 						IncreaseViabilityForSpeedControl(&viability, class, bankAtk, bankDef);

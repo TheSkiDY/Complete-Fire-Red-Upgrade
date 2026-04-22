@@ -193,6 +193,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 								chance *= 2;
 
 							if (ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							 && ITEM_EFFECT(gBankTarget) != ITEM_EFFECT_COVERT_CLOAK
 							 && CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
 							 && umodsi(Random(), 100) < chance)
 							{
@@ -209,6 +210,7 @@ void atk49_moveend(void) //All the effects that happen after a move is used
 
 							if (CheckContact(gCurrentMove, gBankAttacker, gBankTarget)
 							&& ABILITY(gBankTarget) != ABILITY_SHIELDDUST
+							&& ITEM_EFFECT(gBankTarget) != ITEM_EFFECT_COVERT_CLOAK
 							&& CanBePoisoned(gBankTarget, gBankAttacker, TRUE)
 							&& umodsi(Random(), 100) < chance)
 							{

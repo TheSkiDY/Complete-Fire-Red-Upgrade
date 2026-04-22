@@ -1013,6 +1013,9 @@ static u8 AtkCanceller_UnableToUseMove(void)
 								gMultiHitCounter = 5;
 							break;
 					}
+
+					if(ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LOADED_DICE && gMultiHitCounter <= 3)
+						gMultiHitCounter = 4;
 				}
 
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
@@ -1033,7 +1036,14 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK)
 			{
 				if (gCurrentMove == MOVE_POPULATIONBOMB)
-					gMultiHitCounter = 10;
+				{
+					if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_LOADED_DICE)
+					{
+						gMultiHitCounter = Random() % 7 + 4; //4-10 hits
+					}
+					else
+						gMultiHitCounter = 10;
+				}
 				else
 					gMultiHitCounter = 3;
 				PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
