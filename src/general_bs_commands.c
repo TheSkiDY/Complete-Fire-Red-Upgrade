@@ -4137,6 +4137,7 @@ void atkB0_trysetspikes(void)
 		case MOVE_STEALTHROCK:
 		case MOVE_G_MAX_STONESURGE_P:
 		case MOVE_G_MAX_STONESURGE_S:
+		case MOVE_STONEAXE:
 			if (gSideTimers[defSide].srAmount)
 			{
 				gSpecialStatuses[gBankAttacker].ppNotAffectedByPressure = 1;

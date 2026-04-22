@@ -876,7 +876,7 @@ u16 GetAmountToRecoverBy(u8 bankAtk, u8 bankDef, u16 move)
 
 	switch (gBattleMoves[move].effect) {
 		case EFFECT_RESTORE_HP:
-			if (move == MOVE_LIFEDEW || move == MOVE_JUNGLEHEALING)
+			if (move == MOVE_LIFEDEW || move == MOVE_JUNGLEHEALING || move == MOVE_LUNARBLESSING)
 				amountToRecover = MathMax(1, maxHp / 4);
 			else
 				amountToRecover = MathMax(1, maxHp / 2);

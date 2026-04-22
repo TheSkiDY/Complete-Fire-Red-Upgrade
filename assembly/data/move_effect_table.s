@@ -265,7 +265,7 @@ gBattleScriptsForMoveEffects:
 .word BS_247_Comeuppance
 .word BS_248_SetSleepChance
 .word BS_249_FickleBeam
-.word BS_250_Blank
+.word BS_250_SpikesHit
 .word BS_251_Blank
 .word BS_252_Blank
 .word BS_253_MaxMove

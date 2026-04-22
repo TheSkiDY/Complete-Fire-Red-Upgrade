@@ -3264,6 +3264,7 @@ bool8 BadIdeaToRaiseEvasionAgainst(u8 bankAtk, u8 bankDef, u8 amount, bool8 chec
 
 	if (checkingOriginalTarget
 	&& (ABILITY(bankDef) == ABILITY_KEENEYE
+	 || ABILITY(bankDef) == ABILITY_ILLUMINATE
 	 || (gBattleMons[bankAtk].status2 & STATUS2_FORESIGHT)
 	 || (gBattleMons[bankAtk].status2 & STATUS3_MIRACLE_EYED)))
 		return TRUE; //Evasion will be ignored

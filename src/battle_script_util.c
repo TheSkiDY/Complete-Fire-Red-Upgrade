@@ -141,13 +141,13 @@ void SetStatSwapSplit(void)
 			string = gText_PowerTrick;
 			break;
 
-		case MOVE_POWERSHIFT: //Swaps both offenses with both defenses
+		case MOVE_POWERSHIFT: 
 			temp = gBattleMons[bankAtk].attack;
 			gBattleMons[bankAtk].attack = gBattleMons[bankAtk].defense;
 			gBattleMons[bankAtk].defense = temp;
-			temp = gBattleMons[bankAtk].spAttack;
-			gBattleMons[bankAtk].spAttack = gBattleMons[bankAtk].spDefense;
-			gBattleMons[bankAtk].spDefense = temp;
+			//temp = gBattleMons[bankAtk].spAttack; //doesn't change Special stats in Gen 9 onwards
+			//gBattleMons[bankAtk].spAttack = gBattleMons[bankAtk].spDefense;
+			//gBattleMons[bankAtk].spDefense = temp;
 			gNewBS->powerShifted[bankAtk] ^= 1; //Mainly for the AI
 
 			string = gText_PowerShiftSwappedStats;
@@ -2249,12 +2249,6 @@ bool8 ShouldLunarBlessingFail(u8 bankAtk)
 		return FALSE;
 
 	return TRUE;
-}
-
-void TryFailLunarBlessing(void)
-{
-	if (ShouldLunarBlessingFail(gBankAttacker))
-		gBattlescriptCurrInstr = BattleScript_LunarBlessingFail - 5;
 }
 
 void SetStickyWebActive(void)

@@ -116,6 +116,9 @@ void atk15_seteffectwithchance(void)
 {
 	u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
 
+	if (gCurrentMove == MOVE_TRIPLEARROWS && gBattleCommunication[MOVE_EFFECT_BYTE] == MOVE_EFFECT_DEF_MINUS_1)
+		percentChance = 50;
+
 	if (ABILITY(gBankAttacker) == ABILITY_SERENEGRACE || BankHasRainbow(gBankAttacker))
 	{
 		percentChance *= 2;

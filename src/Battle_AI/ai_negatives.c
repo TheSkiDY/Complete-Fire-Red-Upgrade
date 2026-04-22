@@ -452,6 +452,7 @@ u8 AIScript_Negatives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				break;
 
 			case ABILITY_KEENEYE:
+			case ABILITY_ILLUMINATE:
 				if (moveEffect == EFFECT_ACCURACY_DOWN
 				||  moveEffect == EFFECT_ACCURACY_DOWN_2)
 				{
@@ -1520,12 +1521,8 @@ SKIP_CHECK_TARGET:
 					break;
 
 				case MOVE_JUNGLEHEALING:
-					if (!ShouldJungleHealingFail(bankAtk))
-						break; //If it'll work, no point in not using it
-					goto DEFAULT_RECOVERY; //Even if it'll fail due to full HP, there may be logic to use it preemptively
-
 				case MOVE_LUNARBLESSING:
-					if (!ShouldLunarBlessingFail(bankAtk))
+					if (!ShouldJungleHealingFail(bankAtk))
 						break; //If it'll work, no point in not using it
 					goto DEFAULT_RECOVERY; //Even if it'll fail due to full HP, there may be logic to use it preemptively
 

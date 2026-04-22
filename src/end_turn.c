@@ -2113,7 +2113,7 @@ u32 GetGMaxVolcalithDamage(u8 bank)
 u32 GetSaltCureDamage(u8 bank)
 {
 	u32 damage = 0;
-	u8 divisor = (IsOfType(bank, TYPE_WATER) || IsOfType(bank, TYPE_STEEL)) ? 4 : 8;
+	u8 divisor = (IsOfType(bank, TYPE_WATER) || IsOfType(bank, TYPE_STEEL)) ? 8 : 16;
 
 	if (gNewBS->saltCured[bank] && ABILITY(bank) != ABILITY_MAGICGUARD)
 	{

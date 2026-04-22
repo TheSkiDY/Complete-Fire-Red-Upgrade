@@ -691,6 +691,7 @@ BS_031_Flinch:
 	jumpifmove MOVE_THUNDERFANG ThunderFangBS
 	jumpifmove MOVE_FIREFANG FireFangBS
 	jumpifmove MOVE_ICEFANG IceFangBS
+	jumpifmove MOVE_TRIPLEARROWS TripleArrowsBS
 	goto BS_STANDARD_HIT
 	
 ThunderFangBS:
@@ -720,6 +721,15 @@ IceFangBS:
 	seteffectwithchancetarget
 	goto BS_MOVE_FAINT
 
+TripleArrowsBS:
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	seteffectwithchancetarget
+	setmoveeffect MOVE_EFFECT_DEF_MINUS_1
+	seteffectwithchancetarget
+	goto BS_MOVE_FAINT
+
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .global BS_032_Recover
@@ -732,7 +742,7 @@ BS_032_Recover:
 	jumpifmove MOVE_ROOST RoostBS
 	jumpifmove MOVE_LIFEDEW LifeDewBS
 	jumpifmove MOVE_JUNGLEHEALING JungleHealingBS
-	jumpifmove MOVE_LUNARBLESSING LunarBlessingBS
+	jumpifmove MOVE_LUNARBLESSING JungleHealingBS
 
 RecoverBS:
 	setdamageasrestorehalfmaxhp 0x81D7DD1 BANK_ATTACKER @;BattleScript_AlreadyAtFullHp
@@ -884,46 +894,6 @@ BattleScript_NoHealPartnerAfterHealBlock_JungleHealing:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	goto JungleHealingTryClearPartnerStatusBS
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-LunarBlessingBS:
-	callasm TryFailLunarBlessing
-	attackanimation
-	waitanimation
-	setdamageasrestorehalfmaxhp LunarBlessingFullHealthBS BANK_ATTACKER
-	orword HIT_MARKER HITMARKER_IGNORE_SUBSTITUTE
-	graphicalhpupdate BANK_ATTACKER
-	datahpupdate BANK_ATTACKER
-	printstring 0x4B @;STRINGID_PKMNREGAINEDHEALTH
-	waitmessage DELAY_1SECOND
-	goto LunarBlessingTryClearStatusBS
-
-LunarBlessingFullHealthBS:
-	printstring 0x4C @;STRINGID_PKMNHPFULL
-	waitmessage DELAY_1SECOND
-
-LunarBlessingTryClearStatusBS:
-	cureprimarystatus BANK_ATTACKER LunarBlessingRaiseEvasionBS
-	refreshhpbar BANK_ATTACKER
-	setword BATTLE_STRING_LOADER gText_Purify
-	printstring 0x184
-	waitmessage DELAY_1SECOND
-
-LunarBlessingRaiseEvasionBS:
-	setmoveeffect MOVE_EFFECT_EVS_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
-	seteffectprimary
-	goto BS_MOVE_END
-
-.global BattleScript_LunarBlessingFail
-BattleScript_LunarBlessingFail:
-	pause DELAY_HALFSECOND
-	printstring 0x4C @;STRINGID_PKMNHPFULL
-	waitmessage DELAY_1SECOND
-	setstatchanger STAT_EVASION | INCREASE_1
-	statbuffchange STAT_ATTACKER | STAT_BS_PTR | STAT_CERTAIN, BS_MOVE_END @;Won't work, but needed to buffer the correct string
-	printfromtable gStatUpStringIds
-	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -1430,7 +1400,7 @@ PoisonChecks:
 
 ToxicThreadDo:
 	accuracycheck BS_MOVE_MISSED_PAUSE 0x0
-	setstatchanger STAT_SPD | DECREASE_1
+	setstatchanger STAT_SPD | DECREASE_2
 	statbuffchange STAT_TARGET | STAT_BS_PTR ToxicThreadPSN
 	jumpifbyte EQUALS MULTISTRING_CHOOSER 0x2 ToxicThreadPSN
 
@@ -1477,21 +1447,7 @@ BS_068_LowerTargetAtk1Chance:
 .global BS_069_LowerTargetDef1Chance
 BS_069_LowerTargetDef1Chance:
 	setmoveeffect MOVE_EFFECT_DEF_MINUS_1
-	jumpifmove MOVE_TRIPLEARROWS TripleArrowsBS
 	goto BS_STANDARD_HIT
-
-TripleArrowsBS:
-	attackcanceler
-	accuracycheck BS_MOVE_MISSED 0x0
-	call STANDARD_DAMAGE
-	seteffectwithchancetarget
-	jumpifsecondarystatus BANK_ATTACKER STATUS2_PUMPEDUP BS_MOVE_FAINT
-	jumpifability BANK_ATTACKER ABILITY_SHEERFORCE BS_MOVE_FAINT
-	jumpifmovehadnoeffect BS_MOVE_FAINT
-	setincreasedcriticalchance
-	printfromtable 0x83FE5B0
-	waitmessage DELAY_1SECOND
-	goto BS_MOVE_FAINT
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -6305,9 +6261,20 @@ BattleScript_FickleBeamAllOut:
 	
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.global BS_250_Blank
-BS_250_Blank:
-	goto BS_STANDARD_HIT
+.global BS_250_SpikesHit
+BS_250_SpikesHit:
+	tryactivateprotean
+	attackcanceler
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+	prefaintmoveendeffects 0x0
+	faintpokemonaftermove
+SetHazards:
+	setspikes BS_MOVE_END
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

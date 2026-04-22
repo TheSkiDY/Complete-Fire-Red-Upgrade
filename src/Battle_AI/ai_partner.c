@@ -364,6 +364,7 @@ u8 AIScript_Partner(const u8 bankAtk, const u8 bankAtkPartner, const u16 origina
 					break;
 				case MOVE_LIFEDEW:
 				case MOVE_JUNGLEHEALING:
+				case MOVE_LUNARBLESSING:
 					if (!partnerProtects)
 						IncreaseHealPartnerViability(&viability, class, bankAtkPartner);
 					break;

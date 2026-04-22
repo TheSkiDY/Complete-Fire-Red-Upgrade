@@ -20,15 +20,11 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8004 0xF @erase party
 	special 0x62
 	setvar 0x8000 MOVE_BULLETSEED
-	setvar 0x8001 MOVE_SOLARBEAM
+	setvar 0x8001 MOVE_TRIPLEARROWS
 	setvar 0x8002 MOVE_GROWTH
 	setvar 0x8003 MOVE_MALIGNANTCHAIN
 	givepokemon SPECIES_MEW 20 ITEM_LOADED_DICE 0 1
-	givepokemon SPECIES_BARBARACLE 20 ITEM_BARBARACITE 0 0
-	givepokemon SPECIES_CHANDELURE 20 ITEM_CHANDELURITE 0 0
-	givepokemon SPECIES_CHIMECHO 20 ITEM_CHIMECHITE 0 0
-	givepokemon SPECIES_DARKRAI 20 ITEM_DARKRANITE 0 0
-	givepokemon SPECIES_EELEKTROSS 20 ITEM_EELEKTROSSITE 0 0
+	givepokemon SPECIES_MOLTRES 20 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
@@ -39,8 +35,8 @@ EventScript_PalletTown_TechnologyGuy:
 
 EventScript_PalletTown_TechnologyGuy_Part2:
 	setflag 0x90B @wild_custom_moves 
-	setvar 0x8000 MOVE_LEER
-	setvar 0x8001 0x0
+	setvar 0x8000 MOVE_STONEAXE
+	setvar 0x8001 MOVE_CEASELESSEDGE
 	setvar 0x8002 0x0
 	setvar 0x8003 0x0
 	setwildbattle SPECIES_TOGEKISS 20

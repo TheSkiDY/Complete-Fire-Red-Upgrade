@@ -680,7 +680,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 					INCREASE_STATUS_VIABILITY(3);
 			}
 			else if (move == MOVE_JUNGLEHEALING || move == MOVE_LUNARBLESSING)
-				goto AI_REFRESH; //Although Lunar Blessing also raises evasion, it's better for the AI to treat it strictly as a recovery move and not spam it like Double Team
+				goto AI_REFRESH; 
 			break;
 
 		case EFFECT_TOXIC:

@@ -2016,6 +2016,7 @@ bool8 AbilityPreventsLoweringStat(u8 ability, u8 statId)
 		case ABILITY_BIGPECKS:
 			return statId == STAT_STAGE_DEF;
 		case ABILITY_KEENEYE:
+		case ABILITY_ILLUMINATE:
 			return statId == STAT_STAGE_ACC;
 		default:
 			return FALSE;
