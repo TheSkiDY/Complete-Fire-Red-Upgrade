@@ -415,27 +415,12 @@ static u8 AtkCanceller_UnableToUseMove(void)
 			u16 species = SPECIES(gBankAttacker);
 
 			switch (gCurrentMove) {
-				case MOVE_DARKVOID:
-					if (!gNewBS->zMoveData.active || gNewBS->zMoveData.effectApplied) //Allows for Z-Dark Void to still have Z-Effect
-					{
-						#ifdef SPECIES_DARKRAI
-						if (species != SPECIES_DARKRAI && !gNewBS->MoveBounceInProgress)
-							effect = 1;
-						#endif
-					}
-					break;
 				case MOVE_HYPERSPACEFURY:
-					#ifdef SPECIES_HOOPA_UNBOUND
 					if (species != SPECIES_HOOPA_UNBOUND)
 					{
-						#ifdef SPECIES_HOOPA
 						if (species == SPECIES_HOOPA)
 							effect = 2;
-						else
-						#endif
-							effect = 1;
 					}
-					#endif
 					break;
 			}
 

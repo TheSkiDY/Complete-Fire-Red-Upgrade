@@ -1547,6 +1547,12 @@ static void ModulateDmgByType(u8 multiplier, const u16 move, const u8 moveType, 
 	if (move == MOVE_FREEZEDRY && defType == TYPE_WATER) //Always Super-Effective, even in Inverse Battles
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
+	if (move == MOVE_CUT && defType == TYPE_GRASS)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
+	if (move == MOVE_STRENGTH && defType == TYPE_ROCK)
+		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
+
 	if (moveType == TYPE_FIRE && gNewBS->tarShotBits & gBitTable[bankDef]) //Fire always Super-Effective if covered in tar
 		multiplier = TYPE_MUL_SUPER_EFFECTIVE;
 
@@ -1771,9 +1777,9 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 					 | ((gBattleMons[bankAtk].spAttackIV & 1) << 4)
 					 | ((gBattleMons[bankAtk].spDefenseIV & 1) << 5);
 
-			moveType = (15 * moveType) / 63 + 1;
-			if (moveType >= TYPE_MYSTERY)
-				moveType++;
+			moveType = (16 * moveType) / 63 + 1;
+			if (moveType == TYPE_MYSTERY)
+				moveType = TYPE_FAIRY;
 			break;
 
 		case MOVE_WEATHERBALL:
@@ -1818,7 +1824,8 @@ u8 GetExceptionMoveType(u8 bankAtk, u16 move)
 			break;
 
 		//Based on https://bulbapedia.bulbagarden.net/wiki/Revelation_Dance_(move)
-		case MOVE_REVELATIONDANCE: ;
+		case MOVE_REVELATIONDANCE: 
+		case MOVE_DUALCHOP: ;
 			u8 atkType1 = gBattleMons[bankAtk].type1;
 			u8 atkType2 = gBattleMons[bankAtk].type2;
 			u8 atkType3 = gBattleMons[bankAtk].type3;
@@ -1964,6 +1971,7 @@ u8 GetMonExceptionMoveType(struct Pokemon* mon, u16 move)
 			break;
 
 		case MOVE_REVELATIONDANCE:
+		case MOVE_DUALCHOP:
 			moveType = GetMonType(mon, 0);
 			break;
 
@@ -2029,9 +2037,9 @@ u8 CalcMonHiddenPowerType(struct Pokemon* mon)
 			   ((mon->spAttackIV & 1) << 4) |
 			   ((mon->spDefenseIV & 1) << 5);
 
-	moveType = ((15 * moveType) / 63) + 1;
-	if (moveType >= TYPE_MYSTERY)
-		++moveType;
+	moveType = ((16 * moveType) / 63) + 1;
+	if (moveType == TYPE_MYSTERY)
+		moveType = TYPE_FAIRY;
 
 	return moveType;
 }
@@ -3000,6 +3008,13 @@ static s32 CalculateBaseDamage(struct DamageCalc* data)
 		else if (gBattleWeather & WEATHER_SANDSTORM_PRIMAL
 		&& ((!useMonDef && IsOfType(bankDef, TYPE_GROUND)) || (useMonDef && IsMonOfType(data->monDef, TYPE_GROUND))))
 			spDefense = (15 * spDefense) / 10; //Ground types get a Sp. Def boost in a "Vicious Sandstorm"
+	}
+
+//Snow Def Increase
+	if (gBattleWeather & WEATHER_HAIL_ANY && WEATHER_HAS_EFFECT)
+	{
+		if ((!useMonDef && IsOfType(bankDef, TYPE_ICE)) || (useMonDef && IsMonOfType(data->monDef, TYPE_ICE)))
+			defense = (15 * defense) / 10;
 	}
 
 //Old Exploding Check

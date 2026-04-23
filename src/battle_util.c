@@ -282,7 +282,7 @@ bool8 CanHitSemiInvulnerableTarget(u8 bankAtk, u8 bankDef, u16 move)
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || ABILITY(bankDef) == ABILITY_NOGUARD || gNewBS->GlaiveRushTimers[bankDef] > 0)
 		return TRUE;
 
-	if (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
+	if (MoveAlwaysHitsDueToTyping(move, bankAtk))
 		return TRUE;
 
 	return gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk;
@@ -2716,4 +2716,24 @@ u8 CountFaintedMonsInParty(struct Pokemon* party)
 			count++;
 	}
 	return count;
+}
+
+bool8 MoveAlwaysHitsDueToTyping(u16 move, u8 bank)
+{
+	return ((move == MOVE_TOXIC && IsOfType(bank, TYPE_POISON))
+	    || (move == MOVE_WILLOWISP && IsOfType(bank, TYPE_FIRE))
+	    || (move == MOVE_THUNDERWAVE && IsOfType(bank, TYPE_ELECTRIC))
+	    || (move == MOVE_SWAGGER && IsOfType(bank, TYPE_DARK))
+	    || (move == MOVE_SWEETKISS && IsOfType(bank, TYPE_FAIRY))
+	    || (move == MOVE_METALSOUND && IsOfType(bank, TYPE_STEEL)));
+}
+
+bool8 MoveAlwaysHitsDueToTypingMon(u16 move, struct Pokemon* mon)
+{
+	return ((move == MOVE_TOXIC && IsMonOfType(mon, TYPE_POISON))
+	    || (move == MOVE_WILLOWISP && IsMonOfType(mon, TYPE_FIRE))
+	    || (move == MOVE_THUNDERWAVE && IsMonOfType(mon, TYPE_ELECTRIC))
+	    || (move == MOVE_SWAGGER && IsMonOfType(mon, TYPE_DARK))
+	    || (move == MOVE_SWEETKISS && IsMonOfType(mon, TYPE_FAIRY))
+	    || (move == MOVE_METALSOUND && IsMonOfType(mon, TYPE_STEEL)));	
 }

@@ -326,3 +326,8 @@ gItemEffectTable 08042E38
 gItemEffectTable 08125048
 gItemEffectTable 08125748
 gItemEffectTable 08126CC0
+
+gText_StartedSnow 083FE2D8
+gText_SnowContinues 083FE2DC
+gText_SnowStopped 083FE2E0
+gText_PkmnPeltedBySnow 083FE0A8

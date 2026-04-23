@@ -2953,6 +2953,7 @@ BS_135_AttackerRaiseDef2Chance:
 .global BS_136_RainDance
 BS_136_RainDance:
 	attackcanceler
+	jumpifmove MOVE_WATERFALL WaterfallBS
 	attackstringnoprotean
 	ppreduce
 	jumpifweather WEATHER_RAIN_ANY, RainDanceSkipPrimalWeatherCheck @;Fails normally
@@ -2970,6 +2971,17 @@ BattleScript_RainDanceBlockedByEvaporate:
 	printstring 0x184
 	waitmessage DELAY_1SECOND
 	call BattleScript_AbilityPopUpRevert
+	goto BS_MOVE_END
+
+WaterfallBS:
+	accuracycheck BS_MOVE_MISSED 0x0
+	call STANDARD_DAMAGE
+	jumpifmovehadnoeffect BS_MOVE_FAINT
+	setrain
+	playanimation2 BANK_SCRIPTING ANIM_ARG_1 0x0
+	printfromtable 0x83fe528 
+	waitmessage DELAY_1SECOND 
+	call 0x81d92dc
 	goto BS_MOVE_END
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

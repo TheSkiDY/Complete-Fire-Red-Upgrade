@@ -300,7 +300,7 @@ gMoveAnimations:
 .word 0x81d2622		@MOVE_SPITUP
 .word 0x81d2765		@MOVE_SWALLOW
 .word 0x81cb766		@MOVE_HEATWAVE
-.word 0x81cb816		@MOVE_HAIL
+.word ANIM_SNOWSCAPE 			@0x81cb816 <- old MOVE_HAIL
 .word 0x81cb84e		@MOVE_TORMENT
 .word 0x81d2ae9		@MOVE_FLATTER
 .word 0x81d2340		@MOVE_WILLOWISP
@@ -29339,6 +29339,23 @@ ANIM_MALIGNANTCHAIN:
 @Credits to -
 ANIM_NIHILLIGHT:
 	goto ANIM_ETERNABEAM
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+.global ANIM_SNOWSCAPE
+ANIM_SNOWSCAPE:
+	@goto 0x81cb816
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x3 0x0 0x8 RGB_WHITE
+	launchtask AnimTask_LoadSandstormBackground 0x5 0x1 0x1
+	launchtask AnimTask_BlendBackground 0x6 0x2 0x6 0x7FFF
+	playsound2 0x7d SOUND_PAN_ABOVE
+	pause 0x44
+	playsound2 0x7e SOUND_PAN_ABOVE
+	pause 0x38
+	launchtask AnimTask_pal_fade 0xa 0x5 PAL_BG 0x3 0x8 0x0 RGB_WHITE
+	waitanimation
+	endanimation
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

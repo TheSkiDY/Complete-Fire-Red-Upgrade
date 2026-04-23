@@ -385,7 +385,7 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	if (((gStatuses3[bankDef] & STATUS3_ALWAYS_HITS) && gDisableStructs[bankDef].bankWithSureHit == gBankAttacker)
 	||   (ABILITY(gBankAttacker) == ABILITY_NOGUARD) || (ABILITY(bankDef) == ABILITY_NOGUARD)
 	||   (gNewBS->GlaiveRushTimers[bankDef] > 0)
-	||   (move == MOVE_TOXIC && IsOfType(gBankAttacker, TYPE_POISON))
+	||   MoveAlwaysHitsDueToTyping(move, gBankAttacker)
 	||   (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	||  ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO)
 	||	 gBattleMoves[move].accuracy == 0)
@@ -396,7 +396,8 @@ static bool8 AccuracyCalcHelper(u16 move, u8 bankDef)
 	else if (WEATHER_HAS_EFFECT)
 	{
 		if (((gBattleWeather & WEATHER_RAIN_ANY) && gSpecialMoveFlags[move].gAlwaysHitInRainMoves && AffectedByRain(bankDef))
-		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))
+		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD)
+		|| 	((gBattleWeather & WEATHER_SUN_ANY) && move == MOVE_FIREBLAST))
 		{
 			//JumpIfMoveFailed(7, move);
 			doneStatus = TRUE;
@@ -559,14 +560,15 @@ u32 VisualAccuracyCalc(u16 move, u8 bankAtk, u8 bankDef)
 	if (ABILITY(bankAtk) == ABILITY_NOGUARD || defAbility == ABILITY_NOGUARD
 	|| (gNewBS->GlaiveRushTimers[bankDef] > 0)
 	|| (gStatuses3[bankDef] & STATUS3_ALWAYS_HITS && gDisableStructs[bankDef].bankWithSureHit == bankAtk)
-	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON))
+	|| MoveAlwaysHitsDueToTyping(move, bankAtk)
 	|| (gSpecialMoveFlags[move].gAlwaysHitWhenMinimizedMoves && gStatuses3[bankDef] & STATUS3_MINIMIZED)
 	|| ((gStatuses3[bankDef] & STATUS3_TELEKINESIS) && gBattleMoves[move].effect != EFFECT_0HKO))
 		acc = 0xFFFF; //No Miss
 	else if (WEATHER_HAS_EFFECT)
 	{
 		if (((gBattleWeather & WEATHER_RAIN_ANY) && gSpecialMoveFlags[move].gAlwaysHitInRainMoves && !ItemEffectIgnoresSunAndRain(defEffect))
-		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))
+		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD)
+		||  ((gBattleWeather & WEATHER_SUN_ANY) && move == MOVE_FIREBLAST))
 			acc = 0xFFFF; //No Miss
 	}
 
@@ -642,12 +644,13 @@ u32 VisualAccuracyCalc_NoTarget(u16 move, u8 bankAtk)
 	}
 
 	if (atkAbility == ABILITY_NOGUARD
-	|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON)))
+	|| MoveAlwaysHitsDueToTyping(move, bankAtk))
 		calc = 0xFFFF; //No Miss
 	else if (WEATHER_HAS_EFFECT)
 	{
 		if (((gBattleWeather & WEATHER_RAIN_ANY) && gSpecialMoveFlags[move].gAlwaysHitInRainMoves)
-		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))
+		||  ((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD)
+		||  ((gBattleWeather & WEATHER_SUN_ANY) && move == MOVE_FIREBLAST))
 			calc = 0xFFFF; //No Miss
 	}
 

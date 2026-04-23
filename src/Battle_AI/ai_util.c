@@ -1838,7 +1838,7 @@ bool8 MoveWillHit(u16 move, u8 bankAtk, u8 bankDef)
 		return FALSE;
 
 	return MoveAlwaysHitsTarget(move, bankDef)
-		|| (move == MOVE_TOXIC && IsOfType(bankAtk, TYPE_POISON));
+		|| MoveAlwaysHitsDueToTyping(move, bankAtk);
 }
 
 bool8 MonMoveWillHit(u16 move, struct Pokemon* monAtk, u8 bankDef)
@@ -1850,7 +1850,7 @@ bool8 MonMoveWillHit(u16 move, struct Pokemon* monAtk, u8 bankDef)
 		return FALSE;
 
 	return MoveAlwaysHitsTarget(move, bankDef)
-		|| (move == MOVE_TOXIC && IsMonOfType(monAtk, TYPE_POISON));
+		|| MoveAlwaysHitsDueToTypingMon(move, monAtk);
 }
 
 bool8 MoveWouldHitFirst(u16 move, u16 bankAtk, u16 bankDef)

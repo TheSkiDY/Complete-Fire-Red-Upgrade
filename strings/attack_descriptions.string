@@ -120,7 +120,7 @@ A severely damaging\nattack that makes\nthe user rest on\nthe next turn.
 Grass snares and\ntrips the foe. It\ndoes more damage\nto heavier foes.
 
 #org @DESC_GUNKSHOT
-Filthy garbage is\nshot at the foe.\nIt may also poison\nthe target.
+Filthy garbage is\nshot at the foe.\nIt may badly poison\nthe target.
 
 #org @DESC_HAMMERARM
 The user swings\nits heavy fist.\nIt also lowers the\nuser's SPEED.
@@ -301,7 +301,7 @@ The foe is engulfed\nby an intense fire\nthat is sure to\nleave a burn.
 This attack does\ndouble damage to a\ntarget affected by\na status problem.
 
 #org @DESC_DUALCHOP
-The user hits\nthe foe with two\nbrutal strikes\nin one turn.
+The user hits\nthe foe with two\nbrutal strikes\nin one turn.The user's\ntype determines this\nmove's type.
 
 #org @DESC_DOUBLEHIT
 The user slams the\nfoe twice in a row\nwith a long tail,\nvines, etc.
@@ -1699,3 +1699,27 @@ G-Max Single Strike\nUrshifu's signature move.\nIt bypasses the\nuse of Max Guar
 
 #org @DESC_G_MAX_RAPID_FLOW
 G-Max Rapid Strike\nUrshifu's signature move.\nIt bypasses the\nuse of Max Guard.
+
+#org @DESC_MEGAHORN
+A brutal ramming attack\nusing outthrust horns.\nIt has a high critical\nhit ratio.
+
+#org @DESC_SNOWSCAPE
+The user summons a\nsnowstorm for five\nturns. It damages all\nPOK\eMON on the field\nand boosts DEFENSE of\nICE types.
+
+#org @DESC_CUT
+Slashing attack that\nwork supereffectively\non GRASS-types. It\nhas a high crit\nratio.
+
+#org @DESC_STRENGTH
+The foe is slugged at\nmaximum power. Works\ngreat on ROCK-types.\nIt also boosts the\nuser's ATTACK.
+
+#org @DESC_SURF
+A big wave crashes\ndown on the foe.\nIt may also confuse\nthe target.
+
+#org @DESC_FLASH
+Looses a powerful\nblast of blinding\nlight. It's guaranteed\nto go first and cut\naccuracy. 
+
+#org @DESC_ROCKSMASH
+A boulder cracking\nattack that cuts\nDEFENSE of the\nopponent.
+
+#org @DESC_WATERFALL
+A powerful charge\nattack that also sets\nrain for three turns.

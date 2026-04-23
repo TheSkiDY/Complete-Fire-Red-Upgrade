@@ -2274,6 +2274,9 @@ SKIP_CHECK_TARGET:
 			goto AI_STANDARD_DAMAGE; //Rapid Spin
 
 		case EFFECT_RAIN_DANCE:
+			if (move == MOVE_WATERFALL)
+				goto AI_STANDARD_DAMAGE;
+
 			if (gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)
 			|| BankOnFieldHasEvaporate()
 			|| PARTNER_MOVE_EFFECT_IS_WEATHER

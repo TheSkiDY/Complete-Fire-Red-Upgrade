@@ -988,3 +988,15 @@ BOOSTER ENERGY activated [SCRIPTING_BANK]'s\n[SCRIPTING_BANK_ABILITY]!\p[SCRIPTI
 
 #org @gText_ClearAmulet
 But [SCRIPTING_BANK]'s CLEAR AMULET\nprevents lowering its stats!
+
+#org @gText_StartedSnow
+It started to snow!
+
+#org @gText_SnowContinues
+Snowstorm continues.
+
+#org @gText_SnowStopped
+The snow stopped.
+
+#org @gText_PkmnPeltedBySnow
+[ATTACKER] is buffeted\nby the snowstorm!

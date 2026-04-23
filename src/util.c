@@ -560,3 +560,17 @@ bool8 CanPartyMonBeFrozen(struct Pokemon* mon)
 
 	return TRUE;
 }
+
+bool8 SpeciesHasType(u16 species, u8 type)
+{
+	u8 type1 = gBaseStats[species].type1;
+	u8 type2 = gBaseStats[species].type2;
+
+	if (type1 == type)
+		return TRUE;
+
+	if (type2 == type)
+		return TRUE;
+
+	return FALSE;
+}

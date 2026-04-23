@@ -19,9 +19,9 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_ABILITY_PATCH 20
 	setvar 0x8004 0xF @erase party
 	special 0x62
-	setvar 0x8000 MOVE_BULLETSEED
-	setvar 0x8001 MOVE_TRIPLEARROWS
-	setvar 0x8002 MOVE_GROWTH
+	setvar 0x8000 MOVE_RAINDANCE
+	setvar 0x8001 MOVE_WATERFALL
+	setvar 0x8002 MOVE_HAPPYHOUR
 	setvar 0x8003 MOVE_MALIGNANTCHAIN
 	givepokemon SPECIES_MEW 20 ITEM_LOADED_DICE 0 1
 	givepokemon SPECIES_MOLTRES 20 0 0 0
@@ -35,8 +35,8 @@ EventScript_PalletTown_TechnologyGuy:
 
 EventScript_PalletTown_TechnologyGuy_Part2:
 	setflag 0x90B @wild_custom_moves 
-	setvar 0x8000 MOVE_STONEAXE
-	setvar 0x8001 MOVE_CEASELESSEDGE
+	setvar 0x8000 MOVE_CELEBRATE
+	setvar 0x8001 0x0
 	setvar 0x8002 0x0
 	setvar 0x8003 0x0
 	setwildbattle SPECIES_TOGEKISS 20

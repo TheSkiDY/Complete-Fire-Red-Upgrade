@@ -30,7 +30,7 @@ gBattleAnims_General:
 .word 0x81d5f8f	@ ANIM_RAIN
 .word 0x81d5fd8	@ ANIM_SUN
 .word 0x81d5fdd	@ ANIM_SANDSTORM
-.word 0x81d5fe2	@ ANIM_HAIL
+.word ANIM_SNOW
 .word 0x81d5fe7	@ ANIM_LEECH_SEED_HEAL
 .word 0x81d5ff5	@ ANIM_HIT
 .word ANIM_STEAL_ITEM
@@ -1218,6 +1218,13 @@ TSPIKES: objtemplate ANIM_TAG_SPIKES ANIM_TAG_SHADOW_BALL OAM_OFF_16x16 gDummySp
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+.pool
+ANIM_SNOW:
+	goto ANIM_SNOWSCAPE
+	endanimation
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 .pool
 .align 2
 .global gBattleAnims_Special

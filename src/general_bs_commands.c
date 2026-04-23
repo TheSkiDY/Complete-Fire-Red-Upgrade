@@ -2564,9 +2564,9 @@ bool8 SetRainyWeather(void)
 	gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 
 	if (ITEM_EFFECT(gBankAttacker) == ITEM_EFFECT_DAMP_ROCK)
-		gWishFutureKnock.weatherDuration = 8;
+		gWishFutureKnock.weatherDuration = (gCurrentMove == MOVE_WATERFALL) ? 5 : 8;
 	else
-		gWishFutureKnock.weatherDuration = 5;
+		gWishFutureKnock.weatherDuration = (gCurrentMove == MOVE_WATERFALL) ? 3 : 5;
 
 	gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
 	return TRUE;
@@ -2578,8 +2578,16 @@ void atk7D_setrain(void)
 
 	if (!SetRainyWeather())
 	{
-		gMoveResultFlags |= MOVE_RESULT_FAILED;
-		gBattlescriptCurrInstr++;
+		if (gCurrentMove != MOVE_RAINDANCE)
+		{
+			gBattlescriptCurrInstr = BattleScript_MoveEnd;
+		}
+		else
+		{
+			gMoveResultFlags |= MOVE_RESULT_FAILED;
+			gBattlescriptCurrInstr++;
+		}
+
 	}
 	else if ((bank = BankOnFieldHasEvaporate()))
 	{
