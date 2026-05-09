@@ -272,7 +272,7 @@ BattleScript_BadThoughtsTurnDmg:
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_SaltCureDamage:
-	playanimation BANK_ATTACKER ANIM_SPLINTER_DAMAGE 0x0 @temp animation
+	playanimation BANK_ATTACKER ANIM_SALT_CURE_DAMAGE 0x0
 	setword BATTLE_STRING_LOADER gText_HurtBySaltCure
 	printstring 0x184
 	waitmessage DELAY_1SECOND

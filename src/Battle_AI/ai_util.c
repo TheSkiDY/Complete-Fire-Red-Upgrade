@@ -4397,8 +4397,7 @@ bool8 PivotingMoveInMovesetThatAffects(u8 bankAtk, u8 bankDef)
 		{
 			if (move != MOVE_BATONPASS //Passing stats isn't considering pivoting
 			&& (gBattleMoves[move].effect == EFFECT_BATON_PASS
-			 || gBattleMoves[move].effect == EFFECT_TELEPORT
-			 || move == MOVE_CHILLYRECEPTION))
+			 || gBattleMoves[move].effect == EFFECT_TELEPORT))
 			{
 				if (SPLIT(move) != SPLIT_STATUS
 				&& (AI_SpecialTypeCalc(move, bankAtk, bankDef) & MOVE_RESULT_NO_EFFECT

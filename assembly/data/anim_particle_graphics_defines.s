@@ -99,6 +99,16 @@ definitions for animation particles
 .equ LARGE_HOOPA_RING_IMG, Hoopa_Ring_LargeTiles
 .equ ALPHA_SYMBOL_IMG, Alpha_SymbolTiles
 .equ OMEGA_SYMBOL_IMG, Omega_SymbolTiles
+.equ SALT_PARTICLE_IMG, Salt_ParticleTiles
+.equ BLOOD_MOON_IMG, Blood_MoonTiles
+.equ RED_EXPLOSION_IMG, Red_ExplosionTiles
+.equ BEAM_IMG, BeamTiles
+.equ SYRUP_BLOB_RED_IMG, Syrup_Blob_RedTiles
+.equ SYRUP_SPLAT_RED_IMG, Syrup_Splat_RedTiles
+.equ SYRUP_SHELL_RED_IMG, Syrup_Shell_RedTiles
+.equ PURPLE_CHAIN_IMG, Purple_ChainTiles
+.equ SNOWFLAKES_IMG, SnowflakesTiles
+
 
 @;Palettes
 .equ SWORD_PAL, SwordPal
@@ -200,3 +210,12 @@ definitions for animation particles
 .equ LARGE_HOOPA_RING_PAL, Hoopa_Ring_LargePal
 .equ ALPHA_SYMBOL_PAL, Alpha_SymbolPal
 .equ OMEGA_SYMBOL_PAL, Omega_SymbolPal
+.equ SALT_PARTICLE_PAL, Salt_ParticlePal
+.equ BLOOD_MOON_PAL, Blood_MoonPal
+.equ RED_EXPLOSION_PAL, Red_ExplosionPal
+.equ BEAM_PAL, BeamPal
+.equ SYRUP_BLOB_RED_PAL, Syrup_Blob_RedPal
+.equ SYRUP_SPLAT_RED_PAL, Syrup_Splat_RedPal
+.equ SYRUP_SHELL_RED_PAL, Syrup_Shell_RedPal
+.equ PURPLE_CHAIN_PAL, Purple_ChainPal
+.equ SNOWFLAKES_PAL, SnowflakesPal

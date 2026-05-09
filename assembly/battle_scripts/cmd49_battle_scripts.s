@@ -344,12 +344,13 @@ BattleScript_DancerActivated:
 
 BattleScript_MultiHitPrintStrings:
 	copyarray 0x2022AB8 MULTIHIT_STRING 0x6
-	jumpifmove MOVE_POPULATIONBOMB BS_PopBombHit10Times
+	jumpifbyte GREATERTHAN, MULTIHIT_STRING + 4, 9, BattleScript_PopBombHit10Times
 	printstring 0x22
 	waitmessage DELAY_1SECOND
 	return
 
-BS_PopBombHit10Times:
+.global BattleScript_PopBombHit10Times
+BattleScript_PopBombHit10Times:
 	setword BATTLE_STRING_LOADER gText_Multihit10Times
 	printstring 0x184
 	waitmessage DELAY_1SECOND

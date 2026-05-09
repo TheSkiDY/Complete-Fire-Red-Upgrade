@@ -12431,7 +12431,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12448,7 +12448,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12465,7 +12465,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12482,7 +12482,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12499,7 +12499,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12516,7 +12516,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -12531,9 +12531,9 @@ const struct Item gItems[] =
         .importance = 0,
         .registrability = 0,
         .pocket = POCKET_ITEMS,
-        .type = TYPE_BAG_MENU,
+        .type = TYPE_PARTY_MENU,
         .fieldUseFunc = FieldUseFunc_Medicine,
-        .battleUsage = 0,
+        .battleUsage = 1,
         .battleUseFunc = BattleUseFunc_Medicine,
         .secondaryId = 0,
     },
@@ -15332,6 +15332,15 @@ static const u8 sItemEffect_SuperbRemedy[10] = {
     [9] = -20, // Friendship change, high
 };
 
+static const u8 sItemEffect_SweetHeart[10] = {
+    [4] = ITEM4_HEAL_HP,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    [6] = 20, // Amount of HP to recover
+    [7] = 1,  // Friendship change, low
+    [8] = 2,  // Friendship change, mid
+    [9] = 5, // Friendship change, high
+};
+
 const u8 *const gItemEffectTable[] =
 {
     [ITEM_POTION - ITEM_POTION] = sItemEffect_Potion,
@@ -16057,7 +16066,7 @@ const u8 *const gItemEffectTable[] =
     [ITEM_MAX_HONEY - ITEM_POTION] = sItemEffect_MaxRevive,
     [ITEM_JUBILIFE_MUFFIN - ITEM_POTION] = sItemEffect_FullHeal,
     [ITEM_PEWTER_CRUNCHIES - ITEM_POTION] = sItemEffect_FullHeal,
-    [ITEM_SWEET_HEART - ITEM_POTION] = sItemEffect_Potion,
+    [ITEM_SWEET_HEART - ITEM_POTION] = sItemEffect_SweetHeart,
     [ITEM_ABILITY_SHIELD - ITEM_POTION] = NULL,
     [ITEM_BOOSTER_ENERGY - ITEM_POTION] = NULL,
     [ITEM_CLEAR_AMULET - ITEM_POTION] = NULL,

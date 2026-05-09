@@ -34,7 +34,7 @@
 .equ BG_GUILLOTINE_CONTESTS, 0xE
 .equ BG_ICE, 0xF
 .equ BG_COSMIC, 0x10
-.equ BG_SEISMICTOSS_SKUUPPERCUT, 0x11
+.equ BG_SEISMICTOSS_SKYUPPERCUT, 0x11
 .equ BG_FLYING_BATTLE, 0x12
 .equ BG_FLYING_CONTESTS, 0x13
 .equ BG_AURORA_BEAM, 0x14
@@ -400,6 +400,10 @@
 .byte 0x2F
 .endm
 
+.macro jumpreteq value:req, ptr:req
+jumpifargmatches 0x7, \value, \ptr
+.endm
+
 @objtemplate
 
 .macro objtemplate objtemplatetiletag objtemplatepaltag objtemplateoam objtemplateimageanim objtemplategfx objtemplaterotscale objtemplatecallback
@@ -738,6 +742,13 @@
 .equ SONIC_BOOM_PROJECTILE, 0x81c7f12
 .equ SEISMIC_TOSS_ROCK_SCATTER_1, 0x81d47c7
 .equ SEISMIC_TOSS_ROCK_SCATTER_2, 0x81d4828
+.equ WATER_BUBBLES_SHORT, 0x81d57cc
+.equ SET_IMPACT_BG, 0x81c7d89
+.equ FLATTER_CONFETTI, 0x81d2bd2
+.equ PSYWAVE_RINGS, 0x81d0ead
+.equ PSYBEAM_RINGS, 0x81d0dd4
+.equ HYPER_BEAM_ORBS, 0x81d2ad8
+.equ ROAR_EFFECT, 0x81cdb06
 
 @supercommands
 
@@ -1120,5 +1131,49 @@ waitbgfadein
 .equ ANIM_TAG_HOOPA_RING_LARGE, 0x2880
 .equ ANIM_TAG_OMEGA_SYMBOL, 0x2881
 .equ ANIM_TAG_ALPHA_SYMBOL, 0x2882
+.equ ANIM_TAG_SALT_PARTICLE, 0x2883
+.equ ANIM_TAG_BLOOD_MOON, 0x2884
+.equ ANIM_TAG_RED_EXPLOSION, 0x2885
+.equ ANIM_TAG_BEAM, 0x2886
+.equ ANIM_TAG_SYRUP_BLOB_RED, 0x2887
+.equ ANIM_TAG_SYRUP_SPLAT_RED, 0x2888
+.equ ANIM_TAG_SYRUP_SHELL_RED, 0x2889
+.equ ANIM_TAG_PURPLE_CHAIN, 0x288A
+.equ ANIM_TAG_SNOWFLAKES, 0x288B
 
-
+.equ Template_Sparkle, 0x83E6EA4
+.equ Template_RapidSpinSprite, 0x83FF068
+.equ AnimTask_RapinSpinMonElevation, 0x80DEF9D
+.equ Template_FlyBallAttack, 0x83E6BD0
+.equ AnimTask_GetReturnPowerLevel, 0x80E38D9
+.equ AnimTask_ShakeBattleTerrain, 0x80BA47D
+.equ SoundTask_PlayCryWithEcho, 0x80DD335
+.equ Template_OverheatFlame, 0x83E7860
+.equ Template_SkyAttackBird, 0x83E6DC4
+.equ Template_HyperVoiceRing, 0x83E40F8
+.equ SoundTask_WaitForCry, 0x80DD2F5
+.equ AnimTask_WaterSport, 0x80AC329
+.equ Template_SpinningHandOrFoot, 0x83E678C
+.equ Template_BrickBreakWall, 0x83E6808
+.equ Template_BreathPuff, 0x83E3ED0
+.equ Template_AngerMark, 0x83E3F04
+.equ Template_GraySmoke, 0x83E36A8
+.equ AnimTask_GetWeather, 0x80E44EB
+.equ AnimTask_InitMementoShadow, 0x80B85B9
+.equ AnimTask_MoveAttackerMementoShadow, 0x80B7DA5
+.equ AnimTask_MementoHandleBg, 0x80B8665
+.equ AnimTask_MoveTargetMementoShadow, 0x80B8071
+.equ Template_SmokeBallEscapeCloud, 0x83FF514
+.equ Template_PowderSnowSnowball, 0x83E6440
+.equ Template_AcidPoisonBubble, 0x83E6A38
+.equ Template_AcidPoisonDroplet, 0x83E6A84
+.equ AnimTask_StrongFrustrationGrowAndShrink, 0x80E0489
+.equ Template_SprayWaterDroplet, 0x83E6D94
+.equ Template_FalseSwipePositionedSlice, 0x83E35D4
+.equ Template_SludgeBombHitParticle, 0x83E6A50
+.equ Template_SuperpowerFireball, 0x83E6894
+.equ Template_RedHeartBurst, 0x83E4230
+.equ Template_SludgeProjectile, 0x83E6A20
+.equ Template_Protect, 0x83E3354
+.equ AnimTask_DeepInhale, 0x80E1705
+.equ SoundTask_PlayCryHighPitch, 0x80DD06D

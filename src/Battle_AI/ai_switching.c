@@ -1388,9 +1388,6 @@ static bool8 ShouldSwitchIfWonderGuard(struct Pokemon* party, u8 firstId, u8 las
 			}
 			else if (!MoveBlockedBySubstitute(move, bankAtk, bankDef))
 			{
-				if (move == MOVE_CHILLYRECEPTION)
-					return FALSE;
-
 				switch (gBattleMoves[move].effect) {
 					case EFFECT_SLEEP:
 					case EFFECT_YAWN:

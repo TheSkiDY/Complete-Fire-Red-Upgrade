@@ -1045,12 +1045,13 @@ BS_045_HighJumpKick:
 	typecalc2
 	bicbyte OUTCOME OUTCOME_SUPER_EFFECTIVE | OUTCOME_NOT_VERY_EFFECTIVE
 	jumpifmovehadnoeffect HighJumpKickMiss
-	jumpifmove MOVE_AXEKICK BS_076_SetConfusionChance
+	jumpifmove MOVE_AXEKICK AxeKickBS
 	goto BS_HIT_FROM_ATTACKSTRING
 
 HighJumpKickMiss:
 	attackstring
 	ppreduce
+	call MgbaDebugCall
 	pause DELAY_HALFSECOND
 	resultmessage
 	waitmessage DELAY_1SECOND
@@ -1065,6 +1066,10 @@ HighJumpKickMiss:
 	faintpokemon BANK_ATTACKER 0x0 0x0
 	orbyte OUTCOME OUTCOME_MISSED
 	goto BS_MOVE_END
+
+AxeKickBS:
+	setmoveeffect MOVE_EFFECT_CONFUSION
+	goto BS_HIT_FROM_ATTACKSTRING
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -2692,12 +2697,14 @@ BatonPassSwitchOutBS:
 	callasm ClearBatonPassSwitchingBit
 	copyarray CURRENT_MOVE BACKUP_HWORD 2
 	jumpifmove MOVE_PARTINGSHOT PartingShotEndBS
+	jumpifmove MOVE_CHILLYRECEPTION PartingShotEndBS
 	jumpifnotmove MOVE_BATONPASS 0x81D6957 @;U-Turn & Volt Switch
 	goto BS_MOVE_END
 
 UTurnBS:
 	accuracycheck BS_MOVE_MISSED 0x0
 	jumpifmove MOVE_PARTINGSHOT PartingShotBS
+	jumpifmove MOVE_CHILLYRECEPTION ChillyReceptionBS
 	call STANDARD_DAMAGE
 	jumpifmovehadnoeffect BS_MOVE_FAINT
 	seteffectwithchancetarget
@@ -2818,6 +2825,30 @@ PartingShotEndBS:
 	setbyte CMD49_STATE, 0x0
 	cmd49 0x7 0x0
 	end
+
+@;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+ChillyReceptionBS:
+	setword BATTLE_STRING_LOADER gText_ChillyReception
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	attackcanceler
+	attackstringnoprotean
+	ppreduce
+	jumpifweather WEATHER_HAIL_ANY, ChillyReception_HailSkipPrimalWeatherCheck 
+	tryblockweatherwithprimalweather
+ChillyReception_HailSkipPrimalWeatherCheck:
+	sethail
+	tryactivateprotean
+	attackanimation @;Don't use BS_MOVE_WEATHER_CHANGE because of special logic for Ice Face
+	waitanimation
+	printfromtable 0x83FE528 @;gText_gMoveWeatherChangeIds
+	waitmessage DELAY_1SECOND
+	jumpifmovehadnoeffect BS_MOVE_END @;Prevents Ice Face from activatig on fail
+	call BS_WEATHER_FORM_CHANGES
+	setbyte CMD49_STATE 0x0
+	cmd49 BANK_TARGET 0x0
+	goto UTurnCheckSwitchBS
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -3497,7 +3528,6 @@ BS_163_Blank:
 
 .global BS_164_SetHail
 BS_164_SetHail:
-	jumpifmove MOVE_CHILLYRECEPTION ChillyReceptionBS
 	attackcanceler
 	attackstringnoprotean
 	ppreduce
@@ -3513,28 +3543,6 @@ HailSkipPrimalWeatherCheck:
 	jumpifmovehadnoeffect BS_MOVE_END @;Prevents Ice Face from activatig on fail
 	call BS_WEATHER_FORM_CHANGES
 	goto BS_MOVE_END
-
-ChillyReceptionBS:
-	setword BATTLE_STRING_LOADER gText_ChillyReception
-	printstring 0x184
-	waitmessage DELAY_1SECOND
-	attackcanceler
-	attackstringnoprotean
-	ppreduce
-	jumpifweather WEATHER_HAIL_ANY, ChillyReception_HailSkipPrimalWeatherCheck 
-	tryblockweatherwithprimalweather
-ChillyReception_HailSkipPrimalWeatherCheck:
-	sethail
-	tryactivateprotean
-	attackanimation @;Don't use BS_MOVE_WEATHER_CHANGE because of special logic for Ice Face
-	waitanimation
-	printfromtable 0x83FE528 @;gText_gMoveWeatherChangeIds
-	waitmessage DELAY_1SECOND
-	jumpifmovehadnoeffect BS_MOVE_END @;Prevents Ice Face from activatig on fail
-	call BS_WEATHER_FORM_CHANGES
-	jumpifcannotswitch BANK_ATTACKER | ATK4F_DONT_CHECK_STATUSES, BS_MOVE_END
-	copybyte SWITCHING_BANK USER_BANK
-	goto BatonPassSwitchOutBS
 
 
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

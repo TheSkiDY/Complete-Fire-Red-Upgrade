@@ -16,6 +16,7 @@
 #include "../include/new/battle_anims.h"
 #include "../include/new/battle_indicators.h"
 #include "../include/new/battle_terrain.h"
+#include "../include/new/battle_script_util.h"
 #include "../include/new/battle_util.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
@@ -1930,6 +1931,18 @@ static const union AffineAnimCmd sSpinAndGrowMonSpriteAffineAnimCmds[] =
 const union AffineAnimCmd* const sSpinAndGrowMonSpriteAffineAnimTable[] =
 {
 	sSpinAndGrowMonSpriteAffineAnimCmds,
+};
+
+
+const union AffineAnimCmd gSproutAnimCmds[] =
+{
+    ANIMCMD_FRAME(96, 5),
+    ANIMCMD_END,
+};
+
+const union AffineAnimCmd* const gSproutAnimTable[] =
+{
+    gSproutAnimCmds,
 };
 
 #define tSpriteId data[0]
@@ -7045,4 +7058,273 @@ void SpriteCB_EnemyShadow(struct Sprite *shadowSprite)
 	shadowSprite->pos1.x = battlerSprite->pos1.x;
 	shadowSprite->pos2.x = battlerSprite->pos2.x;
 	shadowSprite->invisible = invisible;
+}
+
+
+void AnimTask_RandomBool(u8 taskId)
+{
+    if (Random() % 2 == 0)
+        gBattleAnimArgs[7] = TRUE;
+    else
+        gBattleAnimArgs[7] = FALSE;
+
+    DestroyAnimVisualTask(taskId);
+}
+
+// Task to facilitate a two-part translation animation, in which the sprite
+// is first translated linearly down.  Then, it hops in an arc.
+// Used for POUNCE.
+// Ported from pokeemerald-expansion
+void AnimTask_DuckDownHop_Step1(u8 taskId);
+void AnimTask_DuckDownHop_Step2(u8 taskId);
+void AnimTask_DuckDownHop(u8 taskId)
+{
+    s16 wavePeriod = 0x8000 / gBattleAnimArgs[3];
+    u8 animBattler = gBattleAnimArgs[0];
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+    {
+        gBattleAnimArgs[1] = -gBattleAnimArgs[1];
+    }
+    gTasks[taskId].data[0] = GetAnimBattlerSpriteId(animBattler);
+    gTasks[taskId].data[1] = (gBattleAnimArgs[1] << 8) / gBattleAnimArgs[3];
+    gTasks[taskId].data[2] = gBattleAnimArgs[2];
+    gTasks[taskId].data[3] = gBattleAnimArgs[3];
+    gTasks[taskId].data[4] = gBattleAnimArgs[4];
+    gTasks[taskId].data[5] = (gBattleAnimArgs[5] << 8) / gBattleAnimArgs[6];
+    gTasks[taskId].data[6] = gBattleAnimArgs[6];
+    gTasks[taskId].data[7] = wavePeriod;
+    gTasks[taskId].func = AnimTask_DuckDownHop_Step1;
+}
+
+void AnimTask_DuckDownHop_Step1(u8 taskId)
+{
+    u8 spriteId;
+
+    spriteId = gTasks[taskId].data[0];
+    gTasks[taskId].data[12] += gTasks[taskId].data[5];
+    gSprites[spriteId].pos2.y = (gTasks[taskId].data[12] >> 8);
+    if (--gTasks[taskId].data[6] == 0)
+    {
+        gTasks[taskId].func = AnimTask_DuckDownHop_Step2;
+    }
+}
+
+void AnimTask_DuckDownHop_Step2(u8 taskId)
+{
+    u8 spriteId;
+    if (gTasks[taskId].data[4] > 0)
+    {
+        gTasks[taskId].data[4]--;
+    }
+    else
+    {
+        spriteId = gTasks[taskId].data[0];
+        gTasks[taskId].data[11] += gTasks[taskId].data[1];
+        gSprites[spriteId].pos2.x = gTasks[taskId].data[11] >> 8;
+        gSprites[spriteId].pos2.y = Sine((u8)(gTasks[taskId].data[10] >> 8), gTasks[taskId].data[2]) + (gTasks[taskId].data[12] >> 8);
+        gTasks[taskId].data[10] += gTasks[taskId].data[7];
+        if (--gTasks[taskId].data[3] == 0)
+        {
+            DestroyAnimVisualTask(taskId);
+            return;
+        }
+    }
+}
+
+static const union AffineAnimCmd sArrowRaidOnslaughtAffineAnims[] = 
+{
+    AFFINEANIMCMD_FRAME(0, 0, 0x30, 1),
+    AFFINEANIMCMD_END
+};
+
+const union AffineAnimCmd* const gArrowRaidOnslaughtAffineAnimTable[] =
+{
+	sArrowRaidOnslaughtAffineAnims,
+};
+
+void AnimTask_IsDoubleBattle(u8 taskId)
+{
+    gBattleAnimArgs[7] = IS_DOUBLE_BATTLE;
+    DestroyAnimVisualTask(taskId);
+}
+
+static const union AnimCmd sAnim_SyrupCoat[] =
+{
+    ANIMCMD_FRAME(128, 10),
+    ANIMCMD_FRAME(64, 5),
+    ANIMCMD_FRAME(0, 45),
+    ANIMCMD_FRAME(64, 15),
+    ANIMCMD_FRAME(128, 15),
+    ANIMCMD_FRAME(192, 20),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SyrupStick[] =
+{
+    ANIMCMD_FRAME(192, 5),
+    ANIMCMD_FRAME(128, 35),
+    ANIMCMD_FRAME(192, 20),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gAnims_SyrupCoat[] =
+{
+    sAnim_SyrupCoat,
+};
+
+const union AnimCmd *const gAnims_SyrupStick[] =
+{
+    sAnim_SyrupStick,
+};
+
+void AnimSyrupBomb_Step(struct Sprite *sprite);
+void AnimAnimSyrupBomb(struct Sprite *sprite);
+
+void AnimSyrupBomb_Step(struct Sprite *sprite)
+{
+    if (sprite->data[1] > sprite->data[0] - 10)
+        sprite->invisible = sprite->data[1] & 1;
+
+    if (sprite->data[1] == sprite->data[0])
+        DestroyAnimSprite(sprite);
+
+    sprite->data[1]++;
+}
+
+void AnimAnimSyrupBomb(struct Sprite *sprite)
+{
+    if (gBattleAnimArgs[0] == ANIM_TARGET)
+    {
+        sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);
+        sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y) + 2;
+    }
+
+    sprite->data[0] = gBattleAnimArgs[1];
+    sprite->callback = AnimSyrupBomb_Step;
+}
+
+void AnimTask_StrongerFickleBeam(u8 taskId)
+{
+    if (IsFickleBeamActive(gBattleAnimAttacker))
+        gBattleAnimArgs[7] = TRUE;
+    else
+        gBattleAnimArgs[7] = FALSE;
+
+    DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_GrowAndShrink_Step(u8 taskId);
+void AnimTask_ShrinkAndGrow(u8 taskId);
+
+static const union AffineAnimCmd gShrinkAndGrowAffineAnimCmds[] =
+{
+    AFFINEANIMCMD_FRAME(4, 5, 0, 12),
+    AFFINEANIMCMD_FRAME(0, 0, 0, 24),
+    AFFINEANIMCMD_FRAME(-4, -5, 0, 6),
+    AFFINEANIMCMD_END,
+};
+
+void AnimTask_GrowAndShrink_Step(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    if (!RunAffineAnimFromTaskData(task))
+        DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_ShrinkAndGrow(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    u8 spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
+    PrepareAffineAnimInTaskData(task, spriteId, gShrinkAndGrowAffineAnimCmds);
+    task->func = AnimTask_GrowAndShrink_Step;
+}
+
+void AnimTask_CompressTargetHorizontallyFast(u8 taskId);
+void AnimTask_CompressTargetStep(u8 taskId);
+
+static const union AffineAnimCmd sCompressTargetHorizontallyAffineAnimCmdsFast[] =
+{
+    AFFINEANIMCMD_FRAME(32, 0, 0, 16), //Compress
+    AFFINEANIMCMD_FRAME(0, 0, 0, 32),
+    AFFINEANIMCMD_FRAME(-32, 0, 0, 16),
+    AFFINEANIMCMD_END,
+};
+
+void AnimTask_CompressTargetStep(u8 taskId)
+{
+    struct Task* task = &gTasks[taskId];
+
+    if (!RunAffineAnimFromTaskData(task))
+        DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_CompressTargetHorizontallyFast(u8 taskId)
+{
+    struct Task* task = &gTasks[taskId];
+    u8 spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
+    PrepareAffineAnimInTaskData(task, spriteId, sCompressTargetHorizontallyAffineAnimCmdsFast);
+    task->func = AnimTask_CompressTargetStep;
+}
+
+
+
+void AnimTask_CreateSnowflakes(u8 taskId);
+void AnimSnowflakes(struct Sprite *sprite);
+void AnimSnowflakes_Step(struct Sprite *sprite);
+
+const union AnimCmd sAnim_Snowflakes[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(8, 2),
+    ANIMCMD_FRAME(16, 2),
+    ANIMCMD_FRAME(24, 6),
+    ANIMCMD_FRAME(32, 2),
+    ANIMCMD_FRAME(40, 2),
+    ANIMCMD_FRAME(48, 2),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const sAnims_Snowflakes[] =
+{
+    sAnim_Snowflakes,
+};
+
+extern const struct SpriteTemplate gSnowFlakesSpriteTemplate;
+void AnimTask_CreateSnowflakes(u8 taskId)
+{
+	const struct SpriteTemplate* spriteTemplate = &gSnowFlakesSpriteTemplate;
+    u8 x, y;
+
+    if (gTasks[taskId].data[0] == 0)
+    {
+        gTasks[taskId].data[1] = gBattleAnimArgs[0];
+        gTasks[taskId].data[2] = gBattleAnimArgs[1];
+        gTasks[taskId].data[3] = gBattleAnimArgs[2];
+    }
+    gTasks[taskId].data[0]++;
+    if (gTasks[taskId].data[0] % gTasks[taskId].data[2] == 1)
+    {
+        x = Random2() % DISPLAY_WIDTH;
+        y = Random2() % (DISPLAY_HEIGHT / 2);
+        CreateSprite(spriteTemplate, x, y, 4);
+    }
+    if (gTasks[taskId].data[0] == gTasks[taskId].data[3])
+        DestroyAnimVisualTask(taskId);
+}
+
+void AnimSnowflakes(struct Sprite *sprite)
+{
+    sprite->callback = AnimSnowflakes_Step;
+}
+
+void AnimSnowflakes_Step(struct Sprite *sprite)
+{
+    if (++sprite->data[0] <= 13)
+    {
+        sprite->pos2.x++;
+        sprite->pos2.y += 2;
+        sprite->pos2.x--;
+    }
+    if (sprite->animEnded)
+        DestroySprite(sprite);
 }

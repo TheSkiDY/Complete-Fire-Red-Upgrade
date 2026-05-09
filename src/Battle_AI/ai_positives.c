@@ -951,7 +951,6 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 		
 		case EFFECT_TELEPORT:
-			TELEPORT_CHECK:
 			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER || SIDE(bankAtk) == B_SIDE_PLAYER)
 				goto PIVOT_CHECK;
 			break;
@@ -1541,6 +1540,7 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 				case MOVE_VOLTSWITCH:
 				case MOVE_FLIPTURN:
 				case MOVE_PARTINGSHOT:
+				case MOVE_CHILLYRECEPTION:
 					PIVOT_CHECK:
 					if (IS_SINGLE_BATTLE)
 					{
@@ -1815,8 +1815,6 @@ u8 AIScript_Positives(const u8 bankAtk, const u8 bankDef, const u16 originalMove
 			break;
 
 		case EFFECT_HAIL:
-			if(move == MOVE_CHILLYRECEPTION)
-				goto TELEPORT_CHECK;
 			if (MoveInMovesetAndUsable(MOVE_AURORAVEIL, bankAtk))
 			{
 				if (IsClassScreener(class))

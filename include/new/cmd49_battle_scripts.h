@@ -40,6 +40,7 @@ extern const u8 BattleScript_RaidBattleStatIncrease[];
 extern const u8 BattleScript_SilkTrapStatDecrement[];
 extern const u8 BattleScript_BurningBulwark[];
 extern const u8 BattleScript_ToxicChain[];
+extern const u8 BattleScript_PopBombHit10Times[];
 
 extern const u8 gText_PoisonTouch[];
 extern const u8 gText_SpikyShield[];

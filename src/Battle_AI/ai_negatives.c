@@ -927,7 +927,6 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_TELEPORT:
-			TELEPORT_CHECK:
 			if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 			{
 				if (!HasMonToSwitchTo(bankAtk))
@@ -2222,6 +2221,10 @@ SKIP_CHECK_TARGET:
 					}
 				}
 			}
+			else if (move == MOVE_CHILLYRECEPTION)
+			{
+				break;
+			}
 			else //Baton pass
 			{
 				//Check Substitute, Aqua Ring, Magnet Rise, Ingrain, and stats
@@ -2407,8 +2410,6 @@ SKIP_CHECK_TARGET:
 			break;
 
 		case EFFECT_HAIL:
-			if (move == MOVE_CHILLYRECEPTION)
-				goto TELEPORT_CHECK;
 			if (gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY | WEATHER_CIRCUS)
 			|| PARTNER_MOVE_EFFECT_IS_WEATHER
 			|| IsCurrentWeatherPartnersWeather(data->bankAtkPartner, data->atkPartnerAbility)) //Don't override the partner's weather with your own

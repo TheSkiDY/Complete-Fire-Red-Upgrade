@@ -100,6 +100,10 @@ gBattleAnims_General:
 .word ANIM_SPLINTER_DAMAGE
 .word ANIM_SUBSTITUTE2
 .word ANIM_TOXIC_DEBRIS
+.word ANIM_SALT_CURE_DAMAGE
+
+.global ANIM_SALT_CURE_DAMAGE
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .pool
@@ -1223,6 +1227,48 @@ ANIM_SNOW:
 	goto ANIM_SNOWSCAPE
 	endanimation
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.pool
+ANIM_SALT_CURE_DAMAGE:
+	loadparticle ANIM_TAG_SALT_PARTICLE
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, -10, -10, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 10, 20, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, -29, 0, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 29, -20, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, -5, 10, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 17, -12, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, -20, 0, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, -15, 15, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 26, -5, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 0, 0, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	pause 4
+	launchtemplate SALT_CURE_CRYSTAL, 0x80 | 2, 3, 20, 2, 1
+	playsound2 0x82, SOUND_PAN_TARGET
+	waitanimation
+	endanimation
+
+.align 2
+SALT_CURE_CRYSTAL: objtemplate ANIM_TAG_SALT_PARTICLE ANIM_TAG_SALT_PARTICLE OAM_NORMAL_BLEND_16x16 0x83E6320 0x0 0x83E63DC 0x80AF3B9
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 .pool
