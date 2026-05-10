@@ -2742,6 +2742,34 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 	}
 }
 
+void __attribute__((long_call)) GetMonLevelUpWindowStats(struct Pokemon *mon, u16 *currStats); 
+void __attribute__((long_call)) Task_DisplayLevelUpStatsPg1(u8 taskId);
+void __attribute__((long_call)) Task_TryLearnNewMoves(u8 taskId);
+#define gText_PkmnElevatedToLvVar2 (u8*) 0x8417017
+
+void ItemUseCB_RareCandyStep(u8 taskId, unusedArg TaskFunc func)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u8 level;
+
+    GetMonLevelUpWindowStats(mon, (u16*)sPartyMenuInternal->data);
+    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
+    GetMonLevelUpWindowStats(mon, (u16*)(&sPartyMenuInternal->data[NUM_STATS]));
+    gPartyMenuUseExitCallback = TRUE;
+    //ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, 0xFFFF);
+    PlayFanfareByFanfareNum(0);
+    UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    RemoveBagItem(gSpecialVar_ItemId, 1);
+    GetMonNickname(mon, gStringVar1);
+    level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    ConvertIntToDecimalStringN(gStringVar2, level, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_TryLearnNewMoves;
+}
+
+
 #ifdef UNBOUND
 void FieldUseFunc_VsSeeker(u8 taskId)
 {

@@ -56,3 +56,4 @@ extern const u8 gFieldMoveBadgeRequirements[];
 extern const u8 gFieldMoveBadgeRequirements[];
 extern const u8 gPartyMenu_ItemMenuActions[];
 
+void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func);

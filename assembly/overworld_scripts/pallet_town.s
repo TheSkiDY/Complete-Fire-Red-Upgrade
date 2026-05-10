@@ -27,12 +27,14 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8002 MOVE_SUPERCELLSLAM
 	setvar 0x8003 MOVE_PSYCHICNOISE
 	givepokemon SPECIES_ZERAORA 10 0 0 1
+	givepokemon SPECIES_BUTTERFREE 17 0 0 0
+	givepokemon SPECIES_KAKUNA 17 0 0 0
 	givepokemon SPECIES_MEW 10 ITEM_LOADED_DICE 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
 	setflag 0x91F @bike turbo
-	setflag 0x930 @hard level cap
+	setflag 0x950 @hard level cap
 	setflag 0x200 @tmp
 	release
 	end

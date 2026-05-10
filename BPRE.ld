@@ -1520,7 +1520,6 @@ IsItemFlute = 0x812524C | 1;
 ExecuteTableBasedItemEffect_ = 0x8125268 | 1;
 Task_DisplayHPRestoredMessage = 0x8125554 | 1;
 ReturnToUseOnWhichMon = 0x81257D4 | 1;
-ItemUseCB_RareCandyStep = 0x8126350 | 1;
 UpdateMonDisplayInfoAfterRareCandy = 0x8126440 | 1;
 PartyMenuTryEvolution = 0x8126704 | 1;
 PartyMenu_DisplayMonLearnedMove = 0x8126804 | 1;
@@ -2105,3 +2104,7 @@ FieldUseFunc_Rod = 0x80A1338 | 1;
 /* New stuff */
 AddTextPrinterParameterized3 = 0x812E51C | 1;
 gNatureNamePointers = 0x8463E60;
+GetMonLevelUpWindowStats = 0x811D130 | 1;
+PlayFanfareByFanfareNum = 0x8071BC4 | 1;
+Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
+Task_TryLearnNewMoves = 0x81265F8 | 1;

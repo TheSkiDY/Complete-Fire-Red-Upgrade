@@ -318,14 +318,14 @@ gLongMoveNames 08126E64
 
 ## Item expansion
 sItemIconTable 0809899C
-gItemEffectTable 0803A2B0
-gItemEffectTable 08041548
-gItemEffectTable 08042520
-gItemEffectTable 08042C30
-gItemEffectTable 08042E38
-gItemEffectTable 08125048
-gItemEffectTable 08125748
-gItemEffectTable 08126CC0
+##gItemEffectTable 0803A2B0
+##gItemEffectTable 08041548
+##gItemEffectTable 08042520
+##gItemEffectTable 08042C30
+##gItemEffectTable 08042E38
+##gItemEffectTable 08125048
+##gItemEffectTable 08125748
+##gItemEffectTable 08126CC0
 
 gText_StartedSnow 083FE2D8
 gText_SnowContinues 083FE2DC

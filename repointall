@@ -4,7 +4,9 @@ gBattleMoves 080001CC
 gMoveNames 0804EF84
 gBattleScriptsForMoveEffects 08016364
 gAbilityNames 080001C0
-gItems 080001C8
+
+gItems 0809A8D8
+gItemEffectTable 0812504C
 
 ##Poke Ball Stuff
 gBallSpriteSheets 080001D0

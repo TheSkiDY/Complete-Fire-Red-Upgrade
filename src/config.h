@@ -338,7 +338,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define TEAM_PREVIEW_TRIGGER
 
 /* New stuff */
-#define FLAG_HARD_LEVEL_CAP 0x930 
+#define FLAG_HARD_LEVEL_CAP 0x950 
 
 
 /* DexNav Options */
