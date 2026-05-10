@@ -52,6 +52,7 @@
 #include "../include/new/dexnav.h"
 #include "../include/new/dexnav_config.h"
 #include "../include/new/dns.h"
+#include "../include/new/exp.h"
 #include "../include/new/item.h"
 #include "../include/new/learn_move.h"
 #include "../include/new/overworld.h"

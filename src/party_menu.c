@@ -38,6 +38,7 @@
 #include "../include/new/build_pokemon.h"
 #include "../include/new/dns.h"
 #include "../include/new/evolution.h"
+#include "../include/new/exp.h"
 #include "../include/new/follow_me.h"
 #include "../include/new/form_change.h"
 #include "../include/new/item.h"

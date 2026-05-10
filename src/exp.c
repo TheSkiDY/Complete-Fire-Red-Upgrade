@@ -10,6 +10,7 @@
 
 #include "../include/new/battle_strings.h"
 #include "../include/new/battle_util.h"
+#include "../include/new/build_pokemon.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/exp.h"
@@ -170,7 +171,7 @@ void atk23_getexp(void)
 
 		if (IsAffectedByHardLevelCap(&gPlayerParty[gBattleStruct->expGetterMonId]))
 		{
-			calculatedExp = 1; //Doesn't really gain Exp. if above level cap
+			calculatedExp = 0; //Doesn't really gain Exp. if above level cap
 			goto SKIP_EXP_CALC;
 		}
 
@@ -866,4 +867,43 @@ bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 	}
 
 	return FALSE; //No EVs were added
+}
+
+u8 LevelCaps[] =
+{
+	[0] = 15,		// Brock
+	[1] = 23,		// Misty
+	[2] = 29,		// Lt. Surge
+	[3] = 38,		// Erika
+	[4] = 50,		// Koga
+	[5] = 55,		// Sabrina
+	[6] = 60,		// Blaine
+	[7] = 65,		// Giovanni
+	[8] = 70,		// Falkner
+	[9] = 73,		// Bugsy
+	[10] = 76,		// Whitney
+	[11] = 79,		// Morty
+	[12] = 82,		// Karen
+	[13] = 85,		// Jasmine
+	[14] = 88,		// Pryce
+	[15] = 91,		// Clair
+	[16] = 94,		// LG1
+	[17] = 95,		// LG2
+	[18] = 96,		// LG3
+	[19] = 100,		// Elite Four
+
+};
+
+u8 DetermineLevelCapIndex(void)
+{
+	u8 kantoGymCount = GetOpenWorldBadgeCount();
+
+	return kantoGymCount;
+}
+
+u8 GetCurrentLevelCap(void)
+{
+	u8 index = DetermineLevelCapIndex();
+	u8 cap = LevelCaps[index];
+	return cap;
 }

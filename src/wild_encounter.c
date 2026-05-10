@@ -26,6 +26,7 @@
 #include "../include/new/daycare.h"
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/exp.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
 #include "../include/new/util.h"

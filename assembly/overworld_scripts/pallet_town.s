@@ -14,7 +14,7 @@ EventScript_PalletTown_TechnologyGuy:
 	callasm InitMgba
 	checkflag 0x200
 	if 0x1 _goto EventScript_PalletTown_TechnologyGuy_Part2
-	additem ITEM_RARE_CANDY 60
+	additem ITEM_RARE_CANDY 660
 	additem ITEM_ABILITY_CAPSULE 20
 	additem ITEM_ABILITY_PATCH 20
 	additem ITEM_SWEET_HEART 600
@@ -26,12 +26,13 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8001 MOVE_SNOWSCAPE
 	setvar 0x8002 MOVE_SUPERCELLSLAM
 	setvar 0x8003 MOVE_PSYCHICNOISE
-	givepokemon SPECIES_ZERAORA 20 0 0 1
-	givepokemon SPECIES_MEW 20 ITEM_LOADED_DICE 0 0
+	givepokemon SPECIES_ZERAORA 10 0 0 1
+	givepokemon SPECIES_MEW 10 ITEM_LOADED_DICE 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes
 	setflag 0x91F @bike turbo
+	setflag 0x930 @hard level cap
 	setflag 0x200 @tmp
 	release
 	end
