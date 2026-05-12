@@ -27,8 +27,12 @@ EventScript_PalletTown_TechnologyGuy:
 	setvar 0x8001 MOVE_SNOWSCAPE
 	setvar 0x8002 MOVE_SUPERCELLSLAM
 	setvar 0x8003 MOVE_PSYCHICNOISE
-	givepokemon SPECIES_MEWTWO 50 0 0 0
-	givepokemon SPECIES_ETERNATUS 50 0 0 0
+	givepokemon SPECIES_CHI_YU 50 0 0 0
+	givepokemon SPECIES_CHIEN_PAO 50 0 0 0
+	givepokemon SPECIES_TING_LU 50 0 0 0
+	givepokemon SPECIES_WO_CHIEN 50 0 0 0
+	givepokemon SPECIES_ARBOLIVA 50 0 0 0
+	givepokemon SPECIES_GHOLDENGO 50 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

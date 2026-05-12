@@ -725,8 +725,6 @@ TextPrinterWait 8005680 1
 AutoScrollBattleLevelUpBoxHook1 8026330 0 
 AutoScrollBattleLevelUpBoxHook2 8026350 0
 
-SetMonPreventsSwitchingString 8044348 0
-PokeSum_PrintAbilityNameAndDesc 8137C18 0
 
 #ifdef UNBOUND
 GetCurrentLevelCap 801D79C 0
@@ -762,5 +760,7 @@ TierBanScreenFromScript 801D894 0
 #endif
 
 ## New hooks
+SetMonPreventsSwitchingString 8044348 0
+PokeSum_PrintAbilityNameAndDesc 8137C18 0
 ItemUseCB_RareCandyStep 8126350 2
-
+PrintSkillsPage 81370EC 0 

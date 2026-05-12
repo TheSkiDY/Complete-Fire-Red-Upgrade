@@ -197,7 +197,6 @@ static void SwapMons(struct Pokemon* party, u8 i, u8 j);
 static void PostProcessTeam(struct Pokemon* party, struct TeamBuilder* builder);
 static void TryShuffleMovesForCamomons(struct Pokemon* party, u8 tier, u16 trainerId);
 static u8 GetPartyIdFromPartyData(struct Pokemon* mon);
-static u8 GetHighestMonLevel(const struct Pokemon* const party);
 static void CheckShinyMon(struct Pokemon* mon);
 #ifdef UNBOUND
 extern u8 GetEVSpreadNumForUnboundRivalChallenge(struct Pokemon* mon, u32 aiFlags, u8 trainerClass);
@@ -3900,7 +3899,7 @@ static u8 GetPartyIdFromPartyData(struct Pokemon* mon)
 	return id;
 }
 
-static u8 GetHighestMonLevel(const struct Pokemon* const party)
+u8 GetHighestMonLevel(const struct Pokemon* const party)
 {
 	u8 max = GetMonData(&party[0], MON_DATA_LEVEL, NULL);
 

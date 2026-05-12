@@ -123,7 +123,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 	#ifdef GAMEPLAY
 	u8 levelCap = GetCurrentLevelCap();
 	min = MathMax(2, levelCap / 4);
-	max = 2 * (levelCap / 3);
+	max = MathMin((2 * (levelCap / 3)), GetHighestMonLevel(gPlayerParty));
 	#endif
 
 	range = max - min + 1;

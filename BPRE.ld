@@ -2108,3 +2108,5 @@ GetMonLevelUpWindowStats = 0x811D130 | 1;
 PlayFanfareByFanfareNum = 0x8071BC4 | 1;
 Task_DisplayLevelUpStatsPg1 = 0x81264C8 | 1;
 Task_TryLearnNewMoves = 0x81265F8 | 1;
+sMonSkillsPrinterXpos = 0x203B144;
+sNatureStatTable = 0x8252B48;
