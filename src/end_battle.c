@@ -480,7 +480,9 @@ u8 IsRunningFromBattleImpossible(void)
 		if (side != SIDE(i))
 		{
 			u8 ability = ABILITY(i);
-			if (IsTrappedByAbility(gActiveBattler, ability))
+			if (ability == ABILITYBRANCH_SWITCHOUT_PREVENTION && 
+				(IsTrappedByAbility(gActiveBattler, BRANCH_SHADOW_TAG) 
+					|| IsTrappedByAbility(gActiveBattler, BRANCH_ARENA_TRAP) || IsTrappedByAbility(gActiveBattler, BRANCH_MAGNET_PULL)))
 			{
 				gBattleScripting.bank = i;
 				gLastUsedAbility = ABILITY(i);

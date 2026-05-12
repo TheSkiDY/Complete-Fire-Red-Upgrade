@@ -2376,6 +2376,10 @@ u16 GenerateWildMonHeldItem(u16 species, u8 bonus)
 	u16 var1 = 45;
 	u16 var2 = 95;
 
+	#ifdef GAMEPLAY
+	return ITEM_NONE;
+	#endif
+
 	if (gBaseStats[species].item1 == gBaseStats[species].item2 && gBaseStats[species].item1 != ITEM_NONE)
 		return gBaseStats[species].item1; //100% chance
 

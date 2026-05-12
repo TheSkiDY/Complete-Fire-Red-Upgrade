@@ -3075,5 +3075,5 @@ void InitMgba(void)
 
 void MgbaDebugCall(void)
 {
-	MgbaPrintf(MGBA_LOG_INFO, "Debug msg - axe kick.");
+	MgbaPrintf(MGBA_LOG_INFO, "Species count");
 }

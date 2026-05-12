@@ -27,6 +27,7 @@
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/exp.h"
+#include "../include/new/gameplay.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
 #include "../include/new/util.h"
@@ -118,6 +119,13 @@ static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 		min = wildPokemon->maxLevel;
 		max = wildPokemon->minLevel;
 	}
+
+	#ifdef GAMEPLAY
+	u8 levelCap = GetCurrentLevelCap();
+	min = MathMax(2, levelCap / 4);
+	max = 2 * (levelCap / 3);
+	#endif
+
 	range = max - min + 1;
 	rand = Random() % range;
 
@@ -143,7 +151,6 @@ static u8 ChooseWildMonLevel(const struct WildPokemon* wildPokemon)
 	}
 
 	#ifdef FLAG_HARD_LEVEL_CAP
-	extern u8 GetCurrentLevelCap(void); //Must be implemented yourself
 	if (FlagGet(FLAG_HARD_LEVEL_CAP))
 	{
 		u8 levelCap = GetCurrentLevelCap();
@@ -628,6 +635,8 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	u8 level;
 	u8 wildMonIndex = 0;
 	u8 monsCount = 0;
+	u8 encounterType = ENCOUNTER_LAND;
+	u16 species;
 
 	if (area == WILD_AREA_LAND)
 		monsCount = LAND_WILD_COUNT;
@@ -653,17 +662,20 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo* wildMonInfo, u8 ar
 	switch (area) {
 		case WILD_AREA_LAND:
 			wildMonIndex = ChooseWildMonIndex_Land();
+			encounterType = ENCOUNTER_LAND;
 			break;
 		case WILD_AREA_WATER:
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
+			encounterType = ENCOUNTER_SURF;
 			break;
 		case WILD_AREA_ROCKS:
 			wildMonIndex = ChooseWildMonIndex_WaterRock();
+			encounterType = ENCOUNTER_ROCK;
 			break;
 	}
 
 SKIP_INDEX_SEARCH:
-
+	species = wildMonInfo->wildPokemon[wildMonIndex].species;
 	level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
 
 	if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
@@ -673,7 +685,12 @@ SKIP_INDEX_SEARCH:
 		return FALSE;
 
 	else if (area != WILD_AREA_LAND || !TryGenerateSwarmMon(level, wildMonIndex, TRUE)) //Swarms can only appear on land
-		CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
+	{
+		#ifdef GAMEPLAY
+		species = ModifyEncounterSpecies(species, wildMonIndex, level, encounterType);
+		#endif
+		CreateWildMon(species, level, wildMonIndex, TRUE);
+	}
 
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
 	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))
@@ -721,9 +738,14 @@ SKIP_INDEX_SEARCH:
 static species_t GenerateFishingWildMon(const struct WildPokemonInfo* wildMonInfo, u8 rod)
 {
 	u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+	u8 encounterType = ENCOUNTER_FISH;
 	u8 level = ChooseWildMonLevel(&wildMonInfo->wildPokemon[wildMonIndex]);
+	u16 species = wildMonInfo->wildPokemon[wildMonIndex].species;
 
-	CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level, wildMonIndex, TRUE);
+	#ifdef GAMEPLAY
+	species = ModifyEncounterSpecies(species, wildMonIndex, level, encounterType);
+	#endif
+	CreateWildMon(species, level, wildMonIndex, TRUE);
 
 	#ifdef FLAG_DOUBLE_WILD_BATTLE
 	if (FlagGet(FLAG_DOUBLE_WILD_BATTLE))

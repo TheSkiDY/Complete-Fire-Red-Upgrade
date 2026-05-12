@@ -341,5 +341,7 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_HARD_LEVEL_CAP 0x950 
 
 
+#define GAMEPLAY
+
 /* DexNav Options */
 //See "include/new/dexnav_config.h"

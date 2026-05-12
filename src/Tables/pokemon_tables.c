@@ -361,6 +361,25 @@ const species_t gAlcremieForms[] =
 
 const u8 gNumAlcremieForms = NELEMS(gAlcremieForms);
 
+const species_t gSquawkabillyForms[] =
+{
+	SPECIES_SQUAWKABILLY,
+	SPECIES_SQUAWKABILLY_BLUE,
+	SPECIES_SQUAWKABILLY_YELLOW,
+	SPECIES_SQUAWKABILLY_WHITE,
+};
+
+const u8 gNumSquawkabillyForms = NELEMS(gSquawkabillyForms);
+
+const species_t gTatsugiriForms[] =
+{
+	SPECIES_TATSUGIRI,
+	SPECIES_TATSUGIRI_DROOPY,
+	SPECIES_TATSUGIRI_STRETCHY,	
+};
+
+const u8 gNumTatsugiriForms = NELEMS(gTatsugiriForms);
+
 const ability_t gSmogonOU_AbilityBanList[] =
 {
 	ABILITYBRANCH_SWITCHOUT_PREVENTION,

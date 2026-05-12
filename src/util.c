@@ -249,9 +249,9 @@ bool8 EvolveSpeciesByLevel(u16* species, u8 level)
 		if (evolutions[i].method == EVO_NONE) //Most likely end of entries
 			break; //Break now to save time
 		else if ((IsLevelUpEvolutionMethod(evolutions[i].method) && level >= evolutions[i].param)
-		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 40)
-		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 45)
-		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 55))
+		||  (IsOtherEvolutionMethod(evolutions[i].method) && level >= 30)
+		||  (IsItemEvolutionMethod(evolutions[i].method) && level >= 35)
+		||  (IsFriendshipEvolutionMethod(evolutions[i].method) && level >= 40))
 		{
 			*species = evolutions[i].targetSpecies;
 			evolved = TRUE;
@@ -260,6 +260,44 @@ bool8 EvolveSpeciesByLevel(u16* species, u8 level)
 	}
 
 	return evolved;
+}
+
+bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
+{
+	int j, k;
+	//bool8 found;
+	u16 species = *originalSpecies;
+
+
+	START:
+	//found = FALSE;
+	for (j = 1; j < NUM_SPECIES; ++j)
+	{
+		for (k = 0; k < EVOS_PER_MON; ++k)
+		{
+			if (gEvolutionTable[j][k].method == EVO_NONE) //Most likely end of entries
+				break; //Break now to save time
+			if(gEvolutionTable[j][k].targetSpecies == species)
+			{
+				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
+					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < 30)
+					|| (IsItemEvolutionMethod(gEvolutionTable[j][k].method) && level < 35)
+					|| (IsOtherEvolutionMethod(gEvolutionTable[j][k].method) && level < 40))
+				{
+					species = j;
+					goto START; //devolve until it can't
+				}
+			}
+		}
+	}
+	
+	if (species != *originalSpecies)
+	{
+		*originalSpecies = species;
+		return TRUE;
+	}
+	else
+		return FALSE;
 }
 
 u32 GetBaseStatsTotal(const u16 species)

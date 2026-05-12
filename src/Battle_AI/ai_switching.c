@@ -2124,7 +2124,9 @@ u8 CalcMostSuitableMonToSwitchInto(void)
 						flags[i] |= SWITCHING_FLAG_KO_FOE;
 
 						if (IsMoxieAbility(ability)
-						|| (IsTrappedByAbility(foe, ability))) //Basically guaranteed kill
+						|| (ability == ABILITYBRANCH_SWITCHOUT_PREVENTION && 
+				(IsTrappedByAbility(foe, BRANCH_SHADOW_TAG) 
+					|| IsTrappedByAbility(foe, BRANCH_ARENA_TRAP) || IsTrappedByAbility(foe, BRANCH_MAGNET_PULL)))) //Basically guaranteed kill
 						{
 							scores[i] += SWITCHING_INCREASE_REVENGE_KILL;
 							flags[i] |= SWITCHING_FLAG_REVENGE_KILL;
