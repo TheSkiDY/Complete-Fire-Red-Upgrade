@@ -1654,14 +1654,7 @@ bool8 CantLoadTeamPreviewTrigger(void)
 	if (gBattleTypeFlags & BATTLE_TYPE_LINK)
 		return FALSE; //TODO: Not unless the player selects it beforehand
 
-	bool8 can = (gBattleTypeFlags & BATTLE_TYPE_FRONTIER) != 0 //Regular Frontier battle
-		//|| gBattleTypeFlags & BATTLE_TYPE_LINK
-		#ifdef FLAG_IN_BATTLE_TEAM_PREVIEW
-		|| FlagGet(FLAG_IN_BATTLE_TEAM_PREVIEW)
-		#endif
-		;
-
-	return !can;
+	return FALSE;
 }
 
 void TryLoadTeamPreviewTrigger(void)
@@ -1726,6 +1719,10 @@ static bool8 CanShowEnemyMonIcon(u8 monId)
 		return TRUE; //Can always see link opponent's team
 	#ifdef FLAG_SANDBOX_MODE
 	else if (FlagGet(FLAG_SANDBOX_MODE)) //Doesn't help in Frontier
+		return TRUE;
+	#endif
+
+	#ifdef GAMEPLAY
 		return TRUE;
 	#endif
 

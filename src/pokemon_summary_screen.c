@@ -153,6 +153,4 @@ void PrintSkillsPage(void)
     BlitBitmapRectToWindow(sMonSummaryScreen->windowIds[3], IV_RankingsTiles, sIVRankingsCoords[sIVRankingTable[spAtkIv]][0], sIVRankingsCoords[sIVRankingTable[spAtkIv]][1], IV_RANKINGS_SHEET_WIDTH, IV_RANKINGS_SHEET_HEIGHT, 42, 46, IV_RANKING_WIDTH, IV_RANKING_HEIGHT);
     BlitBitmapRectToWindow(sMonSummaryScreen->windowIds[3], IV_RankingsTiles, sIVRankingsCoords[sIVRankingTable[spDefIv]][0], sIVRankingsCoords[sIVRankingTable[spDefIv]][1], IV_RANKINGS_SHEET_WIDTH, IV_RANKINGS_SHEET_HEIGHT, 42, 58, IV_RANKING_WIDTH, IV_RANKING_HEIGHT);
     BlitBitmapRectToWindow(sMonSummaryScreen->windowIds[3], IV_RankingsTiles, sIVRankingsCoords[sIVRankingTable[speedIv]][0], sIVRankingsCoords[sIVRankingTable[speedIv]][1], IV_RANKINGS_SHEET_WIDTH, IV_RANKINGS_SHEET_HEIGHT, 42, 70, IV_RANKING_WIDTH, IV_RANKING_HEIGHT);
-
-
 }

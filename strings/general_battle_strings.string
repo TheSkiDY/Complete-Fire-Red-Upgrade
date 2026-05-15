@@ -197,16 +197,16 @@ You were overwhelmed by your\ndefeat![FC][09]
 [FD][06] is weak!\nThrow a BALL now!
 
 #org @gText_TeamPreviewSingleDoubleText
-[FD][1C] [FD][1D]'s Team
+[FD][1C] [FD][1D]'s team
 
 #org @gText_TeamPreviewSingleDoubleLinkText
-[FD][20]'s Team 
+[FD][20]'s team 
 
 #org @gText_TeamPreviewMultiText
-[FD][1C] [FD][1D]'s Team\n[FD][2E] [FD][2F]'s Team
+[FD][1C] [FD][1D]'s team\n[FD][2E] [FD][2F]'s team
 
 #org @gText_TeamPreviewMultiLinkText
-[FD][20]'s Team\n[FD][21]'s Team 
+[FD][20]'s team\n[FD][21]'s team 
 
 //Exp String
 

@@ -1535,7 +1535,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 bank, u8 ability, u8 special, u16 moveArg)
 				case ABILITY_CUDCHEW:
 					if(gItems[(SAVED_CONSUMED_ITEMS(bank))].pocket == POCKET_BERRY_POUCH && gNewBS->CudChewTimers[bank] == 1)
 					{
-						MgbaPrintf(MGBA_LOG_INFO, "Entered cud chew script");
 						BattleScriptPushCursorAndCallback(BattleScript_CudChew);
 						++effect;
 					}

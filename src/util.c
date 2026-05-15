@@ -1,4 +1,7 @@
 #include "defines.h"
+#include "defines_battle.h"
+#include "../include/battle.h"
+#include "../include/pokemon.h"
 #include "../include/random.h"
 #include "../include/constants/abilities.h"
 
@@ -277,7 +280,7 @@ bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level)
 		{
 			if (gEvolutionTable[j][k].method == EVO_NONE) //Most likely end of entries
 				break; //Break now to save time
-			if(gEvolutionTable[j][k].targetSpecies == species)
+			if(gEvolutionTable[j][k].targetSpecies == species && gEvolutionTable[j][k].method != EVO_GIGANTAMAX && gEvolutionTable[j][k].method != EVO_MEGA)
 			{
 				if((IsLevelUpEvolutionMethod(gEvolutionTable[j][k].method) && level < gEvolutionTable[j][k].param)
 					|| (IsFriendshipEvolutionMethod(gEvolutionTable[j][k].method) && level < 30)
@@ -611,4 +614,30 @@ bool8 SpeciesHasType(u16 species, u8 type)
 		return TRUE;
 
 	return FALSE;
+}
+
+u16 GetRandomSuperEffectiveType(u16 species)
+{
+	u8 type1 = gBaseStats[species].type1;
+	u8 type2 = gBaseStats[species].type2;
+	u8 superEffectiveList[NUMBER_OF_MON_TYPES];
+	u8 superEffectiveNum = 0;
+	u8 modifier1, modifier2;
+	u8 randomSuperEffectiveType;
+
+	for(u8 type = 0; type < NUMBER_OF_MON_TYPES; ++type)
+	{
+		modifier1 = gTypeEffectiveness[type][type1];
+		modifier2 = gTypeEffectiveness[type][type2];
+
+		if((modifier1 == TYPE_MUL_SUPER_EFFECTIVE && modifier2 > TYPE_MUL_NOT_EFFECTIVE)
+		 || (modifier1 > TYPE_MUL_NOT_EFFECTIVE && modifier2 == TYPE_MUL_SUPER_EFFECTIVE))
+		{
+			superEffectiveList[superEffectiveNum] = type;
+			superEffectiveNum++;
+		}
+	}
+
+	randomSuperEffectiveType = superEffectiveList[Random() % superEffectiveNum];
+	return randomSuperEffectiveType;
 }

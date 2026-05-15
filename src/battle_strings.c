@@ -28,6 +28,7 @@ battle_strings.c
 
 extern u8 gMoveNames[][MOVE_NAME_LENGTH + 1];
 extern u8 gLongMoveNames[][MOVE_NAME_LENGTH + 5];
+extern u8 gTrainerClassNamesNew[][13];
 
 extern const u8 gStatusConditionString_Frostbite[];
 extern const u8 gStatusConditionString_DisableProblem[];
@@ -1138,7 +1139,7 @@ static const u8* GetTrainerClassName(u8 class, unusedArg u8* text)
 	}
 	else
 	#endif
-		className = gTrainerClassNames[class];
+		className = gTrainerClassNamesNew[class];
 
 	return className;
 }

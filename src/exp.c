@@ -14,6 +14,7 @@
 #include "../include/new/dns.h"
 #include "../include/new/dynamax.h"
 #include "../include/new/exp.h"
+#include "../include/new/gameplay.h"
 #include "../include/new/util.h"
 
 /*
@@ -871,26 +872,26 @@ bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 
 u8 LevelCaps[] =
 {
-	[0] = 15,		// Brock
-	[1] = 23,		// Misty
-	[2] = 29,		// Lt. Surge
-	[3] = 38,		// Erika
-	[4] = 50,		// Koga
-	[5] = 55,		// Sabrina
-	[6] = 60,		// Blaine
-	[7] = 65,		// Giovanni
-	[8] = 70,		// Falkner
-	[9] = 73,		// Bugsy
-	[10] = 76,		// Whitney
-	[11] = 79,		// Morty
-	[12] = 82,		// Karen
-	[13] = 85,		// Jasmine
-	[14] = 88,		// Pryce
-	[15] = 91,		// Clair
-	[16] = 94,		// LG1
-	[17] = 95,		// LG2
-	[18] = 96,		// LG3
-	[19] = 100,		// Elite Four
+	[CAP_BROCK] = 15,
+	[CAP_MISTY] = 23,
+	[CAP_LT_SURGE] = 29,
+	[CAP_ERIKA] = 38,
+	[CAP_KOGA] = 50,
+	[CAP_SABRINA] = 55,
+	[CAP_BLAINE] = 60,
+	[CAP_GIOVANNI] = 65,
+	[CAP_FALKNER] = 70,
+	[CAP_BUGSY] = 73,
+	[CAP_WHITNEY] = 76,
+	[CAP_MORTY] = 79,
+	[CAP_KAREN] = 82,
+	[CAP_JASMINE] = 85,
+	[CAP_PRYCE] = 88,
+	[CAP_CLAIR] = 91,
+	[CAP_LG1] = 94,
+	[CAP_LG2] = 95,
+	[CAP_LG3] = 96,
+	[CAP_ELITE_FOUR] = 100,
 
 };
 

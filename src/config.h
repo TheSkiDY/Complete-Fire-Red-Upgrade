@@ -339,7 +339,7 @@ enum //These vars need to be one after the other (hence the enum)
 
 /* New stuff */
 #define FLAG_HARD_LEVEL_CAP 0x950 
-
+#define FLAG_CHALLENGE_MODE 0x951
 
 #define GAMEPLAY
 

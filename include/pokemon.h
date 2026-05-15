@@ -130,6 +130,9 @@
 #define TYPE_BLANK	  0x14
 #define TYPE_FAIRY	  0x17
 
+#define TYPE_ANY 0xFE
+#define TYPE_NONE 0xFF
+
 #define NUMBER_OF_MON_TYPES (TYPE_FAIRY + 1)
 #define NUM_HIDDEN_POWER_TYPES 16
 

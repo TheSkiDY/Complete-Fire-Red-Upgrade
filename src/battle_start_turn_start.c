@@ -1890,17 +1890,17 @@ u8 GetTrainerBattleTransition(void)
 		VarSet(VAR_PRE_BATTLE_MUGSHOT_STYLE, MUGSHOT_TWO_BARS);
 		VarSet(VAR_PRE_BATTLE_MUGSHOT_SPRITE, MUGSHOT_PLAYER);
 
-		if (gTrainerBattleOpponent_A == TRAINER_LORELEI
-		||  gTrainerBattleOpponent_A == TRAINER_LORELEI_REMATCH)
+		if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI
+		||  gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2)
 			return B_TRANSITION_LORELEI;
-		if (gTrainerBattleOpponent_A == TRAINER_BRUNO
-		||  gTrainerBattleOpponent_A == TRAINER_BRUNO_REMATCH)
+		if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO
+		||  gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_2)
 			return B_TRANSITION_BRUNO;
-		if (gTrainerBattleOpponent_A == TRAINER_AGATHA
-		||  gTrainerBattleOpponent_A == TRAINER_AGATHA_REMATCH)
+		if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA
+		||  gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_2)
 			return B_TRANSITION_AGATHA;
-		if (gTrainerBattleOpponent_A == TRAINER_LANCE
-		||  gTrainerBattleOpponent_A == TRAINER_LANCE_REMATCH)
+		if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE
+		||  gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_2)
 			return B_TRANSITION_LANCE;
 
 		return B_TRANSITION_CHAMPION;

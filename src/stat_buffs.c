@@ -335,7 +335,6 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 
 		else if (ITEM_EFFECT(gActiveBattler) == ITEM_EFFECT_CLEAR_AMULET && !certain && gCurrentMove != MOVE_CURSE)
 		{
-			MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet func.");
 			if (flags == STAT_CHANGE_BS_PTR)
 			{
 				if(gSpecialStatuses[gActiveBattler].statLowered)
@@ -344,7 +343,6 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 				}
 				else
 				{
-					MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet script call.");
 					BattleScriptPush(BS_ptr);
 					gBattleScripting.bank = gActiveBattler;
 					gBattlescriptCurrInstr = BattleScript_ClearAmuletNoStatLoss;
@@ -359,7 +357,6 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 			  || (ability == ABILITY_FLOWERVEIL && IsOfType(gActiveBattler, TYPE_GRASS)))
 		&& !certain && gCurrentMove != MOVE_CURSE)
 		{
-			MgbaPrintf(MGBA_LOG_INFO, "Entered clear body func.");
 			if (flags == STAT_CHANGE_BS_PTR)
 			{
 				if (gSpecialStatuses[gActiveBattler].statLowered)
@@ -368,7 +365,6 @@ u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8* BS_ptr)
 				}
 				else
 				{
-					MgbaPrintf(MGBA_LOG_INFO, "Entered clear amulet script call.");
 					BattleScriptPush(BS_ptr);
 					gBattleScripting.bank = gActiveBattler;
 					gBattleCommunication[0] = gActiveBattler;

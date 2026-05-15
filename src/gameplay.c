@@ -32,6 +32,7 @@
 #include "../include/new/dynamax.h"
 #include "../include/new/evolution.h"
 #include "../include/new/exp.h"
+#include "../include/new/gameplay.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
 #include "../include/new/util.h"
@@ -79,6 +80,11 @@ extern const species_t gTier2List[];
 extern const species_t gTier3List[];
 extern const species_t gTierLegendsList[];
 extern const u16 SpeciesCountCapUnlocks[];
+extern const u16 TrainerMaxSpeciesIndices[20][4];
+extern const u16 gTrainerClassPokemonTypes[NUM_TRAINER_CLASSES][NUM_TRAINER_CLASS_SPECIFIC_TYPES];
+extern const u16 gTypeBoosters[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeResistBerries[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeGems[NUMBER_OF_MON_TYPES];
 
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -333,5 +339,273 @@ u16 ModifyEncounterSpecies(u16 species, u8 index, u8 level, u8 encounterType)
 	return newSpecies;
 }
 
+bool8 IsBossTrainerClass(u8 trainerClass)
+{
+	return (trainerClass == CLASS_LEADER
+		||  trainerClass == CLASS_ELITE_FOUR
+		||  trainerClass == CLASS_BOSS
+		||  trainerClass == CLASS_RIVAL_LATE
+		||  trainerClass == CLASS_CHAMPION);
+}
+
+u8 TrainerPartySizes[][4] =
+{						//trainer casual  //trainer challenge   //boss casual	//boss challenge
+	[CAP_BROCK] = 			{2,					3,					5,				6,	},
+	[CAP_MISTY] = 			{3,					3,					5,				6,	},
+	[CAP_LT_SURGE] = 		{3,					4,					5,				6,	},
+	[CAP_ERIKA] = 			{3,					4,					5,				6,	},
+	[CAP_KOGA] = 			{3,					4,					6,				6,	},
+	[CAP_SABRINA] = 		{3,					4,					6,				6,	},
+	[CAP_BLAINE] = 			{3,					4,					6,				6,	},
+	[CAP_GIOVANNI] = 		{3,					4,					6,				6,	},
+	[CAP_FALKNER] = 		{4,					5,					6,				6,	},
+	[CAP_BUGSY] = 			{4,					5,					6,				6,	},
+	[CAP_WHITNEY] = 		{4,					5,					6,				6,	},
+	[CAP_MORTY] = 			{4,					5,					6,				6,	},
+	[CAP_KAREN] = 			{4,					5,					6,				6,	},
+	[CAP_JASMINE] = 		{4,					5,					6,				6,	},
+	[CAP_PRYCE] = 			{4,					5,					6,				6,	},
+	[CAP_CLAIR] = 			{4,					5,					6,				6,	},
+	[CAP_LG1] = 			{4,					5,					6,				6,	},
+	[CAP_LG2] = 			{4,					5,					6,				6,	},
+	[CAP_LG3] = 			{4,					5,					6,				6,	},
+	[CAP_ELITE_FOUR] = 		{4,					5,					6,				6,	},
+};
+
+s16 TrainerLevelRanges[][8] =
+{							//tr. casual      //tr. challenge 	  //boss casual      //boss challenge
+	[CAP_BROCK] = 			{-5,	-2,			-3,		0,			-2,		0,		   -1,		0, },
+	[CAP_MISTY] = 			{-5,	-2,			-3,		0,			-2,		0,		   -1,		0, },
+	[CAP_LT_SURGE] = 		{-5,	-2,			-3,		0,			-2,		0,		   -1,		0, },
+	[CAP_ERIKA] = 			{-5,	-2,			-3,		0,			-2,		0,		   -1,		0, },
+	[CAP_KOGA] = 			{-4, 	-2,			-2,		0,			-2,		0,			0,		0, },
+	[CAP_SABRINA] = 		{-4, 	-2,			-2,		0,			-2,		0,			0,		0, },
+	[CAP_BLAINE] = 			{-4, 	-1,			-2,		0,			-2,		0,			0,		0, },
+	[CAP_GIOVANNI] = 		{-4,	-1,			-2,		0,			-2,		0,			0,		0, },
+	[CAP_FALKNER] = 		{-3,	-1,			-1,		0,			-1,		0,			0,		0, },
+	[CAP_BUGSY] = 			{-3,	-1,			-1,		0,			-1,		0,			0,		0, },
+	[CAP_WHITNEY] = 		{-3,	-1,			-1,		0,			-1,		0,			0,		0, },
+	[CAP_MORTY] = 			{-3,	-1,			-1,		0,			-1,		0,			0,		0, },
+	[CAP_KAREN] = 			{-3, 	 0,			 0,		0,			-1,		0,			0,		0, },
+	[CAP_JASMINE] = 		{-3,	 0,			 0,		0,			-1,		0,			0,		0, },
+	[CAP_PRYCE] = 			{-3, 	 0,			 0,		0,			-1,		0,			0,		0, },
+	[CAP_CLAIR] = 			{-3, 	 0,			 0,		0,			-1,		0,			0,		0, },
+	[CAP_LG1] = 			{-2, 	 0,			 0,		0,			 0,		0,			0,		0, },
+	[CAP_LG2] = 			{-2, 	 0,			 0,		0,			 0,		0,			0,		0, },
+	[CAP_LG3] = 			{-2, 	 0,			 0,		0,			 0,		0,			0,		0, },
+	[CAP_ELITE_FOUR] = 		{-2, 	 0,			 0,		0,			 0,		0,			0,		0, },
+};
 
 
+
+u16 GetTrainerMaxSpeciesCount(u8 trainerClass)
+{
+	u8 capIndex = DetermineLevelCapIndex();
+	u8 countIndex = FlagGet(FLAG_CHALLENGE_MODE) + (IsBossTrainerClass(trainerClass) ? 2 : 0);
+	return TrainerMaxSpeciesIndices[capIndex][countIndex];
+}
+
+bool8 DoesMonFitTrainerClass(u16 species, u16 trainerId)
+{//TO DO
+	
+	u8 locGroup = gSaveBlock1->location.mapGroup;
+	u8 locNum = gSaveBlock1->location.mapNum;
+	u8 trainerClass = gTrainers[trainerId].trainerClass;
+
+	//Check for specific trainer
+	switch(trainerId)
+	{
+		case TRAINER_BOSS_GIOVANNI:
+		case TRAINER_BOSS_GIOVANNI_2:
+		case TRAINER_LEADER_GIOVANNI:
+			return IsSpeciesOfType(species, TYPE_GROUND);
+		case TRAINER_ELITE_FOUR_LORELEI: 
+		case TRAINER_ELITE_FOUR_LORELEI_2:
+			return IsSpeciesOfType(species, TYPE_ICE) + IsSpeciesOfType(species, TYPE_WATER)
+			 + IsSpeciesOfType(species, TYPE_ELECTRIC) + IsSpeciesOfType(species, TYPE_GRASS);
+		case TRAINER_ELITE_FOUR_BRUNO:
+		case TRAINER_ELITE_FOUR_BRUNO_2:
+			return IsSpeciesOfType(species, TYPE_FIGHTING) + IsSpeciesOfType(species, TYPE_ROCK)
+			+ IsSpeciesOfType(species, TYPE_STEEL) + IsSpeciesOfType(species, TYPE_GROUND);
+		case TRAINER_ELITE_FOUR_AGATHA:
+		case TRAINER_ELITE_FOUR_AGATHA_2:
+			return IsSpeciesOfType(species, TYPE_GHOST) + IsSpeciesOfType(species, TYPE_POISON)
+			+ IsSpeciesOfType(species, TYPE_DARK) + IsSpeciesOfType(species, TYPE_PSYCHIC);
+		case TRAINER_ELITE_FOUR_LANCE:
+		case TRAINER_ELITE_FOUR_LANCE_2:
+			return IsSpeciesOfType(species, TYPE_DRAGON) + IsSpeciesOfType(species, TYPE_FLYING)
+			+ IsSpeciesOfType(species, TYPE_FAIRY) + IsSpeciesOfType(species, TYPE_FIRE);
+	}
+
+
+	// Check if inside gym
+	if (locGroup == 6 && locNum == 2) // Brock's gym
+	{
+		return IsSpeciesOfType(species, TYPE_ROCK);
+	}
+	else if (locGroup == 7 && locNum == 5) // Misty's gym
+	{
+		return IsSpeciesOfType(species, TYPE_WATER);
+	}
+	else if (locGroup == 9 && locNum == 6) // Surge's gym
+	{
+		return IsSpeciesOfType(species, TYPE_ELECTRIC);
+	}
+	else if (locGroup == 10 && locNum == 16) // Erika's gym
+	{
+		return IsSpeciesOfType(species, TYPE_GRASS);
+	}
+	else if (locGroup == 11 && locNum == 3) // Koga's gym
+	{
+		return IsSpeciesOfType(species, TYPE_POISON);
+	}
+	else if (locGroup == 14 && locNum == 3) // Sabrina's gym
+	{
+		return IsSpeciesOfType(species, TYPE_PSYCHIC);
+	}
+	else if (locGroup == 14 && locNum == 2) // Saffron Dojo
+	{
+		return IsSpeciesOfType(species, TYPE_FIGHTING);
+	}
+	else if (locGroup == 12 && locNum == 0) // Blaine's gym
+	{
+		return IsSpeciesOfType(species, TYPE_FIRE);
+	}
+	else if (locGroup == 5 && locNum == 1) // Giovanni's gym
+	{
+		return IsSpeciesOfType(species, TYPE_GROUND);
+	}
+
+	//Check trainer class-specific types
+	u8 typeScore = 0, type;
+	for(u8 i = 0; i < NUM_TRAINER_CLASS_SPECIFIC_TYPES; ++i)
+	{	
+		type = gTrainerClassPokemonTypes[trainerClass][i];
+
+		if(type == TYPE_NONE)
+			break;
+		else if(type == TYPE_ANY)
+			typeScore++;
+		else
+		{
+			typeScore += IsSpeciesOfType(species, type);
+		}
+	}
+
+	return (typeScore > 0);
+}
+
+u8 RandomizeLevelForTrainerMon(u8 trainerClass)
+{
+	u8 capIndex = DetermineLevelCapIndex();
+	u8 isBoss = IsBossTrainerClass(trainerClass) ? 4 : 0;
+	bool8 isChallengeMode = FlagGet(FLAG_CHALLENGE_MODE) ? 2 : 0;
+	u8 minLevelDiff = TrainerLevelRanges[capIndex][isChallengeMode + isBoss + 0];
+	u8 maxLevelDiff = TrainerLevelRanges[capIndex][isChallengeMode + isBoss + 1];
+	u8 levelCap = GetCurrentLevelCap();
+	u8 playerLevel = GetHighestMonLevel(gPlayerParty);
+
+	if (playerLevel < levelCap)
+		levelCap = playerLevel;
+
+	u8 minLevel = levelCap + minLevelDiff;
+	u8 maxLevel = levelCap + maxLevelDiff;
+
+	u8 level = RandRange(minLevel, maxLevel + 1);
+
+	return level;
+}
+
+u16 AdjustTrainerSpecies(u16 originalSpecies, u8 level)
+{
+	u16 newSpecies = originalSpecies;
+	DevolveSpeciesByLevel(&newSpecies, level);
+
+	newSpecies = AdjustEncounterAestheticSpecies(newSpecies);
+	return newSpecies;
+}
+
+bool8 CheckSpeciesViabilityInTrainerParty(u16 species, u16* teamSpecies, u16 trainerId, u8 currIndex)
+{
+	bool8 speciesAlreadyInParty = FALSE;
+	for(u8 i = 0; i < currIndex; ++i)
+	{
+		if(teamSpecies[i] == species)
+			speciesAlreadyInParty = TRUE;
+	}
+
+	return (!speciesAlreadyInParty && DoesMonFitTrainerClass(species, trainerId));
+}
+
+u16 RandomizeHeldItemForCasualTrainer(u16 species)
+{
+	u16 randVal = Random() % 10;
+	u16 heldItem = ITEM_NONE;
+	u8 randAttackType = ((Random() & 1) == 0) ? gBaseStats[species].type1 : gBaseStats[species].type2;
+	u8 randDefType = GetRandomSuperEffectiveType(species);
+
+	switch (randVal)
+	{
+		case 0: 
+		case 1: 
+		case 2: 
+		case 3: 
+		case 4: 
+			heldItem = ITEM_NONE;
+			break;
+		case 5:
+		case 6:
+			// random type-resist berry
+			heldItem = gTypeResistBerries[randDefType];
+			break;
+		case 7:
+		case 8:
+			// random type gem
+			heldItem = gTypeGems[randAttackType];
+			break;
+		case 9:
+			// random type booster
+			heldItem = gTypeBoosters[randAttackType];
+			break;
+	}
+	return heldItem;
+}
+
+u16 RandomizeTrainerSpecies(u16* teamSpecies, u16 trainerId, u8 currIndex)
+{
+	u16 speciesCount = GetTrainerMaxSpeciesCount(gTrainers[trainerId].trainerClass);
+	u16 randomSpeciesIndex;
+	u16 consideredSpeciesIndex1, consideredSpeciesIndex2;
+	u16 consideredSpecies1, consideredSpecies2;
+	u8 iterations = 0;
+
+	while (TRUE)
+	{
+		randomSpeciesIndex = Random32() % speciesCount;
+		for(u8 i = 0; i < 6; ++i)
+		{
+			consideredSpeciesIndex1 = MathMin(randomSpeciesIndex + i, speciesCount - 1);
+			consideredSpeciesIndex2 = MathMin(randomSpeciesIndex - i, randomSpeciesIndex); //because  may underflow
+
+			consideredSpecies1 = GetSpeciesFromNewSpeciesIndex(consideredSpeciesIndex1);
+			consideredSpecies2 = GetSpeciesFromNewSpeciesIndex(consideredSpeciesIndex2);
+
+			if (CheckSpeciesViabilityInTrainerParty(consideredSpecies1, teamSpecies, trainerId, currIndex))
+				return consideredSpecies1;
+
+			if (CheckSpeciesViabilityInTrainerParty(consideredSpecies2, teamSpecies, trainerId, currIndex))
+				return consideredSpecies2;
+		}
+		iterations++;
+	}
+
+	return SPECIES_DITTO;
+}
+
+
+u8 DeteminePartySize(u8 trainerClass)
+{
+	u8 capIndex = DetermineLevelCapIndex();
+	u8 sizeIndex = FlagGet(FLAG_CHALLENGE_MODE) + (IsBossTrainerClass(trainerClass) ? 2 : 0);
+	return TrainerPartySizes[capIndex][sizeIndex];
+}

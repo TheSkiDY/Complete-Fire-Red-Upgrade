@@ -31,6 +31,7 @@
 #include "../include/new/exp.h"
 #include "../include/new/form_change.h"
 #include "../include/new/frontier.h"
+#include "../include/new/gameplay.h"
 #include "../include/new/item.h"
 #include "../include/new/learn_move.h"
 #include "../include/new/mega.h"
@@ -754,6 +755,227 @@ void sp06B_ReplacePlayerTeamWithMultiTrainerTeam(void)
 	BuildFrontierMultiParty(Var8000);
 }
 
+
+u8 CreateNewTrainerParty(struct Pokemon* const party, const u16 trainerId, const bool8 firstTrainer, const bool8 side)
+{
+	u32 i, j, nameHash;
+	unusedArg u8 monsCount, baseIV, setMonGender, trainerNameLengthOddness, minPartyLevel, maxPartyLevel,
+	   modifiedAveragePlayerLevel, highestPlayerLevel, canEvolveMon, canEvolveMonBackup, levelScaling, setCustomMoves;
+	struct Trainer* trainer;
+	u32 otid = 0;
+	u8 otIdType = OT_ID_RANDOM_NO_SHINY;
+	u16 teamSpecies[6];
+	u8 k = 0;
+
+	if (((gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)) == BATTLE_TYPE_TRAINER)
+	||   (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER))
+	{
+		if (firstTrainer && side == B_SIDE_OPPONENT)
+			ZeroEnemyPartyMons();
+
+		trainer = &gTrainers[trainerId];
+
+		// ------------------------------ Choose IVs -----------------------------------------------
+		if(FlagGet(FLAG_CHALLENGE_MODE))
+		{
+			if (IsBossTrainerClass(trainer->trainerClass))
+				baseIV = 31;
+			else
+				baseIV = 21 + Random() % 11;
+		}
+		else
+		{
+			if (IsBossTrainerClass(trainer->trainerClass))
+				baseIV = 16 + Random() % 16;
+			else
+				baseIV = Random() % 16;
+		}
+
+		// ------------------------------ Choose Trainer Pokemon genders --------------------------
+		setMonGender = GetTrainerMonGender(trainer);
+		if (!firstTrainer && side == B_SIDE_PLAYER && trainer->encounterMusic > 0) //Multi partner with preset Id
+		{
+			otid = gFrontierMultiBattleTrainers[trainer->encounterMusic - 1].otId;
+			otIdType = OT_ID_PRESET;
+			setMonGender = trainer->gender; //So all Pokemon have the same gender every time
+		}
+
+		// ------------------------------ Get party size -------------------------------------------
+		if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && side == B_SIDE_OPPONENT)
+		{
+			u8 initialAmount = DeteminePartySize(trainer->trainerClass);
+			if (initialAmount > 3)
+				monsCount = 3;
+			else
+				monsCount = initialAmount;
+		}
+		else if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && side == B_SIDE_PLAYER)
+		{
+			if (trainer->partySize > 3)
+				monsCount = 3;
+			else
+				monsCount = trainer->partySize;
+		}
+		else
+		{
+			monsCount = DeteminePartySize(trainer->trainerClass);
+		}
+
+		for (k = 0; k < monsCount; ++k)
+		{
+			teamSpecies[k] = RandomizeTrainerSpecies(teamSpecies, trainerId, k);
+		}
+
+		//Create each Pokemon
+		for (i = 0, trainerNameLengthOddness = StringLength(trainer->trainerName) & 1, nameHash = 0; i < monsCount; ++i)
+		{
+			// ------------------------------ Calculate personality --------------------------
+			u32 personalityValue;
+			u8 genderOffset = 0x80;
+			struct Pokemon* mon = &party[i];
+
+			if (setMonGender == 1)
+			{
+				genderOffset = 0x78; //Female
+				personalityValue = genderOffset;
+				goto SKIP_SET_RANDOM_PERSONALITY;
+			}
+			else if (setMonGender == 0)
+			{
+				genderOffset = 0x88; //Male
+				personalityValue = genderOffset;
+				goto SKIP_SET_RANDOM_PERSONALITY;
+			}
+			else if ((i + 1) % 3 == 0) //Every third Pokemon
+			{
+				if (trainerNameLengthOddness == 0) //If trainer name length is even
+					genderOffset = 0x78; //Female
+				else
+					genderOffset = 0x88; //Male
+			}
+			else
+			{
+				if (trainerNameLengthOddness == 0) //If trainer name length is even
+					genderOffset = 0x88; //Male
+				else
+					genderOffset = 0x78; //Female
+			}
+
+			personalityValue = genderOffset ^ StringLength(trainer->trainerName); //"Randomize" ability
+
+			SKIP_SET_RANDOM_PERSONALITY:
+			for (j = 0; trainer->trainerName[j] != EOS; ++j)
+				nameHash += trainer->trainerName[j];
+
+
+			// ------------------------------ Create initial Pokemon data --------------------------
+			u8 lvl = RandomizeLevelForTrainerMon(trainer->trainerClass);
+			//u16 speciesToCreate = RandomizeTrainerSpecies(party, trainerId, i, lvl);
+			u16 speciesToCreate = teamSpecies[i];
+
+			for (j = 0; gSpeciesNames[speciesToCreate][j] != EOS; ++j)
+			{
+				nameHash += gSpeciesNames[speciesToCreate][j];
+			}
+
+			personalityValue += nameHash << 8;
+			speciesToCreate = AdjustTrainerSpecies(speciesToCreate, lvl);
+			CreateMon(&party[i], speciesToCreate, lvl, baseIV, TRUE, personalityValue, otIdType, otid);
+			TryFixMiniorForm(&party[i]);
+			party[i].metLevel = lvl;
+
+			// ------------------------------ Set moves and held items --------------------------
+
+			// TO DO...
+			u16 heldItem = RandomizeHeldItemForCasualTrainer(mon->species);
+			SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+
+
+
+			// ------------------------------ Assign trainer information --------------------------
+			u8 otGender = trainer->gender;
+			const u8* name = TryGetRivalNameByTrainerClass(gTrainers[trainerId].trainerClass);
+			if (name == NULL) //Not Rival or Rival name isn't tied to Trainer class
+				SetMonData(mon, MON_DATA_OT_NAME, &trainer->trainerName);
+			else
+				SetMonData(mon, MON_DATA_OT_NAME, name);
+			SetMonData(mon, MON_DATA_OT_GENDER, &otGender);
+
+
+			// ------------------------------ Give custom Poke Ball --------------------------
+			#ifdef TRAINER_CLASS_POKE_BALLS
+			if (speciesToCreate == SPECIES_MEWTWO)
+				SetMonData(mon, MON_DATA_POKEBALL, BALL_TYPE_MASTER_BALL);
+			else
+				SetMonData(mon, MON_DATA_POKEBALL, &gClassPokeBalls[trainer->trainerClass]);
+			#endif
+
+
+			// ------------------------------ Give natures / abilities --------------------------
+
+			//TO DO...
+			u8 abilityRandVal = Random() % 5;
+			switch(abilityRandVal)
+			{
+				case 0: //ability 1 
+				case 1:
+					GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 0, FALSE, TRUE, FALSE);
+					break; 
+				case 2: //ability 2
+				case 3:
+					if (gBaseStats[mon->species].ability2 != ABILITY_NONE)
+						GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 1, FALSE, TRUE, FALSE);
+					break;
+				case 4: //hidden ability
+					if (gBaseStats[mon->species].hiddenAbility != ABILITY_NONE)
+						GiveMonNatureAndAbility(mon, GetNatureFromPersonality(mon->personality), 0xFF, FALSE, TRUE, FALSE);
+					break;
+			}
+
+
+
+			// ------------------------------ Fix Minior --------------------------------------
+			if (IsMinior(mon->species))
+			{
+				u16 correctMiniorForm = GetMiniorCoreFromPersonality(mon->personality);
+				SetMonData(mon, MON_DATA_SPECIES, &correctMiniorForm); //Prevents problems with it changing forms after lowering its shields
+			}
+
+			// ----------------------- Caluate stats and set to full health ----------------------
+			CalculateMonStatsNew(mon);
+			HealMon(mon);
+
+			// --------------------------- Status Inducers ----------------------------------------
+			TryStatusInducer(mon);
+			#ifdef UNBOUND
+			TryGiveSpecialTrainerStatusCondition(trainerId, mon);
+			#endif
+
+			// --------------------------- Fix Partner Met Locations ---------------------------
+			if (side == B_SIDE_PLAYER) //Partner
+			{
+				u8 metLoc = 0; //Unknown location
+				SetMonData(&gPlayerParty[i + 3], MON_DATA_MET_LOCATION, &metLoc); //So they don't the current area
+			}
+
+		}
+
+		//Set Double battle type if necessary
+		if (trainer->doubleBattle || FlagGet(FLAG_DOUBLE_BATTLE))
+		{
+			if (trainer->partySize > 1 && ViableMonCount(gPlayerParty) >= 2) //Double battles will not happen if the player only has 1 mon that can fight or if the foe only has 1 mon
+			{
+				gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+			}
+		}
+	}
+	else
+	{
+		monsCount = 1;
+	}
+	return monsCount;
+}
+
 //Returns the number of Pokemon
 static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId, const bool8 firstTrainer, const bool8 side)
 {
@@ -763,6 +985,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 	struct Trainer* trainer;
 	u32 otid = 0;
 	u8 otIdType = OT_ID_RANDOM_NO_SHINY;
+
+
+	#ifdef GAMEPLAY
+		return CreateNewTrainerParty(party, trainerId, firstTrainer, side);
+	#endif
 
 	if (trainerId == TRAINER_SECRET_BASE)
 		return 0;
@@ -1200,8 +1427,8 @@ static u8 GetTrainerMonGender(struct Trainer* trainer)
 		case CLASS_LEADER:
 		case CLASS_ELITE_4:
 		case CLASS_CHAMPION:
-		case CLASS_RIVAL:
-		case CLASS_RIVAL_2:
+		case CLASS_RIVAL_EARLY:
+		case CLASS_RIVAL_LATE:
 		case CLASS_BOSS:
 		#ifdef UNBOUND
 		case CLASS_LOR:
@@ -1320,7 +1547,7 @@ static bool8 IsBossTrainerClassForLevelScaling(u16 trainerId)
 		case CLASS_LEADER:
 		case CLASS_ELITE_4:
 		case CLASS_CHAMPION:
-		case CLASS_RIVAL_2:
+		case CLASS_RIVAL_LATE:
 		case CLASS_BOSS:
 		#ifdef UNBOUND
 		case CLASS_SUCCESSOR:

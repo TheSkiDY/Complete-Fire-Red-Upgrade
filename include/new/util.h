@@ -50,3 +50,5 @@ bool8 CanPartyMonBeParalyzed(struct Pokemon* mon);
 bool8 CanPartyMonBeBurned(struct Pokemon* mon);
 bool8 CanPartyMonBeFrozen(struct Pokemon* mon);
 bool8 SpeciesHasType(u16 species, u8 type);
+bool8 DevolveSpeciesByLevel(u16* originalSpecies, u8 level);
+u16 GetRandomSuperEffectiveType(u16 species);
