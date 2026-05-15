@@ -23,16 +23,10 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_POTION 20
 	setvar 0x8004 0xF @erase party
 	special 0x62
-	setvar 0x8000 MOVE_MALIGNANTCHAIN
-	setvar 0x8001 MOVE_SNOWSCAPE
-	setvar 0x8002 MOVE_SUPERCELLSLAM
-	setvar 0x8003 MOVE_PSYCHICNOISE
-	givepokemon SPECIES_CHI_YU 50 0 0 0
-	givepokemon SPECIES_CHIEN_PAO 50 0 0 0
-	givepokemon SPECIES_TING_LU 50 0 0 0
-	givepokemon SPECIES_WO_CHIEN 50 0 0 0
-	givepokemon SPECIES_ARBOLIVA 50 0 0 0
-	givepokemon SPECIES_GHOLDENGO 50 0 0 0
+	givepokemon SPECIES_GRIMMSNARL 90 0 0 0
+	givepokemon SPECIES_ESPATHRA 90 0 0 0
+	givepokemon SPECIES_MEWTWO 50 0 0 0
+	givepokemon SPECIES_ETERNATUS 50 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

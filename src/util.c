@@ -616,6 +616,8 @@ bool8 SpeciesHasType(u16 species, u8 type)
 	return FALSE;
 }
 
+extern u8 gTypeNames[][7];
+
 u16 GetRandomSuperEffectiveType(u16 species)
 {
 	u8 type1 = gBaseStats[species].type1;
@@ -624,20 +626,25 @@ u16 GetRandomSuperEffectiveType(u16 species)
 	u8 superEffectiveNum = 0;
 	u8 modifier1, modifier2;
 	u8 randomSuperEffectiveType;
+	u8 randIndex;
 
 	for(u8 type = 0; type < NUMBER_OF_MON_TYPES; ++type)
 	{
 		modifier1 = gTypeEffectiveness[type][type1];
 		modifier2 = gTypeEffectiveness[type][type2];
 
-		if((modifier1 == TYPE_MUL_SUPER_EFFECTIVE && modifier2 > TYPE_MUL_NOT_EFFECTIVE)
-		 || (modifier1 > TYPE_MUL_NOT_EFFECTIVE && modifier2 == TYPE_MUL_SUPER_EFFECTIVE))
+		if((modifier1 == TYPE_MUL_SUPER_EFFECTIVE && modifier2 != TYPE_MUL_NO_EFFECT && modifier2 != TYPE_MUL_NOT_EFFECTIVE)
+		 || (modifier1 != TYPE_MUL_NO_EFFECT && modifier1 != TYPE_MUL_NOT_EFFECTIVE && modifier2 == TYPE_MUL_SUPER_EFFECTIVE))
 		{
+			MgbaPrintf(MGBA_LOG_INFO, "Found super-effective type: ");
+			MgbaPrintEncoded(MGBA_LOG_INFO, gTypeNames[type]);
 			superEffectiveList[superEffectiveNum] = type;
 			superEffectiveNum++;
 		}
 	}
 
-	randomSuperEffectiveType = superEffectiveList[Random() % superEffectiveNum];
+	randIndex = Random() % superEffectiveNum;
+	randomSuperEffectiveType = superEffectiveList[randIndex];
+	MgbaPrintf(MGBA_LOG_INFO, "Rand index: %d", randIndex);
 	return randomSuperEffectiveType;
 }
