@@ -609,3 +609,70 @@ u8 DeteminePartySize(u8 trainerClass)
 	u8 sizeIndex = FlagGet(FLAG_CHALLENGE_MODE) + (IsBossTrainerClass(trainerClass) ? 2 : 0);
 	return TrainerPartySizes[capIndex][sizeIndex];
 }
+
+
+#define NUM_REWARDS 5
+
+const u16 sExampleItems[NUM_REWARDS] =
+{
+	//temp
+	ITEM_SITRUS_BERRY,
+	ITEM_WATER_SHARD,
+	ITEM_MUSCLE_WING,
+	ITEM_UTILITY_UMBRELLA,
+	ITEM_THROAT_SPRAY,
+};
+
+void RandomizeBattleRewardItems(void)
+{
+	//temporary
+	u32 i;
+	for(i = 0; i < NUM_REWARDS; i++)
+	{
+		gRewardItems[i] = sExampleItems[i];
+	}
+}
+
+void FirstRewardMultichoiceSetup(void)
+{
+	u32 i;
+	for(i = 0; i < NUM_REWARDS; i++)
+	{
+		gMultiChoice[i].name = &(gExpandedItemNames[gRewardItems[i]]);
+	}
+}
+
+void SaveFirstReward(void)
+{
+	u8 pickedIndex = Var800D;
+	gPickedRewardIndex[0] = pickedIndex;
+}
+
+void SaveSecondReward(void)
+{
+	u8 pickedIndex = Var800D;
+	if(pickedIndex >= gPickedRewardIndex[0])
+		++pickedIndex;
+	gPickedRewardIndex[1] = pickedIndex;
+}
+
+void SecondRewardMultichoiceSetup(void)
+{
+	u32 i, j;
+	for (i = 0, j = 0; i < NUM_REWARDS; i++)
+	{
+		if(gPickedRewardIndex[0] != i)
+		{
+			gMultiChoice[j].name = &(gExpandedItemNames[gRewardItems[i]]);
+			j++;
+		}
+	}
+}
+
+void SetVarsChosenItems(void)
+{
+	VarSet(VAR_FIRST_ITEM_REWARD, gRewardItems[gPickedRewardIndex[0]]);
+	VarSet(VAR_SECOND_ITEM_REWARD, gRewardItems[gPickedRewardIndex[1]]);
+
+	//TO DO: randomize amount here
+}

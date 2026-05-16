@@ -191,3 +191,11 @@ enum ItemType //Sorted in this order
 	ITEM_TYPE_DRIVE,
 	ITEM_TYPE_MAIL,
 };
+
+struct RewardItem
+{
+	u16 item;
+	const u8* scriptStr;
+	u8 minAmount;
+	u8 maxAmount;
+};

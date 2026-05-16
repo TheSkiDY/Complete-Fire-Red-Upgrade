@@ -764,3 +764,6 @@ SetMonPreventsSwitchingString 8044348 0
 PokeSum_PrintAbilityNameAndDesc 8137C18 0
 ItemUseCB_RareCandyStep 8126350 2
 PrintSkillsPage 81370EC 0 
+Task_TryLearnNewMoves 81265F8 1
+Task_TryLearningNextMove 81266A0 1
+

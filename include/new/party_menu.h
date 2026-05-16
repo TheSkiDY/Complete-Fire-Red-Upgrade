@@ -57,3 +57,10 @@ extern const u8 gFieldMoveBadgeRequirements[];
 extern const u8 gPartyMenu_ItemMenuActions[];
 
 void ItemUseCB_RareCandyStep(u8 taskId, TaskFunc func);
+void Task_TryLearnNewMoves(u8 taskId);
+void Task_TryLearningNextMove(u8 taskId);
+void FieldUseFunc_PortablePC(u8 taskId);
+void FieldUseFunc_InfiniteRepel(u8 taskId);
+void FieldUseFunc_Crate(u8 taskId);
+extern const u8 gText_InfiniteRepelActivated[];
+extern const u8 gText_InfiniteRepelDeactivated[];

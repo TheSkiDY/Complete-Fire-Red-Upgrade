@@ -46,6 +46,7 @@
 #include "../include/new/multi.h"
 #include "../include/new/overworld.h"
 #include "../include/new/party_menu.h"
+#include "../include/new/ram_locs.h"
 #include "../include/new/util.h"
 
 /*
@@ -114,7 +115,7 @@ void __attribute__((long_call)) ShiftMoveSlot(struct Pokemon *mon, u8 slotTo, u8
 void __attribute__((long_call)) PartyMenuTryEvolution(u8 taskId);
 void __attribute__((long_call)) FreePartyPointers(void);
 void __attribute__((long_call)) PartyMenuDisplayYesNoMenu(void);
-void __attribute__((long_call)) ItemUseCB_RareCandyStep(u8 taskId, UNUSED TaskFunc func);
+//void __attribute__((long_call)) ItemUseCB_RareCandyStep(u8 taskId, UNUSED TaskFunc func);
 void __attribute__((long_call)) sub_8124DC0(u8 taskId);
 
 //This file's functions:
@@ -2708,6 +2709,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 	struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 	u16 item = gSpecialVar_ItemId;
 	u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+	u8 param = ItemId_GetHoldEffectParam(item);
 
 	PlaySE(SE_SELECT);
 
@@ -2718,16 +2720,23 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 	)
 	{
 		if (GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, 0) == SPECIES_NONE) //Can't use Rare Candy to evolve mon
+		{
+			MgbaPrintf(MGBA_LOG_INFO, "IF#1");
 			noEffect = TRUE;
+		}
 		else
 		{
-			RemoveBagItem(item, 1);
+			MgbaPrintf(MGBA_LOG_INFO, "IF#2");
+			if(param == 0)
+				RemoveBagItem(item, 1);
 			PartyMenuTryEvolution(taskId);
 			return;
 		}
 	}
 	else
-		noEffect = PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0);
+	{
+		noEffect = PokemonItemUseNoEffect(mon, ITEM_RARE_CANDY, gPartyMenu.slotId, 0);
+	}
 
 	if (noEffect)
 	{
@@ -2744,29 +2753,124 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc func)
 
 void __attribute__((long_call)) GetMonLevelUpWindowStats(struct Pokemon *mon, u16 *currStats); 
 void __attribute__((long_call)) Task_DisplayLevelUpStatsPg1(u8 taskId);
-void __attribute__((long_call)) Task_TryLearnNewMoves(u8 taskId);
+//void __attribute__((long_call)) Task_TryLearnNewMoves(u8 taskId);
+void __attribute__((long_call)) RemoveLevelUpStatsWindow(void);
+void __attribute__((long_call)) DisplayMonNeedsToReplaceMove(u8 taskId);
+void __attribute__((long_call)) DisplayMonLearnedMove(u8 taskId, u16 move);
+
 #define gText_PkmnElevatedToLvVar2 (u8*) 0x8417017
+
+static void RaiseToLevelCap(u8 partyMonIndex)
+{
+	u32 data;
+	struct Pokemon* mon = &gPlayerParty[partyMonIndex];
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 levelCap = GetCurrentLevelCap();
+
+	if (GetMonData(mon, MON_DATA_LEVEL, NULL) < levelCap)
+	{
+	    data = GetSpeciesExpToLevel(species, levelCap);
+	    SetMonData(mon, MON_DATA_EXP, &data);
+	    CalculateMonStats(mon);
+	}
+}
 
 void ItemUseCB_RareCandyStep(u8 taskId, unusedArg TaskFunc func)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u8 level;
-
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    u8 param = ItemId_GetHoldEffectParam(gSpecialVar_ItemId);
+    sInitialLevel = level + 1;
     GetMonLevelUpWindowStats(mon, (u16*)sPartyMenuInternal->data);
-    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
+
+    if(param == 2) //Candy Jar
+    {
+    	RaiseToLevelCap(gPartyMenu.slotId);
+    }
+    else
+    {
+    	ExecuteTableBasedItemEffect_(gPartyMenu.slotId, ITEM_RARE_CANDY, 0);
+    }
     GetMonLevelUpWindowStats(mon, (u16*)(&sPartyMenuInternal->data[NUM_STATS]));
     gPartyMenuUseExitCallback = TRUE;
     //ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, 0xFFFF);
     PlayFanfareByFanfareNum(0);
     UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    
+    if(param == 0)
+	    RemoveBagItem(gSpecialVar_ItemId, 1);
+
     GetMonNickname(mon, gStringVar1);
     level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    sFinalLevel = level;
     ConvertIntToDecimalStringN(gStringVar2, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
     gTasks[taskId].func = Task_TryLearnNewMoves;
+}
+
+void Task_TryLearnNewMoves(u8 taskId)
+{
+    u16 learnMove;
+
+    if (WaitFanfare(FALSE) && (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON)))
+    {
+        RemoveLevelUpStatsWindow();
+        for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
+        {
+        	SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+	        learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
+	        gPartyMenu.learnMoveState = 1;
+	        switch (learnMove)
+	        {
+	        case 0: // No moves to learn
+	        	if (sInitialLevel >= sFinalLevel)
+	            	PartyMenuTryEvolution(taskId);
+	            break;
+	        case 0xFFFF:
+	            DisplayMonNeedsToReplaceMove(taskId);
+	            break;
+	        case 0xFFFE:
+	            gTasks[taskId].func = Task_TryLearningNextMove;
+	            break;
+	        default:
+	            DisplayMonLearnedMove(taskId, learnMove);
+	            break;
+	        }
+	        if (learnMove)
+	        	break;
+        }
+    }
+}
+
+void Task_TryLearningNextMove(u8 taskId)
+{
+    u16 result;
+    for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
+    {
+    	SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+    	result = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], FALSE);
+	    switch (result)
+	    {
+	    case 0: // No moves to learn
+	    	if (sInitialLevel >= sFinalLevel)
+	        	PartyMenuTryEvolution(taskId);
+	        break;
+	    case 0xFFFF:
+	        DisplayMonNeedsToReplaceMove(taskId);
+	        break;
+	    case 0xFFFE:
+	    	gTasks[taskId].func = Task_TryLearningNextMove;
+	        return;
+	    default:
+	        DisplayMonLearnedMove(taskId, result);
+	        break;
+	    }
+	    if (result)
+	    	break;
+    }
+
 }
 
 
@@ -2910,4 +3014,55 @@ static void Task_ChangeNature(u8 taskId)
 	ScheduleBgCopyTilemapToVram(2);
 	gTasks[taskId].func = Task_ClosePartyMenuAfterText;
 	RemoveBagItem(item, 1);
+}
+
+extern const u8 ItemScript_PortablePC[];
+extern const u8 ItemScript_Crate[];
+
+static void Task_PortablePC(u8 taskId)
+{
+	ScriptContext1_SetupScript(ItemScript_PortablePC);
+    DestroyTask(taskId);
+}
+
+void FieldUseFunc_PortablePC(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_PortablePC;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_TurnOnInfiniteRepel(u8 taskId)
+{
+    if (!IsSEPlaying())
+    {
+        FlagSet(FLAG_NO_RANDOM_WILD_ENCOUNTERS);
+        DisplayItemMessageInBag(taskId, 0x2, gText_InfiniteRepelActivated, Task_ReturnToBagFromContextMenu);
+    }
+}
+
+void FieldUseFunc_InfiniteRepel(u8 taskId)
+{
+    if (!FlagGet(FLAG_NO_RANDOM_WILD_ENCOUNTERS))
+    {
+        PlaySE(SE_SLIDE);
+        gTasks[taskId].func = Task_TurnOnInfiniteRepel;
+    }
+    else
+    {
+    	FlagClear(FLAG_NO_RANDOM_WILD_ENCOUNTERS);
+        DisplayItemMessageInBag(taskId, 0x2, gText_InfiniteRepelDeactivated, Task_ReturnToBagFromContextMenu);
+    }
+}
+
+static void Task_Crate(u8 taskId)
+{
+	ScriptContext1_SetupScript(ItemScript_Crate);
+	RemoveBagItem(gSpecialVar_ItemId, 1);
+    DestroyTask(taskId);
+}
+
+void FieldUseFunc_Crate(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_Crate;
+    SetUpItemUseOnFieldCallback(taskId);
 }

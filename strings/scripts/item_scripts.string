@@ -1,0 +1,38 @@
+#org @gText_PortablePCOption1
+HEAL POK\eMON
+
+#org @gText_PortablePCOption2
+STORAGE SYSTEM
+
+#org @gText_PortablePCOption3
+CANCEL
+
+#org @gText_PortablePCOpened
+The PORTABLE PC booted up.\nWhat do you want to do?
+
+#org @gText_PokemonHealedByPortablePC
+The health of your POK\eMON has been\nrestored.
+
+#org @gText_Item1
+ITEM 1
+
+#org @gText_Item2
+ITEM 2
+
+#org @gText_Item3
+ITEM 3
+
+#org @gText_Item4
+ITEM 4
+
+#org @gText_Item5
+ITEM 5
+
+#org @gText_Confirm
+CONFIRM
+
+#org @gText_CrateOpened
+Choose 2 items to keep.
+
+#org @gText_CrateSecondChoice
+Now pick the second item.

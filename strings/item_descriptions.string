@@ -2481,3 +2481,77 @@ Have ZERAORA hold this, and this\nstone will enable it to MEGA\nEVOLVE during ba
 
 #org @gItemDescription_Zygardite
 Have ZYGARDE hold this, and this\nstone will enable it to MEGA\nEVOLVE during battle.
+
+#org @gItemDescription_PortablePc
+A device that allows a remote\naccess to BILL's PC system and\nhealing POK\eMON.
+
+#org @gItemDescription_InfiniteRepel
+Prevents weak wild POK\eMON from\nappearing until it's turned off.
+
+#org @gItemDescription_EndlessCandy
+A candy that can be infinitely\nused to raise the level of\na POK\eMON\nby one.
+
+#org @gItemDescription_CandyJar
+A candy that can level up\na POK\eMON up to the current\nlevel cap.
+
+#org @gItemDescription_NormalShard
+A small shard. A certain amount\ncan be traded for teaching a\nNORMAL-type move to a POK\eMON.
+
+#org @gItemDescription_FightingShard
+A small shard. A certain amount\ncan be traded for teaching a\nFIGHTING-type move to a POK\eMON.
+
+#org @gItemDescription_FlyingShard
+A small shard. A certain amount\ncan be traded for teaching a\nFLYING-type move to a POK\eMON.
+
+#org @gItemDescription_PoisonShard
+A small shard. A certain amount\ncan be traded for teaching a\nPOISON-type move to a POK\eMON.
+
+#org @gItemDescription_GroundShard
+A small shard. A certain amount\ncan be traded for teaching a\nGROUND-type move to a POK\eMON.
+
+#org @gItemDescription_RockShard
+A small shard. A certain amount\ncan be traded for teaching a\nROCK-type move to a POK\eMON.
+
+#org @gItemDescription_BugShard
+A small shard. A certain amount\ncan be traded for teaching a\nBUG-type move to a POK\eMON.
+
+#org @gItemDescription_GhostShard
+A small shard. A certain amount\ncan be traded for teaching a\nGHOST-type move to a POK\eMON.
+
+#org @gItemDescription_SteelShard
+A small shard. A certain amount\ncan be traded for teaching a\nSTEEL-type move to a POK\eMON.
+
+#org @gItemDescription_FireShard
+A small shard. A certain amount\ncan be traded for teaching a\nFIRE-type move to a POK\eMON.
+
+#org @gItemDescription_WaterShard
+A small shard. A certain amount\ncan be traded for teaching a\nWATER-type move to a POK\eMON.
+
+#org @gItemDescription_GrassShard
+A small shard. A certain amount\ncan be traded for teaching a\nGRASS-type move to a POK\eMON.
+
+#org @gItemDescription_ElectricShard
+A small shard. A certain amount\ncan be traded for teaching a\nELECTRIC-type move to a POK\eMON.
+
+#org @gItemDescription_PsychicShard
+A small shard. A certain amount\ncan be traded for teaching a\nPSYCHIC-type move to a POK\eMON.
+
+#org @gItemDescription_IceShard
+A small shard. A certain amount\ncan be traded for teaching a\nICE-type move to a POK\eMON.
+
+#org @gItemDescription_DragonShard
+A small shard. A certain amount\ncan be traded for teaching a\nDRAGON-type move to a POK\eMON.
+
+#org @gItemDescription_DarkShard
+A small shard. A certain amount\ncan be traded for teaching a\nDARK-type move to a POK\eMON.
+
+#org @gItemDescription_FairyShard
+A small shard. A certain amount\ncan be traded for teaching a\nFAIRY-type move to a POK\eMON.
+
+#org @gItemDescription_BasicCrate
+A crate received after beating a\nPOK\eMON trainer. Allows keeping\n2 of the 5 presented items.
+
+#org @gItemDescription_ReinforcedCrate
+A crate received after beating an\nimportant trainer. Allows keeping\n2 of the 5 presented items.
+
+

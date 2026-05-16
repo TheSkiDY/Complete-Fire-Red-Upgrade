@@ -138,7 +138,10 @@
 #define gExpandedVars ((u16*) (0x0203B174 + 0x200))
 extern u16 gLastUsedBall; //0x203B774
 
-//FREE: 0x203B776
+extern u8 sInitialLevel; //0x203B776
+extern u8 sFinalLevel; //0x203B777
+extern u16 gRewardItems[5]; //0x203B778 - 0x203B781
+extern u8 gPickedRewardIndex[2]; //0x203B782 - 0x203B783
 
 #define gPcSelectionTracker ((u8* 0x203B7AC)	// state tracker for pc selection
 #define gCreateSpriteTableSetter 0x203B7AD  // allow createsprite to load from a table as well

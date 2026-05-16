@@ -21,12 +21,37 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_SWEET_HEART 600
 	additem ITEM_POMEG_BERRY 800
 	additem ITEM_POTION 20
+	additem ITEM_PORTABLE_PC 1
+	additem ITEM_INFINITE_REPEL 1
+	additem ITEM_ENDLESS_CANDY 1
+	additem ITEM_CANDY_JAR 1
+	additem ITEM_NORMAL_SHARD 1
+	additem ITEM_FIGHTING_SHARD 1
+	additem ITEM_FLYING_SHARD 1
+	additem ITEM_POISON_SHARD 1
+	additem ITEM_GROUND_SHARD 1
+	additem ITEM_ROCK_SHARD 1
+	additem ITEM_BUG_SHARD 1
+	additem ITEM_GHOST_SHARD 1
+	additem ITEM_STEEL_SHARD 1
+	additem ITEM_FIRE_SHARD 1
+	additem ITEM_WATER_SHARD 1
+	additem ITEM_GRASS_SHARD 1
+	additem ITEM_ELECTRIC_SHARD 1
+	additem ITEM_PSYCHIC_SHARD 1
+	additem ITEM_ICE_SHARD 1
+	additem ITEM_DRAGON_SHARD 1
+	additem ITEM_DARK_SHARD 1
+	additem ITEM_FAIRY_SHARD 1
+	additem ITEM_BASIC_CRATE 1
+	additem ITEM_REINFORCED_CRATE 1
 	setvar 0x8004 0xF @erase party
 	special 0x62
 	givepokemon SPECIES_GRIMMSNARL 90 0 0 0
 	givepokemon SPECIES_ESPATHRA 90 0 0 0
 	givepokemon SPECIES_MEWTWO 50 0 0 0
 	givepokemon SPECIES_ETERNATUS 50 0 0 0
+	givepokemon SPECIES_IVYSAUR 5 0 0 0
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

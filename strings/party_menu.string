@@ -66,3 +66,9 @@ Change [BUFFER1]'s nature\nto [BUFFER2]?
 
 #org @gText_NatureMintChangedNature
 [BUFFER1]'s nature has been\nchanged to [BUFFER2].[PAUSE_UNTIL_PRESS]
+
+#org @gText_InfiniteRepelActivated
+The infinite repel has been\nturned [GREEN]on[BLACK].
+
+#org @gText_InfiniteRepelDeactivated
+The infinite repel has been\nturned [RED]off[BLACK].

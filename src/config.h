@@ -341,6 +341,9 @@ enum //These vars need to be one after the other (hence the enum)
 #define FLAG_HARD_LEVEL_CAP 0x950 
 #define FLAG_CHALLENGE_MODE 0x951
 
+#define VAR_FIRST_ITEM_REWARD 0x5050
+#define VAR_SECOND_ITEM_REWARD 0x5051
+
 #define GAMEPLAY
 
 /* DexNav Options */
