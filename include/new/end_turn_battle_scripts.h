@@ -142,3 +142,7 @@ extern const u8 gText_SaltCureSet[];
 extern const u8 gText_HurtBySaltCure[];
 extern const u8 gText_SyrupBombSet[];
 extern const u8 gText_SpeedLoweredBySyrupBomb[];
+
+extern const u8 gText_PickUpShards[];
+extern const u8 gText_PickUpCrate[];
+extern const u8 gText_ShardDrop[];

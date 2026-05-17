@@ -1754,6 +1754,19 @@
 	.4byte \rom_address
 	.endm
 
+	.macro shardspickup
+	.byte 0xFF, 0x3C
+	.endm
+
+	.macro cratedrop
+	.byte 0xFF, 0x3D
+	.endm
+
+	.macro dropshard bank
+	.byte 0xFF, 0x3E
+	.byte \bank
+	.endm
+
 
 @ various command changed to more readable macros
 	.equ VARIOUS_CANCEL_MULTI_TURN_MOVES, 0

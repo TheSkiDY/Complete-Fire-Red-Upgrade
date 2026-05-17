@@ -55,7 +55,7 @@ BeatTwoPeeps:
 PostBeatString:
 	trainerslidein 0x1
 	waitstateatk
-	jumpifword ANDS BATTLE_TYPE BATTLE_E_READER 0x81D88FF @Just Pickup Calc
+	jumpifword ANDS BATTLE_TYPE BATTLE_E_READER PickupCalc @Just Pickup Calc
 	printstring 0xC
 	jumpifword NOTANDS BATTLE_TYPE BATTLE_TWO_OPPONENTS CheckJumpLocForEndBattle
 	callasm TrainerSlideOut+1
@@ -67,11 +67,27 @@ PostBeatString:
 
 CheckJumpLocForEndBattle:
 	jumpifword ANDS BATTLE_TYPE BATTLE_FRONTIER 0x81D8900 @No Money Give
-	jumpifword NOTANDS BATTLE_TYPE BATTLE_TRAINER_TOWER 0x81D87F8 @Give Money
-	jumpifword NOTANDS BATTLE_TYPE BATTLE_DOUBLE 0x81D88FF @Just Pickup Calc
+	jumpifword NOTANDS BATTLE_TYPE BATTLE_TRAINER_TOWER GiveMoney @Give Money
+	jumpifword NOTANDS BATTLE_TYPE BATTLE_DOUBLE PickupCalc @Just Pickup Calc
 	printstring 0x177 @Buffer Trainer Tower Win Text
-	goto 0x81D88FF @Just Pickup Calc
+	goto PickupCalc @Just Pickup Calc
 	
+GiveMoney:
+	getmoneyreward BattleWonGotMoney
+BattleWonGotMoney:
+	printstring 30
+	waitmessage DELAY_1SECOND
+PayDayMoney:
+	givepaydaymoney
+PickupCalc:
+	shardspickup
+	printstring 0x184
+	cratedrop
+	printstring 0x184
+	waitmessage DELAY_1SECOND
+	pickupitemcalculation
+	end2
+
 @;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 BattleScript_PrintPlayerForfeited:	

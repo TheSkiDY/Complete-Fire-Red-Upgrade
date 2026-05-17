@@ -33,6 +33,7 @@
 #include "../include/new/evolution.h"
 #include "../include/new/exp.h"
 #include "../include/new/gameplay.h"
+#include "../include/new/item.h"
 #include "../include/new/overworld.h"
 #include "../include/new/roamer.h"
 #include "../include/new/util.h"
@@ -82,9 +83,10 @@ extern const species_t gTierLegendsList[];
 extern const u16 SpeciesCountCapUnlocks[];
 extern const u16 TrainerMaxSpeciesIndices[20][4];
 extern const u16 gTrainerClassPokemonTypes[NUM_TRAINER_CLASSES][NUM_TRAINER_CLASS_SPECIFIC_TYPES];
-extern const u16 gTypeBoosters[NUMBER_OF_MON_TYPES];
-extern const u16 gTypeResistBerries[NUMBER_OF_MON_TYPES];
-extern const u16 gTypeGems[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeToBoosterTable[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeToResistBerryTable[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeToGemTable[NUMBER_OF_MON_TYPES];
+extern const u16 gTypeToShardTable[NUMBER_OF_MON_TYPES];
 
 extern const species_t gDeerlingForms[];
 extern const species_t gSawsbuckForms[];
@@ -556,16 +558,16 @@ u16 RandomizeHeldItemForCasualTrainer(u16 species)
 		case 5:
 		case 6:
 			// random type-resist berry
-			heldItem = gTypeResistBerries[randDefType];
+			heldItem = gTypeToResistBerryTable[randDefType];
 			break;
 		case 7:
 		case 8:
 			// random type gem
-			heldItem = gTypeGems[randAttackType];
+			heldItem = gTypeToGemTable[randAttackType];
 			break;
 		case 9:
 			// random type booster
-			heldItem = gTypeBoosters[randAttackType];
+			heldItem = gTypeToBoosterTable[randAttackType];
 			break;
 	}
 	return heldItem;
@@ -613,23 +615,318 @@ u8 DeteminePartySize(u8 trainerClass)
 
 #define NUM_REWARDS 5
 
-const u16 sExampleItems[NUM_REWARDS] =
+extern const u8 gNumConfuseHealBerries;
+extern const item_t gConfuseHealBerries[];
+extern const u8 gNumTypeResistBerries;
+extern const item_t gTypeResistBerries[];
+extern const u8 gNumPinchBerries;
+extern const item_t gPinchBerries[];
+extern const u8 gNumTypeShards;
+extern const item_t gTypeShards[];
+extern const u8 gNumStatWings;
+extern const item_t gStatWings[];
+extern const u8 gNumConsumableHerbs;
+extern const item_t gConsumableHerbs[];
+extern const u8 gNumTypeGems;
+extern const item_t gTypeGems[];
+extern const u8 gNumTerrainSeeds;
+extern const item_t gTerrainSeeds[];
+extern const u8 gNumTier1Consumables;
+extern const item_t gTier1Consumables[];
+extern const u8 gNumTier2Consumables;
+extern const item_t gTier2Consumables[];
+extern const u8 gNumIncenses;
+extern const item_t gIncenses[];
+extern const u8 gNumTypeBoosters;
+extern const item_t gTypeBoosters[];
+extern const u8 gNumChoiceItems;
+extern const item_t gChoiceItems[];
+extern const u8 gNumWeatherBoosters;
+extern const item_t gWeatherBoosters[];
+extern const u8 gNumTier1HeldItems;
+extern const item_t gTier1HeldItems[];
+extern const u8 gNumTier2HeldItems;
+extern const item_t gTier2HeldItems[];
+extern const u8 gNumTier3HeldItems;
+extern const item_t gTier3HeldItems[];
+extern const u8 gNumNatureMints;
+extern const item_t gNatureMints[];
+extern const u8 gNumSellableItems;
+extern const item_t gSellableItems[];
+extern const u8 gNumVitamins;
+extern const item_t gVitamins[];
+extern const u8 gNumTMs;
+extern const item_t gTMs[];
+extern const struct RewardItem gRewardItemData[ITEMS_COUNT];
+
+u16 GetRandomShardFromSpecies(u16 species)
 {
-	//temp
-	ITEM_SITRUS_BERRY,
-	ITEM_WATER_SHARD,
-	ITEM_MUSCLE_WING,
-	ITEM_UTILITY_UMBRELLA,
-	ITEM_THROAT_SPRAY,
-};
+	u8 randType = ((Random() & 1) == 0) ? gBaseStats[species].type1 : gBaseStats[species].type2;
+	return gTypeToShardTable[randType];
+}
+
+bool8 DoesPartyHoldItem(u16 item)
+{
+	u32 i;
+	struct Pokemon* mon;
+	for (i = 0; i < PARTY_SIZE; ++i)
+	{
+		mon = &gPlayerParty[i];
+		if(item == mon->item)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+u16 GetRandomPokemonPartyEvoItem(void)
+{	
+	u32 i, j;
+	u16 species, currentEvoItem;
+	u16 evoItems[PARTY_SIZE * EVOS_PER_MON];
+	u8 evoItemsIndex = 0;
+	struct Pokemon* mon;
+
+	for (i = 0; i < PARTY_SIZE; ++i)
+	{
+		mon = &gPlayerParty[i];
+		species = mon->species;
+		for (j = 0; j < EVOS_PER_MON; ++j)
+		{
+			if (gEvolutionTable[species][j].method == EVO_NONE)
+				break;
+
+			if (IsItemEvolutionMethod(gEvolutionTable[species][j].method))
+			{
+				currentEvoItem = gEvolutionTable[species][j].param;
+				if (!CheckBagHasItem(currentEvoItem, 1))
+				{
+					evoItems[evoItemsIndex] = currentEvoItem;
+					evoItemsIndex++;
+				}
+			}
+		}
+	}
+	if (evoItemsIndex > 0)
+	{
+		return evoItems[Random() % evoItemsIndex];
+	}
+	else
+	{
+		return ITEM_NONE;
+	}
+
+}
+
+u16 GetRandomPokemonPartyMegaStone(void)
+{
+	u32 i, j;
+	u16 species, currentEvoItem;
+	u16 evoItems[PARTY_SIZE * EVOS_PER_MON];
+	u8 evoItemsIndex = 0;
+	struct Pokemon* mon;
+
+	for (i = 0; i < PARTY_SIZE; ++i)
+	{
+		mon = &gPlayerParty[i];
+		species = mon->species;
+		for (j = 0; j < EVOS_PER_MON; ++j)
+		{
+			if (gEvolutionTable[species][j].method == EVO_NONE)
+				break;
+
+			if (gEvolutionTable[species][j].method == EVO_MEGA)
+			{
+				currentEvoItem = gEvolutionTable[species][j].param;
+				if (!CheckBagHasItem(currentEvoItem, 1) && !DoesPartyHoldItem(currentEvoItem))
+				{
+					evoItems[evoItemsIndex] = currentEvoItem;
+					evoItemsIndex++;
+				}
+			}
+		}
+	}
+	if (evoItemsIndex > 0)
+	{
+		return evoItems[Random() % evoItemsIndex];
+	}
+	else
+	{
+		return ITEM_NONE;
+	}
+}
+
+
+u16 TryRandomizeEvolutionItem(void)
+{
+	u32 rnd = Random() % 10;
+	u16 evoItem = GetRandomPokemonPartyEvoItem();
+	u16 megaStone = GetRandomPokemonPartyMegaStone();
+	switch(rnd)
+	{
+		case 0 ... 4:
+			return evoItem;
+		case 5 ... 8:
+			return ITEM_NONE;
+		case 9:
+			return megaStone;
+		default:
+			return ITEM_NONE;
+	}
+	return ITEM_NONE;
+}
+
+item_t RandomizeBerryReward(void)
+{
+	u32 rnd = 1 + Random() % 100;
+	item_t randomizedItem = ITEM_NONE;
+	switch(rnd)
+	{
+		case 1 ... 15:
+			randomizedItem = ITEM_LUM_BERRY;
+			break; 
+		case 16 ... 25:
+			randomizedItem = ITEM_SITRUS_BERRY;
+			break;
+		case 26 ... 35:
+			randomizedItem = gConfuseHealBerries[Random() % gNumConfuseHealBerries];
+			break;
+		case 36 ... 75:
+			randomizedItem = gTypeResistBerries[Random() % gNumTypeResistBerries];
+			break;
+		case 76 ... 85:
+			randomizedItem = gPinchBerries[Random() % gNumPinchBerries];
+			break;
+		case 86 ... 90:
+			randomizedItem = ((Random() & 1) == 0) ? ITEM_JABOCA_BERRY : ITEM_ROWAP_BERRY;
+			break;
+		case 91 ... 95:
+			randomizedItem = ((Random() & 1) == 0) ? ITEM_KEE_BERRY : ITEM_MARANGA_BERRY;
+			break;
+		case 96 ... 100:
+			randomizedItem = ((Random() & 1) == 0) ? ITEM_MICLE_BERRY : ITEM_LEPPA_BERRY; 
+			break;
+	}
+	return randomizedItem;
+}
+
+item_t RandomizeShardReward(void)
+{
+	return gTypeShards[Random() % gNumTypeShards];
+}
+
+item_t RandomizeWingReward(void)
+{
+	return gStatWings[Random() % gNumStatWings];
+}
+
+item_t RandomizeOtherReward(void)
+{
+	u32 rnd = 1 + Random() % 510;
+	item_t randomizedItem = ITEM_NONE;
+	switch(rnd)
+	{
+		case 1 ... 45:
+			randomizedItem = ITEM_ABILITY_CAPSULE;
+			break;
+		case 46 ... 75:
+			randomizedItem = ITEM_ABILITY_PATCH;
+			break;
+		case 76 ... 115:
+			randomizedItem = gConsumableHerbs[Random() % gNumConsumableHerbs];
+			break;
+		case 116 ... 155:
+			randomizedItem = gTypeGems[Random() % gNumTypeGems];
+			break;
+		case 156 ... 190:
+			randomizedItem = gTerrainSeeds[Random() % gNumTerrainSeeds];
+			break;
+		case 191 ... 235:
+			randomizedItem = gTier1Consumables[Random() % gNumTier1Consumables];
+			break;
+		case 236 ... 260:
+			randomizedItem = gTier2Consumables[Random() % gNumTier2Consumables];
+			break;
+		case 261 ... 270:
+			randomizedItem = gIncenses[Random() % gNumIncenses];
+			break;
+		case 271 ... 282:
+			randomizedItem = gTypeBoosters[Random() % gNumTypeBoosters];
+			break;
+		case 283 ... 284:
+			randomizedItem = gChoiceItems[Random() % gNumChoiceItems];
+			break;
+		case 285 ... 289:
+			randomizedItem = gWeatherBoosters[Random() % gNumWeatherBoosters];
+			break;
+		case 290 ... 309:
+			randomizedItem = gTier1HeldItems[Random() % gNumTier1HeldItems];
+			break;
+		case 310 ... 319:
+			randomizedItem = gTier2HeldItems[Random() % gNumTier2HeldItems];
+			break;
+		case 320 ... 324:
+			randomizedItem = gTier3HeldItems[Random() % gNumTier3HeldItems];
+			break;
+		case 325 ... 359:
+			randomizedItem = ITEM_BOTTLE_CAP;
+			break;
+		case 360 ... 369:
+			randomizedItem = ITEM_GOLD_BOTTLE_CAP;
+			break;
+		case 370 ... 409:
+			randomizedItem = gNatureMints[Random() % gNumNatureMints];
+			break;
+		case 410 ... 434:
+			randomizedItem = ITEM_TINY_MUSHROOM;
+			break;
+		case 435 ... 449:
+			randomizedItem = ITEM_BIG_MUSHROOM;
+			break;
+		case 450 ... 479:
+			randomizedItem = gSellableItems[Random() % gNumSellableItems];
+			break;
+		case 480 ... 494:
+			randomizedItem = gVitamins[Random() % gNumVitamins];
+			break;
+		case 495 ... 524:
+			randomizedItem = gTMs[Random() % gNumTMs];
+			break;
+		case 525 ... 530:
+			randomizedItem = ITEM_BASIC_CRATE; //TO DO: change to 3 crate types
+			break;
+	}
+	return randomizedItem;
+}
 
 void RandomizeBattleRewardItems(void)
 {
-	//temporary
-	u32 i;
-	for(i = 0; i < NUM_REWARDS; i++)
+	u32 rnd = Random() % 4;
+	gRewardItems[0] = RandomizeBerryReward();
+	gRewardItems[1] = RandomizeShardReward();
+	gRewardItems[2] = RandomizeWingReward();
+	gRewardItems[3] = RandomizeOtherReward();
+	u16 evoItem = TryRandomizeEvolutionItem();
+
+	if (evoItem != ITEM_NONE)
+		gRewardItems[4] = evoItem;
+	else
 	{
-		gRewardItems[i] = sExampleItems[i];
+		switch(rnd)
+		{
+
+			case 0:
+				gRewardItems[4] = RandomizeBerryReward();
+				break;
+			case 1:
+				gRewardItems[4] = RandomizeShardReward();
+				break;
+			case 2:
+				gRewardItems[4] = RandomizeWingReward();
+				break;
+			case 3:
+				gRewardItems[4] = RandomizeOtherReward();
+				break;
+		}
 	}
 }
 
@@ -638,7 +935,7 @@ void FirstRewardMultichoiceSetup(void)
 	u32 i;
 	for(i = 0; i < NUM_REWARDS; i++)
 	{
-		gMultiChoice[i].name = &(gExpandedItemNames[gRewardItems[i]]);
+		gMultiChoice[i].name = gRewardItemData[gRewardItems[i]].itemText;
 	}
 }
 
@@ -663,7 +960,7 @@ void SecondRewardMultichoiceSetup(void)
 	{
 		if(gPickedRewardIndex[0] != i)
 		{
-			gMultiChoice[j].name = &(gExpandedItemNames[gRewardItems[i]]);
+			gMultiChoice[j].name = gRewardItemData[gRewardItems[i]].itemText;
 			j++;
 		}
 	}
@@ -673,6 +970,11 @@ void SetVarsChosenItems(void)
 {
 	VarSet(VAR_FIRST_ITEM_REWARD, gRewardItems[gPickedRewardIndex[0]]);
 	VarSet(VAR_SECOND_ITEM_REWARD, gRewardItems[gPickedRewardIndex[1]]);
+	VarSet(VAR_FIRST_REWARD_AMOUNT, RandRange(gRewardItemData[gRewardItems[gPickedRewardIndex[0]]].minAmount, 
+		gRewardItemData[gRewardItems[gPickedRewardIndex[0]]].maxAmount));
+	VarSet(VAR_SECOND_REWARD_AMOUNT, RandRange(gRewardItemData[gRewardItems[gPickedRewardIndex[1]]].minAmount, 
+		gRewardItemData[gRewardItems[gPickedRewardIndex[1]]].maxAmount));
+
 
 	//TO DO: randomize amount here
 }

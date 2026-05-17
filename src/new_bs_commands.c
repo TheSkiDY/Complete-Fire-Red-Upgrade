@@ -14,7 +14,9 @@
 #include "../include/new/cmd49_battle_scripts.h"
 #include "../include/new/damage_calc.h"
 #include "../include/new/dynamax.h"
+#include "../include/new/end_turn_battle_scripts.h"
 #include "../include/new/form_change.h"
+#include "../include/new/gameplay.h"
 #include "../include/new/general_bs_commands.h"
 #include "../include/new/item.h"
 #include "../include/new/move_battle_scripts.h"
@@ -2249,4 +2251,77 @@ void atkFF3B_trygetwindpowertarget(void)
 		gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 	else
 		gBattlescriptCurrInstr += 5;
+}
+
+void atkFF3C_shardspickup(void)
+{
+	u32 shardsAmount = 0;
+	u16 shardItem;
+	u32 i;
+	#ifdef GAMEPLAY
+	if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_TOWER)))
+	{
+		for (i = 0; i < PARTY_SIZE * 2; ++i)
+		{
+			shardItem = gBattleStruct->shardDrop[i];
+			if(shardItem != ITEM_NONE && CheckBagHasSpace(shardItem, 1))
+			{
+				AddBagItem(shardItem, 1);
+				shardsAmount++;
+			}
+		}
+		PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 1, shardsAmount);
+		//BattleScriptPush(gBattlescriptCurrInstr);
+		gBattleStringLoader = gText_PickUpShards;
+		//gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+	}
+	#endif
+	gBattlescriptCurrInstr++;
+
+
+}
+
+void atkFF3D_cratedrop(void)
+{
+	u16 crateItem;
+	#ifdef GAMEPLAY
+	if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_TOWER)))
+	{
+		crateItem = IsBossTrainerClass(gTrainers[gTrainerBattleOpponent_A].trainerClass) ? ITEM_REINFORCED_CRATE : ITEM_BASIC_CRATE;
+
+		if(CheckBagHasSpace(crateItem, 1))
+		{
+			AddBagItem(crateItem, 1);
+			gLastUsedItem = crateItem;
+			//BattleScriptPush(gBattlescriptCurrInstr);
+			gBattleStringLoader = gText_PickUpCrate;
+			//gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+		}
+	}
+	#endif
+	gBattlescriptCurrInstr++;
+}
+
+//dropshard BANK
+void atkFF3E_dropshard(void)
+{
+	#ifdef GAMEPLAY
+	u8 bank = GetBankForBattleScript(gBattlescriptCurrInstr[1]);
+	u16 shardItem;
+	if(SIDE(bank) == B_SIDE_OPPONENT && gNewBS->isTrainerBattle)
+	{
+		shardItem = GetRandomShardFromSpecies(SPECIES(bank));
+		gLastUsedItem = shardItem;
+		gBattleStruct->shardDrop[gBattlerPartyIndexes[bank]] = shardItem;
+		BattleScriptPush(gBattlescriptCurrInstr);
+		gBattleStringLoader = gText_ShardDrop;
+		gBattlescriptCurrInstr = BattleScript_PrintCustomString;
+	}
+	else
+	{
+		gBattlescriptCurrInstr++;
+	}
+	#else
+	gBattlescriptCurrInstr++;
+	#endif	
 }

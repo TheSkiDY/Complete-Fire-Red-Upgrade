@@ -1337,55 +1337,55 @@ An exquisitely beautiful gem that\nhas a blue glow.\nIt symbolizes honesty.
 ?????
 
 #org @gItemDescription_OccaBerry
-If held, reduces damage taken from\none super effective Fire-move.
+If held, reduces damage taken from\none super effective FIRE-move.
 
 #org @gItemDescription_PasshoBerry
-If held, reduces damage taken from\none super effective Water-move.
+If held, reduces damage taken from\none super effective WATER-move.
 
 #org @gItemDescription_WacanBerry
-If held, reduces damage taken from\none super effective Electric-move.
+If held, reduces damage taken from\none super effective ELECTRIC-move.
 
 #org @gItemDescription_RindoBerry
-If held, reduces damage taken from\none super effective Grass-move.
+If held, reduces damage taken from\none super effective GRASS-move.
 
 #org @gItemDescription_YacheBerry
-If held, reduces damage taken from\none super effective Ice-move.
+If held, reduces damage taken from\none super effective ICE-move.
 
 #org @gItemDescription_ChopleBerry
-If held, reduces damage taken from\none super effective Fighting-move.
+If held, reduces damage taken from\none super effective FIGHTING-move.
 
 #org @gItemDescription_KebiaBerry
-If held, reduces damage taken from\none super effective Poison-move.
+If held, reduces damage taken from\none super effective POISON-move.
 
 #org @gItemDescription_ShucaBerry
-If held, reduces damage taken from\none super effective Ground-move.
+If held, reduces damage taken from\none super effective GROUND-move.
 
 #org @gItemDescription_CobaBerry
-If held, reduces damage taken from\none super effective Flying-move.
+If held, reduces damage taken from\none super effective FLYING-move.
 
 #org @gItemDescription_PayapaBerry
-If held, reduces damage taken from\none super effective Psychic-move.
+If held, reduces damage taken from\none super effective PSYCHIC-move.
 
 #org @gItemDescription_TangaBerry
-If held, reduces damage taken from\none super effective Bug-move.
+If held, reduces damage taken from\none super effective BUG-move.
 
 #org @gItemDescription_ChartiBerry
-If held, reduces damage taken from\none super effective Rock-move.
+If held, reduces damage taken from\none super effective ROCK-move.
 
 #org @gItemDescription_KasibBerry
-If held, reduces damage taken from\none super effective Ghost-move.
+If held, reduces damage taken from\none super effective GHOST-move.
 
 #org @gItemDescription_HabanBerry
-If held, reduces damage taken from\none super effective Dragon-move.
+If held, reduces damage taken from\none super effective DRAGON-move.
 
 #org @gItemDescription_ColburBerry
-If held, reduces damage taken from\none super effective Dark-move.
+If held, reduces damage taken from\none super effective DARK-move.
 
 #org @gItemDescription_BabiriBerry
-If held, reduces damage taken from\none super effective Steel-move.
+If held, reduces damage taken from\none super effective STEEL-move.
 
 #org @gItemDescription_ChilanBerry
-If held, reduces damage taken from\none Normal-move.
+If held, reduces damage taken from\none NORMAL-move.
 
 #org @gItemDescription_MicleBerry
 If held by a POK\eMON, it increases\nAccuracy just once in a pinch.
@@ -1400,19 +1400,19 @@ When the holder is hit with a\nphysical move, the attacker is hurt.
 When the holder is hit with a\nspecial move, the attacker is hurt.
 
 #org @gItemDescription_RoseliBerry
-If held, reduces damage taken from\none super effective Fairy-move.
+If held, reduces damage taken from\none super effective FAIRY-move.
 
 #org @gItemDescription_KeeBerry
-When hit by a physical attack,\nDefense will increase slightly.         
+When hit by a physical attack,\nDEFENSE will increase slightly.         
 
 #org @gItemDescription_MarangaBerry
-When the holder is hit by a special\nattack, its Sp. Def will increase.
+When the holder is hit by a special\nattack, its SP. DEF will increase.
 
 #org @gItemDescription_OvalCharm
-An oval charm said to increase\nthe chance of Eggs being found\nat the Day Care.
+An oval charm said to increase\nthe chance of Eggs being found\nat the DAY CARE.
 
 #org @gItemDescription_ShinyCharm
-A shiny charm said to increase\nthe chance of finding a Shiny\nPOK\eMON.
+A shiny charm said to increase\nthe chance of finding a SHINY\nPOK\eMON.
 
 #org @gItemDescription_RainbowWing
 A mystical rainbow feather that\nsparkles.
@@ -1439,7 +1439,7 @@ It is said that the tones it\nproduces were offered up as an\nexpression of grat
 A flower bundled in bouquets to\nconvey gratitude. It allows\nShaymin to change forme.                     
 
 #org @gItemDescription_DnaSplicers
-A splicer that fuses or separates\nKyurem and Reshiram or Zekrom.
+A splicer that fuses or separates\nKYUREM and RESHIRAM or ZEKROM.
 
 #org @gItemDescription_RevealGlass
 A glass that reveals the truth.\nIt's a mysterious glass that returns\na POK\eMON to its original shape.
@@ -1448,10 +1448,10 @@ A glass that reveals the truth.\nIt's a mysterious glass that returns\na POK\eMO
 A bottle believed to have been\nused to seal away the power of a\ncertain POK\eMON long, long ago.
 
 #org @gItemDescription_NSolarizer
-A machine to fuse or separate\nNECROZMA, which needs light,\nand Solgaleo.
+A machine to fuse or separate\nNECROZMA, which needs light,\nand SOLGALEO.
 
 #org @gItemDescription_NLunarizer
-A machine to fuse or separate\nNECROZMA, which needs light,\nand Lunala.
+A machine to fuse or separate\nNECROZMA, which needs light,\nand LUNALA.
 
 #org @gItemDescription_RustedSword
 It is said that a hero used this\nsword to halt a terrible disaster, \nbut it has since worn out.                
@@ -1922,25 +1922,25 @@ A bottle cap that gives off a\nsilver gleam. Some people are\nhappy to receive o
 A bottle cap that gives off a\ngolden gleam. Some people are\nhappy to receive one.
 
 #org @gItemDescription_WishingPiece
-Throw one into a POK\eMON\nDen to attract a wild Dynamax\nPOK\eMON.
+Throw one into a POK\eMON\nDen to attract a wild DYNAMAX\nPOK\eMON.
 
 #org @gItemDescription_PowerBracer
-A POK\eMON held item that promotes\nAttack gain on leveling, but\nreduces the Speed stat.
+A POK\eMON held item that promotes\nATTACK gain on leveling, but\nreduces the SPEED stat.
 
 #org @gItemDescription_PowerBelt
-A POK\eMON held item that promotes\nDefense gain on leveling, but\nreduces the Speed stat.
+A POK\eMON held item that promotes\nDEFENSE gain on leveling, but\nreduces the SPEED stat.
 
 #org @gItemDescription_PowerLens
-A POK\eMON held item that promotes\nSpecial Attack gain on leveling,\nbut reduces the Speed stat.
+A POK\eMON held item that promotes\nSpecial ATTACK gain on leveling,\nbut reduces the SPEED stat.
 
 #org @gItemDescription_PowerBand
-A POK\eMON held item that promotes\nSpecial Defense gain on leveling,\nbut reduces the Speed stat.
+A POK\eMON held item that promotes\nSpecial DEFENSE gain on leveling,\nbut reduces the SPEED stat.
 
 #org @gItemDescription_PowerAnklet
-A POK\eMON held item that promotes\nSpeed gain on leveling, but\nreduces the Speed stat.
+A POK\eMON held item that promotes\nSPEED gain on leveling, but\nreduces the SPEED stat.
 
 #org @gItemDescription_PowerWeight
-A POK\eMON held item that promotes\nHP gain on leveling, but reduces\nthe Speed stat.
+A POK\eMON held item that promotes\nHP gain on leveling, but reduces\nthe SPEED stat.
 
 #org @gItemDescription_LuckIncense
 An item to be held by a POK\eMON.\nIt doubles the battle money if the\nholding POK\eMON takes part.
@@ -2045,7 +2045,7 @@ An item to be held by a POK\eMON.\nIt is a bizzare orb that badly\npoisons the h
 An item to be held by a POK\eMON.\nIt is a bizzare orb that inflicts a\nburn on the holder in battle.
 
 #org @gItemDescription_QuickPowder
-An item to be held by Ditto.\nExtremely fine yet hard, this odd\npowder boosts the Speed stat.
+An item to be held by Ditto.\nExtremely fine yet hard, this odd\npowder boosts the SPEED stat.
 
 #org @gItemDescription_FocusSash
 An item to be held by a POK\eMON.\nIf holder has full HP, it will\nendure a KO attack with 1 HP.
@@ -2057,7 +2057,7 @@ An item to be held by a POK\eMON.\nIf the holder moves after the foe,\nits accur
 An item to be held by a POK\eMON.\nIt boosts moves used consecutively\nuntil a different move is used.
 
 #org @gItemDescription_IronBall
-A POK\eMON held item that cuts\nSpeed. It allows Ground-type moves\nto hit Flying and floating POK\eMON.  
+A POK\eMON held item that cuts\nSPEED. It allows Ground-type moves\nto hit Flying and floating POK\eMON.  
 
 #org @gItemDescription_LaggingTail
 An item to be held by a POK\eMON.\nIt is tremendously heavy and makes\nthe holder move slower than usual.
@@ -2084,10 +2084,10 @@ An item to be held by a POK\eMON.\nIt extends the duration of the move\nRain Dan
 An item to be held by a POK\eMON.\nIt extends the duration of multi-\nturn attacks like Bind or Wrap.
 
 #org @gItemDescription_ChoiceScarf
-An item to be held by a POK\eMON.\nThis scarf boosts Speed, but\nallows the use of only one move.
+An item to be held by a POK\eMON.\nThis scarf boosts SPEED, but\nallows the use of only one move.
 
 #org @gItemDescription_ChoiceSpecs
-An item to be held by a POK\eMON.\nThese glasses raise Sp. Atk, but\nallows the use of only one move.
+An item to be held by a POK\eMON.\nThese glasses raise SP. ATK, but\nallows the use of only one move.
 
 #org @gItemDescription_StickyBarb
 A held item that damages the\nholder every turn and latches on\nto POK\eMON that touch the holder.        
@@ -2099,7 +2099,7 @@ An item to be held by a POK\eMON.\nThis carapace enables the holder to\nswitch o
 An item to be held by a POK\eMON.\nIt boosts the amount of HP \nrecovered from draining moves.            
 
 #org @gItemDescription_Eviolite
-A mysterious evolutionary lump.\nIt raises the Defense and Sp. Def\nof a POK\eMON that can evolve.
+A mysterious evolutionary lump.\nIt raises the DEFENSE and SP. DEF\nof a POK\eMON that can evolve.
 
 #org @gItemDescription_FloatStone
 An item to be held by a POK\eMON.\nThis very light stone reduces the\nweight of a POK\eMON when held.
@@ -2120,31 +2120,31 @@ An item to be held by a POK\eMON.\nMoves that normally have no effect\nwill land
 An item to be held by a POK\eMON. A\nband that increases the power of\nbinding moves used by the holder.
 
 #org @gItemDescription_AbsorbBulb
-An item to be held by a POK\eMON.\nIt boosts Sp. Atk if hit with a\nWater-type attack once.
+An item to be held by a POK\eMON.\nIt boosts SP. ATK if hit with a\nWATER-type attack once.
 
 #org @gItemDescription_CellBattery
-An item to be held by a POK\eMON.\nIt boosts Attack if hit with an\nElectric-type attack once.
+An item to be held by a POK\eMON.\nIt boosts ATTACK if hit with an\nELECTRIC-type attack once.
 
 #org @gItemDescription_EjectButton
 An item to be held by a POK\eMON.\nIf the holder is hit by an attack,\nit will be switched out of battle.
 
 #org @gItemDescription_WeaknessPolicy
-An item to be held by a POK\eMON. \nAtk and Sp. Atk. increase if it is\nhit with a move it's weak to.
+An item to be held by a POK\eMON. \nAtk and SP. ATK. increase if it is\nhit with a move it's weak to.
 
 #org @gItemDescription_AssaultVest
-An item to be held by a POK\eMON.\nThis vest raises Sp. Def but\nprevents the use of status moves.
+An item to be held by a POK\eMON.\nThis vest raises SP. DEF but\nprevents the use of status moves.
 
 #org @gItemDescription_LuminousMoss
-An item to be held by a POK\eMON.\nIt boosts Sp. Def if hit with a\nWater-type attack once.
+An item to be held by a POK\eMON.\nIt boosts SP. DEF if hit with a\nWater-type attack once.
 
 #org @gItemDescription_Snowball
-An item to be held by a POK\eMON.\nIt boosts Attack if hit with an\nIce-type attack once.
+An item to be held by a POK\eMON.\nIt boosts ATTACK if hit with an\nIce-type attack once.
 
 #org @gItemDescription_SafetyGoggles
 These goggles protect the holder \nfrom both weather-related damage\nand powder.
 
 #org @gItemDescription_AdrenalineOrb
-An item to be held by a POK\eMON.\nIt boosts Speed if the holder is\nintimidated.
+An item to be held by a POK\eMON.\nIt boosts SPEED if the holder is\nintimidated.
 
 #org @gItemDescription_TerrainExtender
 An item to be held by a POK\eMON.\nIt extends the terrain duration of\nthe holder's move or ability.
@@ -2153,25 +2153,25 @@ An item to be held by a POK\eMON.\nIt extends the terrain duration of\nthe holde
 An item that protects the holder\nfrom effects caused by making\ndirect contact with the enemy.            
 
 #org @gItemDescription_ElectricSeed
-An item to be held by a POK\eMON.\nIt boosts Defense on Electric\nTerrain. It can only be used once.
+An item to be held by a POK\eMON.\nIt boosts DEFENSE on ELECTRIC\nTERRAIN. It can only be used once.
 
 #org @gItemDescription_GrassySeed
-An item to be held by a POK\eMON.\nIt boosts Defense on Grassy\nTerrain. It can only be used once.
+An item to be held by a POK\eMON.\nIt boosts DEFENSE on GRASSY\nTERRAIN. It can only be used once.
 
 #org @gItemDescription_MistySeed
-An item to be held by a POK\eMON.\nIt boosts Sp. Defense on Misty\nTerrain. It can only be used once.
+An item to be held by a POK\eMON.\nIt boosts Sp. DEFENSE on MISTY\nTERRAIN. It can only be used once.
 
 #org @gItemDescription_PsychicSeed
-An item to be held by a POK\eMON.\nIt boosts Sp. Defense on Psychic\nTerrain. It can only be used once.
+An item to be held by a POK\eMON.\nIt boosts Sp. DEFENSE on PSYCHIC\nTERRAIN. It can only be used once.
 
 #org @gItemDescription_EjectPack
 An item to be held by a POK\eMON.\nWhen stats are lowered, the holder\nwill be switched out of battle.
 
 #org @gItemDescription_RoomService
-An item to be held by a POK\eMON.\nIt lower's the holder's Speed when\nTrick Room takes effect.
+An item to be held by a POK\eMON.\nIt lower's the holder's SPEED when\nTRICK ROOM takes effect.
 
 #org @gItemDescription_BlunderPolicy
-An item to be held by a POK\eMON.\nIt raises Speed when a POK\eMON\nmisses a move due to accuracy.
+An item to be held by a POK\eMON.\nIt raises SPEED when a POK\eMON\nmisses a move due to accuracy.
 
 #org @gItemDescription_HeavyDutyBoots
 An item to be held by a POK\eMON.\nThese boots prevent the effects of\ntraps set on the battlefield.
@@ -2180,13 +2180,13 @@ An item to be held by a POK\eMON.\nThese boots prevent the effects of\ntraps set
 An item to be held by a POK\eMON.\nThis sturdy umbrella protects the\nholder from the effects of weather.
 
 #org @gItemDescription_ThroatSpray
-An item to be held by a POK\eMON.\nIt raises Sp. Atk when a POK\eMON\nuses a sound-based move.
+An item to be held by a POK\eMON.\nIt raises SP. ATK when a POK\eMON\nuses a sound-based move.
 
 #org @gItemDescription_AbilityCapsule
-A capsule that allows a POK\eMON\nwith two Abilities to switch\nbetween these Abilities when used.
+A capsule that allows a POK\eMON\nwith two Abilities to switch\nbetween these abilities when used.
 
 #org @gItemDescription_AbilityPatch
-A patch that allows a POK\eMON with\na regular Ability to have a rare\nAbility.
+A patch that allows a POK\eMON with\na regular ability to have a rare\nability.
 
 #org @gItemDescription_Remedy
 A herbal medicine that can restore\n60 HP. Yet the bitter taste will\nmake the POK\eMON less friendly.

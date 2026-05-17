@@ -28,6 +28,7 @@ BattleScript_FaintAttacker:
 	printstring 0x1C @;STRINGID_ATTACKERFAINTED
 	cleareffectsonfaint BANK_ATTACKER
 	printstring 0x130
+	dropshard BANK_ATTACKER
 	trytrainerslidefirstdownmsg BANK_ATTACKER
 	return
 
@@ -51,6 +52,7 @@ BattleScript_FaintTarget:
 	printstring 0x1D @;STRINGID_TARGETFAINTED
 	cleareffectsonfaint BANK_TARGET
 	printstring 0x130
+	dropshard BANK_TARGET
 	trytrainerslidefirstdownmsg BANK_TARGET
 	return
 
@@ -71,6 +73,7 @@ BattleScript_FaintScriptingBank:
 	printstring 0x184
 	cleareffectsonfaint BANK_FAINTED
 	printstring 0x130
+	dropshard BANK_FAINTED
 	trytrainerslidefirstdownmsg BANK_FAINTED
 	return
 

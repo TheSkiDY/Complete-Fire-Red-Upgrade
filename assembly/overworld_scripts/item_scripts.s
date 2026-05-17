@@ -73,8 +73,8 @@ Crate_SecondChoice:
 
 Crate_GiveItems:
 	callasm SetVarsChosenItems
-	additem 0x5050 1
-	additem 0x5051 1
+	giveitem 0x5050 0x5052 MSG_OBTAIN
+	giveitem 0x5051 0x5053 MSG_OBTAIN
 	goto Crate_Close
 	end
 

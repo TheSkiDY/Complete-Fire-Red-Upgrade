@@ -332,3 +332,6 @@ gBattleScriptingCommandsTable2:
 .word atkFF39_jumpifbranchability
 .word atkFF3A_trygetwindridertarget
 .word atkFF3B_trygetwindpowertarget
+.word atkFF3C_shardspickup
+.word atkFF3D_cratedrop
+.word atkFF3E_dropshard

@@ -10,6 +10,7 @@ u8 RandomizeLevelForTrainerMon(u8 trainerClass);
 u16 AdjustTrainerSpecies(u16 originalSpecies, u8 level);
 u16 RandomizeTrainerSpecies(u16* teamSpecies, u16 trainerId, u8 currIndex);
 u16 RandomizeHeldItemForCasualTrainer(u16 species);
+u16 GetRandomShardFromSpecies(u16 species);
 
 #define CAP_BROCK 0
 #define CAP_MISTY 1

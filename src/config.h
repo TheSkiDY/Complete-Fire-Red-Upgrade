@@ -343,6 +343,8 @@ enum //These vars need to be one after the other (hence the enum)
 
 #define VAR_FIRST_ITEM_REWARD 0x5050
 #define VAR_SECOND_ITEM_REWARD 0x5051
+#define VAR_FIRST_REWARD_AMOUNT 0x5052
+#define VAR_SECOND_REWARD_AMOUNT 0x5053
 
 #define GAMEPLAY
 

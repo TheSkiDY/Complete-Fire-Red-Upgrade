@@ -1000,3 +1000,12 @@ The snow stopped.
 
 #org @gText_PkmnPeltedBySnow
 [ATTACKER] is buffeted\nby the snowstorm!
+
+#org @gText_PickUpShards
+[PLAYER_NAME] picked up [BUFFER][00] shards!\p
+
+#org @gText_PickUpCrate
+[PLAYER_NAME] won 1 [LAST_ITEM]!
+
+#org @gText_ShardDrop
+[LAST_ITEM] was dropped on the field!

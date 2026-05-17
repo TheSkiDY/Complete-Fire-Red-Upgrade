@@ -1,0 +1,1679 @@
+#org @gRewardText_LumBerry
+LUM BERRY (4-8)
+
+#org @gRewardText_SitrusBerry
+SITRUS BERRY (2-4)
+
+#org @gRewardText_AguavBerry
+AGUAV BERRY (2-4)
+
+#org @gRewardText_FigyBerry
+FIGY BERRY (2-4)
+
+#org @gRewardText_IapapaBerry
+IAPAPA BERRY (2-4)
+
+#org @gRewardText_MagoBerry
+MAGO BERRY (2-4)
+
+#org @gRewardText_WikiBerry
+WIKI BERRY (2-4)
+
+#org @gRewardText_ChilanBerry
+CHILAN BERRY (5-10)
+
+#org @gRewardText_ChopleBerry
+CHOPLE BERRY (3-6)
+
+#org @gRewardText_CobaBerry
+COBA BERRY (3-6)
+
+#org @gRewardText_KebiaBerry
+KEBIA BERRY (3-6)
+
+#org @gRewardText_ShucaBerry
+SHUCA BERRY (3-6)
+
+#org @gRewardText_ChartiBerry
+CHARTI BERRY (3-6)
+
+#org @gRewardText_TangaBerry
+TANGA BERRY (3-6)
+
+#org @gRewardText_KasibBerry
+KASIB BERRY (3-6)
+
+#org @gRewardText_BabiriBerry
+BABIRI BERRY (3-6)
+
+#org @gRewardText_OccaBerry
+OCCA BERRY (3-6)
+
+#org @gRewardText_PasshoBerry
+PASSHO BERRY (3-6)
+
+#org @gRewardText_RindoBerry
+RINDO BERRY (3-6)
+
+#org @gRewardText_WacanBerry
+WACAN BERRY (3-6)
+
+#org @gRewardText_PayapaBerry
+PAYAPA BERRY (3-6)
+
+#org @gRewardText_YacheBerry
+YACHE BERRY (3-6)
+
+#org @gRewardText_HabanBerry
+HABAN BERRY (3-6)
+
+#org @gRewardText_ColburBerry
+COLBUR BERRY (3-6)
+
+#org @gRewardText_RoseliBerry
+ROSELI BERRY (3-6)
+
+#org @gRewardText_LiechiBerry
+LIECHI BERRY (1-2)
+
+#org @gRewardText_GanlonBerry
+GANLON BERRY (1-2)
+
+#org @gRewardText_SalacBerry
+SALAC BERRY (1-2)
+
+#org @gRewardText_PetayaBerry
+PETAYA BERRY (1-2)
+
+#org @gRewardText_ApicotBerry
+APICOT BERRY (1-2)
+
+#org @gRewardText_LansatBerry
+LANSAT BERRY (1-2)
+
+#org @gRewardText_StarfBerry
+STARF BERRY (1-2)
+
+#org @gRewardText_CustapBerry
+CUSTAP BERRY (1-2)
+
+#org @gRewardText_JabocaBerry
+JABOCA BERRY (6-12)
+
+#org @gRewardText_RowapBerry
+ROWAP BERRY (6-12)
+
+#org @gRewardText_KeeBerry
+KEE BERRY (3-6)
+
+#org @gRewardText_MarangaBerry
+MARANGA BERRY (3-6)
+
+#org @gRewardText_MicleBerry
+MICLE BERRY (6-12)
+
+#org @gRewardText_LeppaBerry
+LEPPA BERRY (2-4)
+
+#org @gRewardText_NormalShard
+NORMAL SHARD (5-10)
+
+#org @gRewardText_FightingShard
+FIGHTING SHARD (5-10)
+
+#org @gRewardText_FlyingShard
+FLYING SHARD (5-10)
+
+#org @gRewardText_PoisonShard
+POISON SHARD (5-10)
+
+#org @gRewardText_GroundShard
+GROUND SHARD (5-10)
+
+#org @gRewardText_RockShard
+ROCK SHARD (5-10)
+
+#org @gRewardText_BugShard
+BUG SHARD (5-10)
+
+#org @gRewardText_GhostShard
+GHOST SHARD (5-10)
+
+#org @gRewardText_SteelShard
+STEEL SHARD (5-10)
+
+#org @gRewardText_FireShard
+FIRE SHARD (5-10)
+
+#org @gRewardText_WaterShard
+WATER SHARD (5-10)
+
+#org @gRewardText_GrassShard
+GRASS SHARD (5-10)
+
+#org @gRewardText_ElectricShard
+ELECTRIC SHARD (5-10)
+
+#org @gRewardText_PsychicShard
+PSYCHIC SHARD (5-10)
+
+#org @gRewardText_IceShard
+ICE SHARD (5-10)
+
+#org @gRewardText_DragonShard
+DRAGON SHARD (5-10)
+
+#org @gRewardText_DarkShard
+DARK SHARD (5-10)
+
+#org @gRewardText_FairyShard
+FAIRY SHARD (5-10)
+
+#org @gRewardText_HealthWing
+HEALTH WING (8-18)
+
+#org @gRewardText_MuscleWing
+MUSCLE WING (8-18)
+
+#org @gRewardText_ResistWing
+RESIST WING (8-18)
+
+#org @gRewardText_GeniusWing
+GENIUS WING (8-18)
+
+#org @gRewardText_CleverWing
+CLEVER WING (8-18)
+
+#org @gRewardText_SwiftWing
+SWIFT WING (8-18)
+
+#org @gRewardText_AbilityCapsule
+ABILITY CAPSULE (3-5)
+
+#org @gRewardText_AbilityPatch
+ABILITY PATCH (1-3)
+
+#org @gRewardText_WhiteHerb
+WHITE HERB (4-8)
+
+#org @gRewardText_MentalHerb
+MENTAL HERB (4-8)
+
+#org @gRewardText_PowerHerb
+POWER HERB (4-8)
+
+#org @gRewardText_MirrorHerb
+MIRROR HERB (4-8)
+
+#org @gRewardText_NormalGem
+NORMAL GEM (3-6)
+
+#org @gRewardText_FightingGem
+FIGHTING GEM (3-6)
+
+#org @gRewardText_FlyingGem
+FLYING GEM (3-6)
+
+#org @gRewardText_PoisonGem
+POISON GEM (3-6)
+
+#org @gRewardText_GroundGem
+GROUND GEM (3-6)
+
+#org @gRewardText_RockGem
+ROCK GEM (3-6)
+
+#org @gRewardText_BugGem
+BUG GEM (3-6)
+
+#org @gRewardText_GhostGem
+GHOST GEM (3-6)
+
+#org @gRewardText_SteelGem
+STEEL GEM (3-6)
+
+#org @gRewardText_FireGem
+FIRE GEM (3-6)
+
+#org @gRewardText_WaterGem
+WATER GEM (3-6)
+
+#org @gRewardText_GrassGem
+GRASS GEM (3-6)
+
+#org @gRewardText_ElectricGem
+ELECTRIC GEM (3-6)
+
+#org @gRewardText_PsychicGem
+PSYCHIC GEM (3-6)
+
+#org @gRewardText_IceGem
+ICE GEM (3-6)
+
+#org @gRewardText_DragonGem
+DRAGON GEM (3-6)
+
+#org @gRewardText_DarkGem
+DARK GEM (3-6)
+
+#org @gRewardText_FairyGem
+FAIRY GEM (3-6)
+
+#org @gRewardText_ElectricSeed
+ELECTRIC SEED (4-8)
+
+#org @gRewardText_GrassySeed
+GRASSY SEED (4-8)
+
+#org @gRewardText_MistySeed
+MISTY SEED (4-8)
+
+#org @gRewardText_PsychicSeed
+PSYCHIC SEED (4-8)
+
+#org @gRewardText_AbsorbBulb
+ABSORB BULB (2-8)
+
+#org @gRewardText_AdrenalineOrb
+ADRENALINE ORB (2-8)
+
+#org @gRewardText_BlunderPolicy
+BLUNDER POLICY (2-8)
+
+#org @gRewardText_CellBattery
+CELL BATTERY (2-8)
+
+#org @gRewardText_EjectButton
+EJECT BUTTON (2-8)
+
+#org @gRewardText_EjectPack
+EJECT PACK (2-8)
+
+#org @gRewardText_LuminousMoss
+LUMINOUS MOSS (2-8)
+
+#org @gRewardText_RoomService
+ROOM SERVICE (2-8)
+
+#org @gRewardText_Snowball
+SNOWBALL (2-8)
+
+#org @gRewardText_ThroatSpray
+THROAT SPRAY (2-8)
+
+#org @gRewardText_FocusSash
+FOCUS SASH (1-4)
+
+#org @gRewardText_AirBalloon
+AIR BALLOON (1-4)
+
+#org @gRewardText_RedCard
+RED CARD (1-4)
+
+#org @gRewardText_WeaknessPolicy
+WEAKNESS POLICY (1-4)
+
+#org @gRewardText_BoosterEnergy
+BOOSTER ENERGY (1-4)
+
+#org @gRewardText_FullIncense
+FULL INCENSE
+
+#org @gRewardText_LaxIncense
+LAX INCENSE
+
+#org @gRewardText_LuckIncense
+LUCK INCENSE
+
+#org @gRewardText_OddIncense
+ODD INCENSE
+
+#org @gRewardText_PureIncense
+PURE INCENSE
+
+#org @gRewardText_RockIncense
+ROCK INCENSE
+
+#org @gRewardText_RoseIncense
+ROSE INCENSE
+
+#org @gRewardText_SeaIncense
+SEA INCENSE
+
+#org @gRewardText_WaveIncense
+WAVE INCENSE
+
+#org @gRewardText_SilkScarf
+SILK SCARF
+
+#org @gRewardText_BlackBelt
+BLACK BELT
+
+#org @gRewardText_SharpBeak
+SHARP BEAK
+
+#org @gRewardText_PoisonBarb
+POISON BARB
+
+#org @gRewardText_SoftSand
+SOFT SAND
+
+#org @gRewardText_HardStone
+HARD STONE
+
+#org @gRewardText_SilverPowder
+SILVER POWDER
+
+#org @gRewardText_SpellTag
+SPELL TAG
+
+#org @gRewardText_MetalCoat
+METAL COAT
+
+#org @gRewardText_Charcoal
+CHARCOAL
+
+#org @gRewardText_MysticWater
+MYSTIC WATER
+
+#org @gRewardText_MiracleSeed
+MIRACLE SEED
+
+#org @gRewardText_Magnet
+MAGNET
+
+#org @gRewardText_TwistedSpoon
+TWISTED SPOON
+
+#org @gRewardText_NeverMeltIce
+NEVER MELT ICE
+
+#org @gRewardText_DragonFang
+DRAGON FANG
+
+#org @gRewardText_BlackGlasses
+BLACK GLASSES
+
+#org @gRewardText_FairyFeather
+FAIRY FEATHER
+
+#org @gRewardText_ChoiceBand
+CHOICE BAND
+
+#org @gRewardText_ChoiceScarf
+CHOICE SCARF
+
+#org @gRewardText_ChoiceSpecs
+CHOICE SPECS
+
+#org @gRewardText_DampRock
+DAMP ROCK
+
+#org @gRewardText_HeatRock
+HEAT ROCK
+
+#org @gRewardText_IcyRock
+ICY ROCK
+
+#org @gRewardText_SmoothRock
+SMOOTH ROCK
+
+#org @gRewardText_AbilityShield
+ABILITY SHIELD
+
+#org @gRewardText_BindingBand
+BINDING BAND
+
+#org @gRewardText_DestinyKnot
+DESTINY KNOT
+
+#org @gRewardText_FloatStone
+FLOAT STONE
+
+#org @gRewardText_FocusBand
+FOCUS BAND
+
+#org @gRewardText_GripClaw
+GRIP CLAW
+
+#org @gRewardText_IronBall
+IRON BALL
+
+#org @gRewardText_LaggingTail
+LAGGING TAIL
+
+#org @gRewardText_LightClay
+LIGHT CLAY
+
+#org @gRewardText_RingTarget
+RING TARGET
+
+#org @gRewardText_ShedShell
+SHED SHELL
+
+#org @gRewardText_StickyBarb
+STICKY BARB
+
+#org @gRewardText_TerrainExtender
+TERRAIN EXTENDER
+
+#org @gRewardText_WideLens
+WIDE LENS
+
+#org @gRewardText_ZoomLens
+ZOOM LENS
+
+#org @gRewardText_AmuletCoin
+AMULET COIN
+
+#org @gRewardText_BigRoot
+BIG ROOT
+
+#org @gRewardText_BlackSludge
+BLACK SLUDGE
+
+#org @gRewardText_CovertCloak
+COVERT CLOAK
+
+#org @gRewardText_ExpertBelt
+EXPERT BELT
+
+#org @gRewardText_Metronome
+METRONOME
+
+#org @gRewardText_MuscleBand
+MUSCLE BAND
+
+#org @gRewardText_ProtectivePads
+PROTECTIVE PADS
+
+#org @gRewardText_PunchingGlove
+PUNCHING GLOVE
+
+#org @gRewardText_QuickClaw
+QUICK CLAW
+
+#org @gRewardText_SafetyGoggles
+SAFETY GOGGLES
+
+#org @gRewardText_ScopeLens
+SCOPE LENS
+
+#org @gRewardText_UtilityUmbrella
+UTILITY UMBRELLA
+
+#org @gRewardText_WiseGlasses
+WISE GLASSES
+
+#org @gRewardText_AssaultVest
+ASSAULT VEST
+
+#org @gRewardText_BrightPowder
+BRIGHT POWDER
+
+#org @gRewardText_ClearAmulet
+CLEAR AMULET
+
+#org @gRewardText_Eviolite
+EVIOLITE
+
+#org @gRewardText_HeavyDutyBoots
+HEAVY-DUTY BOOTS
+
+#org @gRewardText_KingsRock
+KINGS ROCK
+
+#org @gRewardText_Leftovers
+LEFTOVERS
+
+#org @gRewardText_LifeOrb
+LIFE ORB
+
+#org @gRewardText_LoadedDice
+LOADED DICE
+
+#org @gRewardText_RockyHelmet
+ROCKY HELMET
+
+#org @gRewardText_ShellBell
+SHELL BELL
+
+#org @gRewardText_BottleCap
+BOTTLE CAP (4-8)
+
+#org @gRewardText_GoldBottleCap
+GOLD BOTTLE CAP
+
+#org @gRewardText_AdamantMint
+ADAMANT MINT (1-3)
+
+#org @gRewardText_BoldMint
+BOLD MINT (1-3)
+
+#org @gRewardText_BraveMint
+BRAVE MINT (1-3)
+
+#org @gRewardText_CalmMint
+CALM MINT (1-3)
+
+#org @gRewardText_CarefulMint
+CAREFUL MINT (1-3)
+
+#org @gRewardText_GentleMint
+GENTLE MINT (1-3)
+
+#org @gRewardText_HastyMint
+HASTY MINT (1-3)
+
+#org @gRewardText_ImpishMint
+IMPISH MINT (1-3)
+
+#org @gRewardText_JollyMint
+JOLLY MINT (1-3)
+
+#org @gRewardText_LaxMint
+LAX MINT (1-3)
+
+#org @gRewardText_LonelyMint
+LONELY MINT (1-3)
+
+#org @gRewardText_MildMint
+MILD MINT (1-3)
+
+#org @gRewardText_ModestMint
+MODEST MINT (1-3)
+
+#org @gRewardText_NaiveMint
+NAIVE MINT (1-3)
+
+#org @gRewardText_NaughtyMint
+NAUGHTY MINT (1-3)
+
+#org @gRewardText_QuietMint
+QUIET MINT (1-3)
+
+#org @gRewardText_RashMint
+RASH MINT (1-3)
+
+#org @gRewardText_RelaxedMint
+RELAXED MINT (1-3)
+
+#org @gRewardText_SassyMint
+SASSY MINT (1-3)
+
+#org @gRewardText_SeriousMint
+SERIOUS MINT (1-3)
+
+#org @gRewardText_TimidMint
+TIMID MINT (1-3)
+
+#org @gRewardText_TinyMushroom
+TINY MUSHROOM (2-4)
+
+#org @gRewardText_BigMushroom
+BIG MUSHROOM (1-2)
+
+#org @gRewardText_BalmMushroom
+BALM MUSHROOM
+
+#org @gRewardText_Pearl
+PEARL
+
+#org @gRewardText_BigPearl
+BIG PEARL
+
+#org @gRewardText_Stardust
+STARDUST
+
+#org @gRewardText_StarPiece
+STAR PIECE
+
+#org @gRewardText_Nugget
+NUGGET
+
+#org @gRewardText_RareBone
+RARE BONE
+
+#org @gRewardText_PearlString
+PEARL STRING
+
+#org @gRewardText_CometShard
+COMET SHARD
+
+#org @gRewardText_BigNugget
+BIG NUGGET
+
+#org @gRewardText_RelicCopper
+RELIC COPPER
+
+#org @gRewardText_RelicSilver
+RELIC SILVER
+
+#org @gRewardText_RelicGold
+RELIC GOLD
+
+#org @gRewardText_RelicVase
+RELIC VASE
+
+#org @gRewardText_RelicBand
+RELIC BAND
+
+#org @gRewardText_RelicStatue
+RELIC STATUE
+
+#org @gRewardText_RelicCrown
+RELIC CROWN
+
+#org @gRewardText_Calcium
+CALCIUM
+
+#org @gRewardText_Carbos
+CARBOS
+
+#org @gRewardText_HpUp
+HP UP
+
+#org @gRewardText_Iron
+IRON
+
+#org @gRewardText_PpMax
+PP MAX
+
+#org @gRewardText_Protein
+PROTEIN
+
+#org @gRewardText_Zinc
+ZINC
+
+#org @gRewardText_TM01
+TM01: FOCUS PUNCH
+
+#org @gRewardText_TM02
+TM02: DRAGON CLAW
+
+#org @gRewardText_TM03
+TM03: WATER PULSE
+
+#org @gRewardText_TM04
+TM04: CALM MIND
+
+#org @gRewardText_TM05
+TM05: ROAR
+
+#org @gRewardText_TM06
+TM06: TOXIC
+
+#org @gRewardText_TM07
+TM07: SNOWSCAPE
+
+#org @gRewardText_TM08
+TM08: BULK UP
+
+#org @gRewardText_TM09
+TM09: BULLET SEED
+
+#org @gRewardText_TM10
+TM10: HIDDEN POWER
+
+#org @gRewardText_TM11
+TM11: SUNNY DAY
+
+#org @gRewardText_TM12
+TM12: TAUNT
+
+#org @gRewardText_TM13
+TM13: ICE BEAM
+
+#org @gRewardText_TM14
+TM14: BLIZZARD
+
+#org @gRewardText_TM15
+TM15: HYPER BEAM
+
+#org @gRewardText_TM16
+TM16: LIGHT SCREEN
+
+#org @gRewardText_TM17
+TM17: PROTECT
+
+#org @gRewardText_TM18
+TM18: RAIN DANCE
+
+#org @gRewardText_TM19
+TM19: GIGA DRAIN
+
+#org @gRewardText_TM20
+TM20: SAFEGUARD
+
+#org @gRewardText_TM21
+TM21: FRUSTRATION
+
+#org @gRewardText_TM22
+TM22: SOLAR BEAM
+
+#org @gRewardText_TM23
+TM23: IRON TAIL
+
+#org @gRewardText_TM24
+TM24: THUNDERBOLT
+
+#org @gRewardText_TM25
+TM25: THUNDER
+
+#org @gRewardText_TM26
+TM26: EARTHQUAKE
+
+#org @gRewardText_TM27
+TM27: RETURN
+
+#org @gRewardText_TM28
+TM28: DIG
+
+#org @gRewardText_TM29
+TM29: PSYCHIC
+
+#org @gRewardText_TM30
+TM30: SHADOW BALL
+
+#org @gRewardText_TM31
+TM31: BRICK BREAK
+
+#org @gRewardText_TM32
+TM32: DOUBLE TEAM
+
+#org @gRewardText_TM33
+TM33: REFLECT
+
+#org @gRewardText_TM34
+TM34: SHOCK WAVE
+
+#org @gRewardText_TM35
+TM35: FLAMETHROWER
+
+#org @gRewardText_TM36
+TM36: SLUDGE BOMB
+
+#org @gRewardText_TM37
+TM37: SANDSTORM
+
+#org @gRewardText_TM38
+TM38: FIRE BLAST
+
+#org @gRewardText_TM39
+TM39: ROCK TOMB
+
+#org @gRewardText_TM40
+TM40: AERIAL ACE
+
+#org @gRewardText_TM41
+TM41: TORMENT
+
+#org @gRewardText_TM42
+TM42: FACADE
+
+#org @gRewardText_TM43
+TM43: SECRET POWER
+
+#org @gRewardText_TM44
+TM44: REST
+
+#org @gRewardText_TM45
+TM45: ATTRACT
+
+#org @gRewardText_TM46
+TM46: THIEF
+
+#org @gRewardText_TM47
+TM47: STEEL WING
+
+#org @gRewardText_TM48
+TM48: SKILL SWAP
+
+#org @gRewardText_TM49
+TM49: LEECHFANG
+
+#org @gRewardText_TM50
+TM50: OVERHEAT
+
+#org @gRewardText_TM51
+TM51: ROOST
+
+#org @gRewardText_TM52
+TM52: FOCUS BLAST
+
+#org @gRewardText_TM53
+TM53: ENERGY BALL
+
+#org @gRewardText_TM54
+TM54: FALSE SWIPE
+
+#org @gRewardText_TM55
+TM55: BRINE
+
+#org @gRewardText_TM56
+TM56: HONE CLAWS
+
+#org @gRewardText_TM57
+TM57: CHARGE BEAM
+
+#org @gRewardText_TM58
+TM58: ENDURE
+
+#org @gRewardText_TM59
+TM59: DRAGON PULSE
+
+#org @gRewardText_TM60
+TM60: DRAIN PUNCH
+
+#org @gRewardText_TM61
+TM61: WILL-O-WISP
+
+#org @gRewardText_TM62
+TM62: SILVER WIND
+
+#org @gRewardText_TM63
+TM63: VENOSHOCK
+
+#org @gRewardText_TM64
+TM64: EXPLOSION
+
+#org @gRewardText_TM65
+TM65: SHADOW CLAW
+
+#org @gRewardText_TM66
+TM66: PAYBACK
+
+#org @gRewardText_TM67
+TM67: RECYCLE
+
+#org @gRewardText_TM68
+TM68: GIGA IMPACT
+
+#org @gRewardText_TM69
+TM69: ROCK POLISH
+
+#org @gRewardText_TM70
+TM70: FLASH
+
+#org @gRewardText_TM71
+TM71: STONE EDGE
+
+#org @gRewardText_TM72
+TM72: AVALANCHE
+
+#org @gRewardText_TM73
+TM73: THUNDER WAVE
+
+#org @gRewardText_TM74
+TM74: GYRO BALL
+
+#org @gRewardText_TM75
+TM75: SWORDS DANCE
+
+#org @gRewardText_TM76
+TM76: STEALTH ROCK
+
+#org @gRewardText_TM77
+TM77: FLAME CHARGE
+
+#org @gRewardText_TM78
+TM78: LOW SWEEP
+
+#org @gRewardText_TM79
+TM79: DARK PULSE
+
+#org @gRewardText_TM80
+TM80: ROCK SLIDE
+
+#org @gRewardText_TM81
+TM81: X-SCISSOR
+
+#org @gRewardText_TM82
+TM82: SLEEP TALK
+
+#org @gRewardText_TM83
+TM83: SCALD
+
+#org @gRewardText_TM84
+TM84: POISON JAB
+
+#org @gRewardText_TM85
+TM85: DREAM EATER
+
+#org @gRewardText_TM86
+TM86: GRAS SKNOT
+
+#org @gRewardText_TM87
+TM87: SWAGGER
+
+#org @gRewardText_TM88
+TM88: PLUCK
+
+#org @gRewardText_TM89
+TM89: UTURN
+
+#org @gRewardText_TM90
+TM90: SUBSTITUTE
+
+#org @gRewardText_TM91
+TM91: FLASH CANNON
+
+#org @gRewardText_TM92
+TM92: VOLT SWITCH
+
+#org @gRewardText_TM93
+TM93: DRAGON TAIL
+
+#org @gRewardText_TM94
+TM94: INCINERATE
+
+#org @gRewardText_TM95
+TM95: STRUGGLE BUG
+
+#org @gRewardText_TM96
+TM96: BULLDOZE
+
+#org @gRewardText_TM97
+TM97: FROST BREATH
+
+#org @gRewardText_TM98
+TM98: WORKUP
+
+#org @gRewardText_TM99
+TM99: WILD CHARGE
+
+#org @gRewardText_TM100
+TM100: INFESTATION
+
+#org @gRewardText_TM101
+TM101: POWER-UP-PUNCH
+
+#org @gRewardText_TM102
+TM102: DAZZLING GLEAM
+
+#org @gRewardText_TM103
+TM103: SLUDGE WAVE
+
+#org @gRewardText_TM104
+TM104: PSYSHOCK
+
+#org @gRewardText_TM105
+TM105: BRUTAL SWING
+
+#org @gRewardText_TM106
+TM106: SMART STRIKE
+
+#org @gRewardText_TM107
+TM107: ACROBATICS
+
+#org @gRewardText_TM108
+TM108: SNARL
+
+#org @gRewardText_TM109
+TM109: DEFOG
+
+#org @gRewardText_TM110
+TM110: CAPTIVATE
+
+#org @gRewardText_TM111
+TM111: SMACK DOWN
+
+#org @gRewardText_TM112
+TM112: ROUND
+
+#org @gRewardText_TM113
+TM113: ECHOED VOICE
+
+#org @gRewardText_TM114
+TM114: NATURAL GIFT
+
+#org @gRewardText_TM115
+TM115: QUASH
+
+#org @gRewardText_TM116
+TM116: TRICK ROOM
+
+#org @gRewardText_TM117
+TM117: FLING
+
+#org @gRewardText_TM118
+TM118: AURORA VEIL
+
+#org @gRewardText_TM119
+TM119: SKY DROP
+
+#org @gRewardText_TM120
+TM120: NATURE POWER
+
+#org @gRewardText_BasicCrate
+BASIC CRATE
+
+#org @gRewardText_ReinforcedCrate
+REINFORCED CRATE
+
+#org @gRewardText_LinkCable
+LINK CABLE
+
+#org @gRewardText_Protector
+PROTECTOR
+
+#org @gRewardText_Electirizer
+ELECTIRIZER
+
+#org @gRewardText_Magmarizer
+MAGMARIZER
+
+#org @gRewardText_DubiousDisc
+DUBIOUS DISC
+
+#org @gRewardText_ReaperCloth
+REAPER CLOTH
+
+#org @gRewardText_SunStone
+SUN STONE
+
+#org @gRewardText_MoonStone
+MOON STONE
+
+#org @gRewardText_FireStone
+FIRE STONE
+
+#org @gRewardText_ThunderStone
+THUNDER STONE
+
+#org @gRewardText_WaterStone
+WATER STONE
+
+#org @gRewardText_LeafStone
+LEAF STONE
+
+#org @gRewardText_ShinyStone
+SHINY STONE
+
+#org @gRewardText_DuskStone
+DUSK STONE
+
+#org @gRewardText_DawnStone
+DAWN STONE
+
+#org @gRewardText_IceStone
+ICE STONE
+
+#org @gRewardText_RazorClaw
+RAZOR CLAW
+
+#org @gRewardText_RazorFang
+RAZOR FANG
+
+#org @gRewardText_PrismScale
+PRISM SCALE
+
+#org @gRewardText_Sachet
+SACHET
+
+#org @gRewardText_WhippedDream
+WHIPPED DREAM
+
+#org @gRewardText_DragonScale
+DRAGON SCALE
+
+#org @gRewardText_UpGrade
+UP GRADE
+
+#org @gRewardText_StrawberrySweet
+STRAWBERRY SWEET
+
+#org @gRewardText_BerrySweet
+BERRY SWEET
+
+#org @gRewardText_LoveSweet
+LOVE SWEET
+
+#org @gRewardText_CloverSweet
+CLOVER SWEET
+
+#org @gRewardText_FlowerSweet
+FLOWER SWEET
+
+#org @gRewardText_RibbonSweet
+RIBBON SWEET
+
+#org @gRewardText_StarSweet
+STAR SWEET
+
+#org @gRewardText_SweetApple
+SWEET APPLE
+
+#org @gRewardText_TartApple
+TART APPLE
+
+#org @gRewardText_CrackedPot
+CRACKED POT
+
+#org @gRewardText_ChippedPot
+CHIPPED POT
+
+#org @gRewardText_GalaricaCuff
+GALARICA CUFF
+
+#org @gRewardText_GalaricaWreath
+GALARICA WREATH
+
+#org @gRewardText_Gracidea
+GRACIDEA
+
+#org @gRewardText_DnaSplicers
+DNA SPLICERS
+
+#org @gRewardText_RevealGlass
+REVEAL GLASS
+
+#org @gRewardText_PrisonBottle
+PRISON BOTTLE
+
+#org @gRewardText_NSolarizer
+N SOLARIZER
+
+#org @gRewardText_NLunarizer
+N LUNARIZER
+
+#org @gRewardText_RedNectar
+RED NECTAR
+
+#org @gRewardText_YellowNectar
+YELLOW NECTAR
+
+#org @gRewardText_PinkNectar
+PINK NECTAR
+
+#org @gRewardText_PurpleNectar
+PURPLE NECTAR
+
+#org @gRewardText_Venusaurite
+VENUSAURITE
+
+#org @gRewardText_CharizarditeX
+CHARIZARDITE X
+
+#org @gRewardText_CharizarditeY
+CHARIZARDITE Y
+
+#org @gRewardText_Blastoisinite
+BLASTOISINITE
+
+#org @gRewardText_Beedrillite
+BEEDRILLITE
+
+#org @gRewardText_Pidgeotite
+PIDGEOTITE
+
+#org @gRewardText_Alakazite
+ALAKAZITE
+
+#org @gRewardText_Slowbronite
+SLOWBRONITE
+
+#org @gRewardText_Gengarite
+GENGARITE
+
+#org @gRewardText_Kangaskhanite
+KANGASKHANITE
+
+#org @gRewardText_Pinsirite
+PINSIRITE
+
+#org @gRewardText_Gyaradosite
+GYARADOSITE
+
+#org @gRewardText_Aerodactylite
+AERODACTYLITE
+
+#org @gRewardText_MewtwoniteX
+MEWTWONITE X
+
+#org @gRewardText_MewtwoniteY
+MEWTWONITE Y
+
+#org @gRewardText_Ampharosite
+AMPHAROSITE
+
+#org @gRewardText_Steelixite
+STEELIXITE
+
+#org @gRewardText_Scizorite
+SCIZORITE
+
+#org @gRewardText_Heracronite
+HERACRONITE
+
+#org @gRewardText_Houndoominite
+HOUNDOOMINITE
+
+#org @gRewardText_Tyranitarite
+TYRANITARITE
+
+#org @gRewardText_Sceptilite
+SCEPTILITE
+
+#org @gRewardText_Blazikenite
+BLAZIKENITE
+
+#org @gRewardText_Swampertite
+SWAMPERTITE
+
+#org @gRewardText_Gardevoirite
+GARDEVOIRITE
+
+#org @gRewardText_Sablenite
+SABLENITE
+
+#org @gRewardText_Mawilite
+MAWILITE
+
+#org @gRewardText_Aggronite
+AGGRONITE
+
+#org @gRewardText_Medichamite
+MEDICHAMITE
+
+#org @gRewardText_Manectite
+MANECTITE
+
+#org @gRewardText_Sharpedonite
+SHARPEDONITE
+
+#org @gRewardText_Cameruptite
+CAMERUPTITE
+
+#org @gRewardText_Altarianite
+ALTARIANITE
+
+#org @gRewardText_Banettite
+BANETTITE
+
+#org @gRewardText_Absolite
+ABSOLITE
+
+#org @gRewardText_Glalitite
+GLALITITE
+
+#org @gRewardText_Salamencite
+SALAMENCITE
+
+#org @gRewardText_Metagrossite
+METAGROSSITE
+
+#org @gRewardText_Latiasite
+LATIASITE
+
+#org @gRewardText_Latiosite
+LATIOSITE
+
+#org @gRewardText_Lopunnite
+LOPUNNITE
+
+#org @gRewardText_Garchompite
+GARCHOMPITE
+
+#org @gRewardText_Lucarionite
+LUCARIONITE
+
+#org @gRewardText_Abomasite
+ABOMASITE
+
+#org @gRewardText_Galladite
+GALLADITE
+
+#org @gRewardText_Audinite
+AUDINITE
+
+#org @gRewardText_Diancite
+DIANCITE
+
+#org @gRewardText_AuspiciousArmor
+AUSPICIOUS ARMOR
+
+#org @gRewardText_MaliciousArmor
+MALICIOUS ARMOR
+
+#org @gRewardText_BlackAugurite
+BLACK AUGURITE
+
+#org @gRewardText_LeadersCrest
+LEADERS CREST
+
+#org @gRewardText_MasterpieceTeacup
+MASTERPIECE TEACUP
+
+#org @gRewardText_UnremarkableTeacup
+UNREMARKABLE TEACUP
+
+#org @gRewardText_MetalAlloy
+METAL ALLOY
+
+#org @gRewardText_PeatBlock
+PEAT BLOCK
+
+#org @gRewardText_ScrollOfDarkness
+SCROLL OF DARKNESS
+
+#org @gRewardText_ScrollOfWaters
+SCROLL OF WATERS
+
+#org @gRewardText_SyrupyApple
+SYRUPY APPLE
+
+#org @gRewardText_AbsoliteZ
+ABSOLITE Z
+
+#org @gRewardText_Barbaracite
+BARBARACITE
+
+#org @gRewardText_Baxcalibrite
+BAXCALIBRITE
+
+#org @gRewardText_Chandelurite
+CHANDELURITE
+
+#org @gRewardText_Chesnaughtite
+CHESNAUGHTITE
+
+#org @gRewardText_Chimechite
+CHIMECHITE
+
+#org @gRewardText_Clefablite
+CLEFABLITE
+
+#org @gRewardText_Crabominite
+CRABOMINITE
+
+#org @gRewardText_Darkranite
+DARKRANITE
+
+#org @gRewardText_Delphoxite
+DELPHOXITE
+
+#org @gRewardText_Dragalgite
+DRAGALGITE
+
+#org @gRewardText_Dragoninite
+DRAGONINITE
+
+#org @gRewardText_Drampanite
+DRAMPANITE
+
+#org @gRewardText_Eelektrossite
+EELEKTROSSITE
+
+#org @gRewardText_Emboarite
+EMBOARITE
+
+#org @gRewardText_Excadrite
+EXCADRITE
+
+#org @gRewardText_Falinksite
+FALINKSITE
+
+#org @gRewardText_Feraligite
+FERALIGITE
+
+#org @gRewardText_Floettite
+FLOETTITE
+
+#org @gRewardText_Froslassite
+FROSLASSITE
+
+#org @gRewardText_GarchompiteZ
+GARCHOMPITE Z
+
+#org @gRewardText_Glimmoranite
+GLIMMORANITE
+
+#org @gRewardText_Golisopite
+GOLISOPITE
+
+#org @gRewardText_Golurkite
+GOLURKITE
+
+#org @gRewardText_Greninjite
+GRENINJITE
+
+#org @gRewardText_Hawluchanite
+HAWLUCHANITE
+
+#org @gRewardText_Heatranite
+HEATRANITE
+
+#org @gRewardText_LucarioniteZ
+LUCARIONITE Z
+
+#org @gRewardText_Magearnite
+MAGEARNITE
+
+#org @gRewardText_Malamarite
+MALAMARITE
+
+#org @gRewardText_Meganiumite
+MEGANIUMITE
+
+#org @gRewardText_Meowsticite
+MEOWSTICITE
+
+#org @gRewardText_Pyroarite
+PYROARITE
+
+#org @gRewardText_RaichuniteX
+RAICHUNITE X
+
+#org @gRewardText_RaichuniteY
+RAICHUNITE Y
+
+#org @gRewardText_Scolipite
+SCOLIPITE
+
+#org @gRewardText_Scovillainite
+SCOVILLAINITE
+
+#org @gRewardText_Scraftinite
+SCRAFTINITE
+
+#org @gRewardText_Skarmorite
+SKARMORITE
+
+#org @gRewardText_Staraptite
+STARAPTITE
+
+#org @gRewardText_Starminite
+STARMINITE
+
+#org @gRewardText_Tatsugirinite
+TATSUGIRINITE
+
+#org @gRewardText_Victreebelite
+VICTREEBELITE
+
+#org @gRewardText_Zeraorite
+ZERAORITE
+
+#org @gRewardText_Zygardite
+ZYGARDITE
+
+#org @gRewardText_SoulDew
+SOUL DEW
+
+#org @gRewardText_DeepSeaTooth
+DEEP SEA TOOTH
+
+#org @gRewardText_DeepSeaScale
+DEEP SEA SCALE
+
+#org @gRewardText_LightBall
+LIGHT BALL
+
+#org @gRewardText_LuckyPunch
+LUCKY PUNCH
+
+#org @gRewardText_MetalPowder
+METAL POWDER
+
+#org @gRewardText_ThickClub
+THICK CLUB
+
+#org @gRewardText_Leek
+LEEK
+
+#org @gRewardText_RedOrb
+RED ORB
+
+#org @gRewardText_BlueOrb
+BLUE ORB
+
+#org @gRewardText_RustedSword
+RUSTED SWORD
+
+#org @gRewardText_RustedShield
+RUSTED SHIELD
+
+#org @gRewardText_AdamantOrb
+ADAMANT ORB
+
+#org @gRewardText_LustrousOrb
+LUSTROUS ORB
+
+#org @gRewardText_GriseousOrb
+GRISEOUS ORB
+
+#org @gRewardText_FistPlate
+FIST PLATE
+
+#org @gRewardText_SkyPlate
+SKY PLATE
+
+#org @gRewardText_ToxicPlate
+TOXIC PLATE
+
+#org @gRewardText_EarthPlate
+EARTH PLATE
+
+#org @gRewardText_StonePlate
+STONE PLATE
+
+#org @gRewardText_InsectPlate
+INSECT PLATE
+
+#org @gRewardText_SpookyPlate
+SPOOKY PLATE
+
+#org @gRewardText_IronPlate
+IRON PLATE
+
+#org @gRewardText_FlamePlate
+FLAME PLATE
+
+#org @gRewardText_SplashPlate
+SPLASH PLATE
+
+#org @gRewardText_MeadowPlate
+MEADOW PLATE
+
+#org @gRewardText_ZapPlate
+ZAP PLATE
+
+#org @gRewardText_MindPlate
+MIND PLATE
+
+#org @gRewardText_IciclePlate
+ICICLE PLATE
+
+#org @gRewardText_DracoPlate
+DRACO PLATE
+
+#org @gRewardText_DreadPlate
+DREAD PLATE
+
+#org @gRewardText_PixiePlate
+PIXIE PLATE
+
+#org @gRewardText_FightingMemory
+FIGHTING MEMORY
+
+#org @gRewardText_FlyingMemory
+FLYING MEMORY
+
+#org @gRewardText_PoisonMemory
+POISON MEMORY
+
+#org @gRewardText_GroundMemory
+GROUND MEMORY
+
+#org @gRewardText_RockMemory
+ROCK MEMORY
+
+#org @gRewardText_BugMemory
+BUG MEMORY
+
+#org @gRewardText_GhostMemory
+GHOST MEMORY
+
+#org @gRewardText_SteelMemory
+STEEL MEMORY
+
+#org @gRewardText_FireMemory
+FIRE MEMORY
+
+#org @gRewardText_WaterMemory
+WATER MEMORY
+
+#org @gRewardText_GrassMemory
+GRASS MEMORY
+
+#org @gRewardText_ElectricMemory
+ELECTRIC MEMORY
+
+#org @gRewardText_PsychicMemory
+PSYCHIC MEMORY
+
+#org @gRewardText_IceMemory
+ICE MEMORY
+
+#org @gRewardText_DragonMemory
+DRAGON MEMORY
+
+#org @gRewardText_DarkMemory
+DARK MEMORY
+
+#org @gRewardText_FairyMemory
+FAIRY MEMORY
+
+#org @gRewardText_BurnDrive
+BURN DRIVE
+
+#org @gRewardText_DouseDrive
+DOUSE DRIVE
+
+#org @gRewardText_ShockDrive
+SHOCK DRIVE
+
+#org @gRewardText_ChillDrive
+CHILL DRIVE
+
+#org @gRewardText_QuickPowder
+QUICK POWDER
+
+#org @gRewardText_CornerstoneMask
+CORNERSTONE MASK
+
+#org @gRewardText_HearthflameMask
+HEARTHFLAME MASK
+
+#org @gRewardText_WellspringMask
+WELLSPRING MASK
+
+#org @gRewardText_AdamantCrystal
+ADAMANT CRYSTAL
+
+#org @gRewardText_GriseousCore
+GRISEOUS CORE
+
+#org @gRewardText_LustrousGlobe
+LUSTROUS GLOBE
