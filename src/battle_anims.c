@@ -234,7 +234,7 @@ void AnimTask_SetCamouflageBlend(u8 taskId)
 	if (entry)
 		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[entry].camouflageType];
 	else if (IsTerrainMoveIndoors())
-		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].camouflageType];
+		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[BATTLE_TERRAIN_BUILDING + 4].camouflageType];
 	else
 		gBattleAnimArgs[4] = gCamouflageColours[gTerrainTable[GetBattleTerrainOverride() + 4].camouflageType];
 
@@ -380,7 +380,7 @@ void AnimTask_GetSecretPowerAnimation(u8 taskId)
 			break;
 		default:
 			if (IsTerrainMoveIndoors())
-				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].secretPowerAnim;
+				move = gTerrainTable[BATTLE_TERRAIN_BUILDING + 4].secretPowerAnim;
 			else
 				move = gTerrainTable[GetBattleTerrainOverride() + 4].secretPowerAnim;
 	}

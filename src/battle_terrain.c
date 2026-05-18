@@ -24,7 +24,6 @@ battle_terrain.c
 	functions responsible for checking/loading/removing battle terrain
 */
 
-#define gBattleTerrainTable ((struct BattleBackground*) *((u32*) 0x800F320))
 #ifdef UNBOUND
 #define gBattleTerrainTableEvening ((struct BattleBackground*) *((u32*) 0x88288A0)) //For Unbound
 #define gBattleTerrainTableNight ((struct BattleBackground*) *((u32*) 0x88288A4)) //For Unbound
@@ -35,6 +34,170 @@ extern const struct BattleBackground gAttackTerrainTable[];
 //This file's functions:
 static void LoadBattleBG_EntryOverlay(u8 terrainId);
 static u8 TryLoadAlternateAreaTerrain(u8 terrain);
+
+struct BattleBackground gBattleTerrainTable[] = 
+{
+    [BATTLE_TERRAIN_GRASS] =
+    {
+        .tileset = (void*)BG_GrassTiles,
+        .tilemap = (void*)BG_GrassMap,
+        .entryTileset = (void*)0x8248C68,
+        .entryTilemap = (void*)0x8248F58,
+        .palette = (void*)BG_GrassPal,
+    },
+    [BATTLE_TERRAIN_LONG_GRASS] =
+    {
+        .tileset = (void*)0x82490C4,
+        .tilemap = (void*)0x8249620,
+        .entryTileset = (void*)0x8249620,
+        .entryTilemap = (void*)0x8249E10,
+        .palette = (void*)0x8249074,
+    },
+    [BATTLE_TERRAIN_SAND] =
+    {
+        .tileset = (void*)0x8249FE4,
+        .tilemap = (void*)0x824A37C,
+        .entryTileset = (void*)0x824A618,
+        .entryTilemap = (void*)0x824A844,
+        .palette = (void*)0x8249F98
+    },
+    [BATTLE_TERRAIN_UNDERWATER] =
+    {
+        .tileset = (void*)0x824A990,
+        .tilemap = (void*)0x824ACD0,
+        .entryTileset = (void*)0x824AF70,
+        .entryTilemap = (void*)0x824B0DC,
+        .palette = (void*)0x824A940
+    },
+    [BATTLE_TERRAIN_WATER] =
+    {
+        .tileset = (void*)0x824B1EC,
+        .tilemap = (void*)0x824B608,
+        .entryTileset = (void*)0x824B8A8,
+        .entryTilemap = (void*)0x824BBE0,
+        .palette = (void*)0x824B19C
+    },
+    [BATTLE_TERRAIN_POND] =
+    {
+        .tileset = (void*)0x824BD38,
+        .tilemap = (void*)0x824C07C,
+        .entryTileset = (void*)0x824C314,
+        .entryTilemap = (void*)0x824C520,
+        .palette = (void*)0x824BCE0
+    },
+    [BATTLE_TERRAIN_MOUNTAIN] =
+    {
+        .tileset = (void*)0x824C624,
+        .tilemap = (void*)0x824C958,
+        .entryTileset = (void*)0x824CBF8,
+        .entryTilemap = (void*)0x824CEC8,
+        .palette = (void*)0x824C5D8
+    },
+    [BATTLE_TERRAIN_CAVE] =
+    {
+        .tileset = (void*)BG_CaveTiles,
+        .tilemap = (void*)BG_CaveMap,
+        .entryTileset = (void*)0x824D6B8,
+        .entryTilemap = (void*)0x824DC98,
+        .palette = (void*)BG_CavePal
+    },
+    [BATTLE_TERRAIN_BUILDING] =
+    {
+        .tileset = (void*)0x824DE34,
+        .tilemap = (void*)0x824E16C,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824DDF0
+    },
+    [BATTLE_TERRAIN_PLAIN] =
+    {
+        .tileset = (void*)0x824DE34,
+        .tilemap = (void*)0x824E16C,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E81C
+    },
+    [BATTLE_TERRAIN_LINK] =
+    {
+        .tileset = (void*)0x824DE34,
+        .tilemap = (void*)0x824E16C,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E528
+    },
+    [BATTLE_TERRAIN_GYM] =
+    {
+        .tileset = (void*)0x824DE34,
+        .tilemap = (void*)0x824E16C,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E56C
+    },
+    [BATTLE_TERRAIN_LEADER] =
+    {
+        .tileset = (void*)0x824DE34,
+        .tilemap = (void*)0x824E16C,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E5B8
+    },
+    [BATTLE_TERRAIN_INDOOR_2] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E604
+    },
+    [BATTLE_TERRAIN_INDOOR_1] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E650
+    },
+    [BATTLE_TERRAIN_LORELEI] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E6A4
+    },
+    [BATTLE_TERRAIN_BRUNO] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E6F0
+    },
+    [BATTLE_TERRAIN_AGATHA] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E740
+    },
+    [BATTLE_TERRAIN_LANCE] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E78C
+    },
+    [BATTLE_TERRAIN_CHAMPION] =
+    {
+        .tileset = (void*)0x824E858,
+        .tilemap = (void*)0x824EB90,
+        .entryTileset = (void*)0x824E410,
+        .entryTilemap = (void*)0x824E490,
+        .palette = (void*)0x824E7DC
+    }
+};
 
 u8 BattleSetup_GetTerrainId(void)
 {
@@ -94,7 +257,7 @@ u8 BattleSetup_GetTerrainId(void)
 			case MAP_TYPE_UNDERGROUND:
 				if (MetatileBehavior_IsIndoorEncounter(tileBehavior))
 				{
-					terrain = BATTLE_TERRAIN_INSIDE;
+					terrain = BATTLE_TERRAIN_BUILDING;
 					break;
 				}
 
@@ -110,7 +273,7 @@ u8 BattleSetup_GetTerrainId(void)
 
 			case MAP_TYPE_INDOOR:
 			case MAP_TYPE_SECRET_BASE:
-				terrain = BATTLE_TERRAIN_INSIDE;
+				terrain = BATTLE_TERRAIN_BUILDING;
 				break;
 
 			case MAP_TYPE_UNDERWATER:
@@ -154,9 +317,9 @@ u8 GetBattleTerrainOverride(void)
 	if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER_TOWER | BATTLE_TYPE_EREADER_TRAINER))
 	{
 		#ifdef UNBOUND
-			terrain = BATTLE_TERRAIN_INSIDE;
+			terrain = BATTLE_TERRAIN_BUILDING;
 		#else
-			terrain = BATTLE_TERRAIN_INSIDE_2;
+			terrain = BATTLE_TERRAIN_LINK;
 		#endif
 	}
 	else if (gBattleTypeFlags & BATTLE_TYPE_POKE_DUDE)
@@ -177,7 +340,7 @@ u8 GetBattleTerrainOverride(void)
 			u8 trainerClassB = GetFrontierTrainerClassId(SECOND_OPPONENT, 1);
 			if (trainerClass == CLASS_LEADER || trainerClassB == CLASS_LEADER)
 			{
-				terrain = BATTLE_TERRAIN_INSIDE_4;
+				terrain = BATTLE_TERRAIN_LEADER;
 			}
 			else if (trainerClass == CLASS_CHAMPION || trainerClassB == CLASS_CHAMPION)
 			{
@@ -330,7 +493,7 @@ static u8 TryLoadAlternateAreaTerrain(u8 terrain)
 			if (IsCurrentAreaDesert())
 				terrain = BATTLE_TERRAIN_DESERT;
 			break;
-		case BATTLE_TERRAIN_INSIDE:
+		case BATTLE_TERRAIN_BUILDING:
 			if (GetCurrentRegionMapSectionId() == MAPSEC_ANTISIS_SEWERS || MAP_IS(ANTISIS_CITY_GYM_B1F))
 				terrain = BATTLE_TERRAIN_ANTISIS_SEWERS;
 			break;

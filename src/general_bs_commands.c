@@ -4987,7 +4987,7 @@ u16 GetNaturePowerMove(void)
 
 		default:
 			if (IsTerrainMoveIndoors())
-				move = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].naturePowerMove;
+				move = gTerrainTable[BATTLE_TERRAIN_BUILDING + 4].naturePowerMove;
 			else
 				move = gTerrainTable[GetBattleTerrainOverride() + 4].naturePowerMove;
 	}
@@ -5373,7 +5373,7 @@ u8 GetSecretPowerEffect(void)
 
 		default:
 			if (IsTerrainMoveIndoors())
-				effect = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].secretPowerEffect;
+				effect = gTerrainTable[BATTLE_TERRAIN_BUILDING + 4].secretPowerEffect;
 			else
 				effect = gTerrainTable[GetBattleTerrainOverride() + 4].secretPowerEffect;
 	}
@@ -5697,7 +5697,7 @@ u8 GetCamouflageType(void)
 
 		default:
 			if (IsTerrainMoveIndoors())
-				type = gTerrainTable[BATTLE_TERRAIN_INSIDE + 4].camouflageType;
+				type = gTerrainTable[BATTLE_TERRAIN_BUILDING + 4].camouflageType;
 			else
 				type = gTerrainTable[GetBattleTerrainOverride() + 4].camouflageType;
 	}

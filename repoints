@@ -331,3 +331,5 @@ gText_StartedSnow 083FE2D8
 gText_SnowContinues 083FE2DC
 gText_SnowStopped 083FE2E0
 gText_PkmnPeltedBySnow 083FE0A8
+
+gBattleTerrainTable 0800F320

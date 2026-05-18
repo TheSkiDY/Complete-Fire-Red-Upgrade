@@ -40,3 +40,10 @@ struct TerrainTableStruct
 
 extern const struct TerrainTableStruct gTerrainTable[];
 extern const u16 gCamouflageColours[];
+
+extern const u8 BG_GrassTiles[];
+extern const u8 BG_GrassMap[];
+extern const u8 BG_GrassPal[];
+extern const u8 BG_CaveTiles[];
+extern const u8 BG_CaveMap[];
+extern const u8 BG_CavePal[];
