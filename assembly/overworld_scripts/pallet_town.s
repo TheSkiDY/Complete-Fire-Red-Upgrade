@@ -25,7 +25,11 @@ EventScript_PalletTown_TechnologyGuy:
 	additem ITEM_INFINITE_REPEL 1
 	additem ITEM_ENDLESS_CANDY 1
 	additem ITEM_CANDY_JAR 1
+	additem ITEM_STAT_SCANNER 1
 	additem ITEM_BASIC_CRATE 10
+	additem ITEM_MUSCLE_WING 10
+	additem ITEM_CLEVER_WING 10
+	additem ITEM_CARBOS 10
 	setvar 0x8004 0xF @erase party
 	special 0x62
 	givepokemon SPECIES_GRIMMSNARL 90 0 0 0
@@ -33,6 +37,7 @@ EventScript_PalletTown_TechnologyGuy:
 	givepokemon SPECIES_MEWTWO 50 0 0 0
 	givepokemon SPECIES_ETERNATUS 50 0 0 0
 	givepokemon SPECIES_STARMIE 50 0 0 0
+	giveegg SPECIES_TURTWIG
 	msgbox gText_PalletTown_TechnologyGuy MSG_NORMAL
 	setflag 0x91E @dexnav
 	setflag 0x82F @running shoes

@@ -2113,7 +2113,15 @@ RemoveLevelUpStatsWindow = 0x8122064 | 1;
 DisplayMonNeedsToReplaceMove = 0x8126770 | 1;
 DisplayMonLearnedMove = 0x8126804 | 1;
 WaitFanfare = 0x8071C10 | 1;
+FreeTempTileDataBuffersIfPossible = 0x80F682C | 1;
+DecompressAndCopyTileDataToVram = 0x80F6878 | 1;
+FreeResourcesAndDestroySprite = 0x8083A5C | 1;
+CreateMonSprite_FieldMove = 0x80839D4 | 1;
+PlayCry_Script = 0x8071F24 | 1;
+
+
 sInitialLevel = 0x203B776;
 sFinalLevel = 0x203B777;
 gRewardItems = 0x203B778;
 gPickedRewardIndex = 0x203B782;
+gStatScannerData = 0x0203FFF0;

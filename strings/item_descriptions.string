@@ -2554,4 +2554,5 @@ A crate received after beating a\nPOK\eMON trainer. Allows keeping\n2 of the 5 p
 #org @gItemDescription_ReinforcedCrate
 A crate received after beating an\nimportant trainer. Allows keeping\n2 of the 5 presented items.
 
-
+#org @gItemDescription_StatScanner
+A special device that can analyze\nEVs, IVs and other stats of any\nPOK\eMON in the party.

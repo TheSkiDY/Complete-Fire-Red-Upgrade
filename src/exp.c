@@ -848,6 +848,10 @@ static void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
 bool8 AddEVs(struct Pokemon* mon, u8 statId, u16 numToAdd)
 {
+	#ifdef GAMEPLAY
+		return FALSE;
+	#endif
+
 	u8 currentEv = GetMonData(mon, MON_DATA_HP_EV + statId, NULL);
 	u16 totalEvs = GetMonEVCount(mon);
 

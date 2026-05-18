@@ -57,3 +57,4 @@ bool8 __attribute__((long_call)) IsBGMPlaying(void);
 bool8 __attribute__((long_call)) IsSpecialSEPlaying(void);
 void __attribute__((long_call)) SetBGMVolume_SuppressHelpSystemReduction(u16 volume);
 void __attribute__((long_call)) BGMVolumeMax_EnableHelpSystemReduction(void);
+void __attribute__((long_call)) PlayCry_Script(u16 species, u8 mode);

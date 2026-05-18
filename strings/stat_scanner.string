@@ -1,0 +1,29 @@
+#org @gText_StatScannerHeaderBS
+BS
+
+#org @gText_StatScannerHeaderEV
+EV
+
+#org @gText_StatScannerHeaderIV
+IV
+
+#org @gText_Slash
+/
+
+#org @gText_UnknownStats
+  ?     ?     ?\n
+
+#org @gText_HiddenPowerType
+HIDDEN POWER type: 
+
+#org @gText_HappinesVal
+Happiness value: 
+
+#org @gText_ItsEgg
+ Its an egg...
+
+#org @gText_LessThan
+Less than 
+
+#org @gText_EggSteps
+ steps to hatch!

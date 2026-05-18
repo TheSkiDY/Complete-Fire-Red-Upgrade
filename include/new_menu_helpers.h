@@ -18,5 +18,7 @@ u8 __attribute__((long_call)) GetTextSpeedSetting(void);
 void __attribute__((long_call)) DrawDialogueFrame(u8 windowId, bool8 transfer);
 void __attribute__((long_call)) LoadStdWindowFrameGfx(void);
 u16 __attribute__((long_call)) GetStdWindowBaseTileNum(void);
+bool8 __attribute__((long_call)) FreeTempTileDataBuffersIfPossible(void);
+void __attribute__((long_call)) *DecompressAndCopyTileDataToVram(u8 bgId, const void *src, u32 size, u16 offset, u8 mode);
 
 #endif // GUARD_NEW_MENU_HELPERS_H

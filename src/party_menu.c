@@ -47,6 +47,7 @@
 #include "../include/new/overworld.h"
 #include "../include/new/party_menu.h"
 #include "../include/new/ram_locs.h"
+#include "../include/new/stat_scanner.h"
 #include "../include/new/util.h"
 
 /*
@@ -3065,4 +3066,27 @@ void FieldUseFunc_Crate(u8 taskId)
 {
     sItemUseOnFieldCB = Task_Crate;
     SetUpItemUseOnFieldCallback(taskId);
+}
+
+
+static void SetUpStatScanner(u8 taskId)
+{
+	PlaySE(244);
+	SetVBlankCallback(NULL);
+	SetMainCallback2(CB2_StatScanner);
+	ScriptContext2_Enable();
+	SetUpItemUseCallback(taskId);
+}
+
+void FieldUseFunc_StatScanner(u8 taskId)
+{
+	if (gTasks[taskId].data[3] == 0)
+	{
+		SetUpStatScanner(taskId);
+	}
+	else
+	{
+		FadeScreen(FADE_TO_BLACK, 0);
+		SetMainCallback2(CB2_StatScanner);
+	}
 }

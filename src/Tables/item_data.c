@@ -14492,6 +14492,23 @@ const struct Item gItems[] =
         .battleUseFunc = NULL,
         .secondaryId = 0,
     },
+    [ITEM_STAT_SCANNER] = 
+    {
+        .name = {CHAR_I, CHAR_T, CHAR_E, CHAR_M, CHAR_5, CHAR_3, CHAR_3, },
+        .itemId = ITEM_STAT_SCANNER,
+        .price = 0,
+        .holdEffect = 0,
+        .holdEffectParam = 0,
+        .description = gItemDescription_StatScanner,
+        .importance = 0,
+        .registrability = 0,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = TYPE_FIELD,
+        .fieldUseFunc = FieldUseFunc_StatScanner,
+        .battleUsage = 0,
+        .battleUseFunc = NULL,
+        .secondaryId = 0,
+    },
 };
 
 const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
@@ -15348,6 +15365,7 @@ const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_FAIRY_SHARD] = {gItemIcon_FairyShardTiles, gItemIcon_FairyShardPal},
     [ITEM_BASIC_CRATE] = {gItemIcon_BasicCrateTiles, gItemIcon_BasicCratePal},
     [ITEM_REINFORCED_CRATE] = {gItemIcon_ReinforcedCrateTiles, gItemIcon_ReinforcedCratePal},
+    [ITEM_STAT_SCANNER] = {gItemIcon_StatScannerTiles, gItemIcon_StatScannerPal},
 };
 
 static const u8 sItemEffect_Potion[7] = {
@@ -16612,6 +16630,7 @@ const u8 *const gItemEffectTable[] =
     [ITEM_FAIRY_SHARD - ITEM_POTION] = NULL,
     [ITEM_BASIC_CRATE - ITEM_POTION] = NULL,
     [ITEM_REINFORCED_CRATE - ITEM_POTION] = NULL,
+    [ITEM_STAT_SCANNER - ITEM_POTION] = NULL,
 }; 
 
 

@@ -62,5 +62,6 @@ void Task_TryLearningNextMove(u8 taskId);
 void FieldUseFunc_PortablePC(u8 taskId);
 void FieldUseFunc_InfiniteRepel(u8 taskId);
 void FieldUseFunc_Crate(u8 taskId);
+void FieldUseFunc_StatScanner(u8 taskId);
 extern const u8 gText_InfiniteRepelActivated[];
 extern const u8 gText_InfiniteRepelDeactivated[];

@@ -859,6 +859,7 @@ extern const u8 gItemDescription_DarkShard[];
 extern const u8 gItemDescription_FairyShard[];
 extern const u8 gItemDescription_BasicCrate[];
 extern const u8 gItemDescription_ReinforcedCrate[];
+extern const u8 gItemDescription_StatScanner[];
 
 
 extern const u32 gItemIcon_NoneTiles[];
@@ -2318,6 +2319,8 @@ extern const u32 gItemIcon_BasicCrateTiles[];
 extern const u32 gItemIcon_BasicCratePal[];
 extern const u32 gItemIcon_ReinforcedCrateTiles[];
 extern const u32 gItemIcon_ReinforcedCratePal[];
+extern const u32 gItemIcon_StatScannerTiles[];
+extern const u32 gItemIcon_StatScannerPal[];
 
 
 void __attribute__((long_call)) BattleUseFunc_BerryPouch(u8 taskId);

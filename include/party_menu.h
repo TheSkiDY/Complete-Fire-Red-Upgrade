@@ -2,6 +2,7 @@
 
 #include "global.h"
 #include "pokemon.h"
+#include "task.h"
 
 enum
 {

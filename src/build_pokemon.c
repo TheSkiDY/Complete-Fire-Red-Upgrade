@@ -1288,7 +1288,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon* const party, const u16 trainerId
 				if (gameDifficulty != OPTIONS_EASY_DIFFICULTY)
 				#endif
 				{
+					#ifndef GAMEPLAY
 					SET_EVS(spread);
+					#endif
 					if (spread->ivs != 0) //Otherwise use default class values
 						SET_IVS_SINGLE_VALUE(MathMin(31, spread->ivs));
 				}
@@ -2549,7 +2551,9 @@ static void CreateFrontierMon(struct Pokemon* mon, const u8 level, const struct 
 	struct Pokemon* party = mon;
 
 	SET_IVS(spread);
+	#ifndef GAMEPLAY
 	SET_EVS(spread);
+	#endif
 
 	if (spread->ability > FRONTIER_ABILITY_HIDDEN)
 	{

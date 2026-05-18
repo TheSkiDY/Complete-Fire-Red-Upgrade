@@ -47,6 +47,8 @@ u8 __attribute__((long_call)) MapTransitionIsExit(u8 lightLevel, u8 mapType);
 u8 __attribute__((long_call)) MapTransitionIsEnter(u8 mapType1, u8 mapType2);
 void __attribute__((long_call)) FieldCallback_SweetScent(void);
 void __attribute__((long_call)) StartSweetScentFieldEffect(void);
+void __attribute__((long_call)) FreeResourcesAndDestroySprite(struct Sprite *sprite, u8 spriteId);
+u8 __attribute__((long_call)) CreateMonSprite_FieldMove(u16 species, u32 otId, u32 personality, s16 x, s16 y, u8 subpriority);
 
 /*
 void sub_80B69DC(void);
