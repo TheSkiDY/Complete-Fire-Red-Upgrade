@@ -2359,7 +2359,7 @@ bool8 CanBeFrozen(u8 bankDef, u8 bankAtk, bool8 checkFlowerVeil)
 	if (gBattleWeather & WEATHER_SUN_ANY && WEATHER_HAS_EFFECT && AffectedBySun(bankDef))
 		return FALSE;
 
-	if (atkAbility == ABILITY_MEGASOL)
+	if (defAbility == ABILITY_MEGASOL)
 		return FALSE;
 
 	return TRUE;

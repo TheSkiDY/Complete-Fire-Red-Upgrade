@@ -118,10 +118,13 @@ extern u8 BattleScript_ButItFailed[];
 typedef u8 TrainerClassNames_t[13];
 #define gTrainerClassNames ((TrainerClassNames_t*) *((u32*) 0x811B4B4)) //0x823E558
 #define gTrainers ((struct Trainer*) *((u32*) 0x800FC00)) //0x823EAC8
-#define gTrainerFrontPicCoords ((struct TrainerPicCoords*) 0x823932C)
-#define gTrainerFrontPicTable ((struct CompressedSpriteSheet*) 0x823957C)
-#define gTrainerFrontPicPaletteTable ((struct CompressedSpritePalette*) 0x8239A1C)
-extern struct TrainerPicCoords gTrainerBackPicCoords[];
+//#define gTrainerFrontPicCoords ((struct TrainerPicCoords*) 0x823932C)
+extern const struct MonCoords gTrainerFrontPicCoords[];
+//#define gTrainerFrontPicTable ((struct CompressedSpriteSheet*) 0x823957C)
+extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
+//#define gTrainerFrontPicPaletteTable ((struct CompressedSpritePalette*) 0x8239A1C)
+extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
+extern const struct TrainerPicCoords gTrainerBackPicCoords[];
 
 #define sATypeMove_Table ((u8**) 0x83FEA28) //Table of things like "A Normal Move!"
 #define gBattleStringsTable ((u8**) 0x83FDF3C)

@@ -19,4 +19,6 @@ gBallOpenParticleAnimationFuncs 080F066C
 gBallParticleSpriteTemplates 080F0784
 gBallOpenMonFadePal 080F1284
 
-
+gTrainerFrontPicTable 0803473C
+gTrainerFrontPicPaletteTable 080347A0
+gTrainerFrontPicCoords 08037E78

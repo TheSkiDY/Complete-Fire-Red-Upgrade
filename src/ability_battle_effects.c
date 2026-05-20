@@ -2668,6 +2668,7 @@ static u8 CalcMovePowerForForewarn(u16 move)
 			
 			case MOVE_COUNTER:
 			case MOVE_METALBURST:
+			case MOVE_COMEUPPANCE:
 			case MOVE_MIRRORCOAT:
 				power = 120;
 				break;

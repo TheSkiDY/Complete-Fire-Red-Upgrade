@@ -524,7 +524,7 @@ u8 PlayerGenderToFrontTrainerPicId(u8 gender, bool8 modify)
 
 	u16 trainerId = VarGet(VAR_TRAINERCARD_MALE + gender);
 	if (trainerId == 0)
-		trainerId = TRAINER_PIC_PLAYER_M + gender;
+		trainerId = TRAINER_PIC_RED + gender;
 
 	return trainerId;
 };
